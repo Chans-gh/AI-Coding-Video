@@ -4405,16 +4405,20 @@
    "name": "吉卜力式手绘动画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-187.jpg",
    "prompt": "用吉卜力式手绘动画风格：背景像水彩加不透明水粉画成，云、树叶和房屋都有手作的笔触与真实的生活细节，角色用干净的细描线加两三阶赛璐璐平涂，和背景在光向、透视和接触阴影上严丝合缝；风吹过时草浪、衣角和发梢按先后次序摆动，人物做饭、骑车、开窗这类生活动作有重心和前后因果，镜头多为平视的长停留和缓慢横移。只学画法，不出现任何现有角色、场景或标志。",
    "theme": "卡通与动漫",
    "fit": "成长故事、乡村与城市生活、温暖的品牌短片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": null,
+   "render_code": "samples/C-187/",
    "refs": [
     {
      "label": "huashu 风格卡 25_ghibli",
@@ -4428,16 +4432,20 @@
    "name": "新海诚式光影",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-188.jpg",
    "prompt": "用新海诚式光影风格：几乎写实的室内或街景，天空是饱和的蓝和层层叠叠被阳光镶边的积雨云，电线、屋顶和飞机拉线衬在天边，窗外强光把窗框投成地板上的亮块，空气里有丁达尔光柱和漂浮的光尘，玻璃上挂着水珠，角色用赛璐璐平涂、阴影落在背光一侧并带一道暖色轮廓光，整体叠加镜头光晕、泛光和冷暖分离的调色，镜头缓慢推近或仰拍天空。只学画法，不出现现有角色或场景。",
    "theme": "卡通与动漫",
    "fit": "青春、离别与重逢、城市日常、音乐 MV",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-188/",
    "refs": [
     {
      "label": "huashu 风格卡 35_shinkai",
@@ -4451,16 +4459,21 @@
    "name": "皮克斯式 3D 动画",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-189.jpg",
    "prompt": "用皮克斯式 3D 动画风格：先设计一眼能认出的剪影和大小对比，再做表面；布、木头、金属、皮肤各有清楚不同的材质，材质本身说明角色性格；光是讲故事的工具，主光把视线引向剧情焦点，可以为情绪偏离物理；角色表演有预备、跟随和重心转移，情绪来自动作因果而不是频繁换表情，无脸的物件（台灯、玩具、机器）也能靠姿态演戏，浅景深加柔和的全局光。只学这套方法，不复刻任何现有角色。",
    "theme": "卡通与动漫",
    "fit": "品牌吉祥物短片、拟人化产品故事、儿童动画",
-   "verified": [],
+   "verified": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-189/",
    "refs": [
     {
      "label": "huashu 风格卡 53_pixar",
@@ -4474,15 +4487,19 @@
    "name": "草间弥生式无限波点",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-190.jpg",
    "prompt": "用草间弥生式无限波点风格：墙面、地板、人物和物件全部铺满大小两套错位排列、手画般略带椭圆的圆点，红底白点、黄底黑点为主，所有点的大小随一道从画面中心向外扩散的波一起胀缩，像整个空间在呼吸；窗外是一格格规则排列、向镜头无限飞来的彩色小灯，像镜屋里的无尽反射；结尾全屏被同一种波点吞没、物体轮廓消融在点阵里。",
    "theme": "手绘与绘画",
    "fit": "艺术展宣传、品牌联名、音乐可视化、关于“无限”和“重复”的主题",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-190/",
    "refs": [
     {
      "label": "huashu 风格卡 21_kusama",
@@ -4496,15 +4513,19 @@
    "name": "柯比式 60 年代美漫",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-191.jpg",
    "prompt": "用柯比式 60 年代美漫风格：米黄旧新闻纸上，同一组形体先印一遍平涂色块加本戴网点（青、品红、黄网点角度各不相同），再叠一遍粗黑墨线，两层故意错开几像素像套色不准；阴影是背光一侧的大块实黑加一圈平行羽化排线，能量用一簇簇大小不一、不断跳动的黑色圆点表示，构图夸张、透视强烈、人物动作张开到极致，拟声字和对白框手写。",
    "theme": "卡通与动漫",
    "fit": "超级英雄式的夸张叙事、科幻冒险、产品“超能力”宣传",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-191/",
    "refs": [
     {
      "label": "huashu 风格卡 27_kirby",
@@ -4518,16 +4539,20 @@
    "name": "瑞克和莫蒂式扁平卡通",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-192.jpg",
    "prompt": "用瑞克和莫蒂式扁平卡通风格：均匀的细黑描边，几乎没有明暗，只在少数地方加一阶硬阴影，角色眼睛是带不规则小瞳孔的白圆、嘴形松散、身材比例略微怪异，背景是饱和而有点脏的平涂色，科幻道具画得像旧家电，传送门之类的特效是一团发光的绿色螺旋，表演靠姿势切换、停顿和眼神。角色全部原创，不使用剧中人物。",
    "theme": "卡通与动漫",
    "fit": "荒诞科幻喜剧、技术梗讲解、成人向短剧",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-192/",
    "refs": [
     {
      "label": "huashu 风格卡 37_rick_morty",
@@ -4541,16 +4566,20 @@
    "name": "南方公园式数字剪纸",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-193.jpg",
    "prompt": "用南方公园式数字剪纸风格：所有角色和场景都像用彩色卡纸剪出来的平面纸片，造型是几何化的大剪影、五官极少，人物几乎只做平移、整片转动和嘴形切换，走路是上下小幅颠动，纸片之间靠前后层级遮挡，背景是简单的平涂小镇或室内，纹理很克制；笑点靠停顿、反应镜头和突然的切换。角色全部原创，不复制剧中人物和地点。",
    "theme": "卡通与动漫",
    "fit": "讽刺短剧、快速成本低的连载、职场与社会话题",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "HTML/CSS"
    ],
-   "render_code": null,
+   "render_code": "samples/C-193/",
    "refs": [
     {
      "label": "huashu 风格卡 52_south_park",

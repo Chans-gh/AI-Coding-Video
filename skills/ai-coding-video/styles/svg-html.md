@@ -711,12 +711,16 @@
 
 ## C-192 瑞克和莫蒂式扁平卡通
 
+![瑞克和莫蒂式扁平卡通](../images/C-192.jpg)
+
 ```text
 用瑞克和莫蒂式扁平卡通风格：均匀的细黑描边，几乎没有明暗，只在少数地方加一阶硬阴影，角色眼睛是带不规则小瞳孔的白圆、嘴形松散、身材比例略微怪异，背景是饱和而有点脏的平涂色，科幻道具画得像旧家电，传送门之类的特效是一团发光的绿色螺旋，表演靠姿势切换、停顿和眼神。角色全部原创，不使用剧中人物。
 ```
 
 - 题材：卡通与动漫
 - 适合：荒诞科幻喜剧、技术梗讲解、成人向短剧
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-192/
 - 技术（建议）：SVG · GSAP
 - 参考：[huashu 风格卡 37_rick_morty](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/37_rick_morty.md)
 
@@ -724,11 +728,15 @@
 
 ## C-193 南方公园式数字剪纸
 
+![南方公园式数字剪纸](../images/C-193.jpg)
+
 ```text
 用南方公园式数字剪纸风格：所有角色和场景都像用彩色卡纸剪出来的平面纸片，造型是几何化的大剪影、五官极少，人物几乎只做平移、整片转动和嘴形切换，走路是上下小幅颠动，纸片之间靠前后层级遮挡，背景是简单的平涂小镇或室内，纹理很克制；笑点靠停顿、反应镜头和突然的切换。角色全部原创，不复制剧中人物和地点。
 ```
 
 - 题材：卡通与动漫
 - 适合：讽刺短剧、快速成本低的连载、职场与社会话题
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-193/
 - 技术（建议）：SVG · HTML/CSS
 - 参考：[huashu 风格卡 52_south_park](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/52_south_park.md)
