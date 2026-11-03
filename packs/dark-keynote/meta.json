@@ -1,0 +1,8 @@
+{
+  "from": "C-044",
+  "name": "暗色科技发布会",
+  "en_name": "Dark tech keynote",
+  "how": "一个品牌色推出整套配色；片头、讲解、数据、转场、字幕五个部件按分段表排成一支片子，换色只改一个参数。",
+  "en_how": "One brand color drives the whole palette; five parts (opener, explainer, data, transition, captions) are laid out on a segment table, and swapping the brand color is one parameter.",
+  "parts": [["片头", "Opener"], ["讲解", "Explainer"], ["数据", "Data"], ["转场", "Transition"], ["字幕", "Captions"]]
+}

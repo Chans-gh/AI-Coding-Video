@@ -20,6 +20,7 @@
 | `render.py` | 出片核心（截图、合成声音、编码、缩略图），由 `batch.py` 调用 |
 | `tools/mark.py` | 把出好的样片登记进风格条目 |
 | `tools/apidoc.py` | 生成 `API.md` |
+| `tools/brands.py` | 风格包换品牌色对照图，见 [packs/](../packs/README.md) |
 
 ## 怎么出片
 
@@ -34,6 +35,7 @@ python3 batch.py C-168 C-169         # 出横竖两版视频、静帧，并更�
 python3 batch.py all --quick         # 所有样片
 python3 batch.py C-168 --sound       # 只合成声音到 out/C-168.wav，改配乐时试听
 python3 tools/mark.py C-168          # 在风格条目里写上缩略图、「技术（已验证）」「样片代码」，并跑词典自检
+python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynote/demo/），见 packs/README.md
 ```
 
 `batch.py` 每个样片每个画幅只打一行摘要（✓，或 ✗ 加原因），详细日志在 `out/<编号>-<画幅>.log`。自动检查：脚本报错、黑屏或白屏、画面不动（比较相隔 0.2 秒的两帧）、声音静音或削波、时长（3–5 秒）、视频体积（超过 2.5 MB 自动加大压缩，仍超就报 ✗）。总览图 `out/sheet.jpg` 每行一个样片，横竖各 4 帧，最多 6 个样片一张，多的写 `sheet-2.jpg`。先看摘要，再看总览图，只有 ✗ 或看着可疑的才单独打开。

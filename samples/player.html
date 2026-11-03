@@ -25,12 +25,16 @@
 <script>
 // 用法：player.html?s=C-001&ar=16x9      浏览器里循环播放
 //       player.html?s=C-001&ar=9x16&render=1&t=1.5   出片脚本用：停在 t 秒那一帧
+//       player.html?s=pack:dark-keynote&ar=16x9&accent=%23FF7A45   风格包演示片（packs/<名字>/demo/）；其余参数场景可用 Q.get() 读
+// 场景可以写 needs: ['../pack.js']（相对场景文件），播放器在 init 之前按顺序载入
 const Q = new URLSearchParams(location.search), SID = Q.get('s');
+const DIR = SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
 let READY = false, SC = null, DUR = 3;
 function load(src) { return new Promise((ok, no) => { const e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = () => no(new Error('载入失败 ' + src)); document.body.appendChild(e); }); }
 (async () => {
   await load('lib/lib.js');
-  await load(`${SID}/scene.js`);
+  await load(`${DIR}/scene.js`);
+  for (const n of S[0].needs || []) await load(`${DIR}/${n}`);
   if (Q.has('render')) document.body.classList.add('render');
   const cv = document.getElementById('c'); cv.width = W; cv.height = H;
   const ctx = cv.getContext('2d');

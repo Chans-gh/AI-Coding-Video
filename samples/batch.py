@@ -8,6 +8,7 @@
     python3 batch.py C-001 -j 2             # 并行数（默认 4）
     python3 batch.py C-001 --at 2.4         # 只截 2.4 秒那一帧（全分辨率）到 out/，单独看可疑的画面
     python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
+    python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），时长可到 30 秒
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
@@ -81,7 +82,7 @@ def task(sid, ar, quick):
                 pairs = [float(np.abs(grays[i] - grays[i - gap]).mean()) for i in range(gap, len(grays))]
                 res["thumbs"] = [small(frames[min(len(frames) - 1, round(dur * k * fps))]) for k in PICK]
                 R.still_and_thumb(p, sid, ar)
-                mp4 = HERE / sid / f"{sid}-{ar}.mp4"
+                mp4 = R.where(sid) / f"{R.stem(sid)}-{ar}.mp4"
                 size = f"{mp4.stat().st_size / 1e6:.1f} MB"
                 if vbytes > R.MAX_BYTES:
                     why.append(f"体积超限（视频 {vbytes / 1e6:.1f} MB）")
@@ -93,14 +94,15 @@ def task(sid, ar, quick):
             log += p.log
             why += check_frames(grays, pairs)
             log.append(f"帧差（相隔 {GAP}s）：" + " ".join(f"{d:.2f}" for d in pairs[:: max(1, len(pairs) // 12)]))
-            if not 3 <= dur <= 5:
-                why.append(f"时长 {dur}s 不在 3–5 秒")
+            lo, hi = (5, 30) if sid.startswith("pack:") else (3, 5)          # 风格包演示片可以更长
+            if not lo <= dur <= hi:
+                why.append(f"时长 {dur}s 不在 {lo}–{hi} 秒")
             snd = ""
             _, x, raw = R.make_sound(sid, dur, f"-{ar}-chk")
             if x is None:
                 why.append("没有 sound.py")
             else:
-                (R.OUT / f"{sid}-{ar}-chk.wav").unlink()
+                (R.OUT / f"{R.stem(sid)}-{ar}-chk.wav").unlink()
                 pk, rms, over = audio_stats(x, raw)
                 snd = f"声 {rms:.0f} dB"
                 log.append(f"声音：峰值 {pk:.1f} dBFS，RMS {rms:.1f} dBFS，压平 {over:.2%}")
@@ -120,7 +122,7 @@ def finish(res, why, log, t0, info):
     mark = "✓" if not why else "✗ " + "；".join(why)
     res["line"] = f"{'✓' if not why else '✗'} {res['sid']} {res['ar']:5} {info}  {time.time() - t0:.0f}s" + ("" if not why else "  " + "；".join(why))
     R.OUT.mkdir(exist_ok=True)
-    (R.OUT / f"{res['sid']}-{res['ar']}.log").write_text("\n".join(log + [mark]) + "\n", encoding="utf-8")
+    (R.OUT / f"{R.stem(res['sid'])}-{res['ar']}.log").write_text("\n".join(log + [mark]) + "\n", encoding="utf-8")
     return res
 
 
@@ -189,7 +191,7 @@ def main():
         return
     if not (HERE / "node_modules" / "@fontsource").exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
-    missing = [s for s in ids if not (HERE / s / "scene.js").exists()]
+    missing = [s for s in ids if not (R.where(s) / "scene.js").exists()]
     if missing:
         sys.exit(f"没有 scene.js：{' '.join(missing)}（先用 new.py 起骨架）")
     ars = ["16x9", "9x16"] if a.ar == "both" else [a.ar]
@@ -197,7 +199,7 @@ def main():
         results = {}
         for sid in ids:
             for ar in ars:
-                mp4 = HERE / sid / f"{sid}-{ar}.mp4"
+                mp4 = R.where(sid) / f"{R.stem(sid)}-{ar}.mp4"
                 real = R.mp4_duration(mp4) if mp4.exists() else None
                 if real is None:
                     print(f"✗ {sid} {ar} 没有成片"); continue
@@ -213,7 +215,7 @@ def main():
             for sid in ids:
                 for ar in ars:
                     p = R.Page(pw, sid, ar)
-                    out = R.OUT / f"{sid}-{ar}-{a.at:g}s.jpg"
+                    out = R.OUT / f"{R.stem(sid)}-{ar}-{a.at:g}s.jpg"
                     R.OUT.mkdir(exist_ok=True); out.write_bytes(p.frame(a.at, quality=90)); p.close()
                     print(f"{sid} {ar} {a.at:g}s → out/{out.name}" + (f"  报错：{p.errors[0][:80]}" if p.errors else ""))
         return

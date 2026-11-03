@@ -19,14 +19,14 @@
   // 样片播放：视口停下来（不再滚动）一小会儿，才播放大半露在视口里的样片；滚出视口的马上暂停。src 第一次要播时才填
   const PAGE = 15, DWELL = 350;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const vids = Array.from(document.querySelectorAll('.card video'));
+  const vids = Array.from(document.querySelectorAll('.card video, .pack-video'));   // 样片卡片 + 风格包演示片
   const lb = document.getElementById('lightbox'), lv = lb.querySelector('video');
   const seen = new Set();
   const start = v => { if (!v.getAttribute('src')) v.src = v.dataset.src; v.play().catch(() => {}); };
   const stop = v => { if (!v.paused) v.pause(); };
   function settle() {
     if (lb.open) return;
-    vids.forEach(v => (seen.has(v) && !v.closest('.card').hidden && (!reduce || !v.muted)) ? start(v) : stop(v));
+    vids.forEach(v => { const c = v.closest('.card'); (seen.has(v) && !(c && c.hidden) && (!reduce || !v.muted)) ? start(v) : stop(v); });
   }
   let idle = 0;
   const poke = () => { clearTimeout(idle); idle = setTimeout(settle, DWELL); };

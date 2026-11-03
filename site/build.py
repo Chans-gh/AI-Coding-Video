@@ -17,6 +17,7 @@ HERE = Path(__file__).resolve().parent
 REPO_DIR = HERE.parent
 SKILL = REPO_DIR / "skills" / "ai-coding-video"
 SAMPLES = REPO_DIR / "samples"
+PACKS = REPO_DIR / "packs"
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
 VERSION = "v2 · 2026-11-03"
@@ -148,6 +149,32 @@ def gallery(styles, ids):
     return "\n".join(out)
 
 
+def pack_names():
+    """出好演示片的风格包（packs/<名字>/demo/<名字>-16x9.mp4 存在）"""
+    return sorted(d.name for d in PACKS.glob("*") if (d / "demo" / f"{d.name}-16x9.mp4").exists())
+
+
+def packs_html(names):
+    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换），右边部件、换色对照图和链接"""
+    out = []
+    for n in names:
+        m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
+        parts = "".join(f"<li>{both(z, e)}</li>" for z, e in m["parts"])
+        out.append(f'''    <article class="pack">
+      <div class="pack-screen">
+        <video class="pack-video" data-id="pack-{n}" data-src="media/pack-{n}-16x9.mp4" poster="media/pack-{n}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
+      </div>
+      <div class="pack-body">
+        <div class="card-meta"><code>{n}</code><h4>{both(m["name"] + "风格包", m["en_name"] + " pack")}</h4></div>
+        <p class="how">{both(m["how"], m["en_how"])} {both("由 " + m["from"] + " 沉淀。", "Built from " + m["from"] + ".")}</p>
+        <ul class="pack-parts">{parts}</ul>
+        <figure class="pack-brands"><img src="media/pack-{n}-brands.jpg" alt="" loading="lazy"><figcaption>{both("同一支演示片换三种品牌色", "The same demo in three brand colors")}</figcaption></figure>
+        <div class="links"><a href="{REPO}/tree/{BRANCH}/packs/{n}">{both("风格包代码", "Pack code")}</a><a href="{REPO}/blob/{BRANCH}/packs/{n}/STYLE.md">{both("风格说明", "Style guide")}</a></div>
+      </div>
+    </article>''')
+    return "\n".join(out)
+
+
 def theme_bars(styles, ids):
     counts, done = {}, {}
     for s in styles:
@@ -234,9 +261,10 @@ def main():
     if not ids:
         sys.exit("还没有渲染好的样片：先在 samples/ 下运行 batch.py")
     zh_l, en_l = layers(styles)
+    packs = pack_names()
     tpl = (HERE / "src" / "index.html").read_text(encoding="utf-8")
     fills = {
-        "{{VERSION}}": VERSION, "{{REPO}}": REPO, "{{N_STYLES}}": str(len(styles)), "{{N_SAMPLES}}": str(len(ids)),
+        "{{VERSION}}": VERSION, "{{REPO}}": REPO, "{{N_STYLES}}": str(len(styles)), "{{N_SAMPLES}}": str(len(ids)), "{{N_PACKS}}": str(len(packs)), "{{PACKS}}": packs_html(packs),
         "{{GALLERY}}": gallery(styles, ids), "{{THEMES}}": theme_bars(styles, ids),
         "{{LAYERS_ZH}}": zh_l, "{{LAYERS_EN}}": en_l, "{{TEMPLATE}}": esc(template_text()),
     }
@@ -255,6 +283,11 @@ def main():
         for ar in ("16x9", "9x16"):
             for ext in ("mp4", "jpg"):
                 shutil.copy2(SAMPLES / sid / f"{sid}-{ar}.{ext}", media / f"{sid}-{ar}.{ext}")
+    for n in packs:
+        for ar in ("16x9", "9x16"):
+            for ext in ("mp4", "jpg"):
+                shutil.copy2(PACKS / n / "demo" / f"{n}-{ar}.{ext}", media / f"pack-{n}-{ar}.{ext}")
+        shutil.copy2(PACKS / n / "brands.jpg", media / f"pack-{n}-brands.jpg")
 
     if not FONTSRC.exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
@@ -268,7 +301,7 @@ def main():
         n = make_font(pkg, w, cs, fonts / f"{name}.woff2")
         print(f"字体 {name}：{n} 个分片 → {(fonts / f'{name}.woff2').stat().st_size / 1e3:.0f} KB")
     size = sum(p.stat().st_size for p in HERE.rglob("*") if p.is_file() and "src" not in p.parts)
-    print(f"写好 site/index.html：{len(ids)} 个样片，{len(styles)} 种风格；整站 {size / 1e6:.1f} MB")
+    print(f"写好 site/index.html：{len(ids)} 个样片，{len(packs)} 个风格包，{len(styles)} 种风格；整站 {size / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@
     <nav class="nav" aria-label="目录">
       <a href="#what"><span lang="zh">是什么</span><span lang="en">What</span></a>
       <a href="#gallery"><span lang="zh">样片</span><span lang="en">Samples</span></a>
+      <a href="#packs"><span lang="zh">风格包</span><span lang="en">Packs</span></a>
       <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#prompt"><span lang="zh">提示词</span><span lang="en">Prompts</span></a>
       <a href="#skill">Skill</a>
@@ -129,6 +130,14 @@
       </div>
     </div>
 {{GALLERY}}
+  </div>
+</section>
+
+<section class="sec" id="packs">
+  <div class="wrap">
+    <h2><span lang="zh">风格包</span><span lang="en">Style packs</span></h2>
+    <p class="sec-lede"><span lang="zh">样片通过以后，这种风格就沉淀成一套可复用的代码：换一个品牌色，片头、讲解、数据、转场、字幕都跟着变，再附一份能抄进项目规范的风格说明。下面的演示片由风格包的部件拼成，画幅跟着上面的样片区切换。</span><span lang="en">Once a sample is approved, the style becomes reusable code: change one brand color and the opener, explainer, data, transitions and captions all follow, plus a style guide you can paste into your project rules. The demo below is built from the pack's parts; its frame shape follows the switch in the samples section.</span></p>
+{{PACKS}}
   </div>
 </section>
 
@@ -267,7 +276,7 @@ scripts/install.sh codex   <span class="c"># or: claude · dsh · all · zip</sp
       <article>
         <p class="lv">2</p>
         <h4><span lang="zh">风格包</span><span lang="en">Style packs</span></h4>
-        <p class="num"><span lang="zh">筹备中</span><span lang="en">Coming</span></p>
+        <p class="num">{{N_PACKS}} <span lang="zh">个风格包</span><span lang="en">packs so far</span> · <a href="#packs"><span lang="zh">看演示</span><span lang="en">See the demo</span></a></p>
         <p><span lang="zh">通过的风格沉淀成可换品牌色的代码模块，覆盖片头、讲解、数据、转场、字幕。</span><span lang="en">An approved style becomes a reusable code module with swappable brand colors: openers, explainers, data, transitions, captions.</span></p>
       </article>
     </div>
