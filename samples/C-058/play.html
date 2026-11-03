@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>C-058 小游戏（键盘可玩）</title>
+<!-- 真能玩的那一份：← → 走，↑ 跳，R 重开。游戏规则和样片用的是同一个 game.js。
+     用法：在 samples/ 下起一个本地服务（python3 -m http.server），打开 http://localhost:8000/C-058/play.html -->
+<style>
+  html, body { margin: 0; height: 100%; background: #0B0814; color: #EDE7FF; font: 14px/1.6 system-ui, sans-serif; display: grid; place-items: center }
+  canvas { image-rendering: pixelated; width: min(96vw, 1280px); border: 2px solid rgba(111,227,197,.35) }
+  p { opacity: .7 }
+</style>
+</head>
+<body>
+<div>
+  <canvas id="c" width="960" height="540"></canvas>
+  <p>← → 走路，↑ 跳（踩小怪得 50 分，金币 10 分），R 重开。</p>
+</div>
+<script src="../lib/lib.js"></script>
+<script src="game.js"></script>
+<script>
+const ctx = document.getElementById('c').getContext('2d');
+const keys = { left: 0, right: 0, jump: 0 };
+const MAP = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'jump', KeyA: 'left', KeyD: 'right', Space: 'jump', KeyW: 'jump' };
+addEventListener('keydown', e => { if (e.code === 'KeyR') g = newGame(); const k = MAP[e.code]; if (k) { keys[k] = 1; e.preventDefault(); } });
+addEventListener('keyup', e => { const k = MAP[e.code]; if (k) keys[k] = 0; });
+let g = newGame(), acc = 0, last = performance.now();
+(function loop(now) {
+  requestAnimationFrame(loop);
+  acc = Math.min(.25, acc + (now - last) / 1000); last = now;
+  while (acc >= 1 / 120) { stepGame(g, keys); acc -= 1 / 120; }     // 和样片一样的固定步长
+  const cam = clamp(g.p.x - 330, 0, 1700 - 960);
+  drawGame(ctx, g, cam);
+  if (g.flash > 0) { ctx.fillStyle = `rgba(255,255,255,${g.flash * .5})`; ctx.fillRect(0, 0, 960, 540); }
+  ctx.font = "16px monospace"; ctx.fillStyle = '#FFD75E'; ctx.textAlign = 'left';
+  ctx.fillText(`SCORE ${String(g.score).padStart(4, '0')}`, 28, 37);
+})(performance.now());
+</script>
+</body>
+</html>

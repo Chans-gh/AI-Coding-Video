@@ -74,12 +74,16 @@
 
 ## C-029 积木玩具
 
+![积木玩具](../images/C-029.jpg)
+
 ```text
 用积木玩具定格风格：所有东西由带凸点的塑料积木拼成，放在真实桌面上用微距镜头拍摄，浅景深、柔光箱光线和塑料高光，按定格动画节奏一块块搭起来，每次卡入有“哒”的声音。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：搭建、工程、儿童
+- 技术（已验证）：Three.js · cannon-es · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-029/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-029)
 - 技术（建议）：WebGL · Three.js · cannon-es
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/brick-toy/STYLE.md)
 
@@ -87,12 +91,16 @@
 
 ## C-045 玻璃质感产品
 
+![玻璃质感产品](../images/C-045.jpg)
+
 ```text
 用玻璃质感产品渲染风格：一个透明和磨砂玻璃加金属的产品悬浮在无限黑色影棚里，长条灯光慢慢扫过表面，边缘有色散彩边、地面有焦散光纹，慢速爆炸视图在音乐重音处“咔”地合拢。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：硬件发布
+- 技术（已验证）：Three.js · WebGL · Playwright · ffmpeg
+- 样片代码：[samples/C-045/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-045)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/glass-product/STYLE.md)
 
@@ -113,12 +121,16 @@
 
 ## C-055 HD-2D
 
+![HD-2D](../images/C-055.jpg)
+
 ```text
 用 HD-2D 风格：手工像素精灵像剪纸一样立在完整的 3D 微缩场景里，夜晚、有雾，每盏灯投下真实阴影，从高处三分之四视角拍摄并加移轴景深模糊，整个世界像一个发光的玩具模型。
 ```
 
 - 题材：游戏
 - 适合：夜景、奇幻
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-055/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-055)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/hd-2d/STYLE.md)
 
@@ -138,12 +150,16 @@
 
 ## C-062 后室 / 找到的录像带
 
+![后室 / 找到的录像带](../images/C-062.jpg)
+
 ```text
 用后室录像带风格：像 90 年代家用摄像机拍的录像带（横向干扰、色带偏移、右下角日期时间戳），发黄的壁纸、潮湿地毯、嵌入式荧光灯构成无尽空房间，手持镜头慢慢前行，恐惧来自“规则”和环境音而不是怪物。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：悬疑、新怪谈
+- 技术（已验证）：Three.js · WebGL · GLSL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-062/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-062)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/backrooms/STYLE.md)
 
@@ -151,12 +167,16 @@
 
 ## C-063 移轴微缩
 
+![移轴微缩](../images/C-063.jpg)
+
 ```text
 用移轴微缩风格：用 Three.js 程序生成一座小镇，从高处俯拍，只有中间一条水平带清晰、上下强烈虚化（景深后处理），饱和度和对比度调高，车辆行人以延时节奏快速移动，云影扫过街道，整座城像桌面模型。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：城市、交通
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-063/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-063)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/tilt-shift/STYLE.md)
 

@@ -1,0 +1,10 @@
+{
+  "en_name": "Tablet blackboard marker",
+  "en_how": "A pure black digital board drawn in Remotion from useCurrentFrame: 3-6 px round-cap single-line SVG strokes with a slight hand wobble reveal themselves by stroke-dashoffset at speaking pace, a stylus tip stays at the head of the line, five fixed-meaning colours carry the labels, and a solid red arrow stamps down at the end.",
+  "tech": [
+    "Remotion",
+    "SVG",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

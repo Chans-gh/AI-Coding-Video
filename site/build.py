@@ -20,7 +20,7 @@ SAMPLES = REPO_DIR / "samples"
 PACKS = REPO_DIR / "packs"
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v4 · 2026-11-03"
+VERSION = "v5 · 2026-11-03"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -58,9 +58,10 @@ def sample_ids(styles):
 
 
 def zh_how(sid):
-    first = (SAMPLES / sid / "scene.js").read_text(encoding="utf-8").splitlines()[0]
+    src = next(f for f in (SAMPLES / sid / "scene.js", SAMPLES / sid / "scene.jsx") if f.exists())   # Remotion 样片是 scene.jsx
+    first = src.read_text(encoding="utf-8").splitlines()[0]
     m = re.match(r"//\s*\S+\s*[^：]*：(.*)", first)
-    return (m.group(1) if m else first.lstrip("/ ")).rstrip("，,。") + "。"
+    return (m.group(1) if m else first.lstrip("/ ")).rstrip("，,。—") + "。"
 
 
 def esc(s):

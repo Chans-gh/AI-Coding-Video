@@ -1,0 +1,12 @@
+{
+  "en_name": "Brick toy stop-motion",
+  "en_how": "Studded plastic bricks built from code sit on a real desk under two soft boxes, shot macro with a layered Canvas 2D depth-of-field pass; the model snaps together one brick per stop-motion step, and the last two bricks really fall, simulated by cannon-es at a fixed 1/120 s step replayed from zero each frame so the result is identical every render.",
+  "tech": [
+    "Three.js",
+    "cannon-es",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

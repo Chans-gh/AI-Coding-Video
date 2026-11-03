@@ -413,12 +413,16 @@
 
 ## C-058 可玩游戏 / 模拟器录屏
 
+![可玩游戏 / 模拟器录屏](../images/C-058.jpg)
+
 ```text
 先用 Canvas 2D 做一个可以真实操作的单文件 HTML 游戏（横版动作、机关、战斗、灯光闪烁），再让脚本自动玩一遍并录制 60 秒演示，保留 HUD 和菜单，镜头跟随角色。
 ```
 
 - 题材：游戏
 - 适合：游戏 demo、交互科普
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-058/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-058)
 - 技术（建议）：Canvas 2D · Playwright
 - 参考：[@ring_hyacinth](https://x.com/ring_hyacinth/status/2102865595675050010) · [@RyanSael](https://x.com/RyanSael/status/2102591147927654847)
 

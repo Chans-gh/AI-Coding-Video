@@ -595,12 +595,16 @@
 
 ## C-124 平板黑板马克笔
 
+![平板黑板马克笔](../images/C-124.jpg)
+
 ```text
 用平板黑板马克笔风格：纯黑数位画板，3–6 px 圆头单线笔画带轻微手抖，按说话的速度一笔笔画出来，一支数位笔尖始终跟着笔头，白、蓝、绿、黄、红五色各有固定含义，手写标签，红色实心箭头像图章一样盖下，每块板只长一张图，只配人声。
 ```
 
 - 题材：手绘与绘画
 - 适合：技术原理、安全漏洞讲解、计算机科普
+- 技术（已验证）：Remotion · SVG · Playwright · ffmpeg
+- 样片代码：[samples/C-124/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-124)
 - 技术（建议）：SVG · Remotion
 - 参考：[animation-skills board-explainer](https://github.com/madhavsomani/animation-skills/blob/main/skills/board-explainer/SKILL.md)
 

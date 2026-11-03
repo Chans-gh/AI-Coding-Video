@@ -858,17 +858,27 @@
    "name": "积木玩具",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-029.jpg",
    "prompt": "用积木玩具定格风格：所有东西由带凸点的塑料积木拼成，放在真实桌面上用微距镜头拍摄，浅景深、柔光箱光线和塑料高光，按定格动画节奏一块块搭起来，每次卡入有“哒”的声音。",
    "theme": "纸艺、材质与定格",
    "fit": "搭建、工程、儿童",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "cannon-es",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js",
     "cannon-es"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-029/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-029"
+   },
    "pack": null,
    "refs": [
     {
@@ -1327,16 +1337,24 @@
    "name": "玻璃质感产品",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-045.jpg",
    "prompt": "用玻璃质感产品渲染风格：一个透明和磨砂玻璃加金属的产品悬浮在无限黑色影棚里，长条灯光慢慢扫过表面，边缘有色散彩边、地面有焦散光纹，慢速爆炸视图在音乐重音处“咔”地合拢。",
    "theme": "信息讲解与产品发布",
    "fit": "硬件发布",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-045/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-045"
+   },
    "pack": null,
    "refs": [
     {
@@ -1619,16 +1637,25 @@
    "name": "HD-2D",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-055.jpg",
    "prompt": "用 HD-2D 风格：手工像素精灵像剪纸一样立在完整的 3D 微缩场景里，夜晚、有雾，每盏灯投下真实阴影，从高处三分之四视角拍摄并加移轴景深模糊，整个世界像一个发光的玩具模型。",
    "theme": "游戏",
    "fit": "夜景、奇幻",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-055/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-055"
+   },
    "pack": null,
    "refs": [
     {
@@ -1690,16 +1717,23 @@
    "name": "可玩游戏 / 模拟器录屏",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-058.jpg",
    "prompt": "先用 Canvas 2D 做一个可以真实操作的单文件 HTML 游戏（横版动作、机关、战斗、灯光闪烁），再让脚本自动玩一遍并录制 60 秒演示，保留 HUD 和菜单，镜头跟随角色。",
    "theme": "游戏",
    "fit": "游戏 demo、交互科普",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "Playwright"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-058/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-058"
+   },
    "pack": null,
    "refs": [
     {
@@ -1801,17 +1835,27 @@
    "name": "后室 / 找到的录像带",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-062.jpg",
    "prompt": "用后室录像带风格：像 90 年代家用摄像机拍的录像带（横向干扰、色带偏移、右下角日期时间戳），发黄的壁纸、潮湿地毯、嵌入式荧光灯构成无尽空房间，手持镜头慢慢前行，恐惧来自“规则”和环境音而不是怪物。",
    "theme": "电影年代与屏幕科技",
    "fit": "悬疑、新怪谈",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-062/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-062"
+   },
    "pack": null,
    "refs": [
     {
@@ -1826,16 +1870,25 @@
    "name": "移轴微缩",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-063.jpg",
    "prompt": "用移轴微缩风格：用 Three.js 程序生成一座小镇，从高处俯拍，只有中间一条水平带清晰、上下强烈虚化（景深后处理），饱和度和对比度调高，车辆行人以延时节奏快速移动，云影扫过街道，整座城像桌面模型。",
    "theme": "电影年代与屏幕科技",
    "fit": "城市、交通",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-063/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-063"
+   },
    "pack": null,
    "refs": [
     {
@@ -3330,16 +3383,24 @@
    "name": "平板黑板马克笔",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-124.jpg",
    "prompt": "用平板黑板马克笔风格：纯黑数位画板，3–6 px 圆头单线笔画带轻微手抖，按说话的速度一笔笔画出来，一支数位笔尖始终跟着笔头，白、蓝、绿、黄、红五色各有固定含义，手写标签，红色实心箭头像图章一样盖下，每块板只长一张图，只配人声。",
    "theme": "手绘与绘画",
    "fit": "技术原理、安全漏洞讲解、计算机科普",
-   "verified": [],
+   "verified": [
+    "Remotion",
+    "SVG",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Remotion"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-124/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-124"
+   },
    "pack": null,
    "refs": [
     {

@@ -23,7 +23,9 @@
 
 ## 怎么出片
 
-需要 Node.js（装字体和绘图库用）、Python 3、Playwright（`pip install playwright`，再 `playwright install chromium`）、Pillow、numpy、scipy 和 ffmpeg。
+需要 Node.js 18 以上（装字体和绘图库用，Remotion 样片也用它出帧；实测 v22）、Python 3、Playwright（`pip install playwright`，再 `playwright install chromium`）、Pillow、numpy、scipy 和 ffmpeg。
+
+维护者本地和云端会话跑的是同一套命令：`cd samples && npm install` 之后就能 `python3 batch.py <编号>`。云端容器里已经有 Chromium（`/opt/pw-browsers/chromium`），`render.py` 和 Remotion 都直接用它；本地没有这个路径时，Playwright 用自己装的那个，Remotion 也会自己找浏览器（都不额外下载到仓库里）。想指定浏览器就设环境变量 `CHROME=/路径/到/chrome`。
 
 ```bash
 cd samples

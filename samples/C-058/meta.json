@@ -1,0 +1,9 @@
+{
+  "en_name": "Playable game capture",
+  "en_how": "A single-file side-scrolling action game that a person can actually play with the keyboard; for the sample a scripted input tape plays it through while the camera follows, and each frame re-simulates the game from zero at a fixed 1/120 s step, so the capture keeps its HUD, scanlines and emulator bezel and still depends only on t.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
