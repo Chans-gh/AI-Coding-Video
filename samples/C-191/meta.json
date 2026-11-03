@@ -1,0 +1,5 @@
+{
+  "en_name": "Kirby-style 1960s comic",
+  "en_how": "The same set of shapes is drawn twice. On the colour plate, cyan, magenta and yellow halftone patterns, each turned to its own angle with dot size giving the tint, are multiplied together. On the ink plate go the heavy black outlines, solid blacks made by subtracting the shape shifted towards the light, and a band of parallel hatching along the terminator. The ink plate is shifted a few pixels before being printed back onto old newsprint, like misregistered colour. Energy is clusters of black dots of mixed sizes that jump to new positions every two frames; the sound effect and the speech balloon use a handwritten font.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

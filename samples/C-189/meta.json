@@ -1,0 +1,5 @@
+{
+  "en_name": "Pixar-style 3D animation",
+  "en_how": "A GLSL ray marcher computes the whole frame: the wooden base is a rounded cylinder, the spring neck is seven rings laid along a Bézier curve, each facing the curve's tangent, and the brass head with a felt cap, the rubber ball and the varnished table each have their own material model. One spotlight lights only the circle where the toy and the ball are and casts soft shadows; the lights on the far wall are computed as soft discs to fake a shallow depth of field. The faceless spring toy acts through posture alone: it leans out when the ball rolls in, compresses its spring in anticipation, hops over and lands with its head still wobbling, then dips and nudges the ball away. Every pose value is a closed-form function of t (easing, parabolas, damped oscillations).",
+  "tech": ["WebGL2", "GLSL", "Playwright", "ffmpeg"]
+}
