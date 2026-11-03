@@ -1,0 +1,5 @@
+{
+  "en_name": "Dark academia",
+  "en_how": "Shelves, window, desk, banker's lamp and globe are drawn with paths and gradients and then multiplied by a light map, so only the circle under the lamp is bright. The cursive is synthesised: each letter is a looped cycloid arc whose height changes for ascenders and descenders, slanted to the right, and a fountain pen traces these lines across the page; the globe's continents are polygons in latitude and longitude, rotated and projected onto the sphere every frame; at the end the right page is cut into vertical strips turned by different angles, so it turns over with a curl.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

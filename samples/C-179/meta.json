@@ -1,0 +1,5 @@
+{
+  "en_name": "Knolling",
+  "en_how": "Thirteen desk items are each drawn once as a sprite with a soft shadow straight beneath; they slide in from the nearest edge onto a grouped-by-kind grid with a small overshoot, regroup by colour at 2.5 s, and get thin leader lines with names; the portrait cut rotates the whole layout 90° so everything stays square.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

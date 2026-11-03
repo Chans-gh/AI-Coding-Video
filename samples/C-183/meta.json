@@ -1,0 +1,5 @@
+{
+  "en_name": "Peking opera face paint",
+  "en_how": "Three original face designs are sets of smooth closed shapes written for the right half and drawn twice, the second time mirrored, with white borders and curl, flame and cheek lines; the first face's lines and colour grow from the centre line outward through a widening clip, and on each gong a pale water sleeve sweeps across while the face flips sideways into the next one, over a pleated red curtain with gold fret borders.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Origami",
+  "en_how": "The sheet is a set of polygons: each fold clips them along the crease line and swings the lifted half 180° about the crease in 3D, shading every facet from its normal and showing the coloured or white side by which way it faces; four folds make a cat face, it hops twice and unfolds, with a blurred table shadow offset by height.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

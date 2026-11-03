@@ -1,0 +1,5 @@
+{
+  "en_name": "Eastern cyberpunk",
+  "en_how": "Five layers of towers are generated from a seed, with window grids, stacked flying eaves with neon trim and vertical signboards, and each layer is pre-drawn into one tall image; as the camera rises, near layers move more than far ones, giving depth. Every sign's neon glow and lettering is its own small image that flickers per frame from a hash, bands of fractal-noise fog drift between layers, red lanterns sway on ropes in the foreground under slanted rain, and on reaching the rooftops a giant hologram character appears in sliced, glitching strips.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

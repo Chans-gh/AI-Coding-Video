@@ -1,0 +1,5 @@
+{
+  "en_name": "New Year woodblock print",
+  "en_how": "A chubby child hugging a carp, lotus on both sides and cloud scrolls in the corners are Path2D shapes carved, back to front, into five plates — filled on their own plate and knocked out of the others so hidden colour and line never print — each multiplied by wood-grain noise; yellow, pink, green, purple and the black key plate then sweep on one by one with ragged edges and a fixed misregistration, multiplied onto the paper.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

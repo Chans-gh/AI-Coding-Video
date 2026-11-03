@@ -1,0 +1,5 @@
+{
+  "en_name": "Dystopian industrial sci-fi",
+  "en_how": "The whole plant is one distance field in a fragment shader: lattice towers (four columns with ring beams and cross bracing, repeated by symmetry and modulo), hyperboloid cooling towers, a tank and pipes, ray-marched per pixel at 1/2.5 resolution. The ground is a flat sheet of water: a hit marches again along the reflected ray for the reflection, with ripples and an oily iridescent film; ten samples along each view ray add up volumetric fog and stripes aligned with the light, which read as light shafts; red warning lights glow by the ray's distance to each lamp; welding sparks and falling ash are drawn on the canvas through the same camera projection.",
+  "tech": ["Canvas 2D", "WebGL2", "GLSL", "Playwright", "ffmpeg"]
+}
