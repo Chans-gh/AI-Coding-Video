@@ -1,4 +1,4 @@
-# Canvas 2D（42 种）
+# Canvas 2D（83 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -547,3 +547,527 @@
 - 适合：手工艺与家居、母婴、节日祝福、非遗
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/embroidery.md)
+
+<a id="C-108"></a>
+
+## C-108 等距绘本
+
+```text
+用等距绘本风格：30° 真等距、满出画框的一处真实场所（站台、闸机、路口），只用三色阶平涂、无描边无阴影，背对镜头的无脸小人按规则依次走动，屋顶像纸翻页一样掀开，衬线大字一个字一个字落在地面上，配柔和的立式钢琴和颤音琴。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：公共礼仪、排队规则、生活常识
+- 技术（建议）：Canvas 2D · GSAP · Web Audio
+- 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/isometric-picture-book/STYLE.md)
+
+<a id="C-110"></a>
+
+## C-110 电路板
+
+```text
+用电路板风格：正俯视的一块印制电路板，绿色阻焊层下是铜箔，走线只走 0/45/90° 并切斜角，金色焊盘和过孔，白色单线丝印写字，电流、货物或信号化作沿铜线奔跑的光脉冲，镜头在整张板和单个元件之间缩放，配继电器咔哒声和电源嗡鸣。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：供应链、系统架构、能源输送
+- 技术（建议）：Canvas 2D · WebGL · Web Audio
+- 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/circuit-board/STYLE.md)
+
+<a id="C-114"></a>
+
+## C-114 霓虹灯牌
+
+```text
+用霓虹灯牌风格：夜里一面深色砖墙，文字和图标是弯出来的玻璃灯管，未通电时是暗玻璃，通电时先闪烁几下、嗡嗡作响再稳住，管芯白热、外圈是粉、青或黄的光晕，光洒在砖墙上并倒映在湿地面里，一场只挂一块招牌，最多三种灯色。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：品牌口号、夜生活、开业宣传
+- 技术（建议）：Canvas 2D · WebGL · Web Audio
+- 参考：[code-video neon.md](https://github.com/Changroro/code-video/blob/main/references/styles/neon.md)
+
+<a id="C-121"></a>
+
+## C-121 电影预告片
+
+```text
+用电影预告片风格：约 2.6:1 的超宽遮幅，上下黑边贯穿全片，暖棕近黑的暗角夜空里飘着极淡的尘粒，每个意思独占一屏、居中，小号字距拉开的琥珀色眉题、发光的大号衬线数字、一道青铜细线，画面像呼吸一样亮起再经黑场溶出，片名处一道横向镜头光晕加重击。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：新品预告、发布日倒数、品牌大片
+- 技术（建议）：Canvas 2D · WebGL · Web Audio
+- 参考：[code-video trailer.md](https://github.com/Changroro/code-video/blob/main/references/styles/trailer.md)
+
+<a id="C-122"></a>
+
+## C-122 16-bit 街机闯关
+
+```text
+用16-bit 街机闯关风格：紫色星夜和闪烁的像素星，全屏轻扫描线，故事走一遍游戏流程：投币开场伴随屏幕一震、闪烁的“按下开始”、角色在关卡地图上一格格跳到下一个节点、最高分逐位滚动、对战屏的血条，最后“通关”对话框，像素字只按 8 的倍数放大，配芯片音乐。
+```
+
+- 题材：游戏
+- 适合：产品功能闯关、竞品对决、年度回顾
+- 技术（建议）：Canvas 2D · Web Audio
+- 参考：[code-video arcade.md](https://github.com/Changroro/code-video/blob/main/references/styles/arcade.md) · [animation-skills pixel-arcade](https://github.com/madhavsomani/animation-skills/blob/main/skills/pixel-arcade/SKILL.md)
+
+<a id="C-128"></a>
+
+## C-128 史前洞穴岩画
+
+```text
+用史前洞穴岩画风格：凹凸不平的石灰岩壁由噪声生成浮雕和裂缝，形象只用赭红、土黄和木炭黑，炭笔边缘起毛并渗进岩面颗粒，手印用喷吹法留下负形，野牛和鹿在两三个姿态之间交替奔跑，一支摇曳的火把照到哪里哪里才看得见，配低沉的鼓声。
+```
+
+- 题材：手绘与绘画
+- 适合：人类起源、狩猎故事、远古历史
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 01_cave](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/01_cave.md)
+
+<a id="C-129"></a>
+
+## C-129 古埃及墓室壁画
+
+```text
+用古埃及墓室壁画风格：沙黄灰泥墙按横向带状分栏，人物头和腿画侧面、眼睛和肩膀画正面，土红、孔雀绿、青金蓝平涂后勾细黑线，旁边竖排的象形符号一笔一笔重新写出，人物按身份定大小，转场是上一栏像石板一样下滑露出下一栏。
+```
+
+- 题材：手绘与绘画
+- 适合：古文明科普、历史叙事、仪式与流程讲解
+- 技术（建议）：Canvas 2D · GSAP
+- 参考：[huashu 风格卡 02_egypt](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/02_egypt.md)
+
+<a id="C-130"></a>
+
+## C-130 古希腊黑绘陶瓶
+
+```text
+用古希腊黑绘陶瓶风格：橙红陶土底上人物和动物都是光亮的黑色剪影，细节用刻线刮出、露出底下的陶色，偶尔点一点紫红和白，画面绕着弧形瓶身展开，回纹和棕榈叶饰带在上下沿反向滚动，镜头像转动陶瓶一样横移换场，配里拉琴拨弦。
+```
+
+- 题材：手绘与绘画
+- 适合：神话故事、体育竞技、古典文学
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 03_greek](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/03_greek.md)
+
+<a id="C-131"></a>
+
+## C-131 古罗马石子马赛克
+
+```text
+用古罗马石子马赛克风格：形象由几毫米见方的小石块沿轮廓一圈圈排出，石色是大理石白、赭黄、砖红、灰绿这些天然土色，块与块之间露出暗灰灰泥缝，石面有细微凹凸和高光，新画面跟着鼓点从一点开始一块块翻面铺开，镜头像俯看庭院地面一样缓慢移动。
+```
+
+- 题材：印刷、版画与装饰
+- 适合：古代城市、考古科普、庄重的纪念片
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 04_roman](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/04_roman.md) · [opus-5.5-mv mosaic-and-sand](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/mosaic-and-sand)
+
+<a id="C-132"></a>
+
+## C-132 哥特泥金手抄本
+
+```text
+用哥特泥金手抄本风格：泛黄羊皮纸上是双栏黑体拉丁字和一个巨大的彩绘首字母，背景铺着压花金箔，一道斜向高光随时间扫过所有金色处并闪出四角星，群青和朱红平涂的人物站在尖拱框里，页边的藤蔓和小兽慢慢爬动，转场是翻过一页羊皮纸。
+```
+
+- 题材：印刷、版画与装饰
+- 适合：中世纪传说、奇幻故事、典籍与历史讲解
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[huashu 风格卡 05_gothic](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/05_gothic.md)
+
+<a id="C-133"></a>
+
+## C-133 早期文艺复兴湿壁画
+
+```text
+用早期文艺复兴湿壁画风格：干灰泥墙面略带粉化斑驳，颜色是粉蓝天空、土绿、淡赭和玫瑰色，人物像厚重的体块，轮廓清楚、明暗简单，建筑像舞台盒子一样把场景分成一格格可读的空间，光线均匀清明几乎没有投影，镜头沿墙面从一幕平移到下一幕，配素歌吟唱。
+```
+
+- 题材：手绘与绘画
+- 适合：历史叙事、城市与社会生活、连环故事
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 38_giotto](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/38_giotto.md) · [huashu 风格卡 39_piero](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/39_piero.md) · [huashu 风格卡 43_lorenzetti](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/43_lorenzetti.md)
+
+<a id="C-134"></a>
+
+## C-134 盛期文艺复兴晕涂
+
+```text
+用盛期文艺复兴晕涂风格：暖褐基调的油画，形体边缘没有线，全靠烟雾般的明暗慢慢晕开，远山按空气透视一层比一层更蓝更淡，人物用稳定的三角形构图，画面带细密龟裂纹和发黄的光油，动作缓慢庄重，转场是窗口射进一束光照亮下一幕。
+```
+
+- 题材：手绘与绘画
+- 适合：人物传记、艺术史讲解、庄重的品牌片
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[huashu 风格卡 06_renaissance](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/06_renaissance.md) · [huashu 风格卡 40_raphael](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/40_raphael.md) · [huashu 风格卡 41_michelangelo](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/41_michelangelo.md)
+
+<a id="C-135"></a>
+
+## C-135 巴洛克明暗对照
+
+```text
+用巴洛克明暗对照风格：画面八成沉在近乎全黑的暖褐阴影里，一束左上方的斜光或一支烛火只照亮脸、手和金属器物，亮部厚涂暖黄白，暗部薄而透，光照范围随烛焰轻轻呼吸，光柱里有浮尘飘动，镜头极慢地推进，转场是光圈收拢再打开。
+```
+
+- 题材：手绘与绘画
+- 适合：悬疑与心理戏、人物肖像、宗教与历史场景
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[huashu 风格卡 32_rembrandt](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/32_rembrandt.md) · [huashu 风格卡 44_cortona](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/44_cortona.md)
+
+<a id="C-136"></a>
+
+## C-136 威尼斯风景画
+
+```text
+用威尼斯风景画风格：低低的地平线上压着占画面三分之二的银灰色天空，水面和建筑用干而快的小笔触点出碎光，边缘松动不收紧，人物小到只剩一点黑加一点白或红，细长的小船慢慢划过，色调是银灰、淡绿和暖赭，镜头沿运河缓缓横移。
+```
+
+- 题材：手绘与绘画
+- 适合：城市风光、旅行纪录、怀旧短片
+- 技术（建议）：Canvas 2D · p5.brush
+- 参考：[huashu 风格卡 42_guardi](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/42_guardi.md)
+
+<a id="C-138"></a>
+
+## C-138 后印象派厚涂
+
+```text
+用后印象派厚涂风格：画面由一根根方向明确的短粗油彩笔触铺满，墙面竖排、地面顺着透视、天空绕着漩涡打转，同一区域里混用十几种相近色相，钴蓝和铬黄互补对撞，轮廓用深蓝粗线勾出并每隔几帧轻轻抖动，灯和星星外有一圈圈光晕向外扩，转场是漩涡把画面卷走。
+```
+
+- 题材：手绘与绘画
+- 适合：情绪 MV、艺术史讲解、夜景与乡村
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 09_postimp](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/09_postimp.md)
+
+<a id="C-139"></a>
+
+## C-139 新印象派点彩
+
+```text
+用新印象派点彩风格：画面全部由同样大小的纯色圆点并排组成，不在调色盘上混色，橙点旁放蓝点、绿点旁放红点让眼睛自己去混，阴影处的点更冷更密、亮处更暖更稀，点在原位轻轻明灭像在呼吸，人物轮廓安静而几何，转场是旧画面结晶成圆点再重新组合。
+```
+
+- 题材：手绘与绘画
+- 适合：公园与假日、科学色彩讲解、安静的风景
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 29_seurat](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/29_seurat.md)
+
+<a id="C-140"></a>
+
+## C-140 综合主义平涂
+
+```text
+用综合主义平涂风格：大块不讲透视的平涂色面，每块用深蓝或深褐粗轮廓圈住，像掐丝珐琅一样，颜色按情绪而不按自然，草地可以是橙红、树影可以是紫，人物造型简化、姿态静止，背景常是一整片单色，只有风和呼吸在动，转场是一块色面滑入覆盖画面。
+```
+
+- 题材：手绘与绘画
+- 适合：神话与民俗、热带风情、心理与象征叙事
+- 技术（建议）：Canvas 2D · SVG
+- 参考：[huashu 风格卡 48_gauguin](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/48_gauguin.md)
+
+<a id="C-141"></a>
+
+## C-141 表现主义
+
+```text
+用表现主义风格：整个世界用长而弯的流线笔触画出，天空、水面和人物都沿同一股力场扭曲波动，血橙、硫黄和深蓝紫强烈对撞，人物的脸简化成惊惧的面具，画面每一行都在缓慢地正弦扭动，转场是一条彩色天空带从上往下压满屏幕，配低沉弦乐。
+```
+
+- 题材：手绘与绘画
+- 适合：焦虑与心理题材、恐怖短片、情绪化 MV
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[huashu 风格卡 19_munch](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/19_munch.md) · [huashu 风格卡 36_picasso_blue](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/36_picasso_blue.md)
+
+<a id="C-142"></a>
+
+## C-142 分析立体主义
+
+```text
+用分析立体主义风格：物体被拆成许多半透明的小几何切面，同一画面里同时露出正面和侧面，色彩压到赭褐、灰绿、暗金几种，切面互相穿插分不清前后，零散的印刷字母和报纸碎片夹在中间，切面缓慢滑动错位，转场是碎片打散后重新拼成新的物体。
+```
+
+- 题材：手绘与绘画
+- 适合：艺术史讲解、多视角分析、咖啡馆与城市生活
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 11_cubism](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/11_cubism.md)
+
+<a id="C-144"></a>
+
+## C-144 超现实主义
+
+```text
+用超现实主义风格：无限延伸的平坦荒原和低地平线，傍晚斜光拉出极长的影子，日常物体以不合理的方式出现，钟表像软蜡一样往下流淌，长腿动物缓慢走过，形体画得写实、处境却荒谬，天空是澄澈的青到杏黄渐变，转场是新画面像液滴一样从上往下流下来盖住旧画面。
+```
+
+- 题材：手绘与绘画
+- 适合：梦境与记忆、时间主题、哲学短片
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[huashu 风格卡 23_dali](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/23_dali.md)
+
+<a id="C-145"></a>
+
+## C-145 美国都市写实主义
+
+```text
+用美国都市写实主义风格：空荡的餐馆、加油站和公寓窗边，清晨或深夜的光以锋利的硬边斜块落在墙和地板上，色面平整几乎看不到笔触，人物孤零零地坐着不动，只有光斑缓慢移动扫过脸，配色是暖黄、青绿和砖红，镜头固定不动，声音只有远处的车声。
+```
+
+- 题材：手绘与绘画
+- 适合：孤独与城市题材、短篇小说改编、安静的情绪片
+- 技术（建议）：Canvas 2D · GSAP
+- 参考：[huashu 风格卡 24_hopper](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/24_hopper.md)
+
+<a id="C-147"></a>
+
+## C-147 波普艺术
+
+```text
+用波普艺术风格：粗黑描边的漫画式人物，皮肤和背景是规则的大号网点，只用纯黄、纯红、纯蓝和黑白，思考泡和拟声字放大到占半个画面，同一张头像在四宫格里不断换配色，换场时一道闪电劈开画面并整体网点化，节奏跟着鼓点硬切。
+```
+
+- 题材：印刷、版画与装饰
+- 适合：消费与流行文化、广告片、喜剧短片
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 13_pop](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/13_pop.md)
+
+<a id="C-150"></a>
+
+## C-150 敦煌壁画
+
+```text
+用敦煌壁画风格：土红色干泥壁作底，矿物色只有石青、石绿、白和赭，颜色褪淡、背景有剥落斑块，人物和走兽用流畅的长线勾出，飞天横向飞过、长飘带在身后起伏，锯齿形小山和被风吹弯的叶片点缀画面，转场是旧画面剥落掉下露出新画，配琵琶。
+```
+
+- 题材：东方传统
+- 适合：佛教与丝路故事、文博科普、东方奇幻
+- 技术（建议）：Canvas 2D · p5.js
+- 参考：[huashu 风格卡 20_dunhuang](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/20_dunhuang.md) · [huashu 风格卡 55_dunhuang](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/55_dunhuang.md)
+
+<a id="C-151"></a>
+
+## C-151 南宋院体山水
+
+```text
+用南宋院体山水风格：淡黄绢本上主景全压在一角，山石用方硬的侧锋斧劈皴扫出，其余大半画面是雾和水的留白，一棵拖枝老松斜伸出画外，小小的高士在崖边远望，淡墨加一点赭石和花青，镜头从留白处缓缓移向那一角，配洞箫。
+```
+
+- 题材：东方传统
+- 适合：诗词意境、哲理独白、东方品牌片
+- 技术（建议）：Canvas 2D · p5.brush
+- 参考：[huashu 风格卡 50_ma_yuan](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/50_ma_yuan.md)
+
+<a id="C-152"></a>
+
+## C-152 波斯细密画
+
+```text
+用波斯细密画风格：画面不用透视，花园、建筑和人物从下往上层层堆叠，每一层都布满精细的花草纹样，群青、翠绿、朱红和金色平涂，边框外有书法栏和泥金花边，人物小而多、同时在做不同的事，镜头像读书页一样从下往上缓慢摇，配乌德琴。
+```
+
+- 题材：手绘与绘画
+- 适合：中东与丝路故事、宫廷与诗歌、群像叙事
+- 技术（建议）：Canvas 2D · SVG
+- 参考：[huashu 风格卡 51_persian_miniature](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/51_persian_miniature.md)
+
+<a id="C-154"></a>
+
+## C-154 逐帧沸腾线
+
+```text
+用逐帧沸腾线风格：米白纸纹底上用粗细随压力变化的手绘线勾出形象，每张线稿准备三四个细微不同的版本、每两帧轮换一次，让静止画面也像在呼吸，动作以一拍二为主、快动作切一拍一，快速位移时只插一帧拉长的拖影，烟雾、水花和速度线逐帧手绘叠在主体上。
+```
+
+- 题材：卡通与动漫
+- 适合：品牌短片、手作感片头、角色小剧场
+- 技术（建议）：Canvas 2D · p5.brush
+- 参考：[mg-styles-15 05-cel-boil](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/05-cel-boil.md)
+
+<a id="C-158"></a>
+
+## C-158 大理石纹染纸
+
+```text
+用大理石纹染纸风格：颜料浮在水槽表面，被一滴滴落下的颜色推开成同心圈，再被梳子拉成羽毛纹和孔雀纹，色与色交界处有细细的深色纹脉和颜料颗粒，每次变形都能精确倒放、让图案被梳回原样，配色是靛蓝、赭红、芥末黄和象牙白。
+```
+
+- 题材：纸艺、材质与定格
+- 适合：记忆与时间、水与风、抽象音乐 MV
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[opus-5.5-mv marbling](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/marbling)
+
+<a id="C-159"></a>
+
+## C-159 魔灯幻灯片
+
+```text
+用魔灯幻灯片风格：漆黑讲堂里一盏油灯把手工上色的雕版玻璃片投在圆形光斑里，四周暗角，光随油灯不停闪烁，换片时玻璃片横向滑入或两张叠化，偶尔插进一片旋转的彩色万花筒片，镜头不时拉远露出幕布和观众剪影，旁白像一场旅行讲座。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：历史与游记、讲故事式 MV、维多利亚时代题材
+- 技术（建议）：Canvas 2D · GSAP
+- 参考：[opus-5.5-mv magic-lantern](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/magic-lantern)
+
+<a id="C-160"></a>
+
+## C-160 玻璃版长曝光
+
+```text
+用玻璃版长曝光风格：像 19 世纪的玻璃底片曝光几分钟甚至几个月，静止的建筑和树清晰锐利，走过的人只留下半透明的幽灵拖影，太阳在天上画出一道道弧线，银灰色调带光晕、灰尘、划痕和边缘药膜剥落，画面一角的纸套上用手写数字计着曝光时长。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：时间流逝、静与动的对比、怀旧与记忆
+- 技术（建议）：Canvas 2D · WebGL
+- 参考：[opus-5.5-mv glass-plate](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/glass-plate)
+
+<a id="C-163"></a>
+
+## C-163 夜色平涂海报
+
+```text
+用夜色平涂海报风格：靛蓝夜色里只有窗口和路灯的琥珀色光，阴影是硬边几何色块，人物只用轮廓线勾出，画面被弧形接缝分成几格，同一个街角在不同时刻各占一格，结尾所有格子收拢成一栋楼，每格变成一扇亮灯的窗。
+```
+
+- 题材：平面设计与动态排版
+- 适合：城市日常、多线并行故事、温情 MV
+- 技术（建议）：Canvas 2D · GSAP
+- 参考：[opus-5.5-mv night-poster](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/night-poster)
+
+<a id="C-164"></a>
+
+## C-164 车厢珐琅彩绘
+
+```text
+用车厢珐琅彩绘风格：画面就是一节旅行篷车的木侧板，用光亮珐琅漆画成，每一笔都是双色鬃刷笔触加一记白色高光挑笔，玫瑰、卷叶和金箔饰框围住中间的风景，表面有清漆细裂，夜景里的灯跟着节拍一盏盏亮起，边框上的彩带打结又解开。
+```
+
+- 题材：印刷、版画与装饰
+- 适合：公路与旅人、民间集市、节庆夜晚
+- 技术（建议）：Canvas 2D · p5.brush
+- 参考：[opus-5.5-mv painted-enamel](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/painted-enamel)
+
+<a id="C-165"></a>
+
+## C-165 剧院彩绘布景
+
+```text
+用剧院彩绘布景风格：从观众席后排望向一座小剧场，台上的山、树和云都是手绘平板和吊幕，靠铰链和吊线由看不见的工人拉动，鼓风机吹得纸叶乱颤，脚灯从下往上照亮演员，歌词写在台边画架的卡片上，镜头从后排一路推近到舞台。
+```
+
+- 题材：纸艺、材质与定格
+- 适合：戏剧化叙事、喜剧歌曲、舞台感品牌片
+- 技术（建议）：Canvas 2D · GSAP
+- 参考：[opus-5.5-mv showboat](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/showboat)
+
+<a id="C-168"></a>
+
+## C-168 字雨
+
+```text
+用字雨风格：纯黑屏幕上一列列绿色等宽字符从上往下坠落，每列最前面的字最亮、近乎白色，身后拖着渐暗的尾巴，字符在下落途中随机换字，各列速度不同，镜头偶尔推进穿过字帘，某一刻雨幕里的字排出一个隐藏的单词或轮廓，配低频电子嗡鸣。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：黑客与 AI 题材、科技片头、数据主题转场
+- 技术（建议）：Canvas 2D · WebGL
+
+<a id="C-171"></a>
+
+## C-171 流动的丝线
+
+```text
+用流动的丝线风格：深色背景上成千上万根半透明细丝顺着缓慢变化的噪声流场游走，留下柔和的轨迹，颜色从珍珠白渐变到淡金和冰蓝，丝线交叠处更亮，音乐重音时被扰动散开、再慢慢理顺，镜头几乎不动，整体像丝绸在水里漂。
+```
+
+- 题材：3D 与实时图形
+- 适合：冥想与放松、奢侈品与面料广告、抽象音乐可视化
+- 技术（建议）：Canvas 2D · p5.js
+
+<a id="C-172"></a>
+
+## C-172 萤火光尘
+
+```text
+用萤火光尘风格：暮色深蓝的草地和树林剪影里，几百颗暖黄绿的小光点慢慢浮起、明灭、绕圈飞行，靠近镜头的光点大而失焦成光斑，远处的细小清晰，每颗按各自的节奏呼吸闪烁，偶尔聚成一个形状又散开，配虫鸣和轻柔钢琴。
+```
+
+- 题材：3D 与实时图形
+- 适合：夏夜回忆、治愈系 MV、童话开场
+- 技术（建议）：Canvas 2D · p5.js
+
+<a id="C-173"></a>
+
+## C-173 星空连线
+
+```text
+用星空连线风格：深蓝黑夜空里散布着大小亮度不同的星点，细细的发光线一笔一笔把星星连成星座，连好后淡淡浮出线描轮廓又隐去，星点缓慢闪烁、整片天空缓缓旋转，镜头偶尔推近一颗星，配低沉的环境音和细碎的铃声。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：天文科普、关系与网络讲解、浪漫告白
+- 技术（建议）：Canvas 2D · GSAP
+
+<a id="C-176"></a>
+
+## C-176 老胶片（褪色彩色）
+
+```text
+用老胶片风格：像七十年代超 8 毫米家庭影片，颜色整体偏洋红和暖黄、阴影发青，粗颗粒逐帧跳动，画面四角是圆角片门，偶尔闪过橙色漏光，片子轻微上下晃动，换卷处出现打孔和过曝白帧，配放映机的嗒嗒声。
+```
+
+- 题材：电影年代与屏幕科技
+- 适合：家庭回忆、复古广告、年代感 MV
+- 技术（建议）：Canvas 2D · WebGL
+
+<a id="C-180"></a>
+
+## C-180 工笔
+
+```text
+用工笔风格：微黄的熟绢底上，形象先用细匀的铁线描勾出完整墨线，再一层层平涂分染石青、石绿、朱砂和胭脂，花瓣和羽毛的颜色从根部向外渐淡，边线始终清晰、不被颜色盖住，画面一线一线勾出、一层一层染出来，配古筝。
+```
+
+- 题材：东方传统
+- 适合：花鸟与节令、宫廷与仕女、文博科普
+- 技术（建议）：Canvas 2D · SVG
+
+<a id="C-182"></a>
+
+## C-182 青花
+
+```text
+用青花风格：白釉瓷面上只有一种钴蓝，浓处发黑并带铁锈色斑点，淡处像水一样晕开，缠枝莲和卷草纹一笔一笔画出来，画面沿瓷瓶或瓷盘的弧面展开，釉面一道柔和的反光随镜头转动滑过，转场是瓷器旋转露出背面的新画，配古琴。
+```
+
+- 题材：东方传统
+- 适合：文博与陶瓷科普、茶与器物品牌、古典诗词
+- 技术（建议）：Canvas 2D · WebGL
+
+<a id="C-184"></a>
+
+## C-184 书法
+
+```text
+用书法风格：米色宣纸上一支毛笔按笔顺一笔笔写出大字，起笔藏锋、收笔回锋，墨色随笔速从浓到枯变化，飞白处露出纸纹，每幅字写完盖一方朱印，镜头跟着笔尖移动，写完再拉远看整幅，声音只有毛笔擦过纸面的沙沙声。
+```
+
+- 题材：东方传统
+- 适合：标题与片名、诗词展示、文化品牌片
+- 技术（建议）：Canvas 2D · p5.brush
+
+<a id="C-185"></a>
+
+## C-185 水墨漫画
+
+```text
+用水墨漫画风格：宣纸色的漫画页被不规则的墨线框分成几格，人物用浓墨粗线勾出，衣袍是一大笔泼墨带飞白，打斗时的速度线是一笔扫过的干笔，拟声字用毛笔写成，只有血或火用一点朱红，镜头在格子之间推进，配鼓点和刀剑声。
+```
+
+- 题材：卡通与动漫
+- 适合：武侠与仙侠故事、动作短片、国风连载
+- 技术（建议）：Canvas 2D · p5.brush

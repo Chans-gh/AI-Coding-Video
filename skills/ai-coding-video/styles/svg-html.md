@@ -1,4 +1,4 @@
-# SVG 与 HTML/CSS（32 种）
+# SVG 与 HTML/CSS（52 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -418,3 +418,259 @@
 - 适合：操作指南、产品使用步骤、食谱卡、安全提示
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/midcentury-toon/STYLE.md) · [同风格静帧：anidoodle](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md)
+
+<a id="C-112"></a>
+
+## C-112 电视新闻包装
+
+```text
+用电视新闻包装风格：深墨色底，片头标识缩成角标，今日要闻目录开场又在结尾逐条打勾，平行四边形台标和纸色字条始终压在画面下方、换标题时上下翻转，每屏只放一个事实（翻牌价格板、破线折线、说明地图、盖章），干净无滚动字幕，配新闻鼓点。
+```
+
+- 题材：平面设计与动态排版
+- 适合：每日简报、行业快讯、周报回顾
+- 技术（建议）：HTML/CSS · SVG · GSAP
+- 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/news-package/STYLE.md)
+
+<a id="C-113"></a>
+
+## C-113 翻牌显示板
+
+```text
+用翻牌显示板风格：车站出发信息牌，深色底板上一格格带铰链缝的翻片，文字逐列哗啦翻过字母表后停在新消息上，表格列出时间、目的地、站台和状态，琥珀、绿、红三色状态灯其中一盏在闪，顶部有站名和走动的钟，每次翻片都配密集的咔哒声。
+```
+
+- 题材：平面设计与动态排版
+- 适合：发布公告、行程安排、版本更新
+- 技术（建议）：HTML/CSS · GSAP · Web Audio
+- 参考：[code-video splitflap.md](https://github.com/Changroro/code-video/blob/main/references/styles/splitflap.md)
+
+<a id="C-115"></a>
+
+## C-115 热敏小票
+
+```text
+用热敏小票风格：青绿色桌面底部摆着一台深色小票打印机，每一场打出一张米白热敏纸，从机口一行行往上长出来，等宽字、虚线分隔、底部条形码、锯齿撕边，步骤是逐个打勾的清单，数字印在“合计”一行，结尾盖红章再撕下，配打印机走纸声。
+```
+
+- 题材：平面设计与动态排版
+- 适合：清单总结、价格说明、年度账单
+- 技术（建议）：HTML/CSS · SVG · GSAP
+- 参考：[code-video thermal.md](https://github.com/Changroro/code-video/blob/main/references/styles/thermal.md)
+
+<a id="C-117"></a>
+
+## C-117 侦探线索板
+
+```text
+用侦探线索板风格：台灯照亮的软木板，四周暗角压黑，中央是一张写着问号的嫌疑人剪影卡，带编号的米色索引卡和黄、粉便签一张张钉上，红图钉之间拉紧红线织成网，镜头只做横移和缓推，一次相机闪光白场揭晓答案并盖上“结案”红章。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：问题排查、悬疑揭秘、案例复盘
+- 技术（建议）：HTML/CSS · SVG · GSAP
+- 参考：[code-video detective.md](https://github.com/Changroro/code-video/blob/main/references/styles/detective.md)
+
+<a id="C-118"></a>
+
+## C-118 电视天气预报
+
+```text
+用电视天气预报风格：上浅下深的藏青渐变底，开场是一团由发光圆点组成的旋转风暴云，随后切到一张张圆角预报卡：温度图、温度计、风速表盘、多日预报条，图标是带软阴影的扁平天气图标，角上有台标和日期徽标，底部滚动快讯条，场景间斜向快速擦除。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：状态报告、季度预测、趣味数据播报
+- 技术（建议）：SVG · HTML/CSS · GSAP
+- 参考：[code-video weather.md](https://github.com/Changroro/code-video/blob/main/references/styles/weather.md)
+
+<a id="C-119"></a>
+
+## C-119 电视购物
+
+```text
+用电视购物风格：每一句卖点独占一屏，满屏单色放射光芒背景、颜色随段落从灰黑换到金黄、警报红、电光蓝，粗描边漫画大字砸进画面，底部滚动卖点条一直在跑，圆滚滚的吉祥物从垂头丧气变得神采飞扬，镜头不动、硬切前闪一帧白，配热闹的叫卖音效。
+```
+
+- 题材：卡通与动漫
+- 适合：促销活动、产品对比、搞笑广告
+- 技术（建议）：SVG · HTML/CSS · GSAP
+- 参考：[code-video infomercial.md](https://github.com/Changroro/code-video/blob/main/references/styles/infomercial.md)
+
+<a id="C-120"></a>
+
+## C-120 体育直播包装
+
+```text
+用体育直播包装风格：开场是夜场体育馆，交叉的探照光束、点阵灯组成的看台和一角绿茵，之后是带球衣斜纹的深藏青数据卡，左上比分角标、右上红色“直播”徽章、底部来源滚动条始终不动，双方用橙和灰蓝区分，数字滚动、对比条填满，高潮撒彩纸。
+```
+
+- 题材：平面设计与动态排版
+- 适合：两款产品对比、排行榜、年度成绩
+- 技术（建议）：HTML/CSS · SVG · GSAP
+- 参考：[code-video sports.md](https://github.com/Changroro/code-video/blob/main/references/styles/sports.md)
+
+<a id="C-123"></a>
+
+## C-123 手账剪贴本
+
+```text
+用手账剪贴本风格：牛皮纸桌面上斜放着横线笔记本页，拍立得照片用米色和薄荷色和纸胶带贴住、下面写手写说明，撕边纸条标关键词，模切贴纸和橡皮章标记里程碑，红蓝马克笔画箭头、星星和圈，元素都歪 2–8°，换场时一页新纸滑过桌面。
+```
+
+- 题材：纸艺、材质与定格
+- 适合：项目幕后、成长记录、旅行日志
+- 技术（建议）：HTML/CSS · SVG · GSAP
+- 参考：[code-video scrapbook.md](https://github.com/Changroro/code-video/blob/main/references/styles/scrapbook.md)
+
+<a id="C-124"></a>
+
+## C-124 平板黑板马克笔
+
+```text
+用平板黑板马克笔风格：纯黑数位画板，3–6 px 圆头单线笔画带轻微手抖，按说话的速度一笔笔画出来，一支数位笔尖始终跟着笔头，白、蓝、绿、黄、红五色各有固定含义，手写标签，红色实心箭头像图章一样盖下，每块板只长一张图，只配人声。
+```
+
+- 题材：手绘与绘画
+- 适合：技术原理、安全漏洞讲解、计算机科普
+- 技术（建议）：SVG · Remotion
+- 参考：[animation-skills board-explainer](https://github.com/madhavsomani/animation-skills/blob/main/skills/board-explainer/SKILL.md)
+
+<a id="C-125"></a>
+
+## C-125 机密档案袋
+
+```text
+用机密档案袋风格：台灯光圈下的深色木桌，牛皮纸档案夹和米色备忘纸，打字机字随旁白逐词敲出，旧橡皮章在关键词上重重砸下，红铅笔箭头和勾、荧光笔划痕、黑色涂抹条、回形针和地图图钉，配打字机、纸张和盖章音效。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：政策解读、安全事件、历史揭秘
+- 技术（建议）：SVG · Remotion
+- 参考：[animation-skills declassified-dossier](https://github.com/madhavsomani/animation-skills/blob/main/skills/declassified-dossier/SKILL.md)
+
+<a id="C-137"></a>
+
+## C-137 新艺术运动
+
+```text
+用新艺术运动风格：画面被一圈鞭子般弯曲的有机线框住，线条外粗内细，主角身后衬一个圆形光环，长发和衣褶卷成 S 形波浪，配色是橄榄绿、芥末黄、蜜桃粉和金，边框上的花藤从四角长出来，转场是金边曲线生长并包住整个新画面。
+```
+
+- 题材：印刷、版画与装饰
+- 适合：海报式开场、美妆与香氛、文学与诗歌
+- 技术（建议）：SVG · GSAP
+- 参考：[huashu 风格卡 10_nouveau](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/10_nouveau.md) · [huashu 风格卡 18_klimt](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/18_klimt.md)
+
+<a id="C-143"></a>
+
+## C-143 俄国构成主义
+
+```text
+用俄国构成主义风格：灰卡纸底上只有黑和红两色大平面与斜放的粗体方块字，代码画出的灰度“照片”经网点化后剪下、带白边贴上去，红色楔形直刺黑色圆形，构图沿对角线冲出画框，标语逐字像盖章一样砸下，镜头在拼贴板上快速推拉。
+```
+
+- 题材：平面设计与动态排版
+- 适合：宣言与观点片、工业与工程史、论证型讲解
+- 技术（建议）：SVG · Canvas 2D · GSAP
+- 参考：[huashu 风格卡 22_constructivism](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/22_constructivism.md) · [opus-5.5-mv photomontage](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/photomontage)
+
+<a id="C-146"></a>
+
+## C-146 野兽派彩纸剪贴
+
+```text
+用野兽派彩纸剪贴风格：先刷满浓烈水粉的彩纸再直接用剪刀剪出形状，海藻、叶片、星形和舞动人形的边缘带不规则剪口，钴蓝、柠檬黄、品红和翠绿平涂并排，纸片用图钉钉在白墙上留下细小投影，纸角随风轻轻翘动，转场是一大张蓝纸从侧边扫过换场。
+```
+
+- 题材：纸艺、材质与定格
+- 适合：音乐与舞蹈、儿童艺术启蒙、轻快的品牌片
+- 技术（建议）：SVG · GSAP
+- 参考：[huashu 风格卡 30_matisse](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/30_matisse.md)
+
+<a id="C-148"></a>
+
+## C-148 街头波普涂鸦
+
+```text
+用街头波普涂鸦风格：纯色背景上只有等宽粗黑线画的小人、狗、心形和电视，没有五官细节，身体周围有短短的放射动作线，所有形象每 8 帧硬切一个姿势地跳舞并跟着节拍整体弹跳，配色是荧光红、黄、绿，转场是一个小人放大、身体里装着下一幅画。
+```
+
+- 题材：手绘与绘画
+- 适合：音乐 MV、公益宣传、派对与节日
+- 技术（建议）：SVG · GSAP
+- 参考：[huashu 风格卡 31_haring](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/31_haring.md)
+
+<a id="C-156"></a>
+
+## C-156 图形形变叙事
+
+```text
+用图形形变叙事风格：浅色纯底上的扁平图形一个接一个连续变形来讲故事，咖啡杯变成落日、手机变成地图钉，复杂形状先收拢成圆或胶囊再展开成下一个，变形时带一点挤压拉伸和旋转，速度中段最快、首尾各留几帧缓冲，颜色随形状一起过渡，配柔和的嗖声。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：产品功能串讲、品牌故事、图形化讲解
+- 技术（建议）：SVG · GSAP
+- 参考：[mg-styles-15 08-morph](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/08-morph.md)
+
+<a id="C-157"></a>
+
+## C-157 粗描边贴纸科普
+
+```text
+用粗描边贴纸科普风格：米白或蓝灰底的超大画布上铺满带粗白边和小投影的“贴纸”，物件全部用代码画成扁平插画再加白边，旁边是精确的柱状图、滚动数字和细线标注，镜头用长缓动在画布上平移缩放、串起一个个信息点，每句解说都有新元素弹出，只用两三种克制的配色。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：硬核科普、财经知识、企业介绍
+- 技术（建议）：HTML/CSS · D3.js · GSAP
+- 参考：[mg-styles-15 19-paperclip](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/19-paperclip.md)
+
+<a id="C-169"></a>
+
+## C-169 光标打字
+
+```text
+用光标打字风格：大片留白的纸色页面上只有一行等宽或衬线文字，一个闪烁的竖线光标逐字打出句子，偶尔停顿、删掉几个字再改写，节奏像真人在犹豫，关键词打完后被高亮或加粗，整页上滚换到下一句，声音只有清脆的键盘声和换行时的一声叮。
+```
+
+- 题材：平面设计与动态排版
+- 适合：独白与书信、产品文案演示、悬念开场
+- 技术（建议）：HTML/CSS · GSAP
+
+<a id="C-179"></a>
+
+## C-179 平铺整理（Knolling）
+
+```text
+用平铺整理风格：正上方俯拍一块干净的纯色台面，所有物品按 90 度对齐、等间距排成整齐的网格，同类同色归在一起，物品一件件从画外滑入就位，有时整组重新排序或拆成零件再摆开，每件只有正下方一圈柔和阴影，旁边用细线标出名称，配干脆的落位声。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：产品拆解与清单、装备介绍、收纳与旅行准备
+- 技术（建议）：SVG · GSAP
+
+<a id="C-181"></a>
+
+## C-181 年画
+
+```text
+用年画风格：木版套色印出的喜庆画面，粗黑墨线框出胖娃娃、鲤鱼、门神和莲花，桃红、翠绿、柠檬黄、品紫大块平涂，套版略有错位露出白纸，构图饱满对称、四角有吉祥纹样，开场像刷墨压纸一样一色一色印出来，配锣鼓。
+```
+
+- 题材：东方传统
+- 适合：春节与节庆、民俗科普、新年品牌片
+- 技术（建议）：SVG · GSAP
+
+<a id="C-183"></a>
+
+## C-183 京剧脸谱
+
+```text
+用京剧脸谱风格：一张左右对称的大脸谱占满画面，额头、眉眼和鼻窝用红、黑、白、金、蓝大块勾画，颜色代表人物性格，线条从中轴向两边同时一笔笔描出，背景是深红幕布和金色回纹，每一声锣响就像变脸一样翻换成下一张，配京胡和锣鼓点。
+```
+
+- 题材：东方传统
+- 适合：戏曲科普、国潮品牌、人物性格讲解
+- 技术（建议）：SVG · GSAP

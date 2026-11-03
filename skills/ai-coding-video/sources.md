@@ -60,3 +60,16 @@
 | [alexgreensh/anidoodle](https://github.com/alexgreensh/anidoodle) | Apache-2.0 | 31 种代码绘制风格里原文档没有的 10 种，配方见 `skills/anidoodle/references/styles/` | C-088、C-089、C-090、C-091、C-092、C-093、C-094、C-097、C-099、C-100 |
 | [AllenAI2014/remotion-guofeng-starter](https://github.com/AllenAI2014/remotion-guofeng-starter) | 代码 MIT；演示素材仅供学习（本库只借用风格做法，不用其素材） | 国风纸片拼贴动画的视觉 DNA 与色卡 | C-095 |
 | [bangtutorial/bang-motion](https://github.com/bangtutorial/bang-motion) | MIT | README「Style gallery」里的 4 种动效风格 | C-101、C-102、C-103 |
+
+第四批（2026-11-03），提示词据下列仓库的风格说明改写（许可都核对过 LICENSE 文件）：
+
+| 仓库 | 许可 | 用到的内容 | 本库编号 |
+|---|---|---|---|
+| [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) | MIT | 10 月以后新增的纯代码风格 7 种（孟菲斯微缩景、地铁线路图、等距绘本、刻线印刷长镜头、电路板、桌面穿梭、电视新闻包装） | C-106–C-112 |
+| [Changroro/code-video](https://github.com/Changroro/code-video) | MIT | `references/styles/` 里的 11 种（翻牌显示板、霓虹灯牌、热敏小票等） | C-113–C-123 |
+| [madhavsomani/animation-skills](https://github.com/madhavsomani/animation-skills) | MIT | 4 种，只取代码绘制的部分（原作画面中心的真人抠像不收）；C-118 也参考了它的 pixel-arcade | C-124–C-127 |
+| [alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) | MIT | `references/风格配方/` 的艺术史风格卡，按流派合并改写，不用画家名命名；商业 IP 和在世艺术家的画风不收 | C-128–C-152 |
+| [Vincentwei1021/mg-styles-15](https://github.com/Vincentwei1021/mg-styles-15) | MIT | 5 种（合成波、逐帧沸腾线、液态融合、图形形变、粗描边贴纸科普） | C-153–C-157 |
+| [cyborggirl963/opus-5.5-music-video-art-styles](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles) | MIT | 10 种手作媒材风格（大理石纹染纸、魔灯幻灯片、蜡染等） | C-158–C-167 |
+
+C-168–C-186（字雨、光标打字、雨窗、工笔、年画、青花、京剧脸谱、书法等 19 种）只借了一份没有开源许可的汇编里的风格名，提示词由整理者凭公共常识原创，没有参考其文本，所以条目里没有参考链接。

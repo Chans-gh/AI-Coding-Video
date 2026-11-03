@@ -1,5 +1,5 @@
 {
- "count": 105,
+ "count": 186,
  "styles": [
   {
    "id": "C-001",
@@ -2428,6 +2428,1846 @@
      "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/hologram-hud/STYLE.md"
     }
    ]
+  },
+  {
+   "id": "C-106",
+   "class": "C",
+   "name": "孟菲斯微缩景",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用孟菲斯微缩景风格：暖白纸面上一个带颗粒边缘的圆角画框从中心张开，框里是一座俯视的桌面模型小镇，糖果原色加粉彩平涂、深靛蓝描边，硬边紫色投影里铺满半调圆点，水波、鸟群、灯火这些小动静处处在动，镜头缓慢环绕一镜到底，配钢琴与马林巴。",
+   "theme": "3D 与实时图形",
+   "fit": "城市介绍、季节变化、地方风物",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/memphis-diorama/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-107",
+   "class": "C",
+   "name": "地铁线路图生长",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用地铁线路图生长风格：线路只走横竖和 45° 八个方向、转角统一圆角，白色站点和黑框换乘胶囊，水面是一条平涂蓝带，发光的笔尖沿线路把网络一段段画出来，镜头是真实透视，贴着纸面掠过、浅景深，站点点亮配钢片琴拨音，换乘处落一记低音。",
+   "theme": "信息讲解与产品发布",
+   "fit": "交通规划、网络扩张、流程分支",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/transit-map/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-108",
+   "class": "C",
+   "name": "等距绘本",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用等距绘本风格：30° 真等距、满出画框的一处真实场所（站台、闸机、路口），只用三色阶平涂、无描边无阴影，背对镜头的无脸小人按规则依次走动，屋顶像纸翻页一样掀开，衬线大字一个字一个字落在地面上，配柔和的立式钢琴和颤音琴。",
+   "theme": "信息讲解与产品发布",
+   "fit": "公共礼仪、排队规则、生活常识",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/isometric-picture-book/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-109",
+   "class": "C",
+   "name": "刻线印刷长镜头",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用刻线印刷长镜头风格：一个 3D 山水世界全部画成黑墨与纸白，灰度只靠刀刻平行线的粗细和疏密，只留一点红给一个小主角，山、林、水、前景枝条至少分三层彼此滑过，镜头一镜到底穿行其中，转场时响起刻刀划纸和压印的声音。",
+   "theme": "印刷、版画与装饰",
+   "fit": "自然纪录、旅途、季节变换",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/printed-long-take/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-110",
+   "class": "C",
+   "name": "电路板",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用电路板风格：正俯视的一块印制电路板，绿色阻焊层下是铜箔，走线只走 0/45/90° 并切斜角，金色焊盘和过孔，白色单线丝印写字，电流、货物或信号化作沿铜线奔跑的光脉冲，镜头在整张板和单个元件之间缩放，配继电器咔哒声和电源嗡鸣。",
+   "theme": "信息讲解与产品发布",
+   "fit": "供应链、系统架构、能源输送",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/circuit-board/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-111",
+   "class": "C",
+   "name": "桌面穿梭",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用桌面穿梭风格：阳光斜照的木桌上铺着点阵纸垫，各个应用界面是印在厚纸卡上的小场地，像素小人被挤成一格一格的体素玩具，在卡片间跳跃搬运，笔、便签、杯子投下长长软影，镜头不剪一刀地追随、甩镜，最后拉远看全桌，每个动作都踩在马林巴节拍上。",
+   "theme": "3D 与实时图形",
+   "fit": "软件功能导览、工作流演示、产品发布",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/desktop-flythrough/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-112",
+   "class": "C",
+   "name": "电视新闻包装",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用电视新闻包装风格：深墨色底，片头标识缩成角标，今日要闻目录开场又在结尾逐条打勾，平行四边形台标和纸色字条始终压在画面下方、换标题时上下翻转，每屏只放一个事实（翻牌价格板、破线折线、说明地图、盖章），干净无滚动字幕，配新闻鼓点。",
+   "theme": "平面设计与动态排版",
+   "fit": "每日简报、行业快讯、周报回顾",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo STYLE.md",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/news-package/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-113",
+   "class": "C",
+   "name": "翻牌显示板",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用翻牌显示板风格：车站出发信息牌，深色底板上一格格带铰链缝的翻片，文字逐列哗啦翻过字母表后停在新消息上，表格列出时间、目的地、站台和状态，琥珀、绿、红三色状态灯其中一盏在闪，顶部有站名和走动的钟，每次翻片都配密集的咔哒声。",
+   "theme": "平面设计与动态排版",
+   "fit": "发布公告、行程安排、版本更新",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "GSAP",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video splitflap.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/splitflap.md"
+    }
+   ]
+  },
+  {
+   "id": "C-114",
+   "class": "C",
+   "name": "霓虹灯牌",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用霓虹灯牌风格：夜里一面深色砖墙，文字和图标是弯出来的玻璃灯管，未通电时是暗玻璃，通电时先闪烁几下、嗡嗡作响再稳住，管芯白热、外圈是粉、青或黄的光晕，光洒在砖墙上并倒映在湿地面里，一场只挂一块招牌，最多三种灯色。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "品牌口号、夜生活、开业宣传",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video neon.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/neon.md"
+    }
+   ]
+  },
+  {
+   "id": "C-115",
+   "class": "C",
+   "name": "热敏小票",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用热敏小票风格：青绿色桌面底部摆着一台深色小票打印机，每一场打出一张米白热敏纸，从机口一行行往上长出来，等宽字、虚线分隔、底部条形码、锯齿撕边，步骤是逐个打勾的清单，数字印在“合计”一行，结尾盖红章再撕下，配打印机走纸声。",
+   "theme": "平面设计与动态排版",
+   "fit": "清单总结、价格说明、年度账单",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video thermal.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/thermal.md"
+    }
+   ]
+  },
+  {
+   "id": "C-116",
+   "class": "C",
+   "name": "夜间博物馆特展",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用夜间博物馆特展风格：近乎全黑的暖炭色展厅，每个镜头只有一束从顶上垂下的琥珀色聚光，光柱里浮着细尘，照亮基座上缓缓自转的低多边形宝石，旁边是米色展签和底部逐字打出的讲解字条，数字做成吊牌和高低不一的展柱，光束暗下再“寻找”下一件展品。",
+   "theme": "3D 与实时图形",
+   "fit": "产品回顾、历史沿革、成果展示",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video museum.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/museum.md"
+    }
+   ]
+  },
+  {
+   "id": "C-117",
+   "class": "C",
+   "name": "侦探线索板",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用侦探线索板风格：台灯照亮的软木板，四周暗角压黑，中央是一张写着问号的嫌疑人剪影卡，带编号的米色索引卡和黄、粉便签一张张钉上，红图钉之间拉紧红线织成网，镜头只做横移和缓推，一次相机闪光白场揭晓答案并盖上“结案”红章。",
+   "theme": "信息讲解与产品发布",
+   "fit": "问题排查、悬疑揭秘、案例复盘",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video detective.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/detective.md"
+    }
+   ]
+  },
+  {
+   "id": "C-118",
+   "class": "C",
+   "name": "电视天气预报",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用电视天气预报风格：上浅下深的藏青渐变底，开场是一团由发光圆点组成的旋转风暴云，随后切到一张张圆角预报卡：温度图、温度计、风速表盘、多日预报条，图标是带软阴影的扁平天气图标，角上有台标和日期徽标，底部滚动快讯条，场景间斜向快速擦除。",
+   "theme": "信息讲解与产品发布",
+   "fit": "状态报告、季度预测、趣味数据播报",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video weather.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/weather.md"
+    }
+   ]
+  },
+  {
+   "id": "C-119",
+   "class": "C",
+   "name": "电视购物",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用电视购物风格：每一句卖点独占一屏，满屏单色放射光芒背景、颜色随段落从灰黑换到金黄、警报红、电光蓝，粗描边漫画大字砸进画面，底部滚动卖点条一直在跑，圆滚滚的吉祥物从垂头丧气变得神采飞扬，镜头不动、硬切前闪一帧白，配热闹的叫卖音效。",
+   "theme": "卡通与动漫",
+   "fit": "促销活动、产品对比、搞笑广告",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video infomercial.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/infomercial.md"
+    }
+   ]
+  },
+  {
+   "id": "C-120",
+   "class": "C",
+   "name": "体育直播包装",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用体育直播包装风格：开场是夜场体育馆，交叉的探照光束、点阵灯组成的看台和一角绿茵，之后是带球衣斜纹的深藏青数据卡，左上比分角标、右上红色“直播”徽章、底部来源滚动条始终不动，双方用橙和灰蓝区分，数字滚动、对比条填满，高潮撒彩纸。",
+   "theme": "平面设计与动态排版",
+   "fit": "两款产品对比、排行榜、年度成绩",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video sports.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/sports.md"
+    }
+   ]
+  },
+  {
+   "id": "C-121",
+   "class": "C",
+   "name": "电影预告片",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用电影预告片风格：约 2.6:1 的超宽遮幅，上下黑边贯穿全片，暖棕近黑的暗角夜空里飘着极淡的尘粒，每个意思独占一屏、居中，小号字距拉开的琥珀色眉题、发光的大号衬线数字、一道青铜细线，画面像呼吸一样亮起再经黑场溶出，片名处一道横向镜头光晕加重击。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "新品预告、发布日倒数、品牌大片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video trailer.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/trailer.md"
+    }
+   ]
+  },
+  {
+   "id": "C-122",
+   "class": "C",
+   "name": "16-bit 街机闯关",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用16-bit 街机闯关风格：紫色星夜和闪烁的像素星，全屏轻扫描线，故事走一遍游戏流程：投币开场伴随屏幕一震、闪烁的“按下开始”、角色在关卡地图上一格格跳到下一个节点、最高分逐位滚动、对战屏的血条，最后“通关”对话框，像素字只按 8 的倍数放大，配芯片音乐。",
+   "theme": "游戏",
+   "fit": "产品功能闯关、竞品对决、年度回顾",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video arcade.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/arcade.md"
+    },
+    {
+     "label": "animation-skills pixel-arcade",
+     "url": "https://github.com/madhavsomani/animation-skills/blob/main/skills/pixel-arcade/SKILL.md"
+    }
+   ]
+  },
+  {
+   "id": "C-123",
+   "class": "C",
+   "name": "手账剪贴本",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用手账剪贴本风格：牛皮纸桌面上斜放着横线笔记本页，拍立得照片用米色和薄荷色和纸胶带贴住、下面写手写说明，撕边纸条标关键词，模切贴纸和橡皮章标记里程碑，红蓝马克笔画箭头、星星和圈，元素都歪 2–8°，换场时一页新纸滑过桌面。",
+   "theme": "纸艺、材质与定格",
+   "fit": "项目幕后、成长记录、旅行日志",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "code-video scrapbook.md",
+     "url": "https://github.com/Changroro/code-video/blob/main/references/styles/scrapbook.md"
+    }
+   ]
+  },
+  {
+   "id": "C-124",
+   "class": "C",
+   "name": "平板黑板马克笔",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用平板黑板马克笔风格：纯黑数位画板，3–6 px 圆头单线笔画带轻微手抖，按说话的速度一笔笔画出来，一支数位笔尖始终跟着笔头，白、蓝、绿、黄、红五色各有固定含义，手写标签，红色实心箭头像图章一样盖下，每块板只长一张图，只配人声。",
+   "theme": "手绘与绘画",
+   "fit": "技术原理、安全漏洞讲解、计算机科普",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Remotion"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "animation-skills board-explainer",
+     "url": "https://github.com/madhavsomani/animation-skills/blob/main/skills/board-explainer/SKILL.md"
+    }
+   ]
+  },
+  {
+   "id": "C-125",
+   "class": "C",
+   "name": "机密档案袋",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用机密档案袋风格：台灯光圈下的深色木桌，牛皮纸档案夹和米色备忘纸，打字机字随旁白逐词敲出，旧橡皮章在关键词上重重砸下，红铅笔箭头和勾、荧光笔划痕、黑色涂抹条、回形针和地图图钉，配打字机、纸张和盖章音效。",
+   "theme": "信息讲解与产品发布",
+   "fit": "政策解读、安全事件、历史揭秘",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Remotion"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "animation-skills declassified-dossier",
+     "url": "https://github.com/madhavsomani/animation-skills/blob/main/skills/declassified-dossier/SKILL.md"
+    }
+   ]
+  },
+  {
+   "id": "C-126",
+   "class": "C",
+   "name": "虹彩玻璃泡",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用虹彩玻璃泡风格：深藏青影棚里悬着一个肥皂泡般的玻璃球，薄膜干涉让表面流动着青、品红、金三色虹彩，边缘有菲涅尔亮边和窗形高光，球里是一座发光的小城，金币倾泻进来，一道细裂纹出现后被金线封合，镜头缓慢环绕。",
+   "theme": "3D 与实时图形",
+   "fit": "AI 经济、市场泡沫、行业趋势",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "animation-skills glass-bubble-3d",
+     "url": "https://github.com/madhavsomani/animation-skills/blob/main/skills/glass-bubble-3d/SKILL.md"
+    }
+   ]
+  },
+  {
+   "id": "C-127",
+   "class": "C",
+   "name": "发光宇宙",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用发光宇宙风格：深靛紫的太空雾里，无数叠加发光的点和光晕组成星系与网络，青色代表数据、紫色代表结构、琥珀色只给最关键的结论，半透明玻璃卡片悬在空中写字，一个反复出现的主角物体贯穿全片，镜头按关键帧在几处布景间飞越。",
+   "theme": "3D 与实时图形",
+   "fit": "AI 原理、复杂系统、抽象概念讲解",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "Remotion"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "animation-skills luminous-cosmos-3d",
+     "url": "https://github.com/madhavsomani/animation-skills/blob/main/skills/luminous-cosmos-3d/SKILL.md"
+    }
+   ]
+  },
+  {
+   "id": "C-128",
+   "class": "C",
+   "name": "史前洞穴岩画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用史前洞穴岩画风格：凹凸不平的石灰岩壁由噪声生成浮雕和裂缝，形象只用赭红、土黄和木炭黑，炭笔边缘起毛并渗进岩面颗粒，手印用喷吹法留下负形，野牛和鹿在两三个姿态之间交替奔跑，一支摇曳的火把照到哪里哪里才看得见，配低沉的鼓声。",
+   "theme": "手绘与绘画",
+   "fit": "人类起源、狩猎故事、远古历史",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 01_cave",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/01_cave.md"
+    }
+   ]
+  },
+  {
+   "id": "C-129",
+   "class": "C",
+   "name": "古埃及墓室壁画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用古埃及墓室壁画风格：沙黄灰泥墙按横向带状分栏，人物头和腿画侧面、眼睛和肩膀画正面，土红、孔雀绿、青金蓝平涂后勾细黑线，旁边竖排的象形符号一笔一笔重新写出，人物按身份定大小，转场是上一栏像石板一样下滑露出下一栏。",
+   "theme": "手绘与绘画",
+   "fit": "古文明科普、历史叙事、仪式与流程讲解",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 02_egypt",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/02_egypt.md"
+    }
+   ]
+  },
+  {
+   "id": "C-130",
+   "class": "C",
+   "name": "古希腊黑绘陶瓶",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用古希腊黑绘陶瓶风格：橙红陶土底上人物和动物都是光亮的黑色剪影，细节用刻线刮出、露出底下的陶色，偶尔点一点紫红和白，画面绕着弧形瓶身展开，回纹和棕榈叶饰带在上下沿反向滚动，镜头像转动陶瓶一样横移换场，配里拉琴拨弦。",
+   "theme": "手绘与绘画",
+   "fit": "神话故事、体育竞技、古典文学",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 03_greek",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/03_greek.md"
+    }
+   ]
+  },
+  {
+   "id": "C-131",
+   "class": "C",
+   "name": "古罗马石子马赛克",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用古罗马石子马赛克风格：形象由几毫米见方的小石块沿轮廓一圈圈排出，石色是大理石白、赭黄、砖红、灰绿这些天然土色，块与块之间露出暗灰灰泥缝，石面有细微凹凸和高光，新画面跟着鼓点从一点开始一块块翻面铺开，镜头像俯看庭院地面一样缓慢移动。",
+   "theme": "印刷、版画与装饰",
+   "fit": "古代城市、考古科普、庄重的纪念片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 04_roman",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/04_roman.md"
+    },
+    {
+     "label": "opus-5.5-mv mosaic-and-sand",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/mosaic-and-sand"
+    }
+   ]
+  },
+  {
+   "id": "C-132",
+   "class": "C",
+   "name": "哥特泥金手抄本",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用哥特泥金手抄本风格：泛黄羊皮纸上是双栏黑体拉丁字和一个巨大的彩绘首字母，背景铺着压花金箔，一道斜向高光随时间扫过所有金色处并闪出四角星，群青和朱红平涂的人物站在尖拱框里，页边的藤蔓和小兽慢慢爬动，转场是翻过一页羊皮纸。",
+   "theme": "印刷、版画与装饰",
+   "fit": "中世纪传说、奇幻故事、典籍与历史讲解",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 05_gothic",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/05_gothic.md"
+    }
+   ]
+  },
+  {
+   "id": "C-133",
+   "class": "C",
+   "name": "早期文艺复兴湿壁画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用早期文艺复兴湿壁画风格：干灰泥墙面略带粉化斑驳，颜色是粉蓝天空、土绿、淡赭和玫瑰色，人物像厚重的体块，轮廓清楚、明暗简单，建筑像舞台盒子一样把场景分成一格格可读的空间，光线均匀清明几乎没有投影，镜头沿墙面从一幕平移到下一幕，配素歌吟唱。",
+   "theme": "手绘与绘画",
+   "fit": "历史叙事、城市与社会生活、连环故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 38_giotto",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/38_giotto.md"
+    },
+    {
+     "label": "huashu 风格卡 39_piero",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/39_piero.md"
+    },
+    {
+     "label": "huashu 风格卡 43_lorenzetti",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/43_lorenzetti.md"
+    }
+   ]
+  },
+  {
+   "id": "C-134",
+   "class": "C",
+   "name": "盛期文艺复兴晕涂",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用盛期文艺复兴晕涂风格：暖褐基调的油画，形体边缘没有线，全靠烟雾般的明暗慢慢晕开，远山按空气透视一层比一层更蓝更淡，人物用稳定的三角形构图，画面带细密龟裂纹和发黄的光油，动作缓慢庄重，转场是窗口射进一束光照亮下一幕。",
+   "theme": "手绘与绘画",
+   "fit": "人物传记、艺术史讲解、庄重的品牌片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 06_renaissance",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/06_renaissance.md"
+    },
+    {
+     "label": "huashu 风格卡 40_raphael",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/40_raphael.md"
+    },
+    {
+     "label": "huashu 风格卡 41_michelangelo",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/41_michelangelo.md"
+    }
+   ]
+  },
+  {
+   "id": "C-135",
+   "class": "C",
+   "name": "巴洛克明暗对照",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用巴洛克明暗对照风格：画面八成沉在近乎全黑的暖褐阴影里，一束左上方的斜光或一支烛火只照亮脸、手和金属器物，亮部厚涂暖黄白，暗部薄而透，光照范围随烛焰轻轻呼吸，光柱里有浮尘飘动，镜头极慢地推进，转场是光圈收拢再打开。",
+   "theme": "手绘与绘画",
+   "fit": "悬疑与心理戏、人物肖像、宗教与历史场景",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 32_rembrandt",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/32_rembrandt.md"
+    },
+    {
+     "label": "huashu 风格卡 44_cortona",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/44_cortona.md"
+    }
+   ]
+  },
+  {
+   "id": "C-136",
+   "class": "C",
+   "name": "威尼斯风景画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用威尼斯风景画风格：低低的地平线上压着占画面三分之二的银灰色天空，水面和建筑用干而快的小笔触点出碎光，边缘松动不收紧，人物小到只剩一点黑加一点白或红，细长的小船慢慢划过，色调是银灰、淡绿和暖赭，镜头沿运河缓缓横移。",
+   "theme": "手绘与绘画",
+   "fit": "城市风光、旅行纪录、怀旧短片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 42_guardi",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/42_guardi.md"
+    }
+   ]
+  },
+  {
+   "id": "C-137",
+   "class": "C",
+   "name": "新艺术运动",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用新艺术运动风格：画面被一圈鞭子般弯曲的有机线框住，线条外粗内细，主角身后衬一个圆形光环，长发和衣褶卷成 S 形波浪，配色是橄榄绿、芥末黄、蜜桃粉和金，边框上的花藤从四角长出来，转场是金边曲线生长并包住整个新画面。",
+   "theme": "印刷、版画与装饰",
+   "fit": "海报式开场、美妆与香氛、文学与诗歌",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 10_nouveau",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/10_nouveau.md"
+    },
+    {
+     "label": "huashu 风格卡 18_klimt",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/18_klimt.md"
+    }
+   ]
+  },
+  {
+   "id": "C-138",
+   "class": "C",
+   "name": "后印象派厚涂",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用后印象派厚涂风格：画面由一根根方向明确的短粗油彩笔触铺满，墙面竖排、地面顺着透视、天空绕着漩涡打转，同一区域里混用十几种相近色相，钴蓝和铬黄互补对撞，轮廓用深蓝粗线勾出并每隔几帧轻轻抖动，灯和星星外有一圈圈光晕向外扩，转场是漩涡把画面卷走。",
+   "theme": "手绘与绘画",
+   "fit": "情绪 MV、艺术史讲解、夜景与乡村",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 09_postimp",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/09_postimp.md"
+    }
+   ]
+  },
+  {
+   "id": "C-139",
+   "class": "C",
+   "name": "新印象派点彩",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用新印象派点彩风格：画面全部由同样大小的纯色圆点并排组成，不在调色盘上混色，橙点旁放蓝点、绿点旁放红点让眼睛自己去混，阴影处的点更冷更密、亮处更暖更稀，点在原位轻轻明灭像在呼吸，人物轮廓安静而几何，转场是旧画面结晶成圆点再重新组合。",
+   "theme": "手绘与绘画",
+   "fit": "公园与假日、科学色彩讲解、安静的风景",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 29_seurat",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/29_seurat.md"
+    }
+   ]
+  },
+  {
+   "id": "C-140",
+   "class": "C",
+   "name": "综合主义平涂",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用综合主义平涂风格：大块不讲透视的平涂色面，每块用深蓝或深褐粗轮廓圈住，像掐丝珐琅一样，颜色按情绪而不按自然，草地可以是橙红、树影可以是紫，人物造型简化、姿态静止，背景常是一整片单色，只有风和呼吸在动，转场是一块色面滑入覆盖画面。",
+   "theme": "手绘与绘画",
+   "fit": "神话与民俗、热带风情、心理与象征叙事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 48_gauguin",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/48_gauguin.md"
+    }
+   ]
+  },
+  {
+   "id": "C-141",
+   "class": "C",
+   "name": "表现主义",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用表现主义风格：整个世界用长而弯的流线笔触画出，天空、水面和人物都沿同一股力场扭曲波动，血橙、硫黄和深蓝紫强烈对撞，人物的脸简化成惊惧的面具，画面每一行都在缓慢地正弦扭动，转场是一条彩色天空带从上往下压满屏幕，配低沉弦乐。",
+   "theme": "手绘与绘画",
+   "fit": "焦虑与心理题材、恐怖短片、情绪化 MV",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 19_munch",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/19_munch.md"
+    },
+    {
+     "label": "huashu 风格卡 36_picasso_blue",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/36_picasso_blue.md"
+    }
+   ]
+  },
+  {
+   "id": "C-142",
+   "class": "C",
+   "name": "分析立体主义",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用分析立体主义风格：物体被拆成许多半透明的小几何切面，同一画面里同时露出正面和侧面，色彩压到赭褐、灰绿、暗金几种，切面互相穿插分不清前后，零散的印刷字母和报纸碎片夹在中间，切面缓慢滑动错位，转场是碎片打散后重新拼成新的物体。",
+   "theme": "手绘与绘画",
+   "fit": "艺术史讲解、多视角分析、咖啡馆与城市生活",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 11_cubism",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/11_cubism.md"
+    }
+   ]
+  },
+  {
+   "id": "C-143",
+   "class": "C",
+   "name": "俄国构成主义",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用俄国构成主义风格：灰卡纸底上只有黑和红两色大平面与斜放的粗体方块字，代码画出的灰度“照片”经网点化后剪下、带白边贴上去，红色楔形直刺黑色圆形，构图沿对角线冲出画框，标语逐字像盖章一样砸下，镜头在拼贴板上快速推拉。",
+   "theme": "平面设计与动态排版",
+   "fit": "宣言与观点片、工业与工程史、论证型讲解",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 22_constructivism",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/22_constructivism.md"
+    },
+    {
+     "label": "opus-5.5-mv photomontage",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/photomontage"
+    }
+   ]
+  },
+  {
+   "id": "C-144",
+   "class": "C",
+   "name": "超现实主义",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用超现实主义风格：无限延伸的平坦荒原和低地平线，傍晚斜光拉出极长的影子，日常物体以不合理的方式出现，钟表像软蜡一样往下流淌，长腿动物缓慢走过，形体画得写实、处境却荒谬，天空是澄澈的青到杏黄渐变，转场是新画面像液滴一样从上往下流下来盖住旧画面。",
+   "theme": "手绘与绘画",
+   "fit": "梦境与记忆、时间主题、哲学短片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 23_dali",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/23_dali.md"
+    }
+   ]
+  },
+  {
+   "id": "C-145",
+   "class": "C",
+   "name": "美国都市写实主义",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用美国都市写实主义风格：空荡的餐馆、加油站和公寓窗边，清晨或深夜的光以锋利的硬边斜块落在墙和地板上，色面平整几乎看不到笔触，人物孤零零地坐着不动，只有光斑缓慢移动扫过脸，配色是暖黄、青绿和砖红，镜头固定不动，声音只有远处的车声。",
+   "theme": "手绘与绘画",
+   "fit": "孤独与城市题材、短篇小说改编、安静的情绪片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 24_hopper",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/24_hopper.md"
+    }
+   ]
+  },
+  {
+   "id": "C-146",
+   "class": "C",
+   "name": "野兽派彩纸剪贴",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用野兽派彩纸剪贴风格：先刷满浓烈水粉的彩纸再直接用剪刀剪出形状，海藻、叶片、星形和舞动人形的边缘带不规则剪口，钴蓝、柠檬黄、品红和翠绿平涂并排，纸片用图钉钉在白墙上留下细小投影，纸角随风轻轻翘动，转场是一大张蓝纸从侧边扫过换场。",
+   "theme": "纸艺、材质与定格",
+   "fit": "音乐与舞蹈、儿童艺术启蒙、轻快的品牌片",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 30_matisse",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/30_matisse.md"
+    }
+   ]
+  },
+  {
+   "id": "C-147",
+   "class": "C",
+   "name": "波普艺术",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用波普艺术风格：粗黑描边的漫画式人物，皮肤和背景是规则的大号网点，只用纯黄、纯红、纯蓝和黑白，思考泡和拟声字放大到占半个画面，同一张头像在四宫格里不断换配色，换场时一道闪电劈开画面并整体网点化，节奏跟着鼓点硬切。",
+   "theme": "印刷、版画与装饰",
+   "fit": "消费与流行文化、广告片、喜剧短片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 13_pop",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/13_pop.md"
+    }
+   ]
+  },
+  {
+   "id": "C-148",
+   "class": "C",
+   "name": "街头波普涂鸦",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用街头波普涂鸦风格：纯色背景上只有等宽粗黑线画的小人、狗、心形和电视，没有五官细节，身体周围有短短的放射动作线，所有形象每 8 帧硬切一个姿势地跳舞并跟着节拍整体弹跳，配色是荧光红、黄、绿，转场是一个小人放大、身体里装着下一幅画。",
+   "theme": "手绘与绘画",
+   "fit": "音乐 MV、公益宣传、派对与节日",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 31_haring",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/31_haring.md"
+    }
+   ]
+  },
+  {
+   "id": "C-149",
+   "class": "C",
+   "name": "早期光线追踪 CGI",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用早期光线追踪 CGI风格：90 年代初电脑图形的样子，所有物体都是同一种光滑塑料，带一颗硬边白色高光，地面是无限延伸的红白棋盘格并映出倒影，铬球反射出扭曲的环境，背景是紫到青的渐变天空，开场先显示绿色线框再逐行扫描渲染出来，镜头沿轨道慢慢绕转。",
+   "theme": "3D 与实时图形",
+   "fit": "计算机图形学史、复古科技片、怀旧片头",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 15_raytrace",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/15_raytrace.md"
+    }
+   ]
+  },
+  {
+   "id": "C-150",
+   "class": "C",
+   "name": "敦煌壁画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用敦煌壁画风格：土红色干泥壁作底，矿物色只有石青、石绿、白和赭，颜色褪淡、背景有剥落斑块，人物和走兽用流畅的长线勾出，飞天横向飞过、长飘带在身后起伏，锯齿形小山和被风吹弯的叶片点缀画面，转场是旧画面剥落掉下露出新画，配琵琶。",
+   "theme": "东方传统",
+   "fit": "佛教与丝路故事、文博科普、东方奇幻",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 20_dunhuang",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/20_dunhuang.md"
+    },
+    {
+     "label": "huashu 风格卡 55_dunhuang",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/55_dunhuang.md"
+    }
+   ]
+  },
+  {
+   "id": "C-151",
+   "class": "C",
+   "name": "南宋院体山水",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用南宋院体山水风格：淡黄绢本上主景全压在一角，山石用方硬的侧锋斧劈皴扫出，其余大半画面是雾和水的留白，一棵拖枝老松斜伸出画外，小小的高士在崖边远望，淡墨加一点赭石和花青，镜头从留白处缓缓移向那一角，配洞箫。",
+   "theme": "东方传统",
+   "fit": "诗词意境、哲理独白、东方品牌片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 50_ma_yuan",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/50_ma_yuan.md"
+    }
+   ]
+  },
+  {
+   "id": "C-152",
+   "class": "C",
+   "name": "波斯细密画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用波斯细密画风格：画面不用透视，花园、建筑和人物从下往上层层堆叠，每一层都布满精细的花草纹样，群青、翠绿、朱红和金色平涂，边框外有书法栏和泥金花边，人物小而多、同时在做不同的事，镜头像读书页一样从下往上缓慢摇，配乌德琴。",
+   "theme": "手绘与绘画",
+   "fit": "中东与丝路故事、宫廷与诗歌、群像叙事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "huashu 风格卡 51_persian_miniature",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/51_persian_miniature.md"
+    }
+   ]
+  },
+  {
+   "id": "C-153",
+   "class": "C",
+   "name": "合成波（Synthwave）",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用合成波风格：深紫夜空下一轮切成横条的橙粉渐变落日，品红霓虹透视网格向地平线无限滚动，远处是线框山脉，镀铬金属大字带一道高光扫过，所有亮线都有一紧一散两层辉光，最后叠上 VHS 扫描线、红蓝通道错位和偶尔的磁带卡顿，配模拟合成器琶音。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "复古音乐 MV、游戏与潮牌宣传、80 年代怀旧片头",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL",
+    "Web Audio"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "mg-styles-15 10-synthwave",
+     "url": "https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/10-synthwave.md"
+    },
+    {
+     "label": "huashu 风格卡 26_vaporwave",
+     "url": "https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/26_vaporwave.md"
+    }
+   ]
+  },
+  {
+   "id": "C-154",
+   "class": "C",
+   "name": "逐帧沸腾线",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用逐帧沸腾线风格：米白纸纹底上用粗细随压力变化的手绘线勾出形象，每张线稿准备三四个细微不同的版本、每两帧轮换一次，让静止画面也像在呼吸，动作以一拍二为主、快动作切一拍一，快速位移时只插一帧拉长的拖影，烟雾、水花和速度线逐帧手绘叠在主体上。",
+   "theme": "卡通与动漫",
+   "fit": "品牌短片、手作感片头、角色小剧场",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "mg-styles-15 05-cel-boil",
+     "url": "https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/05-cel-boil.md"
+    }
+   ]
+  },
+  {
+   "id": "C-155",
+   "class": "C",
+   "name": "液态融合",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用液态融合风格：纯色背景上的高光泽液体图形，两团靠近就自动粘连融合，分开时拉出细颈再断裂回弹，小液滴晚两三帧跟着主体被甩出去，转场是一道带几个凸起的波浪前沿泼过整屏，结尾一滴液体聚合成标志，表面用场的梯度假装出立体高光，配水滴和吸管声。",
+   "theme": "平面设计与动态排版",
+   "fit": "饮料与食品广告、标志演绎、音乐转场包装",
+   "verified": [],
+   "suggested": [
+    "WebGL2",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "mg-styles-15 07-liquid",
+     "url": "https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/07-liquid.md"
+    }
+   ]
+  },
+  {
+   "id": "C-156",
+   "class": "C",
+   "name": "图形形变叙事",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用图形形变叙事风格：浅色纯底上的扁平图形一个接一个连续变形来讲故事，咖啡杯变成落日、手机变成地图钉，复杂形状先收拢成圆或胶囊再展开成下一个，变形时带一点挤压拉伸和旋转，速度中段最快、首尾各留几帧缓冲，颜色随形状一起过渡，配柔和的嗖声。",
+   "theme": "信息讲解与产品发布",
+   "fit": "产品功能串讲、品牌故事、图形化讲解",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "mg-styles-15 08-morph",
+     "url": "https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/08-morph.md"
+    }
+   ]
+  },
+  {
+   "id": "C-157",
+   "class": "C",
+   "name": "粗描边贴纸科普",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用粗描边贴纸科普风格：米白或蓝灰底的超大画布上铺满带粗白边和小投影的“贴纸”，物件全部用代码画成扁平插画再加白边，旁边是精确的柱状图、滚动数字和细线标注，镜头用长缓动在画布上平移缩放、串起一个个信息点，每句解说都有新元素弹出，只用两三种克制的配色。",
+   "theme": "信息讲解与产品发布",
+   "fit": "硬核科普、财经知识、企业介绍",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "D3.js",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "mg-styles-15 19-paperclip",
+     "url": "https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/19-paperclip.md"
+    }
+   ]
+  },
+  {
+   "id": "C-158",
+   "class": "C",
+   "name": "大理石纹染纸",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用大理石纹染纸风格：颜料浮在水槽表面，被一滴滴落下的颜色推开成同心圈，再被梳子拉成羽毛纹和孔雀纹，色与色交界处有细细的深色纹脉和颜料颗粒，每次变形都能精确倒放、让图案被梳回原样，配色是靛蓝、赭红、芥末黄和象牙白。",
+   "theme": "纸艺、材质与定格",
+   "fit": "记忆与时间、水与风、抽象音乐 MV",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv marbling",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/marbling"
+    }
+   ]
+  },
+  {
+   "id": "C-159",
+   "class": "C",
+   "name": "魔灯幻灯片",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用魔灯幻灯片风格：漆黑讲堂里一盏油灯把手工上色的雕版玻璃片投在圆形光斑里，四周暗角，光随油灯不停闪烁，换片时玻璃片横向滑入或两张叠化，偶尔插进一片旋转的彩色万花筒片，镜头不时拉远露出幕布和观众剪影，旁白像一场旅行讲座。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "历史与游记、讲故事式 MV、维多利亚时代题材",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv magic-lantern",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/magic-lantern"
+    }
+   ]
+  },
+  {
+   "id": "C-160",
+   "class": "C",
+   "name": "玻璃版长曝光",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用玻璃版长曝光风格：像 19 世纪的玻璃底片曝光几分钟甚至几个月，静止的建筑和树清晰锐利，走过的人只留下半透明的幽灵拖影，太阳在天上画出一道道弧线，银灰色调带光晕、灰尘、划痕和边缘药膜剥落，画面一角的纸套上用手写数字计着曝光时长。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "时间流逝、静与动的对比、怀旧与记忆",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv glass-plate",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/glass-plate"
+    }
+   ]
+  },
+  {
+   "id": "C-161",
+   "class": "C",
+   "name": "蜡染",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用蜡染风格：棉布上只有靛蓝、姜黄和米白蜡三种颜色，场景先在 3D 里被一盏金灯和一盏蓝灯照亮，再换算成染色区：只照到金灯处染黄、只照到蓝灯处染蓝、两盏都照到处留蜡白，蜡面布满细冰裂纹，换色时一道染液前沿扫过布面，四周是几何花边。",
+   "theme": "纸艺、材质与定格",
+   "fit": "民族与手工艺题材、双人对唱、旅途与田野",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv batik",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/batik"
+    }
+   ]
+  },
+  {
+   "id": "C-162",
+   "class": "C",
+   "name": "木雕彩绘微缩景",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用木雕彩绘微缩景风格：一张地形浮雕桌上摆着手刻、上过彩漆的小木人、房子和树，表面留着刻刀痕和木纹，只有一盏台灯从上方照亮，浅景深让远处和近处都微微虚化，木偶按一拍二的节奏顿挫移动，镜头像无人机一样低空掠过整片小世界。",
+   "theme": "纸艺、材质与定格",
+   "fit": "俯瞰一个完整小世界、童话与寓言、旅行路线",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv diorama",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/diorama"
+    }
+   ]
+  },
+  {
+   "id": "C-163",
+   "class": "C",
+   "name": "夜色平涂海报",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用夜色平涂海报风格：靛蓝夜色里只有窗口和路灯的琥珀色光，阴影是硬边几何色块，人物只用轮廓线勾出，画面被弧形接缝分成几格，同一个街角在不同时刻各占一格，结尾所有格子收拢成一栋楼，每格变成一扇亮灯的窗。",
+   "theme": "平面设计与动态排版",
+   "fit": "城市日常、多线并行故事、温情 MV",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv night-poster",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/night-poster"
+    }
+   ]
+  },
+  {
+   "id": "C-164",
+   "class": "C",
+   "name": "车厢珐琅彩绘",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用车厢珐琅彩绘风格：画面就是一节旅行篷车的木侧板，用光亮珐琅漆画成，每一笔都是双色鬃刷笔触加一记白色高光挑笔，玫瑰、卷叶和金箔饰框围住中间的风景，表面有清漆细裂，夜景里的灯跟着节拍一盏盏亮起，边框上的彩带打结又解开。",
+   "theme": "印刷、版画与装饰",
+   "fit": "公路与旅人、民间集市、节庆夜晚",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv painted-enamel",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/painted-enamel"
+    }
+   ]
+  },
+  {
+   "id": "C-165",
+   "class": "C",
+   "name": "剧院彩绘布景",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用剧院彩绘布景风格：从观众席后排望向一座小剧场，台上的山、树和云都是手绘平板和吊幕，靠铰链和吊线由看不见的工人拉动，鼓风机吹得纸叶乱颤，脚灯从下往上照亮演员，歌词写在台边画架的卡片上，镜头从后排一路推近到舞台。",
+   "theme": "纸艺、材质与定格",
+   "fit": "戏剧化叙事、喜剧歌曲、舞台感品牌片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv showboat",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/showboat"
+    }
+   ]
+  },
+  {
+   "id": "C-166",
+   "class": "C",
+   "name": "60 年代液体灯光秀",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用60 年代液体灯光秀风格：投影仪下一只玻璃皿里油、水和染料不停旋转交融，品红、橙、绿、紫被挤成气泡和漩涡，上面叠着手绘透明片，黑墨处真的挡住灯光，每个重拍都在液面荡开一圈，灯偶尔熄灭又亮起，配迷幻摇滚。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "迷幻音乐 MV、间奏与转场、梦境段落",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv liquid-light",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/liquid-light"
+    }
+   ]
+  },
+  {
+   "id": "C-167",
+   "class": "C",
+   "name": "热成像",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用热成像风格：画面是热像仪看到的寒夜，人和动物的身体、呼出的气、刚踩过的脚印先发亮再慢慢冷却消失，烟囱的烟被风压平，伪彩调色板从黑紫到橙黄再到白，起风时整片调色板跟着扫换，所有轮廓上叠一条细白边线，角落有温度读数。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "夜晚与寒冷、监视与追踪、身体与触碰",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "opus-5.5-mv thermal",
+     "url": "https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/thermal"
+    }
+   ]
+  },
+  {
+   "id": "C-168",
+   "class": "C",
+   "name": "字雨",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用字雨风格：纯黑屏幕上一列列绿色等宽字符从上往下坠落，每列最前面的字最亮、近乎白色，身后拖着渐暗的尾巴，字符在下落途中随机换字，各列速度不同，镜头偶尔推进穿过字帘，某一刻雨幕里的字排出一个隐藏的单词或轮廓，配低频电子嗡鸣。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "黑客与 AI 题材、科技片头、数据主题转场",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-169",
+   "class": "C",
+   "name": "光标打字",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用光标打字风格：大片留白的纸色页面上只有一行等宽或衬线文字，一个闪烁的竖线光标逐字打出句子，偶尔停顿、删掉几个字再改写，节奏像真人在犹豫，关键词打完后被高亮或加粗，整页上滚换到下一句，声音只有清脆的键盘声和换行时的一声叮。",
+   "theme": "平面设计与动态排版",
+   "fit": "独白与书信、产品文案演示、悬念开场",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-170",
+   "class": "C",
+   "name": "字的隧道",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用字的隧道风格：镜头沿一条无尽的圆形隧道向前飞，隧道内壁由一圈圈环形排列的文字组成，近处的字大而清晰、远处缩成发光的细线，文字随旁白逐句更换，经过镜头时正好读出，隧道偶尔拐弯或整体旋转，黑底单色字加一个强调色，配逐渐加速的风声。",
+   "theme": "平面设计与动态排版",
+   "fit": "宣言与口号、歌词 MV、数据与信息洪流",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-171",
+   "class": "C",
+   "name": "流动的丝线",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用流动的丝线风格：深色背景上成千上万根半透明细丝顺着缓慢变化的噪声流场游走，留下柔和的轨迹，颜色从珍珠白渐变到淡金和冰蓝，丝线交叠处更亮，音乐重音时被扰动散开、再慢慢理顺，镜头几乎不动，整体像丝绸在水里漂。",
+   "theme": "3D 与实时图形",
+   "fit": "冥想与放松、奢侈品与面料广告、抽象音乐可视化",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-172",
+   "class": "C",
+   "name": "萤火光尘",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用萤火光尘风格：暮色深蓝的草地和树林剪影里，几百颗暖黄绿的小光点慢慢浮起、明灭、绕圈飞行，靠近镜头的光点大而失焦成光斑，远处的细小清晰，每颗按各自的节奏呼吸闪烁，偶尔聚成一个形状又散开，配虫鸣和轻柔钢琴。",
+   "theme": "3D 与实时图形",
+   "fit": "夏夜回忆、治愈系 MV、童话开场",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-173",
+   "class": "C",
+   "name": "星空连线",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用星空连线风格：深蓝黑夜空里散布着大小亮度不同的星点，细细的发光线一笔一笔把星星连成星座，连好后淡淡浮出线描轮廓又隐去，星点缓慢闪烁、整片天空缓缓旋转，镜头偶尔推近一颗星，配低沉的环境音和细碎的铃声。",
+   "theme": "信息讲解与产品发布",
+   "fit": "天文科普、关系与网络讲解、浪漫告白",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-174",
+   "class": "C",
+   "name": "雨窗",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用雨窗风格：镜头隔着一扇夜晚的玻璃窗，窗外城市灯光全部失焦成暖橙和冷青的大光斑，玻璃上水珠大小不一，小的停着不动、大的忽然沿曲折路线滑下并吞掉沿途的小水珠，每颗水珠里折射出倒置的清晰灯影，窗角偶尔起雾，配持续的雨声和远处车声。",
+   "theme": "3D 与实时图形",
+   "fit": "失恋与思念、深夜电台、学习陪伴背景",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-175",
+   "class": "C",
+   "name": "窗光与尘",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用窗光与尘风格：昏暗安静的室内，一束午后斜阳从百叶窗或格子窗射进来，在空气中形成清晰的体积光柱，光柱里无数细小尘埃缓慢翻滚闪亮，地板和墙上的窗格暖黄光块随时间缓缓移动，阴影是冷灰蓝，镜头静止或极慢推移，只有钟表的滴答声。",
+   "theme": "3D 与实时图形",
+   "fit": "怀旧与回忆、阅读与书房、慢节奏开场",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-176",
+   "class": "C",
+   "name": "老胶片（褪色彩色）",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用老胶片风格：像七十年代超 8 毫米家庭影片，颜色整体偏洋红和暖黄、阴影发青，粗颗粒逐帧跳动，画面四角是圆角片门，偶尔闪过橙色漏光，片子轻微上下晃动，换卷处出现打孔和过曝白帧，配放映机的嗒嗒声。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "家庭回忆、复古广告、年代感 MV",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-177",
+   "class": "C",
+   "name": "信号故障（Glitch）",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用信号故障风格：画面在正常和损坏之间跳动，整条像素被横向错位撕开，红绿蓝通道各自偏移，压缩方块像马赛克一样拖着残影，像素按亮度被拉成竖向条纹，偶尔整屏冻结一帧再跳回，故障严格卡在节拍重音上，配数据噪音和断续的电流声。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "电子音乐 MV、网络安全题材、科技发布转场",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-178",
+   "class": "C",
+   "name": "折纸",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用折纸风格：一张方形彩纸在纯色桌面上沿折痕自己一步步折起来，山折谷折时纸面明暗随角度变化，折痕处留下浅浅的压线，最后变成鹤、青蛙或小船，成品轻轻弹跳后展开再折成下一个，纸面带细微纤维纹，侧光投出柔和阴影，配纸张摩擦声。",
+   "theme": "纸艺、材质与定格",
+   "fit": "手工教程、变化与成长寓意、日式品牌片",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-179",
+   "class": "C",
+   "name": "平铺整理（Knolling）",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用平铺整理风格：正上方俯拍一块干净的纯色台面，所有物品按 90 度对齐、等间距排成整齐的网格，同类同色归在一起，物品一件件从画外滑入就位，有时整组重新排序或拆成零件再摆开，每件只有正下方一圈柔和阴影，旁边用细线标出名称，配干脆的落位声。",
+   "theme": "信息讲解与产品发布",
+   "fit": "产品拆解与清单、装备介绍、收纳与旅行准备",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-180",
+   "class": "C",
+   "name": "工笔",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用工笔风格：微黄的熟绢底上，形象先用细匀的铁线描勾出完整墨线，再一层层平涂分染石青、石绿、朱砂和胭脂，花瓣和羽毛的颜色从根部向外渐淡，边线始终清晰、不被颜色盖住，画面一线一线勾出、一层一层染出来，配古筝。",
+   "theme": "东方传统",
+   "fit": "花鸟与节令、宫廷与仕女、文博科普",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-181",
+   "class": "C",
+   "name": "年画",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用年画风格：木版套色印出的喜庆画面，粗黑墨线框出胖娃娃、鲤鱼、门神和莲花，桃红、翠绿、柠檬黄、品紫大块平涂，套版略有错位露出白纸，构图饱满对称、四角有吉祥纹样，开场像刷墨压纸一样一色一色印出来，配锣鼓。",
+   "theme": "东方传统",
+   "fit": "春节与节庆、民俗科普、新年品牌片",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-182",
+   "class": "C",
+   "name": "青花",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用青花风格：白釉瓷面上只有一种钴蓝，浓处发黑并带铁锈色斑点，淡处像水一样晕开，缠枝莲和卷草纹一笔一笔画出来，画面沿瓷瓶或瓷盘的弧面展开，釉面一道柔和的反光随镜头转动滑过，转场是瓷器旋转露出背面的新画，配古琴。",
+   "theme": "东方传统",
+   "fit": "文博与陶瓷科普、茶与器物品牌、古典诗词",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-183",
+   "class": "C",
+   "name": "京剧脸谱",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用京剧脸谱风格：一张左右对称的大脸谱占满画面，额头、眉眼和鼻窝用红、黑、白、金、蓝大块勾画，颜色代表人物性格，线条从中轴向两边同时一笔笔描出，背景是深红幕布和金色回纹，每一声锣响就像变脸一样翻换成下一张，配京胡和锣鼓点。",
+   "theme": "东方传统",
+   "fit": "戏曲科普、国潮品牌、人物性格讲解",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-184",
+   "class": "C",
+   "name": "书法",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用书法风格：米色宣纸上一支毛笔按笔顺一笔笔写出大字，起笔藏锋、收笔回锋，墨色随笔速从浓到枯变化，飞白处露出纸纹，每幅字写完盖一方朱印，镜头跟着笔尖移动，写完再拉远看整幅，声音只有毛笔擦过纸面的沙沙声。",
+   "theme": "东方传统",
+   "fit": "标题与片名、诗词展示、文化品牌片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-185",
+   "class": "C",
+   "name": "水墨漫画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用水墨漫画风格：宣纸色的漫画页被不规则的墨线框分成几格，人物用浓墨粗线勾出，衣袍是一大笔泼墨带飞白，打斗时的速度线是一笔扫过的干笔，拟声字用毛笔写成，只有血或火用一点朱红，镜头在格子之间推进，配鼓点和刀剑声。",
+   "theme": "卡通与动漫",
+   "fit": "武侠与仙侠故事、动作短片、国风连载",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-186",
+   "class": "C",
+   "name": "东方赛博",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用东方赛博风格：夜雨中的立体城市叠着飞檐斗拱、牌楼和霓虹招牌，红灯笼和全息汉字广告并排悬浮，主色是朱红、青绿和电光紫，楼宇之间有水墨般的雾层缓缓流动，招牌文字全部原创，镜头沿窄巷慢慢升上屋顶，配古筝加电子低音。",
+   "theme": "3D 与实时图形",
+   "fit": "国风科幻、游戏宣传、未来城市设想",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
   }
  ]
 }
