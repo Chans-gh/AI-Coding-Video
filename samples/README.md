@@ -20,7 +20,6 @@
 | `render.py` | 出片核心（截图、合成声音、编码、缩略图），由 `batch.py` 调用 |
 | `tools/mark.py` | 把出好的样片登记进风格条目 |
 | `tools/apidoc.py` | 生成 `API.md` |
-| `tools/brands.py` | 风格包换品牌色对照图，见 [packs/](../packs/README.md) |
 
 ## 怎么出片
 

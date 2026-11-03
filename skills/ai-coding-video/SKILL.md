@@ -1,6 +1,10 @@
 ---
 name: ai-coding-video
 description: 用代码逐帧做动画视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格，每种一句可复制的风格提示词、题材和技术标签（Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等）；按题材、用途、受众、情绪、平台、素材选风格的索引；提示词写法、制作路径、配乐与中文旁白音色指南；以及从“选风格”到“出样片”再到“沉淀成风格包”的三级流程。给视频定风格、写风格提示词、让 AI 写渲染代码出片、问“有哪些风格 / 哪种适合 X”、配声音时使用。
+version: 0.1.0
+display_name: AI Coding Video 风格库
+display_name_en: AI Coding Video
+description_en: "A style library for videos animated frame by frame in code: a hundred-plus visual styles that pure code can render, each with a copy-ready style prompt plus topic and tech tags (Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more); indexes for choosing a style by topic, purpose, audience, mood, platform and assets; guides to writing prompts, production paths, music and Chinese voice-over; and a three-level flow from picking a style to a sample clip to a reusable style pack."
 ---
 
 # AI Coding Video：纯代码动画视频风格库

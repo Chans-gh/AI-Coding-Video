@@ -149,26 +149,37 @@ def gallery(styles, ids):
     return "\n".join(out)
 
 
+def pack_accents(n):
+    """风格包 meta.json 里的品牌色：[[键, 中文名, 英文名, 色值], …]，第一个是默认色"""
+    return json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))["accents"]
+
+
 def pack_names():
-    """出好演示片的风格包（packs/<名字>/demo/<名字>-16x9.mp4 存在）"""
-    return sorted(d.name for d in PACKS.glob("*") if (d / "demo" / f"{d.name}-16x9.mp4").exists())
+    """每种品牌色的演示片都出好了的风格包（packs/<名字>/demo/<名字>-<颜色>-<画幅>.mp4）"""
+    return sorted(d.name for d in PACKS.glob("*") if (d / "meta.json").exists() and all(
+        (d / "demo" / f"{d.name}-{a[0]}-{ar}.mp4").exists() for a in pack_accents(d.name) for ar in ("16x9", "9x16")))
 
 
 def packs_html(names):
-    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换），右边部件、换色对照图和链接"""
+    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换，下面一排品牌色标签切换视频），右边部件和链接"""
     out = []
     for n in names:
         m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
         parts = "".join(f"<li>{both(z, e)}</li>" for z, e in m["parts"])
+        acc = m["accents"]
+        tabs = "".join(f'<button type="button" data-acc="{k}" aria-pressed="{str(i == 0).lower()}" style="--acc:{hexv}">'
+                       f'<i aria-hidden="true"></i>{both(z, e)}</button>' for i, (k, z, e, hexv) in enumerate(acc))
         out.append(f'''    <article class="pack">
+      <div class="pack-left">
       <div class="pack-screen">
-        <video class="pack-video" data-id="pack-{n}" data-src="media/pack-{n}-16x9.mp4" poster="media/pack-{n}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
+        <video class="pack-video" data-id="pack-{n}-{acc[0][0]}" data-pack="{n}" data-src="media/pack-{n}-{acc[0][0]}-16x9.mp4" poster="media/pack-{n}-{acc[0][0]}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
+      </div>
+      <div class="pack-tabs" role="group" aria-label="品牌色 Brand color"><span class="lab">{both("换品牌色", "Brand color")}</span>{tabs}</div>
       </div>
       <div class="pack-body">
         <div class="card-meta"><code>{n}</code><h4>{both(m["name"] + "风格包", m["en_name"] + " pack")}</h4></div>
         <p class="how">{both(m["how"], m["en_how"])} {both("由 " + m["from"] + " 沉淀。", "Built from " + m["from"] + ".")}</p>
         <ul class="pack-parts">{parts}</ul>
-        <figure class="pack-brands"><img src="media/pack-{n}-brands.jpg" alt="" loading="lazy"><figcaption>{both("同一支演示片换三种品牌色", "The same demo in three brand colors")}</figcaption></figure>
         <div class="links"><a href="{REPO}/tree/{BRANCH}/packs/{n}">{both("风格包代码", "Pack code")}</a><a href="{REPO}/blob/{BRANCH}/packs/{n}/STYLE.md">{both("风格说明", "Style guide")}</a></div>
       </div>
     </article>''')
@@ -284,10 +295,11 @@ def main():
             for ext in ("mp4", "jpg"):
                 shutil.copy2(SAMPLES / sid / f"{sid}-{ar}.{ext}", media / f"{sid}-{ar}.{ext}")
     for n in packs:
-        for ar in ("16x9", "9x16"):
-            for ext in ("mp4", "jpg"):
-                shutil.copy2(PACKS / n / "demo" / f"{n}-{ar}.{ext}", media / f"pack-{n}-{ar}.{ext}")
-        shutil.copy2(PACKS / n / "brands.jpg", media / f"pack-{n}-brands.jpg")
+        for a in pack_accents(n):
+            for ar in ("16x9", "9x16"):
+                for ext in ("mp4", "jpg"):
+                    f = f"{n}-{a[0]}-{ar}.{ext}"
+                    shutil.copy2(PACKS / n / "demo" / f, media / f"pack-{f}")
 
     if not FONTSRC.exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")

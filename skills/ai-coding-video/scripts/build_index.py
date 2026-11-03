@@ -175,6 +175,20 @@ def check_links(errors):
                     errors.append(f'{rel}: 锚点不存在 {target}')
 
 
+def check_versions(errors):
+    """SKILL.md 的 version 是正本；skills/ 下各家插件清单（.claude-plugin、.codex-plugin）的 version 要和它一致"""
+    m = re.search(r'^version:\s*(\S+)', open(os.path.join(ROOT, 'SKILL.md'), encoding='utf-8').read().split('\n---', 1)[0], re.M)
+    if not m:
+        errors.append('SKILL.md: frontmatter 缺 version（WorkBuddy 上传要求）')
+        return
+    for d in ('.claude-plugin', '.codex-plugin'):
+        f = os.path.join(os.path.dirname(ROOT), d, 'plugin.json')
+        if os.path.exists(f):
+            v = json.load(open(f, encoding='utf-8')).get('version')
+            if v != m.group(1):
+                errors.append(f'skills/{d}/plugin.json: version {v} 和 SKILL.md 的 {m.group(1)} 不一致')
+
+
 def main():
     check = '--check' in sys.argv
     errors = []
@@ -197,6 +211,7 @@ def main():
         open(JSON_PATH, 'w', encoding='utf-8').write(data)
         open(INDEX_PATH, 'w', encoding='utf-8').write(new_index)
     check_links(errors)
+    check_versions(errors)
     if errors:
         print(f'发现 {len(errors)} 个问题：')
         for e in errors:

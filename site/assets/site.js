@@ -1,4 +1,4 @@
-// 介绍页的交互：语言切换、现场画的小样、类型切换、画幅切换、样片筛选和分页、停下才播、放大播放、声音、时间轴、复制。没有任何外部依赖。
+// 介绍页的交互：语言切换、现场画的小样、类型切换、画幅切换、风格包换色、样片筛选和分页、停下才播、放大播放、声音、时间轴、复制。没有任何外部依赖。
 (function () {
   const root = document.documentElement;
   const store = {
@@ -52,6 +52,20 @@
     poke();
   }
   segs.forEach(b => b.addEventListener('click', () => setAr(b.dataset.ar)));
+
+  // 风格包换品牌色：点标签换成同一支演示片的另一种颜色，接着原来的时间播（画幅仍跟着上面的开关）
+  document.querySelectorAll('.pack').forEach(pk => {
+    const v = pk.querySelector('.pack-video'), tabs = pk.querySelectorAll('.pack-tabs button');
+    tabs.forEach(b => b.addEventListener('click', () => {
+      tabs.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      const t = v.currentTime, had = !!v.getAttribute('src');
+      v.dataset.id = `pack-${v.dataset.pack}-${b.dataset.acc}`;
+      v.dataset.src = `media/${v.dataset.id}-${root.dataset.ar}.mp4`;
+      v.poster = `media/${v.dataset.id}-${root.dataset.ar}.jpg`;
+      if (had) { v.src = v.dataset.src; v.addEventListener('loadedmetadata', () => { v.currentTime = t; }, { once: true }); }
+      start(v);
+    }));
+  });
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
   // 样片筛选和分页：类型（C/T/G）、题材、技术、页码都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果

@@ -3,12 +3,13 @@
 依赖 Playwright（Chromium）、Pillow、numpy、scipy 和 ffmpeg。每帧只由时间 t 决定，所以同一份代码每次渲染结果一致。
 声音由 <编号>/sound.py 用 lib/synth.py 的合成器现场合成（自带电子音，不用录音、曲库或声音模型）。
 
-产出（都在 samples/<编号>/ 下；风格包的演示片写成 pack:<名字>，产出在 packs/<名字>/demo/ 下，文件名用包名，不做缩略图）：
+产出（都在 samples/<编号>/ 下；风格包的演示片写成 pack:<名字>，按 meta.json 的 accents 每种品牌色出一支，
+产出在 packs/<名字>/demo/ 下，文件名是「包名-颜色-画幅」，不做缩略图）：
     <编号>-16x9.mp4 / <编号>-9x16.mp4   样片，30 fps，带声音
     <编号>-16x9.jpg / <编号>-9x16.jpg   静帧（取场景的 still 时刻），长边 1280
 并把 16:9 静帧缩成 640 宽写进 Skill 的 images/<编号>.jpg（不超过 100 KB）。
 """
-import importlib.util, io, os, re, shutil, subprocess, sys
+import importlib.util, io, json, os, re, shutil, subprocess, sys
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -30,13 +31,26 @@ class SceneError(Exception):
 
 
 def where(sid):
-    """样片编号（C-044）→ samples/C-044/；风格包演示片 pack:<名字> → packs/<名字>/demo/"""
-    return PACKS / sid[5:] / "demo" if sid.startswith("pack:") else HERE / sid
+    """样片编号（C-044）→ samples/C-044/；风格包演示片 pack:<名字>[@<颜色>] → packs/<名字>/demo/"""
+    return PACKS / sid[5:].split("@")[0] / "demo" if sid.startswith("pack:") else HERE / sid
 
 
 def stem(sid):
-    """产出文件名的前缀：样片用编号，风格包用包名"""
-    return sid[5:] if sid.startswith("pack:") else sid
+    """产出文件名的前缀：样片用编号，风格包用「包名-颜色」"""
+    return sid[5:].replace("@", "-") if sid.startswith("pack:") else sid
+
+
+def accents(pack):
+    """风格包 meta.json 里的品牌色：[(键, 中文名, 英文名, 色值), …]，第一个是默认色"""
+    m = json.loads((PACKS / pack / "meta.json").read_text(encoding="utf-8"))
+    return [tuple(a) for a in m["accents"]]
+
+
+def expand(sid):
+    """pack:<名字> 展开成每种品牌色一支（pack:<名字>@<颜色>）；样片编号和已带颜色的原样返回"""
+    if not sid.startswith("pack:") or "@" in sid:
+        return [sid]
+    return [f"{sid}@{a[0]}" for a in accents(sid[5:])]
 
 
 def ffmpeg():
@@ -57,7 +71,11 @@ class Page:
         self.pg = self.b.new_page(viewport={"width": w, "height": h}, device_scale_factor=scale)
         self.pg.on("console", self._console)
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
-        self.pg.goto((HERE / "player.html").as_uri() + f"?s={sid}&ar={ar}&render=1&t=0{query}")
+        base, _, col = sid.partition("@")
+        if col:                                   # 风格包的某种品牌色：从 meta.json 取色值传给播放器
+            from urllib.parse import quote
+            query += "&accent=" + quote(dict((a[0], a[3]) for a in accents(base[5:]))[col])
+        self.pg.goto((HERE / "player.html").as_uri() + f"?s={base}&ar={ar}&render=1&t=0{query}")
         self.pg.wait_for_function("READY === true || document.title === 'ERROR'", timeout=600000)
         if self.pg.title() == "ERROR":
             self.close()

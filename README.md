@@ -53,8 +53,8 @@ samples/                  1 级样片：每种风格的渲染代码和出片脚�
 packs/                    2 级风格包：部件代码、风格说明、演示片
 site/                     介绍页（纯静态，可整个拷到任意服务器）
 scripts/install.sh        安装到各家助手
-.claude-plugin/           Claude Code 插件与插件市场清单
-.agents/plugins/          Codex 插件市场清单（插件本体是 skills/，清单在 skills/.codex-plugin/）
+.claude-plugin/           Claude Code 插件市场清单（插件本体是 skills/，插件清单在 skills/.claude-plugin/）
+.agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```

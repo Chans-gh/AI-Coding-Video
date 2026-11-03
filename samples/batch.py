@@ -8,7 +8,8 @@
     python3 batch.py C-001 -j 2             # 并行数（默认 4）
     python3 batch.py C-001 --at 2.4         # 只截 2.4 秒那一帧（全分辨率）到 out/，单独看可疑的画面
     python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
-    python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），时长可到 30 秒
+    python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），每种品牌色一支，时长可到 30 秒
+    python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
@@ -180,7 +181,7 @@ def main():
     ap.add_argument("--at", type=float)
     ap.add_argument("--sheet", action="store_true")
     a = ap.parse_args()
-    ids = all_ids() if a.ids == ["all"] else a.ids
+    ids = all_ids() if a.ids == ["all"] else [x for i in a.ids for x in R.expand(i)]
     if a.sound:
         for sid in ids:
             wav, x, raw = R.make_sound(sid, R.scene_dur(sid))

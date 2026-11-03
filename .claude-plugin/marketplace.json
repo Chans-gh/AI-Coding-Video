@@ -1,10 +1,13 @@
 {
   "name": "ai-coding-video",
-  "owner": { "name": "Chans" },
+  "owner": {
+    "name": "Chans"
+  },
+  "description": "AI Coding Video：纯代码逐帧做动画视频的风格库",
   "plugins": [
     {
       "name": "ai-coding-video",
-      "source": "./",
+      "source": "./skills",
       "description": "纯代码逐帧做动画视频的风格库与方法"
     }
   ]

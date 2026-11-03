@@ -88,3 +88,7 @@
    python3 scripts/build_index.py
    python3 scripts/build_index.py --check
    ```
+
+## 维护：版本号
+
+版本号以 `SKILL.md` 开头的 `version` 为准（WorkBuddy 上传时要求有这一项）。改版本时，同步改 `skills/.claude-plugin/plugin.json` 和 `skills/.codex-plugin/plugin.json` 里的 `version`，`--check` 会核对三处是否一致。

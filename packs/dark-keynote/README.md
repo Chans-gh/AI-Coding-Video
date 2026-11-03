@@ -4,9 +4,12 @@
 
 由 [C-044 暗色科技发布会](../../skills/ai-coding-video/styles/framework.md#C-044) 沉淀：近黑底、发丝网格、只有一个品牌强调色，元素按网格吸附、落在节拍上，扫光揭示，最后用一个巨大数字说出核心价值。适合软件发布、产品介绍、功能讲解、季度数据。
 
-![换品牌色对照：紫、橙、绿三种强调色，各取片头、讲解、数据三个时刻](brands.jpg)
+演示片（虚构产品「帧流 3」，15 秒）：同一份代码只换品牌色，出了三种颜色。介绍页的「风格包」一节可以点标签切换着看。风格说明见 [STYLE.md](STYLE.md)。
 
-演示片（虚构产品「帧流 3」，15 秒）：[横屏](demo/dark-keynote-16x9.mp4) · [竖屏](demo/dark-keynote-9x16.mp4)。风格说明见 [STYLE.md](STYLE.md)。
+| 紫 `#8B7BFF`（默认） | 橙 `#FF7A45` | 绿 `#2BD99F` |
+|---|---|---|
+| [![紫](demo/dark-keynote-purple-16x9.jpg)](demo/dark-keynote-purple-16x9.mp4) | [![橙](demo/dark-keynote-orange-16x9.jpg)](demo/dark-keynote-orange-16x9.mp4) | [![绿](demo/dark-keynote-green-16x9.jpg)](demo/dark-keynote-green-16x9.mp4) |
+| [横屏](demo/dark-keynote-purple-16x9.mp4) · [竖屏](demo/dark-keynote-purple-9x16.mp4) | [横屏](demo/dark-keynote-orange-16x9.mp4) · [竖屏](demo/dark-keynote-orange-9x16.mp4) | [横屏](demo/dark-keynote-green-16x9.mp4) · [竖屏](demo/dark-keynote-green-9x16.mp4) |
 
 ## 部件
 
