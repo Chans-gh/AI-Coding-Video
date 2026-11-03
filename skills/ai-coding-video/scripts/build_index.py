@@ -26,7 +26,7 @@ FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
 FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
 FIELDS = {'题材': 'theme', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
-          '样帧代码': 'render_code', '参考': 'refs'}
+          '样片代码': 'render_code', '参考': 'refs'}
 CLASS_NAME = {'C': '纯代码', 'T': '第三方素材', 'G': 'AI 生成素材'}
 
 
@@ -88,9 +88,9 @@ def parse(errors):
                 if not os.path.exists(os.path.join(ROOT, rec['image'])):
                     errors.append(f'{where}: 图片 {rec["image"]} 不存在')
                 if not rec['verified'] or not rec['render_code']:
-                    errors.append(f'{where}: 有样帧就必须写「技术（已验证）」和「样帧代码」')
+                    errors.append(f'{where}: 有缩略图（做过样片）就必须写「技术（已验证）」和「样片代码」')
             elif rec['verified']:
-                errors.append(f'{where}: 写了「技术（已验证）」但没有样帧')
+                errors.append(f'{where}: 写了「技术（已验证）」但没有样片缩略图')
             styles.append(rec)
     styles.sort(key=lambda r: (r['class'], r['id']))
     for cls in 'CTG':
@@ -111,7 +111,7 @@ def catalog(styles, tags):
     by_class = {c: [r for r in styles if r['class'] == c] for c in 'CTG'}
     n_img = sum(1 for r in styles if r['image'])
     out.append(f'共 {len(styles)} 种（' + '，'.join(f'{CLASS_NAME[c]} {len(v)} 种' for c, v in by_class.items() if v)
-               + f'），其中 {n_img} 种已有样帧。点名字跳到条目。')
+               + f'），其中 {n_img} 种已有样片。点名字跳到条目。')
     out.append('')
     out.append('| 题材 | 风格 |')
     out.append('|---|---|')
@@ -179,7 +179,7 @@ def main():
         for e in errors:
             print(' -', e)
         sys.exit(1)
-    print(f'通过：{len(styles)} 种风格，{sum(1 for r in styles if r["image"])} 张样帧' + ('' if check else '，已写入 data/styles.json 和 index.md 目录'))
+    print(f'通过：{len(styles)} 种风格，{sum(1 for r in styles if r["image"])} 种已有样片' + ('' if check else '，已写入 data/styles.json 和 index.md 目录'))
 
 
 if __name__ == '__main__':
