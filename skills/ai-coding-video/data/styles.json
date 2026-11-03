@@ -1,0 +1,2433 @@
+{
+ "count": 105,
+ "styles": [
+  {
+   "id": "C-001",
+   "class": "C",
+   "name": "中国水墨 / 写意",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用中国水墨写意风格：暖色宣纸底（#F2ECDE）带纸纤维，画面 60–80% 留白，只用墨分五色的黑灰，没骨笔触自带深浅边、快笔处带干笔飞白，全片唯一的红是朱印，场景之间用墨滴在湿纸上晕开过渡，镜头像展开手卷一样从右往左横移，古琴配乐。",
+   "theme": "手绘与绘画",
+   "fit": "武侠、哲理、东方题材",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ink-wash/STYLE.md"
+    },
+    {
+     "label": "@AxtonLiu",
+     "url": "https://x.com/AxtonLiu/status/2103288413969621231"
+    },
+    {
+     "label": "@shfred0",
+     "url": "https://x.com/shfred0/status/2102495989194236158"
+    }
+   ]
+  },
+  {
+   "id": "C-002",
+   "class": "C",
+   "name": "水彩",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用水彩风格：暖白色冷压棉纸纹理，颜料透明叠色、边缘有水渍积色，干笔处露出纸白，颜色略微溢出铅笔线，一镜到底横移穿过风景，角落有手写批注，结尾拉远成一张手绘地图。",
+   "theme": "手绘与绘画",
+   "fit": "自然、旅行、温情 MV",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/watercolor/STYLE.md"
+    },
+    {
+     "label": "@johnknopf",
+     "url": "https://x.com/johnknopf/status/2103170666187117006"
+    },
+    {
+     "label": "@mablesjoseph",
+     "url": "https://x.com/mablesjoseph/status/2103465246014746943"
+    }
+   ]
+  },
+  {
+   "id": "C-003",
+   "class": "C",
+   "name": "钢笔淡彩",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用钢笔淡彩城市速写风格：奶油色冷压纸，棕褐色针管笔线条轻微抖动、出头、不闭合，透明淡彩随手点上、略微偏离线条并溢出，颜色在纸边溶成空白，整个画面像速写本上的一页。",
+   "theme": "手绘与绘画",
+   "fit": "城市、公园、日常",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Rough.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/urban-sketch/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-004",
+   "class": "C",
+   "name": "油画厚涂",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用刮刀油画厚涂风格：大块平整、边缘锋利的色面，侧光照出每一道颜料隆起的肌理，先保证明暗结构再加质感，焦点处硬边、其余区域安静平涂，人物用少量笔触概括。",
+   "theme": "手绘与绘画",
+   "fit": "情绪片、艺术感广告",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/impasto/STYLE.md"
+    },
+    {
+     "label": "@yumaeriel",
+     "url": "https://x.com/yumaeriel/status/2103053166006657284"
+    }
+   ]
+  },
+  {
+   "id": "C-005",
+   "class": "C",
+   "name": "蜡笔绘本",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用儿童蜡笔绘本风格：米白色粗纹纸，蜡笔只附着在纸纹凸起处、露出细小白点，靛蓝色抖动描边，排线会越出轮廓，全片只用一次透明水彩晕染来揭示蜡笔藏起来的东西，睡前故事般的温柔节奏。",
+   "theme": "手绘与绘画",
+   "fit": "儿童故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/crayon-book/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-006",
+   "class": "C",
+   "name": "儿童涂鸦",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用儿童涂鸦风格：像 6 岁孩子画的，线条稚拙、比例不准、颜色涂出界，蜡笔和水彩笔混用，动作是一格一格的简单替换，不要任何专业透视和光影。",
+   "theme": "手绘与绘画",
+   "fit": "亲子、MV；可附孩子的原画让它照着动起来",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Rough.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-007",
+   "class": "C",
+   "name": "铅笔素描",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用铅笔素描风格：速写本纸纹上的石墨灰阶，先出淡淡的构图辅助线再逐笔加深，阴影用排线和擦抹表现，保留擦痕和未完成的线，只用黑白灰。",
+   "theme": "手绘与绘画",
+   "fit": "创意过程、设计思考",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/karakalem"
+    }
+   ]
+  },
+  {
+   "id": "C-008",
+   "class": "C",
+   "name": "一笔画",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用一笔画风格：一根不离纸的黑色墨线在暖白纸上连续画出所有人物和场景，笔尖始终可见地向前移动，转场就是这根线变形成下一个画面，结尾镜头拉远，所有画过的东西原来是一整幅画。",
+   "theme": "手绘与绘画",
+   "fit": "开场、收尾、人生故事",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/one-line/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/tek-cizgi"
+    }
+   ]
+  },
+  {
+   "id": "C-009",
+   "class": "C",
+   "name": "白板讲解",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用白板讲解风格：一整块略反光的白板，手写字和简笔图是一笔一笔真正写出来的，悬浮的马克笔没有手，可以用磁铁移动元素、用板擦“倒带”，镜头全程不离开白板，最后拉远看到整块写满的板。",
+   "theme": "手绘与绘画",
+   "fit": "科普、“怎么运作”",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Rough.js",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/whiteboard/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/beyaz-tahta"
+    }
+   ]
+  },
+  {
+   "id": "C-010",
+   "class": "C",
+   "name": "黑板粉笔",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用黑板粉笔风格：墨绿色黑板带旧擦痕，白色和黄色粉笔字有颗粒和断笔，板擦擦过留下灰雾，画面像老师上课的板书，关键词用粉笔圈出和画下划线。",
+   "theme": "手绘与绘画",
+   "fit": "课程、规则、“别忘了”",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kara-tahta"
+    }
+   ]
+  },
+  {
+   "id": "C-011",
+   "class": "C",
+   "name": "沙画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用沙画风格：暖光灯箱上的一层细沙，形象由手指划开的沙痕和剪影构成，只用棕褐和暖黄两种色调，转场是沙子被抹开再聚成下一个画面。",
+   "theme": "手绘与绘画",
+   "fit": "历史叙事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-012",
+   "class": "C",
+   "name": "手绘卡通角色片",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用手绘卡通角色片风格：纸张质感背景，用 p5.brush 水彩笔刷上色、线条略带抖动，角色造型简单且全片固定，有清晰表情和夸张但克制的表演，每个镜头围绕角色情绪展开。",
+   "theme": "手绘与绘画",
+   "fit": "角色短片、个人故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "ClaudeAnimationBase",
+     "url": "https://github.com/JohnHeibel/ClaudeAnimationBase"
+    }
+   ]
+  },
+  {
+   "id": "C-013",
+   "class": "C",
+   "name": "皮影戏",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用中国皮影戏风格：半透明的染色兽皮人偶，身上镂空如蕾丝纹样，关节分段、由操纵杆带动、动作有轻微摆荡，贴在棉布幕上、被背后的油灯照亮并微微闪烁，人偶离幕远时边缘变虚，锣鼓和板胡配乐。",
+   "theme": "东方传统",
+   "fit": "神话、民间故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/shadow-puppet/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-014",
+   "class": "C",
+   "name": "浮世绘",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用江户浮世绘木版画风格：平涂色块加雕刻感墨线，主色是普鲁士蓝，天空和水面用上深下浅的晕染渐变，看得见纸纹和套版痕迹，每个镜头都是一幅完整版画，镜头像展开画卷一样横移。",
+   "theme": "东方传统",
+   "fit": "旅途、日本题材",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ukiyoe/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-015",
+   "class": "C",
+   "name": "红色窗花剪纸",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用中国红色窗花剪纸风格：所有形象都是一张红纸镂空剪出来的，“剪即是画”，镂空处透出底色的光，背景是宣纸或靛蓝夜色纸，角色是关节式剪纸人，全片只用红、纸白、靛蓝三色。",
+   "theme": "东方传统",
+   "fit": "春节、民俗",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/papercut-red/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-016",
+   "class": "C",
+   "name": "纸雕灯影",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用纸雕灯影风格：6–9 层镂空卡纸叠在浅木盒里，背后暖色灯光透过纸层，窗户和月亮从镂孔里发亮，每层在下一层上投出柔和阴影，镜头在层与层之间形成视差，开场先拍桌上这只真实灯箱再推进去。",
+   "theme": "东方传统",
+   "fit": "中秋、节日、团圆",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/paper-lantern/STYLE.md"
+    },
+    {
+     "label": "@makwired",
+     "url": "https://x.com/makwired/status/2103008945220567166"
+    }
+   ]
+  },
+  {
+   "id": "C-017",
+   "class": "C",
+   "name": "麻胶版画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用麻胶版画（linocut）风格：米色纸上只用黑色加一种朱红，所有形状边缘带雕刻刀痕，大色块里有油墨印不实的斑驳颗粒，放射线和粗体大字构成宣传海报式构图，元素像盖印一样“压”上画面。",
+   "theme": "印刷、版画与装饰",
+   "fit": "宣言、单一强信息",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/linocut"
+    }
+   ]
+  },
+  {
+   "id": "C-018",
+   "class": "C",
+   "name": "木刻",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用木刻版画风格：每一帧都是一块涂黑的木板，光只存在于被刀刻掉的地方，用密集的平行刀痕表现明暗和质感，画面是随着刻刀一道道刻出来的，最多加一种颜色，只给火、炉、灯这类“燃烧的东西”。",
+   "theme": "印刷、版画与装饰",
+   "fit": "严肃寓言、历史",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/woodcut/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-019",
+   "class": "C",
+   "name": "Risograph 孔版印刷",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 Risograph 孔版印刷风格：暖色纸上 2–3 种半透明荧光专色（如荧光粉、蓝、黄）叠印出新颜色，暗部用半调网点，油墨有颗粒和不均，各色版每帧轻微错位抖动，像一张张印出来的动画。",
+   "theme": "印刷、版画与装饰",
+   "fit": "轻松生活、潮流品牌",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/risograph/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-020",
+   "class": "C",
+   "name": "复古半调案卷",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用复古半调案卷风格：米色档案纸，四种平涂油墨叠印出半调网点，超大粗体标题带错位阴影，橡皮图章重重砸下，一个粗描边的胖吉祥物当“嫌疑人”，内容像调查报告一样按“证物”逐条出示。",
+   "theme": "印刷、版画与装饰",
+   "fit": "调查式讲解、趣味科普",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/halftone-dossier/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-021",
+   "class": "C",
+   "name": "蓝图 / 工程制图",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用蓝图工程制图风格：普鲁士蓝晒图纸带折痕和水渍，白色技术线分 4 种粗细，按真实制图顺序画出（中心线→轮廓→虚线→尺寸线），手写标注和尺寸会动，右下角有图框标题栏和一个红色印章。",
+   "theme": "印刷、版画与装饰",
+   "fit": "产品原理、结构拆解",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/blueprint/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/blueprint"
+    }
+   ]
+  },
+  {
+   "id": "C-022",
+   "class": "C",
+   "name": "彩色玻璃窗",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用中世纪彩色玻璃窗风格：黑色铅条把画面分成手工切割的玻璃块，宝石蓝、宝石红、琥珀黄玻璃带气泡和手绘纹饰，阳光照到哪块玻璃哪块才亮起来并“活”过来，彩色光斑投在石墙上。",
+   "theme": "印刷、版画与装饰",
+   "fit": "传说、史诗感故事",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/stained-glass/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-023",
+   "class": "C",
+   "name": "金色马赛克",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用金色马赛克风格：画面由上万块带缝隙的小瓷砖拼成，金箔瓷砖反光闪烁，瓷砖像鸟群鱼群一样聚散流动，拼成新形象后再散开，边框是古典马赛克花纹。",
+   "theme": "印刷、版画与装饰",
+   "fit": "艺术短片、循环视频",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@dfeinition",
+     "url": "https://x.com/dfeinition/status/2102436001473786054"
+    }
+   ]
+  },
+  {
+   "id": "C-024",
+   "class": "C",
+   "name": "装饰艺术（Art Deco）",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用 1930 年代装饰艺术（Art Deco）风格：黑漆底、金色雕刻线、喷枪渐变的几何形，每个构图都有一条中轴、左右对称，转场沿中轴开合，灯泡一个一个亮起，像一张会动的豪华酒店海报，爵士乐配乐。",
+   "theme": "印刷、版画与装饰",
+   "fit": "高端品牌、酒店、爵士题材",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/art-deco/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-025",
+   "class": "C",
+   "name": "分层卡纸剪纸",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用分层卡纸剪纸风格：场景由多层彩色卡纸前后叠成，每层边缘是剪刀剪出的不规则线并露出纸纤维，层与层之间有真实投影，镜头移动时各层形成视差，星星和月亮像用线吊着，角色是关节式剪纸。",
+   "theme": "纸艺、材质与定格",
+   "fit": "童话、情感开场",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kagit-kesik"
+    },
+    {
+     "label": "Papermotion",
+     "url": "https://github.com/francozanardi/papermotion"
+    }
+   ]
+  },
+  {
+   "id": "C-026",
+   "class": "C",
+   "name": "纸片立体书",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用纸片立体书风格：一本书在真实木桌上打开变成舞台，布景随翻页从书页弹起，角色是带白边的扁平剪纸片、转身时像纸片一样翻面，微距浅景深，结尾主角从书里跳到真实桌面上。",
+   "theme": "纸艺、材质与定格",
+   "fit": "儿童、品牌故事",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/paper-popup/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-027",
+   "class": "C",
+   "name": "拼贴",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用拼贴风格：剪报字母、撕边纸片、格子本、胶带和荧光笔涂抹叠在一起，强对比配色（如粉红加黑），元素一张张“贴”上画面并跟节拍跳动，字幕用勒索信式拼字。",
+   "theme": "纸艺、材质与定格",
+   "fit": "MV、观点讲解、节庆",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@NFT_Chen",
+     "url": "https://x.com/NFT_Chen/status/2103380404791333144"
+    }
+   ]
+  },
+  {
+   "id": "C-028",
+   "class": "C",
+   "name": "黏土定格",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用黏土定格动画风格：所有物体是圆润的橡皮泥，表面有指纹和按压痕迹，暖色柔光带软阴影，按 12fps 定格节奏运动、每帧轮廓轻微变化，形状之间像被捏过一样变形过渡。",
+   "theme": "纸艺、材质与定格",
+   "fit": "可爱、亲切内容",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kil"
+    },
+    {
+     "label": "@alexalbert__",
+     "url": "https://x.com/alexalbert__/status/2102458348511879448"
+    }
+   ]
+  },
+  {
+   "id": "C-029",
+   "class": "C",
+   "name": "积木玩具",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用积木玩具定格风格：所有东西由带凸点的塑料积木拼成，放在真实桌面上用微距镜头拍摄，浅景深、柔光箱光线和塑料高光，按定格动画节奏一块块搭起来，每次卡入有“哒”的声音。",
+   "theme": "纸艺、材质与定格",
+   "fit": "搭建、工程、儿童",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "cannon-es"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/brick-toy/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-030",
+   "class": "C",
+   "name": "剪影剧场",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用剪影剧场风格：人物、房屋和树全是纯黑剪影，背景是一整片渐变天空，随剧情从日落的橙红慢慢变到月夜的深蓝，暗色幕布框住画面，只有很少几行诗一样的文字。",
+   "theme": "纸艺、材质与定格",
+   "fit": "诗意短片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-031",
+   "class": "C",
+   "name": "包豪斯",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用包豪斯风格：米白底加浅网格，只用圆、方、三角三种基本形和红、黄、蓝、黑四色，超大无衬线粗体字压在网格上，形状滑入、旋转、切割组成海报式构图，转场用一个大色块擦过整屏。",
+   "theme": "平面设计与动态排版",
+   "fit": "原则、步骤、强信息",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/bauhaus"
+    }
+   ]
+  },
+  {
+   "id": "C-032",
+   "class": "C",
+   "name": "孟菲斯",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用 80 年代孟菲斯风格：粉色、薄荷绿、明黄等糖果色撞色，满屏漂浮波浪线、锯齿、圆点阵、小三角，粗黑描边加错位硬阴影，所有元素弹跳入场带过冲，节奏活泼。",
+   "theme": "平面设计与动态排版",
+   "fit": "轻松公告、短视频",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/memphis"
+    }
+   ]
+  },
+  {
+   "id": "C-033",
+   "class": "C",
+   "name": "瑞士国际主义排版",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用瑞士国际主义动态排版风格：白底模块化网格，只用一种无衬线字体、黑白加一个信号红，文字和色块严格沿网格对齐、也可竖排，运动像印刷机一样精准卡拍，没有任何装饰和渐变。",
+   "theme": "平面设计与动态排版",
+   "fit": "设计、规则类内容",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/swiss-motion/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-034",
+   "class": "C",
+   "name": "60 年代间谍片头",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用 60 年代间谍片片头风格：剪纸剪影人物在由演职员字幕搭成的布景里追逐，只用四种平涂油墨（黑、暖白、橙红、芒黄之类），每一声铜管重音就是一个剪切，最后才拼出片名，爵士大乐队配乐。",
+   "theme": "平面设计与动态排版",
+   "fit": "片头、预告",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/spy-titles/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-035",
+   "class": "C",
+   "name": "70 年代电视片头",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 70 年代电视节目片头风格：橙、褐、芜菇黄的暖色调，放射光线和彩虹条纹，圆润粗衣线字体带多层描边阴影，画面像显像管电视播放（圆角、暗角、轻微扫描线和色散），来一段复古放克配乐。",
+   "theme": "平面设计与动态排版",
+   "fit": "怀旧开场、系列片头",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/retro-70ler"
+    }
+   ]
+  },
+  {
+   "id": "C-036",
+   "class": "C",
+   "name": "动态文字排版",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用动态文字排版风格：画面里只有字，纯色暖灰底，一种粗体无衬线加一种衣线斜体做对比，字词跟旁白或节拍逐个出现，靠字号大小、粗细、位移和挤压制造节奏，句末用一个彩色圆点收尾。",
+   "theme": "平面设计与动态排版",
+   "fit": "金句、短视频钩子、作品集",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kinetik-tipografi"
+    },
+    {
+     "label": "kinetic-reel",
+     "url": "https://github.com/tuzhechen2005/opus-video-skills"
+    },
+    {
+     "label": "@stephanlivera",
+     "url": "https://x.com/stephanlivera/status/2103315922098470926"
+    }
+   ]
+  },
+  {
+   "id": "C-037",
+   "class": "C",
+   "name": "象形图运动图形",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用象形图运动图形风格：纯色平涂底加方格“核心图形”（圆、半圆、小花纹格，各行互相滑动），圆头杆状几何小人做动作，双语粗体字从下往上滑出，每张闪卡卡在节拍上切换，没有描边和纹理。",
+   "theme": "平面设计与动态排版",
+   "fit": "赛事、分类介绍",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/pictogram-motion/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-038",
+   "class": "C",
+   "name": "科普扁平（Kurzgesagt 式）",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用科普扁平插画风格：深蓝紫太空背景配高饱和渐变，圆润几何造型、无描边、边缘带一道柔光，前中后景分层造出深度，数字和概念用大量小圆点粒子可视化，镜头平滑推进并带轻微弹性。",
+   "theme": "信息讲解与产品发布",
+   "fit": "科学概念",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kurzgesagt"
+    }
+   ]
+  },
+  {
+   "id": "C-039",
+   "class": "C",
+   "name": "等距信息图",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用等距信息图风格：整个系统是一座 30° 等距微缩沙盘，每个方块只用亮、中、暗三个色阶平涂，细墨线标注和 Isotype 式数字图标，镜头一镜到底穿过整条流程、剖开物体看内部，最后拉远成一张可打印的信息图。",
+   "theme": "信息讲解与产品发布",
+   "fit": "流程、系统拆解",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/iso-infographic/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/izometrik"
+    }
+   ]
+  },
+  {
+   "id": "C-040",
+   "class": "C",
+   "name": "数据叙事",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用数据叙事风格：米色纸上用红蓝铅笔把真实数据一个点一个点画出来，每个数据点出现时响一个音，手写批注钉在关键数字旁，图表本身就是镜头和情节，数字只能来自我提供的数据文件。",
+   "theme": "信息讲解与产品发布",
+   "fit": "用数字说话、前后对比",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "D3.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/dataviz/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/veri"
+    }
+   ]
+  },
+  {
+   "id": "C-041",
+   "class": "C",
+   "name": "公式推导讲解（Manim）",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": null,
+   "prompt": "用 Manim 数学讲解风格：深色背景，公式用 LaTeX 渲染并逐项变形、对应项用同一颜色高亮，坐标系和曲线边讲边画出，用动点演示变化，底部字幕和旁白用同一条时间轴。",
+   "theme": "信息讲解与产品发布",
+   "fit": "数学、AI 原理",
+   "verified": [],
+   "suggested": [
+    "Manim"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@dotey",
+     "url": "https://x.com/dotey/status/2103683057689522564"
+    },
+    {
+     "label": "@ng169onX",
+     "url": "https://x.com/ng169onX/status/2103183904563998809"
+    }
+   ]
+  },
+  {
+   "id": "C-042",
+   "class": "C",
+   "name": "极简图解 / 时间轴",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用极简图解时间轴风格：米白底、细黑线方框和箭头组成关系图，只用一个红色强调当前节点，底部是带年份刻度的时间轴并随讲解推进，左上角大号年份标题，边讲边画线连接。",
+   "theme": "信息讲解与产品发布",
+   "fit": "历史、行业史、技术科普",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@akokoi1",
+     "url": "https://x.com/akokoi1/status/2102583898865873225"
+    },
+    {
+     "label": "@Tz_2022",
+     "url": "https://x.com/Tz_2022/status/2102838830285898214"
+    }
+   ]
+  },
+  {
+   "id": "C-043",
+   "class": "C",
+   "name": "说明书 / 步骤图",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用家具说明书风格：白底、细线条线稿和简单立体板件，每步左上角标“Step N / 总步数”，零件带编号标签和数量，箭头指示安装方向，易错处用黄色警告框，每步结束停顿一下再进入下一步。",
+   "theme": "信息讲解与产品发布",
+   "fit": "教程、菜谱、组装",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@Ror_Fly",
+     "url": "https://x.com/Ror_Fly/status/2102853258582880547"
+    }
+   ]
+  },
+  {
+   "id": "C-044",
+   "class": "C",
+   "name": "暗色科技发布会",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": null,
+   "prompt": "用暗色科技发布会风格：近黑渐变底加发丝细网格和柔光，只有一个品牌强调色，圆角窗口和通知卡片按网格吸附、每个元素落在音符上，一道扫光揭示产品，最后用一个巨大数字说出核心价值。",
+   "theme": "信息讲解与产品发布",
+   "fit": "软件发布",
+   "verified": [],
+   "suggested": [
+    "Remotion",
+    "HyperFrames",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/dark-keynote/STYLE.md"
+    },
+    {
+     "label": "@rexan_wong",
+     "url": "https://x.com/rexan_wong/status/2103707054108299437"
+    }
+   ]
+  },
+  {
+   "id": "C-045",
+   "class": "C",
+   "name": "玻璃质感产品",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用玻璃质感产品渲染风格：一个透明和磨砂玻璃加金属的产品悬浮在无限黑色影棚里，长条灯光慢慢扫过表面，边缘有色散彩边、地面有焦散光纹，慢速爆炸视图在音乐重音处“咔”地合拢。",
+   "theme": "信息讲解与产品发布",
+   "fit": "硬件发布",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/glass-product/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-046",
+   "class": "C",
+   "name": "UI 形变循环",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用 UI 形变循环风格：暖灰底、一种几何无衬线字体、单色加一个强调色，一个界面元素连续形变成下一个（按钮→加载→对勾→卡片…），每次点击和拖动都由可见光标触发，用克制的弹簧动画卡拍，最后一帧与第一帧完全相同可无缝循环；禁用弹跳缓动、粒子和发光。",
+   "theme": "信息讲解与产品发布",
+   "fit": "产品动效、作品集",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "Motion"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "实现清单",
+     "url": "https://github.com/opusvideo/awesome-claude-video/blob/main/IMPLEMENTATION_GUIDES.md"
+    }
+   ]
+  },
+  {
+   "id": "C-047",
+   "class": "C",
+   "name": "发布片式粒子隧道",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用模型发布片式粒子风格：黑色空间里金色粒子和光线构成隧道与网格，镜头高速穿行，超大数值标题卡在节拍上切换，整片只用黑、金、白，以品牌字标定格收尾。",
+   "theme": "信息讲解与产品发布",
+   "fit": "模型/产品发布",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "claude-horizon-animation",
+     "url": "https://github.com/misbahsy/claude-horizon-animation"
+    }
+   ]
+  },
+  {
+   "id": "C-048",
+   "class": "C",
+   "name": "1930 年代橡皮管卡通",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 1930 年代橡皮管卡通风格：黑白手工勾线加灰阶平涂，角色四肢是没有关节的橡皮管、戴白手套、黑豆眼带缺口，万物（杯子、水龙头、房子）都活着并跟着热爵士乐队左右摇摆，整个画面像老胶片，有颗粒、划痕和抖动。",
+   "theme": "卡通与动漫",
+   "fit": "搞笑追逐",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/rubber-hose/STYLE.md"
+    },
+    {
+     "label": "@ianstig",
+     "url": "https://x.com/ianstig/status/2103169675928764486"
+    }
+   ]
+  },
+  {
+   "id": "C-049",
+   "class": "C",
+   "name": "80 年代赛璐璐动画",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 80 年代日本赛璐璐动画风格：角色是双色平涂（亮面加一层硬阴影）的赛璐璐片，叠在喷枪渐变的手绘背景上，霓虹灯逆光勾出轮廓，按一拍三的有限动画节奏动，整体像 1987 年录像带在显像管电视上播放，有轻微色散和带子噪点。",
+   "theme": "卡通与动漫",
+   "fit": "城市夜景、怀旧",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/cel-anime-80s/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-050",
+   "class": "C",
+   "name": "科幻情景喜剧卡通",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用成人向科幻情景喜剧卡通风格：粗黑描边每帧轻微抖动、平涂无渐变，实验室里堆满稀奇古怪的装置，一个发光的绿色传送门，每个平行宇宙换一套完全不同的配色，对白驱动的冷幽默。",
+   "theme": "卡通与动漫",
+   "fit": "成人向搞笑",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/scifi-toon/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-051",
+   "class": "C",
+   "name": "扁平矢量角色短片",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用扁平矢量角色短片风格：白底或浅色单色背景，细黑线勾出简化场景，主角是一个造型简单、轮廓清晰的小角色并全片不变，色块平涂无阴影，动作有预备和过冲，一个镜头讲一个小笑点。",
+   "theme": "卡通与动漫",
+   "fit": "日常小故事、App 广告；可附上你自己的角色图",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@YoshiKura535130",
+     "url": "https://x.com/YoshiKura535130/status/2102910805721362875"
+    }
+   ]
+  },
+  {
+   "id": "C-052",
+   "class": "C",
+   "name": "连环漫画 / 漫画分格",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用复古报纸连环漫画风格：黑色粗边框分格，网点印刷底纹，黄、红、青高饱和平涂，对白气泡和旁白框用手写字，关键动作配爆炸形拟声字和速度线，镜头在格子之间推进，最后拉远看到整页漫画。",
+   "theme": "卡通与动漫",
+   "fit": "搞笑、对话、悬念",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/cizgi-roman"
+    },
+    {
+     "label": "@elianiva_",
+     "url": "https://x.com/elianiva_/status/2103003425915195750"
+    }
+   ]
+  },
+  {
+   "id": "C-053",
+   "class": "C",
+   "name": "16-bit 像素平台",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 16-bit 横版平台游戏像素风格：低分辨率整数倍放大、像素边缘锐利不模糊，限定 16–32 色调色板，蓝天白云、圆形山丘、砖块和金币，顶部 HUD 显示分数和时间，角色跳跃顶砖块，完成时弹出像素字“过关”，芯片音效。",
+   "theme": "游戏",
+   "fit": "游戏化、进度",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/piksel"
+    },
+    {
+     "label": "@riku720720",
+     "url": "https://x.com/riku720720/status/2102515055116063144"
+    }
+   ]
+  },
+  {
+   "id": "C-054",
+   "class": "C",
+   "name": "16-bit 像素 RPG",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 90 年代主机 RPG 像素风格：内部分辨率 320×180 再整数倍放大，限定调色板，底部蓝色对话框逐字打出并带“哔哔”声，有战斗菜单、HP/MP 数值和存档点，镜头不动、场景靠切换，带回声的芯片音乐。",
+   "theme": "游戏",
+   "fit": "冒险故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/pixel-rpg/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-055",
+   "class": "C",
+   "name": "HD-2D",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用 HD-2D 风格：手工像素精灵像剪纸一样立在完整的 3D 微缩场景里，夜晚、有雾，每盏灯投下真实阴影，从高处三分之四视角拍摄并加移轴景深模糊，整个世界像一个发光的玩具模型。",
+   "theme": "游戏",
+   "fit": "夜景、奇幻",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/hd-2d/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-056",
+   "class": "C",
+   "name": "微游戏快闪",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用微游戏快闪风格：每关只有几秒、屏幕上一个大写指令词（如“吃！”）、只做一个动作，每一关换一种完全不同的画风（蜡笔、蓝图、像素…），关与关之间有倒计时和成败判定，节奏越来越快。",
+   "theme": "游戏",
+   "fit": "趣味、短视频",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/microgame/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-057",
+   "class": "C",
+   "name": "综艺节奏扁平",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用综艺节奏游戏扁平风格：豆子形吉祥物带 8px 墨色描边和硬投影，糖果色条纹和放射光背景，无渐变无纹理，每个动作卡在 150 BPM 的节拍上，一问一答式表演，每关结尾弹出“Perfect!”。",
+   "theme": "游戏",
+   "fit": "节奏综艺、年度回顾",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/game-show/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-058",
+   "class": "C",
+   "name": "可玩游戏 / 模拟器录屏",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "先用 Canvas 2D 做一个可以真实操作的单文件 HTML 游戏（横版动作、机关、战斗、灯光闪烁），再让脚本自动玩一遍并录制 60 秒演示，保留 HUD 和菜单，镜头跟随角色。",
+   "theme": "游戏",
+   "fit": "游戏 demo、交互科普",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@ring_hyacinth",
+     "url": "https://x.com/ring_hyacinth/status/2102865595675050010"
+    },
+    {
+     "label": "@RyanSael",
+     "url": "https://x.com/RyanSael/status/2102591147927654847"
+    }
+   ]
+  },
+  {
+   "id": "C-059",
+   "class": "C",
+   "name": "分屏“跑酷 + 讲解”",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用左右分屏格式：左半屏是一个原创的 3D 街道跑酷游戏一直在跑、带分数和金币，右半屏是深色背景上的公式和图表跟着旁白逐项讲解，两边同时进行。",
+   "theme": "游戏",
+   "fit": "短视频留存",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-060",
+   "class": "C",
+   "name": "16mm 黑白纪录片",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 16mm 黑白老纪录片风格：粗胶片颗粒、随机划痕和灰尘、整体明暗轻微闪烁、四角暗角，开头是倒数计时片头，字幕用打字机字体，片名用衣线字加细边框，聚光灯打在主体上。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "历史、起源故事",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/belgesel-16mm"
+    }
+   ]
+  },
+  {
+   "id": "C-061",
+   "class": "C",
+   "name": "1920 年代默片",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 1920 年代默片喜剧风格：画面是铜版插画式墨线加银灰晕染，4:3 画幅放在天鹅绒幕布中间，胶片闪烁、轻微上下晃动，对白用黑底白字的字幕卡代替，整段用一个固定全景镜头讲完一个笑点，影院钢琴即兴配乐。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "喜剧",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/silent-film/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-062",
+   "class": "C",
+   "name": "后室 / 找到的录像带",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用后室录像带风格：像 90 年代家用摄像机拍的录像带（横向干扰、色带偏移、右下角日期时间戳），发黄的壁纸、潮湿地毯、嵌入式荧光灯构成无尽空房间，手持镜头慢慢前行，恐惧来自“规则”和环境音而不是怪物。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "悬疑、新怪谈",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/backrooms/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-063",
+   "class": "C",
+   "name": "移轴微缩",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用移轴微缩风格：用 Three.js 程序生成一座小镇，从高处俯拍，只有中间一条水平带清晰、上下强烈虚化（景深后处理），饱和度和对比度调高，车辆行人以延时节奏快速移动，云影扫过街道，整座城像桌面模型。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "城市、交通",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/tilt-shift/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-064",
+   "class": "C",
+   "name": "终端 / ASCII CRT",
+   "file": "styles/terminal.md",
+   "layer": "terminal",
+   "image": null,
+   "prompt": "用 ASCII 终端风格：屏幕上每一个形象都是等宽字符网格里的真实字符，单色荧光（绿或琥珀色）带光晕和余辉拖影，黑色弯曲显像管屏幕有扫描线，文字像命令行一样逐字打出、光标闪烁，配键盘声。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "AI/技术过程",
+   "verified": [],
+   "suggested": [
+    "终端字符",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ascii-crt/STYLE.md"
+    },
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/terminal"
+    }
+   ]
+  },
+  {
+   "id": "C-065",
+   "class": "C",
+   "name": "科幻 HUD 界面",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用科幻 HUD 界面风格：深蓝黑底、冷青白色发丝细线，四角有取景框和小字号等宽字读数，雷达圆环、波形和进度数字实时跳动，锁定框吸附到目标上，元素出现时带扫描和轻微故障闪烁。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "分析、评分",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "源码",
+     "url": "https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/hud"
+    }
+   ]
+  },
+  {
+   "id": "C-066",
+   "class": "C",
+   "name": "代码编辑器叙事",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用代码编辑器叙事风格：深色编辑器界面就是舞台，代码行用彩色圆角色块抽象表示，一个发光的小 bug 是主角，巨大的鼠标光标是对手，追逐在行与行之间发生，结尾整屏暗下。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "开发者故事",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@shneural",
+     "url": "https://x.com/shneural/status/2103472385563459833"
+    }
+   ]
+  },
+  {
+   "id": "C-067",
+   "class": "C",
+   "name": "Demoscene",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用 C64 式 demoscene 风格：低分辨率像素和 16 色复古调色板，水平彩虹光栅条、正弦波滚动字幕、程序化隧道和粒子，所有画面和芯片音乐都由同一个程序实时生成，段落之间硬切换。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "炫技、音乐片",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL",
+    "Hydra"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@gandamu_ml",
+     "url": "https://x.com/gandamu_ml/status/2102919394775220530"
+    },
+    {
+     "label": "@JustinPerea",
+     "url": "https://x.com/JustinPerea/status/2102893186330841502"
+    }
+   ]
+  },
+  {
+   "id": "C-068",
+   "class": "C",
+   "name": "低多边形等距岛",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用低多边形等距小岛风格：正交等距镜头俯看一座漂在海上的小岛，所有物体都是平面着色的几何块、没有贴图，地块颜色有轻微明暗随机，每个新出现的东西带弹性落地并响一个音符，岛屿随时间长大。",
+   "theme": "3D 与实时图形",
+   "fit": "成长、建造",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/lowpoly-island/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-069",
+   "class": "C",
+   "name": "写实光线步进",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用写实光线步进渲染风格：自写 GPU 光线步进渲染器，没有外部 3D 模型和贴图，夕阳低角度逆光、海面反射和大气雾气，每帧多次采样降噪，电影感调色和浅景深，镜头缓慢移动。",
+   "theme": "3D 与实时图形",
+   "fit": "炫技短片",
+   "verified": [],
+   "suggested": [
+    "WebGL2",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-070",
+   "class": "C",
+   "name": "实时 WebGL 自然",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用实时 WebGL 自然场景风格：单个 HTML 里用着色器模拟浅水波浪、涟漪和水底焦散光纹，水下是程序生成的鹅卵石，镜头缓慢漂移并会被点击激起水波，写实光照。",
+   "theme": "3D 与实时图形",
+   "fit": "环境、壁纸",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@hayashimon1",
+     "url": "https://x.com/hayashimon1/status/2102576886182453454"
+    }
+   ]
+  },
+  {
+   "id": "C-071",
+   "class": "C",
+   "name": "Blender 程序化场景",
+   "file": "styles/external.md",
+   "layer": "external",
+   "image": null,
+   "prompt": "用 Blender 程序化建模风格：用 Python 脚本从零搭建场景、不用任何预制资产，夜景湖面倒影、远山和烟花，先出灰模和镜头预览再上材质和灯光，另外录一段从灰模到成片的建造延时。",
+   "theme": "3D 与实时图形",
+   "fit": "建筑、城堡、机械",
+   "verified": [],
+   "suggested": [
+    "Blender"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-072",
+   "class": "C",
+   "name": "爆炸图 / 剖面",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用 3D 爆炸图风格：白底干净工作室光，物体先完整展示，再沿垂直方向一层一层爆开、每层旁边出现材料标注引线，镜头慢慢环绕，最后按原路合拢；需要看内部时改成剖面切开并叠加气流或热力颜色。",
+   "theme": "3D 与实时图形",
+   "fit": "建筑、硬件、数据中心",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@RyanSael",
+     "url": "https://x.com/RyanSael/status/2102740041621762166"
+    }
+   ]
+  },
+  {
+   "id": "C-073",
+   "class": "C",
+   "name": "3D 战役 / 地图俯瞰",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用电视特别节目式 3D 战役复盘风格：俯视真实地形和海湾，双方舰队用红白两色区分并按阵形移动，箭雨、潮流反转和雾气可视化，角落有兵力和潮汐仪表盘，多个机位切换并配字幕解说。",
+   "theme": "3D 与实时图形",
+   "fit": "历史战役",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-074",
+   "class": "C",
+   "name": "风格化 3D 打斗",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用风格化 3D 动作片风格：低细节模型加平滑明暗的卡通渲染，绿色和红色火柴人角色在沙漠、神殿等不同场景追逐对打，暖色氛围光、击中时亮色粒子过闪和短暂定格，镜头跟随动作快切。",
+   "theme": "3D 与实时图形",
+   "fit": "动作、对战",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@akokoi1",
+     "url": "https://x.com/akokoi1/status/2103149275945517546"
+    }
+   ]
+  },
+  {
+   "id": "C-075",
+   "class": "C",
+   "name": "抽象品牌片",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用抽象品牌形象片风格：整片只用品牌的红、蓝、白三色，深色背景上抽象光环扩散，超大字标以像素化和故障效果撞入画面，快节奏卡点切换，以 Logo 定格收尾。",
+   "theme": "3D 与实时图形",
+   "fit": "品牌形象片",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-076",
+   "class": "C",
+   "name": "科学可视化",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用科学可视化风格：深黑太空背景，黑洞周围的引力透镜把星系和光线弯成光环，吸积盘发出金色光，边上有可调参数的细线控制面板，镜头随参数变化靠近，物理关系要按真实公式计算。",
+   "theme": "3D 与实时图形",
+   "fit": "科普",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@superalesha",
+     "url": "https://x.com/superalesha/status/2102779758408774104"
+    }
+   ]
+  },
+  {
+   "id": "C-077",
+   "class": "C",
+   "name": "生成式抽象 / 音乐可视化",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用生成式抽象音乐可视化风格：分形纹理和有机体形态按音乐的频谱和节拍生长、脉动、变形，青蓝和冷色为主，每个可见的碰撞或重音都对应一次视觉变化，整段没有具象角色和文字。",
+   "theme": "3D 与实时图形",
+   "fit": "音乐片、艺术装置",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.js",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@KamStudioLabs",
+     "url": "https://x.com/KamStudioLabs/status/2102899866762440893"
+    }
+   ]
+  },
+  {
+   "id": "C-078",
+   "class": "C",
+   "name": "体素世界",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用体素（Voxel）风格：地形、建筑、树木全部由统一尺寸的小立方体搭成，方块表面平涂、带轻微环境光遮蔽和柔和阴影，花和树叶是彩色方块簇，水面半透明并反射天空，镜头在多个机位间缓慢切换，可切换清晨、蓝调时刻、雨天等时段氛围。",
+   "theme": "3D 与实时图形",
+   "fit": "文旅、游戏官网、儿童科普",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-079",
+   "class": "C",
+   "name": "赛博朋克霓虹都市",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用赛博朋克霓虹都市风格：夜雨中的超高层巨型城市，湿滑地面反射粉紫和青色霓虹招牌（招牌文字全部原创、不用真实品牌），高架轨道和列车穿过楼宇，雾气和体积光，冷暗基调里只有霓虹是亮的，镜头慢速推进或跟车。",
+   "theme": "3D 与实时图形",
+   "fit": "科幻、游戏、电子音乐",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@Gorden_Sun",
+     "url": "https://x.com/Gorden_Sun/status/2103079013615034692"
+    },
+    {
+     "label": "@trymirage",
+     "url": "https://x.com/trymirage/status/2103542300844474452"
+    }
+   ]
+  },
+  {
+   "id": "C-080",
+   "class": "C",
+   "name": "3D 动画电影式卡通",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用 3D 动画电影式卡通风格（Three.js 实时渲染）：圆润夸张的角色造型、大而有高光的眼睛、柔软的材质，三点布光加暖色轮廓光，浅景深，角色动作有挤压拉伸、预备和跟随，表情靠眼睛和眉毛表演，场景是温暖的小世界。",
+   "theme": "3D 与实时图形",
+   "fit": "品牌吉祥物、儿童内容、产品拟人化",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@scheemunai",
+     "url": "https://x.com/scheemunai/status/2102788223835463902"
+    }
+   ]
+  },
+  {
+   "id": "C-081",
+   "class": "C",
+   "name": "三渲二 3D 动漫",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用三渲二（卡通着色 3D）动漫风格：3D 场景和角色用 toon shading，明暗只有两三个色阶加黑色描边，天空通透、云朵有体积感，街道有樱花、电线杆、小店等生活细节，画面叠加日文标题和游戏 UI 式信息，镜头可自由漫游。",
+   "theme": "3D 与实时图形",
+   "fit": "二次元、游戏宣发、文旅",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@every",
+     "url": "https://x.com/every/status/2103144530157687114"
+    }
+   ]
+  },
+  {
+   "id": "C-082",
+   "class": "C",
+   "name": "霓虹流体",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用霓虹流体模拟风格：纯黑背景上 GPU 实时模拟的流体，染料是高饱和的橙、红、品红、青，边缘发光并卷成涡旋，随鼠标轨迹或音乐节拍被搅动，画面只有流体和一个极简半透明参数面板。",
+   "theme": "3D 与实时图形",
+   "fit": "科技品牌背景、音乐可视化、互动装置",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-083",
+   "class": "C",
+   "name": "玻璃拟态极光",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用玻璃拟态极光风格：深午夜蓝背景（#070b1f）上三条缓慢漂移的青、紫、玫红极光带和微弱星点，前景是毛玻璃面板（背景模糊、1px 内高光描边、细颗粒），大号细体无衬线标题，核心元素（如呼吸球）柔和地缩放发光，整体安静高级。",
+   "theme": "信息讲解与产品发布",
+   "fit": "消费类 App、冥想健康、氛围感首屏",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-084",
+   "class": "C",
+   "name": "1950 年代科学教科书",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 1950 年代科学教科书插图风格：泛黄米色纸页，页眉有科目、章节名和页码，插图用单色网点加有限的蓝、橙专色，图注写“Fig. 1”，粗衣线大标题，旁边有黑底白字的“知识补充”小方框，像翻书一样一页一页讲解。",
+   "theme": "信息讲解与产品发布",
+   "fit": "科普、复古教学栏目",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-085",
+   "class": "C",
+   "name": "地图路线动画",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用地图路线动画风格：米白色简洁底图、淡蓝水域和浅灰行政边界，路线用一条橙红色大圆弧线从起点实时画到终点，镜头跟着线头移动并逐渐缩放，角落有里程计数器和经纬度小卡片，城市名用小号无衬线字标注。",
+   "theme": "信息讲解与产品发布",
+   "fit": "物流、出行、旅行、路演里的地理叙事",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "D3.js"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-086",
+   "class": "C",
+   "name": "无缝循环科普插画",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用扁平分层插画的无缝循环风格：柔和低饱和配色的风景（海、雪山、森林、河流），云和雨是分层平涂而非写实体积，过程按阶段出现中英小标签，所有运动都是周期函数，最后一帧与第一帧完全一致可无限循环。",
+   "theme": "信息讲解与产品发布",
+   "fit": "科普素材、网站背景、展厅屏幕",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": []
+  },
+  {
+   "id": "C-087",
+   "class": "C",
+   "name": "多画风穿越",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "让同一个角色依次穿越多种画风世界（如暖色写实城市→动漫东京→黏土村庄→像素世界）：角色的外形、配色和剪影在每个世界保持不变，只改变线条、填色、纹理和着色方式，镜头贴近角色视线高度，每次画风切换本身就是转场。",
+   "theme": "卡通与动漫",
+   "fit": "品牌 IP 角色、年度回顾、炫技短片；需要先给角色设定图",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "@ianstig",
+     "url": "https://x.com/ianstig/status/2103169675928764486"
+    }
+   ]
+  },
+  {
+   "id": "C-088",
+   "class": "C",
+   "name": "圆珠笔速写",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用圆珠笔速写风格：奶油色卡纸上只有一支蓝色圆珠笔，线条粗细几乎不变，明暗全靠排线的疏密来表现，笔画停住的地方留一个小墨点，先画轮廓再一层层加排线，整段像把一张速写慢放出来。",
+   "theme": "手绘与绘画",
+   "fit": "产品与物件特写、手账感讲解、复古钟表机械",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Rough.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 风格索引",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md"
+    }
+   ]
+  },
+  {
+   "id": "C-089",
+   "class": "C",
+   "name": "碎色印象派",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用印象派碎色笔触风格：亚麻底布上一小块一小块不混色的不透明色点，每一笔落下就不再修改，互补色并排放着让眼睛自己去混（橙玫瑰进蓝影、紫进金），水面用长而平的笔触、天空顺着云势排，全程没有轮廓线，形体就是色点停下来的地方。",
+   "theme": "手绘与绘画",
+   "fit": "风景、日出日落、旅行、艺术感广告",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/brokenColour.md"
+    }
+   ]
+  },
+  {
+   "id": "C-090",
+   "class": "C",
+   "name": "炭笔擦除重绘",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用炭笔擦除重绘风格：厚棉纸上先用柳枝炭条轻轻起形、最后才用压缩炭条提黑，侧锋铺大调子、纸擦笔揉成雾气，每次修改都用可塑橡皮擦掉一部分再画在残影上，什么都不会被擦干净，只用一种暖黑和奶油白。",
+   "theme": "手绘与绘画",
+   "fit": "回忆与思考、艺术创作过程、静物与树木",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/charcoalErasure.md"
+    }
+   ]
+  },
+  {
+   "id": "C-091",
+   "class": "C",
+   "name": "彩色铅笔",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用彩色铅笔风格：奶油色卡纸的纸纹让每片颜色里都带着细小的留白，笔触是短而略弯的排线，几乎全部朝同一个斜向，颜色靠力度和一层层叠色出来（紫叠暮蓝、蓝叠青），没有轮廓线，最后才用深色铅笔补几根断续的外形线。",
+   "theme": "手绘与绘画",
+   "fit": "儿童内容、生活场景插画、温和的讲解",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "p5.brush"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/colouredPencil.md"
+    }
+   ]
+  },
+  {
+   "id": "C-092",
+   "class": "C",
+   "name": "刮画板",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用刮画板风格：白色瓷土上盖一层黑墨，所有笔触都是用刀尖把墨刮掉，画面从全黑开始，在光照到的地方一道道刮出白色的毛发和轮廓，没有灰色，灰度只来自白线排得有多密，刮痕从不渐入，都是整条整条刻出来的。",
+   "theme": "手绘与绘画",
+   "fit": "动物、夜景、悬疑、版画质感的片头",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/scratchboard.md"
+    }
+   ]
+  },
+  {
+   "id": "C-093",
+   "class": "C",
+   "name": "点刻",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用点刻风格：一支 0.25 mm 针管笔在光滑白卡纸上一个点一个点地点出来，所有点一样大，明暗只由点的疏密决定，没有线、没有排线、没有轮廓，边缘就是点密度变化的地方，先点最暗的部分再向亮处扩散，点只出现、不渐入、不移动。",
+   "theme": "手绘与绘画",
+   "fit": "博物与自然标本、科普、慢节奏纪录片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/stipple.md"
+    }
+   ]
+  },
+  {
+   "id": "C-094",
+   "class": "C",
+   "name": "民间故事绘本",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用民间故事绘本风格：奶油色纸上先有一幅完整的铅笔底稿，再上水粉和水彩，近处厚涂、饱和、笔触可见，中景变成透明的薄水彩，远处干脆只留铅笔线，画面越远越空，深度就靠这种画法本身。",
+   "theme": "手绘与绘画",
+   "fit": "童话与民间故事、亲子内容、乡村题材",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/folkTale.md"
+    }
+   ]
+  },
+  {
+   "id": "C-095",
+   "class": "C",
+   "name": "国风纸片拼贴",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用国风纸片拼贴动画风格：画面主体（人、动物、器物、山、云）拆成一张张白描纸片，叠在墨线山水底图上，纸片边缘撕出毛边并带硬纸投影，每张纸片从侧下方带回弹滑入、之后缓慢呼吸浮动，主角动得多、远景几乎不动，全片只有一个高饱和色：朱红印章；中文由代码渲染，不让模型把字画进图里。",
+   "theme": "东方传统",
+   "fit": "成语、古诗、国学与传统文化科普",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "国风视觉 DNA",
+     "url": "https://github.com/AllenAI2014/remotion-guofeng-starter/blob/main/style/design.md"
+    },
+    {
+     "label": "remotion-guofeng-starter",
+     "url": "https://github.com/AllenAI2014/remotion-guofeng-starter"
+    }
+   ]
+  },
+  {
+   "id": "C-096",
+   "class": "C",
+   "name": "铜版雕刻（博物图版）",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用 19 世纪铜版雕刻博物图版风格：刻刀在铜板上刻出由细变粗再收尖的线，明暗全靠排线（一层平行线、二层交叉、最暗处第三层），不用任何灰色填充，奶油色版画纸上有压痕和边框，罗马体大写标题配意大利体学名，印好之后再手工罩一层透明水彩，颜色可以溢出线条。",
+   "theme": "印刷、版画与装饰",
+   "fit": "自然博物、历史、科普、美术馆展览",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/engraving/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-097",
+   "class": "C",
+   "name": "单线雕版",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用单线雕版风格：整幅画只用一根不断的雕刻线，像螺旋一样绕出整个形体，线的粗细随明暗变化，亮处细、暗处粗，没有任何填充和别的笔画，整幅图就是一笔。",
+   "theme": "印刷、版画与装饰",
+   "fit": "品牌标志、月亮与星球等圆形主体、艺术短片",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 风格索引",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md"
+    }
+   ]
+  },
+  {
+   "id": "C-098",
+   "class": "C",
+   "name": "丝网印刷旅行海报",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用丝网印刷旅行海报风格：4–6 种不透明的平涂油墨一色一色印出来，用分层色带代替渐变，各层套印错位 1–3 px、留下一丝纸白缝，米色纸张带纤维和针孔，底部一条深色信息带放地名和数字，信息像印刷一样一层一拍地出现；参考上世纪国家公园丝网海报的做法，不照搬任何真实海报。",
+   "theme": "印刷、版画与装饰",
+   "fit": "旅行指南、活动海报、景点与路线系列",
+   "verified": [],
+   "suggested": [
+    "SVG",
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/silkscreen-poster/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "C-099",
+   "class": "C",
+   "name": "手工刺绣",
+   "file": "styles/canvas-2d.md",
+   "layer": "canvas-2d",
+   "image": null,
+   "prompt": "用手工刺绣风格：棉线穿过绷在木绣绷里的亚麻布，每个形状的边缘就是针脚的线头，茎用轮廓绣、花瓣用缎面绣顺着形状排、叶子用鱼骨绣、花心用法式结粒绣，光从左上来，针脚按绣的顺序一针一针缝出来。",
+   "theme": "纸艺、材质与定格",
+   "fit": "手工艺与家居、母婴、节日祝福、非遗",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/embroidery.md"
+    }
+   ]
+  },
+  {
+   "id": "C-100",
+   "class": "C",
+   "name": "旧档案剪贴簿",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用旧档案剪贴簿风格：泛黄、带锈斑的老相册页，撕边卡片用发黄的胶带粘住或用木夹子夹在麻绳上，卡片上是手工上过淡彩的铜版插画，配打字机字、勒索信式剪字和红笔批注，最后盖一个橡皮章。",
+   "theme": "纸艺、材质与定格",
+   "fit": "调查与历史故事、田野笔记、悬疑纪录片",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "anidoodle 配方",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/scrapbook.md"
+    }
+   ]
+  },
+  {
+   "id": "C-101",
+   "class": "C",
+   "name": "海报色块动态字",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用海报色块动态字风格：巨大的、被裁掉一半的单词，大面积纯色块跟着拍子砸进画面，字体超粗、颜色高饱和，文字从画面边缘撞入，每次卡点换一块色场。",
+   "theme": "平面设计与动态排版",
+   "fit": "音乐节与活动预告、品牌宣言、消费类应用",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS",
+    "GSAP"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "bang-motion 风格画廊",
+     "url": "https://github.com/bangtutorial/bang-motion#style-gallery"
+    }
+   ]
+  },
+  {
+   "id": "C-102",
+   "class": "C",
+   "name": "颗粒渐变开场",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用颗粒渐变开场风格：深色底上一层层发光的饱和色形状（同心拱门、光环），带细小颗粒，镜头一路穿过这些层，一个小光球在前面带路，字体小而干净，一句话收尾。",
+   "theme": "平面设计与动态排版",
+   "fit": "科技与 AI、音乐、创意产品发布的开场",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "GLSL"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "bang-motion 风格画廊",
+     "url": "https://github.com/bangtutorial/bang-motion#style-gallery"
+    }
+   ]
+  },
+  {
+   "id": "C-103",
+   "class": "C",
+   "name": "白色目录册",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用白色目录册风格：白底浅格线，产品抠图居中，手写体和粗黑无衬线混排，一个大号浅灰数字当背景，虚线圈和手写批注指向产品细节，黄色荧光笔划出关键词。",
+   "theme": "信息讲解与产品发布",
+   "fit": "产品介绍、品牌故事、电商与新品发布",
+   "verified": [],
+   "suggested": [
+    "HTML/CSS"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "bang-motion 风格画廊",
+     "url": "https://github.com/bangtutorial/bang-motion#style-gallery"
+    }
+   ]
+  },
+  {
+   "id": "C-104",
+   "class": "C",
+   "name": "1950 年代中世纪卡通",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": null,
+   "prompt": "用 1950 年代中世纪（Mid-century）卡通风格：颜色印得和断开的墨线错开几个像素、按两帧一拍抖动，人物是蛋形头和豆形头的几何造型，讲解人的身体不动、只有手臂、手、眼睛和嘴在动，房间只有一块色面加一条地板线，用温暖的原子时代互补色，配冷爵士小乐队。",
+   "theme": "卡通与动漫",
+   "fit": "操作指南、产品使用步骤、食谱卡、安全提示",
+   "verified": [],
+   "suggested": [
+    "SVG"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/midcentury-toon/STYLE.md"
+    },
+    {
+     "label": "同风格静帧：anidoodle",
+     "url": "https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md"
+    }
+   ]
+  },
+  {
+   "id": "C-105",
+   "class": "C",
+   "name": "科幻全息线框",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": null,
+   "prompt": "用科幻全息线框风格：物体被扫描成发光的线框，悬在圆形投影台上，瞄准框一个个锁定部件并局部爆炸展开，引线拉出，数字从乱码滚动成真实数值，数值锁定的那一帧变成唯一的暖色强调，整体只用一种冷色加一种暖色。",
+   "theme": "电影年代与屏幕科技",
+   "fit": "产品参数讲解、硬件拆解、循环展示屏",
+   "verified": [],
+   "suggested": [
+    "WebGL",
+    "Three.js"
+   ],
+   "render_code": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/hologram-hud/STYLE.md"
+    }
+   ]
+  }
+ ]
+}
