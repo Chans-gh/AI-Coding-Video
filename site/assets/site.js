@@ -1,4 +1,4 @@
-// 介绍页的交互：语言切换、现场画的小样、类型切换、画幅切换、样片筛选、按需播放、声音、时间轴、复制。没有任何外部依赖。
+// 介绍页的交互：语言切换、现场画的小样、类型切换、画幅切换、样片筛选和分页、停下才播、放大播放、声音、时间轴、复制。没有任何外部依赖。
 (function () {
   const root = document.documentElement;
   const store = {
@@ -16,16 +16,26 @@
   setLang(store.get('acv-lang') || (nav.startsWith('zh') ? 'zh' : 'en'));
   document.getElementById('lang-toggle').addEventListener('click', () => setLang(root.dataset.lang === 'zh' ? 'en' : 'zh'));
 
-  // 样片：进入视口才加载、播放
+  // 样片播放：视口停下来（不再滚动）一小会儿，才播放大半露在视口里的样片；滚出视口的马上暂停。src 第一次要播时才填
+  const PAGE = 15, DWELL = 350;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const vids = Array.from(document.querySelectorAll('.card video'));
+  const lb = document.getElementById('lightbox'), lv = lb.querySelector('video');
+  const seen = new Set();
+  const start = v => { if (!v.getAttribute('src')) v.src = v.dataset.src; v.play().catch(() => {}); };
+  const stop = v => { if (!v.paused) v.pause(); };
+  function settle() {
+    if (lb.open) return;
+    vids.forEach(v => (seen.has(v) && !v.closest('.card').hidden && (!reduce || !v.muted)) ? start(v) : stop(v));
+  }
+  let idle = 0;
+  const poke = () => { clearTimeout(idle); idle = setTimeout(settle, DWELL); };
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
-    es.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { if (!v.getAttribute('src')) v.src = v.dataset.src; v.play().catch(() => {}); }
-      else v.pause();
-    });
-  }, { rootMargin: '200px 0px' }) : null;
-  vids.forEach(v => { if (io) io.observe(v); else { v.src = v.dataset.src; } });
+    es.forEach(e => { if (e.isIntersecting && e.intersectionRatio >= .55) seen.add(e.target); else { seen.delete(e.target); stop(e.target); } });
+    poke();
+  }, { threshold: [0, .55] }) : null;
+  if (io) vids.forEach(v => io.observe(v));
+  window.addEventListener('scroll', poke, { passive: true });
 
   // 画幅
   const segs = document.querySelectorAll('.seg button');
@@ -36,26 +46,32 @@
       const id = v.dataset.id, had = !!v.getAttribute('src');
       v.dataset.src = `media/${id}-${ar}.mp4`;
       v.poster = `media/${id}-${ar}.jpg`;
-      if (had) { v.src = v.dataset.src; v.play().catch(() => {}); }
+      if (had) { v.pause(); v.src = v.dataset.src; }
     });
     store.set('acv-ar', ar);
+    poke();
   }
   segs.forEach(b => b.addEventListener('click', () => setAr(b.dataset.ar)));
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
-  // 样片筛选：类型（C/T/G）、题材、技术三个条件都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果
-  const state = { kind: 'c', theme: '', tech: '' };
+  // 样片筛选和分页：类型（C/T/G）、题材、技术、页码都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果
+  const state = { kind: 'c', theme: '', tech: '', page: 0 };
   const cards = Array.from(document.querySelectorAll('.card'));
+  const cardsEl = document.getElementById('cards');
   const groups = { theme: document.querySelector('.filter[data-dim="theme"]'), tech: document.querySelector('.filter[data-dim="tech"]') };
   const filtersEl = document.getElementById('filters'), emptyNone = document.getElementById('empty-none');
   const kindEmpty = document.querySelectorAll('.kind-empty'), picks = document.querySelectorAll('.path-pick');
+  const pager = document.getElementById('pager'), nums = pager.querySelector('.pg-nums');
   const match = (c, th, te) => c.dataset.kind === state.kind && (!th || c.dataset.theme === th) && (!te || c.dataset.tech.split(' ').includes(te));
+  const matched = () => cards.filter(c => match(c, state.theme, state.tech));
+  function muteCard(c) { c.querySelector('video').muted = true; c.querySelector('.snd').setAttribute('aria-pressed', 'false'); }
   function apply() {
-    let shown = 0;
+    const list = matched(), pages = Math.max(1, Math.ceil(list.length / PAGE));
+    state.page = Math.min(Math.max(0, state.page), pages - 1);
     cards.forEach(c => {
-      const on = match(c, state.theme, state.tech);
-      c.hidden = !on; shown += on;
-      if (!on) { const v = c.querySelector('video'); v.pause(); v.muted = true; c.querySelector('.snd').setAttribute('aria-pressed', 'false'); }
+      const i = list.indexOf(c), on = i >= 0 && Math.floor(i / PAGE) === state.page;
+      c.hidden = !on;
+      if (!on) { stop(c.querySelector('video')); muteCard(c); }
     });
     // 每个按钮上的数字 = 加上这个条件后还剩几支；为 0 的按钮置灰
     for (const dim of ['theme', 'tech']) {
@@ -69,24 +85,89 @@
     document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tech === state.tech));
     const isC = state.kind === 'c';
     filtersEl.hidden = !isC;
-    emptyNone.hidden = !isC || shown > 0;
+    emptyNone.hidden = !isC || list.length > 0;
     kindEmpty.forEach(e => { e.hidden = e.dataset.kind !== state.kind; });
     picks.forEach(b => { const on = b.dataset.kind === state.kind; b.setAttribute('aria-pressed', String(on)); b.closest('.path').classList.toggle('on', on); });
-    // 新露出来的卡片：让观察器重新判断是否在视口里
-    if (io) cards.forEach(c => { if (!c.hidden) { const v = c.querySelector('video'); io.unobserve(v); io.observe(v); } });
+    // 页码：页数多时只留首页、末页和当前页左右各一页，中间用省略号
+    pager.hidden = !isC || pages < 2;
+    pager.querySelectorAll('.pg-total').forEach(e => { e.textContent = String(list.length); });
+    pager.querySelector('.pg-prev').disabled = state.page === 0;
+    pager.querySelector('.pg-next').disabled = state.page === pages - 1;
+    nums.textContent = '';
+    let gap = false;
+    for (let k = 0; k < pages; k++) {
+      if (pages > 7 && k > 0 && k < pages - 1 && Math.abs(k - state.page) > 1) { if (!gap) nums.append('…'); gap = true; continue; }
+      gap = false;
+      const b = document.createElement('button');
+      b.type = 'button'; b.dataset.page = String(k); b.textContent = String(k + 1);
+      if (k === state.page) b.setAttribute('aria-current', 'page');
+      nums.append(b);
+    }
+    poke();
   }
+  const reset = () => { state.page = 0; apply(); };
   for (const dim of ['theme', 'tech']) groups[dim].addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b || b.disabled) return;
-    state[dim] = b.dataset.v; apply();
+    state[dim] = b.dataset.v; reset();
   });
-  document.getElementById('cards').addEventListener('click', e => {
+  cardsEl.addEventListener('click', e => {
     const b = e.target.closest('.chips button'); if (!b) return;
     state.tech = state.tech === b.dataset.tech ? '' : b.dataset.tech; state.theme = '';
-    apply(); filtersEl.scrollIntoView({ block: 'start' });
+    reset(); filtersEl.scrollIntoView({ block: 'start' });
   });
-  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = ''; apply(); });
-  picks.forEach(b => b.addEventListener('click', () => { state.kind = b.dataset.kind; apply(); }));
-  apply();
+  const goPage = k => { state.page = k; apply(); cardsEl.scrollIntoView({ block: 'start' }); };
+  pager.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.disabled) return;
+    if (b.dataset.page) goPage(Number(b.dataset.page));
+    else goPage(state.page + (b.classList.contains('pg-next') ? 1 : -1));
+  });
+  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = ''; reset(); });
+  picks.forEach(b => b.addEventListener('click', () => { state.kind = b.dataset.kind; reset(); }));
+  // 链接直接指向某支样片（#C-187）：清掉筛选，翻到它那一页
+  function toHash() {
+    const c = location.hash && cards.find(x => '#' + x.id === location.hash);
+    if (!c) return false;
+    state.kind = 'c'; state.theme = state.tech = '';
+    state.page = Math.floor(matched().indexOf(c) / PAGE); apply();
+    c.scrollIntoView({ block: 'center' });
+    return true;
+  }
+  window.addEventListener('hashchange', toHash);
+  if (!toHash()) apply();
+
+  // 放大播放：在当前筛选结果里前后翻，关掉时翻到最后看的那支所在的页
+  let cur = null;
+  function lbShow(c) {
+    cur = c;
+    const id = c.id, ar = root.dataset.ar;
+    lb.dataset.ar = ar;
+    lv.poster = `media/${id}-${ar}.jpg`; lv.src = `media/${id}-${ar}.mp4`;
+    lv.muted = false; lv.play().catch(() => {});
+    lb.querySelector('.lb-id').textContent = id;
+    lb.querySelector('.lb-name').innerHTML = c.querySelector('.card-meta h4').innerHTML;
+  }
+  function lbStep(d) { const l = matched(), i = l.indexOf(cur); lbShow(l[(i + d + l.length) % l.length]); }
+  cardsEl.addEventListener('click', e => {
+    const b = e.target.closest('.open'); if (!b) return;
+    vids.forEach(stop); cards.forEach(muteCard);
+    lbShow(b.closest('.card'));
+    if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+  });
+  lb.querySelector('.lb-prev').addEventListener('click', () => lbStep(-1));
+  lb.querySelector('.lb-next').addEventListener('click', () => lbStep(1));
+  lb.querySelector('.lb-close').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', e => {
+    if (e.target === lv) return;
+    if (e.key === 'ArrowLeft') lbStep(-1); else if (e.key === 'ArrowRight') lbStep(1);
+  });
+  lb.addEventListener('close', () => {
+    lv.pause(); lv.removeAttribute('src'); lv.load();
+    const k = Math.floor(matched().indexOf(cur) / PAGE);
+    if (cur && k !== state.page) { state.page = k; apply(); }
+    if (cur) cur.scrollIntoView({ block: 'nearest' });
+    poke();
+  });
 
   // 现场画的小样：和「是什么」一节里写的 draw(ctx, t) 是同一件事
   function demo(ctx, t, w, h) {
@@ -132,10 +213,9 @@
   snds.forEach(b => b.addEventListener('click', () => {
     const v = b.closest('.screen').querySelector('video');
     const on = b.getAttribute('aria-pressed') !== 'true';
-    snds.forEach(o => { o.setAttribute('aria-pressed', 'false'); o.closest('.screen').querySelector('video').muted = true; });
+    cards.forEach(muteCard);
     if (on) {
-      if (!v.getAttribute('src')) v.src = v.dataset.src;
-      v.muted = false; v.currentTime = 0; v.play().catch(() => {});
+      v.muted = false; if (v.getAttribute('src')) v.currentTime = 0; start(v);
       b.setAttribute('aria-pressed', 'true');
     }
   }));
@@ -162,7 +242,7 @@
     tT.textContent = (f / FPS).toFixed(3); tF.textContent = String(f);
   });
   range.addEventListener('change', () => { if (resume) setTimeout(() => hv.play().catch(() => {}), 900); resume = null; });
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hv.pause(); vids.forEach(v => v.removeAttribute('autoplay')); }
+  if (reduce) hv.pause();
 
   // 复制
   document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {

@@ -113,7 +113,8 @@ def gallery(styles, ids):
                             for t in s["verified"])
             out.append(f'''      <article class="card" id="{sid}" data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}">
         <div class="screen">
-          <video data-id="{sid}" data-src="media/{sid}-16x9.mp4" poster="media/{sid}-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="{esc(s['name'])}"></video>
+          <video data-id="{sid}" data-src="media/{sid}-16x9.mp4" poster="media/{sid}-16x9.jpg" muted loop playsinline preload="none" aria-label="{esc(s['name'])}"></video>
+          <button type="button" class="open" aria-label="放大播放 {sid} / Play {sid} large"><span class="open-hint">{both("点击放大", "Click to enlarge")}</span></button>
           <button type="button" class="snd" aria-pressed="false">{both("声音", "Sound")}</button>
         </div>
         <p class="card-theme">{both(th, THEME_EN.get(th, th))}</p>
@@ -124,6 +125,26 @@ def gallery(styles, ids):
         <div class="links"><a href="{REPO}/tree/{BRANCH}/samples/{sid}">{both("样片代码", "Sample code")}</a><a href="{REPO}/blob/{BRANCH}/skills/ai-coding-video/{s["file"]}#{sid}">{both("词典条目", "Dictionary entry")}</a></div>
       </article>''')
     out.append("    </div>")
+    # 分页：每页张数和页码按钮由 site.js 按筛选结果算；这里只放文案，好让字体裁剪带上这些字
+    out.append(f'''    <nav class="pager" id="pager" aria-label="分页 / Pages" hidden>
+      <button type="button" class="pg-prev">{both("上一页", "Previous")}</button>
+      <span class="pg-nums"></span>
+      <button type="button" class="pg-next">{both("下一页", "Next")}</button>
+      <span class="pg-info"><span lang="zh">共 <b class="pg-total"></b> 支</span><span lang="en"><b class="pg-total"></b> samples</span></span>
+    </nav>
+    <dialog class="lb" id="lightbox" aria-label="样片 / Sample">
+      <div class="lb-in">
+        <video controls playsinline loop></video>
+        <div class="lb-bar">
+          <div class="card-meta"><code class="lb-id"></code><h4 class="lb-name"></h4></div>
+          <div class="lb-btns">
+            <button type="button" class="lb-prev">{both("上一支", "Previous")}</button>
+            <button type="button" class="lb-next">{both("下一支", "Next")}</button>
+            <button type="button" class="lb-close">{both("关闭", "Close")}</button>
+          </div>
+        </div>
+      </div>
+    </dialog>''')
     return "\n".join(out)
 
 
