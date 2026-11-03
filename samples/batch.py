@@ -7,12 +7,13 @@
     python3 batch.py C-001 --sound          # 只合成声音到 out/C-001.wav，改配乐时试听
     python3 batch.py C-001 -j 2             # 并行数（默认 4）
     python3 batch.py C-001 --at 2.4         # 只截 2.4 秒那一帧（全分辨率）到 out/，单独看可疑的画面
+    python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
 有 ✗ 时退出码为 1。
 """
-import argparse, io, sys, time
+import argparse, io, subprocess, sys, time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 import numpy as np
@@ -175,6 +176,7 @@ def main():
     ap.add_argument("--ar", choices=["16x9", "9x16", "both"], default="both")
     ap.add_argument("-j", type=int, default=4)
     ap.add_argument("--at", type=float)
+    ap.add_argument("--sheet", action="store_true")
     a = ap.parse_args()
     ids = all_ids() if a.ids == ["all"] else a.ids
     if a.sound:
@@ -191,6 +193,20 @@ def main():
     if missing:
         sys.exit(f"没有 scene.js：{' '.join(missing)}（先用 new.py 起骨架）")
     ars = ["16x9", "9x16"] if a.ar == "both" else [a.ar]
+    if a.sheet:
+        results = {}
+        for sid in ids:
+            for ar in ars:
+                mp4 = HERE / sid / f"{sid}-{ar}.mp4"
+                real = R.mp4_duration(mp4) if mp4.exists() else None
+                if real is None:
+                    print(f"✗ {sid} {ar} 没有成片"); continue
+                thumbs = [small(subprocess.run([R.ffmpeg(), "-loglevel", "error", "-ss", f"{real * k:.3f}", "-i", str(mp4), "-frames:v", "1",
+                                                "-f", "image2pipe", "-vcodec", "mjpeg", "-"], capture_output=True, check=True).stdout) for k in PICK]
+                results[(sid, ar)] = {"ok": True, "thumbs": thumbs}
+        paths = sheets(ids, results, ars)
+        print("总览图 → " + "、".join(f"out/{p.name}" for p in paths))
+        return
     if a.at is not None:
         from playwright.sync_api import sync_playwright
         with sync_playwright() as pw:

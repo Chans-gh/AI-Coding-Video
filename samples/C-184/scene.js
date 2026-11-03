@@ -72,6 +72,7 @@ scene({
     for (let i = 0; i < 10; i++) { const q = tipAt(t - i * .04); fx += q[0] / 10; fy += q[1] / 10; }
     const pull = eInOutCubic(inv(3.4, 4.1, t)), Z = lerp(1.5, 1, pull);
     fx = lerp(fx, W / 2, pull); fy = lerp(fy, H / 2, pull);
+    fx = clamp(fx, W / 2 / Z, W - W / 2 / Z); fy = clamp(fy, H / 2 / Z, H - H / 2 / Z);   // 镜头不出纸面
     ctx.save();
     ctx.translate(W / 2, H / 2); ctx.scale(Z, Z); ctx.translate(-fx, -fy);
     ctx.drawImage(s.paper, 0, 0, W, H);

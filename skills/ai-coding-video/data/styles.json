@@ -4205,16 +4205,20 @@
    "name": "折纸",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-178.jpg",
    "prompt": "用折纸风格：一张方形彩纸在纯色桌面上沿折痕自己一步步折起来，山折谷折时纸面明暗随角度变化，折痕处留下浅浅的压线，最后变成鹤、青蛙或小船，成品轻轻弹跳后展开再折成下一个，纸面带细微纤维纹，侧光投出柔和阴影，配纸张摩擦声。",
    "theme": "纸艺、材质与定格",
    "fit": "手工教程、变化与成长寓意、日式品牌片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-178/",
    "refs": []
   },
   {
@@ -4223,16 +4227,20 @@
    "name": "平铺整理（Knolling）",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-179.jpg",
    "prompt": "用平铺整理风格：正上方俯拍一块干净的纯色台面，所有物品按 90 度对齐、等间距排成整齐的网格，同类同色归在一起，物品一件件从画外滑入就位，有时整组重新排序或拆成零件再摆开，每件只有正下方一圈柔和阴影，旁边用细线标出名称，配干脆的落位声。",
    "theme": "信息讲解与产品发布",
    "fit": "产品拆解与清单、装备介绍、收纳与旅行准备",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-179/",
    "refs": []
   },
   {
@@ -4241,16 +4249,20 @@
    "name": "工笔",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-180.jpg",
    "prompt": "用工笔风格：微黄的熟绢底上，形象先用细匀的铁线描勾出完整墨线，再一层层平涂分染石青、石绿、朱砂和胭脂，花瓣和羽毛的颜色从根部向外渐淡，边线始终清晰、不被颜色盖住，画面一线一线勾出、一层一层染出来，配古筝。",
    "theme": "东方传统",
    "fit": "花鸟与节令、宫廷与仕女、文博科普",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "SVG"
    ],
-   "render_code": null,
+   "render_code": "samples/C-180/",
    "refs": []
   },
   {
@@ -4259,16 +4271,20 @@
    "name": "年画",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-181.jpg",
    "prompt": "用年画风格：木版套色印出的喜庆画面，粗黑墨线框出胖娃娃、鲤鱼、门神和莲花，桃红、翠绿、柠檬黄、品紫大块平涂，套版略有错位露出白纸，构图饱满对称、四角有吉祥纹样，开场像刷墨压纸一样一色一色印出来，配锣鼓。",
    "theme": "东方传统",
    "fit": "春节与节庆、民俗科普、新年品牌片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-181/",
    "refs": []
   },
   {
@@ -4277,16 +4293,22 @@
    "name": "青花",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-182.jpg",
    "prompt": "用青花风格：白釉瓷面上只有一种钴蓝，浓处发黑并带铁锈色斑点，淡处像水一样晕开，缠枝莲和卷草纹一笔一笔画出来，画面沿瓷瓶或瓷盘的弧面展开，釉面一道柔和的反光随镜头转动滑过，转场是瓷器旋转露出背面的新画，配古琴。",
    "theme": "东方传统",
    "fit": "文博与陶瓷科普、茶与器物品牌、古典诗词",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-182/",
    "refs": []
   },
   {
@@ -4295,16 +4317,20 @@
    "name": "京剧脸谱",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-183.jpg",
    "prompt": "用京剧脸谱风格：一张左右对称的大脸谱占满画面，额头、眉眼和鼻窝用红、黑、白、金、蓝大块勾画，颜色代表人物性格，线条从中轴向两边同时一笔笔描出，背景是深红幕布和金色回纹，每一声锣响就像变脸一样翻换成下一张，配京胡和锣鼓点。",
    "theme": "东方传统",
    "fit": "戏曲科普、国潮品牌、人物性格讲解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-183/",
    "refs": []
   },
   {
@@ -4313,16 +4339,20 @@
    "name": "书法",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-184.jpg",
    "prompt": "用书法风格：米色宣纸上一支毛笔按笔顺一笔笔写出大字，起笔藏锋、收笔回锋，墨色随笔速从浓到枯变化，飞白处露出纸纹，每幅字写完盖一方朱印，镜头跟着笔尖移动，写完再拉远看整幅，声音只有毛笔擦过纸面的沙沙声。",
    "theme": "东方传统",
    "fit": "标题与片名、诗词展示、文化品牌片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": null,
+   "render_code": "samples/C-184/",
    "refs": []
   },
   {
@@ -4331,16 +4361,20 @@
    "name": "水墨漫画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-185.jpg",
    "prompt": "用水墨漫画风格：宣纸色的漫画页被不规则的墨线框分成几格，人物用浓墨粗线勾出，衣袍是一大笔泼墨带飞白，打斗时的速度线是一笔扫过的干笔，拟声字用毛笔写成，只有血或火用一点朱红，镜头在格子之间推进，配鼓点和刀剑声。",
    "theme": "卡通与动漫",
    "fit": "武侠与仙侠故事、动作短片、国风连载",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": null,
+   "render_code": "samples/C-185/",
    "refs": []
   },
   {
@@ -4349,16 +4383,20 @@
    "name": "东方赛博",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-186.jpg",
    "prompt": "用东方赛博风格：夜雨中的立体城市叠着飞檐斗拱、牌楼和霓虹招牌，红灯笼和全息汉字广告并排悬浮，主色是朱红、青绿和电光紫，楼宇之间有水墨般的雾层缓缓流动，招牌文字全部原创，镜头沿窄巷慢慢升上屋顶，配古筝加电子低音。",
    "theme": "3D 与实时图形",
    "fit": "国风科幻、游戏宣传、未来城市设想",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-186/",
    "refs": []
   },
   {
@@ -4526,16 +4564,20 @@
    "name": "旧学院风（暗黑学院）",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-194.jpg",
    "prompt": "用旧学院风风格：深色木书架、绿罩台灯、皮面古籍、黄铜地球仪和散落的手写笔记，主色是墨绿、栗棕、酒红和羊皮纸黄，唯一的光源是暖黄烛光或台灯，在纸面上投出柔和的阴影，书页被风翻动、墨水笔在纸上写出花体字，窗外是阴雨的石砌回廊，画面压暗并带细颗粒，节奏缓慢，配钢琴和翻书声。",
    "theme": "手绘与绘画",
    "fit": "文学与哲学讲解、读书分享、学术与考试类内容、悬疑开场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-194/",
    "refs": []
   },
   {
@@ -4544,16 +4586,22 @@
    "name": "末日工业暗黑科幻",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-195.jpg",
    "prompt": "用末日工业暗黑科幻风格：巨大的锈蚀钢铁结构、管道和冷却塔在灰黄色的烟尘中层层叠叠，远处只有零星的警示红灯和焊接火花，体积雾把光切成一道道光柱，地面积着带油膜的黑水，镜头沿着高耸的结构缓慢仰拍上移或低空穿行，画面整体去饱和、偏铁锈和冷钢灰，低频轰鸣和金属回响作声音。",
    "theme": "3D 与实时图形",
    "fit": "科幻世界观、游戏宣传、环境与能源议题、悬念开场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-195/",
    "refs": []
   }
  ]
