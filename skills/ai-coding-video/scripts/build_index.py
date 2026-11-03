@@ -24,7 +24,7 @@ IMG_RE = re.compile(r'^!\[[^\]]*\]\(\.\./images/([^)]+)\)', re.M)
 CODE_RE = re.compile(r'```text\n(.*?)\n```', re.S)
 FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
-FENCE_RE = re.compile(r'^```.*?^```', re.S | re.M)
+FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
 FIELDS = {'题材': 'theme', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
           '样帧代码': 'render_code', '参考': 'refs'}
 CLASS_NAME = {'C': '纯代码', 'T': '第三方素材', 'G': 'AI 生成素材'}

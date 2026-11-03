@@ -1,0 +1,11 @@
+{
+  "name": "ai-coding-video",
+  "owner": { "name": "Chans" },
+  "plugins": [
+    {
+      "name": "ai-coding-video",
+      "source": "./",
+      "description": "纯代码逐帧做动画视频的风格库与方法"
+    }
+  ]
+}
