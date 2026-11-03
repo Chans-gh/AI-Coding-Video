@@ -309,12 +309,16 @@
 
 ## C-051 扁平矢量角色短片
 
+![扁平矢量角色短片](../images/C-051.jpg)
+
 ```text
 用扁平矢量角色短片风格：白底或浅色单色背景，细黑线勾出简化场景，主角是一个造型简单、轮廓清晰的小角色并全片不变，色块平涂无阴影，动作有预备和过冲，一个镜头讲一个小笑点。
 ```
 
 - 题材：卡通与动漫
 - 适合：日常小故事、App 广告；可附上你自己的角色图
+- 技术（已验证）：SVG · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-051/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-051)
 - 技术（建议）：SVG · GSAP
 - 参考：[@YoshiKura535130](https://x.com/YoshiKura535130/status/2102910805721362875)
 
@@ -377,12 +381,16 @@
 
 ## C-085 地图路线动画
 
+![地图路线动画](../images/C-085.jpg)
+
 ```text
 用地图路线动画风格：米白色简洁底图、淡蓝水域和浅灰行政边界，路线用一条橙红色大圆弧线从起点实时画到终点，镜头跟着线头移动并逐渐缩放，角落有里程计数器和经纬度小卡片，城市名用小号无衬线字标注。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：物流、出行、旅行、路演里的地理叙事
+- 技术（已验证）：SVG · D3.js · Playwright · ffmpeg
+- 样片代码：[samples/C-085/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-085)
 - 技术（建议）：SVG · D3.js
 
 <a id="C-086"></a>
@@ -479,12 +487,16 @@
 
 ## C-112 电视新闻包装
 
+![电视新闻包装](../images/C-112.jpg)
+
 ```text
 用电视新闻包装风格：深墨色底，片头标识缩成角标，今日要闻目录开场又在结尾逐条打勾，平行四边形台标和纸色字条始终压在画面下方、换标题时上下翻转，每屏只放一个事实（翻牌价格板、破线折线、说明地图、盖章），干净无滚动字幕，配新闻鼓点。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：每日简报、行业快讯、周报回顾
+- 技术（已验证）：HTML/CSS · SVG · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-112/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-112)
 - 技术（建议）：HTML/CSS · SVG · GSAP
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/news-package/STYLE.md)
 

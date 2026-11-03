@@ -13,7 +13,7 @@
 | `<编号>/<编号>-16x9.jpg`、`-9x16.jpg` | 静帧 |
 | `API.md` | `lib.js` 和 `synth.py` 的函数速查，写场景时读它，不用读源码；由 `tools/apidoc.py` 生成 |
 | `lib/synth.py` | 合成器：鼓、拨弦、钟、方波、锯齿波、风声等，全部用代码算出波形 |
-| `lib/lib.js` | 公共工具：确定性随机数、噪声、缓动、纸纹、WebGL 全屏着色器 |
+| `lib/lib.js` | 公共工具：确定性随机数、噪声、缓动、纸纹、WebGL 全屏着色器、SVG/HTML 舞台、GSAP 时间轴和 p5 画布的接法 |
 | `player.html` | 在浏览器里播放某个样片，出片时也靠它逐帧截图 |
 | `new.py` | 给新样片起骨架 |
 | `batch.py` | 批量出片和自动检查，出总览图 |
@@ -23,11 +23,11 @@
 
 ## 怎么出片
 
-需要 Node.js（装字体用）、Python 3、Playwright（`pip install playwright`，再 `playwright install chromium`）、Pillow、numpy、scipy 和 ffmpeg。
+需要 Node.js（装字体和绘图库用）、Python 3、Playwright（`pip install playwright`，再 `playwright install chromium`）、Pillow、numpy、scipy 和 ffmpeg。
 
 ```bash
 cd samples
-npm install                          # 下载字体到 node_modules/（全部是 SIL OFL 开源字体）
+npm install                          # 下载字体和绘图库到 node_modules/（见下面「用到的库」）
 python3 new.py C-168                 # 从风格条目起骨架：scene.js、sound.py、meta.json
 python3 batch.py C-168 --quick       # 改代码时用：每个画幅只抽 8 帧低分辨率截图，合成声音，检查，出总览图
 python3 batch.py C-168 C-169         # 出横竖两版视频、静帧，并更新 Skill 里的缩略图（4 路并行）
@@ -45,9 +45,32 @@ python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynot
 
 发版用仓库根目录的 `scripts/release.sh "<提交说明>"`：登记样片 → 词典检查 → `API.md` 检查 → 生成介绍页 → 提交并推送当前分支；加 `--live` 再用无头浏览器打开线上介绍页，打一行结果（卡片数、报错、加载失败的文件）。
 
+## 用到的库
+
+全部用 npm 装进 `samples/node_modules/`，出片时从本地载入，不联网、不用 CDN。版本写死在 `package.json` 里（`--save-exact`），维护者本地和云端会话跑同一条 `npm install` 就能出片。
+
+| 库 | 版本 | 许可证 | 在哪用 |
+|---|---|---|---|
+| `@fontsource/*`（10 种字体） | 5.2.5 | SIL OFL 1.1（字体本身） | 所有样片的文字 |
+| [GSAP](https://gsap.com) | 3.15.0 | GSAP 标准「无偿」许可证（免费用于不卖访问权的作品，不可再分发为开发工具的一部分） | 场景写 `libs: ['gsap']`，用 `timeline()` 建暂停的时间轴，`draw` 里 `tl.seek(t)` |
+| [p5.js](https://p5js.org) | 2.3.4 | LGPL-2.1 | `libs: ['p5']`，用 `p5Sketch()` 起 instance 模式 + `noLoop` 的画布，逐帧 `redraw` |
+| [p5.brush](https://github.com/acamposuribe/p5.brush) | 3.0.0 | MIT | `libs: ['p5.brush']`（会连 p5.js 一起载入），水彩填色和铅笔笔刷，要 WEBGL 画布 |
+| [Rough.js](https://roughjs.com) | 4.6.6 | MIT | `libs: ['rough']`，在 Canvas 2D 上画手绘感的线和形状；`seed` 固定，每帧一样 |
+| [D3.js](https://d3js.org) | 7.9.1 | ISC | `libs: ['d3']`，地理投影、路径、插值、数字格式 |
+| [Three.js](https://threejs.org) | 0.187.0 | MIT | `libs: ['three']`，3D 场景；用 `three3d()` 起离屏 WebGL 画布，`studioEnv()` 用代码画影棚环境贴图 |
+| [cannon-es](https://github.com/pmndrs/cannon-es) | 0.20.0 | MIT | `libs: ['cannon-es']`，刚体物理；用 `physicsAt(world, t)` 每帧从 0 按固定步长重推 |
+| [Remotion](https://www.remotion.dev) | 4.0.540 | Remotion 自己的许可证：个人、3 人以内的公司和非营利组织免费，更大的公司要买授权（见 [license](https://www.remotion.dev/docs/license)） | 写 `scene.jsx`（React 组件 + `useCurrentFrame`）代替 `scene.js`，`render.py` 走 `remotion/serve.mjs` 出帧 |
+| [React](https://react.dev) / React DOM | 19.3.1 | MIT | Remotion 样片的组件 |
+
+每帧仍然只由时间 `t` 决定：GSAP 用暂停的时间轴 `seek(t)`，p5 用 `noLoop` 加逐帧 `redraw`（每帧前按固定种子重设 `randomSeed`/`noiseSeed`），Rough.js 每个图形写死 `seed`，cannon-es 每帧把世界从 0 按 1/120 秒的固定步长重推到 t（用 `world.step(dt)`，不用看真实时钟的 `fixedStep`），Remotion 的帧号就是 `useCurrentFrame()`。
+新加库要改三处：`package.json`（装）、`player.html` 的 `LIBS`（从哪个文件载入）、这张表（版本和许可证）。
+
+Remotion 样片不走 `player.html`：`render.py` 认出目录里的 `scene.jsx` 后，起一个常驻的 node 进程 `remotion/serve.mjs`，它 bundle 一次、开一个浏览器，然后按 `t` 出帧。浏览器用容器里已有的 Chromium（环境变量 `CHROME`，默认 `/opt/pw-browsers/chromium`），不额外下载。
+
 ## 写新样片的规矩
 
-- 每帧只由时间 t 决定：随机数用 `mulberry32` 或 `hash2`，不用 `Math.random()`，也不读系统时间。这样同一份代码每次渲染的结果都一样。
+- 每帧只由时间 t 决定：随机数用 `mulberry32` 或 `hash2`，不用 `Math.random()`，也不读系统时间。这样同一份代码每次渲染的结果都一样。用库时同理：GSAP 的时间轴建成暂停的、每帧 `seek(t)`，p5 用 `noLoop` 逐帧 `redraw`，Rough.js 每个图形写死 `seed`。
+- 画面可以画在 Canvas 2D 上，也可以写 `dom: true` 用 SVG 或 HTML 网页画面（画在盖住画布的 `STAGE` 里）；库在场景的 `libs` 里声明，见上面「用到的库」。
 - 画面全部由代码算出，不引用任何外部图片、视频或生成模型。字体只用开源字体，写进 `package.json`。
 - 声音只用 `lib/synth.py` 的合成器（自带电子音），不调用第三方声音模型，不用曲库、录音或采样。动作发生的时刻放一个对应材质的音，写法见 Skill 的[声音篇](../skills/ai-coding-video/sound.md)。
 - 横竖两版用同一份代码：读 `W`、`H`、`LAND`（是否横屏）来定构图。不要只把竖屏画面拉伸或裁切成横屏。

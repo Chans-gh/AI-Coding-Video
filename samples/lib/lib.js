@@ -260,6 +260,104 @@ function glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H, extra = {}) {
   ctx.drawImage(GL.canvas, x, y, dw, dh);
 }
 
+// ---------- SVG / HTML 画面（场景写 dom: true） ----------
+const SVGNS = 'http://www.w3.org/2000/svg';
+// 新建元素：tag 以 'svg:' 开头建 SVG 元素（'svg:rect'），否则建 HTML 元素；attrs 写属性（style 可传对象），text 写文字，parent 默认 STAGE
+function el(tag, attrs = {}, parent = STAGE, text) {
+  const isSvg = tag.startsWith('svg:'), e = isSvg ? document.createElementNS(SVGNS, tag.slice(4)) : document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
+    else e.setAttribute(k, v);
+  }
+  if (text != null) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+// 铺满舞台的 <svg>，viewBox 就是 0 0 W H，坐标和画布一样
+function svgRoot(parent = STAGE) {
+  return el('svg:svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, style: { position: 'absolute', left: 0, top: 0 } }, parent);
+}
+
+// ---------- 库的接法（场景写 libs: [...]，播放器从 node_modules 载入） ----------
+// GSAP：建一条暂停的时间轴，init 里把动画排好；draw 里 tl.seek(t) 跳到 t 秒，每帧只由 t 决定
+function timeline(o = {}) {
+  gsap.ticker.lagSmoothing(0);
+  return gsap.timeline({ paused: true, ...o });
+}
+// Three.js：建好渲染器、场景、相机，返回 {THREE, renderer, scene, camera, canvas, render()}，渲染器的画布另开一张，draw 里 render() 之后把它画到 ctx 上。o：{w, h 渲染尺寸（默认 W×H）, fov, near, far, alpha 透明底, shadows 开阴影, tone 色调映射（默认 ACESFilmic）, exposure}
+function three3d(o = {}) {
+  const T = THREE, w = o.w || W, h = o.h || H;
+  const canvas = mk(w, h);
+  const renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: !!o.alpha, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1); renderer.setSize(w, h, false);
+  renderer.toneMapping = o.tone === null ? T.NoToneMapping : (o.tone || T.ACESFilmicToneMapping);
+  renderer.toneMappingExposure = o.exposure ?? 1;
+  if (o.shadows) { renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap; }
+  const scene = new T.Scene();
+  const camera = new T.PerspectiveCamera(o.fov || 40, w / h, o.near || .1, o.far || 200);
+  return { THREE: T, renderer, scene, camera, canvas, render() { renderer.render(scene, camera); } };
+}
+
+// 影棚环境贴图：用代码画一张等距柱状图（上亮下暗 + 几条柔光灯带），过一遍 PMREM 当 scene.environment。
+// 玻璃（transmission）和金属没有环境就是一团黑，这个函数补上，且不引用任何外部图片。
+// o：{top, bottom 上下底色, bars [[u 横向位置 0~1, 宽, 亮度, 颜色]], tint 侧面冷色, bg 同时当背景}
+function studioEnv(D, o = {}) {
+  const T = D.THREE, cv = mk(1024, 512), g = cv.getContext('2d');
+  const gd = g.createLinearGradient(0, 0, 0, 512);
+  gd.addColorStop(0, o.top || '#2a3350'); gd.addColorStop(.46, o.mid || '#10131c');
+  gd.addColorStop(.54, o.floor || '#0b0c10'); gd.addColorStop(1, o.bottom || '#050507');
+  g.fillStyle = gd; g.fillRect(0, 0, 1024, 512);
+  for (const [u, w, lum, col] of (o.bars || [[.18, .07, 1, '#ffffff'], [.62, .05, .8, '#bcd6ff'], [.86, .09, .55, '#ffe6c8']])) {
+    const x = u * 1024, bw = w * 1024;
+    const rg = g.createLinearGradient(x - bw, 0, x + bw, 0);
+    rg.addColorStop(0, 'rgba(0,0,0,0)'); rg.addColorStop(.5, col); rg.addColorStop(1, 'rgba(0,0,0,0)');
+    g.globalAlpha = lum; g.globalCompositeOperation = 'lighter';
+    g.fillStyle = rg; g.fillRect(x - bw, 40, bw * 2, 230);
+    g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
+  }
+  const tex = new T.Texture(cv);
+  tex.mapping = T.EquirectangularReflectionMapping; tex.colorSpace = T.SRGBColorSpace; tex.needsUpdate = true;
+  const pm = new T.PMREMGenerator(D.renderer); pm.compileEquirectangularShader();
+  const env = pm.fromEquirectangular(tex).texture;
+  pm.dispose(); tex.dispose();
+  D.scene.environment = env;
+  if (o.bg) D.scene.background = env;
+  return env;
+}
+
+// cannon-es：固定步长把物理推到 t 秒（每帧都从 0 重推，所以每帧只由 t 决定，结果可重复）。world 是 CANNON.World，step 是步长（默认 1/120 秒），bodies 推完就是 t 时刻的位置
+function physicsAt(world, t, step = 1 / 120) {
+  const n = Math.round(t / step);
+  for (let k = 0; k < n; k++) world.step(step);    // 固定 dt 的 step，不是 fixedStep（那个看真实时钟，结果不可重复）
+  return world;
+}
+
+// p5（instance 模式 + noLoop）：在看不见的容器里建 W×H 画布，返回 Promise → {p, canvas, render(t, f)}，坐标原点都在左上角；render 设好 p.t、p.f，按 seed 重设 randomSeed / noiseSeed 后 redraw 一次；draw 里 await render(t) 后把 canvas 画到 ctx 上；draw 传 null 表示只在 setup 里画一次（静止的底图）。o：{w, h 画布尺寸（默认 W×H）, webgl 用 WEBGL 画布（p5.brush 要）, brush 接上 p5.brush, seed(t, f) → 每帧的种子（默认固定 1）}
+function p5Sketch(setup, draw, o = {}) {
+  return new Promise((ok, no) => {
+    let box = document.getElementById('offscreen');
+    if (!box) { box = document.createElement('div'); box.id = 'offscreen'; document.body.appendChild(box); }
+    const k = o.scale || 1, cw = Math.round((o.w || W) * k), ch = Math.round((o.h || H) * k);   // scale: 画布按比例缩小、画的时候整体放大，内容坐标不变（重笔刷省时间）
+    new p5(p => {
+      if (o.brush) brush.instance(p);
+      p.t = 0; p.f = 0;
+      p.setup = async () => {
+        try {
+          p.pixelDensity(1);
+          p.createCanvas(cw, ch, o.webgl ? p.WEBGL : p.P2D);
+          p.noLoop();
+          await setup?.(p);
+          ok({ p, canvas: p.canvas, async render(t, f = Math.round(t * FPS)) {
+            p.t = t; p.f = f; const sd = o.seed ? o.seed(t, f) : 1; p.randomSeed(sd); p.noiseSeed(sd);
+            await p.redraw(); return p.canvas;
+          } });
+        } catch (e) { no(e); }
+      };
+      p.draw = () => { if (!draw) return; p.push(); if (o.webgl) p.translate(-cw / 2, -ch / 2); if (k !== 1) p.scale(k); draw(p, p.t, p.f); p.pop(); };   // WEBGL 原点在中心，挪回左上角
+    }, box);
+  });
+}
+
 const S = [];   // 场景列表（播放器读 S[0]）
-// 注册场景：{id, name, dur, still, fonts, text, init() → 状态 s, draw(ctx, t, s, f)}
+// 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 function scene(def) { S.push(def); }

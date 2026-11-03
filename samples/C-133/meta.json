@@ -1,0 +1,10 @@
+{
+  "en_name": "Early Renaissance fresco",
+  "en_how": "p5.js paints a wall wider than the frame once at init — dry plaster, powdering patches, stage-box architecture and block-like figures — and each frame the camera pans along it under even daylight with plaster grain.",
+  "tech": [
+    "Canvas 2D",
+    "p5.js",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

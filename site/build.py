@@ -20,7 +20,7 @@ SAMPLES = REPO_DIR / "samples"
 PACKS = REPO_DIR / "packs"
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v3 · 2026-11-03"
+VERSION = "v4 · 2026-11-03"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -71,6 +71,23 @@ def both(zh, en, tag="span"):
     return f'<{tag} lang="zh">{esc(zh)}</{tag}><{tag} lang="en">{esc(en)}</{tag}>'
 
 
+def tech_bar(styles, ids, by):
+    """技术条：风格条目推荐过、或样片验证过的技术各有几个样片；一个样片都没有的留在条上置灰，一眼看出还缺哪个。
+    出片工具（Playwright、ffmpeg 等 pipeline 层）每支都一样，不进这条。返回 (按钮 HTML 列表, {技术: 代号}, 缺的个数)"""
+    tags = json.loads((SKILL / "data" / "tags.json").read_text(encoding="utf-8"))
+    layer_of, order = tags["tags"], [l["key"] for l in tags["layers"]]
+    cand = {t for s in styles for t in s.get("suggested", [])} | {t for i in ids for t in by[i]["verified"]}
+    cand = {t for t in cand if layer_of.get(t) != "pipeline"}
+    count = {t: sum(t in by[i]["verified"] for i in ids) for t in cand}
+    rank = lambda t: (order.index(layer_of.get(t, order[-1])), -count[t], t)
+    techs = sorted(cand, key=rank)
+    tid = {t: f"k{k}" for k, t in enumerate(techs)}
+    btns = [f'        <button type="button" data-v="{tid[t]}" aria-pressed="false"'
+            + (' disabled class="miss"' if not count[t] else "")
+            + f'>{esc(t)} <small>{count[t]}</small></button>' for t in techs]
+    return btns, tid, sum(1 for t in techs if not count[t])
+
+
 def gallery(styles, ids):
     """样片网格：上面两排筛选（题材、技术），卡片带 data-theme、data-tech，由 site.js 统一筛选"""
     by = {s["id"]: s for s in styles}
@@ -79,12 +96,7 @@ def gallery(styles, ids):
         if s["id"] in ids and s["theme"] not in order:
             order.append(s["theme"])
     ths = {th: f"t{k}" for k, th in enumerate(order)}
-    tech = {}
-    for i in ids:
-        for t in by[i]["verified"]:
-            tech[t] = tech.get(t, 0) + 1
-    techs = [t for t, n in sorted(tech.items(), key=lambda kv: (-kv[1], kv[0])) if n < len(ids)]   # 每支都用的（出片工具）不做筛选
-    tid = {t: f"k{k}" for k, t in enumerate(techs)}
+    btns, tid, miss = tech_bar(styles, ids, by)
     out = ['    <div class="filters" id="filters">',
            f'      <div class="filter" data-dim="theme" role="group" aria-label="题材 / Theme"><span class="flab">{both("题材", "Theme")}</span>',
            f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>']
@@ -94,9 +106,10 @@ def gallery(styles, ids):
     out.append('      </div>')
     out.append(f'      <div class="filter" data-dim="tech" role="group" aria-label="技术 / Technique"><span class="flab">{both("技术", "Technique")}</span>')
     out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>')
-    for t in techs:
-        out.append(f'        <button type="button" data-v="{tid[t]}" aria-pressed="false">{esc(t)} <small>{tech[t]}</small></button>')
-    out.append('      </div>\n    </div>')
+    out += btns
+    out.append('      </div>')
+    out.append(f'      <p class="filter-note">{both(f"数字是用到这种技术的样片数；置灰的 {miss} 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。", f"The number is how many samples use that technique; the {miss} greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.")}</p>')
+    out.append('    </div>')
     out.append(f'    <p class="empty" id="empty-none" hidden>{both("没有同时符合这两个条件的样片。", "No sample matches both filters.")} '
                f'<button type="button" class="linkish" id="clear-filters">{both("清除筛选", "Clear filters")}</button></p>')
     for k, zh, en in (("t", "T 类（改编现成素材）还没有收录：它需要照片、录屏、口播原片或真实数据，这个库目前只收纯代码风格。",

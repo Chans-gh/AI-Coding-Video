@@ -21,6 +21,8 @@
 <style>
   html, body { margin: 0; background: #000; overflow: hidden }
   canvas { display: block }
+  #stage { position: absolute; left: 0; top: 0; overflow: hidden }
+  #offscreen { position: absolute; left: -100000px; top: 0; visibility: hidden }
   body:not(.render) canvas { max-width: 100vw; max-height: 100vh; margin: 0 auto; object-fit: contain }
 </style>
 </head>
@@ -31,29 +33,64 @@
 //       player.html?s=C-001&ar=9x16&render=1&t=1.5   出片脚本用：停在 t 秒那一帧
 //       player.html?s=pack:dark-keynote&ar=16x9&accent=%23FF7A45   风格包演示片（packs/<名字>/demo/）；其余参数场景可用 Q.get() 读
 // 场景可以写 needs: ['../pack.js']（相对场景文件），播放器在 init 之前按顺序载入
+// 场景可以写 libs: ['gsap', 'p5', 'three', …]（下面 LIBS 里的名字），从本地 node_modules 载入，不联网
+// LIBS 的每一项是一串文件：字符串 = 普通 <script>；{m: 路径, as: '全局名'} = ES 模块，import 后挂到 window[as]
+// 场景写 dom: true 时，播放器在画布上面盖一层 W×H 的 <div id="stage">（全局 STAGE），SVG / HTML 画面放在里面
+// init、draw 都可以是 async：播放器等它画完才截图
+const LIBS = {
+  'gsap': ['node_modules/gsap/dist/gsap.min.js'],
+  'p5': ['node_modules/p5/lib/p5.min.js'],
+  'p5.brush': ['node_modules/p5/lib/p5.min.js', 'node_modules/p5.brush/dist/p5.brush.js'],
+  'rough': ['node_modules/roughjs/bundled/rough.js'],
+  'd3': ['node_modules/d3/dist/d3.min.js'],
+  'three': [{ m: 'node_modules/three/build/three.module.js', as: 'THREE' }],
+  'cannon-es': [{ m: 'node_modules/cannon-es/dist/cannon-es.js', as: 'CANNON' }],
+};
 const Q = new URLSearchParams(location.search), SID = Q.get('s');
 const DIR = SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
-let READY = false, SC = null, DUR = 3;
-function load(src) { return new Promise((ok, no) => { const e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = () => no(new Error('载入失败 ' + src)); document.body.appendChild(e); }); }
+let READY = false, SC = null, DUR = 3, STAGE = null;
+const loaded = new Set();
+async function load(src) {
+  if (typeof src === 'object') {                       // ES 模块：import 后挂到全局
+    if (loaded.has(src.m)) return; loaded.add(src.m);
+    try { window[src.as] = await import('./' + src.m); } catch (e) { throw new Error('载入失败 ' + src.m + '（先在 samples/ 下运行 npm install）'); }
+    return;
+  }
+  if (loaded.has(src)) return; loaded.add(src);
+  return new Promise((ok, no) => { const e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = () => no(new Error('载入失败 ' + src + '（先在 samples/ 下运行 npm install）')); document.body.appendChild(e); });
+}
 (async () => {
   await load('lib/lib.js');
   await load(`${DIR}/scene.js`);
-  for (const n of S[0].needs || []) await load(`${DIR}/${n}`);
+  SC = S[0]; DUR = SC.dur || 3;
+  for (const n of SC.libs || []) {
+    if (!LIBS[n]) throw new Error('player.html 的 LIBS 里没有 ' + n);
+    for (const src of LIBS[n]) await load(src);
+  }
+  for (const n of SC.needs || []) await load(`${DIR}/${n}`);
   if (Q.has('render')) document.body.classList.add('render');
   const cv = document.getElementById('c'); cv.width = W; cv.height = H;
   const ctx = cv.getContext('2d');
-  SC = S[0]; DUR = SC.dur || 3;
+  if (SC.dom) {
+    STAGE = document.createElement('div'); STAGE.id = 'stage';
+    STAGE.style.width = W + 'px'; STAGE.style.height = H + 'px';
+    document.body.appendChild(STAGE);
+  }
   const txt = [...new Set('0123456789' + (SC.text || '') + (SC.name || ''))].join('');
   await Promise.all((SC.fonts || []).map(f => document.fonts.load(f, txt).catch(() => {})));
   await document.fonts.ready;
-  SC.st = SC.init ? SC.init() : {};
-  window.seek = t => {
+  SC.st = SC.init ? await SC.init() : {};
+  window.seek = async t => {
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
-    SC.draw(ctx, t, SC.st, Math.round(t * FPS)); ctx.restore();
+    try { await SC.draw(ctx, t, SC.st, Math.round(t * FPS)); } finally { ctx.restore(); }
   };
+  await seek(Number(Q.get('t') || 0));
   READY = true;
-  seek(Number(Q.get('t') || 0));
-  if (!Q.has('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); }
+  if (!Q.has('render')) {
+    const t0 = performance.now();
+    const loop = async () => { await seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); };
+    loop();
+  }
 })().catch(e => { document.title = 'ERROR'; console.error(e); });
 </script>
 </body>

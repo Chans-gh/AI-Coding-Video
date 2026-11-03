@@ -4,6 +4,8 @@
 
 场景文件的写法：`scene({id, name, dur, still, fonts, init, draw})`，`draw(ctx, t, s, f)` 里 `t` 是秒、`s` 是 `init()` 的返回值、`f` 是帧号。
 每帧只由 `t` 决定；随机数用 `mulberry32` / `hash2`。横竖构图看 `LAND`，尺寸按 `SHORT / 1080` 缩放。
+要用库就写 `libs: ['gsap']`（可选 `gsap` `p5` `p5.brush` `rough` `d3`，见 `player.html` 的 `LIBS`），播放器从本地 `node_modules` 载入，不联网；
+SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×H 的 div）里；`init`、`draw` 可以是 `async`，播放器等它画完再截图。
 声音文件的写法：`score(m)` 里用 `m.put(声音, 秒, 音量, 声像)`；`m.dur` 是时长，`m.rng` 是固定种子的随机数。
 
 ## lib.js（场景里直接用，全局可见）
@@ -61,8 +63,21 @@
 - `glInit(w, h)` — 准备 WebGL2 离屏画布（init 里调一次）
 - `glProgram(name, frag)` — 编译全屏片元着色器；frag 里可用 uniform T（秒）、R（分辨率），输出写 O
 - `glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H, extra = {})` — 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时。extra 传额外 uniform：数字 → float，2–4 个数 → vec，更长的数组 → float[]，画布 → sampler2D 贴图
+
+**SVG / HTML 画面（场景写 dom: true）**
+
+- `el(tag, attrs = {}, parent = STAGE, text)` — 新建元素：tag 以 'svg:' 开头建 SVG 元素（'svg:rect'），否则建 HTML 元素；attrs 写属性（style 可传对象），text 写文字，parent 默认 STAGE
+- `svgRoot(parent = STAGE)` — 铺满舞台的 <svg>，viewBox 就是 0 0 W H，坐标和画布一样
+
+**库的接法（场景写 libs: [...]，播放器从 node_modules 载入）**
+
+- `timeline(o = {})` — GSAP：建一条暂停的时间轴，init 里把动画排好；draw 里 tl.seek(t) 跳到 t 秒，每帧只由 t 决定
+- `three3d(o = {})` — Three.js：建好渲染器、场景、相机，返回 {THREE, renderer, scene, camera, canvas, render()}，渲染器的画布另开一张，draw 里 render() 之后把它画到 ctx 上。o：{w, h 渲染尺寸（默认 W×H）, fov, near, far, alpha 透明底, shadows 开阴影, tone 色调映射（默认 ACESFilmic）, exposure}
+- `studioEnv(D, o = {})` — o：{top, bottom 上下底色, bars [[u 横向位置 0~1, 宽, 亮度, 颜色]], tint 侧面冷色, bg 同时当背景}
+- `physicsAt(world, t, step = 1 / 120)` — cannon-es：固定步长把物理推到 t 秒（每帧都从 0 重推，所以每帧只由 t 决定，结果可重复）。world 是 CANNON.World，step 是步长（默认 1/120 秒），bodies 推完就是 t 时刻的位置
+- `p5Sketch(setup, draw, o = {})` — p5（instance 模式 + noLoop）：在看不见的容器里建 W×H 画布，返回 Promise → {p, canvas, render(t, f)}，坐标原点都在左上角；render 设好 p.t、p.f，按 seed 重设 randomSeed / noiseSeed 后 redraw 一次；draw 里 await render(t) 后把 canvas 画到 ctx 上；draw 传 null 表示只在 setup 里画一次（静止的底图）。o：{w, h 画布尺寸（默认 W×H）, webgl 用 WEBGL 画布（p5.brush 要）, brush 接上 p5.brush, seed(t, f) → 每帧的种子（默认固定 1）}
 - `S` — 场景列表（播放器读 S[0]）
-- `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, init() → 状态 s, draw(ctx, t, s, f)}
+- `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 
 ## synth.py（`from synth import …`）
 - `SR` — = 44100

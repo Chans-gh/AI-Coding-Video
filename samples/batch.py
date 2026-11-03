@@ -66,7 +66,7 @@ def task(sid, ar, quick):
     try:
         with sync_playwright() as pw:
             try:
-                p = R.Page(pw, sid, ar, scale=.5 if quick else 1.0)
+                p = R.page(pw, sid, ar, scale=.5 if quick else 1.0)
             except R.SceneError as e:
                 log.append(f"脚本报错：{e}")
                 return finish(res, [f"脚本报错：{str(e)[:80]}"], log, t0, "")
@@ -168,7 +168,7 @@ def sheets(ids, results, ars):
 
 
 def all_ids():
-    return sorted(p.parent.name for p in HERE.glob("C-*/scene.js"))
+    return sorted({p.parent.name for pat in ("C-*/scene.js", "C-*/scene.jsx") for p in HERE.glob(pat)})
 
 
 def main():
@@ -192,7 +192,7 @@ def main():
         return
     if not (HERE / "node_modules" / "@fontsource").exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
-    missing = [s for s in ids if not (R.where(s) / "scene.js").exists()]
+    missing = [s for s in ids if not any((R.where(s) / n).exists() for n in ("scene.js", "scene.jsx"))]
     if missing:
         sys.exit(f"没有 scene.js：{' '.join(missing)}（先用 new.py 起骨架）")
     ars = ["16x9", "9x16"] if a.ar == "both" else [a.ar]
@@ -215,7 +215,7 @@ def main():
         with sync_playwright() as pw:
             for sid in ids:
                 for ar in ars:
-                    p = R.Page(pw, sid, ar)
+                    p = R.page(pw, sid, ar)
                     out = R.OUT / f"{R.stem(sid)}-{ar}-{a.at:g}s.jpg"
                     R.OUT.mkdir(exist_ok=True); out.write_bytes(p.frame(a.at, quality=90)); p.close()
                     print(f"{sid} {ar} {a.at:g}s → out/{out.name}" + (f"  报错：{p.errors[0][:80]}" if p.errors else ""))

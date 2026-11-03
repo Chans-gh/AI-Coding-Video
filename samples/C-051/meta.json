@@ -1,0 +1,10 @@
+{
+  "en_name": "Flat vector character short",
+  "en_how": "A flat SVG world of thin black lines and unshaded fills: a small character squashes, jumps for a cookie on a shelf, misses, and the cookie drops on its head — timed on a paused GSAP timeline with anticipation and overshoot.",
+  "tech": [
+    "SVG",
+    "GSAP",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

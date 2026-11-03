@@ -13,6 +13,19 @@
     "@fontsource/noto-serif-sc": "5.2.5",
     "@fontsource/playfair-display": "5.2.5",
     "@fontsource/press-start-2p": "5.2.5",
-    "@fontsource/zcool-kuaile": "5.2.5"
+    "@fontsource/zcool-kuaile": "5.2.5",
+    "@remotion/bundler": "4.0.540",
+    "@remotion/cli": "4.0.540",
+    "@remotion/renderer": "4.0.540",
+    "cannon-es": "0.20.0",
+    "d3": "7.9.1",
+    "gsap": "3.15.0",
+    "p5": "2.3.4",
+    "p5.brush": "3.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.540",
+    "roughjs": "4.6.6",
+    "three": "0.187.0"
   }
 }

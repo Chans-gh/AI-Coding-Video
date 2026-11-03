@@ -180,6 +180,8 @@ h3 { margin: 0; font-size: 17px; line-height: 1.4; }
 .filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .flab { font: 700 12px/1 var(--mono); color: var(--muted); width: 5.5em; flex: none; }
 .filter button:disabled { opacity: .35; cursor: default; }
+.filter button.miss { border-style: dashed; }
+.filter-note { font: 400 12px/1.6 var(--body); color: var(--muted); margin: 2px 0 0; }
 .empty { margin: 0 0 24px; padding: 20px 22px; border: 1px dashed var(--rule); border-radius: 6px; color: var(--muted); }
 .linkish { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .filter button { font: 400 13px/1 var(--body); padding: 8px 12px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }

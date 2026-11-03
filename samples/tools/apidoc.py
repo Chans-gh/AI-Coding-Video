@@ -20,6 +20,8 @@ HEAD = """# 样片 API 速查
 
 场景文件的写法：`scene({id, name, dur, still, fonts, init, draw})`，`draw(ctx, t, s, f)` 里 `t` 是秒、`s` 是 `init()` 的返回值、`f` 是帧号。
 每帧只由 `t` 决定；随机数用 `mulberry32` / `hash2`。横竖构图看 `LAND`，尺寸按 `SHORT / 1080` 缩放。
+要用库就写 `libs: ['gsap']`（可选 `gsap` `p5` `p5.brush` `rough` `d3`，见 `player.html` 的 `LIBS`），播放器从本地 `node_modules` 载入，不联网；
+SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×H 的 div）里；`init`、`draw` 可以是 `async`，播放器等它画完再截图。
 声音文件的写法：`score(m)` 里用 `m.put(声音, 秒, 音量, 声像)`；`m.dur` 是时长，`m.rng` 是固定种子的随机数。
 """
 

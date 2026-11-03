@@ -30,6 +30,72 @@ class SceneError(Exception):
     pass
 
 
+def is_remotion(sid):
+    """Remotion 样片：目录里是 scene.jsx（React 组件），不是 scene.js"""
+    return (where(sid) / "scene.jsx").exists()
+
+
+class RemotionPage:
+    """一个画幅的 Remotion 样片，接口和 Page 一样（dur/fps/still/frame/close）。
+
+    背后是 remotion/serve.mjs：打包一次，之后按命令逐帧截图；浏览器用容器里已有的 Chromium，不额外下载。
+    """
+
+    def __init__(self, sid, ar, scale=1.0):
+        self.sid, self.ar, self.scale = sid, ar, scale
+        self.errors, self.log = [], []
+        env = dict(os.environ, **({"CHROME": CHROME} if CHROME else {}))
+        self.p = subprocess.Popen([shutil.which("node"), str(HERE / "remotion" / "serve.mjs"), sid, ar, str(scale)],
+                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, cwd=HERE, env=env)
+        line = self.p.stdout.readline().strip()
+        if not line.startswith("{"):
+            err = (line + self.p.stderr.read())[:600]
+            raise SceneError(f"Remotion 打包失败：{err}")
+        info = json.loads(line)
+        self.dur, self.fps, self.still = info["dur"], info["fps"], info["still"]
+        self.tmp = OUT / f"{stem(sid)}-{ar}-rm"
+        self.tmp.mkdir(parents=True, exist_ok=True)
+
+    def _cmd(self, *args):
+        self.p.stdin.write("\t".join(str(a) for a in args) + "\n"); self.p.stdin.flush()
+        out = self.p.stdout.readline()
+        if not out.startswith("ok"):
+            raise SceneError(f"Remotion 出错：{(out + self.p.stderr.read())[:400]}")
+        return out.strip().split("\t")
+
+    def frame(self, t, fmt="jpeg", quality=95):
+        f = self.tmp / f"still-{t:.3f}.jpeg"
+        self._cmd("still", f"{t:.4f}", str(f))
+        b = f.read_bytes(); f.unlink()
+        if fmt == "png":                                  # 静帧要 png：读回来再存一次
+            return jpeg_to_png(b)
+        return b
+
+    def frames(self):
+        """整段逐帧截图，返回每帧的 jpeg 字节（给 encode 用，比一帧一帧快）"""
+        for old in self.tmp.glob("*.jpeg"):
+            old.unlink()
+        self._cmd("all", str(self.tmp))
+        return [f.read_bytes() for f in sorted(self.tmp.glob("element-*.jpeg")) or sorted(self.tmp.glob("*.jpeg"))]
+
+    def close(self):
+        try:
+            self.p.stdin.write("quit\n"); self.p.stdin.flush(); self.p.wait(timeout=30)
+        except Exception:
+            self.p.kill()
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+
+def jpeg_to_png(b):
+    im = Image.open(io.BytesIO(b)); out = io.BytesIO(); im.save(out, "PNG")
+    return out.getvalue()
+
+
+def page(pw, sid, ar, scale=1.0, query=""):
+    """按样片类型开页面：scene.jsx → Remotion，scene.js → 播放器"""
+    return RemotionPage(sid, ar, scale) if is_remotion(sid) else Page(pw, sid, ar, scale, query)
+
+
 def where(sid):
     """样片编号（C-044）→ samples/C-044/；风格包演示片 pack:<名字>[@<颜色>] → packs/<名字>/demo/"""
     return PACKS / sid[5:].split("@")[0] / "demo" if sid.startswith("pack:") else HERE / sid
@@ -69,6 +135,7 @@ class Page:
         self.errors, self.log = [], []
         self.b = pw.chromium.launch(args=ARGS, executable_path=CHROME)
         self.pg = self.b.new_page(viewport={"width": w, "height": h}, device_scale_factor=scale)
+        self.pg.set_default_timeout(300000)   # 水彩笔刷这类重场景，单帧截图可能要几十秒
         self.pg.on("console", self._console)
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
         base, _, col = sid.partition("@")
@@ -98,7 +165,8 @@ class Page:
 
 
 def scene_dur(sid):
-    m = re.search(r"\bdur:\s*([\d.]+)", (where(sid) / "scene.js").read_text(encoding="utf-8"))
+    src = where(sid) / ("scene.jsx" if is_remotion(sid) else "scene.js")
+    m = re.search(r"\bdur[:=]\s*([\d.]+)", src.read_text(encoding="utf-8"))
     return float(m.group(1)) if m else 3.0
 
 
@@ -139,11 +207,9 @@ def encode(p, sid, ar, log):
     enc = subprocess.Popen([ffmpeg(), "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(p.fps),
                             "-vcodec", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "24",
                             "-pix_fmt", "yuv420p", str(silent)], stdin=subprocess.PIPE)
-    frames = []
-    for i in range(round(p.dur * p.fps)):
-        b = p.frame(i / p.fps)
+    frames = p.frames() if hasattr(p, "frames") else [p.frame(i / p.fps) for i in range(round(p.dur * p.fps))]
+    for b in frames:
         enc.stdin.write(b)
-        frames.append(b)
     enc.stdin.close(); enc.wait()
     for crf in (28, 32, 36):                      # 细节多的画面（海浪、噪点）体积大：超过上限就加大压缩重编
         if silent.stat().st_size <= limit:

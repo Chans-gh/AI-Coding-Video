@@ -63,7 +63,7 @@ def main():
             print(f"✗ {sid}：风格目录里没有这个编号"); continue
         d = HERE / sid
         d.mkdir(exist_ok=True)
-        tech = [t for t in s.get("suggested", []) if t in ("Canvas 2D", "WebGL", "WebGL2", "GLSL", "终端字符")] or ["Canvas 2D"]
+        tech = [t for t in s.get("suggested", []) if t in ("Canvas 2D", "WebGL", "WebGL2", "GLSL", "终端字符", "SVG", "HTML/CSS", "GSAP", "p5.js", "p5.brush", "Rough.js", "D3.js", "Three.js", "cannon-es", "Remotion")] or ["Canvas 2D"]
         files = {
             "scene.js": SCENE.format(id=sid, name=s["name"], prompt=s["prompt"], theme=s["theme"], fit=s.get("fit", "")),
             "sound.py": SOUND.format(id=sid, name=s["name"]),

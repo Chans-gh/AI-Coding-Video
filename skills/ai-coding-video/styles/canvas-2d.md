@@ -44,12 +44,16 @@
 
 ## C-003 钢笔淡彩
 
+![钢笔淡彩](../images/C-003.jpg)
+
 ```text
 用钢笔淡彩城市速写风格：奶油色冷压纸，棕褐色针管笔线条轻微抖动、出头、不闭合，透明淡彩随手点上、略微偏离线条并溢出，颜色在纸边溶成空白，整个画面像速写本上的一页。
 ```
 
 - 题材：手绘与绘画
 - 适合：城市、公园、日常
+- 技术（已验证）：Canvas 2D · Rough.js · Playwright · ffmpeg
+- 样片代码：[samples/C-003/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-003)
 - 技术（建议）：Canvas 2D · Rough.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/urban-sketch/STYLE.md)
 
@@ -145,12 +149,16 @@
 
 ## C-012 手绘卡通角色片
 
+![手绘卡通角色片](../images/C-012.jpg)
+
 ```text
 用手绘卡通角色片风格：纸张质感背景，用 p5.brush 水彩笔刷上色、线条略带抖动，角色造型简单且全片固定，有清晰表情和夸张但克制的表演，每个镜头围绕角色情绪展开。
 ```
 
 - 题材：手绘与绘画
 - 适合：角色短片、个人故事
+- 技术（已验证）：Canvas 2D · p5.js · p5.brush · Playwright · ffmpeg
+- 样片代码：[samples/C-012/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-012)
 - 技术（建议）：Canvas 2D · p5.js · p5.brush
 - 参考：[ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase)
 
@@ -418,12 +426,16 @@
 
 ## C-060 16mm 黑白纪录片
 
+![16mm 黑白纪录片](../images/C-060.jpg)
+
 ```text
 用 16mm 黑白老纪录片风格：粗胶片颗粒、随机划痕和灰尘、整体明暗轻微闪烁、四角暗角，开头是倒数计时片头，字幕用打字机字体，片名用衣线字加细边框，聚光灯打在主体上。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：历史、起源故事
+- 技术（已验证）：Canvas 2D · WebGL · GLSL · Playwright · ffmpeg
+- 样片代码：[samples/C-060/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-060)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/belgesel-16mm)
 
@@ -750,12 +762,16 @@
 
 ## C-133 早期文艺复兴湿壁画
 
+![早期文艺复兴湿壁画](../images/C-133.jpg)
+
 ```text
 用早期文艺复兴湿壁画风格：干灰泥墙面略带粉化斑驳，颜色是粉蓝天空、土绿、淡赭和玫瑰色，人物像厚重的体块，轮廓清楚、明暗简单，建筑像舞台盒子一样把场景分成一格格可读的空间，光线均匀清明几乎没有投影，镜头沿墙面从一幕平移到下一幕，配素歌吟唱。
 ```
 
 - 题材：手绘与绘画
 - 适合：历史叙事、城市与社会生活、连环故事
+- 技术（已验证）：Canvas 2D · p5.js · Playwright · ffmpeg
+- 样片代码：[samples/C-133/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-133)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 38_giotto](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/38_giotto.md) · [huashu 风格卡 39_piero](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/39_piero.md) · [huashu 风格卡 43_lorenzetti](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/43_lorenzetti.md)
 
