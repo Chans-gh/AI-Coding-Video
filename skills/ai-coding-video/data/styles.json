@@ -46,16 +46,23 @@
    "name": "水彩",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-002.jpg",
    "prompt": "用水彩风格：暖白色冷压棉纸纹理，颜料透明叠色、边缘有水渍积色，干笔处露出纸白，颜色略微溢出铅笔线，一镜到底横移穿过风景，角落有手写批注，结尾拉远成一张手绘地图。",
    "theme": "手绘与绘画",
    "fit": "自然、旅行、温情 MV",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-002/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-002"
+   },
    "pack": null,
    "refs": [
     {
@@ -102,17 +109,24 @@
    "name": "油画厚涂",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-004.jpg",
    "prompt": "用刮刀油画厚涂风格：大块平整、边缘锋利的色面，侧光照出每一道颜料隆起的肌理，先保证明暗结构再加质感，焦点处硬边、其余区域安静平涂，人物用少量笔触概括。",
    "theme": "手绘与绘画",
    "fit": "情绪片、艺术感广告",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-004/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-004"
+   },
    "pack": null,
    "refs": [
     {
@@ -197,16 +211,23 @@
    "name": "一笔画",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-008.jpg",
    "prompt": "用一笔画风格：一根不离纸的黑色墨线在暖白纸上连续画出所有人物和场景，笔尖始终可见地向前移动，转场就是这根线变形成下一个画面，结尾镜头拉远，所有画过的东西原来是一整幅画。",
    "theme": "手绘与绘画",
    "fit": "开场、收尾、人生故事",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-008/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-008"
+   },
    "pack": null,
    "refs": [
     {
@@ -261,15 +282,22 @@
    "name": "黑板粉笔",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-010.jpg",
    "prompt": "用黑板粉笔风格：墨绿色黑板带旧擦痕，白色和黄色粉笔字有颗粒和断笔，板擦擦过留下灰雾，画面像老师上课的板书，关键词用粉笔圈出和画下划线。",
    "theme": "手绘与绘画",
    "fit": "课程、规则、“别忘了”",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-010/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-010"
+   },
    "pack": null,
    "refs": [
     {
@@ -284,16 +312,23 @@
    "name": "沙画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-011.jpg",
    "prompt": "用沙画风格：暖光灯箱上的一层细沙，形象由手指划开的沙痕和剪影构成，只用棕褐和暖黄两种色调，转场是沙子被抹开再聚成下一个画面。",
    "theme": "手绘与绘画",
    "fit": "历史叙事",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-011/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-011"
+   },
    "pack": null,
    "refs": []
   },
@@ -419,15 +454,22 @@
    "name": "纸雕灯影",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-016.jpg",
    "prompt": "用纸雕灯影风格：6–9 层镂空卡纸叠在浅木盒里，背后暖色灯光透过纸层，窗户和月亮从镂孔里发亮，每层在下一层上投出柔和阴影，镜头在层与层之间形成视差，开场先拍桌上这只真实灯箱再推进去。",
    "theme": "东方传统",
    "fit": "中秋、节日、团圆",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-016/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-016"
+   },
    "pack": null,
    "refs": [
     {
@@ -446,15 +488,22 @@
    "name": "麻胶版画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-017.jpg",
    "prompt": "用麻胶版画（linocut）风格：米色纸上只用黑色加一种朱红，所有形状边缘带雕刻刀痕，大色块里有油墨印不实的斑驳颗粒，放射线和粗体大字构成宣传海报式构图，元素像盖印一样“压”上画面。",
    "theme": "印刷、版画与装饰",
    "fit": "宣言、单一强信息",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-017/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-017"
+   },
    "pack": null,
    "refs": [
     {
@@ -492,16 +541,23 @@
    "name": "Risograph 孔版印刷",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-019.jpg",
    "prompt": "用 Risograph 孔版印刷风格：暖色纸上 2–3 种半透明荧光专色（如荧光粉、蓝、黄）叠印出新颜色，暗部用半调网点，油墨有颗粒和不均，各色版每帧轻微错位抖动，像一张张印出来的动画。",
    "theme": "印刷、版画与装饰",
    "fit": "轻松生活、潮流品牌",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-019/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-019"
+   },
    "pack": null,
    "refs": [
     {
@@ -540,15 +596,22 @@
    "name": "蓝图 / 工程制图",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-021.jpg",
    "prompt": "用蓝图工程制图风格：普鲁士蓝晒图纸带折痕和水渍，白色技术线分 4 种粗细，按真实制图顺序画出（中心线→轮廓→虚线→尺寸线），手写标注和尺寸会动，右下角有图框标题栏和一个红色印章。",
    "theme": "印刷、版画与装饰",
    "fit": "产品原理、结构拆解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-021/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-021"
+   },
    "pack": null,
    "refs": [
     {
@@ -567,17 +630,24 @@
    "name": "彩色玻璃窗",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-022.jpg",
    "prompt": "用中世纪彩色玻璃窗风格：黑色铅条把画面分成手工切割的玻璃块，宝石蓝、宝石红、琥珀黄玻璃带气泡和手绘纹饰，阳光照到哪块玻璃哪块才亮起来并“活”过来，彩色光斑投在石墙上。",
    "theme": "印刷、版画与装饰",
    "fit": "传说、史诗感故事",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-022/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-022"
+   },
    "pack": null,
    "refs": [
     {
@@ -592,16 +662,23 @@
    "name": "金色马赛克",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-023.jpg",
    "prompt": "用金色马赛克风格：画面由上万块带缝隙的小瓷砖拼成，金箔瓷砖反光闪烁，瓷砖像鸟群鱼群一样聚散流动，拼成新形象后再散开，边框是古典马赛克花纹。",
    "theme": "印刷、版画与装饰",
    "fit": "艺术短片、循环视频",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-023/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-023"
+   },
    "pack": null,
    "refs": [
     {
@@ -616,16 +693,23 @@
    "name": "装饰艺术（Art Deco）",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-024.jpg",
    "prompt": "用 1930 年代装饰艺术（Art Deco）风格：黑漆底、金色雕刻线、喷枪渐变的几何形，每个构图都有一条中轴、左右对称，转场沿中轴开合，灯泡一个一个亮起，像一张会动的豪华酒店海报，爵士乐配乐。",
    "theme": "印刷、版画与装饰",
    "fit": "高端品牌、酒店、爵士题材",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-024/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-024"
+   },
    "pack": null,
    "refs": [
     {
@@ -691,16 +775,23 @@
    "name": "拼贴",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-027.jpg",
    "prompt": "用拼贴风格：剪报字母、撕边纸片、格子本、胶带和荧光笔涂抹叠在一起，强对比配色（如粉红加黑），元素一张张“贴”上画面并跟节拍跳动，字幕用勒索信式拼字。",
    "theme": "纸艺、材质与定格",
    "fit": "MV、观点讲解、节庆",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "HTML/CSS"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-027/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-027"
+   },
    "pack": null,
    "refs": [
     {
@@ -715,16 +806,23 @@
    "name": "黏土定格",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-028.jpg",
    "prompt": "用黏土定格动画风格：所有物体是圆润的橡皮泥，表面有指纹和按压痕迹，暖色柔光带软阴影，按 12fps 定格节奏运动、每帧轮廓轻微变化，形状之间像被捏过一样变形过渡。",
    "theme": "纸艺、材质与定格",
    "fit": "可爱、亲切内容",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-028/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-028"
+   },
    "pack": null,
    "refs": [
     {
@@ -786,16 +884,23 @@
    "name": "包豪斯",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-031.jpg",
    "prompt": "用包豪斯风格：米白底加浅网格，只用圆、方、三角三种基本形和红、黄、蓝、黑四色，超大无衬线粗体字压在网格上，形状滑入、旋转、切割组成海报式构图，转场用一个大色块擦过整屏。",
    "theme": "平面设计与动态排版",
    "fit": "原则、步骤、强信息",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-031/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-031"
+   },
    "pack": null,
    "refs": [
     {
@@ -810,16 +915,23 @@
    "name": "孟菲斯",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-032.jpg",
    "prompt": "用 80 年代孟菲斯风格：粉色、薄荷绿、明黄等糖果色撞色，满屏漂浮波浪线、锯齿、圆点阵、小三角，粗黑描边加错位硬阴影，所有元素弹跳入场带过冲，节奏活泼。",
    "theme": "平面设计与动态排版",
    "fit": "轻松公告、短视频",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-032/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-032"
+   },
    "pack": null,
    "refs": [
     {
@@ -858,16 +970,23 @@
    "name": "60 年代间谍片头",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-034.jpg",
    "prompt": "用 60 年代间谍片片头风格：剪纸剪影人物在由演职员字幕搭成的布景里追逐，只用四种平涂油墨（黑、暖白、橙红、芒黄之类），每一声铜管重音就是一个剪切，最后才拼出片名，爵士大乐队配乐。",
    "theme": "平面设计与动态排版",
    "fit": "片头、预告",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-034/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-034"
+   },
    "pack": null,
    "refs": [
     {
@@ -999,15 +1118,22 @@
    "name": "等距信息图",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-039.jpg",
    "prompt": "用等距信息图风格：整个系统是一座 30° 等距微缩沙盘，每个方块只用亮、中、暗三个色阶平涂，细墨线标注和 Isotype 式数字图标，镜头一镜到底穿过整条流程、剖开物体看内部，最后拉远成一张可打印的信息图。",
    "theme": "信息讲解与产品发布",
    "fit": "流程、系统拆解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-039/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-039"
+   },
    "pack": null,
    "refs": [
     {
@@ -1026,16 +1152,23 @@
    "name": "数据叙事",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-040.jpg",
    "prompt": "用数据叙事风格：米色纸上用红蓝铅笔把真实数据一个点一个点画出来，每个数据点出现时响一个音，手写批注钉在关键数字旁，图表本身就是镜头和情节，数字只能来自我提供的数据文件。",
    "theme": "信息讲解与产品发布",
    "fit": "用数字说话、前后对比",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "D3.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-040/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-040"
+   },
    "pack": null,
    "refs": [
     {
@@ -1054,15 +1187,22 @@
    "name": "公式推导讲解（Manim）",
    "file": "styles/framework.md",
    "layer": "framework",
-   "image": null,
+   "image": "images/C-041.jpg",
    "prompt": "用 Manim 数学讲解风格：深色背景，公式用 LaTeX 渲染并逐项变形、对应项用同一颜色高亮，坐标系和曲线边讲边画出，用动点演示变化，底部字幕和旁白用同一条时间轴。",
    "theme": "信息讲解与产品发布",
    "fit": "数学、AI 原理",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Manim"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-041/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-041"
+   },
    "pack": null,
    "refs": [
     {
@@ -1194,16 +1334,23 @@
    "name": "UI 形变循环",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-046.jpg",
    "prompt": "用 UI 形变循环风格：暖灰底、一种几何无衬线字体、单色加一个强调色，一个界面元素连续形变成下一个（按钮→加载→对勾→卡片…），每次点击和拖动都由可见光标触发，用克制的弹簧动画卡拍，最后一帧与第一帧完全相同可无缝循环；禁用弹跳缓动、粒子和发光。",
    "theme": "信息讲解与产品发布",
    "fit": "产品动效、作品集",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS",
     "Motion"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-046/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-046"
+   },
    "pack": null,
    "refs": [
     {
@@ -1243,16 +1390,23 @@
    "name": "1930 年代橡皮管卡通",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-048.jpg",
    "prompt": "用 1930 年代橡皮管卡通风格：黑白手工勾线加灰阶平涂，角色四肢是没有关节的橡皮管、戴白手套、黑豆眼带缺口，万物（杯子、水龙头、房子）都活着并跟着热爵士乐队左右摇摆，整个画面像老胶片，有颗粒、划痕和抖动。",
    "theme": "卡通与动漫",
    "fit": "搞笑追逐",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-048/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-048"
+   },
    "pack": null,
    "refs": [
     {
@@ -1271,15 +1425,22 @@
    "name": "80 年代赛璐璐动画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-049.jpg",
    "prompt": "用 80 年代日本赛璐璐动画风格：角色是双色平涂（亮面加一层硬阴影）的赛璐璐片，叠在喷枪渐变的手绘背景上，霓虹灯逆光勾出轮廓，按一拍三的有限动画节奏动，整体像 1987 年录像带在显像管电视上播放，有轻微色散和带子噪点。",
    "theme": "卡通与动漫",
    "fit": "城市夜景、怀旧",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-049/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-049"
+   },
    "pack": null,
    "refs": [
     {
@@ -1341,16 +1502,23 @@
    "name": "连环漫画 / 漫画分格",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-052.jpg",
    "prompt": "用复古报纸连环漫画风格：黑色粗边框分格，网点印刷底纹，黄、红、青高饱和平涂，对白气泡和旁白框用手写字，关键动作配爆炸形拟声字和速度线，镜头在格子之间推进，最后拉远看到整页漫画。",
    "theme": "卡通与动漫",
    "fit": "搞笑、对话、悬念",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "HTML/CSS"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-052/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-052"
+   },
    "pack": null,
    "refs": [
     {
@@ -1569,15 +1737,22 @@
    "name": "1920 年代默片",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-061.jpg",
    "prompt": "用 1920 年代默片喜剧风格：画面是铜版插画式墨线加银灰晕染，4:3 画幅放在天鹅绒幕布中间，胶片闪烁、轻微上下晃动，对白用黑底白字的字幕卡代替，整段用一个固定全景镜头讲完一个笑点，影院钢琴即兴配乐。",
    "theme": "电影年代与屏幕科技",
    "fit": "喜剧",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-061/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-061"
+   },
    "pack": null,
    "refs": [
     {
@@ -1677,16 +1852,23 @@
    "name": "科幻 HUD 界面",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-065.jpg",
    "prompt": "用科幻 HUD 界面风格：深蓝黑底、冷青白色发丝细线，四角有取景框和小字号等宽字读数，雷达圆环、波形和进度数字实时跳动，锁定框吸附到目标上，元素出现时带扫描和轻微故障闪烁。",
    "theme": "电影年代与屏幕科技",
    "fit": "分析、评分",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-065/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-065"
+   },
    "pack": null,
    "refs": [
     {
@@ -1724,17 +1906,24 @@
    "name": "Demoscene",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-067.jpg",
    "prompt": "用 C64 式 demoscene 风格：低分辨率像素和 16 色复古调色板，水平彩虹光栅条、正弦波滚动字幕、程序化隧道和粒子，所有画面和芯片音乐都由同一个程序实时生成，段落之间硬切换。",
    "theme": "电影年代与屏幕科技",
    "fit": "炫技、音乐片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL",
     "Hydra"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-067/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-067"
+   },
    "pack": null,
    "refs": [
     {
@@ -1964,17 +2153,24 @@
    "name": "生成式抽象 / 音乐可视化",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-077.jpg",
    "prompt": "用生成式抽象音乐可视化风格：分形纹理和有机体形态按音乐的频谱和节拍生长、脉动、变形，青蓝和冷色为主，每个可见的碰撞或重音都对应一次视觉变化，整段没有具象角色和文字。",
    "theme": "3D 与实时图形",
    "fit": "音乐片、艺术装置",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.js",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-077/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-077"
+   },
    "pack": null,
    "refs": [
     {

@@ -10,12 +10,16 @@
 
 ## C-008 一笔画
 
+![一笔画](../images/C-008.jpg)
+
 ```text
 用一笔画风格：一根不离纸的黑色墨线在暖白纸上连续画出所有人物和场景，笔尖始终可见地向前移动，转场就是这根线变形成下一个画面，结尾镜头拉远，所有画过的东西原来是一整幅画。
 ```
 
 - 题材：手绘与绘画
 - 适合：开场、收尾、人生故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-008/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-008)
 - 技术（建议）：SVG · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/one-line/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/tek-cizgi)
 
@@ -70,12 +74,16 @@
 
 ## C-021 蓝图 / 工程制图
 
+![蓝图 / 工程制图](../images/C-021.jpg)
+
 ```text
 用蓝图工程制图风格：普鲁士蓝晒图纸带折痕和水渍，白色技术线分 4 种粗细，按真实制图顺序画出（中心线→轮廓→虚线→尺寸线），手写标注和尺寸会动，右下角有图框标题栏和一个红色印章。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：产品原理、结构拆解
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-021/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-021)
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/blueprint/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/blueprint)
 
@@ -83,12 +91,16 @@
 
 ## C-024 装饰艺术（Art Deco）
 
+![装饰艺术（Art Deco）](../images/C-024.jpg)
+
 ```text
 用 1930 年代装饰艺术（Art Deco）风格：黑漆底、金色雕刻线、喷枪渐变的几何形，每个构图都有一条中轴、左右对称，转场沿中轴开合，灯泡一个一个亮起，像一张会动的豪华酒店海报，爵士乐配乐。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：高端品牌、酒店、爵士题材
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-024/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-024)
 - 技术（建议）：SVG · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/art-deco/STYLE.md)
 
@@ -96,12 +108,16 @@
 
 ## C-031 包豪斯
 
+![包豪斯](../images/C-031.jpg)
+
 ```text
 用包豪斯风格：米白底加浅网格，只用圆、方、三角三种基本形和红、黄、蓝、黑四色，超大无衬线粗体字压在网格上，形状滑入、旋转、切割组成海报式构图，转场用一个大色块擦过整屏。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：原则、步骤、强信息
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-031/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-031)
 - 技术（建议）：SVG · GSAP
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/bauhaus)
 
@@ -109,12 +125,16 @@
 
 ## C-032 孟菲斯
 
+![孟菲斯](../images/C-032.jpg)
+
 ```text
 用 80 年代孟菲斯风格：粉色、薄荷绿、明黄等糖果色撞色，满屏漂浮波浪线、锯齿、圆点阵、小三角，粗黑描边加错位硬阴影，所有元素弹跳入场带过冲，节奏活泼。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：轻松公告、短视频
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-032/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-032)
 - 技术（建议）：SVG · GSAP
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/memphis)
 
@@ -135,12 +155,16 @@
 
 ## C-034 60 年代间谍片头
 
+![60 年代间谍片头](../images/C-034.jpg)
+
 ```text
 用 60 年代间谍片片头风格：剪纸剪影人物在由演职员字幕搭成的布景里追逐，只用四种平涂油墨（黑、暖白、橙红、芒黄之类），每一声铜管重音就是一个剪切，最后才拼出片名，爵士大乐队配乐。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：片头、预告
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-034/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-034)
 - 技术（建议）：SVG · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/spy-titles/STYLE.md)
 
@@ -195,12 +219,16 @@
 
 ## C-039 等距信息图
 
+![等距信息图](../images/C-039.jpg)
+
 ```text
 用等距信息图风格：整个系统是一座 30° 等距微缩沙盘，每个方块只用亮、中、暗三个色阶平涂，细墨线标注和 Isotype 式数字图标，镜头一镜到底穿过整条流程、剖开物体看内部，最后拉远成一张可打印的信息图。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：流程、系统拆解
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-039/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-039)
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/iso-infographic/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/izometrik)
 
@@ -208,12 +236,16 @@
 
 ## C-040 数据叙事
 
+![数据叙事](../images/C-040.jpg)
+
 ```text
 用数据叙事风格：米色纸上用红蓝铅笔把真实数据一个点一个点画出来，每个数据点出现时响一个音，手写批注钉在关键数字旁，图表本身就是镜头和情节，数字只能来自我提供的数据文件。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：用数字说话、前后对比
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-040/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-040)
 - 技术（建议）：SVG · D3.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/dataviz/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/veri)
 
@@ -247,12 +279,16 @@
 
 ## C-046 UI 形变循环
 
+![UI 形变循环](../images/C-046.jpg)
+
 ```text
 用 UI 形变循环风格：暖灰底、一种几何无衬线字体、单色加一个强调色，一个界面元素连续形变成下一个（按钮→加载→对勾→卡片…），每次点击和拖动都由可见光标触发，用克制的弹簧动画卡拍，最后一帧与第一帧完全相同可无缝循环；禁用弹跳缓动、粒子和发光。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：产品动效、作品集
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-046/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-046)
 - 技术（建议）：HTML/CSS · Motion
 - 参考：[实现清单](https://github.com/opusvideo/awesome-claude-video/blob/main/IMPLEMENTATION_GUIDES.md)
 
@@ -299,12 +335,16 @@
 
 ## C-065 科幻 HUD 界面
 
+![科幻 HUD 界面](../images/C-065.jpg)
+
 ```text
 用科幻 HUD 界面风格：深蓝黑底、冷青白色发丝细线，四角有取景框和小字号等宽字读数，雷达圆环、波形和进度数字实时跳动，锁定框吸附到目标上，元素出现时带扫描和轻微故障闪烁。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：分析、评分
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-065/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-065)
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/hud)
 

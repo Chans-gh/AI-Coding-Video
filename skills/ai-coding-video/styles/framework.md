@@ -10,12 +10,16 @@
 
 ## C-041 公式推导讲解（Manim）
 
+![公式推导讲解（Manim）](../images/C-041.jpg)
+
 ```text
 用 Manim 数学讲解风格：深色背景，公式用 LaTeX 渲染并逐项变形、对应项用同一颜色高亮，坐标系和曲线边讲边画出，用动点演示变化，底部字幕和旁白用同一条时间轴。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：数学、AI 原理
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-041/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-041)
 - 技术（建议）：Manim
 - 参考：[@dotey](https://x.com/dotey/status/2103683057689522564) · [@ng169onX](https://x.com/ng169onX/status/2103183904563998809)
 

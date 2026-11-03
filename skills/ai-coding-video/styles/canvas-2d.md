@@ -27,12 +27,16 @@
 
 ## C-002 水彩
 
+![水彩](../images/C-002.jpg)
+
 ```text
 用水彩风格：暖白色冷压棉纸纹理，颜料透明叠色、边缘有水渍积色，干笔处露出纸白，颜色略微溢出铅笔线，一镜到底横移穿过风景，角落有手写批注，结尾拉远成一张手绘地图。
 ```
 
 - 题材：手绘与绘画
 - 适合：自然、旅行、温情 MV
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-002/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-002)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/watercolor/STYLE.md) · [@johnknopf](https://x.com/johnknopf/status/2103170666187117006) · [@mablesjoseph](https://x.com/mablesjoseph/status/2103465246014746943)
 
@@ -53,12 +57,16 @@
 
 ## C-004 油画厚涂
 
+![油画厚涂](../images/C-004.jpg)
+
 ```text
 用刮刀油画厚涂风格：大块平整、边缘锋利的色面，侧光照出每一道颜料隆起的肌理，先保证明暗结构再加质感，焦点处硬边、其余区域安静平涂，人物用少量笔触概括。
 ```
 
 - 题材：手绘与绘画
 - 适合：情绪片、艺术感广告
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-004/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-004)
 - 技术（建议）：Canvas 2D · WebGL · GLSL
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/impasto/STYLE.md) · [@yumaeriel](https://x.com/yumaeriel/status/2103053166006657284)
 
@@ -104,12 +112,16 @@
 
 ## C-010 黑板粉笔
 
+![黑板粉笔](../images/C-010.jpg)
+
 ```text
 用黑板粉笔风格：墨绿色黑板带旧擦痕，白色和黄色粉笔字有颗粒和断笔，板擦擦过留下灰雾，画面像老师上课的板书，关键词用粉笔圈出和画下划线。
 ```
 
 - 题材：手绘与绘画
 - 适合：课程、规则、“别忘了”
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-010/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-010)
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kara-tahta)
 
@@ -117,12 +129,16 @@
 
 ## C-011 沙画
 
+![沙画](../images/C-011.jpg)
+
 ```text
 用沙画风格：暖光灯箱上的一层细沙，形象由手指划开的沙痕和剪影构成，只用棕褐和暖黄两种色调，转场是沙子被抹开再聚成下一个画面。
 ```
 
 - 题材：手绘与绘画
 - 适合：历史叙事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-011/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-011)
 - 技术（建议）：Canvas 2D · WebGL
 
 <a id="C-012"></a>
@@ -176,12 +192,16 @@
 
 ## C-016 纸雕灯影
 
+![纸雕灯影](../images/C-016.jpg)
+
 ```text
 用纸雕灯影风格：6–9 层镂空卡纸叠在浅木盒里，背后暖色灯光透过纸层，窗户和月亮从镂孔里发亮，每层在下一层上投出柔和阴影，镜头在层与层之间形成视差，开场先拍桌上这只真实灯箱再推进去。
 ```
 
 - 题材：东方传统
 - 适合：中秋、节日、团圆
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-016/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-016)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/paper-lantern/STYLE.md) · [@makwired](https://x.com/makwired/status/2103008945220567166)
 
@@ -189,12 +209,16 @@
 
 ## C-017 麻胶版画
 
+![麻胶版画](../images/C-017.jpg)
+
 ```text
 用麻胶版画（linocut）风格：米色纸上只用黑色加一种朱红，所有形状边缘带雕刻刀痕，大色块里有油墨印不实的斑驳颗粒，放射线和粗体大字构成宣传海报式构图，元素像盖印一样“压”上画面。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：宣言、单一强信息
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-017/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-017)
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/linocut)
 
@@ -215,12 +239,16 @@
 
 ## C-019 Risograph 孔版印刷
 
+![Risograph 孔版印刷](../images/C-019.jpg)
+
 ```text
 用 Risograph 孔版印刷风格：暖色纸上 2–3 种半透明荧光专色（如荧光粉、蓝、黄）叠印出新颜色，暗部用半调网点，油墨有颗粒和不均，各色版每帧轻微错位抖动，像一张张印出来的动画。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：轻松生活、潮流品牌
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-019/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-019)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/risograph/STYLE.md)
 
@@ -241,12 +269,16 @@
 
 ## C-027 拼贴
 
+![拼贴](../images/C-027.jpg)
+
 ```text
 用拼贴风格：剪报字母、撕边纸片、格子本、胶带和荧光笔涂抹叠在一起，强对比配色（如粉红加黑），元素一张张“贴”上画面并跟节拍跳动，字幕用勒索信式拼字。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：MV、观点讲解、节庆
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-027/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-027)
 - 技术（建议）：Canvas 2D · HTML/CSS
 - 参考：[@NFT_Chen](https://x.com/NFT_Chen/status/2103380404791333144)
 
@@ -279,12 +311,16 @@
 
 ## C-048 1930 年代橡皮管卡通
 
+![1930 年代橡皮管卡通](../images/C-048.jpg)
+
 ```text
 用 1930 年代橡皮管卡通风格：黑白手工勾线加灰阶平涂，角色四肢是没有关节的橡皮管、戴白手套、黑豆眼带缺口，万物（杯子、水龙头、房子）都活着并跟着热爵士乐队左右摇摆，整个画面像老胶片，有颗粒、划痕和抖动。
 ```
 
 - 题材：卡通与动漫
 - 适合：搞笑追逐
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-048/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-048)
 - 技术（建议）：Canvas 2D · SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/rubber-hose/STYLE.md) · [@ianstig](https://x.com/ianstig/status/2103169675928764486)
 
@@ -292,12 +328,16 @@
 
 ## C-049 80 年代赛璐璐动画
 
+![80 年代赛璐璐动画](../images/C-049.jpg)
+
 ```text
 用 80 年代日本赛璐璐动画风格：角色是双色平涂（亮面加一层硬阴影）的赛璐璐片，叠在喷枪渐变的手绘背景上，霓虹灯逆光勾出轮廓，按一拍三的有限动画节奏动，整体像 1987 年录像带在显像管电视上播放，有轻微色散和带子噪点。
 ```
 
 - 题材：卡通与动漫
 - 适合：城市夜景、怀旧
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-049/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-049)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/cel-anime-80s/STYLE.md)
 
@@ -305,12 +345,16 @@
 
 ## C-052 连环漫画 / 漫画分格
 
+![连环漫画 / 漫画分格](../images/C-052.jpg)
+
 ```text
 用复古报纸连环漫画风格：黑色粗边框分格，网点印刷底纹，黄、红、青高饱和平涂，对白气泡和旁白框用手写字，关键动作配爆炸形拟声字和速度线，镜头在格子之间推进，最后拉远看到整页漫画。
 ```
 
 - 题材：卡通与动漫
 - 适合：搞笑、对话、悬念
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-052/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-052)
 - 技术（建议）：Canvas 2D · HTML/CSS
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/cizgi-roman) · [@elianiva_](https://x.com/elianiva_/status/2103003425915195750)
 
@@ -387,12 +431,16 @@
 
 ## C-061 1920 年代默片
 
+![1920 年代默片](../images/C-061.jpg)
+
 ```text
 用 1920 年代默片喜剧风格：画面是铜版插画式墨线加银灰晕染，4:3 画幅放在天鹅绒幕布中间，胶片闪烁、轻微上下晃动，对白用黑底白字的字幕卡代替，整段用一个固定全景镜头讲完一个笑点，影院钢琴即兴配乐。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：喜剧
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-061/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-061)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/silent-film/STYLE.md)
 
@@ -400,12 +448,16 @@
 
 ## C-077 生成式抽象 / 音乐可视化
 
+![生成式抽象 / 音乐可视化](../images/C-077.jpg)
+
 ```text
 用生成式抽象音乐可视化风格：分形纹理和有机体形态按音乐的频谱和节拍生长、脉动、变形，青蓝和冷色为主，每个可见的碰撞或重音都对应一次视觉变化，整段没有具象角色和文字。
 ```
 
 - 题材：3D 与实时图形
 - 适合：音乐片、艺术装置
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-077/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-077)
 - 技术（建议）：Canvas 2D · p5.js · WebGL
 - 参考：[@KamStudioLabs](https://x.com/KamStudioLabs/status/2102899866762440893)
 

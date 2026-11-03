@@ -10,12 +10,16 @@
 
 ## C-022 彩色玻璃窗
 
+![彩色玻璃窗](../images/C-022.jpg)
+
 ```text
 用中世纪彩色玻璃窗风格：黑色铅条把画面分成手工切割的玻璃块，宝石蓝、宝石红、琥珀黄玻璃带气泡和手绘纹饰，阳光照到哪块玻璃哪块才亮起来并“活”过来，彩色光斑投在石墙上。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：传说、史诗感故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-022/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-022)
 - 技术（建议）：WebGL · GLSL · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/stained-glass/STYLE.md)
 
@@ -23,12 +27,16 @@
 
 ## C-023 金色马赛克
 
+![金色马赛克](../images/C-023.jpg)
+
 ```text
 用金色马赛克风格：画面由上万块带缝隙的小瓷砖拼成，金箔瓷砖反光闪烁，瓷砖像鸟群鱼群一样聚散流动，拼成新形象后再散开，边框是古典马赛克花纹。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：艺术短片、循环视频
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-023/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-023)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@dfeinition](https://x.com/dfeinition/status/2102436001473786054)
 
@@ -49,12 +57,16 @@
 
 ## C-028 黏土定格
 
+![黏土定格](../images/C-028.jpg)
+
 ```text
 用黏土定格动画风格：所有物体是圆润的橡皮泥，表面有指纹和按压痕迹，暖色柔光带软阴影，按 12fps 定格节奏运动、每帧轮廓轻微变化，形状之间像被捏过一样变形过渡。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：可爱、亲切内容
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-028/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-028)
 - 技术（建议）：WebGL · Three.js
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kil) · [@alexalbert__](https://x.com/alexalbert__/status/2102458348511879448)
 
@@ -152,12 +164,16 @@
 
 ## C-067 Demoscene
 
+![Demoscene](../images/C-067.jpg)
+
 ```text
 用 C64 式 demoscene 风格：低分辨率像素和 16 色复古调色板，水平彩虹光栅条、正弦波滚动字幕、程序化隧道和粒子，所有画面和芯片音乐都由同一个程序实时生成，段落之间硬切换。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：炫技、音乐片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-067/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-067)
 - 技术（建议）：WebGL · GLSL · Hydra
 - 参考：[@gandamu_ml](https://x.com/gandamu_ml/status/2102919394775220530) · [@JustinPerea](https://x.com/JustinPerea/status/2102893186330841502)
 
