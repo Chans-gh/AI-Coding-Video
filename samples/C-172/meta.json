@@ -1,5 +1,9 @@
 {
   "en_name": "Fireflies at dusk",
-  "en_how": "Sky, tree line and grass silhouettes are painted once; hundreds of lights each get a depth, orbit radius and breathing rate, placed by noise and sines; near ones are drawn as large soft bokeh sprites, far ones as sharp dots, and around two seconds half of them fly to sample points of a character and scatter again.",
-  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+  "en_how": "Sky, tree line and grass silhouettes are painted once; hundreds of lights each get a depth, orbit radius and breathing rate, placed by noise and sines; near ones are drawn as large soft bokeh sprites, far ones as sharp dots, and around two seconds a dedicated swarm flies to sample points of a character while a faint glow of the glyph lights up behind them, then they scatter again.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
 }

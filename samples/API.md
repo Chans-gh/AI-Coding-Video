@@ -47,6 +47,8 @@
 - `shuffle(a, seed = 1)` — 按种子原地洗牌
 - `polyLen(pts)` — 折线总长
 - `drawPartial(ctx, pts, p, close = false)` — 只描出折线的前 p（0–1）部分，返回笔尖位置；做笔画逐渐写出
+- `resample(pts, n)` — 折线按弧长均匀取 n+1 个点，每点带单位法线 {x, y, nx, ny}；做笔刷、沿线排东西
+- `brushStroke(ctx, pts, w, p = 1, o = {})` — 干笔：沿折线 pts 画宽 w 的一笔，只画前 p（0–1）；由一束细“笔毛”组成，越到末端越干、笔毛断开成飞白。o：{dry 末端干的程度 0–1, seed, color, bristles 根数, taper 是否两头收尖}
 - `circlePts(cx, cy, r, n = 64, a0 = 0, a1 = TAU, wob = 0, seed = 0)` — 圆弧折线点，wob 加手绘抖动
 - `linePts(x0, y0, x1, y1, n = 12, wob = 0, seed = 0)` — 直线折线点，wob 加手绘抖动
 - `rectPts(x, y, w, h, wob = 0, seed = 0)` — 矩形折线点（顺时针一圈），wob 加手绘抖动
@@ -58,7 +60,7 @@
 
 - `glInit(w, h)` — 准备 WebGL2 离屏画布（init 里调一次）
 - `glProgram(name, frag)` — 编译全屏片元着色器；frag 里可用 uniform T（秒）、R（分辨率），输出写 O
-- `glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H)` — 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时
+- `glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H, extra = {})` — 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时。extra 传额外 uniform：数字 → float，2–4 个数 → vec，更长的数组 → float[]，画布 → sampler2D 贴图
 - `S` — 场景列表（播放器读 S[0]）
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, init() → 状态 s, draw(ctx, t, s, f)}
 

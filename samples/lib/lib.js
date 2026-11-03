@@ -140,6 +140,39 @@ function drawPartial(ctx, pts, p, close = false) {
   if (close && p >= 1) ctx.closePath();
   ctx.stroke(); return tip;
 }
+// 折线按弧长均匀取 n+1 个点，每点带单位法线 {x, y, nx, ny}；做笔刷、沿线排东西
+function resample(pts, n) {
+  const L = [0]; for (let i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const out = [];
+  for (let k = 0; k <= n; k++) {
+    const d = L[L.length - 1] * k / n; let i = 1; while (i < L.length - 1 && L[i] < d) i++;
+    const q = (d - L[i - 1]) / (L[i] - L[i - 1] || 1), a = pts[i - 1], b = pts[i];
+    const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+    out.push({ x: a[0] + dx * q, y: a[1] + dy * q, nx: -dy / l, ny: dx / l });
+  }
+  return out;
+}
+// 干笔：沿折线 pts 画宽 w 的一笔，只画前 p（0–1）；由一束细“笔毛”组成，越到末端越干、笔毛断开成飞白。o：{dry 末端干的程度 0–1, seed, color, bristles 根数, taper 是否两头收尖}
+function brushStroke(ctx, pts, w, p = 1, o = {}) {
+  const P = resample(pts, Math.max(8, Math.round(polyLen(pts) / Math.max(2, w * .35))));
+  const n = Math.round(clamp(p) * (P.length - 1)); if (n < 1) return;
+  const NB = o.bristles || 14, seed = o.seed || 1, R = mulberry32(seed), hs = Array.from({ length: NB }, () => R()), dry0 = o.dry ?? .4;
+  ctx.save(); ctx.strokeStyle = o.color || '#14110e'; ctx.lineWidth = w / NB * 1.9; ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
+  for (let j = 0; j < NB; j++) {
+    const off = (j / (NB - 1) - .5) * w, edge = Math.abs(j / (NB - 1) - .5) * 2;
+    ctx.beginPath(); let on = false;
+    for (let i = 0; i <= n; i++) {
+      const q = P[i], sp = i / (P.length - 1);
+      const taper = o.taper === false ? 1 : Math.min(1, .3 + sp * 5, .15 + (1 - sp) * 2.5);
+      const dry = dry0 * smooth(.3, 1, sp) * (1 + edge);
+      const gap = hs[j] < dry || vnoise(j * 5.3 + seed * 17, sp * 7) < dry * .35;
+      const x = q.x + q.nx * off * taper, y = q.y + q.ny * off * taper;
+      if (!gap) { on ? ctx.lineTo(x, y) : ctx.moveTo(x, y); on = true; } else on = false;
+    }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
 // 圆弧折线点，wob 加手绘抖动
 function circlePts(cx, cy, r, n = 64, a0 = 0, a1 = TAU, wob = 0, seed = 0) {
   const p = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; const rr = r * (1 + wob * (noise1(i * .3 + seed) - .5)); p.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]); } return p;
@@ -201,13 +234,28 @@ precision highp float; uniform float T; uniform vec2 R; out vec4 O;
 ${frag}`));
   gl.linkProgram(pr); GL.progs[name] = pr;
 }
-// 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时
-function glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H) {
+// 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时。extra 传额外 uniform：数字 → float，2–4 个数 → vec，更长的数组 → float[]，画布 → sampler2D 贴图
+function glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H, extra = {}) {
   const gl = GL.gl, pr = GL.progs[name];
   if (GL.canvas.width !== w || GL.canvas.height !== h) { GL.canvas.width = w; GL.canvas.height = h; }
   gl.viewport(0, 0, w, h); gl.useProgram(pr);
   const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   gl.uniform1f(gl.getUniformLocation(pr, 'T'), t); gl.uniform2f(gl.getUniformLocation(pr, 'R'), w, h);
+  let unit = 0;
+  for (const [k, v] of Object.entries(extra)) {
+    const loc = gl.getUniformLocation(pr, k);
+    if (typeof v === 'number') gl.uniform1f(loc, v);
+    else if (v.getContext) {                                   // 画布 → 贴图（每次重新上传，画布每帧可变）
+      GL.tex = GL.tex || {};
+      if (!GL.tex[k]) GL.tex[k] = gl.createTexture();
+      gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, GL.tex[k]);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, v);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.uniform1i(loc, unit++);
+    } else if (v.length <= 4) gl['uniform' + v.length + 'f'](loc, ...v);
+    else gl.uniform1fv(loc, v);
+  }
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   ctx.drawImage(GL.canvas, x, y, dw, dh);
 }
