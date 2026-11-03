@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样片播放器</title>
+<!-- 字体全部来自本地 node_modules（先在 samples/ 下运行 npm install），不用 CDN -->
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-sans-sc/900.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-serif-sc/700.css">
+<link rel="stylesheet" href="node_modules/@fontsource/noto-serif-sc/900.css">
+<link rel="stylesheet" href="node_modules/@fontsource/ma-shan-zheng/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/700.css">
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden }
+  canvas { display: block }
+  body:not(.render) canvas { max-width: 100vw; max-height: 100vh; margin: 0 auto; object-fit: contain }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// 用法：player.html?s=C-001&ar=16x9      浏览器里循环播放
+//       player.html?s=C-001&ar=9x16&render=1&t=1.5   出片脚本用：停在 t 秒那一帧
+const Q = new URLSearchParams(location.search), SID = Q.get('s');
+let READY = false, SC = null, DUR = 3;
+function load(src) { return new Promise((ok, no) => { const e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = () => no(new Error('载入失败 ' + src)); document.body.appendChild(e); }); }
+(async () => {
+  await load('lib/lib.js');
+  await load(`${SID}/scene.js`);
+  if (Q.has('render')) document.body.classList.add('render');
+  const cv = document.getElementById('c'); cv.width = W; cv.height = H;
+  const ctx = cv.getContext('2d');
+  SC = S[0]; DUR = SC.dur || 3;
+  const txt = [...new Set('0123456789' + (SC.text || '') + (SC.name || ''))].join('');
+  await Promise.all((SC.fonts || []).map(f => document.fonts.load(f, txt).catch(() => {})));
+  await document.fonts.ready;
+  SC.st = SC.init ? SC.init() : {};
+  window.seek = t => {
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
+    SC.draw(ctx, t, SC.st, Math.round(t * FPS)); ctx.restore();
+  };
+  READY = true;
+  seek(Number(Q.get('t') || 0));
+  if (!Q.has('render')) { const t0 = performance.now(); const loop = () => { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); }; loop(); }
+})().catch(e => { document.title = 'ERROR'; console.error(e); });
+</script>
+</body>
+</html>

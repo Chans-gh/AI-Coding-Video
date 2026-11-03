@@ -10,12 +10,16 @@
 
 ## C-001 中国水墨 / 写意
 
+![中国水墨 / 写意](../images/C-001.jpg)
+
 ```text
 用中国水墨写意风格：暖色宣纸底（#F2ECDE）带纸纤维，画面 60–80% 留白，只用墨分五色的黑灰，没骨笔触自带深浅边、快笔处带干笔飞白，全片唯一的红是朱印，场景之间用墨滴在湿纸上晕开过渡，镜头像展开手卷一样从右往左横移，古琴配乐。
 ```
 
 - 题材：手绘与绘画
 - 适合：武侠、哲理、东方题材
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-001/
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ink-wash/STYLE.md) · [@AxtonLiu](https://x.com/AxtonLiu/status/2103288413969621231) · [@shfred0](https://x.com/shfred0/status/2102495989194236158)
 

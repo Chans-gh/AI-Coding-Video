@@ -7,16 +7,20 @@
    "name": "中国水墨 / 写意",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-001.jpg",
    "prompt": "用中国水墨写意风格：暖色宣纸底（#F2ECDE）带纸纤维，画面 60–80% 留白，只用墨分五色的黑灰，没骨笔触自带深浅边、快笔处带干笔飞白，全片唯一的红是朱印，场景之间用墨滴在湿纸上晕开过渡，镜头像展开手卷一样从右往左横移，古琴配乐。",
    "theme": "手绘与绘画",
    "fit": "武侠、哲理、东方题材",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-001/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1512,16 +1516,21 @@
    "name": "终端 / ASCII CRT",
    "file": "styles/terminal.md",
    "layer": "terminal",
-   "image": null,
+   "image": "images/C-064.jpg",
    "prompt": "用 ASCII 终端风格：屏幕上每一个形象都是等宽字符网格里的真实字符，单色荧光（绿或琥珀色）带光晕和余辉拖影，黑色弯曲显像管屏幕有扫描线，文字像命令行一样逐字打出、光标闪烁，配键盘声。",
    "theme": "电影年代与屏幕科技",
    "fit": "AI/技术过程",
-   "verified": [],
+   "verified": [
+    "终端字符",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "终端字符",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-064/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1775,16 +1784,21 @@
    "name": "科学可视化",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-076.jpg",
    "prompt": "用科学可视化风格：深黑太空背景，黑洞周围的引力透镜把星系和光线弯成光环，吸积盘发出金色光，边上有可调参数的细线控制面板，镜头随参数变化靠近，物理关系要按真实公式计算。",
    "theme": "3D 与实时图形",
    "fit": "科普",
-   "verified": [],
+   "verified": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-076/",
    "refs": [
     {
      "label": "@superalesha",

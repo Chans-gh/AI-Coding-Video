@@ -10,11 +10,15 @@
 
 ## C-064 终端 / ASCII CRT
 
+![终端 / ASCII CRT](../images/C-064.jpg)
+
 ```text
 用 ASCII 终端风格：屏幕上每一个形象都是等宽字符网格里的真实字符，单色荧光（绿或琥珀色）带光晕和余辉拖影，黑色弯曲显像管屏幕有扫描线，文字像命令行一样逐字打出、光标闪烁，配键盘声。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：AI/技术过程
+- 技术（已验证）：终端字符 · Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-064/
 - 技术（建议）：终端字符 · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ascii-crt/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/terminal)
