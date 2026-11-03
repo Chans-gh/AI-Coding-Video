@@ -1,0 +1,5 @@
+{
+  "en_name": "Rain on the window",
+  "en_how": "One hand-written GLSL fragment shader: city lights are scattered in grid cells and drawn as large out-of-focus discs; still droplets and big drops sliding along wavy paths each compute a surface normal and sample a sharp, inverted copy of the lights, leaving a trail of beads and clearing the fog.",
+  "tech": ["WebGL2", "GLSL", "Playwright", "ffmpeg"]
+}

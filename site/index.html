@@ -133,7 +133,7 @@ scene({
       <article>
         <p class="lv">1</p>
         <h3><span lang="zh">样片</span><span lang="en">Samples</span></h3>
-        <p class="num">12 <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
+        <p class="num">22 <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
         <p><span lang="zh">候选风格套上你的品牌色和内容，跑 3–5 秒，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content, 3–5 seconds, in both frame shapes. The samples here are worked examples you can edit.</span></p>
       </article>
       <article>
@@ -159,14 +159,14 @@ scene({
       </div>
     </div>
     <div class="filter" role="group" aria-label="题材 / Theme">
-      <button type="button" data-f="" aria-pressed="true"><span lang="zh">全部</span><span lang="en">All</span> <small>12</small></button>
+      <button type="button" data-f="" aria-pressed="true"><span lang="zh">全部</span><span lang="en">All</span> <small>22</small></button>
       <button type="button" data-f="t0" aria-pressed="false"><span lang="zh">手绘与绘画</span><span lang="en">Hand-drawn &amp; painting</span> <small>2</small></button>
       <button type="button" data-f="t1" aria-pressed="false"><span lang="zh">东方传统</span><span lang="en">East Asian traditions</span> <small>3</small></button>
-      <button type="button" data-f="t2" aria-pressed="false"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span> <small>1</small></button>
-      <button type="button" data-f="t3" aria-pressed="false"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span> <small>2</small></button>
+      <button type="button" data-f="t2" aria-pressed="false"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span> <small>3</small></button>
+      <button type="button" data-f="t3" aria-pressed="false"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span> <small>3</small></button>
       <button type="button" data-f="t4" aria-pressed="false"><span lang="zh">游戏</span><span lang="en">Games</span> <small>1</small></button>
-      <button type="button" data-f="t5" aria-pressed="false"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span> <small>1</small></button>
-      <button type="button" data-f="t6" aria-pressed="false"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span> <small>2</small></button>
+      <button type="button" data-f="t5" aria-pressed="false"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span> <small>4</small></button>
+      <button type="button" data-f="t6" aria-pressed="false"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span> <small>6</small></button>
     </div>
     <div class="cards">
       <article class="card" id="C-001" data-f="t0">
@@ -241,6 +241,30 @@ scene({
         <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用动态文字排版风格：画面里只有字，纯色暖灰底，一种粗体无衬线加一种衣线斜体做对比，字词跟旁白或节拍逐个出现，靠字号大小、粗细、位移和挤压制造节奏，句末用一个彩色圆点收尾。</p></details>
         <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-036"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/svg-html.md#C-036"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
       </article>
+      <article class="card" id="C-169" data-f="t2">
+        <div class="screen">
+          <video data-id="C-169" data-src="media/C-169-16x9.mp4" poster="media/C-169-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="光标打字"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span></p>
+        <div class="card-meta"><code>C-169</code><h4><span lang="zh">光标打字</span><span lang="en">Cursor typing</span></h4></div>
+        <p class="how"><span lang="zh">一张操作表按“打字、停顿、删字、标记、换行”排出每个按键的时刻，按 t 找到当时屏幕上的文字，光标在打字时常亮、停下时闪烁，关键词下面刷出荧光笔，换行时整页上滚。</span><span lang="en">A list of operations (type, pause, delete, mark, new line) yields the time of every keystroke; each frame looks up the text on screen at t, the cursor blinks only while idle, a highlighter sweeps the keyword and the page scrolls up.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用光标打字风格：大片留白的纸色页面上只有一行等宽或衬线文字，一个闪烁的竖线光标逐字打出句子，偶尔停顿、删掉几个字再改写，节奏像真人在犹豫，关键词打完后被高亮或加粗，整页上滚换到下一句，声音只有清脆的键盘声和换行时的一声叮。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-169"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/svg-html.md#C-169"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-170" data-f="t2">
+        <div class="screen">
+          <video data-id="C-170" data-src="media/C-170-16x9.mp4" poster="media/C-170-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="字的隧道"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span></p>
+        <div class="card-meta"><code>C-170</code><h4><span lang="zh">字的隧道</span><span lang="en">Tunnel of words</span></h4></div>
+        <p class="how"><span lang="zh">一圈圈文字环沿 z 轴等距排开，按透视除以深度投到屏幕上，镜头匀加速向前飞；隧道中心线随深度正弦弯曲、整体缓慢滚转，远处的环缩成发光细线，近处的字掠过画面边缘时正好读出。</span><span lang="en">Rings of characters are spaced along z and projected by dividing by depth while the camera accelerates forward; the tunnel&#x27;s centre line bends with depth and slowly rolls, far rings shrink to glowing hairlines and near words become readable as they sweep past.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用字的隧道风格：镜头沿一条无尽的圆形隧道向前飞，隧道内壁由一圈圈环形排列的文字组成，近处的字大而清晰、远处缩成发光的细线，文字随旁白逐句更换，经过镜头时正好读出，隧道偶尔拐弯或整体旋转，黑底单色字加一个强调色，配逐渐加速的风声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-170"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-170"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
       <article class="card" id="C-038" data-f="t3">
         <div class="screen">
           <video data-id="C-038" data-src="media/C-038-16x9.mp4" poster="media/C-038-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="科普扁平（Kurzgesagt 式）"></video>
@@ -264,6 +288,18 @@ scene({
         <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
         <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用暗色科技发布会风格：近黑渐变底加发丝细网格和柔光，只有一个品牌强调色，圆角窗口和通知卡片按网格吸附、每个元素落在音符上，一道扫光揭示产品，最后用一个巨大数字说出核心价值。</p></details>
         <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-044"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/framework.md#C-044"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-173" data-f="t3">
+        <div class="screen">
+          <video data-id="C-173" data-src="media/C-173-16x9.mp4" poster="media/C-173-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="星空连线"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span></p>
+        <div class="card-meta"><code>C-173</code><h4><span lang="zh">星空连线</span><span lang="en">Connecting the stars</span></h4></div>
+        <p class="how"><span lang="zh">几百颗星和一条噪声银河画在一张会绕天极缓慢旋转的天幕上，每颗星按自己的频率闪；“纸鸢座”的星按顺序用发光细线一段段连起，笔尖带一个亮点，连好后浮出风筝的线描轮廓和星座名又隐去，最后镜头推近顶上那颗星。</span><span lang="en">Hundreds of twinkling stars and a noise-built Milky Way sit on a sky that slowly turns about an off-screen pole; an invented constellation is joined line by line with a bright pen tip, then its dashed outline and name fade in and out before the camera pushes toward one star.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用星空连线风格：深蓝黑夜空里散布着大小亮度不同的星点，细细的发光线一笔一笔把星星连成星座，连好后淡淡浮出线描轮廓又隐去，星点缓慢闪烁、整片天空缓缓旋转，镜头偶尔推近一颗星，配低沉的环境音和细碎的铃声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-173"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/canvas-2d.md#C-173"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
       </article>
       <article class="card" id="C-053" data-f="t4">
         <div class="screen">
@@ -289,6 +325,42 @@ scene({
         <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用 ASCII 终端风格：屏幕上每一个形象都是等宽字符网格里的真实字符，单色荧光（绿或琥珀色）带光晕和余辉拖影，黑色弯曲显像管屏幕有扫描线，文字像命令行一样逐字打出、光标闪烁，配键盘声。</p></details>
         <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-064"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/terminal.md#C-064"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
       </article>
+      <article class="card" id="C-168" data-f="t5">
+        <div class="screen">
+          <video data-id="C-168" data-src="media/C-168-16x9.mp4" poster="media/C-168-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="字雨"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></p>
+        <div class="card-meta"><code>C-168</code><h4><span lang="zh">字雨</span><span lang="en">Digital rain</span></h4></div>
+        <p class="how"><span lang="zh">等宽字符网格里每列按各自速度落下两串字，列头近白、身后渐暗，字在下落途中按哈希换字；2 秒时一张文字遮罩里的格子一起亮起，雨幕排出隐藏的词，同时镜头缓慢推进、近处一层大字虚焦掠过。</span><span lang="en">Columns of glyphs fall at their own speeds on a monospace grid, bright heads and fading tails, glyphs swapping by hash; at two seconds a text mask lights up and the rain spells a hidden word while the camera pushes in.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用字雨风格：纯黑屏幕上一列列绿色等宽字符从上往下坠落，每列最前面的字最亮、近乎白色，身后拖着渐暗的尾巴，字符在下落途中随机换字，各列速度不同，镜头偶尔推进穿过字帘，某一刻雨幕里的字排出一个隐藏的单词或轮廓，配低频电子嗡鸣。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-168"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/canvas-2d.md#C-168"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-176" data-f="t5">
+        <div class="screen">
+          <video data-id="C-176" data-src="media/C-176-16x9.mp4" poster="media/C-176-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="老胶片（褪色彩色）"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></p>
+        <div class="card-meta"><code>C-176</code><h4><span lang="zh">老胶片（褪色彩色）</span><span lang="en">Faded home movie</span></h4></div>
+        <p class="how"><span lang="zh">海边放风筝的画面按 18 格每秒画在四分之一大小的画布上，逐像素调色（整体偏洋红暖黄、暗部发青、黑位抬起）并加逐帧变化的颗粒，再放大成柔和的画面；外面叠圆角片门、上下晃动、橙色漏光、划痕和灰尘，结尾是过曝白帧和片孔滑过的换卷。</span><span lang="en">A beach scene with a kite is drawn at 18 fps on a quarter-size canvas, graded pixel by pixel (magenta-warm cast, cyan shadows, lifted blacks) with grain that changes every frame, then scaled up soft; a rounded film gate, gate weave, orange light leaks, scratches and dust go on top, ending in a reel change of overexposed frames and sliding perforations.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用老胶片风格：像七十年代超 8 毫米家庭影片，颜色整体偏洋红和暖黄、阴影发青，粗颗粒逐帧跳动，画面四角是圆角片门，偶尔闪过橙色漏光，片子轻微上下晃动，换卷处出现打孔和过曝白帧，配放映机的嗒嗒声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-176"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/canvas-2d.md#C-176"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-177" data-f="t5">
+        <div class="screen">
+          <video data-id="C-177" data-src="media/C-177-16x9.mp4" poster="media/C-177-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="信号故障（Glitch）"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></p>
+        <div class="card-meta"><code>C-177</code><h4><span lang="zh">信号故障（Glitch）</span><span lang="en">Signal glitch</span></h4></div>
+        <p class="how"><span lang="zh">先把一张干净的台标画面画进离屏画布，再在每个节拍重音上按该拍的种子做几道损坏：红绿蓝三通道分开错位、整条横向切片撕开、低分辨率方块拖着上一位置的残影、取一行像素向下拉成竖条纹；第 5 拍整屏冻结在上一拍的画面，强度按指数衰减卡在拍点上。</span><span lang="en">A clean station ident is drawn off-screen, then each beat corrupts it with that beat&#x27;s seed: RGB channels split and offset, horizontal slices tear sideways, low-res blocks drag a ghost of an earlier position, and single pixel rows are stretched into vertical streaks; beat 5 freezes the frame, and intensity decays exponentially from each beat.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用信号故障风格：画面在正常和损坏之间跳动，整条像素被横向错位撕开，红绿蓝通道各自偏移，压缩方块像马赛克一样拖着残影，像素按亮度被拉成竖向条纹，偶尔整屏冻结一帧再跳回，故障严格卡在节拍重音上，配数据噪音和断续的电流声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-177"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-177"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
       <article class="card" id="C-069" data-f="t6">
         <div class="screen">
           <video data-id="C-069" data-src="media/C-069-16x9.mp4" poster="media/C-069-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="写实光线步进"></video>
@@ -313,6 +385,54 @@ scene({
         <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用科学可视化风格：深黑太空背景，黑洞周围的引力透镜把星系和光线弯成光环，吸积盘发出金色光，边上有可调参数的细线控制面板，镜头随参数变化靠近，物理关系要按真实公式计算。</p></details>
         <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-076"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-076"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
       </article>
+      <article class="card" id="C-171" data-f="t6">
+        <div class="screen">
+          <video data-id="C-171" data-src="media/C-171-16x9.mp4" poster="media/C-171-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="流动的丝线"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></p>
+        <div class="card-meta"><code>C-171</code><h4><span lang="zh">流动的丝线</span><span lang="en">Flowing silk threads</span></h4></div>
+        <p class="how"><span lang="zh">上千条流线从左侧几束种子点出发，沿一张随时间缓慢变化的噪声流场逐步积分走出去，相邻的线挨得很近就成了丝带；1.5 秒重音时给流场叠一阵高频扰动让丝散开，再按指数衰减慢慢理顺，叠加混合让交叠处更亮。</span><span lang="en">Over a thousand streamlines start from a few bundles of seed points and are integrated step by step through a slowly evolving noise flow field, so neighbours stay close and read as ribbons; on the accent a burst of high-frequency turbulence scatters them and decays exponentially, drawn additively so crossings glow.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用流动的丝线风格：深色背景上成千上万根半透明细丝顺着缓慢变化的噪声流场游走，留下柔和的轨迹，颜色从珍珠白渐变到淡金和冰蓝，丝线交叠处更亮，音乐重音时被扰动散开、再慢慢理顺，镜头几乎不动，整体像丝绸在水里漂。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-171"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/canvas-2d.md#C-171"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-172" data-f="t6">
+        <div class="screen">
+          <video data-id="C-172" data-src="media/C-172-16x9.mp4" poster="media/C-172-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="萤火光尘"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></p>
+        <div class="card-meta"><code>C-172</code><h4><span lang="zh">萤火光尘</span><span lang="en">Fireflies at dusk</span></h4></div>
+        <p class="how"><span lang="zh">init 里一次画好暮色天空、树林和草叶剪影；几百个光点各有深度、绕圈半径和呼吸频率，位置由噪声和正弦算出，近处的用大号柔光贴图画成失焦光斑、远处的是清晰小点；2 秒前后一部分光点飞到“夏”字的取样点上聚成字，再散开。</span><span lang="en">Sky, tree line and grass silhouettes are painted once; hundreds of lights each get a depth, orbit radius and breathing rate, placed by noise and sines; near ones are drawn as large soft bokeh sprites, far ones as sharp dots, and around two seconds half of them fly to sample points of a character and scatter again.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用萤火光尘风格：暮色深蓝的草地和树林剪影里，几百颗暖黄绿的小光点慢慢浮起、明灭、绕圈飞行，靠近镜头的光点大而失焦成光斑，远处的细小清晰，每颗按各自的节奏呼吸闪烁，偶尔聚成一个形状又散开，配虫鸣和轻柔钢琴。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-172"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/canvas-2d.md#C-172"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-174" data-f="t6">
+        <div class="screen">
+          <video data-id="C-174" data-src="media/C-174-16x9.mp4" poster="media/C-174-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="雨窗"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></p>
+        <div class="card-meta"><code>C-174</code><h4><span lang="zh">雨窗</span><span lang="en">Rain on the window</span></h4></div>
+        <p class="how"><span lang="zh">一个手写的 GLSL 片元着色器。窗外城市是网格里随机放置的暖橙、冷青光点，按失焦程度画成大光斑；玻璃上静止的小水珠和沿弯曲路线下滑的大水珠各自算出表面法线，水珠里按法线反向取样一张清晰、倒置的灯影，滑过处留下小水珠并擦掉雾气。</span><span lang="en">One hand-written GLSL fragment shader: city lights are scattered in grid cells and drawn as large out-of-focus discs; still droplets and big drops sliding along wavy paths each compute a surface normal and sample a sharp, inverted copy of the lights, leaving a trail of beads and clearing the fog.</span></p>
+        <ul class="chips"><li>WebGL2</li><li>GLSL</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用雨窗风格：镜头隔着一扇夜晚的玻璃窗，窗外城市灯光全部失焦成暖橙和冷青的大光斑，玻璃上水珠大小不一，小的停着不动、大的忽然沿曲折路线滑下并吞掉沿途的小水珠，每颗水珠里折射出倒置的清晰灯影，窗角偶尔起雾，配持续的雨声和远处车声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-174"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-174"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
+      <article class="card" id="C-175" data-f="t6">
+        <div class="screen">
+          <video data-id="C-175" data-src="media/C-175-16x9.mp4" poster="media/C-175-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="窗光与尘"></video>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></p>
+        <div class="card-meta"><code>C-175</code><h4><span lang="zh">窗光与尘</span><span lang="en">Window light and dust</span></h4></div>
+        <p class="how"><span lang="zh">窗户画在一张小画布上（亮的窗格、暗的窗棂和窗台盆栽的剪影），用仿射变换把它“投”到地板上成为光斑，再在窗和光斑之间插值画几十层淡淡的叠加，就成了带窗棂影子的体积光柱；尘埃在光柱里的亮度直接取光柱图层的值，太阳角度随时间慢慢移动。</span><span lang="en">The window is drawn once on a small canvas (bright panes, dark muntins, a potted plant); an affine transform throws it onto the floor as a light patch, and dozens of faint layers interpolated between window and floor build a volumetric shaft with the muntin shadows inside; each dust mote takes its brightness from the shaft layer.</span></p>
+        <ul class="chips"><li>Canvas 2D</li><li>Playwright</li><li>ffmpeg</li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用窗光与尘风格：昏暗安静的室内，一束午后斜阳从百叶窗或格子窗射进来，在空气中形成清晰的体积光柱，光柱里无数细小尘埃缓慢翻滚闪亮，地板和墙上的窗格暖黄光块随时间缓缓移动，阴影是冷灰蓝，镜头静止或极慢推移，只有钟表的滴答声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-175"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-175"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
+      </article>
     </div>
   </div>
 </section>
@@ -323,10 +443,10 @@ scene({
     <p class="sec-lede"><span lang="zh">全部 195 种风格按题材分布。深色部分是已出样片的。</span><span lang="en">All 195 styles by theme. The solid part of each bar has rendered samples.</span></p>
     <div class="bars">
       <div class="bar-row"><span class="lab"><span lang="zh">手绘与绘画</span><span lang="en">Hand-drawn &amp; painting</span></span><span class="bar-track" role="img" aria-label="手绘与绘画 38"><span class="bar-all" style="width:100.0%"></span><span class="bar-done" style="width:5.3%"></span></span><span class="n">2/38</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></span><span class="bar-track" role="img" aria-label="3D 与实时图形 27"><span class="bar-all" style="width:71.1%"></span><span class="bar-done" style="width:5.3%"></span></span><span class="n">2/27</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span></span><span class="bar-track" role="img" aria-label="信息讲解与产品发布 25"><span class="bar-all" style="width:65.8%"></span><span class="bar-done" style="width:5.3%"></span></span><span class="n">2/25</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></span><span class="bar-track" role="img" aria-label="电影年代与屏幕科技 19"><span class="bar-all" style="width:50.0%"></span><span class="bar-done" style="width:2.6%"></span></span><span class="n">1/19</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span></span><span class="bar-track" role="img" aria-label="平面设计与动态排版 18"><span class="bar-all" style="width:47.4%"></span><span class="bar-done" style="width:2.6%"></span></span><span class="n">1/18</span></div>
+      <div class="bar-row"><span class="lab"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></span><span class="bar-track" role="img" aria-label="3D 与实时图形 27"><span class="bar-all" style="width:71.1%"></span><span class="bar-done" style="width:15.8%"></span></span><span class="n">6/27</span></div>
+      <div class="bar-row"><span class="lab"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span></span><span class="bar-track" role="img" aria-label="信息讲解与产品发布 25"><span class="bar-all" style="width:65.8%"></span><span class="bar-done" style="width:7.9%"></span></span><span class="n">3/25</span></div>
+      <div class="bar-row"><span class="lab"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></span><span class="bar-track" role="img" aria-label="电影年代与屏幕科技 19"><span class="bar-all" style="width:50.0%"></span><span class="bar-done" style="width:10.5%"></span></span><span class="n">4/19</span></div>
+      <div class="bar-row"><span class="lab"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span></span><span class="bar-track" role="img" aria-label="平面设计与动态排版 18"><span class="bar-all" style="width:47.4%"></span><span class="bar-done" style="width:7.9%"></span></span><span class="n">3/18</span></div>
       <div class="bar-row"><span class="lab"><span lang="zh">印刷、版画与装饰</span><span lang="en">Print &amp; ornament</span></span><span class="bar-track" role="img" aria-label="印刷、版画与装饰 17"><span class="bar-all" style="width:44.7%"></span><span class="bar-done" style="width:0.0%"></span></span><span class="n">0/17</span></div>
       <div class="bar-row"><span class="lab"><span lang="zh">卡通与动漫</span><span lang="en">Cartoon &amp; anime</span></span><span class="bar-track" role="img" aria-label="卡通与动漫 16"><span class="bar-all" style="width:42.1%"></span><span class="bar-done" style="width:0.0%"></span></span><span class="n">0/16</span></div>
       <div class="bar-row"><span class="lab"><span lang="zh">纸艺、材质与定格</span><span lang="en">Paper, material &amp; stop-motion</span></span><span class="bar-track" role="img" aria-label="纸艺、材质与定格 15"><span class="bar-all" style="width:39.5%"></span><span class="bar-done" style="width:0.0%"></span></span><span class="n">0/15</span></div>

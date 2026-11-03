@@ -1,0 +1,5 @@
+{
+  "en_name": "Flowing silk threads",
+  "en_how": "Over a thousand streamlines start from a few bundles of seed points and are integrated step by step through a slowly evolving noise flow field, so neighbours stay close and read as ribbons; on the accent a burst of high-frequency turbulence scatters them and decays exponentially, drawn additively so crossings glow.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

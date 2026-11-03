@@ -3984,16 +3984,20 @@
    "name": "字雨",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-168.jpg",
    "prompt": "用字雨风格：纯黑屏幕上一列列绿色等宽字符从上往下坠落，每列最前面的字最亮、近乎白色，身后拖着渐暗的尾巴，字符在下落途中随机换字，各列速度不同，镜头偶尔推进穿过字帘，某一刻雨幕里的字排出一个隐藏的单词或轮廓，配低频电子嗡鸣。",
    "theme": "电影年代与屏幕科技",
    "fit": "黑客与 AI 题材、科技片头、数据主题转场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-168/",
    "refs": []
   },
   {
@@ -4002,16 +4006,20 @@
    "name": "光标打字",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-169.jpg",
    "prompt": "用光标打字风格：大片留白的纸色页面上只有一行等宽或衬线文字，一个闪烁的竖线光标逐字打出句子，偶尔停顿、删掉几个字再改写，节奏像真人在犹豫，关键词打完后被高亮或加粗，整页上滚换到下一句，声音只有清脆的键盘声和换行时的一声叮。",
    "theme": "平面设计与动态排版",
    "fit": "独白与书信、产品文案演示、悬念开场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-169/",
    "refs": []
   },
   {
@@ -4020,16 +4028,20 @@
    "name": "字的隧道",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-170.jpg",
    "prompt": "用字的隧道风格：镜头沿一条无尽的圆形隧道向前飞，隧道内壁由一圈圈环形排列的文字组成，近处的字大而清晰、远处缩成发光的细线，文字随旁白逐句更换，经过镜头时正好读出，隧道偶尔拐弯或整体旋转，黑底单色字加一个强调色，配逐渐加速的风声。",
    "theme": "平面设计与动态排版",
    "fit": "宣言与口号、歌词 MV、数据与信息洪流",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-170/",
    "refs": []
   },
   {
@@ -4038,16 +4050,20 @@
    "name": "流动的丝线",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-171.jpg",
    "prompt": "用流动的丝线风格：深色背景上成千上万根半透明细丝顺着缓慢变化的噪声流场游走，留下柔和的轨迹，颜色从珍珠白渐变到淡金和冰蓝，丝线交叠处更亮，音乐重音时被扰动散开、再慢慢理顺，镜头几乎不动，整体像丝绸在水里漂。",
    "theme": "3D 与实时图形",
    "fit": "冥想与放松、奢侈品与面料广告、抽象音乐可视化",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-171/",
    "refs": []
   },
   {
@@ -4056,16 +4072,20 @@
    "name": "萤火光尘",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-172.jpg",
    "prompt": "用萤火光尘风格：暮色深蓝的草地和树林剪影里，几百颗暖黄绿的小光点慢慢浮起、明灭、绕圈飞行，靠近镜头的光点大而失焦成光斑，远处的细小清晰，每颗按各自的节奏呼吸闪烁，偶尔聚成一个形状又散开，配虫鸣和轻柔钢琴。",
    "theme": "3D 与实时图形",
    "fit": "夏夜回忆、治愈系 MV、童话开场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-172/",
    "refs": []
   },
   {
@@ -4074,16 +4094,20 @@
    "name": "星空连线",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-173.jpg",
    "prompt": "用星空连线风格：深蓝黑夜空里散布着大小亮度不同的星点，细细的发光线一笔一笔把星星连成星座，连好后淡淡浮出线描轮廓又隐去，星点缓慢闪烁、整片天空缓缓旋转，镜头偶尔推近一颗星，配低沉的环境音和细碎的铃声。",
    "theme": "信息讲解与产品发布",
    "fit": "天文科普、关系与网络讲解、浪漫告白",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-173/",
    "refs": []
   },
   {
@@ -4092,16 +4116,21 @@
    "name": "雨窗",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-174.jpg",
    "prompt": "用雨窗风格：镜头隔着一扇夜晚的玻璃窗，窗外城市灯光全部失焦成暖橙和冷青的大光斑，玻璃上水珠大小不一，小的停着不动、大的忽然沿曲折路线滑下并吞掉沿途的小水珠，每颗水珠里折射出倒置的清晰灯影，窗角偶尔起雾，配持续的雨声和远处车声。",
    "theme": "3D 与实时图形",
    "fit": "失恋与思念、深夜电台、学习陪伴背景",
-   "verified": [],
+   "verified": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-174/",
    "refs": []
   },
   {
@@ -4110,16 +4139,20 @@
    "name": "窗光与尘",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-175.jpg",
    "prompt": "用窗光与尘风格：昏暗安静的室内，一束午后斜阳从百叶窗或格子窗射进来，在空气中形成清晰的体积光柱，光柱里无数细小尘埃缓慢翻滚闪亮，地板和墙上的窗格暖黄光块随时间缓缓移动，阴影是冷灰蓝，镜头静止或极慢推移，只有钟表的滴答声。",
    "theme": "3D 与实时图形",
    "fit": "怀旧与回忆、阅读与书房、慢节奏开场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": "samples/C-175/",
    "refs": []
   },
   {
@@ -4128,16 +4161,20 @@
    "name": "老胶片（褪色彩色）",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-176.jpg",
    "prompt": "用老胶片风格：像七十年代超 8 毫米家庭影片，颜色整体偏洋红和暖黄、阴影发青，粗颗粒逐帧跳动，画面四角是圆角片门，偶尔闪过橙色漏光，片子轻微上下晃动，换卷处出现打孔和过曝白帧，配放映机的嗒嗒声。",
    "theme": "电影年代与屏幕科技",
    "fit": "家庭回忆、复古广告、年代感 MV",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-176/",
    "refs": []
   },
   {
@@ -4146,16 +4183,20 @@
    "name": "信号故障（Glitch）",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-177.jpg",
    "prompt": "用信号故障风格：画面在正常和损坏之间跳动，整条像素被横向错位撕开，红绿蓝通道各自偏移，压缩方块像马赛克一样拖着残影，像素按亮度被拉成竖向条纹，偶尔整屏冻结一帧再跳回，故障严格卡在节拍重音上，配数据噪音和断续的电流声。",
    "theme": "电影年代与屏幕科技",
    "fit": "电子音乐 MV、网络安全题材、科技发布转场",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-177/",
    "refs": []
   },
   {
