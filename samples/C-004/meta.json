@@ -1,0 +1,9 @@
+{
+  "en_name": "Impasto oil painting",
+  "en_how": "Thousands of short rounded strokes, each with a dark edge, body colour and a highlight; sky strokes follow a noise flow field and swirl around the sun.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

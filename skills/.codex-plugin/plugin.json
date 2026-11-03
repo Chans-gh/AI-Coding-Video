@@ -1,0 +1,18 @@
+{
+  "name": "ai-coding-video",
+  "version": "0.1.0",
+  "description": "纯代码逐帧做动画视频的风格库：风格提示词、技术标签、选风格索引、提示词方法、配乐与旁白音色指南。",
+  "author": { "name": "Chans" },
+  "homepage": "https://github.com/chans-gh/AI-Coding-Video",
+  "repository": "https://github.com/chans-gh/AI-Coding-Video",
+  "license": "MIT",
+  "keywords": ["video", "animation", "canvas", "webgl", "motion-graphics", "styles"],
+  "skills": "./.",
+  "interface": {
+    "displayName": "AI Coding Video",
+    "shortDescription": "纯代码做动画视频的风格库",
+    "longDescription": "只靠代码就能画出来的视频风格库，每种带提示词、技术标签和样片；附选风格索引、提示词写法、配乐与旁白音色指南，以及 1 级样片、2 级风格包的制作说明。",
+    "developerName": "Chans",
+    "category": "Design"
+  }
+}

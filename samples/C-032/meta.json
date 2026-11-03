@@ -1,0 +1,9 @@
+{
+  "en_name": "Memphis",
+  "en_how": "Clashing geometric blocks with thick black outlines pop in elastically, then bounce on every beat; the headline carries an offset shadow.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

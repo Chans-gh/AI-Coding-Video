@@ -1,0 +1,9 @@
+{
+  "en_name": "Paper-cut lightbox",
+  "en_how": "Six cut-paper layers with drop shadows sway with depth-based parallax inside a lit box; window holes let the warm light through.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

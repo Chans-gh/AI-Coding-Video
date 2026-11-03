@@ -1,0 +1,9 @@
+{
+  "en_name": "Art Deco",
+  "en_how": "Symmetric stepped frames, sunbursts and fans in multi-stop gold gradients; carved doors open on the axis and marquee bulbs chase around.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Music visualiser",
+  "en_how": "A beat table drives everything: each half-beat a ball hits the ring and bursts; 120 radial bars and kaleidoscope lines follow the envelope.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

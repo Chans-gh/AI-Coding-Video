@@ -1,0 +1,9 @@
+{
+  "en_name": "Blueprint",
+  "en_how": "On a blue grid each part is a polyline traced by a glowing pen, followed by dimension lines, callouts and a revision stamp.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Formula walkthrough",
+  "en_how": "Drawn in Canvas in the look of Manim (not real Manim): each beat adds a sine term, the epicycles trace a wave closer to a square wave.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -4,11 +4,15 @@
   "description": "样片渲染用的字体（全部是 SIL OFL 开源字体），npm install 后放在 node_modules/，不进仓库",
   "license": "MIT",
   "dependencies": {
+    "@fontsource/bangers": "5.2.5",
     "@fontsource/bebas-neue": "5.2.5",
     "@fontsource/jetbrains-mono": "5.2.5",
+    "@fontsource/limelight": "5.2.5",
     "@fontsource/ma-shan-zheng": "5.2.5",
     "@fontsource/noto-sans-sc": "5.2.5",
     "@fontsource/noto-serif-sc": "5.2.5",
-    "@fontsource/press-start-2p": "5.2.5"
+    "@fontsource/playfair-display": "5.2.5",
+    "@fontsource/press-start-2p": "5.2.5",
+    "@fontsource/zcool-kuaile": "5.2.5"
   }
 }

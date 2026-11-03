@@ -1,0 +1,9 @@
+{
+  "en_name": "Watercolour",
+  "en_how": "Each colour patch is a polygon subdivided into ragged edges and stacked dozens of times at low opacity, so edges bloom and centres deepen; multiply blending lets washes show through.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

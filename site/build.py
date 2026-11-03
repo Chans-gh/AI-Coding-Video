@@ -20,7 +20,7 @@ SAMPLES = REPO_DIR / "samples"
 PACKS = REPO_DIR / "packs"
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v2 · 2026-11-03"
+VERSION = "v3 · 2026-11-03"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 

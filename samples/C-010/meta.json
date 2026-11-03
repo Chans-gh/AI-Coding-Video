@@ -1,0 +1,9 @@
+{
+  "en_name": "Chalkboard",
+  "en_how": "Writing and diagrams appear stroke by stroke, then a fixed random dot mask knocks out pixels for chalk grain; the chalk stick follows the active stroke.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

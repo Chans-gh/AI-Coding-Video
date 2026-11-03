@@ -23,16 +23,25 @@ claude plugin marketplace add chans-gh/AI-Coding-Video
 claude plugin install ai-coding-video@ai-coding-video
 ```
 
+**Codex**（插件市场）：
+
+```bash
+codex plugin marketplace add chans-gh/AI-Coding-Video
+codex plugin add ai-coding-video@ai-coding-video
+```
+
 **其他助手**（拷贝 Skill 文件夹）：先 `git clone` 本仓库，再运行：
 
 ```bash
 scripts/install.sh claude   # → ~/.claude/skills/ai-coding-video
-scripts/install.sh codex    # → ~/.agents/skills/ai-coding-video（Codex，DeepSeek Harness 也读这里）
+scripts/install.sh codex    # → ~/.agents/skills/ai-coding-video（Codex 不走插件时用；DeepSeek Harness 也读这里）
 scripts/install.sh dsh      # → ~/.dsh/skills/ai-coding-video（DeepSeek Harness）
 scripts/install.sh all      # 以上三处都装
-scripts/install.sh codex ~/my-project   # 只装进某个项目
+scripts/install.sh dsh ~/my-project     # 只装进某个项目（→ ~/my-project/.dsh/skills）
 scripts/install.sh zip      # 打成 dist/ai-coding-video.zip，用于 WorkBuddy 等“上传技能包”的助手
 ```
+
+DeepSeek Harness 按 `<项目>/.dsh/skills`、`<项目>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 的顺序找 Skill，装在哪一处都行。
 
 装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”。
 
@@ -45,6 +54,7 @@ packs/                    2 级风格包：部件代码、风格说明、演示�
 site/                     介绍页（纯静态，可整个拷到任意服务器）
 scripts/install.sh        安装到各家助手
 .claude-plugin/           Claude Code 插件与插件市场清单
+.agents/plugins/          Codex 插件市场清单（插件本体是 skills/，清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```

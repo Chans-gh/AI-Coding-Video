@@ -1,0 +1,9 @@
+{
+  "en_name": "Bauhaus",
+  "en_how": "Only circles, squares and triangles in red, yellow, blue and black, snapping onto a grid with exponential easing; overlaps multiply into new colours.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

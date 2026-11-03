@@ -1,0 +1,9 @@
+{
+  "en_name": "One-line drawing",
+  "en_how": "The whole picture is one unbroken polyline drawn out by length, with the camera riding the pen tip before pulling back to reveal it.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

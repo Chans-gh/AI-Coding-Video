@@ -276,7 +276,7 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
 .copy { font: 700 12px/1 var(--mono); padding: 8px 12px; border: 1px solid var(--ink); border-radius: 4px; background: transparent; color: var(--ink); cursor: pointer; }
 .copy.done { background: var(--ink); color: var(--paper); }
 
-.inst { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.inst { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .inst > div { min-width: 0; }
 .inst .code { margin-top: 12px; }
 .inst .copy { margin-top: 10px; }

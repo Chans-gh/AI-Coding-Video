@@ -1,0 +1,9 @@
+{
+  "en_name": "1920s silent film",
+  "en_how": "A small canvas holds the film frame at 16 fps, aged with sepia, grain, scratches, dust and flicker, set in a theatre with velvet curtains.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

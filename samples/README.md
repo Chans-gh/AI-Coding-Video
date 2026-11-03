@@ -54,4 +54,4 @@ python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynot
 - 横竖两版用同一份代码：读 `W`、`H`、`LAND`（是否横屏）来定构图。不要只把竖屏画面拉伸或裁切成横屏。
 - 做完后跑 `tools/mark.py` 登记进风格条目（缩略图、「技术（已验证）」「样片代码」），条目格式见 Skill 的 [README](../skills/ai-coding-video/README.md)。
 
-前 40 种场景改写自维护者早先的作品 opus40，原片只有竖屏，横屏版是逐个场景重新构图的。
+C-001–C-077 里的 40 种改写自维护者早先的作品 opus40（每个 `scene.js` 开头注明了），原片只有竖屏，横屏版是逐个场景重新构图的，竖屏版也按整幅画面重新排过；C-041 公式推导原本就是用 Canvas 模仿 Manim 的画法。C-106–C-195 是新写的。

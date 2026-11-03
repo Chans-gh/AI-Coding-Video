@@ -1,0 +1,12 @@
+{
+  "name": "ai-coding-video",
+  "interface": { "displayName": "AI Coding Video" },
+  "plugins": [
+    {
+      "name": "ai-coding-video",
+      "source": { "source": "local", "path": "./skills" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Design"
+    }
+  ]
+}

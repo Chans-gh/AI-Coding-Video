@@ -1,0 +1,9 @@
+{
+  "en_name": "1930s rubber-hose cartoon",
+  "en_how": "Limbs are jointless curves swinging to the beat, in black and white at 12 fps with grain, scratches, dust, flicker and a heavy vignette.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
