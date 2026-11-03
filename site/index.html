@@ -15,6 +15,7 @@
     <nav class="nav" aria-label="目录">
       <a href="#what"><span lang="zh">是什么</span><span lang="en">What</span></a>
       <a href="#gallery"><span lang="zh">样片</span><span lang="en">Samples</span></a>
+      <a href="#packs"><span lang="zh">风格包</span><span lang="en">Packs</span></a>
       <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#prompt"><span lang="zh">提示词</span><span lang="en">Prompts</span></a>
       <a href="#skill">Skill</a>
@@ -696,6 +697,25 @@
   </div>
 </section>
 
+<section class="sec" id="packs">
+  <div class="wrap">
+    <h2><span lang="zh">风格包</span><span lang="en">Style packs</span></h2>
+    <p class="sec-lede"><span lang="zh">样片通过以后，这种风格就沉淀成一套可复用的代码：换一个品牌色，片头、讲解、数据、转场、字幕都跟着变，再附一份能抄进项目规范的风格说明。下面的演示片由风格包的部件拼成，画幅跟着上面的样片区切换。</span><span lang="en">Once a sample is approved, the style becomes reusable code: change one brand color and the opener, explainer, data, transitions and captions all follow, plus a style guide you can paste into your project rules. The demo below is built from the pack's parts; its frame shape follows the switch in the samples section.</span></p>
+    <article class="pack">
+      <div class="pack-screen">
+        <video class="pack-video" data-id="pack-dark-keynote" data-src="media/pack-dark-keynote-16x9.mp4" poster="media/pack-dark-keynote-16x9.jpg" muted loop playsinline controls preload="none" aria-label="暗色科技发布会"></video>
+      </div>
+      <div class="pack-body">
+        <div class="card-meta"><code>dark-keynote</code><h4><span lang="zh">暗色科技发布会风格包</span><span lang="en">Dark tech keynote pack</span></h4></div>
+        <p class="how"><span lang="zh">一个品牌色推出整套配色；片头、讲解、数据、转场、字幕五个部件按分段表排成一支片子，换色只改一个参数。</span><span lang="en">One brand color drives the whole palette; five parts (opener, explainer, data, transition, captions) are laid out on a segment table, and swapping the brand color is one parameter.</span> <span lang="zh">由 C-044 沉淀。</span><span lang="en">Built from C-044.</span></p>
+        <ul class="pack-parts"><li><span lang="zh">片头</span><span lang="en">Opener</span></li><li><span lang="zh">讲解</span><span lang="en">Explainer</span></li><li><span lang="zh">数据</span><span lang="en">Data</span></li><li><span lang="zh">转场</span><span lang="en">Transition</span></li><li><span lang="zh">字幕</span><span lang="en">Captions</span></li></ul>
+        <figure class="pack-brands"><img src="media/pack-dark-keynote-brands.jpg" alt="" loading="lazy"><figcaption><span lang="zh">同一支演示片换三种品牌色</span><span lang="en">The same demo in three brand colors</span></figcaption></figure>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/dark-keynote"><span lang="zh">风格包代码</span><span lang="en">Pack code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/packs/dark-keynote/STYLE.md"><span lang="zh">风格说明</span><span lang="en">Style guide</span></a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section class="sec" id="how">
   <div class="wrap">
     <h2><span lang="zh">一支样片怎么组成</span><span lang="en">What a sample is made of</span></h2>
@@ -848,7 +868,7 @@ scripts/install.sh codex   <span class="c"># or: claude · dsh · all · zip</sp
       <article>
         <p class="lv">2</p>
         <h4><span lang="zh">风格包</span><span lang="en">Style packs</span></h4>
-        <p class="num"><span lang="zh">筹备中</span><span lang="en">Coming</span></p>
+        <p class="num">1 <span lang="zh">个风格包</span><span lang="en">packs so far</span> · <a href="#packs"><span lang="zh">看演示</span><span lang="en">See the demo</span></a></p>
         <p><span lang="zh">通过的风格沉淀成可换品牌色的代码模块，覆盖片头、讲解、数据、转场、字幕。</span><span lang="en">An approved style becomes a reusable code module with swappable brand colors: openers, explainers, data, transitions, captions.</span></p>
       </article>
     </div>

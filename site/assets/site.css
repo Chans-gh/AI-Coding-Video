@@ -213,7 +213,7 @@ html[data-ar="9x16"] .card .screen { aspect-ratio: 9 / 16; }
 .card details { margin-top: 10px; font-size: 14px; }
 .card summary { cursor: pointer; color: var(--accent); font-weight: 700; }
 .card details p { margin: 8px 0 0; padding: 12px 14px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; }
-.card .links { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; }
+.card .links, .pack .links { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; }
 
 /* packs */
 .pack { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 28px 36px; align-items: start; }
