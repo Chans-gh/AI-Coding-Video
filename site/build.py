@@ -19,7 +19,7 @@ SKILL = REPO_DIR / "skills" / "ai-coding-video"
 SAMPLES = REPO_DIR / "samples"
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v1 · 2026-11-03"
+VERSION = "v2 · 2026-11-03"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -71,26 +71,47 @@ def both(zh, en, tag="span"):
 
 
 def gallery(styles, ids):
-    """按题材排好的一张卡片网格，上面一排题材筛选"""
+    """样片网格：上面两排筛选（题材、技术），卡片带 data-theme、data-tech，由 site.js 统一筛选"""
     by = {s["id"]: s for s in styles}
     order = []
     for s in styles:
         if s["id"] in ids and s["theme"] not in order:
             order.append(s["theme"])
     ths = {th: f"t{k}" for k, th in enumerate(order)}
-    out = ['    <div class="filter" role="group" aria-label="题材 / Theme">',
-           f'      <button type="button" data-f="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>']
+    tech = {}
+    for i in ids:
+        for t in by[i]["verified"]:
+            tech[t] = tech.get(t, 0) + 1
+    techs = [t for t, n in sorted(tech.items(), key=lambda kv: (-kv[1], kv[0])) if n < len(ids)]   # 每支都用的（出片工具）不做筛选
+    tid = {t: f"k{k}" for k, t in enumerate(techs)}
+    out = ['    <div class="filters" id="filters">',
+           f'      <div class="filter" data-dim="theme" role="group" aria-label="题材 / Theme"><span class="flab">{both("题材", "Theme")}</span>',
+           f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>']
     for th in order:
         n = sum(by[i]["theme"] == th for i in ids)
-        out.append(f'      <button type="button" data-f="{ths[th]}" aria-pressed="false">{both(th, THEME_EN.get(th, th))} <small>{n}</small></button>')
-    out.append('    </div>\n    <div class="cards">')
+        out.append(f'        <button type="button" data-v="{ths[th]}" aria-pressed="false">{both(th, THEME_EN.get(th, th))} <small>{n}</small></button>')
+    out.append('      </div>')
+    out.append(f'      <div class="filter" data-dim="tech" role="group" aria-label="技术 / Technique"><span class="flab">{both("技术", "Technique")}</span>')
+    out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>')
+    for t in techs:
+        out.append(f'        <button type="button" data-v="{tid[t]}" aria-pressed="false">{esc(t)} <small>{tech[t]}</small></button>')
+    out.append('      </div>\n    </div>')
+    out.append(f'    <p class="empty" id="empty-none" hidden>{both("没有同时符合这两个条件的样片。", "No sample matches both filters.")} '
+               f'<button type="button" class="linkish" id="clear-filters">{both("清除筛选", "Clear filters")}</button></p>')
+    for k, zh, en in (("t", "T 类（改编现成素材）还没有收录：它需要照片、录屏、口播原片或真实数据，这个库目前只收纯代码风格。",
+                       "Class T (existing footage) is not collected yet: it needs photos, screen recordings, talking-head footage or real data, and this library currently holds pure-code styles only."),
+                      ("g", "G 类（AI 生成画面）还没有收录：它的画面来自图像或视频模型，这个库目前只收纯代码风格。",
+                       "Class G (AI-generated images) is not collected yet: its pictures come from image or video models, and this library currently holds pure-code styles only.")):
+        out.append(f'    <p class="empty kind-empty" data-kind="{k}" hidden>{both(zh, en)}</p>')
+    out.append('    <div class="cards" id="cards">')
     for th in order:
         for s in (by[i] for i in ids if by[i]["theme"] == th):
             sid = s["id"]
             mt = meta(sid)
             en_name, en_how = mt.get("en_name") or s["name"], mt.get("en_how", "")
-            chips = "".join(f"<li>{esc(t)}</li>" for t in s["verified"])
-            out.append(f'''      <article class="card" id="{sid}" data-f="{ths[th]}">
+            chips = "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
+                            for t in s["verified"])
+            out.append(f'''      <article class="card" id="{sid}" data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}">
         <div class="screen">
           <video data-id="{sid}" data-src="media/{sid}-16x9.mp4" poster="media/{sid}-16x9.jpg" muted loop playsinline autoplay preload="none" aria-label="{esc(s['name'])}"></video>
           <button type="button" class="snd" aria-pressed="false">{both("声音", "Sound")}</button>

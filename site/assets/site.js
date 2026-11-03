@@ -1,4 +1,4 @@
-// 介绍页的交互：语言切换、画幅切换、样片按需播放、声音、时间轴、复制。没有任何外部依赖。
+// 介绍页的交互：语言切换、现场画的小样、类型切换、画幅切换、样片筛选、按需播放、声音、时间轴、复制。没有任何外部依赖。
 (function () {
   const root = document.documentElement;
   const store = {
@@ -43,12 +43,89 @@
   segs.forEach(b => b.addEventListener('click', () => setAr(b.dataset.ar)));
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
-  // 题材筛选
-  const fbtn = document.querySelectorAll('.filter button');
-  fbtn.forEach(b => b.addEventListener('click', () => {
-    fbtn.forEach(o => o.setAttribute('aria-pressed', String(o === b)));
-    document.querySelectorAll('.card').forEach(c => { c.hidden = !!b.dataset.f && c.dataset.f !== b.dataset.f; });
-  }));
+  // 样片筛选：类型（C/T/G）、题材、技术三个条件都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果
+  const state = { kind: 'c', theme: '', tech: '' };
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const groups = { theme: document.querySelector('.filter[data-dim="theme"]'), tech: document.querySelector('.filter[data-dim="tech"]') };
+  const filtersEl = document.getElementById('filters'), emptyNone = document.getElementById('empty-none');
+  const kindEmpty = document.querySelectorAll('.kind-empty'), picks = document.querySelectorAll('.path-pick');
+  const match = (c, th, te) => c.dataset.kind === state.kind && (!th || c.dataset.theme === th) && (!te || c.dataset.tech.split(' ').includes(te));
+  function apply() {
+    let shown = 0;
+    cards.forEach(c => {
+      const on = match(c, state.theme, state.tech);
+      c.hidden = !on; shown += on;
+      if (!on) { const v = c.querySelector('video'); v.pause(); v.muted = true; c.querySelector('.snd').setAttribute('aria-pressed', 'false'); }
+    });
+    // 每个按钮上的数字 = 加上这个条件后还剩几支；为 0 的按钮置灰
+    for (const dim of ['theme', 'tech']) {
+      groups[dim].querySelectorAll('button').forEach(b => {
+        const v = b.dataset.v, n = cards.filter(c => match(c, dim === 'theme' ? v : state.theme, dim === 'tech' ? v : state.tech)).length;
+        b.querySelector('small').textContent = String(n);
+        b.setAttribute('aria-pressed', String(v === state[dim]));
+        b.disabled = n === 0 && v !== state[dim];
+      });
+    }
+    document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tech === state.tech));
+    const isC = state.kind === 'c';
+    filtersEl.hidden = !isC;
+    emptyNone.hidden = !isC || shown > 0;
+    kindEmpty.forEach(e => { e.hidden = e.dataset.kind !== state.kind; });
+    picks.forEach(b => { const on = b.dataset.kind === state.kind; b.setAttribute('aria-pressed', String(on)); b.closest('.path').classList.toggle('on', on); });
+    // 新露出来的卡片：让观察器重新判断是否在视口里
+    if (io) cards.forEach(c => { if (!c.hidden) { const v = c.querySelector('video'); io.unobserve(v); io.observe(v); } });
+  }
+  for (const dim of ['theme', 'tech']) groups[dim].addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.disabled) return;
+    state[dim] = b.dataset.v; apply();
+  });
+  document.getElementById('cards').addEventListener('click', e => {
+    const b = e.target.closest('.chips button'); if (!b) return;
+    state.tech = state.tech === b.dataset.tech ? '' : b.dataset.tech; state.theme = '';
+    apply(); filtersEl.scrollIntoView({ block: 'start' });
+  });
+  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = ''; apply(); });
+  picks.forEach(b => b.addEventListener('click', () => { state.kind = b.dataset.kind; apply(); }));
+  apply();
+
+  // 现场画的小样：和「是什么」一节里写的 draw(ctx, t) 是同一件事
+  function demo(ctx, t, w, h) {
+    const sky = ctx.createLinearGradient(0, 0, 0, h); sky.addColorStop(0, '#0a0f1f'); sky.addColorStop(1, '#2a2340');
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
+    const sy = h * (0.7 - 0.2 * t), r = h * .12;                                  // sun(ctx, 0.7 - 0.2 * t)
+    const g = ctx.createRadialGradient(w * .5, sy, 0, w * .5, sy, r * 3); g.addColorStop(0, 'rgba(232,69,46,.55)'); g.addColorStop(1, 'rgba(232,69,46,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#e8452e'; ctx.beginPath(); ctx.arc(w * .5, sy, r, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#05070c'; ctx.beginPath(); ctx.moveTo(0, h);
+    for (let x = 0; x <= w; x += w / 24) ctx.lineTo(x, h * (.78 + .07 * Math.sin(x / w * 7) + .04 * Math.sin(x / w * 17)));
+    ctx.lineTo(w, h); ctx.fill();
+    const p = Math.min(1, Math.max(0, t / 2));                                     // stroke(ctx, t / 2)
+    if (p > 0) {
+      ctx.strokeStyle = '#f2efe6'; ctx.lineCap = 'round';
+      const a0 = -Math.PI / 2 + .35, n = 40;
+      for (let i = 0; i < n * p; i++) {
+        const a = a0 + i / n * Math.PI * 1.85, b2 = a0 + (i + 1) / n * Math.PI * 1.85;
+        ctx.lineWidth = h * (.055 - .035 * i / n);
+        ctx.beginPath(); ctx.arc(w * .5, h * .46, h * .3, a, b2); ctx.stroke();
+      }
+    }
+  }
+  const strip = document.getElementById('demo-strip');
+  if (strip) [0, 1, 2, 2.9].forEach(t => {
+    const f = document.createElement('figure'), c = document.createElement('canvas'), cap = document.createElement('figcaption');
+    c.width = 192; c.height = 108; demo(c.getContext('2d'), t, 192, 108);
+    cap.textContent = `t=${t.toFixed(1)} #${Math.round(t * 30)}`;
+    f.append(c, cap); strip.append(f);
+  });
+  const pc = document.getElementById('demo-play'), pt = document.getElementById('demo-t');
+  if (pc) {
+    const ctx = pc.getContext('2d'); let vis = false, t0 = performance.now();
+    demo(ctx, 0, pc.width, pc.height);
+    const loop = now => { const t = ((now - t0) / 1000) % 3; demo(ctx, t, pc.width, pc.height); pt.textContent = t.toFixed(2); if (vis) requestAnimationFrame(loop); };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { demo(ctx, 2.5, pc.width, pc.height); pt.textContent = '2.50'; }
+    else if ('IntersectionObserver' in window) new IntersectionObserver(es => { const was = vis; vis = es[0].isIntersecting; if (vis && !was) requestAnimationFrame(loop); }).observe(pc);
+    else { vis = true; requestAnimationFrame(loop); }
+  }
 
   // 声音：同一时间只开一个
   const snds = document.querySelectorAll('.snd');

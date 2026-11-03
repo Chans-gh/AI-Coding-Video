@@ -14,10 +14,11 @@
     <a class="mark" href="#top">AI Coding Video</a>
     <nav class="nav" aria-label="目录">
       <a href="#what"><span lang="zh">是什么</span><span lang="en">What</span></a>
-      <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#gallery"><span lang="zh">样片</span><span lang="en">Samples</span></a>
+      <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#prompt"><span lang="zh">提示词</span><span lang="en">Prompts</span></a>
-      <a href="#install"><span lang="zh">安装</span><span lang="en">Install</span></a>
+      <a href="#skill">Skill</a>
+      <a href="#library"><span lang="zh">词典</span><span lang="en">Dictionary</span></a>
     </nav>
     <div class="bar-end">
       <span class="ver">{{VERSION}}</span>
@@ -31,10 +32,10 @@
   <div class="wrap hero-grid">
     <div class="hero-text">
       <p class="eyebrow"><span lang="zh">纯代码动画视频风格库</span><span lang="en">A style library for code-rendered video</span></p>
-      <h1><span lang="zh">每一帧，<br>都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame is computed by code, from time <i>t</i></span></h1>
+      <h1><span lang="zh">视频每一帧，<br>都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></h1>
       <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、合成声音，再编码成视频。不用 AI 生图生视频，不剪现成素材。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, synthesizes the sound and encodes the video. No image or video generators, no stock footage. Run the same code twice and you get the same film, frame for frame.</span></p>
       <div class="cta">
-        <a class="btn primary" href="#install"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
+        <a class="btn primary" href="#skill"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
         <a class="btn" href="{{REPO}}"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub repo</span></a>
       </div>
     </div>
@@ -59,30 +60,75 @@
 
 <section class="sec" id="what">
   <div class="wrap">
-    <h2><span lang="zh">什么是 Coding Video</span><span lang="en">What Coding Video is</span></h2>
-    <p class="sec-lede"><span lang="zh">做动画视频大致有三条路。这个库只收第一条：画面全部由代码算出来。</span><span lang="en">There are roughly three ways to make an animated video. This library covers only the first: every pixel comes from code.</span></p>
-    <div class="paths">
-      <article class="path on">
-        <h3><span lang="zh">代码逐帧</span><span lang="en">Code, frame by frame</span></h3>
-        <p class="tag"><span lang="zh">本库收录</span><span lang="en">This library</span></p>
+    <h2><span lang="zh">什么是 AI Coding Video</span><span lang="en">What AI Coding Video is</span></h2>
+    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、合成声音，最后编码成 MP4。画面里没有一张现成的图片，也不调用任何生图、生视频模型。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, synthesizes the sound, and encodes an MP4. No ready-made images anywhere in the frame, and no image or video generators.</span></p>
+    <ol class="flow">
+      <li>
+        <div class="flow-vis bubble"><span lang="zh">“做一支 3 秒的开场：夜里升起一轮红日，一笔画出一个圆。”</span><span lang="en">"A 3-second opener: a red sun rises at night, and one brushstroke draws a circle."</span></div>
+        <h3><span lang="zh">你说想要什么</span><span lang="en">You describe it</span></h3>
+        <p><span lang="zh">内容、风格、时长、横屏还是竖屏。风格可以让 Skill 从词典里帮你挑。</span><span lang="en">Content, style, length, landscape or portrait. The Skill can pick a style from the dictionary for you.</span></p>
+      </li>
+      <li>
+        <pre class="flow-vis code-mini" aria-label="draw(ctx, t)"><code>draw(ctx, t) {
+  sky(ctx);
+  sun(ctx, 0.7 - 0.2 * t);
+  stroke(ctx, t / 2);
+}</code></pre>
+        <h3><span lang="zh">AI 写渲染代码</span><span lang="en">The AI writes code</span></h3>
+        <p><span lang="zh">画面是一个以时间 t 为参数的函数；声音是另一段合成代码。</span><span lang="en">The picture is a function of time t; the sound is another piece of synthesis code.</span></p>
+      </li>
+      <li>
+        <div class="flow-vis strip" id="demo-strip" aria-hidden="true"></div>
+        <h3><span lang="zh">浏览器按 t 逐帧画</span><span lang="en">The browser draws each frame</span></h3>
+        <p><span lang="zh">每秒 30 帧，第 n 帧就是 t = n ÷ 30 时的画面。同一个 t 永远画出同一张图。</span><span lang="en">30 frames a second; frame n is the picture at t = n ÷ 30. The same t always gives the same picture.</span></p>
+      </li>
+      <li>
+        <div class="flow-vis player"><canvas id="demo-play" width="320" height="180" aria-label="t"></canvas><code class="tc">t = <b id="demo-t">0.00</b> s</code></div>
+        <h3><span lang="zh">编码成视频</span><span lang="en">Encoded as video</span></h3>
+        <p><span lang="zh">ffmpeg 把帧和声音编成 MP4，横屏 16:9、竖屏 9:16 各一版。</span><span lang="en">ffmpeg turns the frames and sound into an MP4, in 16:9 and 9:16.</span></p>
+      </li>
+    </ol>
+    <p class="flow-cap"><span lang="zh">第 3、4 步里的小画面不是图片也不是视频，是你的浏览器此刻用上面那个 <code>draw(ctx, t)</code> 现场画出来的。</span><span lang="en">The small pictures in steps 3 and 4 are neither images nor video: your browser is drawing them right now with the <code>draw(ctx, t)</code> above.</span></p>
+    <ul class="why">
+      <li><b><span lang="zh">可复现</span><span lang="en">Reproducible</span></b><span lang="zh">同一份代码，每次跑出来的片子一帧不差。</span><span lang="en">Same code, same film, frame for frame.</span></li>
+      <li><b><span lang="zh">可修改</span><span lang="en">Editable</span></b><span lang="zh">换颜色、换文字、换节奏只是改几个参数。</span><span lang="en">Colors, words and timing are a few parameters.</span></li>
+      <li><b><span lang="zh">没有素材版权问题</span><span lang="en">Nothing to license</span></b><span lang="zh">画面和声音都是代码算出来的。</span><span lang="en">Picture and sound are both computed.</span></li>
+    </ul>
+    <h3 class="sub"><span lang="zh">做视频的三条路</span><span lang="en">Three ways to make the picture</span></h3>
+    <p class="sub-lede"><span lang="zh">点一条路，下面的样片跟着切换。这个库目前只收第一条。</span><span lang="en">Pick one and the samples below switch with it. This library currently collects only the first.</span></p>
+    <div class="paths" role="group" aria-label="类型 / Class">
+      <article class="path" data-kind="c">
+        <h3><button type="button" class="path-pick" data-kind="c" aria-pressed="true"><span lang="zh">代码逐帧</span><span lang="en">Code, frame by frame</span></button></h3>
+        <p class="tag"><span lang="zh">C 类 · 本库收录</span><span lang="en">Class C · this library</span></p>
         <p><span lang="zh">AI 写 Canvas、WebGL、SVG 等渲染程序，无头浏览器按 t 逐帧截图，ffmpeg 编码。</span><span lang="en">The AI writes a Canvas, WebGL or SVG renderer; a headless browser captures each frame at time t; ffmpeg encodes.</span></p>
-        <ul>
-          <li><span lang="zh">可复现：同一份代码出同一支片</span><span lang="en">Reproducible: same code, same film</span></li>
-          <li><span lang="zh">可改：换颜色、换文字、换节奏只改参数</span><span lang="en">Editable: colors, words and timing are parameters</span></li>
-          <li><span lang="zh">没有素材版权问题</span><span lang="en">No third-party assets to license</span></li>
-        </ul>
       </article>
-      <article class="path">
-        <h3><span lang="zh">AI 生成画面</span><span lang="en">AI-generated images</span></h3>
-        <p class="tag"><span lang="zh">以后收（G 类）</span><span lang="en">Later (class G)</span></p>
+      <article class="path" data-kind="g">
+        <h3><button type="button" class="path-pick" data-kind="g" aria-pressed="false"><span lang="zh">AI 生成画面</span><span lang="en">AI-generated images</span></button></h3>
+        <p class="tag"><span lang="zh">G 类 · 以后收</span><span lang="en">Class G · later</span></p>
         <p><span lang="zh">画面由图像或视频模型生成，AI 助手写分镜和每个镜头的提示词。擅长写实人物，难保证跨镜头一致。</span><span lang="en">An image or video model makes the pictures; the assistant writes the shot list and prompts. Strong at realistic people, weak at consistency across shots.</span></p>
       </article>
-      <article class="path">
-        <h3><span lang="zh">改编现成素材</span><span lang="en">Existing footage</span></h3>
-        <p class="tag"><span lang="zh">以后收（T 类）</span><span lang="en">Later (class T)</span></p>
+      <article class="path" data-kind="t">
+        <h3><button type="button" class="path-pick" data-kind="t" aria-pressed="false"><span lang="zh">改编现成素材</span><span lang="en">Existing footage</span></button></h3>
+        <p class="tag"><span lang="zh">T 类 · 以后收</span><span lang="en">Class T · later</span></p>
         <p><span lang="zh">在照片、录屏、口播原片、真实数据上加工。效果取决于手里的素材和授权。</span><span lang="en">Work on top of photos, screen recordings, talking-head footage or real data. Depends on the material you have and its license.</span></p>
       </article>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="gal-head">
+      <div>
+        <h2><span lang="zh">样片查看</span><span lang="en">Browse the samples</span></h2>
+        <p class="sec-lede"><span lang="zh">按题材和技术筛选，两个条件可以叠加；卡片上的技术标签也能点。点「声音」听代码合成的配乐。</span><span lang="en">Filter by theme and by technique, alone or together; the technique tags on each card are clickable too. Press Sound to hear the synthesized score.</span></p>
+      </div>
+      <div class="seg" role="group" aria-label="画幅 / Frame shape">
+        <button type="button" data-ar="16x9" aria-pressed="true">16:9</button>
+        <button type="button" data-ar="9x16" aria-pressed="false">9:16</button>
+      </div>
+    </div>
+{{GALLERY}}
   </div>
 </section>
 
@@ -119,60 +165,6 @@ scene({
   </div>
 </section>
 
-<section class="sec" id="levels">
-  <div class="wrap">
-    <h2><span lang="zh">三级用法</span><span lang="en">Three levels</span></h2>
-    <p class="sec-lede"><span lang="zh">装好 Skill 以后，AI 助手在你自己的项目里按这三级走，每一级你点头才进下一级。</span><span lang="en">Once the Skill is installed, your assistant works through three levels in your own project, moving on only when you approve.</span></p>
-    <div class="levels">
-      <article>
-        <p class="lv">0</p>
-        <h3><span lang="zh">词典</span><span lang="en">Dictionary</span></h3>
-        <p class="num">{{N_STYLES}} <span lang="zh">种风格</span><span lang="en">styles</span></p>
-        <p><span lang="zh">每种一句可复制的风格提示词、题材和技术标签，配六张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese), a theme and technique tags, with six lookup tables for choosing.</span></p>
-      </article>
-      <article>
-        <p class="lv">1</p>
-        <h3><span lang="zh">样片</span><span lang="en">Samples</span></h3>
-        <p class="num">{{N_SAMPLES}} <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
-        <p><span lang="zh">候选风格套上你的品牌色和内容，跑 3–5 秒，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content, 3–5 seconds, in both frame shapes. The samples here are worked examples you can edit.</span></p>
-      </article>
-      <article>
-        <p class="lv">2</p>
-        <h3><span lang="zh">风格包</span><span lang="en">Style packs</span></h3>
-        <p class="num"><span lang="zh">筹备中</span><span lang="en">Coming</span></p>
-        <p><span lang="zh">通过的风格沉淀成可换品牌色的代码模块，覆盖片头、讲解、数据、转场、字幕。</span><span lang="en">An approved style becomes a reusable code module with swappable brand colors: openers, explainers, data, transitions, captions.</span></p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="gallery">
-  <div class="wrap">
-    <div class="gal-head">
-      <div>
-        <h2><span lang="zh">样片</span><span lang="en">Samples</span></h2>
-        <p class="sec-lede"><span lang="zh">按题材排列，可以只看某个题材。标签是实际用到的技术，点「声音」听代码合成的配乐。</span><span lang="en">Ordered by theme, with a filter. Tags list the techniques actually used. Press Sound to hear the synthesized score.</span></p>
-      </div>
-      <div class="seg" role="group" aria-label="画幅 / Frame shape">
-        <button type="button" data-ar="16x9" aria-pressed="true">16:9</button>
-        <button type="button" data-ar="9x16" aria-pressed="false">9:16</button>
-      </div>
-    </div>
-{{GALLERY}}
-  </div>
-</section>
-
-<section class="sec" id="library">
-  <div class="wrap">
-    <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
-    <p class="sec-lede"><span lang="zh">全部 {{N_STYLES}} 种风格按题材分布。深色部分是已出样片的。</span><span lang="en">All {{N_STYLES}} styles by theme. The solid part of each bar has rendered samples.</span></p>
-    <div class="bars">
-{{THEMES}}
-    </div>
-    <p class="note"><span lang="zh">按「画在哪」分：{{LAYERS_ZH}}。</span><span lang="en">By where it is drawn: {{LAYERS_EN}}.</span></p>
-  </div>
-</section>
-
 <section class="sec" id="prompt">
   <div class="wrap">
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
@@ -197,19 +189,53 @@ scene({
   </div>
 </section>
 
-<section class="sec" id="install">
+<section class="sec" id="skill">
   <div class="wrap">
-    <h2><span lang="zh">安装</span><span lang="en">Install</span></h2>
-    <p class="sec-lede"><span lang="zh">支持 Agent Skills（<code>SKILL.md</code>）格式的助手都能装：Claude Code、Codex、DeepSeek Harness、WorkBuddy 等。</span><span lang="en">Works with any assistant that reads Agent Skills (<code>SKILL.md</code>): Claude Code, Codex, DeepSeek Harness, WorkBuddy and others.</span></p>
+    <h2><span lang="zh">什么是 Skill，这个 Skill 怎么用？</span><span lang="en">What a Skill is, and how to use this one</span></h2>
+    <p class="sec-lede"><span lang="zh">这个仓库的核心是一个 Skill。下面分三块说：它是什么、怎么装、装好以后怎么一级一级用。</span><span lang="en">At the heart of this repository is a Skill. Three parts below: what it is, how to install it, and how to use it level by level.</span></p>
+
+    <div class="part" id="skill-what">
+      <p class="part-n">1</p>
+      <div class="part-body">
+        <h3><span lang="zh">什么是 Skill</span><span lang="en">What a Skill is</span></h3>
+        <div class="skill-grid">
+          <div>
+            <p><span lang="zh">Skill（技能包）是写给 AI 编程助手的一份说明书：一个文件夹，核心是一份 <code>SKILL.md</code>，旁边放着它要用的资料和脚本。助手平时只记得它的一句简介；你的话题碰到做视频时，它才把整份说明和用得上的词典条目读进来，照着做。</span><span lang="en">A Skill is a manual written for an AI coding assistant: a folder built around one <code>SKILL.md</code>, with the reference material and scripts it needs. The assistant normally keeps only its one-line summary in mind; when your request touches on making a video, it reads the full manual and the dictionary entries it needs, and follows them.</span></p>
+            <p><span lang="zh">所以你不用记风格名和参数，也不用把提示词一段段贴给它。说「给一支讲水循环的科普片选个风格」，它会去查词典、给你候选、写代码、出样片。</span><span lang="en">So you don't need to remember style names or parameters, or paste prompts in. Say "pick a style for an explainer on the water cycle" and it looks up the dictionary, offers candidates, writes the code and renders a sample.</span></p>
+            <ol class="mini-flow">
+              <li><span lang="zh">你提到做视频</span><span lang="en">You mention a video</span></li>
+              <li><span lang="zh">助手读 SKILL.md</span><span lang="en">It reads SKILL.md</span></li>
+              <li><span lang="zh">查词典、选风格</span><span lang="en">Looks up styles</span></li>
+              <li><span lang="zh">写代码、出样片</span><span lang="en">Writes code, renders</span></li>
+            </ol>
+          </div>
+          <ul class="tree" aria-label="ai-coding-video/">
+            <li class="root"><code>ai-coding-video/</code></li>
+            <li><code>SKILL.md</code><span lang="zh">给助手的说明书：什么时候用、按什么步骤走</span><span lang="en">The manual: when to use it, which steps to follow</span></li>
+            <li><code>styles/*.md</code><span lang="zh">风格词典：每种一句提示词、题材、技术标签</span><span lang="en">The dictionary: a prompt, theme and tags per style</span></li>
+            <li><code>index.md</code><span lang="zh">按用途、题材选风格的索引表</span><span lang="en">Lookup tables by purpose and theme</span></li>
+            <li><code>prompting.md</code><span lang="zh">提示词写法和通用模板</span><span lang="en">How to write prompts, plus a template</span></li>
+            <li><code>sound.md</code><span lang="zh">声音怎么用代码合成</span><span lang="en">How to synthesize the sound</span></li>
+            <li><code>scripts/</code><span lang="zh">生成索引、检查条目的脚本</span><span lang="en">Scripts that build and check the index</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="part" id="install">
+      <p class="part-n">2</p>
+      <div class="part-body">
+        <h3><span lang="zh">安装</span><span lang="en">Install</span></h3>
+        <p class="part-lede"><span lang="zh">支持 Agent Skills（<code>SKILL.md</code>）格式的助手都能装：Claude Code、Codex、DeepSeek Harness、WorkBuddy 等。</span><span lang="en">Works with any assistant that reads Agent Skills (<code>SKILL.md</code>): Claude Code, Codex, DeepSeek Harness, WorkBuddy and others.</span></p>
     <div class="inst">
       <div>
-        <h3>Claude Code</h3>
+        <h4>Claude Code</h4>
         <pre class="code" tabindex="0"><code id="inst-cc">claude plugin marketplace add chans-gh/AI-Coding-Video
 claude plugin install ai-coding-video@ai-coding-video</code></pre>
         <button type="button" class="copy" data-copy="inst-cc"><span lang="zh">复制</span><span lang="en">Copy</span></button>
       </div>
       <div>
-        <h3><span lang="zh">其他助手</span><span lang="en">Other assistants</span></h3>
+        <h4><span lang="zh">其他助手</span><span lang="en">Other assistants</span></h4>
         <pre class="code" tabindex="0"><code id="inst-sh">git clone https://github.com/Chans-gh/AI-Coding-Video.git
 cd AI-Coding-Video
 scripts/install.sh codex   <span class="c"># or: claude · dsh · all · zip</span></code></pre>
@@ -217,6 +243,47 @@ scripts/install.sh codex   <span class="c"># or: claude · dsh · all · zip</sp
       </div>
     </div>
     <p class="note"><span lang="zh">装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”。</span><span lang="en">Then just ask: "Pick a style for a 60-second explainer on the water cycle", or "Write a Canvas animation in the C-013 shadow-puppet style".</span></p>
+      </div>
+    </div>
+
+    <div class="part" id="levels">
+      <p class="part-n">3</p>
+      <div class="part-body">
+        <h3><span lang="zh">三级用法</span><span lang="en">Three levels</span></h3>
+        <p class="part-lede"><span lang="zh">装好以后，助手在你自己的项目里按这三级走，每一级你点头才进下一级。</span><span lang="en">Once installed, your assistant works through three levels in your own project, moving on only when you approve.</span></p>
+        <div class="levels">
+      <article>
+        <p class="lv">0</p>
+        <h4><span lang="zh">词典</span><span lang="en">Dictionary</span></h4>
+        <p class="num">{{N_STYLES}} <span lang="zh">种风格</span><span lang="en">styles</span></p>
+        <p><span lang="zh">每种一句可复制的风格提示词、题材和技术标签，配六张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese), a theme and technique tags, with six lookup tables for choosing.</span></p>
+      </article>
+      <article>
+        <p class="lv">1</p>
+        <h4><span lang="zh">样片</span><span lang="en">Samples</span></h4>
+        <p class="num">{{N_SAMPLES}} <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
+        <p><span lang="zh">候选风格套上你的品牌色和内容，跑 3–5 秒，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content, 3–5 seconds, in both frame shapes. The samples here are worked examples you can edit.</span></p>
+      </article>
+      <article>
+        <p class="lv">2</p>
+        <h4><span lang="zh">风格包</span><span lang="en">Style packs</span></h4>
+        <p class="num"><span lang="zh">筹备中</span><span lang="en">Coming</span></p>
+        <p><span lang="zh">通过的风格沉淀成可换品牌色的代码模块，覆盖片头、讲解、数据、转场、字幕。</span><span lang="en">An approved style becomes a reusable code module with swappable brand colors: openers, explainers, data, transitions, captions.</span></p>
+      </article>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="library">
+  <div class="wrap">
+    <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
+    <p class="sec-lede"><span lang="zh">全部 {{N_STYLES}} 种风格按题材分布。深色部分是已出样片的。</span><span lang="en">All {{N_STYLES}} styles by theme. The solid part of each bar has rendered samples.</span></p>
+    <div class="bars">
+{{THEMES}}
+    </div>
+    <p class="note"><span lang="zh">按「画在哪」分：{{LAYERS_ZH}}。</span><span lang="en">By where it is drawn: {{LAYERS_EN}}.</span></p>
   </div>
 </section>
 </main>
