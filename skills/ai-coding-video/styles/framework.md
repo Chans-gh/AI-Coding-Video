@@ -23,11 +23,15 @@
 
 ## C-044 暗色科技发布会
 
+![暗色科技发布会](../images/C-044.jpg)
+
 ```text
 用暗色科技发布会风格：近黑渐变底加发丝细网格和柔光，只有一个品牌强调色，圆角窗口和通知卡片按网格吸附、每个元素落在音符上，一道扫光揭示产品，最后用一个巨大数字说出核心价值。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：软件发布
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-044/
 - 技术（建议）：Remotion · HyperFrames · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/dark-keynote/STYLE.md) · [@rexan_wong](https://x.com/rexan_wong/status/2103707054108299437)

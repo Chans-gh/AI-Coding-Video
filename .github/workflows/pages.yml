@@ -1,0 +1,33 @@
+# 把 site/ 发布到 GitHub Pages。样片视频和静帧不在 site/ 里重复存一份，发布时从 samples/ 拷进 site/media/。
+name: pages
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "samples/C-*/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 拷样片
+        run: |
+          mkdir -p site/media
+          cp samples/C-*/C-*-16x9.mp4 samples/C-*/C-*-9x16.mp4 samples/C-*/C-*-16x9.jpg samples/C-*/C-*-9x16.jpg site/media/
+          rm -rf site/src site/build.py site/README.md
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

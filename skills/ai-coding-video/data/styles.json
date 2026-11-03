@@ -214,17 +214,21 @@
    "name": "白板讲解",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-009.jpg",
    "prompt": "用白板讲解风格：一整块略反光的白板，手写字和简笔图是一笔一笔真正写出来的，悬浮的马克笔没有手，可以用磁铁移动元素、用板擦“倒带”，镜头全程不离开白板，最后拉远看到整块写满的板。",
    "theme": "手绘与绘画",
    "fit": "科普、“怎么运作”",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Rough.js",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-009/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -306,15 +310,19 @@
    "name": "皮影戏",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-013.jpg",
    "prompt": "用中国皮影戏风格：半透明的染色兽皮人偶，身上镂空如蕾丝纹样，关节分段、由操纵杆带动、动作有轻微摆荡，贴在棉布幕上、被背后的油灯照亮并微微闪烁，人偶离幕远时边缘变虚，锣鼓和板胡配乐。",
    "theme": "东方传统",
    "fit": "神话、民间故事",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-013/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -328,15 +336,19 @@
    "name": "浮世绘",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-014.jpg",
    "prompt": "用江户浮世绘木版画风格：平涂色块加雕刻感墨线，主色是普鲁士蓝，天空和水面用上深下浅的晕染渐变，看得见纸纹和套版痕迹，每个镜头都是一幅完整版画，镜头像展开画卷一样横移。",
    "theme": "东方传统",
    "fit": "旅途、日本题材",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-014/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -350,16 +362,20 @@
    "name": "红色窗花剪纸",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-015.jpg",
    "prompt": "用中国红色窗花剪纸风格：所有形象都是一张红纸镂空剪出来的，“剪即是画”，镂空处透出底色的光，背景是宣纸或靛蓝夜色纸，角色是关节式剪纸人，全片只用红、纸白、靛蓝三色。",
    "theme": "东方传统",
    "fit": "春节、民俗",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-015/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -840,16 +856,20 @@
    "name": "动态文字排版",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-036.jpg",
    "prompt": "用动态文字排版风格：画面里只有字，纯色暖灰底，一种粗体无衬线加一种衣线斜体做对比，字词跟旁白或节拍逐个出现，靠字号大小、粗细、位移和挤压制造节奏，句末用一个彩色圆点收尾。",
    "theme": "平面设计与动态排版",
    "fit": "金句、短视频钩子、作品集",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-036/",
    "refs": [
     {
      "label": "源码",
@@ -893,16 +913,20 @@
    "name": "科普扁平（Kurzgesagt 式）",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-038.jpg",
    "prompt": "用科普扁平插画风格：深蓝紫太空背景配高饱和渐变，圆润几何造型、无描边、边缘带一道柔光，前中后景分层造出深度，数字和概念用大量小圆点粒子可视化，镜头平滑推进并带轻微弹性。",
    "theme": "信息讲解与产品发布",
    "fit": "科学概念",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-038/",
    "refs": [
     {
      "label": "源码",
@@ -1043,17 +1067,21 @@
    "name": "暗色科技发布会",
    "file": "styles/framework.md",
    "layer": "framework",
-   "image": null,
+   "image": "images/C-044.jpg",
    "prompt": "用暗色科技发布会风格：近黑渐变底加发丝细网格和柔光，只有一个品牌强调色，圆角窗口和通知卡片按网格吸附、每个元素落在音符上，一道扫光揭示产品，最后用一个巨大数字说出核心价值。",
    "theme": "信息讲解与产品发布",
    "fit": "软件发布",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Remotion",
     "HyperFrames",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": "samples/C-044/",
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1262,15 +1290,19 @@
    "name": "16-bit 像素平台",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-053.jpg",
    "prompt": "用 16-bit 横版平台游戏像素风格：低分辨率整数倍放大、像素边缘锐利不模糊，限定 16–32 色调色板，蓝天白云、圆形山丘、砖块和金币，顶部 HUD 显示分数和时间，角色跳跃顶砖块，完成时弹出像素字“过关”，芯片音效。",
    "theme": "游戏",
    "fit": "游戏化、进度",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": "samples/C-053/",
    "refs": [
     {
      "label": "源码",
@@ -1644,16 +1676,21 @@
    "name": "写实光线步进",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-069.jpg",
    "prompt": "用写实光线步进渲染风格：自写 GPU 光线步进渲染器，没有外部 3D 模型和贴图，夕阳低角度逆光、海面反射和大气雾气，每帧多次采样降噪，电影感调色和浅景深，镜头缓慢移动。",
    "theme": "3D 与实时图形",
    "fit": "炫技短片",
-   "verified": [],
+   "verified": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL2",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": "samples/C-069/",
    "refs": []
   },
   {

@@ -23,12 +23,16 @@
 
 ## C-009 白板讲解
 
+![白板讲解](../images/C-009.jpg)
+
 ```text
 用白板讲解风格：一整块略反光的白板，手写字和简笔图是一笔一笔真正写出来的，悬浮的马克笔没有手，可以用磁铁移动元素、用板擦“倒带”，镜头全程不离开白板，最后拉远看到整块写满的板。
 ```
 
 - 题材：手绘与绘画
 - 适合：科普、“怎么运作”
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-009/
 - 技术（建议）：SVG · Rough.js · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/whiteboard/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/beyaz-tahta)
 
@@ -36,12 +40,16 @@
 
 ## C-015 红色窗花剪纸
 
+![红色窗花剪纸](../images/C-015.jpg)
+
 ```text
 用中国红色窗花剪纸风格：所有形象都是一张红纸镂空剪出来的，“剪即是画”，镂空处透出底色的光，背景是宣纸或靛蓝夜色纸，角色是关节式剪纸人，全片只用红、纸白、靛蓝三色。
 ```
 
 - 题材：东方传统
 - 适合：春节、民俗
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-015/
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/papercut-red/STYLE.md)
 
@@ -140,12 +148,16 @@
 
 ## C-036 动态文字排版
 
+![动态文字排版](../images/C-036.jpg)
+
 ```text
 用动态文字排版风格：画面里只有字，纯色暖灰底，一种粗体无衬线加一种衣线斜体做对比，字词跟旁白或节拍逐个出现，靠字号大小、粗细、位移和挤压制造节奏，句末用一个彩色圆点收尾。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：金句、短视频钩子、作品集
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-036/
 - 技术（建议）：HTML/CSS · GSAP
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kinetik-tipografi) · [kinetic-reel](https://github.com/tuzhechen2005/opus-video-skills) · [@stephanlivera](https://x.com/stephanlivera/status/2103315922098470926)
 
@@ -166,12 +178,16 @@
 
 ## C-038 科普扁平（Kurzgesagt 式）
 
+![科普扁平（Kurzgesagt 式）](../images/C-038.jpg)
+
 ```text
 用科普扁平插画风格：深蓝紫太空背景配高饱和渐变，圆润几何造型、无描边、边缘带一道柔光，前中后景分层造出深度，数字和概念用大量小圆点粒子可视化，镜头平滑推进并带轻微弹性。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：科学概念
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-038/
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kurzgesagt)
 

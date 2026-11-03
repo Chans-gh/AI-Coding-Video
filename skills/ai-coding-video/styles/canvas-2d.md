@@ -142,12 +142,16 @@
 
 ## C-013 皮影戏
 
+![皮影戏](../images/C-013.jpg)
+
 ```text
 用中国皮影戏风格：半透明的染色兽皮人偶，身上镂空如蕾丝纹样，关节分段、由操纵杆带动、动作有轻微摆荡，贴在棉布幕上、被背后的油灯照亮并微微闪烁，人偶离幕远时边缘变虚，锣鼓和板胡配乐。
 ```
 
 - 题材：东方传统
 - 适合：神话、民间故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-013/
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/shadow-puppet/STYLE.md)
 
@@ -155,12 +159,16 @@
 
 ## C-014 浮世绘
 
+![浮世绘](../images/C-014.jpg)
+
 ```text
 用江户浮世绘木版画风格：平涂色块加雕刻感墨线，主色是普鲁士蓝，天空和水面用上深下浅的晕染渐变，看得见纸纹和套版痕迹，每个镜头都是一幅完整版画，镜头像展开画卷一样横移。
 ```
 
 - 题材：东方传统
 - 适合：旅途、日本题材
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-014/
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ukiyoe/STYLE.md)
 
@@ -310,12 +318,16 @@
 
 ## C-053 16-bit 像素平台
 
+![16-bit 像素平台](../images/C-053.jpg)
+
 ```text
 用 16-bit 横版平台游戏像素风格：低分辨率整数倍放大、像素边缘锐利不模糊，限定 16–32 色调色板，蓝天白云、圆形山丘、砖块和金币，顶部 HUD 显示分数和时间，角色跳跃顶砖块，完成时弹出像素字“过关”，芯片音效。
 ```
 
 - 题材：游戏
 - 适合：游戏化、进度
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：samples/C-053/
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/piksel) · [@riku720720](https://x.com/riku720720/status/2102515055116063144)
 

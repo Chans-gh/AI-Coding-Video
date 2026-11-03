@@ -9,7 +9,7 @@
 | 级别 | 是什么 | 在哪 |
 |---|---|---|
 | 0 级：词典 | 全部风格的提示词、题材、技术标签、选风格索引 | [`skills/ai-coding-video/`](skills/ai-coding-video/) |
-| 1 级：样片 | 选中的风格做成 3–5 秒样片，横屏 16:9 和竖屏 9:16 各一版，附可复现的代码 | `samples/`（陆续加入） |
+| 1 级：样片 | 选中的风格做成 3–5 秒样片，横屏 16:9 和竖屏 9:16 各一版，附可复现的代码 | [`samples/`](samples/) |
 | 2 级：风格包 | 通过的风格做成可换品牌色的代码模块，覆盖片头、讲解、数据、转场等常用呈现 | `packs/`（陆续加入） |
 
 Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里帮你选风格、出样片、沉淀成风格包。本仓库的样片和风格包是示范。进度见 [PLAN.md](PLAN.md)。
@@ -42,7 +42,7 @@ scripts/install.sh zip      # 打成 dist/ai-coding-video.zip，用于 WorkBuddy
 skills/ai-coding-video/   Skill 本体（唯一正本）
 samples/                  1 级样片：每种风格的渲染代码和出片脚本（陆续加入）
 packs/                    2 级风格包（陆续加入）
-site/                     介绍页（纯静态，可整个拷到任意服务器）（陆续加入）
+site/                     介绍页（纯静态，可整个拷到任意服务器）
 scripts/install.sh        安装到各家助手
 .claude-plugin/           Claude Code 插件与插件市场清单
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
