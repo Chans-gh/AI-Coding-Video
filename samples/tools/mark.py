@@ -1,9 +1,10 @@
-"""把已出片的样片登记进风格条目：缩略图、「技术（已验证）」「样片代码」，再跑 build_index.py 和 --check。
+"""把已出片的样片登记进风格条目：缩略图、「技术（已验证）」「样片代码」，有风格包的再加「风格包」，再跑 build_index.py 和 --check。
 
     python3 tools/mark.py C-168 C-169
     python3 tools/mark.py all          # 所有横竖两版都已出片、有 meta.json 的样片
 
-技术标签取 samples/<编号>/meta.json 的 tech。条目里已有这几行就按 meta.json 更新，没有就补上；
+技术标签取 samples/<编号>/meta.json 的 tech；风格包取 packs/<名字>/meta.json 的 from。
+「样片代码」「风格包」写成指向 GitHub 的链接，仓库地址取 build_index.py 的 CODE_BASE。条目里已有这几行就按 meta.json 更新，没有就补上；
 重复运行结果不变。缩略图 images/<编号>.jpg 由 batch.py 出片时写好。
 """
 import json
@@ -15,6 +16,18 @@ from pathlib import Path
 SAMPLES = Path(__file__).resolve().parent.parent
 SKILL = SAMPLES.parent / "skills" / "ai-coding-video"
 BUILD = SKILL / "scripts" / "build_index.py"
+PACKS = SAMPLES.parent / "packs"
+sys.path.insert(0, str(BUILD.parent))
+from build_index import CODE_BASE  # noqa: E402
+
+
+def link(path):
+    return f"[{path}]({CODE_BASE}{path.rstrip('/')})"
+
+
+def packs_of(sid):
+    return sorted(p.parent.name for p in PACKS.glob("*/meta.json")
+                  if json.loads(p.read_text(encoding="utf-8")).get("from") == sid)
 
 
 def ready(sid):
@@ -43,8 +56,9 @@ def mark(sid, styles):
         new = re.sub(r"^!\[[^\]]*\]\(\.\./images/[^)]+\)", img, new, count=1, flags=re.M)
     else:
         new = "\n" + img + "\n" + new
-    lines = [f"- 技术（已验证）：{' · '.join(tech)}", f"- 样片代码：samples/{sid}/"]
-    new = re.sub(r"^- (技术（已验证）|样片代码)：.*\n", "", new, flags=re.M)
+    lines = [f"- 技术（已验证）：{' · '.join(tech)}", f"- 样片代码：{link(f'samples/{sid}/')}"]
+    lines += [f"- 风格包：{link(f'packs/{n}/')}" for n in packs_of(sid)]
+    new = re.sub(r"^- (技术（已验证）|样片代码|风格包)：.*\n", "", new, flags=re.M)
     # 放在「技术（建议）」前面；没有就放在字段列表最后
     if re.search(r"^- 技术（建议）：", new, re.M):
         new = re.sub(r"^(- 技术（建议）：)", "\n".join(lines) + r"\n\1", new, count=1, flags=re.M)

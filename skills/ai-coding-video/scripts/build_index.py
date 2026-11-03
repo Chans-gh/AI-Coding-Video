@@ -17,6 +17,10 @@ STYLES_DIR = os.path.join(ROOT, 'styles')
 JSON_PATH = os.path.join(ROOT, 'data', 'styles.json')
 TAGS_PATH = os.path.join(ROOT, 'data', 'tags.json')
 INDEX_PATH = os.path.join(ROOT, 'index.md')
+# 样片代码、风格包放在仓库里 Skill 文件夹之外；条目里写成指向 GitHub 的链接，Skill 单独装进别的项目也能点开。
+# 仓库地址只记在这里，samples/tools/mark.py 从这里取。
+CODE_BASE = 'https://github.com/Chans-gh/AI-Coding-Video/tree/main/'
+REPO_ROOT = os.path.dirname(os.path.dirname(ROOT))  # 在本仓库里时才有 samples/、packs/，单独安装时跳过存在性检查
 CAT_START, CAT_END = '<!-- catalog:start -->', '<!-- catalog:end -->'
 
 ENTRY_RE = re.compile(r'<a id="([CTG]-\d{3})"></a>\s*\n\s*\n## ([CTG]-\d{3}) (.+?)\n(.*?)(?=\n<a id="[CTG]-\d{3}"></a>|\Z)', re.S)
@@ -26,12 +30,27 @@ FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
 FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
 FIELDS = {'题材': 'theme', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
-          '样片代码': 'render_code', '参考': 'refs'}
+          '样片代码': 'render_code', '风格包': 'pack', '参考': 'refs'}
+REPO_LINKS = {'render_code': 'samples/', 'pack': 'packs/'}
 CLASS_NAME = {'C': '纯代码', 'T': '第三方素材', 'G': 'AI 生成素材'}
 
 
 def split_tags(value):
     return [t.strip() for t in value.split('·') if t.strip()]
+
+
+def repo_link(value, prefix, where, errors):
+    """「样片代码」「风格包」写成 [samples/C-044/](CODE_BASE + samples/C-044)，返回 {path, url}。"""
+    m = re.fullmatch(r'\[([^\]]+)\]\(([^)\s]+)\)', value.strip())
+    if not m or not m.group(1).startswith(prefix) or not m.group(1).endswith('/'):
+        errors.append(f'{where}: 要写成 [{prefix}…/]({CODE_BASE}{prefix}…)')
+        return None
+    path, url = m.groups()
+    if url != CODE_BASE + path.rstrip('/'):
+        errors.append(f'{where}: 链接应为 {CODE_BASE}{path.rstrip("/")}')
+    if os.path.isdir(os.path.join(REPO_ROOT, prefix)) and not os.path.isdir(os.path.join(REPO_ROOT, path)):
+        errors.append(f'{where}: 仓库里没有 {path}')
+    return {'path': path, 'url': url}
 
 
 def parse(errors):
@@ -60,7 +79,7 @@ def parse(errors):
             imgs = IMG_RE.findall(body)
             rec = {'id': sid, 'class': sid[0], 'name': name.strip(), 'file': f'styles/{fname}', 'layer': layer,
                    'image': f'images/{imgs[0]}' if imgs else None, 'prompt': prompts[0].strip() if prompts else '',
-                   'theme': '', 'fit': '', 'verified': [], 'suggested': [], 'render_code': None, 'refs': []}
+                   'theme': '', 'fit': '', 'verified': [], 'suggested': [], 'render_code': None, 'pack': None, 'refs': []}
             for key, value in FIELD_RE.findall(FENCE_RE.sub('', body)):
                 if key not in FIELDS:
                     errors.append(f'{where}: 不认识的字段「{key}」')
@@ -70,6 +89,8 @@ def parse(errors):
                     rec[k] = split_tags(value)
                 elif k == 'refs':
                     rec[k] = [{'label': a, 'url': b} for a, b in MDLINK_RE.findall(value)]
+                elif k in REPO_LINKS:
+                    rec[k] = repo_link(value, REPO_LINKS[k], f'{where}「{key}」', errors)
                 else:
                     rec[k] = value.strip()
             if rec['theme'] not in themes:
@@ -91,6 +112,8 @@ def parse(errors):
                     errors.append(f'{where}: 有缩略图（做过样片）就必须写「技术（已验证）」和「样片代码」')
             elif rec['verified']:
                 errors.append(f'{where}: 写了「技术（已验证）」但没有样片缩略图')
+            if rec['pack'] and not rec['render_code']:
+                errors.append(f'{where}: 有「风格包」就必须先有样片')
             styles.append(rec)
     styles.sort(key=lambda r: (r['class'], r['id']))
     for cls in 'CTG':

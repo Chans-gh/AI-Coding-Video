@@ -32,6 +32,7 @@
 - 题材：信息讲解与产品发布
 - 适合：软件发布
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-044/
+- 样片代码：[samples/C-044/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-044)
+- 风格包：[packs/dark-keynote/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/dark-keynote)
 - 技术（建议）：Remotion · HyperFrames · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/dark-keynote/STYLE.md) · [@rexan_wong](https://x.com/rexan_wong/status/2103707054108299437)

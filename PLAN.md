@@ -9,7 +9,7 @@
 | 批次 | 内容 | 产出 | 页面版本 | 状态 |
 |---|---|---|---|---|
 | 2 | 1 级样片第 2 批 + 第 1 个风格包 | 样片 C-168–C-195；第 1 批里通过的风格做成 2 级风格包（可换品牌色，覆盖片头、讲解、数据、转场、字幕） | v2：加样片、加「风格包」一节 | 做完，等维护者看第 1 个风格包（dark-keynote）后从这里删掉 |
-| 3 | 风格包扩充 + 各家插件清单 | 更多风格包；Codex 插件清单（`plugin.json` + `.agents/plugins/marketplace.json`）、DeepSeek Harness 实测安装 | v3 | 等批次 2 |
+| 3 | Skill 扩展 + opus40 余下样片 + 各家插件清单 | ① Skill 补 1 级样片、2 级风格包的制作说明（以 dark-keynote 为例），已验证条目自动带上样片代码链接；② opus40 剩下的 28 种样片；③ Codex 插件清单（`plugin.json` + `.agents/plugins/marketplace.json`）、DeepSeek Harness 实测安装。风格包扩充挪到之后：等维护者从已有样片里再点几种，按 ① 的说明做 | v3 | 进行中 |
 | 4 | T 类（第三方或自备素材） | 21 种候选，出处和别人做的截图、样片链接见 [candidates.md](candidates.md) | v4：加 T 类章节 | 等批次 3 |
 | 5 | G 类（AI 生成素材） | 7 种，见 [candidates.md](candidates.md) | v5：加 G 类章节 | 等批次 4 |
 

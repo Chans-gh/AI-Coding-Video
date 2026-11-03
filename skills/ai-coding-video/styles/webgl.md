@@ -187,7 +187,7 @@
 - 题材：3D 与实时图形
 - 适合：炫技短片
 - 技术（已验证）：WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-069/
+- 样片代码：[samples/C-069/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-069)
 - 技术（建议）：WebGL2 · GLSL
 
 <a id="C-070"></a>
@@ -266,7 +266,7 @@
 - 题材：3D 与实时图形
 - 适合：科普
 - 技术（已验证）：WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-076/
+- 样片代码：[samples/C-076/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-076)
 - 技术（建议）：WebGL · GLSL
 - 参考：[@superalesha](https://x.com/superalesha/status/2102779758408774104)
 
@@ -554,7 +554,7 @@
 - 题材：平面设计与动态排版
 - 适合：宣言与口号、歌词 MV、数据与信息洪流
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-170/
+- 样片代码：[samples/C-170/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-170)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-174"></a>
@@ -570,7 +570,7 @@
 - 题材：3D 与实时图形
 - 适合：失恋与思念、深夜电台、学习陪伴背景
 - 技术（已验证）：WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-174/
+- 样片代码：[samples/C-174/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-174)
 - 技术（建议）：WebGL · GLSL
 
 <a id="C-175"></a>
@@ -586,7 +586,7 @@
 - 题材：3D 与实时图形
 - 适合：怀旧与回忆、阅读与书房、慢节奏开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-175/
+- 样片代码：[samples/C-175/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-175)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-177"></a>
@@ -602,7 +602,7 @@
 - 题材：电影年代与屏幕科技
 - 适合：电子音乐 MV、网络安全题材、科技发布转场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-177/
+- 样片代码：[samples/C-177/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-177)
 - 技术（建议）：WebGL · GLSL
 
 <a id="C-178"></a>
@@ -618,7 +618,7 @@
 - 题材：纸艺、材质与定格
 - 适合：手工教程、变化与成长寓意、日式品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-178/
+- 样片代码：[samples/C-178/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-178)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-186"></a>
@@ -634,7 +634,7 @@
 - 题材：3D 与实时图形
 - 适合：国风科幻、游戏宣传、未来城市设想
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-186/
+- 样片代码：[samples/C-186/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-186)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-189"></a>
@@ -650,7 +650,7 @@
 - 题材：卡通与动漫
 - 适合：品牌吉祥物短片、拟人化产品故事、儿童动画
 - 技术（已验证）：WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-189/
+- 样片代码：[samples/C-189/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-189)
 - 技术（建议）：WebGL · Three.js
 - 参考：[huashu 风格卡 53_pixar](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/53_pixar.md)
 
@@ -667,5 +667,5 @@
 - 题材：3D 与实时图形
 - 适合：科幻世界观、游戏宣传、环境与能源议题、悬念开场
 - 技术（已验证）：Canvas 2D · WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-195/
+- 样片代码：[samples/C-195/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-195)
 - 技术（建议）：WebGL · GLSL

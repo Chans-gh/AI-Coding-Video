@@ -19,6 +19,6 @@
 - 题材：电影年代与屏幕科技
 - 适合：AI/技术过程
 - 技术（已验证）：终端字符 · Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-064/
+- 样片代码：[samples/C-064/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-064)
 - 技术（建议）：终端字符 · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ascii-crt/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/terminal)

@@ -32,7 +32,7 @@
 - 题材：手绘与绘画
 - 适合：科普、“怎么运作”
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-009/
+- 样片代码：[samples/C-009/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-009)
 - 技术（建议）：SVG · Rough.js · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/whiteboard/STYLE.md) · [源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/beyaz-tahta)
 
@@ -49,7 +49,7 @@
 - 题材：东方传统
 - 适合：春节、民俗
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-015/
+- 样片代码：[samples/C-015/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-015)
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/papercut-red/STYLE.md)
 
@@ -157,7 +157,7 @@
 - 题材：平面设计与动态排版
 - 适合：金句、短视频钩子、作品集
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-036/
+- 样片代码：[samples/C-036/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-036)
 - 技术（建议）：HTML/CSS · GSAP
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kinetik-tipografi) · [kinetic-reel](https://github.com/tuzhechen2005/opus-video-skills) · [@stephanlivera](https://x.com/stephanlivera/status/2103315922098470926)
 
@@ -187,7 +187,7 @@
 - 题材：信息讲解与产品发布
 - 适合：科学概念
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-038/
+- 样片代码：[samples/C-038/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-038)
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kurzgesagt)
 
@@ -656,7 +656,7 @@
 - 题材：平面设计与动态排版
 - 适合：独白与书信、产品文案演示、悬念开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-169/
+- 样片代码：[samples/C-169/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-169)
 - 技术（建议）：HTML/CSS · GSAP
 
 <a id="C-179"></a>
@@ -672,7 +672,7 @@
 - 题材：信息讲解与产品发布
 - 适合：产品拆解与清单、装备介绍、收纳与旅行准备
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-179/
+- 样片代码：[samples/C-179/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-179)
 - 技术（建议）：SVG · GSAP
 
 <a id="C-181"></a>
@@ -688,7 +688,7 @@
 - 题材：东方传统
 - 适合：春节与节庆、民俗科普、新年品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-181/
+- 样片代码：[samples/C-181/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-181)
 - 技术（建议）：SVG · GSAP
 
 <a id="C-183"></a>
@@ -704,7 +704,7 @@
 - 题材：东方传统
 - 适合：戏曲科普、国潮品牌、人物性格讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-183/
+- 样片代码：[samples/C-183/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-183)
 - 技术（建议）：SVG · GSAP
 
 <a id="C-192"></a>
@@ -720,7 +720,7 @@
 - 题材：卡通与动漫
 - 适合：荒诞科幻喜剧、技术梗讲解、成人向短剧
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-192/
+- 样片代码：[samples/C-192/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-192)
 - 技术（建议）：SVG · GSAP
 - 参考：[huashu 风格卡 37_rick_morty](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/37_rick_morty.md)
 
@@ -737,6 +737,6 @@
 - 题材：卡通与动漫
 - 适合：讽刺短剧、快速成本低的连载、职场与社会话题
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-193/
+- 样片代码：[samples/C-193/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-193)
 - 技术（建议）：SVG · HTML/CSS
 - 参考：[huashu 风格卡 52_south_park](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/52_south_park.md)

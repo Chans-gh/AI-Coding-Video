@@ -20,7 +20,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-001/",
+   "render_code": {
+    "path": "samples/C-001/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-001"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -52,6 +56,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -83,6 +88,7 @@
     "Rough.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -107,6 +113,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -134,6 +141,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -157,6 +165,7 @@
     "Rough.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -174,6 +183,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -197,6 +207,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -228,7 +239,11 @@
     "Rough.js",
     "GSAP"
    ],
-   "render_code": "samples/C-009/",
+   "render_code": {
+    "path": "samples/C-009/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-009"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -255,6 +270,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -278,6 +294,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -297,6 +314,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "ClaudeAnimationBase",
@@ -322,7 +340,11 @@
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": "samples/C-013/",
+   "render_code": {
+    "path": "samples/C-013/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-013"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -348,7 +370,11 @@
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": "samples/C-014/",
+   "render_code": {
+    "path": "samples/C-014/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-014"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -375,7 +401,11 @@
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": "samples/C-015/",
+   "render_code": {
+    "path": "samples/C-015/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-015"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -398,6 +428,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -424,6 +455,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -446,6 +478,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -469,6 +502,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -492,6 +526,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -514,6 +549,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -542,6 +578,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -565,6 +602,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@dfeinition",
@@ -588,6 +626,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -610,6 +649,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -637,6 +677,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -660,6 +701,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@NFT_Chen",
@@ -683,6 +725,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -711,6 +754,7 @@
     "cannon-es"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -733,6 +777,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -751,6 +796,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -774,6 +820,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -797,6 +844,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -820,6 +868,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -843,6 +892,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -869,7 +919,11 @@
     "HTML/CSS",
     "GSAP"
    ],
-   "render_code": "samples/C-036/",
+   "render_code": {
+    "path": "samples/C-036/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-036"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -900,6 +954,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -926,7 +981,11 @@
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": "samples/C-038/",
+   "render_code": {
+    "path": "samples/C-038/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-038"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -949,6 +1008,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -976,6 +1036,7 @@
     "D3.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1002,6 +1063,7 @@
     "Manim"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@dotey",
@@ -1028,6 +1090,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@akokoi1",
@@ -1054,6 +1117,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@Ror_Fly",
@@ -1081,7 +1145,14 @@
     "HyperFrames",
     "GSAP"
    ],
-   "render_code": "samples/C-044/",
+   "render_code": {
+    "path": "samples/C-044/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-044"
+   },
+   "pack": {
+    "path": "packs/dark-keynote/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/dark-keynote"
+   },
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1109,6 +1180,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1132,6 +1204,7 @@
     "Motion"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "实现清单",
@@ -1156,6 +1229,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "claude-horizon-animation",
@@ -1179,6 +1253,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1205,6 +1280,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1227,6 +1303,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1250,6 +1327,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@YoshiKura535130",
@@ -1273,6 +1351,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -1302,7 +1381,11 @@
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": "samples/C-053/",
+   "render_code": {
+    "path": "samples/C-053/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-053"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -1329,6 +1412,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1352,6 +1436,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1374,6 +1459,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1397,6 +1483,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1420,6 +1507,7 @@
     "Playwright"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@ring_hyacinth",
@@ -1448,6 +1536,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1466,6 +1555,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -1488,6 +1578,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1512,6 +1603,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1535,6 +1627,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1562,7 +1655,11 @@
     "终端字符",
     "Canvas 2D"
    ],
-   "render_code": "samples/C-064/",
+   "render_code": {
+    "path": "samples/C-064/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-064"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1590,6 +1687,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "源码",
@@ -1612,6 +1710,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@shneural",
@@ -1636,6 +1735,7 @@
     "Hydra"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@gandamu_ml",
@@ -1663,6 +1763,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -1690,7 +1791,11 @@
     "WebGL2",
     "GLSL"
    ],
-   "render_code": "samples/C-069/",
+   "render_code": {
+    "path": "samples/C-069/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-069"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -1709,6 +1814,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@hayashimon1",
@@ -1731,6 +1837,7 @@
     "Blender"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1749,6 +1856,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@RyanSael",
@@ -1772,6 +1880,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1790,6 +1899,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@akokoi1",
@@ -1813,6 +1923,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1835,7 +1946,11 @@
     "WebGL",
     "GLSL"
    ],
-   "render_code": "samples/C-076/",
+   "render_code": {
+    "path": "samples/C-076/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-076"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "@superalesha",
@@ -1860,6 +1975,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@KamStudioLabs",
@@ -1883,6 +1999,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1901,6 +2018,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@Gorden_Sun",
@@ -1928,6 +2046,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@scheemunai",
@@ -1951,6 +2070,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@every",
@@ -1974,6 +2094,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -1992,6 +2113,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -2009,6 +2131,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -2027,6 +2150,7 @@
     "D3.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -2044,6 +2168,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": []
   },
   {
@@ -2062,6 +2187,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "@ianstig",
@@ -2085,6 +2211,7 @@
     "Rough.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 风格索引",
@@ -2108,6 +2235,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2130,6 +2258,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2153,6 +2282,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2175,6 +2305,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2197,6 +2328,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2219,6 +2351,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2241,6 +2374,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "国风视觉 DNA",
@@ -2267,6 +2401,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -2289,6 +2424,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 风格索引",
@@ -2312,6 +2448,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -2334,6 +2471,7 @@
     "Canvas 2D"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2356,6 +2494,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "anidoodle 配方",
@@ -2379,6 +2518,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "bang-motion 风格画廊",
@@ -2402,6 +2542,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "bang-motion 风格画廊",
@@ -2424,6 +2565,7 @@
     "HTML/CSS"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "bang-motion 风格画廊",
@@ -2446,6 +2588,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -2473,6 +2616,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo 说明",
@@ -2497,6 +2641,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2521,6 +2666,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2545,6 +2691,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2569,6 +2716,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2593,6 +2741,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2617,6 +2766,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2641,6 +2791,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "Lemo STYLE.md",
@@ -2665,6 +2816,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video splitflap.md",
@@ -2689,6 +2841,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video neon.md",
@@ -2713,6 +2866,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video thermal.md",
@@ -2737,6 +2891,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video museum.md",
@@ -2761,6 +2916,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video detective.md",
@@ -2785,6 +2941,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video weather.md",
@@ -2809,6 +2966,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video infomercial.md",
@@ -2833,6 +2991,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video sports.md",
@@ -2857,6 +3016,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video trailer.md",
@@ -2880,6 +3040,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video arcade.md",
@@ -2908,6 +3069,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "code-video scrapbook.md",
@@ -2931,6 +3093,7 @@
     "Remotion"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "animation-skills board-explainer",
@@ -2954,6 +3117,7 @@
     "Remotion"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "animation-skills declassified-dossier",
@@ -2978,6 +3142,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "animation-skills glass-bubble-3d",
@@ -3002,6 +3167,7 @@
     "Remotion"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "animation-skills luminous-cosmos-3d",
@@ -3025,6 +3191,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 01_cave",
@@ -3048,6 +3215,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 02_egypt",
@@ -3071,6 +3239,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 03_greek",
@@ -3094,6 +3263,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 04_roman",
@@ -3121,6 +3291,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 05_gothic",
@@ -3144,6 +3315,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 38_giotto",
@@ -3175,6 +3347,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 06_renaissance",
@@ -3206,6 +3379,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 32_rembrandt",
@@ -3233,6 +3407,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 42_guardi",
@@ -3256,6 +3431,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 10_nouveau",
@@ -3283,6 +3459,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 09_postimp",
@@ -3306,6 +3483,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 29_seurat",
@@ -3329,6 +3507,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 48_gauguin",
@@ -3352,6 +3531,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 19_munch",
@@ -3379,6 +3559,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 11_cubism",
@@ -3403,6 +3584,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 22_constructivism",
@@ -3430,6 +3612,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 23_dali",
@@ -3453,6 +3636,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 24_hopper",
@@ -3476,6 +3660,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 30_matisse",
@@ -3499,6 +3684,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 13_pop",
@@ -3522,6 +3708,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 31_haring",
@@ -3545,6 +3732,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 15_raytrace",
@@ -3568,6 +3756,7 @@
     "p5.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 20_dunhuang",
@@ -3595,6 +3784,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 50_ma_yuan",
@@ -3618,6 +3808,7 @@
     "SVG"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 51_persian_miniature",
@@ -3642,6 +3833,7 @@
     "Web Audio"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "mg-styles-15 10-synthwave",
@@ -3669,6 +3861,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "mg-styles-15 05-cel-boil",
@@ -3692,6 +3885,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "mg-styles-15 07-liquid",
@@ -3715,6 +3909,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "mg-styles-15 08-morph",
@@ -3739,6 +3934,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "mg-styles-15 19-paperclip",
@@ -3762,6 +3958,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv marbling",
@@ -3785,6 +3982,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv magic-lantern",
@@ -3808,6 +4006,7 @@
     "WebGL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv glass-plate",
@@ -3832,6 +4031,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv batik",
@@ -3855,6 +4055,7 @@
     "Three.js"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv diorama",
@@ -3878,6 +4079,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv night-poster",
@@ -3901,6 +4103,7 @@
     "p5.brush"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv painted-enamel",
@@ -3924,6 +4127,7 @@
     "GSAP"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv showboat",
@@ -3947,6 +4151,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv liquid-light",
@@ -3971,6 +4176,7 @@
     "GLSL"
    ],
    "render_code": null,
+   "pack": null,
    "refs": [
     {
      "label": "opus-5.5-mv thermal",
@@ -3997,7 +4203,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-168/",
+   "render_code": {
+    "path": "samples/C-168/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-168"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4019,7 +4229,11 @@
     "HTML/CSS",
     "GSAP"
    ],
-   "render_code": "samples/C-169/",
+   "render_code": {
+    "path": "samples/C-169/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-169"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4041,7 +4255,11 @@
     "WebGL",
     "Three.js"
    ],
-   "render_code": "samples/C-170/",
+   "render_code": {
+    "path": "samples/C-170/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-170"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4063,7 +4281,11 @@
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": "samples/C-171/",
+   "render_code": {
+    "path": "samples/C-171/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-171"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4085,7 +4307,11 @@
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": "samples/C-172/",
+   "render_code": {
+    "path": "samples/C-172/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-172"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4107,7 +4333,11 @@
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": "samples/C-173/",
+   "render_code": {
+    "path": "samples/C-173/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-173"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4130,7 +4360,11 @@
     "WebGL",
     "GLSL"
    ],
-   "render_code": "samples/C-174/",
+   "render_code": {
+    "path": "samples/C-174/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-174"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4152,7 +4386,11 @@
     "WebGL",
     "Three.js"
    ],
-   "render_code": "samples/C-175/",
+   "render_code": {
+    "path": "samples/C-175/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-175"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4174,7 +4412,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-176/",
+   "render_code": {
+    "path": "samples/C-176/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-176"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4196,7 +4438,11 @@
     "WebGL",
     "GLSL"
    ],
-   "render_code": "samples/C-177/",
+   "render_code": {
+    "path": "samples/C-177/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-177"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4218,7 +4464,11 @@
     "WebGL",
     "Three.js"
    ],
-   "render_code": "samples/C-178/",
+   "render_code": {
+    "path": "samples/C-178/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-178"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4240,7 +4490,11 @@
     "SVG",
     "GSAP"
    ],
-   "render_code": "samples/C-179/",
+   "render_code": {
+    "path": "samples/C-179/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-179"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4262,7 +4516,11 @@
     "Canvas 2D",
     "SVG"
    ],
-   "render_code": "samples/C-180/",
+   "render_code": {
+    "path": "samples/C-180/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-180"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4284,7 +4542,11 @@
     "SVG",
     "GSAP"
    ],
-   "render_code": "samples/C-181/",
+   "render_code": {
+    "path": "samples/C-181/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-181"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4308,7 +4570,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-182/",
+   "render_code": {
+    "path": "samples/C-182/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-182"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4330,7 +4596,11 @@
     "SVG",
     "GSAP"
    ],
-   "render_code": "samples/C-183/",
+   "render_code": {
+    "path": "samples/C-183/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-183"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4352,7 +4622,11 @@
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": "samples/C-184/",
+   "render_code": {
+    "path": "samples/C-184/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-184"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4374,7 +4648,11 @@
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": "samples/C-185/",
+   "render_code": {
+    "path": "samples/C-185/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-185"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4396,7 +4674,11 @@
     "WebGL",
     "Three.js"
    ],
-   "render_code": "samples/C-186/",
+   "render_code": {
+    "path": "samples/C-186/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-186"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4418,7 +4700,11 @@
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": "samples/C-187/",
+   "render_code": {
+    "path": "samples/C-187/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-187"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 25_ghibli",
@@ -4445,7 +4731,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-188/",
+   "render_code": {
+    "path": "samples/C-188/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-188"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 35_shinkai",
@@ -4473,7 +4763,11 @@
     "WebGL",
     "Three.js"
    ],
-   "render_code": "samples/C-189/",
+   "render_code": {
+    "path": "samples/C-189/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-189"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 53_pixar",
@@ -4499,7 +4793,11 @@
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": "samples/C-190/",
+   "render_code": {
+    "path": "samples/C-190/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-190"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 21_kusama",
@@ -4525,7 +4823,11 @@
    "suggested": [
     "Canvas 2D"
    ],
-   "render_code": "samples/C-191/",
+   "render_code": {
+    "path": "samples/C-191/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-191"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 27_kirby",
@@ -4552,7 +4854,11 @@
     "SVG",
     "GSAP"
    ],
-   "render_code": "samples/C-192/",
+   "render_code": {
+    "path": "samples/C-192/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-192"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 37_rick_morty",
@@ -4579,7 +4885,11 @@
     "SVG",
     "HTML/CSS"
    ],
-   "render_code": "samples/C-193/",
+   "render_code": {
+    "path": "samples/C-193/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-193"
+   },
+   "pack": null,
    "refs": [
     {
      "label": "huashu 风格卡 52_south_park",
@@ -4606,7 +4916,11 @@
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": "samples/C-194/",
+   "render_code": {
+    "path": "samples/C-194/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-194"
+   },
+   "pack": null,
    "refs": []
   },
   {
@@ -4630,7 +4944,11 @@
     "WebGL",
     "GLSL"
    ],
-   "render_code": "samples/C-195/",
+   "render_code": {
+    "path": "samples/C-195/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-195"
+   },
+   "pack": null,
    "refs": []
   }
  ]

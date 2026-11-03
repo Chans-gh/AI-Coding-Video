@@ -19,7 +19,7 @@
 - 题材：手绘与绘画
 - 适合：武侠、哲理、东方题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-001/
+- 样片代码：[samples/C-001/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-001)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ink-wash/STYLE.md) · [@AxtonLiu](https://x.com/AxtonLiu/status/2103288413969621231) · [@shfred0](https://x.com/shfred0/status/2102495989194236158)
 
@@ -151,7 +151,7 @@
 - 题材：东方传统
 - 适合：神话、民间故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-013/
+- 样片代码：[samples/C-013/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-013)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/shadow-puppet/STYLE.md)
 
@@ -168,7 +168,7 @@
 - 题材：东方传统
 - 适合：旅途、日本题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-014/
+- 样片代码：[samples/C-014/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-014)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/ukiyoe/STYLE.md)
 
@@ -327,7 +327,7 @@
 - 题材：游戏
 - 适合：游戏化、进度
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-053/
+- 样片代码：[samples/C-053/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-053)
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/piksel) · [@riku720720](https://x.com/riku720720/status/2102515055116063144)
 
@@ -993,7 +993,7 @@
 - 题材：电影年代与屏幕科技
 - 适合：黑客与 AI 题材、科技片头、数据主题转场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-168/
+- 样片代码：[samples/C-168/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-168)
 - 技术（建议）：Canvas 2D · WebGL
 
 <a id="C-171"></a>
@@ -1009,7 +1009,7 @@
 - 题材：3D 与实时图形
 - 适合：冥想与放松、奢侈品与面料广告、抽象音乐可视化
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-171/
+- 样片代码：[samples/C-171/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-171)
 - 技术（建议）：Canvas 2D · p5.js
 
 <a id="C-172"></a>
@@ -1025,7 +1025,7 @@
 - 题材：3D 与实时图形
 - 适合：夏夜回忆、治愈系 MV、童话开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-172/
+- 样片代码：[samples/C-172/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-172)
 - 技术（建议）：Canvas 2D · p5.js
 
 <a id="C-173"></a>
@@ -1041,7 +1041,7 @@
 - 题材：信息讲解与产品发布
 - 适合：天文科普、关系与网络讲解、浪漫告白
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-173/
+- 样片代码：[samples/C-173/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-173)
 - 技术（建议）：Canvas 2D · GSAP
 
 <a id="C-176"></a>
@@ -1057,7 +1057,7 @@
 - 题材：电影年代与屏幕科技
 - 适合：家庭回忆、复古广告、年代感 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-176/
+- 样片代码：[samples/C-176/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-176)
 - 技术（建议）：Canvas 2D · WebGL
 
 <a id="C-180"></a>
@@ -1073,7 +1073,7 @@
 - 题材：东方传统
 - 适合：花鸟与节令、宫廷与仕女、文博科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-180/
+- 样片代码：[samples/C-180/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-180)
 - 技术（建议）：Canvas 2D · SVG
 
 <a id="C-182"></a>
@@ -1089,7 +1089,7 @@
 - 题材：东方传统
 - 适合：文博与陶瓷科普、茶与器物品牌、古典诗词
 - 技术（已验证）：Canvas 2D · WebGL2 · GLSL · Playwright · ffmpeg
-- 样片代码：samples/C-182/
+- 样片代码：[samples/C-182/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-182)
 - 技术（建议）：Canvas 2D · WebGL
 
 <a id="C-184"></a>
@@ -1105,7 +1105,7 @@
 - 题材：东方传统
 - 适合：标题与片名、诗词展示、文化品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-184/
+- 样片代码：[samples/C-184/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-184)
 - 技术（建议）：Canvas 2D · p5.brush
 
 <a id="C-185"></a>
@@ -1121,7 +1121,7 @@
 - 题材：卡通与动漫
 - 适合：武侠与仙侠故事、动作短片、国风连载
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-185/
+- 样片代码：[samples/C-185/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-185)
 - 技术（建议）：Canvas 2D · p5.brush
 
 <a id="C-187"></a>
@@ -1137,7 +1137,7 @@
 - 题材：卡通与动漫
 - 适合：成长故事、乡村与城市生活、温暖的品牌短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-187/
+- 样片代码：[samples/C-187/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-187)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[huashu 风格卡 25_ghibli](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/25_ghibli.md)
 
@@ -1154,7 +1154,7 @@
 - 题材：卡通与动漫
 - 适合：青春、离别与重逢、城市日常、音乐 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-188/
+- 样片代码：[samples/C-188/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-188)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[huashu 风格卡 35_shinkai](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/35_shinkai.md)
 
@@ -1171,7 +1171,7 @@
 - 题材：手绘与绘画
 - 适合：艺术展宣传、品牌联名、音乐可视化、关于“无限”和“重复”的主题
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-190/
+- 样片代码：[samples/C-190/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-190)
 - 技术（建议）：Canvas 2D
 - 参考：[huashu 风格卡 21_kusama](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/21_kusama.md)
 
@@ -1188,7 +1188,7 @@
 - 题材：卡通与动漫
 - 适合：超级英雄式的夸张叙事、科幻冒险、产品“超能力”宣传
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-191/
+- 样片代码：[samples/C-191/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-191)
 - 技术（建议）：Canvas 2D
 - 参考：[huashu 风格卡 27_kirby](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/27_kirby.md)
 
@@ -1205,5 +1205,5 @@
 - 题材：手绘与绘画
 - 适合：文学与哲学讲解、读书分享、学术与考试类内容、悬疑开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-- 样片代码：samples/C-194/
+- 样片代码：[samples/C-194/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-194)
 - 技术（建议）：Canvas 2D · WebGL
