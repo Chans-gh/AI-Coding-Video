@@ -1,9 +1,9 @@
-# 把 site/ 发布到 GitHub Pages。样片视频和静帧不在 site/ 里重复存一份，发布时从 samples/ 拷进 site/media/。
+# 把 site/ 发布到 GitHub Pages。样片和风格包演示片的视频、静帧不在 site/ 里重复存一份，发布时从 samples/、packs/ 拷进 site/media/。
 name: pages
 on:
   push:
     branches: [main]
-    paths: ["site/**", "samples/C-*/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "samples/C-*/**", "packs/*/demo/**", "packs/*/brands.jpg", ".github/workflows/pages.yml"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,6 +24,13 @@ jobs:
         run: |
           mkdir -p site/media
           cp samples/C-*/C-*-16x9.mp4 samples/C-*/C-*-9x16.mp4 samples/C-*/C-*-16x9.jpg samples/C-*/C-*-9x16.jpg site/media/
+          # 风格包演示片：packs/<名字>/demo/<名字>-<画幅>.* → media/pack-<名字>-<画幅>.*，命名和 site/build.py 一致
+          for d in packs/*/; do
+            n=$(basename "$d")
+            [ -f "$d/demo/$n-16x9.mp4" ] || continue
+            for f in "$d"demo/"$n"-*.mp4 "$d"demo/"$n"-*.jpg; do cp "$f" "site/media/pack-$(basename "$f")"; done
+            cp "$d/brands.jpg" "site/media/pack-$n-brands.jpg"
+          done
           rm -rf site/src site/build.py site/README.md
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
