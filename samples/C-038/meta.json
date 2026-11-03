@@ -1,0 +1,9 @@
+{
+  "en_name": "Flat science explainer",
+  "en_how": "Saturated gradients, rounded flat shapes with rim light and long shadows, layered with parallax.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

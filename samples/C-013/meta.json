@@ -1,0 +1,9 @@
+{
+  "en_name": "Shadow puppetry",
+  "en_how": "A translucent leather puppet built from jointed parts with cut-out lace patterns, multiplied onto a lamp-lit cloth screen.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

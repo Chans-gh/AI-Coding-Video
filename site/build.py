@@ -34,21 +34,12 @@ LAYER = {  # 画在哪：中文、英文
     "canvas-2d": ("Canvas 2D", "Canvas 2D"), "svg-html": ("SVG / HTML", "SVG / HTML"), "webgl": ("WebGL / 3D", "WebGL / 3D"),
     "framework": ("讲解框架", "explainer frameworks"), "terminal": ("终端字符", "terminal text"), "external": ("外部工具", "external tools"),
 }
-# 样片的英文名和一句“怎么画的”（中文取 scene.js 第一行注释）
-SAMPLE_EN = {
-    "C-001": ("Chinese ink wash", "Noise-built ridges in three ink tones on fibrous paper; an ink bloom reveals the scene, calligraphy appears stroke by stroke, then the red seal."),
-    "C-009": ("Whiteboard explainer", "Handwriting and boxes are traced along their paths by a floating marker; the camera pulls back to the full board at the end."),
-    "C-013": ("Shadow puppetry", "A translucent leather puppet built from jointed parts with cut-out lace patterns, multiplied onto a lamp-lit cloth screen."),
-    "C-014": ("Ukiyo-e woodblock", "Flat color blocks with carved ink lines in Prussian blue, graded skies, and paper grain multiplied over everything as the scroll pans."),
-    "C-015": ("Red paper-cut", "A red sheet is drawn whole, then cut away with destination-out into a symmetric pattern that unfolds and lets warm light through."),
-    "C-036": ("Kinetic typography", "One word per beat at 160 BPM; size, weight, inversion and a punch-in scale carry the rhythm."),
-    "C-038": ("Flat science explainer", "Saturated gradients, rounded flat shapes with rim light and long shadows, layered with parallax."),
-    "C-044": ("Dark tech keynote", "Near-black gradient with a hairline grid; a UI card snaps in, a light sweep passes, bars grow, and one huge number lands."),
-    "C-053": ("16-bit pixel platformer", "Drawn pixel by pixel on a tiny canvas, then scaled up with smoothing off, in a limited palette."),
-    "C-064": ("Terminal / ASCII CRT", "Every shape is a real character on a monospace grid, with phosphor glow, scanlines and a curved tube."),
-    "C-069": ("Ray-marched ocean", "A hand-written GPU ray marcher: a noise height field for the waves, Fresnel sky reflection, two samples per pixel."),
-    "C-076": ("Black hole visualization", "A GLSL shader bends starlight around a black hole and lights a golden accretion disk."),
-}
+
+
+def meta(sid):
+    """样片的英文名、英文描述、技术标签：samples/<编号>/meta.json（中文描述取 scene.js 第一行注释）"""
+    p = SAMPLES / sid / "meta.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
 
 
 def load_styles():
@@ -96,7 +87,8 @@ def gallery(styles, ids):
     for th in order:
         for s in (by[i] for i in ids if by[i]["theme"] == th):
             sid = s["id"]
-            en_name, en_how = SAMPLE_EN.get(sid, (s["name"], ""))
+            mt = meta(sid)
+            en_name, en_how = mt.get("en_name") or s["name"], mt.get("en_how", "")
             chips = "".join(f"<li>{esc(t)}</li>" for t in s["verified"])
             out.append(f'''      <article class="card" id="{sid}" data-f="{ths[th]}">
         <div class="screen">
@@ -198,7 +190,7 @@ def main():
     styles = load_styles()
     ids = sample_ids(styles)
     if not ids:
-        sys.exit("还没有渲染好的样片：先在 samples/ 下运行 render.py")
+        sys.exit("还没有渲染好的样片：先在 samples/ 下运行 batch.py")
     zh_l, en_l = layers(styles)
     tpl = (HERE / "src" / "index.html").read_text(encoding="utf-8")
     fills = {

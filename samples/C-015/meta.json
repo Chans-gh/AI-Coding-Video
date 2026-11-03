@@ -1,0 +1,9 @@
+{
+  "en_name": "Red paper-cut",
+  "en_how": "A red sheet is drawn whole, then cut away with destination-out into a symmetric pattern that unfolds and lets warm light through.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

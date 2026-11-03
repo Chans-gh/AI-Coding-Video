@@ -16,10 +16,12 @@ def hz(n):
 
 
 def tt(d):
+    """d 秒的时间轴数组（采样点对应的秒数）"""
     return np.arange(int(d * SR)) / SR
 
 
 def filt(x, kind, f, order=2):
+    """巴特沃斯滤波：kind 为 "low"、"high"、"band"（f 传 [低, 高]）"""
     return sosfilt(butter(order, f, btype=kind, fs=SR, output="sos"), x)
 
 
@@ -32,9 +34,11 @@ class Mix:
         self.rng = np.random.default_rng(seed)
 
     def noise(self, d):
+        """d 秒白噪声（用混音台自己的种子，结果固定）"""
         return self.rng.uniform(-1, 1, int(d * SR))
 
     def put(self, x, t, g=1.0, pan=0.0):
+        """在 t 秒处放入声音 x，音量 g，声像 pan（-1 左 … 1 右）"""
         i = int(round(t * SR))
         if i < 0 or i >= len(self.buf):
             return
@@ -44,6 +48,7 @@ class Mix:
         self.buf[i:i + len(x), 1] += x * g * r
 
     def master(self, fade_in=.02, fade_out=.35, level=.89):
+        """淡入淡出、软限幅、归一化，返回 (采样数, 2) 的立体声"""
         n = int(self.dur * SR)
         x = self.buf[:n].copy()
         t = np.arange(n) / SR
@@ -55,6 +60,7 @@ class Mix:
 
 # ---------- 打击乐 ----------
 def kick(m):
+    """底鼓"""
     t = tt(.45)
     x = np.sin(2 * np.pi * np.cumsum(45 + 90 * np.exp(-t / .035)) / SR) * np.exp(-t / .22)
     x[:80] += m.rng.uniform(-.4, .4, 80) * np.linspace(1, 0, 80)
@@ -62,22 +68,26 @@ def kick(m):
 
 
 def clap(m):
+    """拍手"""
     t = tt(.25)
     return filt(m.noise(.25), "band", [900, 3200]) * (np.exp(-t / .12) + np.where(t < .02, np.exp(-(t % .008) / .002), 0) * .6)
 
 
 def hat(m, open_=False):
+    """踩镲，open_=True 为开镲"""
     d, dec, f = (.2, .07, 6500) if open_ else (.05, .012, 8000)
     t = tt(d)
     return filt(m.noise(d), "high", f) * np.exp(-t / dec)
 
 
 def impact(m):
+    """重击：低频下坠加噪声，标题落地、大数字砸下"""
     t = tt(1.2)
     return np.sin(2 * np.pi * np.cumsum(38 + 60 * np.exp(-t / .08)) / SR) * np.exp(-t / .45) + filt(m.noise(1.2), "low", 2500) * np.exp(-t / .09) * .6
 
 
 def tick(m, f=3000):
+    """很短的高频咔哒：钟表、放映机、按键"""
     t = tt(.06)
     return filt(m.noise(.06), "high", f) * np.exp(-t / .01)
 
@@ -96,12 +106,14 @@ def thud(m, d=.5):
 
 # ---------- 音调乐器 ----------
 def saw(f, d, cutoff, a=.005, rel=.08):
+    """双锯齿波合成器音，低通 cutoff：贝斯、主旋律"""
     t = tt(d)
     x = sawtooth(2 * np.pi * f * t) * .6 + sawtooth(2 * np.pi * f * 1.006 * t) * .4
     return filt(x, "low", cutoff) * np.minimum(1, t / a) * np.minimum(1, np.maximum(d - t, 0) / rel)
 
 
 def pluck(f, d=.35, bright=4000):
+    """短促的电子拨音"""
     t = tt(d)
     x = np.sign(np.sin(2 * np.pi * f * t)) * .5 + sawtooth(2 * np.pi * f * t) * .5
     return filt(x, "low", bright) * np.exp(-t / .09)
@@ -134,6 +146,7 @@ def square(f, d, duty=.5, dec=None):
 
 
 def beep(f=1000, d=.08):
+    """正弦提示音：完成、确认"""
     t = tt(d)
     return np.sin(2 * np.pi * f * t) * np.minimum(1, t / .003) * np.minimum(1, np.maximum(d - t, 0) / .01)
 
@@ -163,6 +176,7 @@ def whoosh(m, d, f0=300, f1=3000):
 
 
 def riser(m, d):
+    """渐强上扬的噪声，接在高潮前"""
     return whoosh(m, d, 600, 600 * 1.45 ** 7) * (tt(d) / d) ** 2
 
 

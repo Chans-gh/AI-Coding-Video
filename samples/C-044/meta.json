@@ -1,0 +1,9 @@
+{
+  "en_name": "Dark tech keynote",
+  "en_how": "Near-black gradient with a hairline grid; a UI card snaps in, a light sweep passes, bars grow, and one huge number lands.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

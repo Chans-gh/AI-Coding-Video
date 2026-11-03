@@ -1,11 +1,12 @@
 // 公共工具：确定性随机数、噪声、缓动、纸纹、取样、WebGL。每帧只由时间 t 决定。
 // 画幅由网址参数 ar 决定：?ar=16x9 → 1920×1080；?ar=9x16（默认）→ 1080×1920。
-const AR = new URLSearchParams(location.search).get('ar') === '16x9' ? '16x9' : '9x16';
-const W = AR === '16x9' ? 1920 : 1080, H = AR === '16x9' ? 1080 : 1920, FPS = 30;
+const AR = new URLSearchParams(location.search).get('ar') === '16x9' ? '16x9' : '9x16';   // 画幅：'16x9' 或 '9x16'
+const W = AR === '16x9' ? 1920 : 1080, H = AR === '16x9' ? 1080 : 1920, FPS = 30;   // 画布宽高、帧率
 const LAND = W > H;                         // 横屏
-const SHORT = Math.min(W, H), LONG = Math.max(W, H);
-const BPM = 160, BEAT = 60 / BPM;          // 0.375s; every scene is 8 beats = 3s
+const SHORT = Math.min(W, H), LONG = Math.max(W, H);   // 短边、长边（排版尺寸按 SHORT 缩放）
+const BPM = 160, BEAT = 60 / BPM;          // 节拍：一拍 0.375 秒，3 秒正好 8 拍
 
+// 确定性随机数发生器：R = mulberry32(seed)，每次 R() 返回 [0,1)
 function mulberry32(a) {
   return function () {
     a |= 0; a = (a + 0x6D2B79F5) | 0;
@@ -14,45 +15,65 @@ function mulberry32(a) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+// 整数 → [0,1) 的哈希，同一输入永远同一输出
 function hash1(n) { n |= 0; n = Math.imul(n ^ (n >>> 16), 0x45d9f3b); n = Math.imul(n ^ (n >>> 16), 0x45d9f3b); n ^= n >>> 16; return (n >>> 0) / 4294967296; }
+// 二维整数格点 → [0,1) 的哈希
 function hash2(x, y) { return hash1(Math.imul(x | 0, 73856093) ^ Math.imul((y | 0) + 7919, 19349663)); }
 
+// 限制到 [a,b]，默认 [0,1]
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+// 线性插值
 const lerp = (a, b, t) => a + (b - a) * t;
+// 反插值：x 在 a→b 之间的进度，限制到 [0,1]
 const inv = (a, b, x) => clamp((x - a) / (b - a));
+// 平滑过渡：x 从 a 到 b 时 0→1，两头缓
 const smooth = (a, b, x) => { const t = inv(a, b, x); return t * t * (3 - 2 * t); };
+// 缓动：先快后慢（立方）
 const eOutCubic = t => 1 - Math.pow(1 - clamp(t), 3);
+// 缓动：两头慢中间快
 const eInOutCubic = t => (t = clamp(t), t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+// 缓动：猛冲后急停（指数）
 const eOutExpo = t => (t = clamp(t), t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+// 缓动：先慢后快
 const eInCubic = t => (t = clamp(t), t * t * t);
+// 缓动：冲过头再回弹一点
 const eOutBack = (t, s = 1.70158) => (t = clamp(t), 1 + (s + 1) * Math.pow(t - 1, 3) + s * Math.pow(t - 1, 2));
+// 缓动：弹簧振荡后停住
 const eOutElastic = t => {
   t = clamp(t); if (t === 0 || t === 1) return t;
   return Math.pow(2, -10 * t) * Math.sin((t * 10 - .75) * (2 * Math.PI / 3)) + 1;
 };
+// 2π
 const TAU = Math.PI * 2;
+// 把 t 量化到 fps 帧率，做“一拍二”、定格动画的顿挫
 const stepT = (t, fps) => Math.floor(t * fps) / fps;   // "on twos" / stop-motion timing
 
-// ---------- value noise ----------
+// ---------- 噪声 ----------
+// 二维值噪声，返回 [0,1)
 function vnoise(x, y) {
   const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
   const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
   const a = hash2(xi, yi), b = hash2(xi + 1, yi), c = hash2(xi, yi + 1), d = hash2(xi + 1, yi + 1);
   return lerp(lerp(a, b, u), lerp(c, d, u), v);
 }
+// 分形噪声：oct 层值噪声叠加，返回约 [0,1)
 function fbm(x, y, oct = 5) {
   let s = 0, a = .5, f = 1, n = 0;
   for (let i = 0; i < oct; i++) { s += a * vnoise(x * f, y * f); n += a; a *= .5; f *= 2.03; }
   return s / n;
 }
+// 一维平滑噪声，返回 [0,1)
 function noise1(x) { return vnoise(x, 7.31); }
 
-// ---------- canvases ----------
+// ---------- 画布、纹理、笔画、文字 ----------
+// 新建离屏画布
 function mk(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+// [r,g,b] + 透明度 → CSS 颜色串
 function rgba(c, a) { return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
+// '#rrggbb' → [r,g,b]
 function hex2rgb(h) { h = h.replace('#', ''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; }
 
-// Paper/texture: base colour + fibres + grain, rendered once at reduced size.
+// 纸纹：底色 + 纤维 + 颗粒，返回半尺寸离屏画布，在 init() 里做一次，draw 时铺满
 function makePaper(base, { w = W / 2, h = H / 2, grain = 18, fiber = 0.5, blot = 12, seed = 1 } = {}) {
   const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data;
   const [r0, g0, b0] = hex2rgb(base); const R = mulberry32(seed);
@@ -66,7 +87,7 @@ function makePaper(base, { w = W / 2, h = H / 2, grain = 18, fiber = 0.5, blot =
   g.putImageData(id, 0, 0);
   return c;
 }
-// Transparent grain overlay (light & dark specks)
+// 透明颗粒层（明暗噪点），一般不直接用，见 grain()
 function makeGrain(w, h, amt, seed) {
   const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data, R = mulberry32(seed);
   for (let i = 0; i < d.length; i += 4) {
@@ -76,18 +97,20 @@ function makeGrain(w, h, amt, seed) {
   g.putImageData(id, 0, 0); return c;
 }
 const GRAINS = [];
+// 叠一层逐帧跳动的胶片颗粒，frame 传 draw 的第 4 个参数 f
 function grain(ctx, frame, alpha = .5, scale = 2) {
   if (!GRAINS.length) for (let i = 0; i < 6; i++) GRAINS.push(makeGrain(W / 2, H / 2, .5, 99 + i));
   ctx.save(); ctx.globalAlpha = alpha; ctx.imageSmoothingEnabled = false;
   ctx.drawImage(GRAINS[frame % 6], 0, 0, W, H); ctx.restore();
 }
+// 暗角：从画面中心 inner 处到边缘渐暗到透明度 a
 function vignette(ctx, a = .5, inner = .35, color = '0,0,0') {
   const g = ctx.createRadialGradient(W / 2, H / 2, LONG * inner, W / 2, H / 2, LONG * .75);
   g.addColorStop(0, `rgba(${color},0)`); g.addColorStop(1, `rgba(${color},${a})`);
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 }
 
-// Sample points inside something drawn by fn(g) on a W×H offscreen.
+// 在 fn(g) 画出的形状（文字、图形）内部按 step 间距取点，返回 [[x,y],…]，做粒子聚字
 function samplePoints(fn, step = 8, seed = 3, w = W, h = H) {
   const c = mk(w, h), g = c.getContext('2d'); fn(g);
   const d = g.getImageData(0, 0, w, h).data, pts = [], R = mulberry32(seed);
@@ -98,10 +121,12 @@ function samplePoints(fn, step = 8, seed = 3, w = W, h = H) {
   }
   return pts;
 }
+// 按种子原地洗牌
 function shuffle(a, seed = 1) { const R = mulberry32(seed); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-// Stroke reveal: draw fraction p of a polyline.
+// 折线总长
 function polyLen(pts) { let L = 0; for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); return L; }
+// 只描出折线的前 p（0–1）部分，返回笔尖位置；做笔画逐渐写出
 function drawPartial(ctx, pts, p, close = false) {
   if (p <= 0 || pts.length < 2) return null;
   const L = polyLen(pts) * clamp(p); let acc = 0;
@@ -115,20 +140,24 @@ function drawPartial(ctx, pts, p, close = false) {
   if (close && p >= 1) ctx.closePath();
   ctx.stroke(); return tip;
 }
+// 圆弧折线点，wob 加手绘抖动
 function circlePts(cx, cy, r, n = 64, a0 = 0, a1 = TAU, wob = 0, seed = 0) {
   const p = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; const rr = r * (1 + wob * (noise1(i * .3 + seed) - .5)); p.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]); } return p;
 }
+// 直线折线点，wob 加手绘抖动
 function linePts(x0, y0, x1, y1, n = 12, wob = 0, seed = 0) {
   const p = []; for (let i = 0; i <= n; i++) { const k = i / n; p.push([lerp(x0, x1, k) + wob * (noise1(i * .7 + seed) - .5), lerp(y0, y1, k) + wob * (noise1(i * .7 + seed + 50) - .5)]); } return p;
 }
+// 矩形折线点（顺时针一圈），wob 加手绘抖动
 function rectPts(x, y, w, h, wob = 0, seed = 0) {
   return [...linePts(x, y, x + w, y, 8, wob, seed), ...linePts(x + w, y, x + w, y + h, 8, wob, seed + 1).slice(1),
   ...linePts(x + w, y + h, x, y + h, 8, wob, seed + 2).slice(1), ...linePts(x, y + h, x, y, 8, wob, seed + 3).slice(1)];
 }
 
+// 圆角矩形路径（只建路径，自己 fill/stroke）
 function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 
-// Chinese-aware wrapping (no line may start with closing punctuation)
+// 中文折行：按 maxW 宽度断行，标点不放行首，返回行数组
 function wrapCJK(ctx, text, maxW) {
   const noStart = '，。、；：！？）」』”’…,.;:!?)'; const lines = []; let cur = '';
   for (const ch of text) {
@@ -141,15 +170,16 @@ function wrapCJK(ctx, text, maxW) {
   if (cur) lines.push(cur); return lines;
 }
 
-// Reveal a text left→right via clipping, returns the x of the reveal edge
+// 文字从左到右按 p 显出（裁剪），返回显出边缘的 x
 function textReveal(ctx, txt, x, y, p, align = 'left') {
   const w = ctx.measureText(txt).width; const x0 = align === 'center' ? x - w / 2 : x;
   ctx.save(); ctx.beginPath(); ctx.rect(x0 - 20, y - 400, (w + 40) * clamp(p), 800); ctx.clip();
   ctx.textAlign = align; ctx.fillText(txt, x, y); ctx.restore(); return x0 + w * clamp(p);
 }
 
-// ---------- WebGL fullscreen shader helper ----------
+// ---------- WebGL 全屏着色器 ----------
 const GL = { canvas: null, gl: null, progs: {} };
+// 准备 WebGL2 离屏画布（init 里调一次）
 function glInit(w, h) {
   if (GL.gl) return;
   GL.canvas = mk(w, h);
@@ -158,6 +188,7 @@ function glInit(w, h) {
   gl.bindBuffer(gl.ARRAY_BUFFER, b);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
 }
+// 编译全屏片元着色器；frag 里可用 uniform T（秒）、R（分辨率），输出写 O
 function glProgram(name, frag) {
   const gl = GL.gl;
   const vs = `#version 300 es
@@ -170,6 +201,7 @@ precision highp float; uniform float T; uniform vec2 R; out vec4 O;
 ${frag}`));
   gl.linkProgram(pr); GL.progs[name] = pr;
 }
+// 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时
 function glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H) {
   const gl = GL.gl, pr = GL.progs[name];
   if (GL.canvas.width !== w || GL.canvas.height !== h) { GL.canvas.width = w; GL.canvas.height = h; }
@@ -180,5 +212,6 @@ function glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H) {
   ctx.drawImage(GL.canvas, x, y, dw, dh);
 }
 
-const S = [];   // scene registry
+const S = [];   // 场景列表（播放器读 S[0]）
+// 注册场景：{id, name, dur, still, fonts, text, init() → 状态 s, draw(ctx, t, s, f)}
 function scene(def) { S.push(def); }

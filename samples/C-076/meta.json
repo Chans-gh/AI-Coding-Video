@@ -1,0 +1,10 @@
+{
+  "en_name": "Black hole visualization",
+  "en_how": "A GLSL shader bends starlight around a black hole and lights a golden accretion disk.",
+  "tech": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

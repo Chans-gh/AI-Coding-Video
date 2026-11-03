@@ -1,0 +1,9 @@
+{
+  "en_name": "Chinese ink wash",
+  "en_how": "Noise-built ridges in three ink tones on fibrous paper; an ink bloom reveals the scene, calligraphy appears stroke by stroke, then the red seal.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

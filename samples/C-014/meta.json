@@ -1,0 +1,9 @@
+{
+  "en_name": "Ukiyo-e woodblock",
+  "en_how": "Flat color blocks with carved ink lines in Prussian blue, graded skies, and paper grain multiplied over everything as the scroll pans.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

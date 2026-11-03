@@ -1,0 +1,9 @@
+{
+  "en_name": "Whiteboard explainer",
+  "en_how": "Handwriting and boxes are traced along their paths by a floating marker; the camera pulls back to the full board at the end.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
