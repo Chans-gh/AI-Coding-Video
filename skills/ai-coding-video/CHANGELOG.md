@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-04 | 改写仓库历史，删掉旧提交里的样片和风格包演示片视频（视频已在 Release「media」），克隆从约 215 MB 降到约 85 MB；提交号全部变了，之前的克隆要重新克隆（维护者定） |
 | 2026-11-04 | 批次 6：收录 G 类（AI 生成素材）12 种 G-001–G-012，新增 [styles/generated.md](styles/generated.md)，每个内容类型一个样片（10–15 秒，横竖两版），图片、视频和旁白用青水生成（模型、参数、提示词记在样片的 `assets.json`），配乐用 CC0；站点 v7 加上 G 类；legacy-ids 补上已收录的旧编号，candidates 删掉已收录的 5 种 |
 | 2026-11-04 | 样片和风格包演示片的视频移出 Git 仓库，放在 GitHub Release「media」：清单 `media.json`，`scripts/media.py` 上传（经中转分支和 media 工作流，不用令牌）、下载、核对；介绍页发布时从 Release 下载视频；规矩写进 AGENTS.md 和 samples/README.md 的「视频放在哪」（维护者定）。历史提交里的视频还在 |
 | 2026-11-03 | 批次 5：收录 T 类（公共领域素材）12 种 T-001–T-012，每个内容类型一个样片（8–15 秒，横竖两版），素材用 NASA、美国国会图书馆、NOAA、Natural Earth、Project Gutenberg、archive.org 的公共领域素材和 OpenGameArt 的 CC0 配乐，旁白用青水的公开音色；新增 `materials.md`（不限服务商的素材做法）和 `styles/footage.md`，词典加内容类型，索引和自检支持 T、G 类；出片工具加 `tools/assets.py`（下载、录屏、语音合成、去元数据）和读素材的函数；介绍页 v6：样片区加大类切换、内容类型筛选和素材标签，首页几节改写 |
