@@ -1,0 +1,5 @@
+{
+  "en_name": "Storyboard to short film",
+  "en_how": "A four-shot storyboard (shot number, framing, picture, narration) drives everything: an image model makes one keyframe per shot in a shared watercolour style, two of the keyframes become short clips through image-to-video, and the narration is synthesized. The film opens on the storyboard sheet itself, with pencil-sketch versions of the four frames, framings and duration bars, then the first panel zooms up into the real shot. Cut points are not hard-coded: each shot knows the first words of its narration line and cuts where that line starts in the speech timing, stills get a slow push or pull, the animated shots play, and a slate with a mini storyboard marks the current shot. The story is original and has no people.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

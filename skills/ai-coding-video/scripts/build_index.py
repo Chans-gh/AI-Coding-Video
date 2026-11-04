@@ -122,6 +122,7 @@ def parse(errors):
         if k not in tags['tags']:
             errors.append(f'tags.json 的 tags_en 里「{k}」不在 tags 里')
     mats = {c: [m['name'] for m in v] for c, v in tags['materials'].items()}
+    mats['G'] = mats['G'] + mats['T']   # G 类可以搭配公开素材（如 CC0 三维模型），出处、许可照 T 类记
     styles = []
     for fname in sorted(os.listdir(STYLES_DIR)):
         if not fname.endswith('.md'):

@@ -1,0 +1,5 @@
+{
+  "en_name": "3D product turntable",
+  "en_how": "A CC0 ceramic vase model from Poly Haven (glTF mesh with its normal and roughness maps) is parsed in the page and placed on a Three.js turntable. A generated blue-and-white lotus-scroll pattern is wrapped around the body with a cylindrical projection and mirrored tiling so the seam stays continuous, and a glowing glaze line in the shader sweeps from foot to rim, turning the white bisque into blue-and-white porcelain. The 3D layer renders with a transparent background over a generated beige studio backdrop, leaving only the floor shadow; a close-up adds three spec callouts and the camera pulls back for a fictional ceramics brand end card.",
+  "tech": ["Three.js", "WebGL", "GLSL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

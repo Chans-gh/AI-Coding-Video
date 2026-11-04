@@ -1,0 +1,5 @@
+{
+  "en_name": "Interview quote reel",
+  "en_how": "edit.py runs Whisper on a 54-second NASA astronaut interview for word timings, scores every sentence, keeps the best three and deletes the fillers inside them; the intro strikes those words out on the transcript and marks the picks with their scores, then the edit plays the source by the cut list while a portrait crop follows the face-detection track and the captions light up word by word. In landscape the source sits on the left with the moving crop box and the phone output on the right.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

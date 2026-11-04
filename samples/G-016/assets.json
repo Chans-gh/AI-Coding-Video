@@ -1,0 +1,123 @@
+{
+ "items": [
+  {
+   "file": "assets/s1.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "镜头 1，远景：雨夜的江南老街，青石板路湿漉漉地反着光，一盏老式路灯照亮一小片雨丝，街边木窗台上放着一只白色的折纸小船。手绘水彩动画电影的画风，柔和的水彩晕染和细铅笔线，色调统一为雨夜的蓝灰配暖黄灯光，画面里没有人物、没有文字、没有标志。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/s2.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "镜头 2，特写：一只白色的折纸小船刚落进石板路上的水洼，溅起一圈小水花，水面倒映着暖黄的路灯，雨点在水面打出涟漪。手绘水彩动画电影的画风，柔和的水彩晕染和细铅笔线，色调统一为雨夜的蓝灰配暖黄灯光，画面里没有人物、没有文字、没有标志。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/s3.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "镜头 3，中景：白色的折纸小船顺着老街石阶边的水沟往下漂，水流带着落叶，两侧是长着青苔的石阶，远处路灯朦胧。手绘水彩动画电影的画风，柔和的水彩晕染和细铅笔线，色调统一为雨夜的蓝灰配暖黄灯光，画面里没有人物、没有文字、没有标志。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/s4.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "镜头 4，远景：雨后黎明的海面，天边泛起橙粉色的朝阳，一只小小的白色折纸船漂在平静的海面上，水彩的天空云层很大。手绘水彩动画电影的画风，柔和的水彩晕染和细铅笔线，色调统一为雨夜的蓝灰配暖黄灯光，画面里没有人物、没有文字、没有标志。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/s2v.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "ref": "assets/s2.jpg",
+   "prompt": "水彩动画：折纸小船在水洼里轻轻摇晃、慢慢转了半圈，雨点不停落在水面上打出涟漪，镜头缓慢推近，画面风格保持手绘水彩，不出现人物和文字",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 4,
+    "resolution": "480p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 854,
+    "an": true
+   }
+  },
+  {
+   "file": "assets/s3v.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "ref": "assets/s3.jpg",
+   "prompt": "水彩动画：折纸小船顺着水沟的水流往前漂，水面波光流动，落叶跟着漂，镜头缓慢跟着小船横移，画面风格保持手绘水彩，不出现人物和文字",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 4,
+    "resolution": "480p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 854,
+    "an": true
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Gentle_Youth",
+   "text": "雨停之前，它从窗台上掉了下来。落进水洼，又被水流带走，顺着老街的石阶一路往下。天亮的时候，它第一次看见了海。",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 2.5,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Breves dies hominis",
+   "source": "https://opengameart.org/content/breves-dies-hominis",
+   "download": "https://opengameart.org/sites/default/files/breves_dies_hominis.ogg",
+   "license": "CC0 1.0",
+   "author": "ceninan",
+   "credit": "配乐 ceninan（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

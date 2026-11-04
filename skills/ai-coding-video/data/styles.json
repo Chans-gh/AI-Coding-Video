@@ -1,5 +1,5 @@
 {
- "count": 224,
+ "count": 229,
  "styles": [
   {
    "id": "C-001",
@@ -6385,6 +6385,72 @@
    "refs": []
   },
   {
+   "id": "G-015",
+   "class": "G",
+   "name": "三维产品展台",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「三维产品展台」：一个开放许可（CC0）的三维产品模型放进 Three.js 转台，产品表面的花纹和摄影棚背景用生图做——生一张能平铺的纹样，按圆柱投影包到瓶身上（镜像平铺，接缝处花纹连续），再生一张空的产品摄影棚当背景，三维画面用透明底叠上去，地面只留影子。着色器里一道发光的「上釉线」从瓶底走到瓶口，白坯一路变成青花瓷；中段推近，三条细线标出高度、釉面、纹样；结尾拉回让出位置，出虚构瓷器品牌的落版。以后有三维生成服务，可以把模型也换成生成的。",
+   "theme": "",
+   "content_type": "产品广告和带货",
+   "materials": [
+    "生图",
+    "三维模型"
+   ],
+   "techniques": [
+    "生成三维资产加代码渲染"
+   ],
+   "fit": "电商主图视频、新品发布、产品配色和花纹的批量展示",
+   "verified": [],
+   "suggested": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "Poly Haven 模型",
+     "url": "https://polyhaven.com/models"
+    }
+   ]
+  },
+  {
+   "id": "G-016",
+   "class": "G",
+   "name": "分镜表短片",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「分镜表短片」：先写一张分镜表（镜号、景别、时长、画面、旁白），按表生成每个镜头的关键帧，挑两个镜头用图生视频让它动起来，再合成一段旁白；代码先把分镜表本身铺在画面上——四格草图、镜号和景别、时长条——然后一格一格放大成真正的镜头：静帧做缓慢推拉，动的镜头直接播，镜头之间按表上的时长切，旁白字幕按句对齐。四个镜头用同一句画风描述，保证看起来是同一部片子；故事和画面全部原创，不出现人物。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图",
+    "生视频",
+    "语音合成"
+   ],
+   "techniques": [
+    "分镜到成片编排",
+    "图生视频与首尾帧"
+   ],
+   "fit": "短片提案、广告样片、绘本动画、故事类短视频",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": []
+  },
+  {
    "id": "T-001",
    "class": "T",
    "name": "数据实体化",
@@ -6973,6 +7039,126 @@
     {
      "label": "NOAA Mauna Loa CO₂",
      "url": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+   ]
+  },
+  {
+   "id": "T-016",
+   "class": "T",
+   "name": "访谈金句竖屏",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": null,
+   "prompt": "用「访谈金句竖屏」：一段一分钟左右的横屏访谈，先做语音转文字拿到逐词时间，再给每句打分（金句词、长度合适、口头禅少），挑出最好的三句；句子里的「嗯」「你知道」「有点像」和句首的「所以」按词的时间段删掉，剩下的词连成剪辑表。画面先过一遍文字稿：选中的句子高亮、删掉的词划红线；再出竖屏成片——人脸检测的轨迹带着 9:16 裁切框跟着人走，每个跳剪处交替放大一点遮住接缝，逐词弹出的大字幕下面配一行中文翻译，最后一张金句卡收尾。",
+   "theme": "",
+   "content_type": "播客和访谈可视化",
+   "materials": [
+    "录像",
+    "数据"
+   ],
+   "techniques": [
+    "文字稿剪辑",
+    "高光切片",
+    "自动改画幅"
+   ],
+   "fit": "播客切片、访谈短视频、发布会金句、课程精华",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "faster-whisper",
+     "url": "https://github.com/SYSTRAN/faster-whisper"
+    },
+    {
+     "label": "MediaPipe 人脸检测",
+     "url": "https://ai.google.dev/edge/mediapipe/solutions/vision/face_detector"
+    },
+    {
+     "label": "NASA 影像库",
+     "url": "https://images.nasa.gov/"
+    }
+   ]
+  },
+  {
+   "id": "T-017",
+   "class": "T",
+   "name": "体操骨骼示范",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": null,
+   "prompt": "用「体操骨骼示范」：一段老的体能训练示范片，逐帧跑人体姿态估计，拿到骨骼点和人像分割遮罩；画面里有两个人时取身体最横的那个（做俯卧撑的人）。人像按遮罩抠出来放进代码画的训练室，叠上骨骼线、肘部角度弧、按「肩—髋—踝」直不直变色的躯干线；肘角先低于 100° 再回到 150° 以上记一次，计数牌跟着跳，下方一条肘角曲线画出两条阈值线，动作走样时弹出纠正提示，结尾给出次数和平均幅度的小结。",
+   "theme": "",
+   "content_type": "健康和运动指导",
+   "materials": [
+    "录像",
+    "数据"
+   ],
+   "techniques": [
+    "追踪与姿态叠加",
+    "抠像合成"
+   ],
+   "fit": "健身教学、动作纠正、体育课件、康复训练示范",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "MediaPipe Pose Landmarker",
+     "url": "https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker"
+    },
+    {
+     "label": "Internet Archive：DoD 影片",
+     "url": "https://archive.org/details/gov.dod.dimoc.614892"
+    }
+   ]
+  },
+  {
+   "id": "T-018",
+   "class": "T",
+   "name": "照片深景推镜",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": null,
+   "prompt": "用「照片深景推镜」：一张老的风景照，先用单目深度估计出一张深度图（白近黑远），片元着色器按每个像素的深度反推它在镜头移动后该在的位置——近处挪得多、远处挪得少，迭代几次补上遮挡——一张静照就有了推近加环绕的立体运镜。品牌标题放在天空和山峰之间那一层，从山后升起、被山尖挡住；中段一道扫光把画面换成深度图，让人看到照片被拆成了远近层；结尾回拉，压暗出虚构户外品牌的落版。横屏加 2.39 电影遮幅。",
+   "theme": "",
+   "content_type": "品牌宣传片",
+   "materials": [
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "分层视差与投影"
+   ],
+   "fit": "品牌片开场、文旅宣传、老照片纪录片、相册回忆",
+   "verified": [],
+   "suggested": [
+    "WebGL2",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "Depth Anything V2",
+     "url": "https://github.com/DepthAnything/Depth-Anything-V2"
+    },
+    {
+     "label": "美国国家档案馆 Ansel Adams 照片",
+     "url": "https://catalog.archives.gov/id/519904"
     }
    ]
   }

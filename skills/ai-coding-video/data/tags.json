@@ -93,7 +93,8 @@
       {"name": "录像", "en": "Footage", "note": "实拍视频，含口播"},
       {"name": "录屏", "en": "Screen recording", "note": "软件、网页的屏幕录像"},
       {"name": "照片", "en": "Photos", "note": "照片，以及扫描的插画、档案"},
-      {"name": "数据", "en": "Data", "note": "表格、地图、卫星图、点云"}
+      {"name": "数据", "en": "Data", "note": "表格、地图、卫星图、点云"},
+      {"name": "三维模型", "en": "3D models", "note": "公开许可（公共领域、CC0）的网格和贴图"}
     ],
     "G": [
       {"name": "生图", "en": "Generated images", "note": "图像模型生成的画面"},

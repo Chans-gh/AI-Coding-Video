@@ -1,0 +1,5 @@
+{
+  "en_name": "Push-up form skeleton",
+  "en_how": "pose.py runs MediaPipe on a push-up demo from a U.S. Air Force fitness assessment film for per-frame landmarks and a person mask; a wipe swaps the original set (with the kneeling evaluator) for a code-drawn training room with the athlete keyed in by the mask, the skeleton follows him, the elbow-angle arc and readout update live, a shoulder-to-ankle line changes colour with body straightness, reps count when the elbow dips below 100° and pushes back past 150°, and an elbow-angle curve with threshold lines tracks the playhead.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
