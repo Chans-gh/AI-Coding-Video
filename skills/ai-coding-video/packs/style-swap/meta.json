@@ -1,0 +1,10 @@
+{
+  "from": "G-016",
+  "name": "分镜换画风",
+  "en_name": "Storyboard style swap",
+  "how": "提示词写成「镜头段 + 风格段 + 约束段」：分镜、镜头段、约束段和剪辑代码只有一份，切换的是「画风」——只换风格段那一行，写实摄影、水彩插画、3D 黏土各生成一套图，片子跟着换。",
+  "en_how": "Prompts are written as shot + style + constraints. The storyboard, the shot and constraint segments, and the editing code exist once; what switches is the art style: change only the style line and a new set of images (photo, watercolour, clay) is generated, and the film follows.",
+  "switch": ["画风", "Art style"],
+  "parts": [["提示词公式", "Prompt formula"], ["镜头", "Shot"], ["提示词条", "Prompt strip"], ["画风并排", "Style lineup"], ["字幕", "Subtitles"], ["转场", "Transition"]],
+  "variants": [["photo", "写实摄影", "Photo", "photo"], ["watercolor", "水彩插画", "Watercolour", "watercolor"], ["clay", "3D 黏土", "3D clay", "clay"]]
+}

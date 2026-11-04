@@ -1,0 +1,152 @@
+{
+ "items": [
+  {
+   "file": "assets/tower.jpg",
+   "kind": "照片",
+   "title": "View of an intake tower at Hoover Dam … Lake Mead National Recreation Area（Carol M. Highsmith，2018，美国国会图书馆 LC-DIG-highsm-54419）",
+   "source": "https://www.loc.gov/item/2018702455/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/highsm/54400/54419u.tif",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 2000,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/shore.jpg",
+   "kind": "照片",
+   "title": "View of Lake Mead near Boulder City, Nevada（Carol M. Highsmith，2022，美国国会图书馆 LC-DIG-highsm-70518）",
+   "source": "https://www.loc.gov/item/2023697161/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/highsm/70500/70518u.tif",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 2000,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/sat2000.jpg",
+   "kind": "照片",
+   "title": "Lake Mead Keeps Dropping：2000 年 7 月 6 日 Landsat 7 ETM+ 真彩色图（NASA 地球观测站）",
+   "source": "https://earthobservatory.nasa.gov/images/150111/lake-mead-keeps-dropping",
+   "download": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/150000/150111/lakemead_etm_2000188_lrg.jpg",
+   "license": "公共领域（NASA 地球观测站图片，美国政府作品）",
+   "author": "NASA Earth Observatory / Lauren Dauphin，USGS Landsat 数据",
+   "credit": "卫星图 NASA 地球观测站（Landsat，公共领域）",
+   "prep": {
+    "max": 1800,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/sat2022.jpg",
+   "kind": "照片",
+   "title": "Lake Mead Keeps Dropping：2022 年 7 月 3 日 Landsat 9 OLI-2 真彩色图（NASA 地球观测站）",
+   "source": "https://earthobservatory.nasa.gov/images/150111/lake-mead-keeps-dropping",
+   "download": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/150000/150111/lakemead_oli2_2022184_lrg.jpg",
+   "license": "公共领域（NASA 地球观测站图片，美国政府作品）",
+   "author": "NASA Earth Observatory / Lauren Dauphin，USGS Landsat 数据",
+   "credit": "卫星图 NASA 地球观测站（Landsat，公共领域）",
+   "prep": {
+    "max": 1800,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/mead.csv",
+   "kind": "数据",
+   "title": "Lake Mead at Hoover Dam, End of Month Elevation (feet)，1935 年至今的月末水位（英尺）",
+   "source": "https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html",
+   "download": "https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html",
+   "license": "公共领域（美国垦务局发布的数据，美国政府作品）",
+   "author": "U.S. Bureau of Reclamation, Lower Colorado Region",
+   "credit": "水位 美国垦务局（公共领域）",
+   "prep": {
+    "month_table": true
+   }
+  },
+  {
+   "file": "assets/tower_depth.png",
+   "kind": "数据",
+   "title": "tower.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2018702455/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/tower.jpg packs/news-brief/demo/assets/tower_depth.png：Depth Anything V2 Small（Apache-2.0）在 CPU 上估一次相对深度，存成 1000 宽灰度 PNG"
+  },
+  {
+   "file": "assets/shore_depth.png",
+   "kind": "数据",
+   "title": "shore.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2023697161/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/shore.jpg packs/news-brief/demo/assets/shore_depth.png，同上"
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_News_Anchor",
+   "text": "美国最大的水库米德湖，二〇二二年七月，水位跌到蓄水以来的最低点。和二〇〇〇年相比，湖面下降了约四十八米。大坝取水塔上那一圈白色的岩壁，就是从前的水位线。",
+   "params": {
+    "speed": 1.15
+   },
+   "at": 0.5,
+   "show": {
+    "二〇二二年七月": "2022 年 7 月",
+    "二〇〇〇年": "2000 年",
+    "四十八米": "48 米"
+   },
+   "license": "AI 合成（公开音色），随本仓库按 MIT 发布",
+   "dur": 13.74,
+   "lines": [
+    {
+     "t0": 0.037,
+     "t1": 1.744,
+     "text": "美国最大的水库米德湖"
+    },
+    {
+     "t0": 1.744,
+     "t1": 5.528,
+     "text": "2022 年 7 月，水位跌到蓄水以来的最低点"
+    },
+    {
+     "t0": 5.528,
+     "t1": 8.941,
+     "text": "和 2000 年相比，湖面下降了约 48 米"
+    },
+    {
+     "t0": 8.941,
+     "t1": 11.539,
+     "text": "大坝取水塔上那一圈白色的岩壁"
+    },
+    {
+     "t0": 11.539,
+     "t1": 13.134,
+     "text": "就是从前的水位线"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Insistent: background loop",
+   "source": "https://opengameart.org/content/insistent-background-loop",
+   "download": "https://opengameart.org/sites/default/files/Insistent.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

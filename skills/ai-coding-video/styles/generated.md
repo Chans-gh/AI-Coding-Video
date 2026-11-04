@@ -307,5 +307,6 @@
 - 适合：短片提案、广告样片、绘本动画、故事类短视频
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-016/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-016)
+- 风格包：[packs/style-swap/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/style-swap)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：—

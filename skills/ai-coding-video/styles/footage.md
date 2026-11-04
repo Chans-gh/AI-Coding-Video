@@ -136,6 +136,7 @@
 - 适合：灾害和天气新闻、航线和迁徙、事件复盘
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-007/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-007)
+- 风格包：[packs/news-brief/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/news-brief)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/satellite-briefing/STYLE.md)
 

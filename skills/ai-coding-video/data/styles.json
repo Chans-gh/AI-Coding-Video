@@ -6464,7 +6464,10 @@
     "path": "samples/G-016/",
     "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-016"
    },
-   "pack": null,
+   "pack": {
+    "path": "packs/style-swap/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/style-swap"
+   },
    "refs": []
   },
   {
@@ -6727,7 +6730,10 @@
     "path": "samples/T-007/",
     "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-007"
    },
-   "pack": null,
+   "pack": {
+    "path": "packs/news-brief/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/news-brief"
+   },
    "refs": [
     {
      "label": "Lemo 说明",

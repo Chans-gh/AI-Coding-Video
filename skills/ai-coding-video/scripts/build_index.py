@@ -28,12 +28,14 @@ INDEX_PATH = os.path.join(ROOT, 'index.md')
 CODE_BASE = 'https://github.com/Chans-gh/AI-Coding-Video/tree/main/'
 RAW_BASE = 'https://raw.githubusercontent.com/Chans-gh/AI-Coding-Video/main/'
 REPO_ROOT = os.path.dirname(os.path.dirname(ROOT))  # 在本仓库里时才有 samples/、packs/，单独安装时跳过存在性检查
-# 随 Skill 安装的代码：仓库里 samples/、packs/ 被 git 跟踪的文件，去掉截图、T/G 类素材（assets/，只留 assets.json）和只给维护者用的文件。
+# 随 Skill 安装的代码：仓库里 samples/、packs/ 被 git 跟踪的文件，去掉截图、T/G 类样片的素材（assets/，只留 assets.json）和只给维护者用的文件。
 # 同步到 Skill 里同名的 samples/、packs/，条目「样片代码」「风格包」链接文字里的路径（samples/C-044/）就是它在 Skill 里的位置。
 BUNDLE = ('samples', 'packs')
 BUNDLE_SKIP_DIRS = {'assets', 'node_modules', 'out', '__pycache__'}
 BUNDLE_SKIP_FILES = {'samples/README.md', 'packs/README.md', 'samples/tools/mark.py', 'samples/tools/apidoc.py'}
 BUNDLE_SKIP_EXT = ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4', '.webm', '.mp3', '.wav')
+# 例外：风格包演示片的素材（packs/<名字>/demo/assets/）随 Skill 安装，拷出去不用下载、不用配生成服务就能出片；每个包合计不超过 10 MB
+PACK_ASSET_RE = re.compile(r'packs/[^/]+/demo/assets/[^/]+$')
 SKILL_IN_REPO = 'skills/ai-coding-video/'
 CAT_START, CAT_END = '<!-- catalog:start -->', '<!-- catalog:end -->'
 
@@ -69,14 +71,15 @@ def repo_link(value, prefix, where, errors):
     return {'path': path, 'url': url}
 
 
-def check_assets(rec, where, kinds, errors):
-    """T、G 类样片的 assets.json：每份素材的种类、出处、许可或模型和提示词，文件存在，合计不超过 10 MB"""
-    d = os.path.join(REPO_ROOT, rec['render_code']['path'])
+def check_assets(rel, where, kinds, errors, materials=None):
+    """T、G 类样片（rel = samples/<编号>/）和它的风格包演示片（packs/<名字>/demo/）的 assets.json：
+    每份素材的种类、出处、许可或模型和提示词，文件存在，合计不超过 10 MB；materials 给了就核对和条目的「素材」一致"""
+    d = os.path.join(REPO_ROOT, rel)
     p = os.path.join(d, 'assets.json')
     if not os.path.isdir(os.path.join(REPO_ROOT, 'samples')):
         return                                   # Skill 单独安装时没有样片目录
     if not os.path.exists(p):
-        errors.append(f'{where}: 缺 {rec["render_code"]["path"]}assets.json')
+        errors.append(f'{where}: 缺 {rel}assets.json')
         return
     items = json.load(open(p, encoding='utf-8')).get('items', [])
     used, total, seen = set(), 0, set()
@@ -99,10 +102,10 @@ def check_assets(rec, where, kinds, errors):
             errors.append(f'{w}: 文件不存在')
         else:
             total += os.path.getsize(fp)
-    if set(rec['materials']) != used & set(kinds):
-        errors.append(f'{where}: 条目的素材（{" · ".join(rec["materials"])}）和 assets.json 里实际用到的（{" · ".join(sorted(used & set(kinds)))}）不一致')
+    if materials is not None and set(materials) != used & set(kinds):
+        errors.append(f'{where}: 条目的素材（{" · ".join(materials)}）和 assets.json 里实际用到的（{" · ".join(sorted(used & set(kinds)))}）不一致')
     if total > ASSET_LIMIT:
-        errors.append(f'{where}: assets/ 合计 {total / 1e6:.1f} MB，超过 10 MB')
+        errors.append(f'{where}: {rel}assets/ 合计 {total / 1e6:.1f} MB，超过 10 MB')
 
 
 def parse(errors):
@@ -187,7 +190,9 @@ def parse(errors):
                     if tname not in techs:
                         errors.append(f'{where}: 技术类型「{tname}」不在 tags.json 的 techniques 里')
                 if rec['render_code']:
-                    check_assets(rec, where, mats[rec['class']], errors)
+                    check_assets(rec['render_code']['path'], where, mats[rec['class']], errors, rec['materials'])
+                if rec['pack'] and os.path.isdir(os.path.join(REPO_ROOT, rec['pack']['path'])):
+                    check_assets(rec['pack']['path'] + 'demo/', where + ' 风格包', mats[rec['class']], errors)
             if not rec['fit']:
                 errors.append(f'{where}: 缺「适合」')
             all_tags = rec['verified'] + rec['suggested']
@@ -278,8 +283,8 @@ def bundle_want():
     except (OSError, subprocess.CalledProcessError):
         return None
     files = [f for f in out.decode('utf-8').split('\0') if f]
-    keep = [f for f in files if f not in BUNDLE_SKIP_FILES and not f.lower().endswith(BUNDLE_SKIP_EXT)
-            and not BUNDLE_SKIP_DIRS & set(f.split('/')[:-1]) and os.path.isfile(os.path.join(REPO_ROOT, f))]
+    keep = [f for f in files if f not in BUNDLE_SKIP_FILES and os.path.isfile(os.path.join(REPO_ROOT, f)) and (
+            PACK_ASSET_RE.match(f) or not f.lower().endswith(BUNDLE_SKIP_EXT) and not BUNDLE_SKIP_DIRS & set(f.split('/')[:-1]))]
     kept = set(keep)
     want = {}
     for f in keep:

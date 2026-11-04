@@ -4,6 +4,7 @@
     python3 tools/assets.py T-001 --only assets/vo.mp3 --force   # 重做某一份
     python3 tools/assets.py T-001 --check    # 不下载、不生成：只查文件在不在、元数据是否干净、合计是否超过 10 MB
     python3 tools/assets.py T-001 --subs     # 不再调语音合成：用 out/gen/ 里存的逐字时间重排字幕行（改了断句规则或 show 之后）
+    python3 tools/assets.py pack:news-brief  # 风格包演示片的素材（packs/<名字>/demo/assets.json）
     python3 tools/assets.py --usage          # 本机调用生成服务的次数（记在 out/gen/usage.jsonl，不进仓库）
 
 assets.json 是 {"items": [...]}，每份素材一项：
@@ -16,6 +17,7 @@ assets.json 是 {"items": [...]}，每份素材一项：
             存成 .json 时是这一页的文字层（每个词和它的位置）；视频 {ss 起点, t 长度, w 宽, crop}，统一成 30 帧/秒、无声 H.264；
             音频 {ss, t, mono}，统一响度后存 mp3；数据默认原样保存，另有 {drop_comments}（CSV 去掉 # 注释行）、
             {hurdat: 风暴编号}（NOAA 最佳路径取一场）、{horizons: true}（JPL Horizons 的状态向量 → CSV）、
+            {month_table: true}（网页里「年份 + 12 个月」的表 → year,month,value 的 CSV，如美国垦务局的水库月末水位）、
             {cols: [列名], skip: 开头跳过几行}（CSV 只留这几列、去掉缺值的行）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox}（GeoJSON 线面裁到框里）
   of        生视频自带的声音：写那段视频的 file，从生成的原始视频里取出音轨另存（视频本身进仓库时不带声音）；
             model、prompt 照抄那段视频的
@@ -184,6 +186,16 @@ def prep(src, dest, o):
             f = [x.strip() for x in l.split(",") if x.strip()]
             out.append(",".join([f[0], f[1].replace("A.D. ", "")] + [f"{float(v):.6g}" for v in f[2:8]]))
         dest.write_text("\n".join(out) + "\n", encoding="utf-8")
+    elif o.get("month_table"):                          # 网页里的「年份 JAN … DEC」表：去掉标签，每行年份后跟 12 个数（缺的写 ---）→ year,month,value
+        import html as H
+        txt = H.unescape(re.sub(r"<[^>]+>", " ", Path(src).read_text(encoding="utf-8", errors="replace")))
+        out, seen = ["year,month,value"], set()
+        for m in re.finditer(r"\b(1[89]\d\d|20\d\d)((?:\s+(?:-?\d+(?:\.\d+)?|---)){12})", txt):
+            if m.group(1) in seen:
+                continue
+            seen.add(m.group(1))
+            out += [f"{m.group(1)},{k + 1},{v}" for k, v in enumerate(m.group(2).split()) if v != "---"]
+        dest.write_text("\n".join(out) + "\n", encoding="utf-8")
     elif o.get("points"):                               # GeoJSON 点 → CSV（只留要的属性，可按 sort 排序取前 top 个）
         js = json.loads(Path(src).read_text(encoding="utf-8"))
         rows = [{**{k: f["properties"].get(k) for k in o["points"]}, "lon": f["geometry"]["coordinates"][0], "lat": f["geometry"]["coordinates"][1]}
@@ -350,13 +362,19 @@ def record(sid, item):
 
 
 # ---------- 主流程 ----------
+def where(sid):
+    """样片编号 → samples/<编号>/；风格包 pack:<名字> → packs/<名字>/demo/（随 Skill 安装时 samples/ 和 packs/ 也并排）"""
+    return SAMPLES.parent / "packs" / sid[5:] / "demo" if sid.startswith("pack:") else SAMPLES / sid
+
+
 def build(sid, only=None, force=False, check=False):
-    d = SAMPLES / sid
+    d = where(sid)
     af = d / "assets.json"
     if not af.exists():
         print(f"✗ {sid}：没有 assets.json"); return False
     A = json.loads(af.read_text(encoding="utf-8"))
     ok, changed, total, seen, skipped, raws = True, False, 0, set(), [], {}
+    sid = sid.replace(":", "-")                         # 生成记录的目录名（out/gen/pack-<名字>/）
     for it in A["items"]:
         dest = d / it["file"]
         if it["file"] in seen:                          # 同一个文件被几项引用（如一段原声分几处用）：只处理、只计一次
@@ -424,10 +442,10 @@ def main():
     a = ap.parse_args()
     if a.subs:
         for sid in a.ids:
-            af = SAMPLES / sid / "assets.json"
+            af = where(sid) / "assets.json"
             A = json.loads(af.read_text(encoding="utf-8"))
             for it in A["items"]:
-                sj = gen.GEN_OUT / sid / (job_id(it) + ".subs.json")
+                sj = gen.GEN_OUT / sid.replace(":", "-") / (job_id(it) + ".subs.json")
                 if it.get("text") and sj.exists():
                     it["lines"] = sub_lines(json.loads(sj.read_text(encoding="utf-8")), it.get("show", {}))
                     print(f"{sid} {it['file']}：" + " / ".join(l["text"] for l in it["lines"]))

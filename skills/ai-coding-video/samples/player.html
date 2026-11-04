@@ -31,7 +31,8 @@
 <script>
 // 用法：player.html?s=C-001&ar=16x9      浏览器里循环播放
 //       player.html?s=C-001&ar=9x16&render=1&t=1.5   出片脚本用：停在 t 秒那一帧
-//       player.html?s=pack:dark-keynote&ar=16x9&accent=%23FF7A45   风格包演示片（packs/<名字>/demo/）；其余参数场景可用 Q.get() 读
+//       player.html?s=pack:dark-keynote&ar=16x9&accent=%23FF7A45   风格包演示片（packs/<名字>/demo/）：accent 品牌色；
+//       player.html?s=pack:news-brief&ar=9x16&v=parallax            切别的维度的包用 v（meta.json 的 variants）；其余参数场景可用 Q.get() 读
 // 场景可以写 needs: ['../pack.js']（相对场景文件），播放器在 init 之前按顺序载入
 // 场景可以写 libs: ['gsap', 'p5', 'three', …]（下面 LIBS 里的名字），从本地 node_modules 载入，不联网
 // LIBS 的每一项是一串文件：字符串 = 普通 <script>；{m: 路径, as: '全局名'} = ES 模块，import 后挂到 window[as]

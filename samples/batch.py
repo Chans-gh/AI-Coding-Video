@@ -8,8 +8,8 @@
     python3 batch.py C-001 -j 2             # 并行数（默认 4）
     python3 batch.py C-001 --at 2.4         # 只截 2.4 秒那一帧（全分辨率）到 out/，单独看可疑的画面
     python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
-    python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），每种品牌色一支，时长可到 30 秒
-    python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色
+    python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），每种切换（品牌色、画面组织、画风…）一支，时长可到 30 秒
+    python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色（切别的维度的包写 variants 的键，如 pack:style-swap@clay）
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒。

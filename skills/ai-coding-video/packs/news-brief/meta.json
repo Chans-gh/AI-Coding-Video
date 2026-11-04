@@ -1,0 +1,10 @@
+{
+  "from": "T-007",
+  "name": "新闻资讯解说",
+  "en_name": "News brief",
+  "how": "公共领域照片加公开数据做成电视新闻式解说：栏目条、标题、数据卡、标注、滚动出处和字幕固定，切换的是「画面组织」——单图推拉、2.5D 视差分层、多图拼贴分屏，只改一个参数。",
+  "en_how": "Public-domain photos plus open data become a TV-style news explainer. The show bug, headline, data card, annotations, source ticker and subtitles stay fixed; what switches is how the pictures are organized (single-image Ken Burns, 2.5D depth-layer parallax, or a multi-image split-screen collage), with one parameter.",
+  "switch": ["画面组织", "Layout"],
+  "parts": [["栏目条", "Show bug"], ["标题", "Headline"], ["对比", "Before / after"], ["数据卡", "Data card"], ["标注", "Annotation"], ["滚动出处", "Source ticker"], ["字幕", "Subtitles"], ["转场", "Transition"]],
+  "variants": [["kenburns", "单图推拉", "Ken Burns", "kenburns"], ["parallax", "2.5D 视差分层", "2.5D parallax", "parallax"], ["collage", "多图拼贴分屏", "Split-screen collage", "collage"]]
+}

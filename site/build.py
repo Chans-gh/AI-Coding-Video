@@ -243,8 +243,10 @@ def gallery(styles, ids):
 
 
 def pack_accents(n):
-    """风格包 meta.json 里的品牌色：[[键, 中文名, 英文名, 色值], …]，第一个是默认色"""
-    return json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))["accents"]
+    """风格包 meta.json 里的几种切换：[[键, 中文名, 英文名, 值], …]，第一个是默认。切品牌色的写 accents（值是色值），
+    切别的维度（画面组织、画风…）的写 variants，维度名在 switch"""
+    m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
+    return m.get("variants") or m["accents"]
 
 
 def pack_names():
@@ -254,20 +256,23 @@ def pack_names():
 
 
 def packs_html(names):
-    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换，下面一排品牌色标签切换视频），右边部件和链接"""
+    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换，下面一排标签切换视频：品牌色，或 meta.json 的 switch 写的维度），右边部件和链接"""
     out = []
     for n in names:
         m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
         parts = "".join(f"<li>{both(z, e)}</li>" for z, e in m["parts"])
-        acc = m["accents"]
-        tabs = "".join(f'<button type="button" data-acc="{k}" aria-pressed="{str(i == 0).lower()}" style="--acc:{hexv}">'
-                       f'<i aria-hidden="true"></i>{both(z, e)}</button>' for i, (k, z, e, hexv) in enumerate(acc))
+        acc = pack_accents(n)
+        sw = m.get("switch")
+        lab_z, lab_e = ("换" + sw[0], sw[1]) if sw else ("换品牌色", "Brand color")
+        tabs = "".join(f'<button type="button" data-acc="{k}" aria-pressed="{str(i == 0).lower()}"'
+                       + (f' style="--acc:{v}"><i aria-hidden="true"></i>' if not sw else '>')
+                       + f'{both(z, e)}</button>' for i, (k, z, e, v) in enumerate(acc))
         out.append(f'''    <article class="pack">
       <div class="pack-left">
       <div class="pack-screen">
         <video class="pack-video" data-id="pack-{n}-{acc[0][0]}" data-pack="{n}" data-src="media/s/pack-{n}-{acc[0][0]}-16x9.mp4" data-poster="media/s/pack-{n}-{acc[0][0]}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
       </div>
-      <div class="pack-tabs" role="group" aria-label="品牌色 Brand color"><span class="lab">{both("换品牌色", "Brand color")}</span>{tabs}</div>
+      <div class="pack-tabs" role="group" aria-label="{esc(lab_z[1:] + " " + lab_e)}"><span class="lab">{both(lab_z, lab_e)}</span>{tabs}</div>
       </div>
       <div class="pack-body">
         <div class="card-meta"><code>{n}</code><h4>{both(m["name"] + "风格包", m["en_name"] + " pack")}</h4></div>

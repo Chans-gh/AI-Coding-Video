@@ -4,8 +4,8 @@
 声音由 <编号>/sound.py 用 lib/synth.py 现场合成：C 类只用自带的电子音（不用录音、曲库或声音模型）；
 T 类、G 类照 assets.json 把 assets/ 里的旁白、配乐、音效摆好（synth.assets）。
 
-产出（都在 samples/<编号>/ 下；风格包的演示片写成 pack:<名字>，按 meta.json 的 accents 每种品牌色出一支，
-产出在 packs/<名字>/demo/ 下，文件名是「包名-颜色-画幅」，不做缩略图）：
+产出（都在 samples/<编号>/ 下；风格包的演示片写成 pack:<名字>，按 meta.json 的 accents（品牌色）或 variants（别的切换维度，
+比如画面组织、画风）每种出一支，产出在 packs/<名字>/demo/ 下，文件名是「包名-键-画幅」，不做缩略图）：
     <编号>-16x9.mp4 / <编号>-9x16.mp4   样片，30 fps，带声音
     <编号>-16x9.jpg / <编号>-9x16.jpg   静帧（取场景的 still 时刻），长边 1280
 并把 16:9 静帧缩成 640 宽写进 Skill 的 images/<编号>.jpg（不超过 100 KB）。
@@ -31,7 +31,10 @@ MAX_BYTES_TG = 3_550_000
 
 
 def is_asset_class(sid):
-    return sid[:1] in ASSET_CLASSES and not sid.startswith("pack:")
+    """T 类、G 类样片，以及从 T、G 类条目做出来的风格包（meta.json 的 from）"""
+    if sid.startswith("pack:"):
+        return pack_meta(sid[5:].split("@")[0]).get("from", "")[:1] in ASSET_CLASSES
+    return sid[:1] in ASSET_CLASSES
 # 可用环境变量 CHROME 指定浏览器；不设时先找预装的 Chromium，再用 Playwright 自带的
 CHROME = os.environ.get("CHROME") or next((p for p in ["/opt/pw-browsers/chromium"] if os.path.exists(p)), None)
 
@@ -116,17 +119,31 @@ def stem(sid):
     return sid[5:].replace("@", "-") if sid.startswith("pack:") else sid
 
 
-def accents(pack):
-    """风格包 meta.json 里的品牌色：[(键, 中文名, 英文名, 色值), …]，第一个是默认色"""
-    m = json.loads((PACKS / pack / "meta.json").read_text(encoding="utf-8"))
-    return [tuple(a) for a in m["accents"]]
+def pack_meta(pack):
+    return json.loads((PACKS / pack / "meta.json").read_text(encoding="utf-8"))
+
+
+def variants(pack):
+    """风格包的几种切换：[(键, 中文名, 英文名, 值), …]，第一个是默认。
+    切品牌色的包写 accents（值是色值，传给播放器的 accent）；切别的维度的写 variants（传给播放器的 v，值就是键）"""
+    m = pack_meta(pack)
+    return [tuple(a) for a in (m.get("variants") or m["accents"])]
+
+
+def variant_query(pack, key):
+    """某一种切换传给播放器的参数"""
+    from urllib.parse import quote
+    m = pack_meta(pack)
+    if "variants" in m:
+        return "&v=" + quote(key)
+    return "&accent=" + quote(dict((a[0], a[3]) for a in m["accents"])[key])
 
 
 def expand(sid):
-    """pack:<名字> 展开成每种品牌色一支（pack:<名字>@<颜色>）；样片编号和已带颜色的原样返回"""
+    """pack:<名字> 展开成每种切换一支（pack:<名字>@<键>）；样片编号和已带键的原样返回"""
     if not sid.startswith("pack:") or "@" in sid:
         return [sid]
-    return [f"{sid}@{a[0]}" for a in accents(sid[5:])]
+    return [f"{sid}@{a[0]}" for a in variants(sid[5:])]
 
 
 def ffmpeg():
@@ -149,9 +166,8 @@ class Page:
         self.pg.on("console", self._console)
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
         base, _, col = sid.partition("@")
-        if col:                                   # 风格包的某种品牌色：从 meta.json 取色值传给播放器
-            from urllib.parse import quote
-            query += "&accent=" + quote(dict((a[0], a[3]) for a in accents(base[5:]))[col])
+        if col:                                   # 风格包的某一种切换（品牌色、画面组织、画风…）：从 meta.json 取参数传给播放器
+            query += variant_query(base[5:], col)
         self.pg.goto((HERE / "player.html").as_uri() + f"?s={base}&ar={ar}&render=1&t=0{query}")
         self.pg.wait_for_function("READY === true || document.title === 'ERROR'", timeout=600000)
         if self.pg.title() == "ERROR":
