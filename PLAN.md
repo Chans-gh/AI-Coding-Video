@@ -20,23 +20,22 @@
 - 每批开工前把清单和预计的生成用量给维护者确认。
 - 验收：每批跑完 `build_index.py --check`、`media.py check`、`mark.py`；页面的技术行能对上。
 
-**现状**：批 1 已做完（T-013–T-015、G-013、G-014，见[更新记录](skills/ai-coding-video/CHANGELOG.md)）；剩下的 9 个条目在批 2、批 3。编号要连续，按做完的先后排，下面的编号是暂定；一个条目写 1–3 个技术类型，样片 8–15 秒、横竖两版。
+**现状**：批 1、批 2 已做完（T-013–T-018、G-013–G-016，见[更新记录](skills/ai-coding-video/CHANGELOG.md)）；剩下 4 个条目：批 2 暂缓的 2 个（等维护者选服务）和批 3 的 2 个。编号要连续，按做完的先后排，下面的编号是暂定；一个条目写 1–3 个技术类型，样片 8–15 秒、横竖两版。
 
-#### 批 2：中（7 个条目，T 类 3 个、G 类 4 个）
+#### 批 2 暂缓（青水没有对口型、动作迁移模型，等维护者选服务）
 
-环境：Python 加视觉库（faster-whisper、MediaPipe 或 RTMPose、SAM 2、Depth Anything V3，单张图或短片段 CPU 能跑，慢；有 GPU 更快）；G 类的模型经服务调用。
+| 条目 | 名字（暂定） | 内容类型 | 素材 | 技术类型 | 生成用量 |
+|---|---|---|---|---|---|
+| G-017 | 多语种培训讲解 | 企业培训和课件 | 生图 · 生视频 · 语音合成 | 对口型与译制 · 数字人口播 | 图 1、视频 1 段（约 5 秒）、语音 2–3 种语言各约 10 秒 |
+| G-018 | 舞蹈动作迁移 | 音乐 MV | 生图 · 生视频 | 动作迁移与角色替换 · 视频转视频与风格重绘 | 图 1、视频 1–2 段（约 5–8 秒）；动作参考用 T-017 同类的政府体能训练片 |
 
-| 条目 | 名字（暂定） | 内容类型 | 素材 | 技术类型 | 素材来源 | 生成用量 |
-|---|---|---|---|---|---|---|
-| T-016 | 访谈金句竖屏 | 播客和访谈可视化 | 录像 | 文字稿剪辑 · 高光切片 · 自动改画幅 | NASA 影像库的任务讲解、新闻发布会长视频；备选：美国国会听证视频 | — |
-| T-017 | 体操骨骼示范 | 健康和运动指导 | 录像 | 追踪与姿态叠加 · 抠像合成 | 美国国家档案馆（NARA）和 Internet Archive 的 FedFlix 里的政府体能训练片 | — |
-| T-018 | 照片深景推镜 | 品牌宣传片 | 照片 | 分层视差与投影 | 美国国会图书馆 Free to Use and Reuse 的照片、Wikimedia Commons 公共领域照片；深度图作为第二份素材记入清单 | — |
-| G-015 | 多语种培训讲解 | 企业培训和课件 | 生图 · 生视频 · 语音合成 | 对口型与译制 · 数字人口播 | — | 图 1、视频 1 段（约 5 秒）、语音 2–3 种语言各约 10 秒 |
-| G-016 | 舞蹈动作迁移 | 音乐 MV | 生图 · 生视频 | 动作迁移与角色替换 · 视频转视频与风格重绘 | 动作参考用 T-017 同类的政府体能训练片；角色由生成图提供 | 图 1、视频 1–2 段（约 5–8 秒） |
-| G-017 | 三维产品展台 | 产品广告和带货 | 生图 | 生成三维资产加代码渲染 | — | 图 2、三维模型 1 个 |
-| G-018 | 分镜表短片 | 品牌宣传片 | 生图 · 生视频 · 语音合成 | 分镜到成片编排 | — | 图 4、视频 2 段、语音约 12 秒 |
+可选的服务（查阅于 2026-11，价格是各家页面所写，用前核对）：
 
-批 2 合计：图约 8，视频 4–5 段，三维模型 1 个，语音约 32 秒。
+- 对口型：[fal LatentSync](https://fal.ai/models/fal-ai/latentsync)（40 秒以内每段 0.20 美元，之后每秒 0.005 美元）· [sync.so lipsync-2](https://sync.so/docs/product/billing)（每秒约 0.04–0.05 美元，pro 版约 0.067–0.083 美元）· [fal Sync Lipsync 2.0](https://fal.ai/models/fal-ai/sync-lipsync)（每秒约 0.05 美元）· fal 上的 MiniMax、VEED 对口型（每秒约 0.07–0.08 美元，[对比](https://fal.ai/learn/tools/how-to-lip-sync-ai-videos-with-audio-using-an-api)）。
+- 动作迁移：[fal Wan 2.2 Animate](https://fal.ai/models/fal-ai/wan/v2.2-14b/animate/move)（480/580/720p 每「秒」0.04/0.06/0.08 美元，按 16 帧算一秒，页面标可商用）· [MuAPI](https://muapi.ai/comparison/wan2.2-animate)（估算每次 0.35–0.50 美元）。
+- 不开新服务的退路：青水的 Grok 参考图生视频或 Seedance 让角色「说话」、再配语音合成——不是真对口型，技术类型就只能算「数字人口播」。
+
+要接新服务时照 `gen.py` 再加一类环境变量（如 `AICV_LIPSYNC_CMD`、`AICV_MOTION_CMD`），适配命令放 `scripts/providers/`。
 
 #### 批 3：重（2 个条目，单列）
 
@@ -49,9 +48,9 @@
 
 #### 覆盖核对
 
-- T 类剩 6 个类型：T-016（3）、T-017（2）、T-018（1）、T-019（2）。
-- G 类剩 6 个类型：G-015（1，另含数字人口播）、G-016（2）、G-017（1）、G-018（1）、G-019（1）。
-- 新内容类型里还没条目的：播客和访谈可视化（T-016）、健康和运动指导（T-017）；企业培训和课件、游戏和电竞另有 G-015、G-019。
+- T 类剩 2 个类型：T-019（2）。
+- G 类剩 4 个类型：G-017（对口型与译制，另含数字人口播）、G-018（2）、G-019（1）。
+- 企业培训和课件、游戏和电竞另有 G-017、G-019。
 
 #### 素材和工具的核对结论
 
@@ -63,7 +62,7 @@
 - **对口型和译制**：[MuseTalk 是 MIT](https://sync.so/blog/what-is-musetalk)；LatentSync 的许可各家说法不一（Apache 2.0 或 OpenRAIL++），Wav2Lip 没有许可文件，商用有风险（[许可对比](https://www.creativeainews.com/articles/open-source-lip-sync-licenses-commercial-use-2026/)）。样片优先用服务或 MuseTalk。「对口型与译制」维持中。
 - **相机反求**：[MegaSaM](https://mega-sam.github.io) 从动态视频估相机和深度，输出尺度不定；[ViPE](https://arxiv.org/pdf/2508.10934) 更快；COLMAP、GLOMAP 要已知内参。导入 Blender 或 Three.js 前要处理尺度。维持重。
 - **动作迁移的运行方式**：[Wan 2.2 Animate](https://www.imagine.art/blogs/wan-2-2-overview) 是开放权重，有第三方按次计费的托管接口（[MuAPI](https://muapi.ai/comparison/wan2.2-animate)，价格是聚合站估算）。本地跑要 GPU（属「重」）；经服务调用按「中」算，批 2 走服务。
-- **三维模型生成**（G-017）：经服务用一张产品图生成带贴图的 GLB，再用 Three.js 打光、转台、出片。服务有 [Tripo](https://docs.tripo3d.ai)（图生三维按积分计，第三方转引的价目是 20–30 积分一次，1 积分 0.01 美元，没核实；也可经 [fal.ai](https://fal.ai/models/tripo3d/tripo/v2.5/image-to-3d) 调，输出 GLB，PBR 材质）和 [Meshy](https://docs.meshy.ai/api/quick-start)（REST 接口，提交后按任务编号轮询）。开放权重的 [Hunyuan3D 2.1](https://gitserver.onethingai.com/ai-models/Hunyuan3D-2.1/raw/branch/main/LICENSE) 是腾讯的社区许可，不适用于欧盟、英国、韩国，商用条款另议，且要 GPU，不选。青水没有三维模型生成。做法：`gen.py` 加一类「生成三维」（环境变量 `AICV_3D_CMD`），维护者那边写 Tripo 或 Meshy 的适配命令；开工前核对生成结果的使用条款。没有服务时退回 CC0 模型（例如 Poly Haven、Smithsonian Open Access 的 CC0 三维模型），只演示代码渲染这一半。
+- **三维模型生成**（G-015 以后换成生成的模型时用）：经服务用一张产品图生成带贴图的 GLB，再用 Three.js 打光、转台、出片。服务有 [Tripo](https://docs.tripo3d.ai)（图生三维按积分计，第三方转引的价目是 20–30 积分一次，1 积分 0.01 美元，没核实；也可经 [fal.ai](https://fal.ai/models/tripo3d/tripo/v2.5/image-to-3d) 调，输出 GLB，PBR 材质）和 [Meshy](https://docs.meshy.ai/api/quick-start)（REST 接口，提交后按任务编号轮询）。开放权重的 [Hunyuan3D 2.1](https://gitserver.onethingai.com/ai-models/Hunyuan3D-2.1/raw/branch/main/LICENSE) 是腾讯的社区许可，不适用于欧盟、英国、韩国，商用条款另议，且要 GPU，不选。青水没有三维模型生成。做法：`gen.py` 加一类「生成三维」（环境变量 `AICV_3D_CMD`），维护者那边写 Tripo 或 Meshy 的适配命令；开工前核对生成结果的使用条款。没有服务时退回 CC0 模型（例如 Poly Haven、Smithsonian Open Access 的 CC0 三维模型），只演示代码渲染这一半。
 - **世界模型的导出**：[World Labs Marble](https://docs.worldlabs.ai/marble/export/gaussian-splat.md) 可导出高斯点云和网格，免费套餐不能导出；价格和接口本轮没查到。
 - **Remotion 批量渲染**：数据表加一个模板，`bundle()` 一次后循环调用 `renderMedia()` 渲染每一行；大批量可用 Lambda 并行（[Remotion 3.0 说明](https://v4.remotion.dev/blog/3-0)，细节以官方文档为准）。T-015 的批量版本没用 Lambda，在浏览器里按数据表逐行套模板。
 
@@ -71,11 +70,11 @@
 
 1. **T-019 的素材**：用 CC0 三维模型渲染出的环绕镜头，还是找公共领域的多角度实拍照片？前者稳，后者更像「实景」。
 2. **批 3 的环境**：GPU 从哪来，世界模型服务用哪家、预算多少。
+3. **G-017、G-018 的服务**：对口型、动作迁移各用哪家（见上面「批 2 暂缓」），还是先用青水的退路。
 
 已定（需求方定）：
 
 - 配乐：G 类配乐先用 CC0 曲库；有 MiniMax 音乐生成的 Key 以后，再加「生成音乐」这一类素材。
-- G-017 的三维模型先用 CC0 模型，产品贴图、背景用生图；有三维生成服务以后再换成生成的模型。批 2 其余条目照表里的用量生成。
 
 ### 阶段 5：风格包，T 类、G 类各补一个
 

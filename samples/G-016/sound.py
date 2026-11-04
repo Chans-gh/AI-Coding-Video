@@ -4,7 +4,7 @@ from pathlib import Path
 from synth import assets, whoosh, tick, bell, hz
 
 HERE = Path(__file__).parent
-SHEET, END = 2.6, 13.2
+SHEET, END = 2.6, 13.6
 STARTS = ["落进", "顺着", "天亮"]      # 和 scene.js 的 SHOTS 一样：按旁白字幕找切镜的时刻
 
 

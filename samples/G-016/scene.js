@@ -9,9 +9,9 @@ const SHOTS = [
   { img: 's3', vid: 's3v', size: '中景', desc: '顺着水沟漂下石阶', vo: '顺着' },
   { img: 's4', size: '远景', desc: '黎明，纸船看见海', vo: '天亮', z: [1.14, 1.0], fx: [.5, .5] },
 ];
-const SHEET = 2.6, END = 13.2;
+const SHEET = 2.6, END = 13.6;
 scene({
-  id: 'G-016', name: '分镜表短片', dur: 14.4, still: 7.0,
+  id: 'G-016', name: '分镜表短片', dur: 15, still: 6.4,
   fonts: ["900 40px 'Noto Serif SC'", "700 40px 'Noto Serif SC'", "400 40px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "500 40px 'JetBrains Mono'"],
   text: ZH,
   async init() {
@@ -35,8 +35,9 @@ scene({
     const u = SHORT / 1080, PAPER = '#efe8da', INK = '#2b2823', RED = '#c0392b';
     ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
     // 分镜表的版式：横屏四格一排，竖屏两两一排
-    const cols = LAND ? 4 : 2, gap = 24 * u, top = (LAND ? 210 : 330) * u;
+    const cols = LAND ? 4 : 2, gap = 24 * u;
     const cw = (W - 2 * 70 * u - gap * (cols - 1)) / cols, ch = cw * 9 / 16, rowH = ch + 150 * u;
+    const top = LAND ? (H - rowH) / 2 + 50 * u : 330 * u;
     const cell = i => [70 * u + (i % cols) * (cw + gap), top + Math.floor(i / cols) * rowH];
     const total = END - SHEET;
     const sheet = (alpha, hi) => {
@@ -108,7 +109,7 @@ scene({
       });
     }
     // 旁白字幕
-    const vt = t - s.vo.at, line = s.vo.lines.find(l => vt >= l.t0 && vt < l.t1 + .25);
+    const vt = t - s.vo.at, line = s.vo.lines.find(l => vt >= l.t0 - .1 && vt < l.t1 - .1);
     if (line && t < END) {
       ctx.globalAlpha = 1;
       caption(ctx, line.text, { size: (LAND ? 40 : 50) * u, font: 'Noto Serif SC', color: '#fff', bg: null, stroke: 'rgba(0,0,0,.55)',
