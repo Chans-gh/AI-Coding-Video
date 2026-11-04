@@ -1,0 +1,5 @@
+{
+  "en_name": "Fictional esports highlight",
+  "en_how": "Two generated gameplay clips, each with sound generated alongside the picture, are cut into one highlight: a team-versus card opens, a score bar and round timer stay on top, kills slide into a feed and slam a big callout, a caster subtitle bar runs along the bottom, a team-colour diagonal wipe joins the clips, and a final freeze frame dims everything but a glowing ring around the player while the score flips to 3:2; in portrait the crop pans right to follow the explosion. Teams, players and the tournament are all fictional.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

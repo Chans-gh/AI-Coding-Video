@@ -1,0 +1,70 @@
+{
+ "items": [
+  {
+   "file": "assets/dodge.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "原创科幻竞技游戏的实机画面风格：第三人称跟拍，一名穿银白色流线装甲、头盔遮住整张脸的机甲战士在霓虹蓝紫色的未来竞技场里冲刺，侧身滑铲躲过一道蓝色能量光束，起身举起手臂炮还击，击中远处一架红色无人机，无人机在空中爆炸成火花。声音：能量光束的呼啸、滑铲的金属摩擦、炮击和爆炸声、远处观众的欢呼。画面里没有任何文字、数字、标志和游戏界面",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/dodge.mp3",
+   "kind": "原声",
+   "of": "assets/dodge.mp4",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "原创科幻竞技游戏的实机画面风格：第三人称跟拍，一名穿银白色流线装甲、头盔遮住整张脸的机甲战士在霓虹蓝紫色的未来竞技场里冲刺，侧身滑铲躲过一道蓝色能量光束，起身举起手臂炮还击，击中远处一架红色无人机，无人机在空中爆炸成火花。声音：能量光束的呼啸、滑铲的金属摩擦、炮击和爆炸声、远处观众的欢呼。画面里没有任何文字、数字、标志和游戏界面",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "音效 随画面 AI 生成",
+   "at": 1.2
+  },
+  {
+   "file": "assets/clutch.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "原创科幻竞技游戏的实机画面风格：同一个霓虹蓝紫色竞技场的高处斜俯视，场地中央一圈发光的占领区里，一名蓝色装甲的机甲战士跃上高台，展开半球形的能量护盾挡住四面射来的橙色光束，随后举起重锤砸向地面，一圈冲击波把周围的橙色装甲对手全部掀飞，最后一秒放慢。声音：护盾的嗡鸣、光束打在护盾上的噼啪声、重锤落地的轰响和低频冲击波、观众沸腾的欢呼。画面里没有任何文字、数字、标志和游戏界面",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/clutch.mp3",
+   "kind": "原声",
+   "of": "assets/clutch.mp4",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "原创科幻竞技游戏的实机画面风格：同一个霓虹蓝紫色竞技场的高处斜俯视，场地中央一圈发光的占领区里，一名蓝色装甲的机甲战士跃上高台，展开半球形的能量护盾挡住四面射来的橙色光束，随后举起重锤砸向地面，一圈冲击波把周围的橙色装甲对手全部掀飞，最后一秒放慢。声音：护盾的嗡鸣、光束打在护盾上的噼啪声、重锤落地的轰响和低频冲击波、观众沸腾的欢呼。画面里没有任何文字、数字、标志和游戏界面",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "音效 随画面 AI 生成",
+   "at": 6.4
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Cyberpunk Beauty",
+   "source": "https://opengameart.org/content/cyberpunk-beauty",
+   "download": "https://opengameart.org/sites/default/files/cyberpunk.mp3",
+   "license": "CC0 1.0",
+   "author": "Tarush Singhal",
+   "credit": "配乐 Tarush Singhal（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

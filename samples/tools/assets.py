@@ -8,17 +8,21 @@
 
 assets.json 是 {"items": [...]}，每份素材一项：
   file      放在哪（相对样片目录，assets/ 下）
-  kind      素材种类：T 类 录像 / 录屏 / 照片 / 数据，G 类 生图 / 生视频 / 语音合成（G 类的旁白记这个）；声音另记 旁白 / 原声 / 配乐 / 音效
+  kind      素材种类：T 类 录像 / 录屏 / 照片 / 数据，G 类 生图（含语言模型写的 SVG）/ 生视频 / 语音合成（G 类的旁白记这个）；声音另记 旁白 / 原声 / 配乐 / 音效
   下载的（T 类素材、公开曲库的配乐音效）：source 出处页面、download 文件地址、license 许可、author 作者、credit 署名
   生成的（G 类素材、旁白）：model 模型名、prompt 提示词（语音写 text、voice 公开音色）、params 参数、ref 首帧图（相对样片目录）
   拿到后又改过的（裁切、局部模糊等）：edit 写改了什么、为什么
-  prep      怎么处理：图片 {max 长边, crop [x, y, w, h]（0–1）, q 质量}；视频 {ss 起点, t 长度, w 宽, crop}，统一成 30 帧/秒、无声 H.264；
+  prep      怎么处理：图片 {max 长边, crop [x, y, w, h]（0–1）, q 质量}；PDF 的一页 {page 页码, dpi}（存成图片），
+            存成 .json 时是这一页的文字层（每个词和它的位置）；视频 {ss 起点, t 长度, w 宽, crop}，统一成 30 帧/秒、无声 H.264；
             音频 {ss, t, mono}，统一响度后存 mp3；数据默认原样保存，另有 {drop_comments}（CSV 去掉 # 注释行）、
-            {hurdat: 风暴编号}（NOAA 最佳路径取一场）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox}（GeoJSON 线面裁到框里）
+            {hurdat: 风暴编号}（NOAA 最佳路径取一场）、{horizons: true}（JPL Horizons 的状态向量 → CSV）、
+            {cols: [列名], skip: 开头跳过几行}（CSV 只留这几列、去掉缺值的行）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox}（GeoJSON 线面裁到框里）
+  of        生视频自带的声音：写那段视频的 file，从生成的原始视频里取出音轨另存（视频本身进仓库时不带声音）；
+            model、prompt 照抄那段视频的
   record    录屏（本仓库自己的页面）：见 record() 的说明；录完写回鼠标轨迹 cursor
   at、gain  声音在成片里的时刻和音量（synth.assets 用）；语音合成后由本脚本写回 dur 和逐句字幕 lines
 
-生成（生图、生视频、语音合成）经 tools/gen.py 交给环境变量里配的适配命令，不绑定哪一家服务；没配置的那类只打提示、跳过，
+生成（生图、生视频、语音合成、生成矢量：file 以 .svg 结尾的生图）经 tools/gen.py 交给环境变量里配的适配命令，不绑定哪一家服务；没配置的那类只打提示、跳过，
 其余素材照常处理。服务的 Key 由适配命令自己读，本工具不碰。
 脱敏：下载和生成的原始文件、生成服务的记录只放在 out/（不进仓库）；进仓库的文件重新编码，去掉元数据和编码器信息，
 assets.json 只记模型名、参数和提示词。
@@ -46,6 +50,7 @@ DL = OUT / "dl"
 LIMIT = 10_000_000
 UA = "AI-Coding-Video-sample-builder/0.1 (https://github.com/Chans-gh/AI-Coding-Video)"
 IMG, VID, AUD = {".jpg", ".jpeg", ".png", ".webp"}, {".mp4", ".webm"}, {".mp3", ".ogg", ".wav", ".m4a"}
+SVG = ".svg"
 
 
 def ffmpeg():
@@ -129,15 +134,38 @@ def prep_audio(src, dest, o):
          *STRIP, str(dest)])
 
 
+def pdf_words(src, dest, page):
+    """PDF 某一页的文字层 → JSON：[[词, x0, y0, x1, y1], …]，坐标是占页面宽高的比例（0–1），代码按它找引文在页面上的位置"""
+    import html
+    xml = run(["pdftotext", "-f", str(page), "-l", str(page), "-bbox", str(src), "-"])
+    pw, ph = (float(v) for v in re.search(r'<page width="([\d.]+)" height="([\d.]+)"', xml).groups())
+    rows = [[html.unescape(w), round(float(x0) / pw, 4), round(float(y0) / ph, 4), round(float(x1) / pw, 4), round(float(y1) / ph, 4)]
+            for x0, y0, x1, y1, w in re.findall(r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">([^<]*)</word>', xml)]
+    dest.write_text(json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+
 def prep(src, dest, o):
     dest.parent.mkdir(parents=True, exist_ok=True)
     ext = dest.suffix.lower()
+    if o.get("page") and Path(src).suffix.lower() == ".pdf":
+        if ext == ".json":                              # 文字层
+            return pdf_words(src, dest, o["page"])
+        tmp = OUT / "pdfpage"                            # 页面图：pdftoppm 渲染成 PNG，再照图片处理
+        run(["pdftoppm", "-f", str(o["page"]), "-l", str(o["page"]), "-r", str(o.get("dpi", 150)), "-png", "-singlefile", str(src), str(tmp)])
+        src = tmp.with_suffix(".png")
     if ext in IMG:
         prep_image(src, dest, o)
     elif ext in VID:
         prep_video(src, dest, o)
     elif ext in AUD:
         prep_audio(src, dest, o)
+    elif ext == SVG:                                    # 只留 <svg>…</svg>：去掉注释、<metadata>、XML 声明
+        txt = Path(src).read_text(encoding="utf-8")
+        m = re.search(r"<svg\b.*</svg>", txt, re.S)
+        if not m:
+            raise RuntimeError("生成结果里没有 <svg>…</svg>")
+        txt = re.sub(r"<!--.*?-->|<metadata\b.*?</metadata>", "", m.group(0), flags=re.S)
+        dest.write_text(txt.strip() + "\n", encoding="utf-8")
     elif o.get("hurdat"):                               # NOAA HURDAT2 最佳路径：只取一场风暴 → CSV
         lines = Path(src).read_text(encoding="utf-8").splitlines()
         i = next(k for k, l in enumerate(lines) if l.startswith(o["hurdat"] + ","))
@@ -148,6 +176,13 @@ def prep(src, dest, o):
             lat = float(f[4][:-1]) * (1 if f[4].endswith("N") else -1)
             lon = float(f[5][:-1]) * (-1 if f[5].endswith("W") else 1)
             out.append(",".join([f[0], f[1], f[2], f[3], f"{lat:g}", f"{lon:g}", f[6], f[7]]))
+        dest.write_text("\n".join(out) + "\n", encoding="utf-8")
+    elif o.get("horizons"):                             # JPL Horizons 的状态向量（CSV_FORMAT）：只留 $$SOE…$$EOE 之间的数据行 → CSV
+        rows = Path(src).read_text(encoding="utf-8").split("$$SOE")[1].split("$$EOE")[0].strip().splitlines()
+        out = ["jd,date,x_km,y_km,z_km,vx_kms,vy_kms,vz_kms"]
+        for l in rows:
+            f = [x.strip() for x in l.split(",") if x.strip()]
+            out.append(",".join([f[0], f[1].replace("A.D. ", "")] + [f"{float(v):.6g}" for v in f[2:8]]))
         dest.write_text("\n".join(out) + "\n", encoding="utf-8")
     elif o.get("points"):                               # GeoJSON 点 → CSV（只留要的属性，可按 sort 排序取前 top 个）
         js = json.loads(Path(src).read_text(encoding="utf-8"))
@@ -175,6 +210,12 @@ def prep(src, dest, o):
                 if len(cur) > 1:
                     lines.append(cur)
         dest.write_text(json.dumps({"bbox": o["bbox"], "lines": lines}, separators=(",", ":")) + "\n", encoding="utf-8")
+    elif ext == ".csv" and o.get("cols"):              # 跳过开头 skip 行标题，只留 cols 这几列，缺值（*** 或空）的行不要
+        import csv
+        lines = Path(src).read_text(encoding="utf-8").splitlines()[o.get("skip", 0):]
+        rows = list(csv.DictReader(lines))
+        keep = [r for r in rows if all((r.get(c) or "").strip() not in ("", "***") for c in o["cols"])]
+        dest.write_text(",".join(o["cols"]) + "\n" + "\n".join(",".join(r[c].strip() for c in o["cols"]) for r in keep) + "\n", encoding="utf-8")
     elif ext == ".csv" and o.get("drop_comments"):     # 只留表头和数据行（说明、联系方式等注释行不带）
         rows = [l for l in Path(src).read_text(encoding="utf-8").splitlines() if l.strip() and not l.startswith("#")]
         dest.write_text("\n".join(rows) + "\n", encoding="utf-8")
@@ -218,7 +259,8 @@ def job_id(item):
 
 def gen_visual(sid, d, item):
     """生图 / 生视频；返回生成的原始文件（在 out/gen/<编号>/ 下，不进仓库）"""
-    kind = "video" if Path(item["file"]).suffix.lower() in VID else "image"
+    ext = Path(item["file"]).suffix.lower()
+    kind = "video" if ext in VID else "svg" if ext == SVG else "image"
     job = {"model": item["model"], "prompt": item["prompt"], "params": item.get("params", {})}
     if item.get("ref"):
         job["refs"] = [str((d / item["ref"]).resolve())]
@@ -226,6 +268,16 @@ def gen_visual(sid, d, item):
     if res is None:
         raise Skipped(gen.missing(kind))
     return res[0]
+
+
+def raw_video(sid, raws, of):
+    """生视频的原始文件（带声音）：这次刚生成的，或 out/gen/<编号>/<文件名>/ 里上次留下的"""
+    if of in raws:
+        return raws[of]
+    got = sorted(f for f in (gen.GEN_OUT / sid / job_id({"file": of})).glob("*") if f.suffix.lower() in VID)
+    if not got:
+        raise RuntimeError(f"找不到 {of} 生成时的原始视频（在 out/gen/{sid}/ 下），先重做 {of}")
+    return got[-1]
 
 
 def gen_speech(sid, d, item):
@@ -304,7 +356,7 @@ def build(sid, only=None, force=False, check=False):
     if not af.exists():
         print(f"✗ {sid}：没有 assets.json"); return False
     A = json.loads(af.read_text(encoding="utf-8"))
-    ok, changed, total, seen, skipped = True, False, 0, set(), []
+    ok, changed, total, seen, skipped, raws = True, False, 0, set(), [], {}
     for it in A["items"]:
         dest = d / it["file"]
         if it["file"] in seen:                          # 同一个文件被几项引用（如一段原声分几处用）：只处理、只计一次
@@ -323,8 +375,11 @@ def build(sid, only=None, force=False, check=False):
                     if lines:
                         it["lines"] = lines
                     changed = True
+                elif it.get("of"):
+                    prep(raw_video(sid, raws, it["of"]), dest, it.get("prep", {}))
                 elif it.get("model"):
-                    prep(gen_visual(sid, d, it), dest, it.get("prep", {}))
+                    raws[it["file"]] = gen_visual(sid, d, it)
+                    prep(raws[it["file"]], dest, it.get("prep", {}))
                 elif it.get("record"):
                     raw, it["cursor"] = record(sid, it)
                     prep(raw, dest, it.get("prep", {}))

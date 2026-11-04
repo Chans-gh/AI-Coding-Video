@@ -45,6 +45,16 @@ def fetch(url, dest):
             time.sleep(2 * 2 ** i)
 
 
+def logged(out, qjob):
+    """run.js 的记录里有没有同一个任务（同提示词、同参数）已经拿到任务编号、但文件没下下来"""
+    log = out / "gen" / "log.json"
+    if not log.exists():
+        return False
+    e = next((e for e in reversed(json.loads(log.read_text(encoding="utf-8"))) if e.get("id") == qjob["id"]), None)
+    return bool(e and e.get("task_id") and e.get("prompt") == qjob["prompt"] and e.get("options") == qjob["options"]
+                and not any(g.suffix != ".json" for g in (out / "gen").glob(f"{qjob['id']}.*")))
+
+
 def visual(job, out):
     """生图 / 生视频：写 run.js 的任务文件，生成的文件落在 <输出目录>/gen/"""
     jid = job["id"]
@@ -56,7 +66,10 @@ def visual(job, out):
     jf = out / f"{jid}.qs.json"
     jf.write_text(json.dumps(qjob, ensure_ascii=False, indent=1), encoding="utf-8")
     subprocess.run(["node", str(QS / "scripts" / "run.js"), "check", str(jf)], check=True, stdout=sys.stderr)
-    subprocess.run(["node", str(QS / "scripts" / "run.js"), str(jf)], check=True, stdout=sys.stderr)
+    if logged(out, qjob):       # 上次已经生成、只是下载失败：接着下载，不再扣一次算力
+        subprocess.run(["node", str(QS / "scripts" / "run.js"), "fetch", str(out), jid], check=True, stdout=sys.stderr)
+    else:
+        subprocess.run(["node", str(QS / "scripts" / "run.js"), str(jf)], check=True, stdout=sys.stderr)
     got = [g for g in sorted((out / "gen").glob(f"{jid}.*")) + sorted((out / "gen").glob(f"{jid}_*.*")) if g.suffix != ".json"]
     if not got:
         sys.exit("青水没有返回文件")

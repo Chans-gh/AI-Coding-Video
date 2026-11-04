@@ -1,0 +1,5 @@
+{
+  "en_name": "Recipe motion card",
+  "en_how": "Generated photos of the finished dish and the ingredients sit on a cream card; four line icons written as SVG by a language model sit in an SVG layer above the canvas and are drawn on stroke by stroke with dash offsets, each step timed from the narration's per-character timings, with subtitles following the synthesized voice.",
+  "tech": ["SVG", "Canvas 2D", "Playwright", "ffmpeg"]
+}

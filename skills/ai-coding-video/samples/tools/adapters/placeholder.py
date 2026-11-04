@@ -4,7 +4,7 @@
     python3 tools/gen.py try image
 
 生图：按 params.aspectRatio 出一张渐变色图（长边 1280）；生视频：参考图（没有就是渐变图）缓慢推近，长度取 params.duration（默认 5 秒）；
-语音合成：静音，时长按字数估（每字 0.22 秒），字幕按句子、按字数分时间。写自己的适配命令时照这个文件的输入输出来，约定见 tools/gen.py 开头。
+语音合成：静音，时长按字数估（每字 0.22 秒），字幕按句子、按字数分时间；生成矢量：两个同心圆。写自己的适配命令时照这个文件的输入输出来，约定见 tools/gen.py 开头。
 """
 import hashlib
 import json
@@ -78,6 +78,11 @@ def main():
         sj = out / f"{jid}.subs.json"
         sj.write_text(json.dumps(subs, ensure_ascii=False, indent=1), encoding="utf-8")
         print(json.dumps({"file": str(dest), "subtitles": str(sj)}))
+    elif kind == "svg":
+        dest = out / f"{jid}.svg"
+        dest.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none" '
+                        'stroke="#333" stroke-width="4"><circle cx="50" cy="50" r="40"/><circle cx="50" cy="50" r="20"/></svg>\n', encoding="utf-8")
+        print(json.dumps({"file": str(dest)}))
     else:
         sys.exit(f"不认识的任务类型：{kind}")
 

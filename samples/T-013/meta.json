@@ -1,0 +1,5 @@
+{
+  "en_name": "Launch multicam sync",
+  "en_how": "Three camera angles of the Artemis I launch are cut from different start times; sync.py cross-correlates their live audio to find the offsets, the intro slides the three waveforms into alignment, then the edit cuts between close-up, tower and wide on one shared mission clock and ends on a tracking shot overlaid with Orion's real 25-day Earth–Moon trajectory from JPL Horizons.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

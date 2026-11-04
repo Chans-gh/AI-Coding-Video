@@ -1,0 +1,62 @@
+{
+ "items": [
+  {
+   "file": "assets/gistemp.csv",
+   "kind": "数据",
+   "title": "GISS Surface Temperature Analysis v4：全球陆地加海洋年均温距平（相对 1951–1980 年平均，°C）",
+   "source": "https://data.giss.nasa.gov/gistemp/",
+   "download": "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv",
+   "license": "公共领域（NASA GISS，美国政府作品）",
+   "author": "GISTEMP Team, NASA Goddard Institute for Space Studies",
+   "credit": "气温 NASA GISS GISTEMP v4",
+   "prep": {
+    "skip": 1,
+    "cols": [
+     "Year",
+     "J-D"
+    ]
+   }
+  },
+  {
+   "file": "assets/co2_annmean_mlo.csv",
+   "kind": "数据",
+   "title": "Mauna Loa CO2 annual mean data (1959–)",
+   "source": "https://gml.noaa.gov/ccgg/trends/data.html",
+   "download": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv",
+   "license": "公共领域（美国政府作品，NOAA GML；1958–1974 年的数据来自 Scripps）",
+   "author": "NOAA Global Monitoring Laboratory, Scripps Institution of Oceanography",
+   "credit": "CO₂ NOAA GML / Scripps",
+   "prep": {
+    "drop_comments": true
+   }
+  },
+  {
+   "file": "assets/limb.jpg",
+   "kind": "照片",
+   "title": "Earth Observation（国际空间站上拍的地平线日出，iss028e007274，2011-06-11）",
+   "source": "https://images.nasa.gov/details/iss028e007274",
+   "download": "https://images-assets.nasa.gov/image/iss028e007274/iss028e007274~orig.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Expedition 28 crew",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1800,
+    "q": 84
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Progress",
+   "source": "https://opengameart.org/content/progress",
+   "download": "https://opengameart.org/sites/default/files/Progress.mp3",
+   "license": "CC0 1.0",
+   "author": "josepharaoh99",
+   "credit": "配乐 josepharaoh99（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

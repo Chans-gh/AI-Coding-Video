@@ -1,0 +1,76 @@
+{
+ "items": [
+  {
+   "file": "assets/p16.jpg",
+   "kind": "照片",
+   "title": "NASA Systems Engineering Handbook, Rev 2 (NASA/SP-2016-6105)，第 3 页：2.0 Fundamentals of Systems Engineering（页面扫描）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "download": "https://ntrs.nasa.gov/api/citations/20170001761/downloads/20170001761.pdf",
+   "license": "公共领域（NASA 出版物，美国政府作品；NTRS 标为 Public Use Permitted）",
+   "author": "NASA",
+   "credit": "讲义 NASA SE Handbook",
+   "prep": {
+    "page": 16,
+    "dpi": 150,
+    "max": 1400,
+    "q": 84
+   }
+  },
+  {
+   "file": "assets/p16.json",
+   "kind": "数据",
+   "title": "NASA Systems Engineering Handbook, Rev 2 (NASA/SP-2016-6105)，第 3 页：2.0 Fundamentals of Systems Engineering的文字层（每个词和它在页面上的位置）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "download": "https://ntrs.nasa.gov/api/citations/20170001761/downloads/20170001761.pdf",
+   "license": "公共领域（NASA 出版物，美国政府作品；NTRS 标为 Public Use Permitted）",
+   "author": "NASA",
+   "credit": "讲义 NASA SE Handbook",
+   "prep": {
+    "page": 16
+   }
+  },
+  {
+   "file": "assets/p19.jpg",
+   "kind": "照片",
+   "title": "NASA Systems Engineering Handbook, Rev 2 (NASA/SP-2016-6105)，第 6 页：Figure 2.1-1 The Systems Engineering Engine（页面扫描）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "download": "https://ntrs.nasa.gov/api/citations/20170001761/downloads/20170001761.pdf",
+   "license": "公共领域（NASA 出版物，美国政府作品；NTRS 标为 Public Use Permitted）",
+   "author": "NASA",
+   "credit": "讲义 NASA SE Handbook",
+   "prep": {
+    "page": 19,
+    "dpi": 150,
+    "max": 1400,
+    "q": 84
+   }
+  },
+  {
+   "file": "assets/p19.json",
+   "kind": "数据",
+   "title": "NASA Systems Engineering Handbook, Rev 2 (NASA/SP-2016-6105)，第 6 页：Figure 2.1-1 The Systems Engineering Engine的文字层（每个词和它在页面上的位置）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "download": "https://ntrs.nasa.gov/api/citations/20170001761/downloads/20170001761.pdf",
+   "license": "公共领域（NASA 出版物，美国政府作品；NTRS 标为 Public Use Permitted）",
+   "author": "NASA",
+   "credit": "讲义 NASA SE Handbook",
+   "prep": {
+    "page": 19
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Letter",
+   "source": "https://opengameart.org/content/letter",
+   "download": "https://opengameart.org/sites/default/files/letter.mp3",
+   "license": "CC0 1.0",
+   "author": "GillesK",
+   "credit": "配乐 GillesK（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

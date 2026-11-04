@@ -1,17 +1,18 @@
-"""AI 生成素材的服务商接口：生图、生视频、语音合成三类，各用一个环境变量指定「适配命令」，不绑定哪一家服务。
+"""AI 生成素材的服务商接口：生图、生视频、语音合成、生成矢量四类，各用一个环境变量指定「适配命令」，不绑定哪一家服务。
 
-    python3 tools/gen.py                 # 三类各配了没有
-    python3 tools/gen.py try image       # 跑一个小任务试试（image / video / tts）；配了的会真的调一次服务
+    python3 tools/gen.py                 # 四类各配了没有
+    python3 tools/gen.py try image       # 跑一个小任务试试（image / video / tts / svg）；配了的会真的调一次服务
     python3 tools/assets.py G-005        # 平时由 assets.py 照 assets.json 调用
 
 环境变量（设在本机或云端环境里，不写进仓库）：
-  AICV_IMAGE_CMD、AICV_VIDEO_CMD、AICV_TTS_CMD     三类的适配命令；没设的那类不生成，只打提示，其余照常
-  AICV_IMAGE_MODEL、AICV_VIDEO_MODEL、AICV_TTS_MODEL  可选：用这个模型，不用 assets.json 里记的
+  AICV_IMAGE_CMD、AICV_VIDEO_CMD、AICV_TTS_CMD、AICV_SVG_CMD   四类的适配命令；没设的那类不生成，只打提示，其余照常
+  AICV_IMAGE_MODEL、AICV_VIDEO_MODEL、AICV_TTS_MODEL、AICV_SVG_MODEL  可选：用这个模型，不用 assets.json 里记的
   AICV_TTS_VOICE                                   可选：用这个音色，不用 assets.json 里记的
 
 适配命令的约定：在命令后面加两个参数 <任务.json> <输出目录> 运行，工作目录是 samples/（tools/ 的上一级）。
-  任务.json：{"type": "image" | "video" | "tts", "id": 文件名（不含扩展名）, "model", "params": {…},
-             生图、生视频另有 "prompt"、"refs": [参考图或首帧的绝对路径]；语音另有 "text"、"voice"}
+  任务.json：{"type": "image" | "video" | "tts" | "svg", "id": 文件名（不含扩展名）, "model", "params": {…},
+             生图、生视频另有 "prompt"、"refs": [参考图或首帧的绝对路径]；语音另有 "text"、"voice"；
+             生成矢量另有 "prompt"，交给语言模型写一份 SVG 代码（图标、插画、路径动画用的线稿）}
   成功：把文件写进输出目录，退出码 0，标准输出最后一行打 JSON {"file": 文件路径}；
         语音可以再带 "subtitles": 字幕 JSON 的路径，格式是
         [{"text": 一句, "t0": 秒, "t1": 秒, "words": [{"t0": 秒, "t1": 秒, "begin": 字在 text 里的起点, "end": 终点}]}]
@@ -20,7 +21,7 @@
   Key 由适配命令自己从它的环境变量读，本工具不读、不打印。适配命令的输出可能有任务编号和带签名的链接，
   所以只写进 out/gen/<编号>/<文件名>.log（out/ 不进仓库）。
 
-tools/adapters/placeholder.py 是不调任何服务的占位适配命令（纯色图、静帧视频、静音），配好它就能先把整条流程跑通。
+tools/adapters/placeholder.py 是不调任何服务的占位适配命令（纯色图、静帧视频、静音、几个圆圈的 SVG），配好它就能先把整条流程跑通。
 """
 import json
 import os
@@ -36,6 +37,7 @@ KINDS = {  # 类型: (中文名, 环境变量前缀)
     "image": ("生图", "AICV_IMAGE"),
     "video": ("生视频", "AICV_VIDEO"),
     "tts": ("语音合成", "AICV_TTS"),
+    "svg": ("生成矢量", "AICV_SVG"),
 }
 HELP = "配置方法见 Skill 的 materials.md「配置生成服务」一节"
 
@@ -102,6 +104,7 @@ TRY = {
     "image": {"model": "", "prompt": "测试：一只纸折的小船停在浅蓝色桌面上，柔和的侧光，没有文字", "params": {"aspectRatio": "16:9"}},
     "video": {"model": "", "prompt": "测试：一只纸折的小船在浅蓝色桌面上慢慢滑过，镜头静止", "params": {"aspectRatio": "16:9", "duration": 5}},
     "tts": {"model": "", "text": "这是一段测试旁白，用来确认语音合成服务已经配好。", "voice": "", "params": {}},
+    "svg": {"model": "", "prompt": "测试：画一个纸船线条图标，viewBox 0 0 100 100，只用描边、不填色", "params": {}},
 }
 
 

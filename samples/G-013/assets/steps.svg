@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <g id="step1" fill="none" stroke="#3b2a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line id="s1-board" x1="14" y1="82" x2="86" y2="82"/>
+    <circle id="s1-tomato" cx="50" cy="66" r="14"/>
+    <path id="s1-leaf" d="M50 52 l-5 -6 M50 52 l5 -6 M50 52 l0 -7"/>
+    <path id="s1-blade" d="M22 18 L64 40 L58 48 L18 28 Z"/>
+    <line id="s1-handle" x1="64" y1="40" x2="84" y2="30"/>
+    <line id="s1-cut" x1="50" y1="56" x2="50" y2="76"/>
+  </g>
+  <g id="step2" fill="none" stroke="#3b2a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path id="s2-bowl" d="M118 58 Q118 84 150 84 Q182 84 182 58 Z"/>
+    <line id="s2-rim" x1="114" y1="58" x2="186" y2="58"/>
+    <ellipse id="s2-yolk" cx="150" cy="66" rx="9" ry="6"/>
+    <path id="s2-white" d="M132 68 Q138 58 150 60 Q162 58 168 68"/>
+    <line id="s2-chop1" x1="176" y1="20" x2="192" y2="46"/>
+    <line id="s2-chop2" x1="184" y1="18" x2="198" y2="44"/>
+  </g>
+  <g id="step3" fill="none" stroke="#3b2a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path id="s3-wok" d="M216 58 Q216 82 250 82 Q284 82 284 58 Z"/>
+    <line id="s3-rim" x1="212" y1="58" x2="288" y2="58"/>
+    <line id="s3-handle" x1="284" y1="58" x2="296" y2="50"/>
+    <path id="s3-food" d="M232 66 Q240 58 250 64 Q260 56 268 66"/>
+    <path id="s3-steam1" d="M236 46 Q232 38 238 30"/>
+    <path id="s3-steam2" d="M250 44 Q246 34 252 26"/>
+    <path id="s3-steam3" d="M264 46 Q260 38 266 30"/>
+  </g>
+  <g id="step4" fill="none" stroke="#3b2a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path id="s4-jar" d="M326 40 L326 78 Q326 84 332 84 L348 84 Q354 84 354 78 L354 40 Z"/>
+    <line id="s4-lid" x1="322" y1="40" x2="358" y2="40"/>
+    <line id="s4-lidtop" x1="330" y1="32" x2="350" y2="32"/>
+    <line id="s4-lidstem" x1="340" y1="32" x2="340" y2="40"/>
+    <circle id="s4-hole1" cx="336" cy="52" r="1.5"/>
+    <circle id="s4-hole2" cx="344" cy="52" r="1.5"/>
+    <circle id="s4-hole3" cx="340" cy="60" r="1.5"/>
+    <line id="s4-salt1" x1="332" y1="70" x2="328" y2="78"/>
+    <line id="s4-salt2" x1="340" y1="72" x2="340" y2="80"/>
+    <line id="s4-salt3" x1="348" y1="70" x2="352" y2="78"/>
+    <path id="s4-onion1" d="M362 74 L372 74"/>
+    <path id="s4-onion2" d="M366 82 L376 82"/>
+    <path id="s4-onion3" d="M358 86 L368 86"/>
+  </g>
+</svg>
