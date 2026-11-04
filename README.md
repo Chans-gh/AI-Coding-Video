@@ -1,15 +1,15 @@
 # AI Coding Video
 
-**Coding Video**：让 AI 写代码，由代码逐帧算出画面来做动画视频。不用 AI 生图生视频，也不剪辑现成素材，每一帧都由程序在时间 t 上确定地画出来。
+**Coding Video**：让 AI 写代码，由代码逐帧算出画面来做视频，每一帧都由程序在时间 t 上确定地画出来。画面可以全部由代码算出（C 类），也可以由代码排版、剪辑真实素材（T 类）或 AI 生成的素材（G 类），见 [materials.md](skills/ai-coding-video/materials.md)。
 
-这个仓库是一个给 AI 助手用的 Skill：上百种纯代码能做出来的视觉风格，每种一句可复制的风格提示词和技术标签，配上选风格索引、提示词方法、配乐与中文旁白音色指南。Claude Code、Codex、DeepSeek Harness、WorkBuddy 等支持 Agent Skills（`SKILL.md`）格式的助手都能直接装。
+这个仓库是一个给 AI 助手用的 Skill：上百种纯代码能做出来的视觉风格，加上按内容类型（口播、带货、MV、新闻……）整理的素材做法，每种一句可复制的风格提示词和技术标签，配上选风格索引、提示词方法、配乐与中文旁白音色指南。Claude Code、Codex、DeepSeek Harness、WorkBuddy 等支持 Agent Skills（`SKILL.md`）格式的助手都能直接装。
 
 ## 三级用法
 
 | 级别 | 是什么 | 在哪 |
 |---|---|---|
 | 0 级：词典 | 全部风格的提示词、题材、技术标签、选风格索引 | [`skills/ai-coding-video/`](skills/ai-coding-video/) |
-| 1 级：样片 | 选中的风格做成 3–5 秒样片，横屏 16:9 和竖屏 9:16 各一版，附可复现的代码 | [`samples/`](samples/) |
+| 1 级：样片 | 选中的风格做成样片（C 类 3–5 秒，T 类、G 类 8–15 秒并附素材），横屏 16:9 和竖屏 9:16 各一版，附可复现的代码 | [`samples/`](samples/) |
 | 2 级：风格包 | 通过的风格做成可换品牌色的代码模块，覆盖片头、讲解、数据、转场等常用呈现 | [`packs/`](packs/)（第 1 个：暗色科技发布会） |
 
 Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里帮你选风格、出样片、沉淀成风格包。本仓库的样片和风格包是示范。进度见 [PLAN.md](PLAN.md)。

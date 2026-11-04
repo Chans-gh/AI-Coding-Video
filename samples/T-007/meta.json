@@ -1,0 +1,5 @@
+{
+  "en_name": "Satellite map briefing",
+  "en_how": "A Natural Earth coastline base map while the NOAA best track of Hurricane Ian draws itself point by point, coloured by intensity, with a live readout card; ISS photos slide in later and a news lower third and subtitles follow the narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

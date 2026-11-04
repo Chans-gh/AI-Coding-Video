@@ -1,0 +1,5 @@
+{
+  "en_name": "Illustrated news explainer",
+  "en_how": "Three AI-generated flat explanatory illustrations sit in a news-desk layout built by code: a section bar, slowly pushing illustration, a data card (illustrative thermometers, heat in by day and out by night, three cooling measures ticked off as they are mentioned), a scrolling ticker and subtitles, with colour-block wipes between points and an on-screen note that the illustrations are AI-generated.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

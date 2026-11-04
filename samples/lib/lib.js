@@ -358,6 +358,107 @@ function p5Sketch(setup, draw, o = {}) {
   });
 }
 
+// ---------- 素材（T 类、G 类样片：读 assets/ 里的照片、视频、数据，出处记在 assets.json） ----------
+// 素材文件的网址：asset('earth.jpg') → <样片目录>/assets/earth.jpg
+function asset(name) { return `${DIR}/assets/${name.replace(/^assets\//, '')}`; }
+function xhr(url, type = 'text') {
+  return new Promise((ok, no) => {
+    const r = new XMLHttpRequest(); r.open('GET', url); r.responseType = type;
+    r.onload = () => (r.status === 200 || r.status === 0) && r.response != null ? ok(r.response) : no(new Error('载入失败 ' + url));
+    r.onerror = () => no(new Error('载入失败 ' + url)); r.send();
+  });
+}
+// 读 assets.json（素材清单：出处、许可、旁白的时刻和字幕），init 里 await
+async function loadAssets() { return JSON.parse(await xhr(`${DIR}/assets.json`)); }
+// 载入图片素材 → HTMLImageElement，init 里 await
+function loadImage(name) {
+  return new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => no(new Error('载入失败 ' + name)); im.src = asset(name); });
+}
+// 读文本素材（CSV、JSON、GeoJSON）
+function loadText(name) { return xhr(asset(name)); }
+// CSV → 对象数组：第一行是表头，# 开头的行跳过，像数字的格自动转成数字
+function parseCSV(txt) {
+  const rows = txt.split(/\r?\n/).filter(l => l.trim() && !l.startsWith('#')).map(l => l.split(','));
+  const head = rows.shift().map(h => h.trim());
+  return rows.map(r => Object.fromEntries(head.map((h, i) => { const v = (r[i] ?? '').trim(); return [h, v !== '' && !isNaN(+v) ? +v : v]; })));
+}
+// 载入视频素材（出片前已统一成 30 帧/秒、无声），返回 {el, dur, w, h, at(秒)}；await v.at(秒) 跳到素材里那一帧，之后 el 可以直接 drawImage
+async function loadVideo(name) {
+  const el = document.createElement('video');
+  el.muted = true; el.preload = 'auto'; el.playsInline = true; el.src = asset(name);
+  await new Promise((ok, no) => { el.onloadeddata = ok; el.onerror = () => no(new Error('载入失败 ' + name)); });
+  const dur = el.duration, last = Math.max(0, Math.floor(dur * FPS) - 1);
+  let cur = -1;
+  return {
+    el, dur, w: el.videoWidth, h: el.videoHeight,
+    async at(sec) {
+      const k = Math.min(last, Math.max(0, Math.floor(sec * FPS + 1e-6)));   // 取到帧：每帧只由 t 决定
+      if (k === cur) return el;
+      cur = k; el.currentTime = Math.min(dur - 1e-3, (k + .5) / FPS);
+      await new Promise(ok => { el.onseeked = ok; });
+      return el;
+    },
+  };
+}
+// 素材的原始宽高（图片、视频、画布都行）
+function srcSize(src) { return [src.videoWidth || src.naturalWidth || src.width, src.videoHeight || src.naturalHeight || src.height]; }
+// 把图片或视频「铺满」裁切进 (x,y,w,h)：o.zoom 放大倍数（推镜用，默认 1），o.fx、o.fy 取景焦点 0–1（默认 .5），o.alpha
+function drawCover(ctx, src, x, y, w, h, o = {}) {
+  const [sw, sh] = srcSize(src), z = o.zoom || 1, fx = o.fx ?? .5, fy = o.fy ?? .5;
+  const k = Math.max(w / sw, h / sh) * z, dw = sw * k, dh = sh * k;
+  ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  if (o.alpha != null) ctx.globalAlpha *= o.alpha;
+  ctx.drawImage(src, x + (w - dw) * fx, y + (h - dh) * fy, dw, dh);
+  ctx.restore();
+}
+// 把图片或视频完整放进 (x,y,w,h)，按比例缩放、居中；返回实际画的 [x, y, w, h]
+function drawContain(ctx, src, x, y, w, h, o = {}) {
+  const [sw, sh] = srcSize(src), k = Math.min(w / sw, h / sh) * (o.zoom || 1), dw = sw * k, dh = sh * k;
+  const r = [x + (w - dw) / 2, y + (h - dh) / 2, dw, dh];
+  ctx.save(); if (o.alpha != null) ctx.globalAlpha *= o.alpha; ctx.drawImage(src, ...r); ctx.restore();
+  return r;
+}
+// t 时刻该显示的字幕：A 是 loadAssets() 的结果，旁白素材的 lines 是 [{t0, t1, text}]（相对这段旁白的起点 at），返回那一条 {text, p 进度 0–1, t0, t1}，没有就 null
+function cueAt(A, t) {
+  for (const it of A.items) {
+    if (!it.lines) continue;
+    const at = +it.at || 0;
+    for (const l of it.lines) if (t >= at + l.t0 && t < at + l.t1) return { text: l.text, p: (t - at - l.t0) / (l.t1 - l.t0), t0: at + l.t0, t1: at + l.t1 };
+  }
+  return null;
+}
+// 旁白说到关键词 kw 的时刻（秒）：在字幕行里找，按字数在这一行的起止之间线性估计；找不到返回 fallback（默认 Infinity）
+function cueTime(A, kw, fallback = Infinity) {
+  for (const it of A.items) {
+    if (!it.lines) continue;
+    const at = +it.at || 0;
+    for (const l of it.lines) { const i = l.text.indexOf(kw); if (i >= 0) return at + l.t0 + (l.t1 - l.t0) * i / l.text.length; }
+  }
+  return fallback;
+}
+// 字幕条：文字居中，按 maxW 折行，画在 y（底边）上方；o：{size, font, color, bg 底色（null 不画底）, stroke 描边色, maxW, y, align}；返回字幕块高度
+function caption(ctx, text, o = {}) {
+  const u = SHORT / 1080, size = (o.size || 40) * u, maxW = o.maxW || W * (LAND ? .62 : .84);
+  ctx.save();
+  ctx.font = `${o.weight || 700} ${size}px ${o.font || "'Noto Sans SC'"}`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const lines = wrapCJK(ctx, text, maxW), lh = size * 1.42, hh = lines.length * lh;
+  const y0 = (o.y ?? H - (LAND ? 70 : 260) * u) - hh, cx = o.x ?? W / 2;
+  if (o.bg !== null) {
+    const w = Math.max(...lines.map(l => ctx.measureText(l).width)) + size * 1.2;
+    ctx.fillStyle = o.bg || 'rgba(0,0,0,.55)'; rr(ctx, cx - w / 2, y0 - size * .3, w, hh + size * .6, size * .3); ctx.fill();
+  }
+  lines.forEach((l, i) => {
+    const y = y0 + lh * (i + .5);
+    if (o.stroke) { ctx.lineWidth = size * .16; ctx.strokeStyle = o.stroke; ctx.lineJoin = 'round'; ctx.strokeText(l, cx, y); }
+    ctx.fillStyle = o.color || '#fff'; ctx.fillText(l, cx, y);
+  });
+  ctx.restore();
+  return hh;
+}
+// 素材出处：assets.json 里每份素材的 credit 拼成一行（片尾、角落的小字署名用）
+function credits(A) { return [...new Set(A.items.map(i => i.credit).filter(Boolean))].join(' · '); }
+
 const S = [];   // 场景列表（播放器读 S[0]）
 // 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 function scene(def) { S.push(def); }

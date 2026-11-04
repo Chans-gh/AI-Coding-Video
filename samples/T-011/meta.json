@@ -1,0 +1,5 @@
+{
+  "en_name": "Sports telestrator",
+  "en_how": "The 11 frames of Muybridge's 1878 Horse in Motion plate are cut out and played like a broadcast replay: normal speed, slow motion, then a freeze on the airborne frame with telestrator lines, a circle and an arrow, ending on a film-strip comparison.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

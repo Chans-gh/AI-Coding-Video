@@ -1,11 +1,13 @@
 """给新样片起骨架：从风格条目读出名字、提示词、题材，生成 <编号>/scene.js、sound.py、meta.json。
 
     python3 new.py C-168 C-169
+    python3 new.py T-013                # T 类、G 类另起 assets.json（素材清单），scene.js 和 sound.py 换成读素材的写法
 
 已有的文件不覆盖。生成后：
   1. scene.js 第一行写一句「怎么画的」（介绍页会用），再写 init() 和 draw()；函数速查见 API.md
   2. sound.py 写 score(m)
   3. meta.json 填英文名、英文描述，按实际用到的技术改 tech（标签只能用 Skill 的 data/tags.json 里有的）
+  T 类、G 类先填 assets.json，跑 python3 tools/assets.py <编号> 下载或生成素材
   4. python3 batch.py <编号> --quick 看效果，满意了去掉 --quick 出片
 """
 import json
@@ -48,6 +50,47 @@ def score(m):
 '''
 
 
+SCENE_TG = """// {id} {name}：（一句话写清素材怎么排、怎么剪、加了什么动效，介绍页会用这一句）
+// 素材：（列出种类和出处，详见 assets.json）
+// 内容类型：{ctype} · 素材：{mats}
+scene({{
+  id: '{id}', name: '{name}', dur: 12, still: 6,
+  fonts: ["700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'"],
+  async init() {{
+    const A = await loadAssets();                           // assets.json：字幕 lines、署名
+    // const img = await loadImage('photo.jpg'); const v = await loadVideo('clip.mp4');
+    return {{ A }};
+  }},
+  async draw(ctx, t, s) {{
+    const u = SHORT / 1080;
+    ctx.fillStyle = '#111'; ctx.fillRect(0, 0, W, H);
+    // 视频按帧取：drawCover(ctx, await s.v.at(t), 0, 0, W, H)
+    const c = cueAt(s.A, t);
+    if (c) caption(ctx, c.text, {{ size: LAND ? 38 : 44 }});
+    ctx.font = `400 ${{17 * u}}px 'Noto Sans SC'`; ctx.fillStyle = 'rgba(255,255,255,.5)'; ctx.textAlign = 'right';
+    ctx.fillText(credits(s.A), W - 32 * u, H - 22 * u);
+  }}
+}});
+"""
+
+SOUND_TG = '''"""{id} {name}：照 assets.json 摆旁白、配乐，再加几个合成音效"""
+from pathlib import Path
+from synth import assets, whoosh
+
+
+def score(m):
+    assets(m, Path(__file__).parent)      # 旁白、原声按 at 放；配乐铺底，说话时压低
+    m.put(whoosh(m, .8), 0, .2)
+'''
+
+ASSETS_TG = {"items": [
+    {"file": "assets/example.jpg", "kind": "照片", "source": "", "download": "", "license": "", "author": "", "credit": "",
+     "prep": {"max": 2400}},
+    {"file": "assets/music.mp3", "kind": "配乐", "source": "", "download": "", "license": "CC0", "author": "", "credit": "",
+     "prep": {"t": 15}, "at": 0},
+]}
+
+
 def load():
     d = json.loads(STYLES.read_text(encoding="utf-8"))
     return {s["id"]: s for s in (d if isinstance(d, list) else d["styles"])}
@@ -64,12 +107,16 @@ def main():
         d = HERE / sid
         d.mkdir(exist_ok=True)
         tech = [t for t in s.get("suggested", []) if t in ("Canvas 2D", "WebGL", "WebGL2", "GLSL", "终端字符", "SVG", "HTML/CSS", "GSAP", "p5.js", "p5.brush", "Rough.js", "D3.js", "Three.js", "cannon-es", "Remotion")] or ["Canvas 2D"]
+        tg = sid[0] in "TG"
         files = {
-            "scene.js": SCENE.format(id=sid, name=s["name"], prompt=s["prompt"], theme=s["theme"], fit=s.get("fit", "")),
-            "sound.py": SOUND.format(id=sid, name=s["name"]),
+            "scene.js": SCENE_TG.format(id=sid, name=s["name"], ctype=s.get("content_type", ""), mats=" · ".join(s.get("materials", [])))
+            if tg else SCENE.format(id=sid, name=s["name"], prompt=s["prompt"], theme=s["theme"], fit=s.get("fit", "")),
+            "sound.py": (SOUND_TG if tg else SOUND).format(id=sid, name=s["name"]),
             "meta.json": json.dumps({"en_name": "", "en_how": "", "tech": tech + ["Playwright", "ffmpeg"]},
                                     ensure_ascii=False, indent=2) + "\n",
         }
+        if tg:
+            files["assets.json"] = json.dumps(ASSETS_TG, ensure_ascii=False, indent=2) + "\n"
         made = []
         for name, txt in files.items():
             if not (d / name).exists():

@@ -1,7 +1,8 @@
 """出片核心：开浏览器逐帧截图、合成声音、编码视频、做静帧和缩略图。命令行入口是 batch.py。
 
 依赖 Playwright（Chromium）、Pillow、numpy、scipy 和 ffmpeg。每帧只由时间 t 决定，所以同一份代码每次渲染结果一致。
-声音由 <编号>/sound.py 用 lib/synth.py 的合成器现场合成（自带电子音，不用录音、曲库或声音模型）。
+声音由 <编号>/sound.py 用 lib/synth.py 现场合成：C 类只用自带的电子音（不用录音、曲库或声音模型）；
+T 类、G 类照 assets.json 把 assets/ 里的旁白、配乐、音效摆好（synth.assets）。
 
 产出（都在 samples/<编号>/ 下；风格包的演示片写成 pack:<名字>，按 meta.json 的 accents 每种品牌色出一支，
 产出在 packs/<名字>/demo/ 下，文件名是「包名-颜色-画幅」，不做缩略图）：
@@ -21,7 +22,14 @@ PACKS = HERE.parent / "packs"
 ARGS = ["--force-color-profile=srgb", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
         "--allow-file-access-from-files", "--disable-web-security"]
 SIZE = {"16x9": (1920, 1080), "9x16": (1080, 1920)}
-MAX_BYTES = 2_500_000          # 视频流体积上限：超过就加大压缩重编
+MAX_BYTES = 2_500_000          # C 类视频流体积上限：超过就加大压缩重编
+ASSET_CLASSES = "TG"           # 带素材的 T 类、G 类：8–15 秒，每个视频（含声音）不超过 4 MB
+MAX_FILE_TG = 4_000_000
+MAX_BYTES_TG = 3_550_000
+
+
+def is_asset_class(sid):
+    return sid[:1] in ASSET_CLASSES and not sid.startswith("pack:")
 # 可用环境变量 CHROME 指定浏览器；不设时先找预装的 Chromium，再用 Playwright 自带的
 CHROME = os.environ.get("CHROME") or next((p for p in ["/opt/pw-browsers/chromium"] if os.path.exists(p)), None)
 
@@ -203,7 +211,7 @@ def encode(p, sid, ar, log):
     """逐帧渲染并编码成带声音的 mp4，返回 (每帧 jpeg 的回调结果列表, 视频流字节数)。"""
     OUT.mkdir(exist_ok=True)
     silent = OUT / f"{stem(sid)}-{ar}-silent.mp4"
-    limit = MAX_BYTES * max(1, p.dur / 5)         # 风格包演示片更长，上限按时长放宽
+    limit = MAX_BYTES_TG if is_asset_class(sid) else MAX_BYTES * max(1, p.dur / 5)   # 风格包演示片更长，上限按时长放宽
     enc = subprocess.Popen([ffmpeg(), "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(p.fps),
                             "-vcodec", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "24",
                             "-pix_fmt", "yuv420p", str(silent)], stdin=subprocess.PIPE)
@@ -211,7 +219,7 @@ def encode(p, sid, ar, log):
     for b in frames:
         enc.stdin.write(b)
     enc.stdin.close(); enc.wait()
-    for crf in (28, 32, 36):                      # 细节多的画面（海浪、噪点）体积大：超过上限就加大压缩重编
+    for crf in (27, 29, 31, 33, 36):              # 细节多的画面（海浪、噪点、实拍）体积大：超过上限就加大压缩重编
         if silent.stat().st_size <= limit:
             break
         log.append(f"视频 {silent.stat().st_size / 1e6:.2f} MB 超过上限，用 crf {crf} 重编")
@@ -223,7 +231,10 @@ def encode(p, sid, ar, log):
     wav, _, _ = make_sound(sid, p.dur, f"-{ar}")
     audio = ["-i", str(wav), "-c:a", "aac", "-b:a", "128k", "-shortest"] if wav else []
     mp4 = where(sid) / f"{stem(sid)}-{ar}.mp4"
+    # 去掉元数据和编码器信息（容器标签、x264 写进码流的参数 SEI），成片里不留软件、设备信息
     subprocess.run([ffmpeg(), "-y", "-loglevel", "error", "-i", str(silent), *audio, "-c:v", "copy",
+                    "-bsf:v", "filter_units=remove_types=6", "-map_metadata", "-1", "-fflags", "+bitexact",
+                    "-flags:a", "+bitexact", "-metadata:s:v:0", "encoder=", "-metadata:s:a:0", "encoder=",
                     "-movflags", "+faststart", str(mp4)], check=True)
     silent.unlink()
     if wav:

@@ -80,7 +80,7 @@ def main():
         sys.exit(__doc__)
     data = json.loads((SKILL / "data" / "styles.json").read_text(encoding="utf-8"))
     styles = {s["id"]: s for s in (data if isinstance(data, list) else data["styles"])}
-    ids = sorted(p.name for p in SAMPLES.glob("C-*") if ready(p.name)) if args == ["all"] else args
+    ids = sorted(p.name for c in "CTG" for p in SAMPLES.glob(f"{c}-*") if ready(p.name)) if args == ["all"] else args
     out = [mark(sid, styles) for sid in ids]
     print("\n".join(out))
     for extra in ([], ["--check"]):

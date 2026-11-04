@@ -1,0 +1,6 @@
+key,value,unit,label
+days,25.5,天,任务时长
+distance,2.25,百万公里,飞行总里程
+farthest,432210,公里,离地球最远
+launch,2022-11-16,,发射
+splashdown,2022-12-11,,溅落

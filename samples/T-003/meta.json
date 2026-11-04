@@ -1,0 +1,5 @@
+{
+  "en_name": "Retro product spot",
+  "en_how": "Two 1974 NASA space-food tasting photos push in inside a print-ad layout; hand-drawn rings circle the squeeze tubes and sticker-style selling points pop up, then ISS footage and a round product card close it out.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

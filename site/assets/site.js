@@ -69,15 +69,23 @@
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
   // 样片筛选和分页：类型（C/T/G）、题材、技术、页码都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果
-  const state = { kind: 'c', theme: '', tech: '', page: 0 };
+  const state = { kind: 'c', theme: '', tech: '', ctype: '', page: 0 };
   const cards = Array.from(document.querySelectorAll('.card'));
   const cardsEl = document.getElementById('cards');
-  const groups = { theme: document.querySelector('.filter[data-dim="theme"]'), tech: document.querySelector('.filter[data-dim="tech"]') };
+  const DIMS = ['theme', 'tech', 'ctype'];
+  const groups = Object.fromEntries(DIMS.map(d => [d, document.querySelector(`.filter[data-dim="${d}"]`)]));
+  const kindBtns = document.querySelectorAll('.kinds button');
   const filtersEl = document.getElementById('filters'), emptyNone = document.getElementById('empty-none');
   const kindEmpty = document.querySelectorAll('.kind-empty'), picks = document.querySelectorAll('.path-pick');
   const pager = document.getElementById('pager'), nums = pager.querySelector('.pg-nums');
-  const match = (c, th, te) => c.dataset.kind === state.kind && (!th || c.dataset.theme === th) && (!te || c.dataset.tech.split(' ').includes(te));
-  const matched = () => cards.filter(c => match(c, state.theme, state.tech));
+  // 题材、技术只用于 C 类，内容类型只用于 T 类、G 类；o 里给的维度临时替换 state 里的值（算按钮上的数字用）
+  const match = (c, o = {}) => {
+    const v = d => (d in o ? o[d] : state[d]);
+    if (c.dataset.kind !== state.kind) return false;
+    if (state.kind === 'c') return (!v('theme') || c.dataset.theme === v('theme')) && (!v('tech') || c.dataset.tech.split(' ').includes(v('tech')));
+    return !v('ctype') || c.dataset.ctype === v('ctype');
+  };
+  const matched = () => cards.filter(c => match(c));
   function muteCard(c) { c.querySelector('video').muted = true; c.querySelector('.snd').setAttribute('aria-pressed', 'false'); }
   function apply() {
     const list = matched(), pages = Math.max(1, Math.ceil(list.length / PAGE));
@@ -88,22 +96,24 @@
       if (!on) { stop(c.querySelector('video')); muteCard(c); }
     });
     // 每个按钮上的数字 = 加上这个条件后还剩几支；为 0 的按钮置灰
-    for (const dim of ['theme', 'tech']) {
+    for (const dim of DIMS) {
       groups[dim].querySelectorAll('button').forEach(b => {
-        const v = b.dataset.v, n = cards.filter(c => match(c, dim === 'theme' ? v : state.theme, dim === 'tech' ? v : state.tech)).length;
+        const v = b.dataset.v, n = cards.filter(c => match(c, { [dim]: v })).length;
         b.querySelector('small').textContent = String(n);
         b.setAttribute('aria-pressed', String(v === state[dim]));
         b.disabled = n === 0 && v !== state[dim];
       });
     }
     document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tech === state.tech));
-    const isC = state.kind === 'c';
-    filtersEl.hidden = !isC;
-    emptyNone.hidden = !isC || list.length > 0;
+    const any = cards.some(c => c.dataset.kind === state.kind);
+    filtersEl.hidden = !any;
+    filtersEl.querySelectorAll('[data-kinds]').forEach(e => { e.hidden = !e.dataset.kinds.split(' ').includes(state.kind); });
+    emptyNone.hidden = !any || list.length > 0;
     kindEmpty.forEach(e => { e.hidden = e.dataset.kind !== state.kind; });
+    kindBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kind === state.kind)));
     picks.forEach(b => { const on = b.dataset.kind === state.kind; b.setAttribute('aria-pressed', String(on)); b.closest('.path').classList.toggle('on', on); });
     // 页码：页数多时只留首页、末页和当前页左右各一页，中间用省略号
-    pager.hidden = !isC || pages < 2;
+    pager.hidden = pages < 2;
     pager.querySelectorAll('.pg-total').forEach(e => { e.textContent = String(list.length); });
     pager.querySelector('.pg-prev').disabled = state.page === 0;
     pager.querySelector('.pg-next').disabled = state.page === pages - 1;
@@ -120,7 +130,7 @@
     poke();
   }
   const reset = () => { state.page = 0; apply(); };
-  for (const dim of ['theme', 'tech']) groups[dim].addEventListener('click', e => {
+  for (const dim of DIMS) groups[dim].addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b || b.disabled) return;
     state[dim] = b.dataset.v; reset();
   });
@@ -135,13 +145,16 @@
     if (b.dataset.page) goPage(Number(b.dataset.page));
     else goPage(state.page + (b.classList.contains('pg-next') ? 1 : -1));
   });
-  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = ''; reset(); });
-  picks.forEach(b => b.addEventListener('click', () => { state.kind = b.dataset.kind; reset(); }));
+  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = state.ctype = ''; reset(); });
+  const setKind = k => { state.kind = k; state.theme = state.tech = state.ctype = ''; reset(); };
+  kindBtns.forEach(b => b.addEventListener('click', () => setKind(b.dataset.kind)));
+  // 「是什么」里的三条路：点了切换类型，并跳到样片区
+  picks.forEach(b => b.addEventListener('click', () => { setKind(b.dataset.kind); document.getElementById('gallery').scrollIntoView({ block: 'start' }); }));
   // 链接直接指向某支样片（#C-187）：清掉筛选，翻到它那一页
   function toHash() {
     const c = location.hash && cards.find(x => '#' + x.id === location.hash);
     if (!c) return false;
-    state.kind = 'c'; state.theme = state.tech = '';
+    state.kind = c.dataset.kind; state.theme = state.tech = state.ctype = '';
     state.page = Math.floor(matched().indexOf(c) / PAGE); apply();
     c.scrollIntoView({ block: 'center' });
     return true;

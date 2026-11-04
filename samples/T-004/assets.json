@@ -1,0 +1,70 @@
+{
+ "items": [
+  {
+   "file": "assets/launch.mp4",
+   "kind": "录像",
+   "title": "Artemis I Launch 2022, close-up tracking from the press site",
+   "source": "https://images.nasa.gov/details/Artemis%20I%20Launch%202022%20CU%20tracking%20from%20Press%20Site_compressed",
+   "download": "https://images-assets.nasa.gov/video/Artemis%20I%20Launch%202022%20CU%20tracking%20from%20Press%20Site_compressed/Artemis%20I%20Launch%202022%20CU%20tracking%20from%20Press%20Site_compressed~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 40,
+    "t": 22,
+    "w": 1280,
+    "crf": 25
+   }
+  },
+  {
+   "file": "assets/pad.jpg",
+   "kind": "照片",
+   "title": "Artemis I Launch (NHQ202211160003, 2022-11-16)",
+   "source": "https://images.nasa.gov/details/NHQ202211160003",
+   "download": "https://images-assets.nasa.gov/image/NHQ202211160003/NHQ202211160003~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA / Bill Ingalls",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/liftoff.jpg",
+   "kind": "照片",
+   "title": "Artemis I Launch (NHQ202211160030, 2022-11-16)",
+   "source": "https://images.nasa.gov/details/NHQ202211160030",
+   "download": "https://images-assets.nasa.gov/image/NHQ202211160030/NHQ202211160030~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA / Joel Kowsky",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/facts.csv",
+   "kind": "数据",
+   "title": "Artemis I 任务数字（照 NASA 任务页手抄）",
+   "source": "https://www.nasa.gov/mission/artemis-i/",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "数据 NASA",
+   "note": "没有可下载的数据文件，数字照出处页面手抄进 CSV"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Awake! (Megawall-10)",
+   "source": "https://opengameart.org/content/awake-megawall-10",
+   "download": "https://opengameart.org/sites/default/files/awake10_megaWall.mp3",
+   "license": "CC0 1.0",
+   "author": "cynicmusic",
+   "credit": "配乐 cynicmusic（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

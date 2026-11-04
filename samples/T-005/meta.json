@@ -1,0 +1,5 @@
+{
+  "en_name": "Silent-film intertitle recut",
+  "en_how": "The 1902 public-domain film A Trip to the Moon recut into a 15-second story, with ornate Chinese intertitle cards between shots and projector flicker, gate weave, scratches and grain on top.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

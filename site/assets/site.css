@@ -176,7 +176,14 @@ h3 { margin: 0; font-size: 17px; line-height: 1.4; }
 .seg { display: inline-flex; border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; }
 .seg button { font: 700 13px/1 var(--mono); padding: 9px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-.filters { display: grid; gap: 12px; margin: 28px 0 24px; }
+.kinds { display: flex; flex-wrap: wrap; gap: 0; margin: 28px 0 0; border-bottom: 1px solid var(--rule); }
+.kinds button { font: 700 15px/1 var(--body); padding: 12px 18px 14px; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; background: transparent; color: var(--muted); cursor: pointer; }
+.kinds button b { font: 700 13px/1 var(--mono); margin-right: 6px; color: var(--mark); }
+.kinds button small { font: 400 12px/1 var(--mono); margin-left: 4px; color: var(--muted); }
+.kinds button:hover { color: var(--ink); }
+.kinds button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.filters { display: grid; gap: 12px; margin: 20px 0 24px; }
+.filters [hidden] { display: none; }
 .filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .flab { font: 700 12px/1 var(--mono); color: var(--muted); width: 5.5em; flex: none; }
 .filter button:disabled { opacity: .35; cursor: default; }
@@ -212,6 +219,11 @@ html[data-ar="9x16"] .card .screen { aspect-ratio: 9 / 16; }
 .chips li:has(button) { padding: 0; }
 .chips button { font: inherit; padding: 5px 7px; border: 0; background: none; color: var(--ink); cursor: pointer; }
 .chips button:hover, .chips button.on { color: var(--accent); }
+.chips li.mat { font-family: var(--body); color: var(--ink); border-color: var(--mark); }
+.ctypes { width: 100%; max-width: 640px; border-collapse: collapse; margin: 16px 0 0; font-size: 14px; }
+.ctypes th, .ctypes td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule); }
+.ctypes thead th { font: 700 12px/1.4 var(--mono); color: var(--muted); }
+.ctypes .n { font: 400 13px/1 var(--mono); }
 .card details { margin-top: 10px; font-size: 14px; }
 .card summary { cursor: pointer; color: var(--accent); font-weight: 700; }
 .card details p { margin: 8px 0 0; padding: 12px 14px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; }

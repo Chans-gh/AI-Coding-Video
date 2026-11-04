@@ -15,7 +15,7 @@
 ## 风格目录
 
 <!-- catalog:start -->
-共 195 种（纯代码 195 种），其中 82 种已有样片。点名字跳到条目。
+共 219 种（纯代码 195 种，公共领域素材 12 种，AI 生成素材 12 种），其中 106 种已有样片。点名字跳到条目。
 
 | 题材 | 风格 |
 |---|---|
@@ -30,7 +30,24 @@
 | 电影年代与屏幕科技（19） | [C-060 16mm 黑白纪录片](styles/canvas-2d.md#C-060) · [C-061 1920 年代默片](styles/canvas-2d.md#C-061) · [C-062 后室 / 找到的录像带](styles/webgl.md#C-062) · [C-063 移轴微缩](styles/webgl.md#C-063) · [C-064 终端 / ASCII CRT](styles/terminal.md#C-064) · [C-065 科幻 HUD 界面](styles/svg-html.md#C-065) · [C-066 代码编辑器叙事](styles/svg-html.md#C-066) · [C-067 Demoscene](styles/webgl.md#C-067) · [C-105 科幻全息线框](styles/webgl.md#C-105) · [C-114 霓虹灯牌](styles/canvas-2d.md#C-114) · [C-121 电影预告片](styles/canvas-2d.md#C-121) · [C-153 合成波（Synthwave）](styles/webgl.md#C-153) · [C-159 魔灯幻灯片](styles/canvas-2d.md#C-159) · [C-160 玻璃版长曝光](styles/canvas-2d.md#C-160) · [C-166 60 年代液体灯光秀](styles/webgl.md#C-166) · [C-167 热成像](styles/webgl.md#C-167) · [C-168 字雨](styles/canvas-2d.md#C-168) · [C-176 老胶片（褪色彩色）](styles/canvas-2d.md#C-176) · [C-177 信号故障（Glitch）](styles/webgl.md#C-177) |
 | 3D 与实时图形（27） | [C-068 低多边形等距岛](styles/webgl.md#C-068) · [C-069 写实光线步进](styles/webgl.md#C-069) · [C-070 实时 WebGL 自然](styles/webgl.md#C-070) · [C-071 Blender 程序化场景](styles/external.md#C-071) · [C-072 爆炸图 / 剖面](styles/webgl.md#C-072) · [C-073 3D 战役 / 地图俯瞰](styles/webgl.md#C-073) · [C-074 风格化 3D 打斗](styles/webgl.md#C-074) · [C-075 抽象品牌片](styles/webgl.md#C-075) · [C-076 科学可视化](styles/webgl.md#C-076) · [C-077 生成式抽象 / 音乐可视化](styles/canvas-2d.md#C-077) · [C-078 体素世界](styles/webgl.md#C-078) · [C-079 赛博朋克霓虹都市](styles/webgl.md#C-079) · [C-080 3D 动画电影式卡通](styles/webgl.md#C-080) · [C-081 三渲二 3D 动漫](styles/webgl.md#C-081) · [C-082 霓虹流体](styles/webgl.md#C-082) · [C-106 孟菲斯微缩景](styles/webgl.md#C-106) · [C-111 桌面穿梭](styles/webgl.md#C-111) · [C-116 夜间博物馆特展](styles/webgl.md#C-116) · [C-126 虹彩玻璃泡](styles/webgl.md#C-126) · [C-127 发光宇宙](styles/webgl.md#C-127) · [C-149 早期光线追踪 CGI](styles/webgl.md#C-149) · [C-171 流动的丝线](styles/canvas-2d.md#C-171) · [C-172 萤火光尘](styles/canvas-2d.md#C-172) · [C-174 雨窗](styles/webgl.md#C-174) · [C-175 窗光与尘](styles/webgl.md#C-175) · [C-186 东方赛博](styles/webgl.md#C-186) · [C-195 末日工业暗黑科幻](styles/webgl.md#C-195) |
 
-按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2）
+T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，括号里是用到的素材：
+
+| 内容类型 | T 类：公共领域素材 | G 类：AI 生成素材 |
+|---|---|---|
+| 知识科普讲解 | [T-001 数据实体化](styles/footage.md#T-001)（照片、数据） | [G-001 编辑部纸拼贴讲解](styles/generated.md#G-001)（生图、语音合成） |
+| 口播 / 数字人 | [T-002 口播剪辑 + 花字](styles/footage.md#T-002)（录像） | [G-002 虚拟主播口播](styles/generated.md#G-002)（生图、生视频、语音合成） |
+| 产品广告和带货 | [T-003 复古产品广告](styles/footage.md#T-003)（照片、录像） | [G-003 电影感产品广告](styles/generated.md#G-003)（生图、生视频） |
+| 品牌宣传片 | [T-004 倒计时分屏](styles/footage.md#T-004)（录像、照片、数据） | [G-004 大字品牌片](styles/generated.md#G-004)（生视频） |
+| 短剧 / 动漫剧 / 故事 | [T-005 默片字幕卡重剪](styles/footage.md#T-005)（录像） | [G-005 动漫短剧分镜](styles/generated.md#G-005)（生图、生视频、语音合成） |
+| 音乐 MV | [T-006 轨道 MV](styles/footage.md#T-006)（录像、照片） | [G-006 无限放大拼贴](styles/generated.md#G-006)（生图） |
+| 新闻资讯解说 | [T-007 卫星地图简报](styles/footage.md#T-007)（照片、数据） | [G-007 插画新闻解说](styles/generated.md#G-007)（生图、语音合成） |
+| 纪录片和纪实 | [T-008 档案灯箱](styles/footage.md#T-008)（照片） | [G-008 伪纪录片](styles/generated.md#G-008)（生图、生视频、语音合成） |
+| 教程和录屏演示 | [T-009 活体录屏](styles/footage.md#T-009)（录屏） | [G-009 俯拍步骤教程](styles/generated.md#G-009)（生图） |
+| 旅行和城市 | [T-010 延时城市交响](styles/footage.md#T-010)（录像、照片、数据） | [G-010 旅行手账 vlog](styles/generated.md#G-010)（生视频、语音合成） |
+| 体育赛事 | [T-011 体育战术板](styles/footage.md#T-011)（照片） | [G-011 高光慢放集锦](styles/generated.md#G-011)（生视频） |
+| 儿童绘本动画 | [T-012 绘本翻页](styles/footage.md#T-012)（照片） | [G-012 水彩绘本朗读](styles/generated.md#G-012)（生图、语音合成） |
+
+按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（12） · [G 类：AI 生成素材](styles/generated.md)（12）
 <!-- catalog:end -->
 
 ## 按题材选风格

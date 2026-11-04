@@ -22,7 +22,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v5 · 2026-11-03"
+VERSION = "v7 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -36,7 +36,23 @@ THEME_EN = {
 LAYER = {  # 画在哪：中文、英文
     "canvas-2d": ("Canvas 2D", "Canvas 2D"), "svg-html": ("SVG / HTML", "SVG / HTML"), "webgl": ("WebGL / 3D", "WebGL / 3D"),
     "framework": ("讲解框架", "explainer frameworks"), "terminal": ("终端字符", "terminal text"), "external": ("外部工具", "external tools"),
+    "footage": ("公共领域素材", "public-domain material"), "generated": ("AI 生成素材", "AI-generated material"),
 }
+KIND = {  # 三类：卡片的 data-kind、名字（中、英）
+    "C": ("c", "纯代码", "Pure code"), "T": ("t", "实拍素材", "Real footage"), "G": ("g", "AI 素材", "AI material"),
+}
+
+
+def tags_json():
+    return json.loads((SKILL / "data" / "tags.json").read_text(encoding="utf-8"))
+
+
+def ctype_en():
+    return {c["name"]: c["en"] for c in tags_json()["content_types"]}
+
+
+def mat_en():
+    return {m["name"]: m["en"] for ms in tags_json()["materials"].values() for m in ms}
 
 
 def meta(sid):
@@ -84,7 +100,7 @@ def tech_bar(styles, ids, by):
     出片工具（Playwright、ffmpeg 等 pipeline 层）每支都一样，不进这条。返回 (按钮 HTML 列表, {技术: 代号}, 缺的个数)"""
     tags = json.loads((SKILL / "data" / "tags.json").read_text(encoding="utf-8"))
     layer_of, order = tags["tags"], [l["key"] for l in tags["layers"]]
-    cand = {t for s in styles for t in s.get("suggested", [])} | {t for i in ids for t in by[i]["verified"]}
+    cand = {t for s in styles if s["id"][0] == "C" for t in s.get("suggested", [])} | {t for i in ids for t in by[i]["verified"]}
     cand = {t for t in cand if layer_of.get(t) != "pipeline"}
     count = {t: sum(t in by[i]["verified"] for i in ids) for t in cand}
     rank = lambda t: (order.index(layer_of.get(t, order[-1])), -count[t], t)
@@ -96,56 +112,80 @@ def tech_bar(styles, ids, by):
     return btns, tid, sum(1 for t in techs if not count[t])
 
 
-def gallery(styles, ids):
-    """样片网格：上面两排筛选（题材、技术），卡片带 data-theme、data-tech，由 site.js 统一筛选"""
-    by = {s["id"]: s for s in styles}
-    order = []
-    for s in styles:
-        if s["id"] in ids and s["theme"] not in order:
-            order.append(s["theme"])
-    ths = {th: f"t{k}" for k, th in enumerate(order)}
-    btns, tid, miss = tech_bar(styles, ids, by)
-    out = ['    <div class="filters" id="filters">',
-           f'      <div class="filter" data-dim="theme" role="group" aria-label="题材 / Theme"><span class="flab">{both("题材", "Theme")}</span>',
-           f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>']
-    for th in order:
-        n = sum(by[i]["theme"] == th for i in ids)
-        out.append(f'        <button type="button" data-v="{ths[th]}" aria-pressed="false">{both(th, THEME_EN.get(th, th))} <small>{n}</small></button>')
-    out.append('      </div>')
-    out.append(f'      <div class="filter" data-dim="tech" role="group" aria-label="技术 / Technique"><span class="flab">{both("技术", "Technique")}</span>')
-    out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(ids)}</small></button>')
-    out += btns
-    out.append('      </div>')
-    out.append(f'      <p class="filter-note">{both(f"数字是用到这种技术的样片数；置灰的 {miss} 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。", f"The number is how many samples use that technique; the {miss} greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.")}</p>')
-    out.append('    </div>')
-    out.append(f'    <p class="empty" id="empty-none" hidden>{both("没有同时符合这两个条件的样片。", "No sample matches both filters.")} '
-               f'<button type="button" class="linkish" id="clear-filters">{both("清除筛选", "Clear filters")}</button></p>')
-    for k, zh, en in (("t", "T 类（改编现成素材）还没有收录：它需要照片、录屏、口播原片或真实数据，这个库目前只收纯代码风格。",
-                       "Class T (existing footage) is not collected yet: it needs photos, screen recordings, talking-head footage or real data, and this library currently holds pure-code styles only."),
-                      ("g", "G 类（AI 生成画面）还没有收录：它的画面来自图像或视频模型，这个库目前只收纯代码风格。",
-                       "Class G (AI-generated images) is not collected yet: its pictures come from image or video models, and this library currently holds pure-code styles only.")):
-        out.append(f'    <p class="empty kind-empty" data-kind="{k}" hidden>{both(zh, en)}</p>')
-    out.append('    <div class="cards" id="cards">')
-    for th in order:
-        for s in (by[i] for i in ids if by[i]["theme"] == th):
-            sid = s["id"]
-            mt = meta(sid)
-            en_name, en_how = mt.get("en_name") or s["name"], mt.get("en_how", "")
-            chips = "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
-                            for t in s["verified"])
-            out.append(f'''      <article class="card" id="{sid}" data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}">
+def card(s, sid, label_zh, label_en, attrs, chips):
+    mt = meta(sid)
+    en_name, en_how = mt.get("en_name") or s["name"], mt.get("en_how", "")
+    extra = (f'<a href="{REPO}/blob/{BRANCH}/samples/{sid}/assets.json">{both("素材清单", "Asset list")}</a>'
+             if s["id"][0] in "TG" else "")
+    return f'''      <article class="card" id="{sid}" {attrs}>
         <div class="screen">
           <video data-id="{sid}" data-src="media/{sid}-16x9.mp4" poster="media/{sid}-16x9.jpg" muted loop playsinline preload="none" aria-label="{esc(s['name'])}"></video>
           <button type="button" class="open" aria-label="放大播放 {sid} / Play {sid} large"><span class="open-hint">{both("点击放大", "Click to enlarge")}</span></button>
           <button type="button" class="snd" aria-pressed="false">{both("声音", "Sound")}</button>
         </div>
-        <p class="card-theme">{both(th, THEME_EN.get(th, th))}</p>
+        <p class="card-theme">{both(label_zh, label_en)}</p>
         <div class="card-meta"><code>{sid}</code><h4>{both(s["name"], en_name)}</h4></div>
         <p class="how">{both(zh_how(sid), en_how)}</p>
         <ul class="chips">{chips}</ul>
         <details><summary>{both("风格提示词", "Style prompt (Chinese)")}</summary><p lang="zh-CN">{esc(s["prompt"])}</p></details>
-        <div class="links"><a href="{REPO}/tree/{BRANCH}/samples/{sid}">{both("样片代码", "Sample code")}</a><a href="{REPO}/blob/{BRANCH}/skills/ai-coding-video/{s["file"]}#{sid}">{both("词典条目", "Dictionary entry")}</a></div>
-      </article>''')
+        <div class="links"><a href="{REPO}/tree/{BRANCH}/samples/{sid}">{both("样片代码", "Sample code")}</a><a href="{REPO}/blob/{BRANCH}/skills/ai-coding-video/{s["file"]}#{sid}">{both("词典条目", "Dictionary entry")}</a>{extra}</div>
+      </article>'''
+
+
+def gallery(styles, ids):
+    """样片网格：最上面一排分三类（纯代码 C、实拍素材 T、AI 素材 G）；C 类再按题材、技术筛，T 类、G 类按内容类型筛。
+    卡片带 data-kind、data-theme、data-tech、data-ctype，由 site.js 统一筛选"""
+    by = {s["id"]: s for s in styles}
+    kid = {k: [i for i in ids if i[0] == k] for k in KIND}
+    cids = kid["C"]
+    order = []
+    for s in styles:
+        if s["id"] in cids and s["theme"] not in order:
+            order.append(s["theme"])
+    ths = {th: f"t{k}" for k, th in enumerate(order)}
+    btns, tid, miss = tech_bar(styles, cids, by)
+    cts = [c["name"] for c in tags_json()["content_types"]]
+    cid = {c: f"y{k}" for k, c in enumerate(cts)}
+    cen, men = ctype_en(), mat_en()
+    out = ['    <div class="kinds" role="group" aria-label="类型 / Class">']
+    for k, (code, zh, en) in KIND.items():
+        out.append(f'      <button type="button" data-kind="{code}" aria-pressed="{str(k == "C").lower()}"><b>{k}</b> {both(zh, en)} <small>{len(kid[k])}</small></button>')
+    out.append('    </div>')
+    out += ['    <div class="filters" id="filters">',
+           f'      <div class="filter" data-dim="theme" data-kinds="c" role="group" aria-label="题材 / Theme"><span class="flab">{both("题材", "Theme")}</span>',
+           f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(cids)}</small></button>']
+    for th in order:
+        n = sum(by[i]["theme"] == th for i in cids)
+        out.append(f'        <button type="button" data-v="{ths[th]}" aria-pressed="false">{both(th, THEME_EN.get(th, th))} <small>{n}</small></button>')
+    out.append('      </div>')
+    out.append(f'      <div class="filter" data-dim="tech" data-kinds="c" role="group" aria-label="技术 / Technique"><span class="flab">{both("技术", "Technique")}</span>')
+    out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>{len(cids)}</small></button>')
+    out += btns
+    out.append('      </div>')
+    out.append(f'      <div class="filter" data-dim="ctype" data-kinds="t g" role="group" aria-label="内容类型 / Content type"><span class="flab">{both("内容类型", "Content type")}</span>')
+    out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>0</small></button>')
+    for c in cts:
+        out.append(f'        <button type="button" data-v="{cid[c]}" aria-pressed="false">{both(c, cen.get(c, c))} <small>0</small></button>')
+    out.append('      </div>')
+    out.append(f'      <p class="filter-note" data-kinds="c">{both(f"数字是用到这种技术的样片数；置灰的 {miss} 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。", f"The number is how many samples use that technique; the {miss} greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.")}</p>')
+    out.append(f'      <p class="filter-note" data-kinds="t g">{both("同一个内容类型，T 类用真实素材、G 类用 AI 生成的素材，切换上面的类型对照着看。卡片上的标签是这支样片用到的素材。", "Within one content type, class T uses real material and class G uses AI-generated material; switch the class above to compare. The tags on each card are the materials that sample uses.")}</p>')
+    out.append('    </div>')
+    out.append(f'    <p class="empty" id="empty-none" hidden>{both("没有同时符合这些条件的样片。", "No sample matches these filters.")} '
+               f'<button type="button" class="linkish" id="clear-filters">{both("清除筛选", "Clear filters")}</button></p>')
+    if not kid["G"]:
+        out.append(f'    <p class="empty kind-empty" data-kind="g" hidden>{both("G 类（AI 生成素材）的样片还在做。", "Class G (AI-generated material) samples are on the way.")}</p>')
+    out.append('    <div class="cards" id="cards">')
+    for th in order:
+        for s in (by[i] for i in cids if by[i]["theme"] == th):
+            chips = "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
+                            for t in s["verified"])
+            out.append(card(s, s["id"], th, THEME_EN.get(th, th),
+                            f'data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}"', chips))
+    for k in "TG":
+        for c in cts:
+            for s in (by[i] for i in kid[k] if by[i]["content_type"] == c):
+                chips = "".join(f'<li class="mat">{both(m, men.get(m, m))}</li>' for m in s["materials"])
+                out.append(card(s, s["id"], c, cen.get(c, c), f'data-kind="{KIND[k][0]}" data-ctype="{cid[c]}"', chips))
     out.append("    </div>")
     # 分页：每页张数和页码按钮由 site.js 按筛选结果算；这里只放文案，好让字体裁剪带上这些字
     out.append(f'''    <nav class="pager" id="pager" aria-label="分页 / Pages" hidden>
@@ -210,6 +250,8 @@ def packs_html(names):
 def theme_bars(styles, ids):
     counts, done = {}, {}
     for s in styles:
+        if s["id"][0] != "C":
+            continue
         counts[s["theme"]] = counts.get(s["theme"], 0) + 1
         done[s["theme"]] = done.get(s["theme"], 0) + (s["id"] in ids)
     top = max(counts.values())
@@ -220,6 +262,18 @@ def theme_bars(styles, ids):
                     f'<span class="bar-all" style="width:{n / top * 100:.1f}%"></span>'
                     f'<span class="bar-done" style="width:{done[th] / top * 100:.1f}%"></span></span>'
                     f'<span class="n">{done[th]}/{n}</span></div>')
+    return "\n".join(rows)
+
+
+def ctype_rows(styles, ids):
+    """T 类、G 类按内容类型：每个内容类型两类各有几种（几种已有样片）"""
+    cen, rows = ctype_en(), []
+    for c in tags_json()["content_types"]:
+        cell = []
+        for k in "TG":
+            ss = [s for s in styles if s["id"][0] == k and s.get("content_type") == c["name"]]
+            cell.append(f'<span class="n">{sum(s["id"] in ids for s in ss)}/{len(ss)}</span>')
+        rows.append(f'      <tr><th>{both(c["name"], c["en"])}</th><td>{cell[0]}</td><td>{cell[1]}</td></tr>')
     return "\n".join(rows)
 
 
@@ -297,7 +351,9 @@ def main():
     tpl = (HERE / "src" / "index.html").read_text(encoding="utf-8")
     fills = {
         "{{VERSION}}": VERSION, "{{REPO}}": REPO, "{{N_STYLES}}": str(len(styles)), "{{N_SAMPLES}}": str(len(ids)), "{{N_PACKS}}": str(len(packs)), "{{PACKS}}": packs_html(packs),
-        "{{GALLERY}}": gallery(styles, ids), "{{THEMES}}": theme_bars(styles, ids),
+        "{{GALLERY}}": gallery(styles, ids), "{{THEMES}}": theme_bars(styles, ids), "{{CTYPES}}": ctype_rows(styles, ids),
+        "{{N_C}}": str(sum(s["id"][0] == "C" for s in styles)), "{{N_T}}": str(sum(s["id"][0] == "T" for s in styles)),
+        "{{N_G}}": str(sum(s["id"][0] == "G" for s in styles)),
         "{{LAYERS_ZH}}": zh_l, "{{LAYERS_EN}}": en_l, "{{TEMPLATE}}": esc(template_text()),
     }
     for k, v in fills.items():

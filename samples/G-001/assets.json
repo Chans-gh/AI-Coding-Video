@@ -1,0 +1,87 @@
+{
+ "items": [
+  {
+   "file": "assets/bg.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "纸拼贴风格插画：深海场景，层层撕边的蓝色和青色彩纸叠成海水，旧报纸纹理和半调网点，几缕光线从上方照下，零星气泡，画面中央留出大片空白，没有文字，没有动物，平面编辑插画风格",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "插图 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/octopus.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "纸拼贴风格插画：一只橙红色的章鱼，用撕边彩纸和旧报纸剪贴而成，带半调网点和细小纸张纹理，触手舒展，正面完整，居中，纯白背景，没有阴影，没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "插图 AI 生成",
+   "prep": {
+    "max": 1400
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Sincere_Adult",
+   "text": "章鱼有三颗心。两颗专门把血泵过鳃，第三颗负责全身。它的血是蓝色的，因为在血里运送氧气的，是含铜的血蓝蛋白。",
+   "params": {
+    "speed": 1.05
+   },
+   "at": 0.6,
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 13.166,
+   "lines": [
+    {
+     "t0": 0.041,
+     "t1": 1.016,
+     "text": "章鱼有三颗心"
+    },
+    {
+     "t0": 1.016,
+     "t1": 3.901,
+     "text": "两颗专门把血泵过鳃"
+    },
+    {
+     "t0": 3.901,
+     "t1": 6.136,
+     "text": "第三颗负责全身"
+    },
+    {
+     "t0": 6.136,
+     "t1": 10.281,
+     "text": "它的血是蓝色的，因为在血里运送氧气的"
+    },
+    {
+     "t0": 10.281,
+     "t1": 12.637,
+     "text": "是含铜的血蓝蛋白"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Underwater Theme",
+   "source": "https://opengameart.org/content/underwater-theme",
+   "download": "https://opengameart.org/sites/default/files/Cleyton%20RX%20-%20Underwater_0.mp3",
+   "license": "CC0 1.0",
+   "author": "CleytonKauffman",
+   "credit": "配乐 CleytonKauffman（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

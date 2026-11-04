@@ -1,0 +1,50 @@
+{
+ "items": [
+  {
+   "file": "assets/coast.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "清晨的海岸线航拍，镜头缓慢向前飞，海浪一层层拍上黑色礁石，薄雾和柔和的金色晨光，电影感，画面里没有人",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/tea.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "特写：一双手提着陶瓷茶壶把热水缓缓倒进白色茶杯，蒸汽升起，窗边柔和的晨光，浅景深，只拍到手，看不到脸，电影感",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Emotional piano loop",
+   "source": "https://opengameart.org/content/emotional-piano-loop",
+   "download": "https://opengameart.org/sites/default/files/untitled.mp3",
+   "license": "CC0 1.0",
+   "author": "extenz",
+   "credit": "配乐 extenz（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

@@ -76,6 +76,21 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `studioEnv(D, o = {})` — o：{top, bottom 上下底色, bars [[u 横向位置 0~1, 宽, 亮度, 颜色]], tint 侧面冷色, bg 同时当背景}
 - `physicsAt(world, t, step = 1 / 120)` — cannon-es：固定步长把物理推到 t 秒（每帧都从 0 重推，所以每帧只由 t 决定，结果可重复）。world 是 CANNON.World，step 是步长（默认 1/120 秒），bodies 推完就是 t 时刻的位置
 - `p5Sketch(setup, draw, o = {})` — p5（instance 模式 + noLoop）：在看不见的容器里建 W×H 画布，返回 Promise → {p, canvas, render(t, f)}，坐标原点都在左上角；render 设好 p.t、p.f，按 seed 重设 randomSeed / noiseSeed 后 redraw 一次；draw 里 await render(t) 后把 canvas 画到 ctx 上；draw 传 null 表示只在 setup 里画一次（静止的底图）。o：{w, h 画布尺寸（默认 W×H）, webgl 用 WEBGL 画布（p5.brush 要）, brush 接上 p5.brush, seed(t, f) → 每帧的种子（默认固定 1）}
+
+**素材（T 类、G 类样片：读 assets/ 里的照片、视频、数据，出处记在 assets.json）**
+
+- `asset(name)` — 素材文件的网址：asset('earth.jpg') → <样片目录>/assets/earth.jpg
+- `xhr(url, type = 'text')`
+- `loadImage(name)` — 载入图片素材 → HTMLImageElement，init 里 await
+- `loadText(name)` — 读文本素材（CSV、JSON、GeoJSON）
+- `parseCSV(txt)` — CSV → 对象数组：第一行是表头，# 开头的行跳过，像数字的格自动转成数字
+- `srcSize(src)` — 素材的原始宽高（图片、视频、画布都行）
+- `drawCover(ctx, src, x, y, w, h, o = {})` — 把图片或视频「铺满」裁切进 (x,y,w,h)：o.zoom 放大倍数（推镜用，默认 1），o.fx、o.fy 取景焦点 0–1（默认 .5），o.alpha
+- `drawContain(ctx, src, x, y, w, h, o = {})` — 把图片或视频完整放进 (x,y,w,h)，按比例缩放、居中；返回实际画的 [x, y, w, h]
+- `cueAt(A, t)` — t 时刻该显示的字幕：A 是 loadAssets() 的结果，旁白素材的 lines 是 [{t0, t1, text}]（相对这段旁白的起点 at），返回那一条 {text, p 进度 0–1, t0, t1}，没有就 null
+- `cueTime(A, kw, fallback = Infinity)` — 旁白说到关键词 kw 的时刻（秒）：在字幕行里找，按字数在这一行的起止之间线性估计；找不到返回 fallback（默认 Infinity）
+- `caption(ctx, text, o = {})` — 字幕条：文字居中，按 maxW 折行，画在 y（底边）上方；o：{size, font, color, bg 底色（null 不画底）, stroke 描边色, maxW, y, align}；返回字幕块高度
+- `credits(A)` — 素材出处：assets.json 里每份素材的 credit 拼成一行（片尾、角落的小字署名用）
 - `S` — 场景列表（播放器读 S[0]）
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 
@@ -118,3 +133,10 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `whoosh(m, d, f0=300, f1=3000)` — 带通噪声扫频：转场、风、墨晕
 - `riser(m, d)` — 渐强上扬的噪声，接在高潮前
 - `hum(f=60, d=1.0)` — 电源嗡嗡声（CRT、荧光灯）
+
+**素材里的声音（T 类、G 类）**
+
+- `load(path, ss=0.0, dur=None)` — 读音频文件（mp3、wav、ogg、mp4 的音轨…）→ (采样数, 2) 的立体声，44.1 kHz；ss 起点秒，dur 长度秒。用 ffmpeg 解码
+- `fade(x, a=0.0, b=0.0)` — 淡入 a 秒、淡出 b 秒（单声道或立体声都行）
+- `cue_time(a, kw, fallback=None)` — 旁白说到关键词 kw 的时刻（秒）：a 是 assets() 返回的 assets.json 内容，和 lib.js 的 cueTime 算法相同；找不到返回 fallback
+- `assets(m, here, music=0.32, duck=0.45, voice=0.9)` — 照 <样片目录>/assets.json 把声音摆上混音台：旁白、原声（G 类的旁白记作 语音合成）按 at（秒）放；配乐从 at 起铺到片尾，旁白、原声响的时候压低 duck；音效按 at 放。返回 assets.json 的内容。

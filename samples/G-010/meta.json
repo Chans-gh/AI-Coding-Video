@@ -1,0 +1,5 @@
+{
+  "en_name": "Travel journal vlog",
+  "en_how": "Two AI-generated travel clips (a misty water town at dawn, a lantern-lit night market) are taped onto journal paper as tilted photos; beside them a hand-drawn route map draws its dashed path from the pier to the old street in step with the narration, stamping each place as it is mentioned, with handwritten subtitles and a big 'Day 1' stamp at the end.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

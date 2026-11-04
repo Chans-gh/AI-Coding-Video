@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI Coding Video</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="让 AI 写代码、由代码逐帧算出画面的动画视频风格库。A style library for animation videos whose every frame is computed by code.">
+<meta name="description" content="让 AI 写代码做视频的风格库：纯代码、公共领域素材、AI 生成素材三种做法。A style library for videos made by code: pure code, public-domain material, or AI-generated material.">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
       <a href="#library"><span lang="zh">词典</span><span lang="en">Dictionary</span></a>
     </nav>
     <div class="bar-end">
-      <span class="ver">v5 · 2026-11-03</span>
+      <span class="ver">v7 · 2026-11-04</span>
       <button class="lang" id="lang-toggle" type="button" aria-label="切换语言 / Switch language"><span lang="zh">EN</span><span lang="en">中文</span></button>
     </div>
   </div>
@@ -32,9 +32,9 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow"><span lang="zh">纯代码动画视频风格库</span><span lang="en">A style library for code-rendered video</span></p>
+      <p class="eyebrow"><span lang="zh">用代码做视频的风格库</span><span lang="en">A style library for videos made by code</span></p>
       <h1><span lang="zh">视频每一帧，<br>都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></h1>
-      <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、合成声音，再编码成视频。不用 AI 生图生视频，不剪现成素材。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, synthesizes the sound and encodes the video. No image or video generators, no stock footage. Run the same code twice and you get the same film, frame for frame.</span></p>
+      <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、配好声音，再编码成视频。画面可以全部由代码算出来；也可以把照片、录像、数据，或 AI 生成的图片和视频交给代码，由代码剪辑、排版、加动效。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, lays in the sound and encodes the video. The picture can be computed entirely by code, or the code can take photos, footage, data, or AI-generated images and clips and cut, lay out and animate them. Run the same code twice and you get the same film, frame for frame.</span></p>
       <div class="cta">
         <a class="btn primary" href="#skill"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
         <a class="btn" href="https://github.com/Chans-gh/AI-Coding-Video"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub repo</span></a>
@@ -62,7 +62,7 @@
 <section class="sec" id="what">
   <div class="wrap">
     <h2><span lang="zh">什么是 AI Coding Video</span><span lang="en">What AI Coding Video is</span></h2>
-    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、合成声音，最后编码成 MP4。画面里没有一张现成的图片，也不调用任何生图、生视频模型。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, synthesizes the sound, and encodes an MP4. No ready-made images anywhere in the frame, and no image or video generators.</span></p>
+    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、配好声音，最后编码成 MP4。下面这个例子是纯代码的：画面里没有一张现成的图片。要用真实素材或 AI 素材时，流程一样，只是代码在每一帧里多读一份素材。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, adds the sound, and encodes an MP4. The example below is pure code, with no ready-made image in the frame. With real or AI-generated material the flow is the same; the code simply reads a piece of material in each frame.</span></p>
     <ol class="flow">
       <li>
         <div class="flow-vis bubble"><span lang="zh">“做一支 3 秒的开场：夜里升起一轮红日，一笔画出一个圆。”</span><span lang="en">"A 3-second opener: a red sun rises at night, and one brushstroke draws a circle."</span></div>
@@ -93,25 +93,25 @@
     <ul class="why">
       <li><b><span lang="zh">可复现</span><span lang="en">Reproducible</span></b><span lang="zh">同一份代码，每次跑出来的片子一帧不差。</span><span lang="en">Same code, same film, frame for frame.</span></li>
       <li><b><span lang="zh">可修改</span><span lang="en">Editable</span></b><span lang="zh">换颜色、换文字、换节奏只是改几个参数。</span><span lang="en">Colors, words and timing are a few parameters.</span></li>
-      <li><b><span lang="zh">没有素材版权问题</span><span lang="en">Nothing to license</span></b><span lang="zh">画面和声音都是代码算出来的。</span><span lang="en">Picture and sound are both computed.</span></li>
+      <li><b><span lang="zh">素材来路清楚</span><span lang="en">Clear provenance</span></b><span lang="zh">纯代码的样片没有素材；用素材的样片，每份素材的出处、许可或生成参数都记在清单里。</span><span lang="en">Pure-code samples use no material; samples that do list every piece with its source, license or generation settings.</span></li>
     </ul>
     <h3 class="sub"><span lang="zh">做视频的三条路</span><span lang="en">Three ways to make the picture</span></h3>
-    <p class="sub-lede"><span lang="zh">点一条路，下面的样片跟着切换。这个库目前只收第一条。</span><span lang="en">Pick one and the samples below switch with it. This library currently collects only the first.</span></p>
+    <p class="sub-lede"><span lang="zh">三条路都由代码负责剪辑、排版和动效，区别在画面里的素材从哪来。点一条路，下面的样片跟着切换。</span><span lang="en">In all three the code does the editing, layout and motion; they differ in where the material in the frame comes from. Pick one and the samples below switch with it.</span></p>
     <div class="paths" role="group" aria-label="类型 / Class">
       <article class="path" data-kind="c">
-        <h3><button type="button" class="path-pick" data-kind="c" aria-pressed="true"><span lang="zh">代码逐帧</span><span lang="en">Code, frame by frame</span></button></h3>
-        <p class="tag"><span lang="zh">C 类 · 本库收录</span><span lang="en">Class C · this library</span></p>
-        <p><span lang="zh">AI 写 Canvas、WebGL、SVG 等渲染程序，无头浏览器按 t 逐帧截图，ffmpeg 编码。</span><span lang="en">The AI writes a Canvas, WebGL or SVG renderer; a headless browser captures each frame at time t; ffmpeg encodes.</span></p>
-      </article>
-      <article class="path" data-kind="g">
-        <h3><button type="button" class="path-pick" data-kind="g" aria-pressed="false"><span lang="zh">AI 生成画面</span><span lang="en">AI-generated images</span></button></h3>
-        <p class="tag"><span lang="zh">G 类 · 以后收</span><span lang="en">Class G · later</span></p>
-        <p><span lang="zh">画面由图像或视频模型生成，AI 助手写分镜和每个镜头的提示词。擅长写实人物，难保证跨镜头一致。</span><span lang="en">An image or video model makes the pictures; the assistant writes the shot list and prompts. Strong at realistic people, weak at consistency across shots.</span></p>
+        <h3><button type="button" class="path-pick" data-kind="c" aria-pressed="true"><span lang="zh">纯代码</span><span lang="en">Pure code</span></button></h3>
+        <p class="tag"><span lang="zh">C 类 · 195 种 · 按题材分</span><span lang="en">Class C · 195 styles · by theme</span></p>
+        <p><span lang="zh">画面全部由代码算出：Canvas、WebGL、SVG 等。声音也是代码合成的电子音。不需要任何素材，最适合风格化的动画。</span><span lang="en">The picture is computed entirely by code: Canvas, WebGL, SVG and more, with a synthesized electronic score. Needs no material at all; best for stylized animation.</span></p>
       </article>
       <article class="path" data-kind="t">
-        <h3><button type="button" class="path-pick" data-kind="t" aria-pressed="false"><span lang="zh">改编现成素材</span><span lang="en">Existing footage</span></button></h3>
-        <p class="tag"><span lang="zh">T 类 · 以后收</span><span lang="en">Class T · later</span></p>
-        <p><span lang="zh">在照片、录屏、口播原片、真实数据上加工。效果取决于手里的素材和授权。</span><span lang="en">Work on top of photos, screen recordings, talking-head footage or real data. Depends on the material you have and its license.</span></p>
+        <h3><button type="button" class="path-pick" data-kind="t" aria-pressed="false"><span lang="zh">实拍素材</span><span lang="en">Real footage</span></button></h3>
+        <p class="tag"><span lang="zh">T 类 · 12 种 · 按内容类型分</span><span lang="en">Class T · 12 styles · by content type</span></p>
+        <p><span lang="zh">代码把录像、录屏、照片、数据剪进片子。本库样片只用公共领域素材（NASA、美国国会图书馆、NOAA 等），你做时换成自己的。</span><span lang="en">The code cuts footage, screen recordings, photos and data into the film. The samples here use public-domain material only (NASA, the Library of Congress, NOAA and others); swap in your own.</span></p>
+      </article>
+      <article class="path" data-kind="g">
+        <h3><button type="button" class="path-pick" data-kind="g" aria-pressed="false"><span lang="zh">AI 素材</span><span lang="en">AI material</span></button></h3>
+        <p class="tag"><span lang="zh">G 类 · 12 种 · 按内容类型分</span><span lang="en">Class G · 12 styles · by content type</span></p>
+        <p><span lang="zh">先用生图、生视频、语音合成做出素材，再交给代码剪辑和加动效。适合写实人物和场景。任何一家服务都行。</span><span lang="en">Generate images, clips and voice first, then let the code edit and animate them. Good for realistic people and scenes. Any provider works.</span></p>
       </article>
     </div>
   </div>
@@ -122,15 +122,20 @@
     <div class="gal-head">
       <div>
         <h2><span lang="zh">样片查看</span><span lang="en">Browse the samples</span></h2>
-        <p class="sec-lede"><span lang="zh">按题材和技术筛选，两个条件可以叠加；卡片上的技术标签也能点。每页 15 支，停在哪里，哪里的样片才开始播放；点画面放大播放，点「声音」听代码合成的配乐。</span><span lang="en">Filter by theme and by technique, alone or together; the technique tags on each card are clickable too. 15 per page; a sample starts playing once you stop scrolling on it. Click a picture to play it large, or press Sound to hear the synthesized score.</span></p>
+        <p class="sec-lede"><span lang="zh">先选类型：纯代码、实拍素材、AI 素材。纯代码的按题材和技术筛，两类素材的按内容类型筛。每页 15 支，停在哪里，哪里的样片才开始播放；点画面放大播放，点「声音」听配乐和旁白。</span><span lang="en">Pick a class first: pure code, real footage or AI material. Pure-code samples filter by theme and technique; the two material classes filter by content type. 15 per page; a sample starts playing once you stop scrolling on it. Click a picture to play it large, or press Sound for the score and narration.</span></p>
       </div>
       <div class="seg" role="group" aria-label="画幅 / Frame shape">
         <button type="button" data-ar="16x9" aria-pressed="true">16:9</button>
         <button type="button" data-ar="9x16" aria-pressed="false">9:16</button>
       </div>
     </div>
+    <div class="kinds" role="group" aria-label="类型 / Class">
+      <button type="button" data-kind="c" aria-pressed="true"><b>C</b> <span lang="zh">纯代码</span><span lang="en">Pure code</span> <small>82</small></button>
+      <button type="button" data-kind="t" aria-pressed="false"><b>T</b> <span lang="zh">实拍素材</span><span lang="en">Real footage</span> <small>12</small></button>
+      <button type="button" data-kind="g" aria-pressed="false"><b>G</b> <span lang="zh">AI 素材</span><span lang="en">AI material</span> <small>12</small></button>
+    </div>
     <div class="filters" id="filters">
-      <div class="filter" data-dim="theme" role="group" aria-label="题材 / Theme"><span class="flab"><span lang="zh">题材</span><span lang="en">Theme</span></span>
+      <div class="filter" data-dim="theme" data-kinds="c" role="group" aria-label="题材 / Theme"><span class="flab"><span lang="zh">题材</span><span lang="en">Theme</span></span>
         <button type="button" data-v="" aria-pressed="true"><span lang="zh">全部</span><span lang="en">All</span> <small>82</small></button>
         <button type="button" data-v="t0" aria-pressed="false"><span lang="zh">手绘与绘画</span><span lang="en">Hand-drawn &amp; painting</span> <small>13</small></button>
         <button type="button" data-v="t1" aria-pressed="false"><span lang="zh">东方传统</span><span lang="en">East Asian traditions</span> <small>9</small></button>
@@ -143,7 +148,7 @@
         <button type="button" data-v="t8" aria-pressed="false"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span> <small>10</small></button>
         <button type="button" data-v="t9" aria-pressed="false"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span> <small>9</small></button>
       </div>
-      <div class="filter" data-dim="tech" role="group" aria-label="技术 / Technique"><span class="flab"><span lang="zh">技术</span><span lang="en">Technique</span></span>
+      <div class="filter" data-dim="tech" data-kinds="c" role="group" aria-label="技术 / Technique"><span class="flab"><span lang="zh">技术</span><span lang="en">Technique</span></span>
         <button type="button" data-v="" aria-pressed="true"><span lang="zh">全部</span><span lang="en">All</span> <small>82</small></button>
         <button type="button" data-v="k0" aria-pressed="false">Canvas 2D <small>73</small></button>
         <button type="button" data-v="k1" aria-pressed="false">WebGL <small>6</small></button>
@@ -166,11 +171,25 @@
         <button type="button" data-v="k18" aria-pressed="false" disabled class="miss">Manim <small>0</small></button>
         <button type="button" data-v="k19" aria-pressed="false" disabled class="miss">Blender <small>0</small></button>
       </div>
-      <p class="filter-note"><span lang="zh">数字是用到这种技术的样片数；置灰的 5 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。</span><span lang="en">The number is how many samples use that technique; the 5 greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.</span></p>
+      <div class="filter" data-dim="ctype" data-kinds="t g" role="group" aria-label="内容类型 / Content type"><span class="flab"><span lang="zh">内容类型</span><span lang="en">Content type</span></span>
+        <button type="button" data-v="" aria-pressed="true"><span lang="zh">全部</span><span lang="en">All</span> <small>0</small></button>
+        <button type="button" data-v="y0" aria-pressed="false"><span lang="zh">知识科普讲解</span><span lang="en">Explainers &amp; science</span> <small>0</small></button>
+        <button type="button" data-v="y1" aria-pressed="false"><span lang="zh">口播 / 数字人</span><span lang="en">Talking head &amp; avatars</span> <small>0</small></button>
+        <button type="button" data-v="y2" aria-pressed="false"><span lang="zh">产品广告和带货</span><span lang="en">Product ads &amp; shopping</span> <small>0</small></button>
+        <button type="button" data-v="y3" aria-pressed="false"><span lang="zh">品牌宣传片</span><span lang="en">Brand films</span> <small>0</small></button>
+        <button type="button" data-v="y4" aria-pressed="false"><span lang="zh">短剧 / 动漫剧 / 故事</span><span lang="en">Short drama, anime &amp; stories</span> <small>0</small></button>
+        <button type="button" data-v="y5" aria-pressed="false"><span lang="zh">音乐 MV</span><span lang="en">Music videos</span> <small>0</small></button>
+        <button type="button" data-v="y6" aria-pressed="false"><span lang="zh">新闻资讯解说</span><span lang="en">News explainers</span> <small>0</small></button>
+        <button type="button" data-v="y7" aria-pressed="false"><span lang="zh">纪录片和纪实</span><span lang="en">Documentary</span> <small>0</small></button>
+        <button type="button" data-v="y8" aria-pressed="false"><span lang="zh">教程和录屏演示</span><span lang="en">Tutorials &amp; screencasts</span> <small>0</small></button>
+        <button type="button" data-v="y9" aria-pressed="false"><span lang="zh">旅行和城市</span><span lang="en">Travel &amp; cities</span> <small>0</small></button>
+        <button type="button" data-v="y10" aria-pressed="false"><span lang="zh">体育赛事</span><span lang="en">Sports</span> <small>0</small></button>
+        <button type="button" data-v="y11" aria-pressed="false"><span lang="zh">儿童绘本动画</span><span lang="en">Children&#x27;s picture books</span> <small>0</small></button>
+      </div>
+      <p class="filter-note" data-kinds="c"><span lang="zh">数字是用到这种技术的样片数；置灰的 5 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。</span><span lang="en">The number is how many samples use that technique; the 5 greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.</span></p>
+      <p class="filter-note" data-kinds="t g"><span lang="zh">同一个内容类型，T 类用真实素材、G 类用 AI 生成的素材，切换上面的类型对照着看。卡片上的标签是这支样片用到的素材。</span><span lang="en">Within one content type, class T uses real material and class G uses AI-generated material; switch the class above to compare. The tags on each card are the materials that sample uses.</span></p>
     </div>
-    <p class="empty" id="empty-none" hidden><span lang="zh">没有同时符合这两个条件的样片。</span><span lang="en">No sample matches both filters.</span> <button type="button" class="linkish" id="clear-filters"><span lang="zh">清除筛选</span><span lang="en">Clear filters</span></button></p>
-    <p class="empty kind-empty" data-kind="t" hidden><span lang="zh">T 类（改编现成素材）还没有收录：它需要照片、录屏、口播原片或真实数据，这个库目前只收纯代码风格。</span><span lang="en">Class T (existing footage) is not collected yet: it needs photos, screen recordings, talking-head footage or real data, and this library currently holds pure-code styles only.</span></p>
-    <p class="empty kind-empty" data-kind="g" hidden><span lang="zh">G 类（AI 生成画面）还没有收录：它的画面来自图像或视频模型，这个库目前只收纯代码风格。</span><span lang="en">Class G (AI-generated images) is not collected yet: its pictures come from image or video models, and this library currently holds pure-code styles only.</span></p>
+    <p class="empty" id="empty-none" hidden><span lang="zh">没有同时符合这些条件的样片。</span><span lang="en">No sample matches these filters.</span> <button type="button" class="linkish" id="clear-filters"><span lang="zh">清除筛选</span><span lang="en">Clear filters</span></button></p>
     <div class="cards" id="cards">
       <article class="card" id="C-001" data-kind="c" data-theme="t0" data-tech="k0">
         <div class="screen">
@@ -1238,6 +1257,318 @@
         <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用末日工业暗黑科幻风格：巨大的锈蚀钢铁结构、管道和冷却塔在灰黄色的烟尘中层层叠叠，远处只有零星的警示红灯和焊接火花，体积雾把光切成一道道光柱，地面积着带油膜的黑水，镜头沿着高耸的结构缓慢仰拍上移或低空穿行，画面整体去饱和、偏铁锈和冷钢灰，低频轰鸣和金属回响作声音。</p></details>
         <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-195"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/webgl.md#C-195"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a></div>
       </article>
+      <article class="card" id="T-001" data-kind="t" data-ctype="y0">
+        <div class="screen">
+          <video data-id="T-001" data-src="media/T-001-16x9.mp4" poster="media/T-001-16x9.jpg" muted loop playsinline preload="none" aria-label="数据实体化"></video>
+          <button type="button" class="open" aria-label="放大播放 T-001 / Play T-001 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">知识科普讲解</span><span lang="en">Explainers &amp; science</span></p>
+        <div class="card-meta"><code>T-001</code><h4><span lang="zh">数据实体化</span><span lang="en">Data made physical</span></h4></div>
+        <p class="how"><span lang="zh">阿波罗 17 号拍的地球照片慢慢推近、退到一侧，NOAA 莫纳罗亚 1959–2025 年的二氧化碳年均值逐年长成一排立体方柱，计数跟着旁白走。</span><span lang="en">The Apollo 17 photo of Earth pushes in and slides aside while NOAA&#x27;s Mauna Loa CO2 annual means for 1959–2025 rise year by year as a row of solid blocks, the counter keeping pace with the narration.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li><li class="mat"><span lang="zh">数据</span><span lang="en">Data</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「数据实体化」做法：一张真实照片先铺满画面慢慢推近，再退到一侧让出空间；另一侧把真实数据表的每一行变成一根立体方柱（正面、顶面、侧面三种明度），按时间顺序一根根落下长高，颜色随数值从冷变暖，大号等宽数字跟着当前那根计数，旁白说到关键数字时正好长到那里，结尾打出变化幅度，角落小字写清照片和数据的出处。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-001"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-001"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-001/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-002" data-kind="t" data-ctype="y1">
+        <div class="screen">
+          <video data-id="T-002" data-src="media/T-002-16x9.mp4" poster="media/T-002-16x9.jpg" muted loop playsinline preload="none" aria-label="口播剪辑 + 花字"></video>
+          <button type="button" class="open" aria-label="放大播放 T-002 / Play T-002 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">口播 / 数字人</span><span lang="en">Talking head &amp; avatars</span></p>
+        <div class="card-meta"><code>T-002</code><h4><span lang="zh">口播剪辑 + 花字</span><span lang="en">Talking head + pop-up captions</span></h4></div>
+        <p class="how"><span lang="zh">NASA 专家访谈剪成两段跳切，每句换一次景别（推近、拉回），关键词做成弹出的大花字，底部中文字幕。</span><span lang="en">A NASA expert interview cut into two jump-cut takes; every sentence alternates framing, a keyword pops up as a big bold caption and Chinese subtitles run at the bottom. Segment timing lives in assets.json and the picture follows it frame by frame.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「口播剪辑 + 花字」：把一段访谈或口播的原片按句子剪成几段跳切，每换一句交替推近和拉回景别，像两台机位来回切，切点闪一帧白；每句挑一个关键词做成弹出的超粗大字（黑色粗描边、轻微倾斜和晃动、颜色一句一换），底部是逐句的描边字幕，顶部一条标题牌和进度条。原声为主，配乐压得很低。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-002"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-002"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-002/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-003" data-kind="t" data-ctype="y2">
+        <div class="screen">
+          <video data-id="T-003" data-src="media/T-003-16x9.mp4" poster="media/T-003-16x9.jpg" muted loop playsinline preload="none" aria-label="复古产品广告"></video>
+          <button type="button" class="open" aria-label="放大播放 T-003 / Play T-003 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">产品广告和带货</span><span lang="en">Product ads &amp; shopping</span></p>
+        <div class="card-meta"><code>T-003</code><h4><span lang="zh">复古产品广告</span><span lang="en">Retro product spot</span></h4></div>
+        <p class="how"><span lang="zh">1974 年的两张太空餐试吃照片做推镜，圈出「挤着吃」的软管，弹出卖点贴纸和价签式标签；接空间站上吃饭的录像，最后一张产品卡收尾。</span><span lang="en">Two 1974 NASA space-food tasting photos push in inside a print-ad layout; hand-drawn rings circle the squeeze tubes and sticker-style selling points pop up, then ISS footage and a round product card close it out.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用复古印刷广告的版式做带货短片：米色纸底，产品的老照片加白边和投影贴在版面上缓慢推镜，手绘感的红圈圈住产品，引线拉出黄底黑字的圆角卖点贴纸并弹出；旁边是一大一小两行卖点文案，接一段「今天还这么用」的录像，最后是圆形裁切的产品卡和锯齿星形「上新」标，底部跑马灯滚卖点。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-003"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-003"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-003/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-004" data-kind="t" data-ctype="y3">
+        <div class="screen">
+          <video data-id="T-004" data-src="media/T-004-16x9.mp4" poster="media/T-004-16x9.jpg" muted loop playsinline preload="none" aria-label="倒计时分屏"></video>
+          <button type="button" class="open" aria-label="放大播放 T-004 / Play T-004 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">品牌宣传片</span><span lang="en">Brand films</span></p>
+        <div class="card-meta"><code>T-004</code><h4><span lang="zh">倒计时分屏</span><span lang="en">Countdown split screen</span></h4></div>
+        <p class="how"><span lang="zh">左边发射录像、右边发射台照片上压巨大的倒计时数字；归零起飞后录像铺满，再分成三格，照片和任务数字（读 CSV）一格格滚出来，最后落一句口号。</span><span lang="en">Launch footage on one side and a pad photo with a giant countdown on the other; at zero the footage goes full frame, then three panels roll in with photos and mission numbers read from a CSV, ending on a tagline.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li><li class="mat"><span lang="zh">数据</span><span lang="en">Data</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「倒计时分屏」：画面从中间劈开，一边是事件现场的录像，一边是照片上压着几乎占满半屏的倒计时数字，每过一秒数字放大一下再换；归零时打出大号英文口号，录像铺满全屏；接着画面分成三格依次滚进来，每格一个关键数字从 0 数到真值；最后一张照片压暗，落两行口号和日期。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-004"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-004"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-004/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-005" data-kind="t" data-ctype="y4">
+        <div class="screen">
+          <video data-id="T-005" data-src="media/T-005-16x9.mp4" poster="media/T-005-16x9.jpg" muted loop playsinline preload="none" aria-label="默片字幕卡重剪"></video>
+          <button type="button" class="open" aria-label="放大播放 T-005 / Play T-005 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">短剧 / 动漫剧 / 故事</span><span lang="en">Short drama, anime &amp; stories</span></p>
+        <div class="card-meta"><code>T-005</code><h4><span lang="zh">默片字幕卡重剪</span><span lang="en">Silent-film intertitle recut</span></h4></div>
+        <p class="how"><span lang="zh">把 1902 年《月球旅行记》剪成 15 秒的小故事，镜头之间插中文字幕卡（花边框、衬线字），画面加放映机的闪烁、片门晃动和划痕。</span><span lang="en">The 1902 public-domain film A Trip to the Moon recut into a 15-second story, with ornate Chinese intertitle cards between shots and projector flicker, gate weave, scratches and grain on top.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用默片字幕卡重剪老电影讲一个小故事：镜头之间插入深底双线花边的中文字幕卡，衬线大字，一张卡只说一句；影片段落可以加速或放慢，统一加棕褐色调、每帧亮度轻微闪烁、片门上下晃一两个像素、随机划痕灰尘和暗角，竖屏时影片放中间、上下黑边写第几幕；配乐用钢琴，加放映机的咔哒声。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-005"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-005"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-005/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-006" data-kind="t" data-ctype="y5">
+        <div class="screen">
+          <video data-id="T-006" data-src="media/T-006-16x9.mp4" poster="media/T-006-16x9.jpg" muted loop playsinline preload="none" aria-label="轨道 MV"></video>
+          <button type="button" class="open" aria-label="放大播放 T-006 / Play T-006 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">音乐 MV</span><span lang="en">Music videos</span></p>
+        <div class="card-meta"><code>T-006</code><h4><span lang="zh">轨道 MV</span><span lang="en">Orbit music video</span></h4></div>
+        <p class="how"><span lang="zh">空间站拍的夜景和日出两段录像、一张极光照片，按节拍切镜头；自写的歌词一字一字浮出，横屏加电影遮幅、竖屏歌词放中间，加漏光和颗粒。</span><span lang="en">Two ISS Earth-view clips and an aurora photo cut on the beat, with original lyrics floating up character by character; letterboxed in landscape, centred lyrics in portrait, plus light leaks and grain.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用电影感音乐 MV 的剪法：两三段风景录像和一张照片按节拍切换，切点闪一帧暖白、叠一层缓慢移动的橙色漏光，横屏加 2.39:1 遮幅；歌词左下对齐（竖屏居中），一字一字从下往上浮出，主句粗、副句细，句尾慢慢淡掉；结尾在照片上落中英文片名，全片加细颗粒。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-006"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-006"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-006/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-007" data-kind="t" data-ctype="y6">
+        <div class="screen">
+          <video data-id="T-007" data-src="media/T-007-16x9.mp4" poster="media/T-007-16x9.jpg" muted loop playsinline preload="none" aria-label="卫星地图简报"></video>
+          <button type="button" class="open" aria-label="放大播放 T-007 / Play T-007 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">新闻资讯解说</span><span lang="en">News explainers</span></p>
+        <div class="card-meta"><code>T-007</code><h4><span lang="zh">卫星地图简报</span><span lang="en">Satellite map briefing</span></h4></div>
+        <p class="how"><span lang="zh">Natural Earth 海岸线画底图，NOAA 最佳路径一点点画出飓风伊恩的轨迹（按强度上色），信息卡跟着读数；后半段空间站拍的两张照片滑进来，新闻条和字幕跟旁白走。</span><span lang="en">A Natural Earth coastline base map while the NOAA best track of Hurricane Ian draws itself point by point, coloured by intensity, with a live readout card; ISS photos slide in later and a news lower third and subtitles follow the narration.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li><li class="mat"><span lang="zh">数据</span><span lang="en">Data</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「卫星地图简报」：深蓝底上用真实海岸线数据画出底图和经纬网，事件的真实轨迹数据一点点画出来，线宽和颜色随强度变化，当前点画成旋转的符号、关键地点有脉冲圈；旁边的读数卡跟着轨迹刷新时间、数值和等级标签，后半段换成卫星或现场照片滑进来；外框是新闻台式的红色标签、标题条、出处跑马灯和跟旁白走的字幕。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-007"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-007"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-007/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-008" data-kind="t" data-ctype="y7">
+        <div class="screen">
+          <video data-id="T-008" data-src="media/T-008-16x9.mp4" poster="media/T-008-16x9.jpg" muted loop playsinline preload="none" aria-label="档案灯箱"></video>
+          <button type="button" class="open" aria-label="放大播放 T-008 / Play T-008 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">纪录片和纪实</span><span lang="en">Documentary</span></p>
+        <div class="card-meta"><code>T-008</code><h4><span lang="zh">档案灯箱</span><span lang="en">Archive lightbox</span></h4></div>
+        <p class="how"><span lang="zh">三张 1936 年的底片扫描摆在发亮的灯箱上，镜头在底片之间平移，放大镜在每张的细节上停一会儿；左上角的档案卡用打字机效果打出编号和年份，底部字幕跟旁白。</span><span lang="en">Three 1936 negative scans from the Library of Congress lie on a glowing lightbox; the camera pans between them, a loupe lingers on details, an archive card types out the catalogue number and year, and subtitles follow the narration.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「档案灯箱」：几张历史底片或照片加白边，略微歪斜地摆在中间亮、四周暗的乳白色灯箱上，镜头在它们之间平移；每张停下时一枚黑框放大镜慢慢滑到细节上，镜片里是放大两倍的画面；左上角一张档案卡用打字机效果打出馆藏编号、年份和摄影者，底部衬线字幕跟着旁白。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-008"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-008"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-008/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-009" data-kind="t" data-ctype="y8">
+        <div class="screen">
+          <video data-id="T-009" data-src="media/T-009-16x9.mp4" poster="media/T-009-16x9.jpg" muted loop playsinline preload="none" aria-label="活体录屏"></video>
+          <button type="button" class="open" aria-label="放大播放 T-009 / Play T-009 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">教程和录屏演示</span><span lang="en">Tutorials &amp; screencasts</span></p>
+        <div class="card-meta"><code>T-009</code><h4><span lang="zh">活体录屏</span><span lang="en">Living screencast</span></h4></div>
+        <p class="how"><span lang="zh">本仓库介绍页的操作录屏放进浏览器窗口，镜头跟着鼠标在点击前后自动推近、拉回；鼠标由代码按录下的轨迹重画，点击处有涟漪，左上角标第几步，底部字幕跟旁白。</span><span lang="en">A scripted screen recording of this repository&#x27;s intro page sits in a browser window; the camera pushes in around each click and pulls back, the pointer is redrawn by code from the recorded path with click ripples, step labels mark progress and subtitles follow the narration.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录屏</span><span lang="en">Screen recording</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「活体录屏」：真实操作的录屏放在圆角窗口里，镜头跟着鼠标自动推近到正在操作的区域、操作完再拉回全景；鼠标指针由代码按记录的坐标重画，点击时有涟漪，每一步在角落标出步骤号和一句说明；旁白讲当前步骤，字幕跟着走，背景是柔和的渐变。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-009"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-009"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-009/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-010" data-kind="t" data-ctype="y9">
+        <div class="screen">
+          <video data-id="T-010" data-src="media/T-010-16x9.mp4" poster="media/T-010-16x9.jpg" muted loop playsinline preload="none" aria-label="延时城市交响"></video>
+          <button type="button" class="open" aria-label="放大播放 T-010 / Play T-010 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">旅行和城市</span><span lang="en">Travel &amp; cities</span></p>
+        <div class="card-meta"><code>T-010</code><h4><span lang="zh">延时城市交响</span><span lang="en">Time-lapse city symphony</span></h4></div>
+        <p class="how"><span lang="zh">空间站延时拍的夜间城市灯火开场，切到 1900 年时代广场的夜景老照片，最后用 Natural Earth 的城市数据在黑底上一颗颗点亮世界最大的 60 座城市，按人口决定亮度和大小。</span><span lang="en">ISS time-lapse of city lights at night opens, cuts to a c.1900 photo of Times Square at night, then Natural Earth city data lights up the world&#x27;s 60 largest cities on black, brightness and size set by population.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">录像</span><span lang="en">Footage</span></li><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li><li class="mat"><span lang="zh">数据</span><span lang="en">Data</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「延时城市交响」：开场是夜间城市灯火的延时录像，加速播放并叠一层光晕；一道暖色光带扫过后切到一张城市的老照片，棕褐色调加慢推；再一道光带扫过，切到黑底的世界地图，按真实的城市数据从大到小一颗颗点亮光点，亮度和大小跟人口走，最大的几座标上英文名，底部数出合计人口。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-010"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-010"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-010/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-011" data-kind="t" data-ctype="y10">
+        <div class="screen">
+          <video data-id="T-011" data-src="media/T-011-16x9.mp4" poster="media/T-011-16x9.jpg" muted loop playsinline preload="none" aria-label="体育战术板"></video>
+          <button type="button" class="open" aria-label="放大播放 T-011 / Play T-011 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">体育赛事</span><span lang="en">Sports</span></p>
+        <div class="card-meta"><code>T-011</code><h4><span lang="zh">体育战术板</span><span lang="en">Sports telestrator</span></h4></div>
+        <p class="how"><span lang="zh">把 1878 年迈布里奇《奔马》照片版上的 11 格切出来当动画播，像体育转播的慢动作回放——先正常速度，再放慢、定格在四蹄离地的那一格，用白板笔画地面线、圈和箭头，最后排成一条胶片对比。</span><span lang="en">The 11 frames of Muybridge&#x27;s 1878 Horse in Motion plate are cut out and played like a broadcast replay: normal speed, slow motion, then a freeze on the airborne frame with telestrator lines, a circle and an arrow, ending on a film-strip comparison.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「体育战术板」：深绿网格底板上，把连拍照片的每一格切出来当动画播，像转播里的回放——先正常速度，再标「慢动作」放慢，最后「定格」在关键一格；定格后用黄色白板笔画出虚线地面、圈住要看的部位、画箭头，旁边的解说板先抛问题再给答案和几个数字；结尾把所有格排成一条胶片，关键格加黄框。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-011"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-011"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-011/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="T-012" data-kind="t" data-ctype="y11">
+        <div class="screen">
+          <video data-id="T-012" data-src="media/T-012-16x9.mp4" poster="media/T-012-16x9.jpg" muted loop playsinline preload="none" aria-label="绘本翻页"></video>
+          <button type="button" class="open" aria-label="放大播放 T-012 / Play T-012 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">儿童绘本动画</span><span lang="en">Children&#x27;s picture books</span></p>
+        <div class="card-meta"><code>T-012</code><h4><span lang="zh">绘本翻页</span><span lang="en">Picture-book page turns</span></h4></div>
+        <p class="how"><span lang="zh">1902 年《彼得兔》的插图一页页翻过去，每页插图轻轻呼吸、摇摆，像纸偶；下面一行童趣字体的文字跟着旁白逐字变色（卡拉 OK 式），翻页用一次纸张翻转。</span><span lang="en">Beatrix Potter&#x27;s 1902 Peter Rabbit illustrations turn page by page, each gently breathing and swaying like a paper puppet, while a playful line of text below changes colour character by character with the narration.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">照片</span><span lang="en">Photos</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用儿童绘本的翻页做法：奶油色纸底上摊开一本书，左页放插图、右页放一行童趣字体的大字（竖屏上图下字）；插图轻轻呼吸、左右摇摆，像纸偶；翻页时书页绕中线横向翻转一次；文字跟着旁白一字一字从浅灰变成橘色并轻轻跳动，页脚写页码。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-012"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/footage.md#T-012"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/T-012/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-001" data-kind="g" data-ctype="y0">
+        <div class="screen">
+          <video data-id="G-001" data-src="media/G-001-16x9.mp4" poster="media/G-001-16x9.jpg" muted loop playsinline preload="none" aria-label="编辑部纸拼贴讲解"></video>
+          <button type="button" class="open" aria-label="放大播放 G-001 / Play G-001 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">知识科普讲解</span><span lang="en">Explainers &amp; science</span></p>
+        <div class="card-meta"><code>G-001</code><h4><span lang="zh">编辑部纸拼贴讲解</span><span lang="en">Editorial paper-collage explainer</span></h4></div>
+        <p class="how"><span lang="zh">两张 AI 生成的纸拼贴插图（深海背景、白底章鱼）由代码抠掉白底、叠成前后两层错开移动；旁白说到「三颗心」「鳃」「全身」「蓝色」「血蓝蛋白」时，代码在图上贴纸心、红笔圈、手写标签和剪报拼字。</span><span lang="en">Two AI-generated paper-collage illustrations (a deep-sea backdrop and an octopus on white) are keyed and layered by code with offset parallax; when the narration reaches each keyword, code sticks on paper hearts, red marker circles, handwritten labels and ransom-note letters.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「编辑部纸拼贴讲解」：先生成两三张纸拼贴质感的插图（撕边彩纸、半调网点、旧报纸纹理），主体单独一张、背景干净，代码把它们叠成前后几层，慢慢错开移动出纵深；旁白讲到哪里，就在画面上用荧光笔划线、红笔圈出、贴上手写标签和箭头，关键数字用剪报拼字的样子砸进来，字幕跟着旁白逐句出现。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-001"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-001"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-001/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-002" data-kind="g" data-ctype="y1">
+        <div class="screen">
+          <video data-id="G-002" data-src="media/G-002-16x9.mp4" poster="media/G-002-16x9.jpg" muted loop playsinline preload="none" aria-label="虚拟主播口播"></video>
+          <button type="button" class="open" aria-label="放大播放 G-002 / Play G-002 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">口播 / 数字人</span><span lang="en">Talking head &amp; avatars</span></p>
+        <div class="card-meta"><code>G-002</code><h4><span lang="zh">虚拟主播口播</span><span lang="en">Virtual host talking head</span></h4></div>
+        <p class="how"><span lang="zh">AI 生成的原创卡通主播定妆照当首帧，生成一段说话的视频；代码排成演播室版面——主播一侧，另一侧随旁白逐条弹出问题卡和要点卡、关键词高亮，底部字幕，角落节目名牌。视频只有 10 秒，后半段跳切回前面并推近一档。</span><span lang="en">An AI-generated original cartoon host is used as the first frame of a generated talking video; code lays it out like a studio show with the host on one side and question and point cards popping in on cue with the narration, keyword highlights, subtitles and a show badge. The 10-second clip is jump-cut and punched in for the second half.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「虚拟主播口播」：先生成一张原创卡通主播的定妆照（不像任何真人），再用它当首帧生成一段面对镜头说话、点头、比手势的视频；代码把主播放进演播室式的版面——一侧是主播，另一侧是随旁白逐条弹出的要点卡、关键词高亮和小图标，底部一条滚动字幕，角落是节目名牌。旁白用公开音色合成，字幕时刻取自语音的逐字时间。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-002"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-002"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-002/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-003" data-kind="g" data-ctype="y2">
+        <div class="screen">
+          <video data-id="G-003" data-src="media/G-003-16x9.mp4" poster="media/G-003-16x9.jpg" muted loop playsinline preload="none" aria-label="电影感产品广告"></video>
+          <button type="button" class="open" aria-label="放大播放 G-003 / Play G-003 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">产品广告和带货</span><span lang="en">Product ads &amp; shopping</span></p>
+        <div class="card-meta"><code>G-003</code><h4><span lang="zh">电影感产品广告</span><span lang="en">Cinematic product ad</span></h4></div>
+        <p class="how"><span lang="zh">AI 生成的产品棚拍图和以它为首帧生成的推镜视频，代码加宽银幕黑边、逐字打出的卖点细线标注，最后落版品牌名、口号、价格牌和购买按钮。</span><span lang="en">An AI-generated studio shot of a product and a push-in video generated from it as the first frame; code adds letterbox bars, thin callout lines whose labels type out, and an end card with brand, slogan, price tag and buy button.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「电影感产品广告」：生成一张产品的棚拍主图（虚构品牌、暗色石台、一束侧光、薄雾），再用它当首帧生成一段镜头缓缓推近、雾气流动的视频；代码在镜头上做宽银幕黑边、慢速推拉、产品卖点的细线标注（线从产品上的点伸出，文字逐字打出），最后一屏落版：品牌名、一句口号、价格牌和购买按钮弹出。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-003"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-003"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-003/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-004" data-kind="g" data-ctype="y3">
+        <div class="screen">
+          <video data-id="G-004" data-src="media/G-004-16x9.mp4" poster="media/G-004-16x9.jpg" muted loop playsinline preload="none" aria-label="大字品牌片"></video>
+          <button type="button" class="open" aria-label="放大播放 G-004 / Play G-004 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">品牌宣传片</span><span lang="en">Brand films</span></p>
+        <div class="card-meta"><code>G-004</code><h4><span lang="zh">大字品牌片</span><span lang="en">Big-type brand film</span></h4></div>
+        <p class="how"><span lang="zh">两段 AI 生成的空镜（清晨海岸航拍、倒茶的手）按节拍剪在一起，镜头上压整屏的超大描边品牌字，随镜头慢慢滑动、只露出一部分；口号用细衬线体一句句淡入；结尾黑底上的大字当遮罩，海岸镜头从字里透出来，再落标志。</span><span lang="en">Two AI-generated empty shots (a dawn coastline aerial and hands pouring tea) are cut together; oversized outlined brand type drifts across the frame, the tagline fades in letter by letter in a thin serif, and the end card uses the brand name as a mask with the coastline showing through.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「大字品牌片」：生成两三段没有人脸的空镜（清晨的海岸、手和器物的特写、光线穿过窗），每段几秒；代码把它们按节拍剪在一起，镜头上压整屏的超大品牌字——字只显出一部分、随镜头慢慢滑动，或者把字当成遮罩让画面从字里透出来；一句一句的品牌口号用细衬线体淡入，结尾是标志和一句话的落版。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-004"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-004"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-004/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-005" data-kind="g" data-ctype="y4">
+        <div class="screen">
+          <video data-id="G-005" data-src="media/G-005-16x9.mp4" poster="media/G-005-16x9.jpg" muted loop playsinline preload="none" aria-label="动漫短剧分镜"></video>
+          <button type="button" class="open" aria-label="放大播放 G-005 / Play G-005 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">短剧 / 动漫剧 / 故事</span><span lang="en">Short drama, anime &amp; stories</span></p>
+        <div class="card-meta"><code>G-005</code><h4><span lang="zh">动漫短剧分镜</span><span lang="en">Anime short-drama storyboard</span></h4></div>
+        <p class="how"><span lang="zh">两张 AI 生成的日式动画画（女主角、进站的小火车）和以女主角图为首帧生成的转头镜头；代码排成漫画分格——格子依次滑入、格内推拉，关键一格整屏放大并加速度线和闪白，对白用气泡，心里话是旁白加竖排字，雨丝由代码画，结尾片名和「下集」字卡。</span><span lang="en">Two AI-generated anime-style images (the heroine and a train pulling in) plus a head-turn shot generated from the heroine image; code lays them out as manga panels that slide in, blows the key panel up full-screen with speed lines and a white flash, adds a speech bubble, vertical inner-monologue text, code-drawn rain and a title card.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「动漫短剧分镜」：先生成主角的定妆图和一两张场景图（同一种日式动画画风），再用定妆图当首帧生成一段主角的表演镜头；代码把它们排成漫画分格——格子一格一格滑进来、镜头在格子里推拉，台词用对白气泡和竖排字，心里话用旁白合成，关键一格整屏放大、加速度线和闪白，结尾打片名和「下集」字卡。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-005"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-005"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-005/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-006" data-kind="g" data-ctype="y5">
+        <div class="screen">
+          <video data-id="G-006" data-src="media/G-006-16x9.mp4" poster="media/G-006-16x9.jpg" muted loop playsinline preload="none" aria-label="无限放大拼贴"></video>
+          <button type="button" class="open" aria-label="放大播放 G-006 / Play G-006 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">音乐 MV</span><span lang="en">Music videos</span></p>
+        <div class="card-meta"><code>G-006</code><h4><span lang="zh">无限放大拼贴</span><span lang="en">Infinite zoom collage</span></h4></div>
+        <p class="how"><span lang="zh">四张 AI 生成的画，每张正中有一个圆形「洞口」（窗、漩涡、气泡），代码一直往洞口推近，把下一张画缩小后用羽化圆形遮罩嵌在洞里，快推满时圆外也渐渐显出下一张，到头正好变成下一张的全貌，一层层钻进去；歌词跟着推进一个字一个字亮起。</span><span lang="en">Four AI-generated paintings each have a round opening at the center; code keeps pushing into the opening, nests the next painting inside it with a feathered circular mask, and swaps seamlessly when the opening fills the frame, layer after layer; lyric characters light up as the zoom advances.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「无限放大拼贴」：生成三四张画面，每张正中都有一个圆形的「洞口」（窗、井口、镜头、月亮），下一张画就是从这个洞口里看到的世界；代码一直往画面中心推近，把下一张画缩小后用羽化的圆形遮罩嵌进上一张的洞口，推到洞口铺满画面时无缝换成下一张，如此一层层钻进去；歌词跟着节拍一个字一个字地亮起。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-006"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-006"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-006/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-007" data-kind="g" data-ctype="y6">
+        <div class="screen">
+          <video data-id="G-007" data-src="media/G-007-16x9.mp4" poster="media/G-007-16x9.jpg" muted loop playsinline preload="none" aria-label="插画新闻解说"></video>
+          <button type="button" class="open" aria-label="放大播放 G-007 / Play G-007 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">新闻资讯解说</span><span lang="en">News explainers</span></p>
+        <div class="card-meta"><code>G-007</code><h4><span lang="zh">插画新闻解说</span><span lang="en">Illustrated news explainer</span></h4></div>
+        <p class="how"><span lang="zh">三张 AI 生成的扁平示意插画（发烫的城区、凉爽的郊外、绿化后的街区），代码排成新闻台版面：顶部栏目条、插画慢推、旁边的数据卡（温度计对比、白天吸热晚上放热、三条降温办法逐条打勾）、底部滚动标题和字幕，换要点时色块擦过画面；角落标明示意图由 AI 生成。</span><span lang="en">Three AI-generated flat explanatory illustrations sit in a news-desk layout built by code: a section bar, slowly pushing illustration, a data card (illustrative thermometers, heat in by day and out by night, three cooling measures ticked off as they are mentioned), a scrolling ticker and subtitles, with colour-block wipes between points and an on-screen note that the illustrations are AI-generated.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「插画新闻解说」：每个要点生成一张扁平插画式的示意图（不画真实人物、不冒充现场照片，画面角落标「示意图 · AI 生成」），代码排成新闻台的版面：顶部栏目条，中间插画慢慢推近、需要对比时左右分屏，旁边的数据卡用代码画（示意温度计、进出的箭头、旁白说到就打勾的清单），底部滚动标题和逐句字幕；换要点时用色块擦过画面。旁白用新闻播报风格的公开音色。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-007"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-007"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-007/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-008" data-kind="g" data-ctype="y7">
+        <div class="screen">
+          <video data-id="G-008" data-src="media/G-008-16x9.mp4" poster="media/G-008-16x9.jpg" muted loop playsinline preload="none" aria-label="伪纪录片"></video>
+          <button type="button" class="open" aria-label="放大播放 G-008 / Play G-008 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">纪录片和纪实</span><span lang="en">Documentary</span></p>
+        <div class="card-meta"><code>G-008</code><h4><span lang="zh">伪纪录片</span><span lang="en">Mockumentary</span></h4></div>
+        <p class="how"><span lang="zh">AI 生成的屋顶纸鹤照片和起飞镜头，代码叠一层野外纪录片的取景器：手持晃动、对焦由虚到实、REC 和走动的时间码、物种名下三分之一字幕、「观察第 37 天」场记、数量估计，最后跟着鹤群起飞收在片名上。</span><span lang="en">An AI-generated photo of paper cranes on city rooftops and an AI-generated take-off clip, wrapped in a code-drawn wildlife-documentary viewfinder: handheld shake, a focus pull, REC and running timecode, a lower-third species name, a field-log day counter and a head count, ending on the title as the flock takes off.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「伪纪录片」：给一个一看就是虚构的题材（会迁徙的纸鹤、住在路灯里的萤火虫）生成一张「野外笔记」式的照片和一段手持摄影感的视频，旁白用纪录片解说的口吻一本正经地讲；代码加上纪录片的包装：取景器框线、REC 和走动的时间码、手持晃动和由虚到实的拉焦，下三分之一的物种名和拉丁学名、「观察第 37 天」的场记、数量估计，轻微颗粒；结尾跟着起飞的镜头落在片名上。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-008"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-008"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-008/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-009" data-kind="g" data-ctype="y8">
+        <div class="screen">
+          <video data-id="G-009" data-src="media/G-009-16x9.mp4" poster="media/G-009-16x9.jpg" muted loop playsinline preload="none" aria-label="俯拍步骤教程"></video>
+          <button type="button" class="open" aria-label="放大播放 G-009 / Play G-009 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">教程和录屏演示</span><span lang="en">Tutorials &amp; screencasts</span></p>
+        <div class="card-meta"><code>G-009</code><h4><span lang="zh">俯拍步骤教程</span><span lang="en">Step-by-step illustrated guide</span></h4></div>
+        <p class="how"><span lang="zh">三张 AI 生成的手冲咖啡俯拍（以第一张为参考，桌面和器具前后一致），代码叠步骤编号、电子秤读数一路滚到目标克数、闷蒸 30 秒倒计时圆环、注水路径的虚线圆圈和箭头，底部步骤进度条；没有旁白，靠大字和计数讲清楚。</span><span lang="en">Three AI-generated overhead photos of a pour-over (later shots referenced to the first so the table and tools stay consistent), overlaid in code with step numbers, a scale reading that counts up to the target weight, a 30-second bloom countdown ring, a dashed circle tracing the pour path and a four-part progress bar; no narration, the big type and counters carry it.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「俯拍步骤教程」：每一步生成一张同一张桌面、同一种光线的俯拍图（只露出手和工具），代码把它们按步骤切换：大号步骤编号从侧边滑入，要点用虚线圆圈和箭头指在图上，用量和时间做成会跳动的电子秤读数和倒计时圆环，底部一条步骤进度条；最后一屏用大字写出关键配比。可以不要旁白，靠大字和计数讲清楚。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-009"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-009"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-009/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-010" data-kind="g" data-ctype="y9">
+        <div class="screen">
+          <video data-id="G-010" data-src="media/G-010-16x9.mp4" poster="media/G-010-16x9.jpg" muted loop playsinline preload="none" aria-label="旅行手账 vlog"></video>
+          <button type="button" class="open" aria-label="放大播放 G-010 / Play G-010 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">旅行和城市</span><span lang="en">Travel &amp; cities</span></p>
+        <div class="card-meta"><code>G-010</code><h4><span lang="zh">旅行手账 vlog</span><span lang="en">Travel journal vlog</span></h4></div>
+        <p class="how"><span lang="zh">两段 AI 生成的旅行镜头（清晨水乡、夜晚老街）贴在手账纸上当照片，四角胶带、微微歪着；旁边手绘路线图，虚线跟着旁白从码头走到老街，说到的地方盖一个印章；字幕是手写体，结尾盖「第一天」大章。</span><span lang="en">Two AI-generated travel clips (a misty water town at dawn, a lantern-lit night market) are taped onto journal paper as tilted photos; beside them a hand-drawn route map draws its dashed path from the pier to the old street in step with the narration, stamping each place as it is mentioned, with handwritten subtitles and a big &#x27;Day 1&#x27; stamp at the end.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「旅行手账 vlog」：生成两三段旅行地的空镜（街巷、水边、夜市），代码把画面放进手账本：胶带贴住、微微歪着的照片框，代码画的手绘路线图上一个小点跟着旁白沿虚线走到下一站，说到的地方像盖章一样印上去，手写体的日期和字幕；换镜头时新照片落下来压住旧的，结尾盖一个「第一天」大章。旁白用轻松的口吻讲见闻，字幕跟着走。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-010"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-010"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-010/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-011" data-kind="g" data-ctype="y10">
+        <div class="screen">
+          <video data-id="G-011" data-src="media/G-011-16x9.mp4" poster="media/G-011-16x9.jpg" muted loop playsinline preload="none" aria-label="高光慢放集锦"></video>
+          <button type="button" class="open" aria-label="放大播放 G-011 / Play G-011 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">体育赛事</span><span lang="en">Sports</span></p>
+        <div class="card-meta"><code>G-011</code><h4><span lang="zh">高光慢放集锦</span><span lang="en">Sports highlight</span></h4></div>
+        <p class="how"><span lang="zh">一段 AI 生成的扣篮镜头（虚构球员、无队标），代码剪成集锦：正常速度助跑 → 慢放起跳 → 最高点定格（背景去色、圈出球、弹出数据卡）→ 扣进的一下比分牌翻到 88、闪白 → 「本周最佳」收尾；角上一直挂着转播比分条。</span><span lang="en">One AI-generated dunk clip (a fictional player, no team marks) cut as a highlight in code: approach at full speed, slow-motion take-off, a desaturated freeze at the peak with the ball circled and illustrative stat cards, a flash and score flip to 88 on the dunk, then a &#x27;Play of the Week&#x27; end card, with a broadcast score bug throughout.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生视频</span><span lang="en">Generated video</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「高光慢放集锦」：生成一段没有真实球员、没有队标的运动镜头（虚构球队的扣篮、射门或冲线），代码把它做成赛事集锦：先常速，到动作最高点变成慢放再定格，定格时闪一下、画面去色变暗，圈出球、拉一条标注线，旁边弹出高度、滞空这类数据卡（标明示意），比分牌和比赛时钟一直在角落；扣进时闪白、比分翻牌，最后打出「本周最佳」。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-011"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-011"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-011/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
+      <article class="card" id="G-012" data-kind="g" data-ctype="y11">
+        <div class="screen">
+          <video data-id="G-012" data-src="media/G-012-16x9.mp4" poster="media/G-012-16x9.jpg" muted loop playsinline preload="none" aria-label="水彩绘本朗读"></video>
+          <button type="button" class="open" aria-label="放大播放 G-012 / Play G-012 large"><span class="open-hint"><span lang="zh">点击放大</span><span lang="en">Click to enlarge</span></span></button>
+          <button type="button" class="snd" aria-pressed="false"><span lang="zh">声音</span><span lang="en">Sound</span></button>
+        </div>
+        <p class="card-theme"><span lang="zh">儿童绘本动画</span><span lang="en">Children&#x27;s picture books</span></p>
+        <div class="card-meta"><code>G-012</code><h4><span lang="zh">水彩绘本朗读</span><span lang="en">Picture-book page turn</span></h4></div>
+        <p class="how"><span lang="zh">三张 AI 生成的水彩绘本插画（后两张以第一张为参考，小刺猬前后是同一只），代码排成一本摊开的书：左页插画、右页文字（竖版上图下文），翻页时纸张绕书脊转过去带阴影；文字跟着旁白一个字一个字染色，像卡拉 OK 字幕；最后合上一页写「完」。</span><span lang="en">Three AI-generated watercolour picture-book illustrations (the later two referenced to the first so the hedgehog stays the same) are laid out in code as an open book: picture on the left page, text on the right (picture above text in portrait); pages turn around the spine with shading, and the text fills in character by character with the narration like karaoke, closing on a hand-lettered &#x27;The End&#x27;.</span></p>
+        <ul class="chips"><li class="mat"><span lang="zh">生图</span><span lang="en">Generated images</span></li><li class="mat"><span lang="zh">语音合成</span><span lang="en">Speech synthesis</span></li></ul>
+        <details><summary><span lang="zh">风格提示词</span><span lang="en">Style prompt (Chinese)</span></summary><p lang="zh-CN">用「水彩绘本朗读」：生成三四页同一个角色、同一种水彩画风的绘本插图，代码把它们排成摊开的书（竖版上图下文）：画面在页里慢慢推近，翻页时纸页绕书脊转过去、带明暗，文字跟着朗读一个字一个字变色，结尾一个手写的「完」。朗读用温和的公开音色，配乐是轻柔的摇篮曲。</p></details>
+        <div class="links"><a href="https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-012"><span lang="zh">样片代码</span><span lang="en">Sample code</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/styles/generated.md#G-012"><span lang="zh">词典条目</span><span lang="en">Dictionary entry</span></a><a href="https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/G-012/assets.json"><span lang="zh">素材清单</span><span lang="en">Asset list</span></a></div>
+      </article>
     </div>
     <nav class="pager" id="pager" aria-label="分页 / Pages" hidden>
       <button type="button" class="pg-prev"><span lang="zh">上一页</span><span lang="en">Previous</span></button>
@@ -1285,17 +1616,17 @@
 <section class="sec" id="how">
   <div class="wrap">
     <h2><span lang="zh">一支样片怎么组成</span><span lang="en">What a sample is made of</span></h2>
-    <p class="sec-lede"><span lang="zh">每支样片是一个文件夹里的两份代码，加一条共用的出片管线。横屏 16:9 和竖屏 9:16 用同一份代码，按画幅重新构图，不裁切。</span><span lang="en">Each sample is two code files in one folder plus a shared render pipeline. Landscape 16:9 and portrait 9:16 come from the same code, recomposed for each frame shape rather than cropped.</span></p>
+    <p class="sec-lede"><span lang="zh">每支样片是一个文件夹里的两份代码，加一条共用的出片管线；用素材的样片另有一个 <code>assets/</code> 文件夹和一份素材清单 <code>assets.json</code>，记下每份素材的出处、许可或生成参数。横屏 16:9 和竖屏 9:16 用同一份代码，按画幅重新构图，不裁切。</span><span lang="en">Each sample is two code files in one folder plus a shared render pipeline; samples with material also carry an <code>assets/</code> folder and an <code>assets.json</code> list recording each piece's source, license or generation settings. Landscape 16:9 and portrait 9:16 come from the same code, recomposed for each frame shape rather than cropped.</span></p>
     <ol class="pipe">
       <li>
         <code class="file">scene.js</code>
         <h3><span lang="zh">画面</span><span lang="en">Picture</span></h3>
-        <p><span lang="zh">一个 <code>draw(ctx, t)</code> 函数：给定时间 t，画出这一帧。不读随机数、不读时钟，所以结果唯一。</span><span lang="en">One <code>draw(ctx, t)</code> function: given time t, draw that frame. No unseeded randomness, no clock, so the result is unique.</span></p>
+        <p><span lang="zh">一个 <code>draw(ctx, t)</code> 函数：给定时间 t，画出这一帧。不读随机数、不读时钟；视频素材按帧号取那一帧，所以结果唯一。</span><span lang="en">One <code>draw(ctx, t)</code> function: given time t, draw that frame. No unseeded randomness, no clock; video material is read by frame number, so the result is unique.</span></p>
       </li>
       <li>
         <code class="file">sound.py</code>
         <h3><span lang="zh">声音</span><span lang="en">Sound</span></h3>
-        <p><span lang="zh">一个 <code>score(m)</code> 函数，用代码合成的电子音配乐：拨弦、FM 钟、方波、噪声扫频。不用 TTS、AI 作曲、曲库或录音。</span><span lang="en">One <code>score(m)</code> function scoring the clip with synthesized sound: plucked strings, FM bells, square waves, noise sweeps. No TTS, AI music, libraries or recordings.</span></p>
+        <p><span lang="zh">一个 <code>score(m)</code> 函数。纯代码样片用代码合成的电子音：拨弦、FM 钟、方波、噪声扫频；用素材的样片照清单摆旁白、原声和公开曲库的配乐，说话时自动压低配乐。</span><span lang="en">One <code>score(m)</code> function. Pure-code samples use synthesized sound: plucked strings, FM bells, square waves, noise sweeps. Samples with material place narration, original audio and openly licensed music from their asset list, ducking the music under speech.</span></p>
       </li>
       <li>
         <code class="file">render.py</code>
@@ -1320,7 +1651,7 @@ scene({
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
     <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result.</span></p>
     <ol class="eight">
-      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明“纯代码逐帧，不用生成模型和外部图片”。</span><span lang="en">Say "pure code, frame by frame, no generators or external images".</span></li>
+      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明纯代码，还是用哪些素材（录像、照片、数据、生图、生视频）、素材从哪来。</span><span lang="en">Say whether it is pure code or which material it uses (footage, photos, data, generated images or clips) and where that comes from.</span></li>
       <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface.</span></li>
       <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow).</span></li>
       <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe; place it at the climax.</span></li>
@@ -1382,7 +1713,8 @@ scene({
             <li><code>styles/*.md</code><span lang="zh">风格词典：每种一句提示词、题材、技术标签</span><span lang="en">The dictionary: a prompt, theme and tags per style</span></li>
             <li><code>index.md</code><span lang="zh">按用途、题材选风格的索引表</span><span lang="en">Lookup tables by purpose and theme</span></li>
             <li><code>prompting.md</code><span lang="zh">提示词写法和通用模板</span><span lang="en">How to write prompts, plus a template</span></li>
-            <li><code>sound.md</code><span lang="zh">声音怎么用代码合成</span><span lang="en">How to synthesize the sound</span></li>
+            <li><code>materials.md</code><span lang="zh">用真实素材、AI 素材做视频的做法</span><span lang="en">Making videos with real or AI-generated material</span></li>
+            <li><code>sound.md</code><span lang="zh">配乐、音效和旁白</span><span lang="en">Music, effects and narration</span></li>
             <li><code>scripts/</code><span lang="zh">生成索引、检查条目的脚本</span><span lang="en">Scripts that build and check the index</span></li>
           </ul>
         </div>
@@ -1428,14 +1760,14 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
       <article>
         <p class="lv">0</p>
         <h4><span lang="zh">词典</span><span lang="en">Dictionary</span></h4>
-        <p class="num">195 <span lang="zh">种风格</span><span lang="en">styles</span></p>
-        <p><span lang="zh">每种一句可复制的风格提示词、题材和技术标签，配六张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese), a theme and technique tags, with six lookup tables for choosing.</span></p>
+        <p class="num">219 <span lang="zh">种风格</span><span lang="en">styles</span></p>
+        <p><span lang="zh">每种一句可复制的风格提示词。纯代码的标题材和技术，用素材的标内容类型和素材种类，配几张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese). Pure-code styles carry a theme and techniques; material styles carry a content type and the kinds of material, with lookup tables for choosing.</span></p>
       </article>
       <article>
         <p class="lv">1</p>
         <h4><span lang="zh">样片</span><span lang="en">Samples</span></h4>
-        <p class="num">82 <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
-        <p><span lang="zh">候选风格套上你的品牌色和内容，跑 3–5 秒，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content, 3–5 seconds, in both frame shapes. The samples here are worked examples you can edit.</span></p>
+        <p class="num">106 <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
+        <p><span lang="zh">候选风格套上你的品牌色和内容（用素材的换成你的素材），跑一小段，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content (and your own material where it uses some), a short clip in both frame shapes. The samples here are worked examples you can edit.</span></p>
       </article>
       <article>
         <p class="lv">2</p>
@@ -1452,7 +1784,7 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
 <section class="sec" id="library">
   <div class="wrap">
     <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
-    <p class="sec-lede"><span lang="zh">全部 195 种风格按题材分布。深色部分是已出样片的。</span><span lang="en">All 195 styles by theme. The solid part of each bar has rendered samples.</span></p>
+    <p class="sec-lede"><span lang="zh">全部 219 种风格。纯代码的 195 种按题材分布，深色部分是已出样片的。</span><span lang="en">All 219 styles. The 195 pure-code ones by theme; the solid part of each bar has rendered samples.</span></p>
     <div class="bars">
       <div class="bar-row"><span class="lab"><span lang="zh">手绘与绘画</span><span lang="en">Hand-drawn &amp; painting</span></span><span class="bar-track" role="img" aria-label="手绘与绘画 38"><span class="bar-all" style="width:100.0%"></span><span class="bar-done" style="width:34.2%"></span></span><span class="n">13/38</span></div>
       <div class="bar-row"><span class="lab"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></span><span class="bar-track" role="img" aria-label="3D 与实时图形 27"><span class="bar-all" style="width:71.1%"></span><span class="bar-done" style="width:23.7%"></span></span><span class="n">9/27</span></div>
@@ -1465,15 +1797,33 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
       <div class="bar-row"><span class="lab"><span lang="zh">东方传统</span><span lang="en">East Asian traditions</span></span><span class="bar-track" role="img" aria-label="东方传统 12"><span class="bar-all" style="width:31.6%"></span><span class="bar-done" style="width:23.7%"></span></span><span class="n">9/12</span></div>
       <div class="bar-row"><span class="lab"><span lang="zh">游戏</span><span lang="en">Games</span></span><span class="bar-track" role="img" aria-label="游戏 8"><span class="bar-all" style="width:21.1%"></span><span class="bar-done" style="width:7.9%"></span></span><span class="n">3/8</span></div>
     </div>
-    <p class="note"><span lang="zh">按「画在哪」分：Canvas 2D 88 种、SVG / HTML 54 种、WebGL / 3D 49 种、讲解框架 2 种、终端字符 1 种、外部工具 1 种。</span><span lang="en">By where it is drawn: Canvas 2D 88, SVG / HTML 54, WebGL / 3D 49, explainer frameworks 2, terminal text 1, external tools 1.</span></p>
+    <p class="note"><span lang="zh">用素材的按内容类型分，格子里是「已出样片 / 种数」：</span><span lang="en">The material styles by content type, as "rendered / total":</span></p>
+    <table class="ctypes">
+      <thead><tr><th><span lang="zh">内容类型</span><span lang="en">Content type</span></th><th><span lang="zh">T 类 实拍素材</span><span lang="en">T · real footage</span></th><th><span lang="zh">G 类 AI 素材</span><span lang="en">G · AI material</span></th></tr></thead>
+      <tbody>
+      <tr><th><span lang="zh">知识科普讲解</span><span lang="en">Explainers &amp; science</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">口播 / 数字人</span><span lang="en">Talking head &amp; avatars</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">产品广告和带货</span><span lang="en">Product ads &amp; shopping</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">品牌宣传片</span><span lang="en">Brand films</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">短剧 / 动漫剧 / 故事</span><span lang="en">Short drama, anime &amp; stories</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">音乐 MV</span><span lang="en">Music videos</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">新闻资讯解说</span><span lang="en">News explainers</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">纪录片和纪实</span><span lang="en">Documentary</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">教程和录屏演示</span><span lang="en">Tutorials &amp; screencasts</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">旅行和城市</span><span lang="en">Travel &amp; cities</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">体育赛事</span><span lang="en">Sports</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      <tr><th><span lang="zh">儿童绘本动画</span><span lang="en">Children&#x27;s picture books</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note"><span lang="zh">按「画在哪」分：Canvas 2D 88 种、SVG / HTML 54 种、WebGL / 3D 49 种、AI 生成素材 12 种、公共领域素材 12 种、讲解框架 2 种、终端字符 1 种、外部工具 1 种。</span><span lang="en">By where it is drawn: Canvas 2D 88, SVG / HTML 54, WebGL / 3D 49, AI-generated material 12, public-domain material 12, explainer frameworks 2, terminal text 1, external tools 1.</span></p>
   </div>
 </section>
 </main>
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <p><span lang="zh">MIT 许可。画面和声音全部由本仓库的代码生成，不收录任何第三方图片、录音或模型输出。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">MIT licensed. Every picture and sound is generated by the code in this repository; no third-party images, recordings or model outputs. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
-    <p class="ver">v5 · 2026-11-03 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
+    <p><span lang="zh">代码 MIT 许可。纯代码样片的画面和声音全部由本仓库的代码生成；实拍素材样片只用公共领域素材和 CC0 配乐，AI 素材样片的素材由生成服务做出，每份的出处、许可或生成参数见各样片的 <code>assets.json</code>。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">Code under the MIT license. Pure-code samples are generated entirely by code in this repository; real-footage samples use only public-domain material and CC0 music; AI-material samples use material made by generation services. Each sample's <code>assets.json</code> lists the source, license or generation settings of every piece. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
+    <p class="ver">v7 · 2026-11-04 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
   </div>
 </footer>
 <script src="assets/site.js"></script>

@@ -1,0 +1,116 @@
+{
+ "items": [
+  {
+   "file": "assets/ian1.jpg",
+   "kind": "照片",
+   "title": "Hurricane Ian from the ISS (iss067e381585, 2022-09)",
+   "source": "https://images.nasa.gov/details/iss067e381585",
+   "download": "https://images-assets.nasa.gov/image/iss067e381585/iss067e381585~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/ian2.jpg",
+   "kind": "照片",
+   "title": "Hurricane Ian from the ISS (iss067e382116, 2022-09)",
+   "source": "https://images.nasa.gov/details/iss067e382116",
+   "download": "https://images-assets.nasa.gov/image/iss067e382116/iss067e382116~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/ian_track.csv",
+   "kind": "数据",
+   "title": "HURDAT2 Atlantic best track, AL092022 (Ian)",
+   "source": "https://www.nhc.noaa.gov/data/#hurdat",
+   "download": "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2025-092326.txt",
+   "license": "公共领域（美国政府作品，NOAA 国家飓风中心）",
+   "author": "NOAA National Hurricane Center",
+   "credit": "路径 NOAA NHC",
+   "prep": {
+    "hurdat": "AL092022"
+   }
+  },
+  {
+   "file": "assets/coast.json",
+   "kind": "数据",
+   "title": "Natural Earth 1:50m coastline（裁到加勒比海和美国东南部）",
+   "source": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-coastline/",
+   "download": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_coastline.geojson",
+   "license": "公共领域（Natural Earth）",
+   "author": "Natural Earth",
+   "credit": "海岸线 Natural Earth",
+   "prep": {
+    "bbox": [
+     -92,
+     8,
+     -66,
+     38
+    ]
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_News_Anchor",
+   "text": "二〇二二年九月，飓风伊恩从加勒比海一路向北，二十八日以四级强度登陆美国佛罗里达，最大风速每小时约两百四十公里。空间站上的航天员，从头顶拍下了它。",
+   "params": {
+    "speed": 1.15
+   },
+   "at": 0.4,
+   "show": {
+    "二〇二二年九月": "2022 年 9 月",
+    "二十八日": "28 日",
+    "四级": "4 级",
+    "两百四十公里": "240 公里"
+   },
+   "dur": 13.427,
+   "lines": [
+    {
+     "t0": 0.037,
+     "t1": 3.673,
+     "text": "2022 年 9 月，飓风伊恩从加勒比海一路向北"
+    },
+    {
+     "t0": 3.673,
+     "t1": 6.827,
+     "text": "28 日以 4 级强度登陆美国佛罗里达"
+    },
+    {
+     "t0": 6.827,
+     "t1": 9.721,
+     "text": "最大风速每小时约 240 公里"
+    },
+    {
+     "t0": 9.721,
+     "t1": 12.948,
+     "text": "空间站上的航天员，从头顶拍下了它"
+    }
+   ],
+   "license": "AI 合成（青水公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Insistent: background loop",
+   "source": "https://opengameart.org/content/insistent-background-loop",
+   "download": "https://opengameart.org/sites/default/files/Insistent.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

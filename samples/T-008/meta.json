@@ -1,0 +1,5 @@
+{
+  "en_name": "Archive lightbox",
+  "en_how": "Three 1936 negative scans from the Library of Congress lie on a glowing lightbox; the camera pans between them, a loupe lingers on details, an archive card types out the catalogue number and year, and subtitles follow the narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

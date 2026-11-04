@@ -1,0 +1,128 @@
+{
+ "items": [
+  {
+   "file": "assets/peter11.jpg",
+   "kind": "照片",
+   "title": "The Tale of Peter Rabbit 插图（妈妈和四只小兔子）",
+   "source": "https://www.gutenberg.org/ebooks/14838",
+   "download": "https://www.gutenberg.org/cache/epub/14838/images/peter11.jpg",
+   "license": "公共领域（Beatrix Potter 1902 年作品，经 Project Gutenberg 扫描）",
+   "author": "Beatrix Potter",
+   "credit": "插图 Beatrix Potter 1902（公共领域）",
+   "prep": {
+    "max": 1200,
+    "q": 90
+   }
+  },
+  {
+   "file": "assets/peter19.jpg",
+   "kind": "照片",
+   "title": "The Tale of Peter Rabbit 插图（钻进菜园大门）",
+   "source": "https://www.gutenberg.org/ebooks/14838",
+   "download": "https://www.gutenberg.org/cache/epub/14838/images/peter19.jpg",
+   "license": "公共领域（Beatrix Potter 1902 年作品，经 Project Gutenberg 扫描）",
+   "author": "Beatrix Potter",
+   "credit": "插图 Beatrix Potter 1902（公共领域）",
+   "prep": {
+    "max": 1200,
+    "q": 90
+   }
+  },
+  {
+   "file": "assets/peter24.jpg",
+   "kind": "照片",
+   "title": "The Tale of Peter Rabbit 插图（麦格雷戈先生）",
+   "source": "https://www.gutenberg.org/ebooks/14838",
+   "download": "https://www.gutenberg.org/cache/epub/14838/images/peter24.jpg",
+   "license": "公共领域（Beatrix Potter 1902 年作品，经 Project Gutenberg 扫描）",
+   "author": "Beatrix Potter",
+   "credit": "插图 Beatrix Potter 1902（公共领域）",
+   "prep": {
+    "max": 1200,
+    "q": 90
+   }
+  },
+  {
+   "file": "assets/peter27.jpg",
+   "kind": "照片",
+   "title": "The Tale of Peter Rabbit 插图（拼命地跑）",
+   "source": "https://www.gutenberg.org/ebooks/14838",
+   "download": "https://www.gutenberg.org/cache/epub/14838/images/peter27.jpg",
+   "license": "公共领域（Beatrix Potter 1902 年作品，经 Project Gutenberg 扫描）",
+   "author": "Beatrix Potter",
+   "credit": "插图 Beatrix Potter 1902（公共领域）",
+   "prep": {
+    "max": 1200,
+    "q": 90
+   }
+  },
+  {
+   "file": "assets/peter55.jpg",
+   "kind": "照片",
+   "title": "The Tale of Peter Rabbit 插图（一杯甘菊茶）",
+   "source": "https://www.gutenberg.org/ebooks/14838",
+   "download": "https://www.gutenberg.org/cache/epub/14838/images/peter55.jpg",
+   "license": "公共领域（Beatrix Potter 1902 年作品，经 Project Gutenberg 扫描）",
+   "author": "Beatrix Potter",
+   "credit": "插图 Beatrix Potter 1902（公共领域）",
+   "prep": {
+    "max": 1200,
+    "q": 90
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Warm_Girl",
+   "text": "从前，有四只小兔子。妈妈说：别去麦格雷戈先生的菜园。可彼得偏偏钻了进去，被发现了，拼命跑啊跑。到家的时候，妈妈给他煮了一杯甘菊茶。",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 0.5,
+   "dur": 14.158,
+   "lines": [
+    {
+     "t0": 0.043,
+     "t1": 1.792,
+     "text": "从前，有四只小兔子"
+    },
+    {
+     "t0": 1.792,
+     "t1": 4.907,
+     "text": "妈妈说：别去麦格雷戈先生的菜园"
+    },
+    {
+     "t0": 4.907,
+     "t1": 7.125,
+     "text": "可彼得偏偏钻了进去"
+    },
+    {
+     "t0": 7.125,
+     "t1": 9.899,
+     "text": "被发现了，拼命跑啊跑"
+    },
+    {
+     "t0": 9.899,
+     "t1": 13.611,
+     "text": "到家的时候，妈妈给他煮了一杯甘菊茶"
+    }
+   ],
+   "license": "AI 合成（青水公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Happy Lullaby (song17)",
+   "source": "https://opengameart.org/content/happy-lullaby-song17",
+   "download": "https://opengameart.org/sites/default/files/song17.mp3",
+   "license": "CC0 1.0",
+   "author": "cynicmusic",
+   "credit": "配乐 cynicmusic（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

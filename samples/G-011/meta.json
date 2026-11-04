@@ -1,0 +1,5 @@
+{
+  "en_name": "Sports highlight",
+  "en_how": "One AI-generated dunk clip (a fictional player, no team marks) cut as a highlight in code: approach at full speed, slow-motion take-off, a desaturated freeze at the peak with the ball circled and illustrative stat cards, a flash and score flip to 88 on the dunk, then a 'Play of the Week' end card, with a broadcast score bug throughout.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

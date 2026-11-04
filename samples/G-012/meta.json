@@ -1,0 +1,5 @@
+{
+  "en_name": "Picture-book page turn",
+  "en_how": "Three AI-generated watercolour picture-book illustrations (the later two referenced to the first so the hedgehog stays the same) are laid out in code as an open book: picture on the left page, text on the right (picture above text in portrait); pages turn around the spine with shading, and the text fills in character by character with the narration like karaoke, closing on a hand-lettered 'The End'.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -5,7 +5,9 @@
     python3 scripts/build_index.py --check   # 只校验、不写文件；有问题时退出码为 1
 
 数据源是 styles/*.md；data/styles.json 和 index.md 里 <!-- catalog --> 之间的目录都是生成物，不要手改。
-技术标签和题材的合法取值在 data/tags.json。
+技术标签、题材、内容类型和素材种类的合法取值在 data/tags.json。
+C 类（纯代码）按题材分；T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，每条标出用到的素材种类。
+T、G 类做过样片的，再核对 samples/<编号>/assets.json：素材种类和条目一致、每份素材有出处和许可（或模型和提示词）、合计不超过 10 MB。
 """
 import json
 import os
@@ -29,10 +31,12 @@ CODE_RE = re.compile(r'```text\n(.*?)\n```', re.S)
 FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
 FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
-FIELDS = {'题材': 'theme', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
+FIELDS = {'题材': 'theme', '内容类型': 'content_type', '素材': 'materials', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
           '样片代码': 'render_code', '风格包': 'pack', '参考': 'refs'}
 REPO_LINKS = {'render_code': 'samples/', 'pack': 'packs/'}
-CLASS_NAME = {'C': '纯代码', 'T': '第三方素材', 'G': 'AI 生成素材'}
+CLASS_NAME = {'C': '纯代码', 'T': '公共领域素材', 'G': 'AI 生成素材'}
+ASSET_LIMIT = 10_000_000          # 每个 T、G 样片的 assets/ 合计上限
+AUDIO_KINDS = {'旁白', '配乐', '音效', '原声'}   # assets.json 里声音的种类（不算素材种类）
 
 
 def split_tags(value):
@@ -53,9 +57,47 @@ def repo_link(value, prefix, where, errors):
     return {'path': path, 'url': url}
 
 
+def check_assets(rec, where, kinds, errors):
+    """T、G 类样片的 assets.json：每份素材的种类、出处、许可或模型和提示词，文件存在，合计不超过 10 MB"""
+    d = os.path.join(REPO_ROOT, rec['render_code']['path'])
+    p = os.path.join(d, 'assets.json')
+    if not os.path.isdir(os.path.join(REPO_ROOT, 'samples')):
+        return                                   # Skill 单独安装时没有样片目录
+    if not os.path.exists(p):
+        errors.append(f'{where}: 缺 {rec["render_code"]["path"]}assets.json')
+        return
+    items = json.load(open(p, encoding='utf-8')).get('items', [])
+    used, total, seen = set(), 0, set()
+    for it in items:
+        f, kind = it.get('file', ''), it.get('kind', '')
+        if f in seen:                            # 同一个文件被几项引用（如一段原声分几处用）：出处、体积只查一次
+            continue
+        seen.add(f)
+        w = f'{where} assets.json「{f}」'
+        if kind not in kinds and kind not in AUDIO_KINDS:
+            errors.append(f'{w}: 种类「{kind}」不认识（素材：{" / ".join(kinds)}；声音：{" / ".join(sorted(AUDIO_KINDS))}）')
+        used.add(kind)
+        if it.get('model'):
+            if not it.get('prompt') and not it.get('text'):
+                errors.append(f'{w}: 生成的素材要记提示词（语音记 text）')
+        elif not (it.get('source', '').startswith('http') and it.get('license')):
+            errors.append(f'{w}: 要记出处链接 source 和许可 license')
+        fp = os.path.join(d, f)
+        if not os.path.exists(fp):
+            errors.append(f'{w}: 文件不存在')
+        else:
+            total += os.path.getsize(fp)
+    if set(rec['materials']) != used & set(kinds):
+        errors.append(f'{where}: 条目的素材（{" · ".join(rec["materials"])}）和 assets.json 里实际用到的（{" · ".join(sorted(used & set(kinds)))}）不一致')
+    if total > ASSET_LIMIT:
+        errors.append(f'{where}: assets/ 合计 {total / 1e6:.1f} MB，超过 10 MB')
+
+
 def parse(errors):
     tags = json.load(open(TAGS_PATH, encoding='utf-8'))
     themes = [t['name'] for t in tags['themes']]
+    ctypes = [t['name'] for t in tags['content_types']]
+    mats = {c: [m['name'] for m in v] for c, v in tags['materials'].items()}
     styles = []
     for fname in sorted(os.listdir(STYLES_DIR)):
         if not fname.endswith('.md'):
@@ -79,13 +121,14 @@ def parse(errors):
             imgs = IMG_RE.findall(body)
             rec = {'id': sid, 'class': sid[0], 'name': name.strip(), 'file': f'styles/{fname}', 'layer': layer,
                    'image': f'images/{imgs[0]}' if imgs else None, 'prompt': prompts[0].strip() if prompts else '',
-                   'theme': '', 'fit': '', 'verified': [], 'suggested': [], 'render_code': None, 'pack': None, 'refs': []}
+                   'theme': '', 'content_type': '', 'materials': [], 'fit': '', 'verified': [], 'suggested': [],
+                   'render_code': None, 'pack': None, 'refs': []}
             for key, value in FIELD_RE.findall(FENCE_RE.sub('', body)):
                 if key not in FIELDS:
                     errors.append(f'{where}: 不认识的字段「{key}」')
                     continue
                 k = FIELDS[key]
-                if k in ('verified', 'suggested'):
+                if k in ('verified', 'suggested', 'materials'):
                     rec[k] = split_tags(value)
                 elif k == 'refs':
                     rec[k] = [{'label': a, 'url': b} for a, b in MDLINK_RE.findall(value)]
@@ -93,8 +136,26 @@ def parse(errors):
                     rec[k] = repo_link(value, REPO_LINKS[k], f'{where}「{key}」', errors)
                 else:
                     rec[k] = value.strip()
-            if rec['theme'] not in themes:
-                errors.append(f'{where}: 题材「{rec["theme"]}」不在 tags.json 的 themes 里')
+            fcls = tags['files'][layer].get('class', 'C')
+            if rec['class'] != fcls:
+                errors.append(f'{where}: {rec["class"]} 类条目放进了 {fcls} 类的文件 {fname}')
+            if rec['class'] == 'C':
+                if rec['theme'] not in themes:
+                    errors.append(f'{where}: 题材「{rec["theme"]}」不在 tags.json 的 themes 里')
+                if rec['content_type'] or rec['materials']:
+                    errors.append(f'{where}: C 类按题材分，不写「内容类型」「素材」')
+            else:
+                if rec['theme']:
+                    errors.append(f'{where}: {rec["class"]} 类按内容类型分，不写「题材」')
+                if rec['content_type'] not in ctypes:
+                    errors.append(f'{where}: 内容类型「{rec["content_type"]}」不在 tags.json 的 content_types 里')
+                if not rec['materials']:
+                    errors.append(f'{where}: 缺「素材」')
+                for mname in rec['materials']:
+                    if mname not in mats[rec['class']]:
+                        errors.append(f'{where}: 素材「{mname}」不是 {rec["class"]} 类的素材种类（{" / ".join(mats[rec["class"]])}）')
+                if rec['render_code']:
+                    check_assets(rec, where, mats[rec['class']], errors)
             if not rec['fit']:
                 errors.append(f'{where}: 缺「适合」')
             all_tags = rec['verified'] + rec['suggested']
@@ -136,13 +197,24 @@ def catalog(styles, tags):
     out.append(f'共 {len(styles)} 种（' + '，'.join(f'{CLASS_NAME[c]} {len(v)} 种' for c, v in by_class.items() if v)
                + f'），其中 {n_img} 种已有样片。点名字跳到条目。')
     out.append('')
+    link = lambda r: f'[{r["id"]} {r["name"]}]({r["file"]}#{r["id"]})'
     out.append('| 题材 | 风格 |')
     out.append('|---|---|')
     for th in tags['themes']:
-        items = [r for r in styles if r['theme'] == th['name']]
+        items = [r for r in by_class['C'] if r['theme'] == th['name']]
         if items:
-            cells = ' · '.join(f'[{r["id"]} {r["name"]}]({r["file"]}#{r["id"]})' for r in items)
-            out.append(f'| {th["name"]}（{len(items)}） | {cells} |')
+            out.append(f'| {th["name"]}（{len(items)}） | {" · ".join(map(link, items))} |')
+    if by_class['T'] or by_class['G']:
+        out.append('')
+        out.append('T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，括号里是用到的素材：')
+        out.append('')
+        out.append('| 内容类型 | T 类：公共领域素材 | G 类：AI 生成素材 |')
+        out.append('|---|---|---|')
+        for ct in tags['content_types']:
+            cells = [' · '.join(f'{link(r)}（{"、".join(r["materials"])}）' for r in by_class[c] if r['content_type'] == ct['name']) or '—'
+                     for c in 'TG']
+            if cells != ['—', '—']:
+                out.append(f'| {ct["name"]} | {cells[0]} | {cells[1]} |')
     out.append('')
     out.append('按技术分的文件：' + ' · '.join(
         f'[{v["name"]}](styles/{k}.md)（{sum(1 for r in styles if r["layer"] == k)}）'

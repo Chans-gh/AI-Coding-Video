@@ -1,0 +1,5 @@
+{
+  "en_name": "Time-lapse city symphony",
+  "en_how": "ISS time-lapse of city lights at night opens, cuts to a c.1900 photo of Times Square at night, then Natural Earth city data lights up the world's 60 largest cities on black, brightness and size set by population.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,88 @@
+{
+ "items": [
+  {
+   "file": "assets/p1.jpg",
+   "kind": "照片",
+   "title": "Dust bowl refugees living in camps in California（1936，LOC 2017759546）",
+   "source": "https://www.loc.gov/item/2017759546/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/fsa/8b27000/8b27000/8b27017u.tif",
+   "license": "无已知版权限制（美国国会图书馆，No known restrictions on publication）",
+   "author": "Dorothea Lange（美国农业安全局）",
+   "credit": "照片 Dorothea Lange / LOC",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/p2.jpg",
+   "kind": "照片",
+   "title": "Dust bowl refugee in California（1936，LOC 2017759545）",
+   "source": "https://www.loc.gov/item/2017759545/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/fsa/8b27000/8b27000/8b27016u.tif",
+   "license": "无已知版权限制（美国国会图书馆，No known restrictions on publication）",
+   "author": "Dorothea Lange（美国农业安全局）",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/p3.jpg",
+   "kind": "照片",
+   "title": "Destitute pea pickers in California. Mother of seven children. Age thirty-two. Nipomo, California（1936，LOC 2017762891）",
+   "source": "https://www.loc.gov/item/2017762891/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/fsa/8b29000/8b29500/8b29516u.tif",
+   "license": "无已知版权限制（美国国会图书馆，No known restrictions on publication）",
+   "author": "Dorothea Lange（美国农业安全局）",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Wise_Women",
+   "text": "一九三六年，摄影师多萝西娅·兰格走访加利福尼亚的流动农工营地。帐篷、旧车、等着吃饭的孩子。她用一台相机，记下了大萧条里的流离失所。",
+   "params": {
+    "speed": 1.05
+   },
+   "at": 0.6,
+   "show": {
+    "一九三六年": "1936 年"
+   },
+   "dur": 14.158,
+   "lines": [
+    {
+     "t0": 0.041,
+     "t1": 5.567,
+     "text": "1936 年，摄影师多萝西娅·兰格走访加利福尼亚的流动农工营地"
+    },
+    {
+     "t0": 5.567,
+     "t1": 9.549,
+     "text": "帐篷、旧车、等着吃饭的孩子"
+    },
+    {
+     "t0": 9.549,
+     "t1": 13.694,
+     "text": "她用一台相机，记下了大萧条里的流离失所"
+    }
+   ],
+   "license": "AI 合成（青水公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "The Field Of Dreams",
+   "source": "https://opengameart.org/content/the-field-of-dreams",
+   "download": "https://opengameart.org/sites/default/files/the_field_of_dreams.mp3",
+   "license": "CC0 1.0",
+   "author": "pauliuw",
+   "credit": "配乐 pauliuw（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

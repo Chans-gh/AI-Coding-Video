@@ -1,8 +1,8 @@
-# 样片（1 级）
+# 样片
 
 [← 返回说明](../README.md)
 
-每种风格一个文件夹，文件夹名就是风格编号。里面的 `scene.js` 是这种风格的全部渲染代码。同一份代码按画幅出横屏 16:9（1920×1080）和竖屏 9:16（1080×1920）两版，每版 3–5 秒，带声音。
+每种风格一个文件夹，文件夹名就是风格编号。里面的 `scene.js` 是这种风格的全部渲染代码。同一份代码按画幅出横屏 16:9（1920×1080）和竖屏 9:16（1080×1920）两版，带声音。C 类每版 3–5 秒；T 类、G 类每版 8–15 秒，另带素材，见下面「T 类、G 类样片」。
 
 | 文件 | 是什么 |
 |---|---|
@@ -20,6 +20,7 @@
 | `render.py` | 出片核心（截图、合成声音、编码、缩略图），由 `batch.py` 调用 |
 | `tools/mark.py` | 把出好的样片登记进风格条目 |
 | `tools/apidoc.py` | 生成 `API.md` |
+| `tools/assets.py` | T 类、G 类的素材：下载、录屏、调青水生成、统一处理、去元数据 |
 
 ## 怎么出片
 
@@ -39,7 +40,7 @@ python3 tools/mark.py C-168          # 在风格条目里写上缩略图、「�
 python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynote/demo/），见 packs/README.md
 ```
 
-`batch.py` 每个样片每个画幅只打一行摘要（✓，或 ✗ 加原因），详细日志在 `out/<编号>-<画幅>.log`。自动检查：脚本报错、黑屏或白屏、画面不动（比较相隔 0.2 秒的两帧）、声音静音或削波、时长（3–5 秒）、视频体积（超过 2.5 MB 自动加大压缩，仍超就报 ✗）。总览图 `out/sheet.jpg` 每行一个样片，横竖各 4 帧，最多 6 个样片一张，多的写 `sheet-2.jpg`。先看摘要，再看总览图，只有 ✗ 或看着可疑的才单独打开。
+`batch.py` 每个样片每个画幅只打一行摘要（✓，或 ✗ 加原因），详细日志在 `out/<编号>-<画幅>.log`。自动检查：脚本报错、黑屏或白屏、画面不动（比较相隔 0.2 秒的两帧）、声音静音或削波、时长（C 类 3–5 秒，T 类、G 类 8–15 秒）、视频体积（C 类超过 2.5 MB、T 类和 G 类超过 4 MB 自动加大压缩，仍超就报 ✗）。总览图 `out/sheet.jpg` 每行一个样片，横竖各 4 帧，最多 6 个样片一张，多的写 `sheet-2.jpg`。先看摘要，再看总览图，只有 ✗ 或看着可疑的才单独打开。
 
 改了 `lib.js` 或 `synth.py` 的注释后跑 `python3 tools/apidoc.py` 更新 `API.md`（`--check` 检查是否过期）。
 
@@ -81,12 +82,26 @@ python3 scripts/media.py check              # 核对清单和 Release 一致
 
 Remotion 样片不走 `player.html`：`render.py` 认出目录里的 `scene.jsx` 后，起一个常驻的 node 进程 `remotion/serve.mjs`，它 bundle 一次、开一个浏览器，然后按 `t` 出帧。浏览器用容器里已有的 Chromium（环境变量 `CHROME`，默认 `/opt/pw-browsers/chromium`），不额外下载。
 
+## T 类、G 类样片
+
+目录里比 C 类多两样：`assets/`（素材，合计不超过 10 MB）和 `assets.json`（素材清单：每份的文件、种类、出处链接、许可，G 类另记模型名、参数和提示词；字段见 `tools/assets.py` 开头）。
+
+```bash
+python3 tools/assets.py T-007        # 照 assets.json 下载或生成素材，统一成 30 帧/秒、去掉元数据，写进 assets/；旁白的逐字时间换成字幕写回 assets.json
+python3 tools/assets.py --usage      # 本机调青水的次数
+python3 batch.py T-007 --quick       # 之后和 C 类一样出片、检查、登记
+```
+
+- 场景里用 `loadAssets()`、`loadImage()`、`loadVideo()`（按帧取，第 k 帧只取素材的第 k 帧）、`parseCSV()` 读素材，`cueAt()` 取当前字幕，`credits()` 生成署名行；`sound.py` 一般只写 `assets(m, 样片目录)`，再加几个合成音效。
+- 声音不用 C 类的电子音做主体：旁白用青水的公开音色，配乐、音效用公共领域、CC0 的（CC BY 要署名）。
+- 规矩见仓库根目录 [AGENTS.md](../AGENTS.md) 的「T 类、G 类」，做法见 Skill 的 [materials.md](../skills/ai-coding-video/materials.md)。
+
 ## 写新样片的规矩
 
 - 每帧只由时间 t 决定：随机数用 `mulberry32` 或 `hash2`，不用 `Math.random()`，也不读系统时间。这样同一份代码每次渲染的结果都一样。用库时同理：GSAP 的时间轴建成暂停的、每帧 `seek(t)`，p5 用 `noLoop` 逐帧 `redraw`，Rough.js 每个图形写死 `seed`。
 - 画面可以画在 Canvas 2D 上，也可以写 `dom: true` 用 SVG 或 HTML 网页画面（画在盖住画布的 `STAGE` 里）；库在场景的 `libs` 里声明，见上面「用到的库」。
-- 画面全部由代码算出，不引用任何外部图片、视频或生成模型。字体只用开源字体，写进 `package.json`。
-- 声音只用 `lib/synth.py` 的合成器（自带电子音），不调用第三方声音模型，不用曲库、录音或采样。动作发生的时刻放一个对应材质的音，写法见 Skill 的[声音篇](../skills/ai-coding-video/sound.md)。
+- C 类画面全部由代码算出，不引用任何外部图片、视频或生成模型。字体只用开源字体，写进 `package.json`。
+- C 类声音只用 `lib/synth.py` 的合成器（自带电子音），不调用第三方声音模型，不用曲库、录音或采样。动作发生的时刻放一个对应材质的音，写法见 Skill 的[声音篇](../skills/ai-coding-video/sound.md)。
 - 横竖两版用同一份代码：读 `W`、`H`、`LAND`（是否横屏）来定构图。不要只把竖屏画面拉伸或裁切成横屏。
 - 做完后跑 `tools/mark.py` 登记进风格条目（缩略图、「技术（已验证）」「样片代码」），条目格式见 Skill 的 [README](../skills/ai-coding-video/README.md)。
 

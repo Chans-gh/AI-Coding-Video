@@ -1,9 +1,16 @@
-"""样片的声音：全部用代码合成的电子音，不用任何录音素材、曲库或声音模型，所以没有版权问题。
+"""样片的声音。1 级（C 类）全部用代码合成的电子音，不用任何录音素材、曲库或声音模型，所以没有版权问题。
 
 每个样片的 <编号>/sound.py 写一个 score(m) 函数，用这里的乐器往混音台 m 上放音符；
 render.py 调它生成 44.1 kHz 立体声，再和视频合在一起。同样的代码每次合成的声音完全一样。
 乐器改写自 opus40 的 audio.py，另加了拨弦、钟、方波、风声、木鱼等。
+T 类、G 类的样片不用这些电子音：用 load() 读 assets/ 里的旁白、配乐、音效（出处和许可记在 assets.json），
+一般直接调 assets(m, 样片目录)，照 assets.json 摆好。
 """
+import json
+import shutil
+import subprocess
+from pathlib import Path
+
 import numpy as np
 from scipy.signal import butter, sosfilt, sawtooth
 
@@ -44,6 +51,11 @@ class Mix:
             return
         x = x[: len(self.buf) - i]
         l, r = np.cos((pan + 1) * np.pi / 4) * 1.414, np.sin((pan + 1) * np.pi / 4) * 1.414
+        if x.ndim == 2:                             # 立体声素材（load 读进来的）：声像只调左右平衡
+            l, r = min(1.0, l), min(1.0, r)
+            self.buf[i:i + len(x), 0] += x[:, 0] * g * l
+            self.buf[i:i + len(x), 1] += x[:, 1] * g * r
+            return
         self.buf[i:i + len(x), 0] += x * g * l
         self.buf[i:i + len(x), 1] += x * g * r
 
@@ -184,3 +196,68 @@ def hum(f=60, d=1.0):
     """电源嗡嗡声（CRT、荧光灯）"""
     t = tt(d)
     return np.sin(2 * np.pi * f * t) * .6 + np.sin(2 * np.pi * f * 3 * t) * .25 + np.sin(2 * np.pi * f * 5 * t) * .1
+
+
+# ---------- 素材里的声音（T 类、G 类） ----------
+def load(path, ss=0.0, dur=None):
+    """读音频文件（mp3、wav、ogg、mp4 的音轨…）→ (采样数, 2) 的立体声，44.1 kHz；ss 起点秒，dur 长度秒。用 ffmpeg 解码"""
+    exe = shutil.which("ffmpeg")
+    if not exe:
+        import imageio_ffmpeg
+        exe = imageio_ffmpeg.get_ffmpeg_exe()
+    cmd = [exe, "-loglevel", "error", "-ss", f"{ss:.3f}", "-i", str(path)] + (["-t", f"{dur:.3f}"] if dur else [])
+    raw = subprocess.run(cmd + ["-vn", "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).astype(np.float64)
+
+
+def fade(x, a=0.0, b=0.0):
+    """淡入 a 秒、淡出 b 秒（单声道或立体声都行）"""
+    n = len(x)
+    env = np.ones(n)
+    if a > 0:
+        env[: int(a * SR)] = np.linspace(0, 1, int(a * SR))[: n]
+    if b > 0:
+        k = min(n, int(b * SR))
+        env[n - k:] *= np.linspace(1, 0, k)
+    return x * (env[:, None] if x.ndim == 2 else env)
+
+
+def cue_time(a, kw, fallback=None):
+    """旁白说到关键词 kw 的时刻（秒）：a 是 assets() 返回的 assets.json 内容，和 lib.js 的 cueTime 算法相同；找不到返回 fallback"""
+    for it in a["items"]:
+        at = float(it.get("at", 0))
+        for l in it.get("lines", []):
+            i = l["text"].find(kw)
+            if i >= 0:
+                return at + l["t0"] + (l["t1"] - l["t0"]) * i / len(l["text"])
+    return fallback
+
+
+def assets(m, here, music=0.32, duck=0.45, voice=0.9):
+    """照 <样片目录>/assets.json 把声音摆上混音台：旁白、原声（G 类的旁白记作 语音合成）按 at（秒）放；配乐从 at 起铺到片尾，旁白、原声响的时候压低 duck；音效按 at 放。返回 assets.json 的内容。
+    每份素材可写 gain（音量倍数）、ss（从素材的第几秒起）、at；配乐可写 fade（淡入秒数）"""
+    here = Path(here)
+    a = json.loads((here / "assets.json").read_text(encoding="utf-8"))
+    talk = []
+    for it in a["items"]:
+        kind, f = it.get("kind"), here / it["file"]
+        at, g = float(it.get("at", 0)), float(it.get("gain", 1))
+        if kind in ("旁白", "原声", "语音合成"):
+            x = load(f, it.get("ss", 0), it.get("len"))
+            m.put(fade(x, .01, .05), at, voice * g)
+            talk.append((at, at + len(x) / SR))
+        elif kind == "音效":
+            m.put(load(f, it.get("ss", 0), it.get("len")), at, g)
+    for it in a["items"]:
+        if it.get("kind") != "配乐":
+            continue
+        at = float(it.get("at", 0))
+        x = load(here / it["file"], it.get("ss", 0), m.dur - at + .1)
+        x = fade(x, float(it.get("fade", .3)), 0)
+        env = np.ones(len(x))
+        t = at + np.arange(len(x)) / SR
+        for t0, t1 in talk:                          # 说话时压低配乐，前后各 0.25 秒渐变
+            k = np.clip(np.minimum((t - (t0 - .25)) / .25, ((t1 + .25) - t) / .25), 0, 1)
+            env = np.minimum(env, 1 - duck * k)
+        m.put(x * env[:, None], at, music * float(it.get("gain", 1)))
+    return a

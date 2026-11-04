@@ -1,6 +1,6 @@
 {
   "layers": [
-    {"key": "render", "name": "画在哪", "en": "Render target", "note": "画面最终画在什么上，每种风格至少一个"},
+    {"key": "render", "name": "画在哪", "en": "Render target", "note": "画面最终画在什么上，C 类每种至少一个"},
     {"key": "library", "name": "绘图库", "en": "Drawing library", "note": "帮你画的框架或库"},
     {"key": "shader", "name": "着色语言", "en": "Shader language", "note": "写在 GPU 上跑的代码"},
     {"key": "motion", "name": "动效与物理", "en": "Motion & physics", "note": "时间轴、缓动、物理模拟"},
@@ -23,7 +23,36 @@
     "svg-html": {"name": "SVG 与 HTML/CSS", "needs": ["SVG", "HTML/CSS"]},
     "terminal": {"name": "终端字符", "needs": ["终端字符"]},
     "external": {"name": "代码驱动的外部程序", "needs": ["Blender", "POV-Ray", "Processing", "openFrameworks", "TouchDesigner"]},
-    "framework": {"name": "整套视频框架", "needs": ["Remotion", "HyperFrames", "Motion Canvas", "Revideo", "Manim", "Manim CE", "ManimGL"]}
+    "framework": {"name": "整套视频框架", "needs": ["Remotion", "HyperFrames", "Motion Canvas", "Revideo", "Manim", "Manim CE", "ManimGL"]},
+    "footage": {"name": "T 类：公共领域素材", "needs": [], "class": "T"},
+    "generated": {"name": "G 类：AI 生成素材", "needs": [], "class": "G"}
+  },
+  "content_types": [
+    {"name": "知识科普讲解", "en": "Explainers & science"},
+    {"name": "口播 / 数字人", "en": "Talking head & avatars"},
+    {"name": "产品广告和带货", "en": "Product ads & shopping"},
+    {"name": "品牌宣传片", "en": "Brand films"},
+    {"name": "短剧 / 动漫剧 / 故事", "en": "Short drama, anime & stories"},
+    {"name": "音乐 MV", "en": "Music videos"},
+    {"name": "新闻资讯解说", "en": "News explainers"},
+    {"name": "纪录片和纪实", "en": "Documentary"},
+    {"name": "教程和录屏演示", "en": "Tutorials & screencasts"},
+    {"name": "旅行和城市", "en": "Travel & cities"},
+    {"name": "体育赛事", "en": "Sports"},
+    {"name": "儿童绘本动画", "en": "Children's picture books"}
+  ],
+  "materials": {
+    "T": [
+      {"name": "录像", "en": "Footage", "note": "实拍视频，含口播"},
+      {"name": "录屏", "en": "Screen recording", "note": "软件、网页的屏幕录像"},
+      {"name": "照片", "en": "Photos", "note": "照片，以及扫描的插画、档案"},
+      {"name": "数据", "en": "Data", "note": "表格、地图、卫星图、点云"}
+    ],
+    "G": [
+      {"name": "生图", "en": "Generated images", "note": "图像模型生成的画面"},
+      {"name": "生视频", "en": "Generated video", "note": "视频模型生成的镜头"},
+      {"name": "语音合成", "en": "Speech synthesis", "note": "语音模型合成的旁白"}
+    ]
   },
   "themes": [
     {"name": "手绘与绘画", "en": "Hand-drawn & painting"},

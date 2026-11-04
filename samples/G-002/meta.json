@@ -1,0 +1,5 @@
+{
+  "en_name": "Virtual host talking head",
+  "en_how": "An AI-generated original cartoon host is used as the first frame of a generated talking video; code lays it out like a studio show with the host on one side and question and point cards popping in on cue with the narration, keyword highlights, subtitles and a show badge. The 10-second clip is jump-cut and punched in for the second half.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

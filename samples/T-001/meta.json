@@ -1,0 +1,5 @@
+{
+  "en_name": "Data made physical",
+  "en_how": "The Apollo 17 photo of Earth pushes in and slides aside while NOAA's Mauna Loa CO2 annual means for 1959–2025 rise year by year as a row of solid blocks, the counter keeping pace with the narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

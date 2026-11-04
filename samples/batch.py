@@ -12,6 +12,7 @@
     python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
+时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
 有 ✗ 时退出码为 1。
 """
@@ -85,7 +86,10 @@ def task(sid, ar, quick):
                 R.still_and_thumb(p, sid, ar)
                 mp4 = R.where(sid) / f"{R.stem(sid)}-{ar}.mp4"
                 size = f"{mp4.stat().st_size / 1e6:.1f} MB"
-                if vbytes > R.MAX_BYTES:
+                if R.is_asset_class(sid):
+                    if mp4.stat().st_size > R.MAX_FILE_TG:
+                        why.append(f"体积超限（{mp4.stat().st_size / 1e6:.1f} MB > 4 MB）")
+                elif vbytes > R.MAX_BYTES * max(1, dur / 5):
                     why.append(f"体积超限（视频 {vbytes / 1e6:.1f} MB）")
                 real = R.mp4_duration(mp4)
                 if real is not None and abs(real - dur) > .15:
@@ -95,7 +99,7 @@ def task(sid, ar, quick):
             log += p.log
             why += check_frames(grays, pairs)
             log.append(f"帧差（相隔 {GAP}s）：" + " ".join(f"{d:.2f}" for d in pairs[:: max(1, len(pairs) // 12)]))
-            lo, hi = (5, 30) if sid.startswith("pack:") else (3, 5)          # 风格包演示片可以更长
+            lo, hi = (5, 30) if sid.startswith("pack:") else (8, 15) if R.is_asset_class(sid) else (3, 5)   # 风格包演示片、带素材的样片更长
             if not lo <= dur <= hi:
                 why.append(f"时长 {dur}s 不在 {lo}–{hi} 秒")
             snd = ""
@@ -168,7 +172,7 @@ def sheets(ids, results, ars):
 
 
 def all_ids():
-    return sorted({p.parent.name for pat in ("C-*/scene.js", "C-*/scene.jsx") for p in HERE.glob(pat)})
+    return sorted({p.parent.name for c in "CTG" for pat in (f"{c}-*/scene.js", f"{c}-*/scene.jsx") for p in HERE.glob(pat)})
 
 
 def main():

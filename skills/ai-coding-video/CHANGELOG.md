@@ -6,7 +6,9 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-04 | 批次 6：收录 G 类（AI 生成素材）12 种 G-001–G-012，新增 [styles/generated.md](styles/generated.md)，每个内容类型一个样片（10–15 秒，横竖两版），图片、视频和旁白用青水生成（模型、参数、提示词记在样片的 `assets.json`），配乐用 CC0；站点 v7 加上 G 类；legacy-ids 补上已收录的旧编号，candidates 删掉已收录的 5 种 |
 | 2026-11-04 | 样片和风格包演示片的视频移出 Git 仓库，放在 GitHub Release「media」：清单 `media.json`，`scripts/media.py` 上传（经中转分支和 media 工作流，不用令牌）、下载、核对；介绍页发布时从 Release 下载视频；规矩写进 AGENTS.md 和 samples/README.md 的「视频放在哪」（维护者定）。历史提交里的视频还在 |
+| 2026-11-03 | 批次 5：收录 T 类（公共领域素材）12 种 T-001–T-012，每个内容类型一个样片（8–15 秒，横竖两版），素材用 NASA、美国国会图书馆、NOAA、Natural Earth、Project Gutenberg、archive.org 的公共领域素材和 OpenGameArt 的 CC0 配乐，旁白用青水的公开音色；新增 `materials.md`（不限服务商的素材做法）和 `styles/footage.md`，词典加内容类型，索引和自检支持 T、G 类；出片工具加 `tools/assets.py`（下载、录屏、语音合成、去元数据）和读素材的函数；介绍页 v6：样片区加大类切换、内容类型筛选和素材标签，首页几节改写 |
 | 2026-11-03 | 批次 4.2：出片工具支持 Three.js（`three3d`、代码画的影棚环境贴图 `studioEnv`）、cannon-es（`physicsAt` 每帧从 0 按 1/120 秒固定步长重推）和 Remotion（写 `scene.jsx`，render.py 经 remotion/serve.mjs 出帧，用容器里已有的 Chromium；许可证：个人、3 人以内的公司和非营利组织免费，更大的公司要买授权）；7 种样片 C-045、C-063、C-055、C-062、C-029、C-058、C-124，C-058 另附可以用键盘玩的 play.html；介绍页 v5：题材条、技术条随新样片更新 |
 | 2026-11-03 | 批次 4.1：出片工具支持 SVG / HTML 网页画面（场景写 `dom: true`，画在盖住画布的 STAGE 里）和 GSAP、p5.js、p5.brush、Rough.js、D3.js（库用 npm 装进 samples/，出片不联网，版本和许可证登记在 samples/README.md 的「用到的库」）；7 种样片 C-112、C-051、C-085、C-003、C-133、C-012、C-060，每帧仍只由时间 t 决定（GSAP 暂停时间轴 seek、p5 noLoop 逐帧 redraw、Rough.js 固定 seed）；介绍页 v4：样片区加技术条，每个技术标签有几个样片、还缺哪个 |
 | 2026-11-03 | PLAN 补 T 类、G 类的配乐和音效：用允许再分发的公开曲库（公共领域、CC0、CC BY） |

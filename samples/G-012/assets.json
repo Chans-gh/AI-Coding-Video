@@ -1,0 +1,103 @@
+{
+ "items": [
+  {
+   "file": "assets/p1.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "水彩儿童绘本插画：一只圆滚滚的小刺猬在秋天的森林里，用两只小手捡起一片红色的大枫叶，开心地看着它，暖黄色调，大量留白，柔和的水彩纸张纹理，没有文字",
+   "params": {
+    "aspectRatio": "4:3"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/p2.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "水彩儿童绘本插画：同一只圆滚滚的小刺猬，下起了小雨，它把红色的大枫叶举过头顶当伞，雨滴落在叶子上，暖黄和灰蓝色调，大量留白，柔和的水彩纸张纹理，没有文字",
+   "params": {
+    "aspectRatio": "4:3"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/p1.jpg",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/p3.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "水彩儿童绘本插画：雨停了，同一只圆滚滚的小刺猬和一只小松鼠并排坐在红色的大枫叶下面，抬头看天上的彩虹，暖色调，大量留白，柔和的水彩纸张纹理，没有文字",
+   "params": {
+    "aspectRatio": "4:3"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/p1.jpg",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Gentle_Senior",
+   "text": "小刺猬捡到一片红红的枫叶。下雨啦，它把枫叶举过头顶，当成一把小伞。雨停了，它和小松鼠坐在叶子下面，看见了彩虹。",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 0.5,
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 12.069,
+   "lines": [
+    {
+     "t0": 0.043,
+     "t1": 2.133,
+     "text": "小刺猬捡到一片红红的枫叶"
+    },
+    {
+     "t0": 2.133,
+     "t1": 5.248,
+     "text": "下雨啦，它把枫叶举过头顶"
+    },
+    {
+     "t0": 5.248,
+     "t1": 6.571,
+     "text": "当成一把小伞"
+    },
+    {
+     "t0": 6.571,
+     "t1": 10.539,
+     "text": "雨停了，它和小松鼠坐在叶子下面"
+    },
+    {
+     "t0": 10.539,
+     "t1": 11.605,
+     "text": "看见了彩虹"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Story Time",
+   "source": "https://opengameart.org/content/story-time",
+   "download": "https://opengameart.org/sites/default/files/story%20time.ogg",
+   "license": "CC0 1.0",
+   "author": "HaelDB",
+   "credit": "配乐 HaelDB（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Living screencast",
+  "en_how": "A scripted screen recording of this repository's intro page sits in a browser window; the camera pushes in around each click and pulls back, the pointer is redrawn by code from the recorded path with click ripples, step labels mark progress and subtitles follow the narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

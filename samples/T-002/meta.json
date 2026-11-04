@@ -1,0 +1,5 @@
+{
+  "en_name": "Talking head + pop-up captions",
+  "en_how": "A NASA expert interview cut into two jump-cut takes; every sentence alternates framing, a keyword pops up as a big bold caption and Chinese subtitles run at the bottom. Segment timing lives in assets.json and the picture follows it frame by frame.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

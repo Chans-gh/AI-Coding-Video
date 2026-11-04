@@ -1,0 +1,74 @@
+{
+ "items": [
+  {
+   "file": "assets/z1.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "梦幻水彩插画：夜晚的阁楼卧室，画面正中央是一扇大大的圆形窗户，窗外是深蓝色星空，屋里有暖色台灯、成堆的书和绿植，严格左右对称的构图，圆窗正好在画面正中，没有人，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/z2.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "梦幻水彩插画：从高空俯瞰夜晚的大海，海面正中央有一个圆形的发光漩涡，四周点缀着小帆船和一座灯塔，严格对称的构图，圆形漩涡正好在画面正中，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/z3.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "梦幻水彩插画：发光的海底珊瑚花园，画面正中央是一个巨大的透明圆形气泡，鱼群绕着它游动，严格对称的构图，圆形气泡正好在画面正中，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/z4.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "梦幻水彩插画：一颗小小的星球悬浮在宇宙中，星球上有一座小房子和一棵树，周围是紫色和蓝色的星云和光点，星球正好在画面正中，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Lost in the meadows",
+   "source": "https://opengameart.org/content/lost-in-the-meadows",
+   "download": "https://opengameart.org/sites/default/files/lost%20in%20the%20meadows_0.flac_.ogg",
+   "license": "CC0 1.0",
+   "author": "HaelDB",
+   "credit": "配乐 HaelDB（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

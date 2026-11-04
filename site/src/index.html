@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI Coding Video</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="让 AI 写代码、由代码逐帧算出画面的动画视频风格库。A style library for animation videos whose every frame is computed by code.">
+<meta name="description" content="让 AI 写代码做视频的风格库：纯代码、公共领域素材、AI 生成素材三种做法。A style library for videos made by code: pure code, public-domain material, or AI-generated material.">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -32,9 +32,9 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow"><span lang="zh">纯代码动画视频风格库</span><span lang="en">A style library for code-rendered video</span></p>
+      <p class="eyebrow"><span lang="zh">用代码做视频的风格库</span><span lang="en">A style library for videos made by code</span></p>
       <h1><span lang="zh">视频每一帧，<br>都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></h1>
-      <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、合成声音，再编码成视频。不用 AI 生图生视频，不剪现成素材。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, synthesizes the sound and encodes the video. No image or video generators, no stock footage. Run the same code twice and you get the same film, frame for frame.</span></p>
+      <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、配好声音，再编码成视频。画面可以全部由代码算出来；也可以把照片、录像、数据，或 AI 生成的图片和视频交给代码，由代码剪辑、排版、加动效。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, lays in the sound and encodes the video. The picture can be computed entirely by code, or the code can take photos, footage, data, or AI-generated images and clips and cut, lay out and animate them. Run the same code twice and you get the same film, frame for frame.</span></p>
       <div class="cta">
         <a class="btn primary" href="#skill"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
         <a class="btn" href="{{REPO}}"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub repo</span></a>
@@ -62,7 +62,7 @@
 <section class="sec" id="what">
   <div class="wrap">
     <h2><span lang="zh">什么是 AI Coding Video</span><span lang="en">What AI Coding Video is</span></h2>
-    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、合成声音，最后编码成 MP4。画面里没有一张现成的图片，也不调用任何生图、生视频模型。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, synthesizes the sound, and encodes an MP4. No ready-made images anywhere in the frame, and no image or video generators.</span></p>
+    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、配好声音，最后编码成 MP4。下面这个例子是纯代码的：画面里没有一张现成的图片。要用真实素材或 AI 素材时，流程一样，只是代码在每一帧里多读一份素材。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, adds the sound, and encodes an MP4. The example below is pure code, with no ready-made image in the frame. With real or AI-generated material the flow is the same; the code simply reads a piece of material in each frame.</span></p>
     <ol class="flow">
       <li>
         <div class="flow-vis bubble"><span lang="zh">“做一支 3 秒的开场：夜里升起一轮红日，一笔画出一个圆。”</span><span lang="en">"A 3-second opener: a red sun rises at night, and one brushstroke draws a circle."</span></div>
@@ -93,25 +93,25 @@
     <ul class="why">
       <li><b><span lang="zh">可复现</span><span lang="en">Reproducible</span></b><span lang="zh">同一份代码，每次跑出来的片子一帧不差。</span><span lang="en">Same code, same film, frame for frame.</span></li>
       <li><b><span lang="zh">可修改</span><span lang="en">Editable</span></b><span lang="zh">换颜色、换文字、换节奏只是改几个参数。</span><span lang="en">Colors, words and timing are a few parameters.</span></li>
-      <li><b><span lang="zh">没有素材版权问题</span><span lang="en">Nothing to license</span></b><span lang="zh">画面和声音都是代码算出来的。</span><span lang="en">Picture and sound are both computed.</span></li>
+      <li><b><span lang="zh">素材来路清楚</span><span lang="en">Clear provenance</span></b><span lang="zh">纯代码的样片没有素材；用素材的样片，每份素材的出处、许可或生成参数都记在清单里。</span><span lang="en">Pure-code samples use no material; samples that do list every piece with its source, license or generation settings.</span></li>
     </ul>
     <h3 class="sub"><span lang="zh">做视频的三条路</span><span lang="en">Three ways to make the picture</span></h3>
-    <p class="sub-lede"><span lang="zh">点一条路，下面的样片跟着切换。这个库目前只收第一条。</span><span lang="en">Pick one and the samples below switch with it. This library currently collects only the first.</span></p>
+    <p class="sub-lede"><span lang="zh">三条路都由代码负责剪辑、排版和动效，区别在画面里的素材从哪来。点一条路，下面的样片跟着切换。</span><span lang="en">In all three the code does the editing, layout and motion; they differ in where the material in the frame comes from. Pick one and the samples below switch with it.</span></p>
     <div class="paths" role="group" aria-label="类型 / Class">
       <article class="path" data-kind="c">
-        <h3><button type="button" class="path-pick" data-kind="c" aria-pressed="true"><span lang="zh">代码逐帧</span><span lang="en">Code, frame by frame</span></button></h3>
-        <p class="tag"><span lang="zh">C 类 · 本库收录</span><span lang="en">Class C · this library</span></p>
-        <p><span lang="zh">AI 写 Canvas、WebGL、SVG 等渲染程序，无头浏览器按 t 逐帧截图，ffmpeg 编码。</span><span lang="en">The AI writes a Canvas, WebGL or SVG renderer; a headless browser captures each frame at time t; ffmpeg encodes.</span></p>
-      </article>
-      <article class="path" data-kind="g">
-        <h3><button type="button" class="path-pick" data-kind="g" aria-pressed="false"><span lang="zh">AI 生成画面</span><span lang="en">AI-generated images</span></button></h3>
-        <p class="tag"><span lang="zh">G 类 · 以后收</span><span lang="en">Class G · later</span></p>
-        <p><span lang="zh">画面由图像或视频模型生成，AI 助手写分镜和每个镜头的提示词。擅长写实人物，难保证跨镜头一致。</span><span lang="en">An image or video model makes the pictures; the assistant writes the shot list and prompts. Strong at realistic people, weak at consistency across shots.</span></p>
+        <h3><button type="button" class="path-pick" data-kind="c" aria-pressed="true"><span lang="zh">纯代码</span><span lang="en">Pure code</span></button></h3>
+        <p class="tag"><span lang="zh">C 类 · {{N_C}} 种 · 按题材分</span><span lang="en">Class C · {{N_C}} styles · by theme</span></p>
+        <p><span lang="zh">画面全部由代码算出：Canvas、WebGL、SVG 等。声音也是代码合成的电子音。不需要任何素材，最适合风格化的动画。</span><span lang="en">The picture is computed entirely by code: Canvas, WebGL, SVG and more, with a synthesized electronic score. Needs no material at all; best for stylized animation.</span></p>
       </article>
       <article class="path" data-kind="t">
-        <h3><button type="button" class="path-pick" data-kind="t" aria-pressed="false"><span lang="zh">改编现成素材</span><span lang="en">Existing footage</span></button></h3>
-        <p class="tag"><span lang="zh">T 类 · 以后收</span><span lang="en">Class T · later</span></p>
-        <p><span lang="zh">在照片、录屏、口播原片、真实数据上加工。效果取决于手里的素材和授权。</span><span lang="en">Work on top of photos, screen recordings, talking-head footage or real data. Depends on the material you have and its license.</span></p>
+        <h3><button type="button" class="path-pick" data-kind="t" aria-pressed="false"><span lang="zh">实拍素材</span><span lang="en">Real footage</span></button></h3>
+        <p class="tag"><span lang="zh">T 类 · {{N_T}} 种 · 按内容类型分</span><span lang="en">Class T · {{N_T}} styles · by content type</span></p>
+        <p><span lang="zh">代码把录像、录屏、照片、数据剪进片子。本库样片只用公共领域素材（NASA、美国国会图书馆、NOAA 等），你做时换成自己的。</span><span lang="en">The code cuts footage, screen recordings, photos and data into the film. The samples here use public-domain material only (NASA, the Library of Congress, NOAA and others); swap in your own.</span></p>
+      </article>
+      <article class="path" data-kind="g">
+        <h3><button type="button" class="path-pick" data-kind="g" aria-pressed="false"><span lang="zh">AI 素材</span><span lang="en">AI material</span></button></h3>
+        <p class="tag"><span lang="zh">G 类 · {{N_G}} 种 · 按内容类型分</span><span lang="en">Class G · {{N_G}} styles · by content type</span></p>
+        <p><span lang="zh">先用生图、生视频、语音合成做出素材，再交给代码剪辑和加动效。适合写实人物和场景。任何一家服务都行。</span><span lang="en">Generate images, clips and voice first, then let the code edit and animate them. Good for realistic people and scenes. Any provider works.</span></p>
       </article>
     </div>
   </div>
@@ -122,7 +122,7 @@
     <div class="gal-head">
       <div>
         <h2><span lang="zh">样片查看</span><span lang="en">Browse the samples</span></h2>
-        <p class="sec-lede"><span lang="zh">按题材和技术筛选，两个条件可以叠加；卡片上的技术标签也能点。每页 15 支，停在哪里，哪里的样片才开始播放；点画面放大播放，点「声音」听代码合成的配乐。</span><span lang="en">Filter by theme and by technique, alone or together; the technique tags on each card are clickable too. 15 per page; a sample starts playing once you stop scrolling on it. Click a picture to play it large, or press Sound to hear the synthesized score.</span></p>
+        <p class="sec-lede"><span lang="zh">先选类型：纯代码、实拍素材、AI 素材。纯代码的按题材和技术筛，两类素材的按内容类型筛。每页 15 支，停在哪里，哪里的样片才开始播放；点画面放大播放，点「声音」听配乐和旁白。</span><span lang="en">Pick a class first: pure code, real footage or AI material. Pure-code samples filter by theme and technique; the two material classes filter by content type. 15 per page; a sample starts playing once you stop scrolling on it. Click a picture to play it large, or press Sound for the score and narration.</span></p>
       </div>
       <div class="seg" role="group" aria-label="画幅 / Frame shape">
         <button type="button" data-ar="16x9" aria-pressed="true">16:9</button>
@@ -144,17 +144,17 @@
 <section class="sec" id="how">
   <div class="wrap">
     <h2><span lang="zh">一支样片怎么组成</span><span lang="en">What a sample is made of</span></h2>
-    <p class="sec-lede"><span lang="zh">每支样片是一个文件夹里的两份代码，加一条共用的出片管线。横屏 16:9 和竖屏 9:16 用同一份代码，按画幅重新构图，不裁切。</span><span lang="en">Each sample is two code files in one folder plus a shared render pipeline. Landscape 16:9 and portrait 9:16 come from the same code, recomposed for each frame shape rather than cropped.</span></p>
+    <p class="sec-lede"><span lang="zh">每支样片是一个文件夹里的两份代码，加一条共用的出片管线；用素材的样片另有一个 <code>assets/</code> 文件夹和一份素材清单 <code>assets.json</code>，记下每份素材的出处、许可或生成参数。横屏 16:9 和竖屏 9:16 用同一份代码，按画幅重新构图，不裁切。</span><span lang="en">Each sample is two code files in one folder plus a shared render pipeline; samples with material also carry an <code>assets/</code> folder and an <code>assets.json</code> list recording each piece's source, license or generation settings. Landscape 16:9 and portrait 9:16 come from the same code, recomposed for each frame shape rather than cropped.</span></p>
     <ol class="pipe">
       <li>
         <code class="file">scene.js</code>
         <h3><span lang="zh">画面</span><span lang="en">Picture</span></h3>
-        <p><span lang="zh">一个 <code>draw(ctx, t)</code> 函数：给定时间 t，画出这一帧。不读随机数、不读时钟，所以结果唯一。</span><span lang="en">One <code>draw(ctx, t)</code> function: given time t, draw that frame. No unseeded randomness, no clock, so the result is unique.</span></p>
+        <p><span lang="zh">一个 <code>draw(ctx, t)</code> 函数：给定时间 t，画出这一帧。不读随机数、不读时钟；视频素材按帧号取那一帧，所以结果唯一。</span><span lang="en">One <code>draw(ctx, t)</code> function: given time t, draw that frame. No unseeded randomness, no clock; video material is read by frame number, so the result is unique.</span></p>
       </li>
       <li>
         <code class="file">sound.py</code>
         <h3><span lang="zh">声音</span><span lang="en">Sound</span></h3>
-        <p><span lang="zh">一个 <code>score(m)</code> 函数，用代码合成的电子音配乐：拨弦、FM 钟、方波、噪声扫频。不用 TTS、AI 作曲、曲库或录音。</span><span lang="en">One <code>score(m)</code> function scoring the clip with synthesized sound: plucked strings, FM bells, square waves, noise sweeps. No TTS, AI music, libraries or recordings.</span></p>
+        <p><span lang="zh">一个 <code>score(m)</code> 函数。纯代码样片用代码合成的电子音：拨弦、FM 钟、方波、噪声扫频；用素材的样片照清单摆旁白、原声和公开曲库的配乐，说话时自动压低配乐。</span><span lang="en">One <code>score(m)</code> function. Pure-code samples use synthesized sound: plucked strings, FM bells, square waves, noise sweeps. Samples with material place narration, original audio and openly licensed music from their asset list, ducking the music under speech.</span></p>
       </li>
       <li>
         <code class="file">render.py</code>
@@ -179,7 +179,7 @@ scene({
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
     <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result.</span></p>
     <ol class="eight">
-      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明“纯代码逐帧，不用生成模型和外部图片”。</span><span lang="en">Say "pure code, frame by frame, no generators or external images".</span></li>
+      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明纯代码，还是用哪些素材（录像、照片、数据、生图、生视频）、素材从哪来。</span><span lang="en">Say whether it is pure code or which material it uses (footage, photos, data, generated images or clips) and where that comes from.</span></li>
       <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface.</span></li>
       <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow).</span></li>
       <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe; place it at the climax.</span></li>
@@ -224,7 +224,8 @@ scene({
             <li><code>styles/*.md</code><span lang="zh">风格词典：每种一句提示词、题材、技术标签</span><span lang="en">The dictionary: a prompt, theme and tags per style</span></li>
             <li><code>index.md</code><span lang="zh">按用途、题材选风格的索引表</span><span lang="en">Lookup tables by purpose and theme</span></li>
             <li><code>prompting.md</code><span lang="zh">提示词写法和通用模板</span><span lang="en">How to write prompts, plus a template</span></li>
-            <li><code>sound.md</code><span lang="zh">声音怎么用代码合成</span><span lang="en">How to synthesize the sound</span></li>
+            <li><code>materials.md</code><span lang="zh">用真实素材、AI 素材做视频的做法</span><span lang="en">Making videos with real or AI-generated material</span></li>
+            <li><code>sound.md</code><span lang="zh">配乐、音效和旁白</span><span lang="en">Music, effects and narration</span></li>
             <li><code>scripts/</code><span lang="zh">生成索引、检查条目的脚本</span><span lang="en">Scripts that build and check the index</span></li>
           </ul>
         </div>
@@ -271,13 +272,13 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
         <p class="lv">0</p>
         <h4><span lang="zh">词典</span><span lang="en">Dictionary</span></h4>
         <p class="num">{{N_STYLES}} <span lang="zh">种风格</span><span lang="en">styles</span></p>
-        <p><span lang="zh">每种一句可复制的风格提示词、题材和技术标签，配六张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese), a theme and technique tags, with six lookup tables for choosing.</span></p>
+        <p><span lang="zh">每种一句可复制的风格提示词。纯代码的标题材和技术，用素材的标内容类型和素材种类，配几张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese). Pure-code styles carry a theme and techniques; material styles carry a content type and the kinds of material, with lookup tables for choosing.</span></p>
       </article>
       <article>
         <p class="lv">1</p>
         <h4><span lang="zh">样片</span><span lang="en">Samples</span></h4>
         <p class="num">{{N_SAMPLES}} <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
-        <p><span lang="zh">候选风格套上你的品牌色和内容，跑 3–5 秒，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content, 3–5 seconds, in both frame shapes. The samples here are worked examples you can edit.</span></p>
+        <p><span lang="zh">候选风格套上你的品牌色和内容（用素材的换成你的素材），跑一小段，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content (and your own material where it uses some), a short clip in both frame shapes. The samples here are worked examples you can edit.</span></p>
       </article>
       <article>
         <p class="lv">2</p>
@@ -294,10 +295,17 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
 <section class="sec" id="library">
   <div class="wrap">
     <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
-    <p class="sec-lede"><span lang="zh">全部 {{N_STYLES}} 种风格按题材分布。深色部分是已出样片的。</span><span lang="en">All {{N_STYLES}} styles by theme. The solid part of each bar has rendered samples.</span></p>
+    <p class="sec-lede"><span lang="zh">全部 {{N_STYLES}} 种风格。纯代码的 {{N_C}} 种按题材分布，深色部分是已出样片的。</span><span lang="en">All {{N_STYLES}} styles. The {{N_C}} pure-code ones by theme; the solid part of each bar has rendered samples.</span></p>
     <div class="bars">
 {{THEMES}}
     </div>
+    <p class="note"><span lang="zh">用素材的按内容类型分，格子里是「已出样片 / 种数」：</span><span lang="en">The material styles by content type, as "rendered / total":</span></p>
+    <table class="ctypes">
+      <thead><tr><th><span lang="zh">内容类型</span><span lang="en">Content type</span></th><th><span lang="zh">T 类 实拍素材</span><span lang="en">T · real footage</span></th><th><span lang="zh">G 类 AI 素材</span><span lang="en">G · AI material</span></th></tr></thead>
+      <tbody>
+{{CTYPES}}
+      </tbody>
+    </table>
     <p class="note"><span lang="zh">按「画在哪」分：{{LAYERS_ZH}}。</span><span lang="en">By where it is drawn: {{LAYERS_EN}}.</span></p>
   </div>
 </section>
@@ -305,7 +313,7 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <p><span lang="zh">MIT 许可。画面和声音全部由本仓库的代码生成，不收录任何第三方图片、录音或模型输出。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">MIT licensed. Every picture and sound is generated by the code in this repository; no third-party images, recordings or model outputs. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
+    <p><span lang="zh">代码 MIT 许可。纯代码样片的画面和声音全部由本仓库的代码生成；实拍素材样片只用公共领域素材和 CC0 配乐，AI 素材样片的素材由生成服务做出，每份的出处、许可或生成参数见各样片的 <code>assets.json</code>。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">Code under the MIT license. Pure-code samples are generated entirely by code in this repository; real-footage samples use only public-domain material and CC0 music; AI-material samples use material made by generation services. Each sample's <code>assets.json</code> lists the source, license or generation settings of every piece. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
     <p class="ver">{{VERSION}} · <a href="{{REPO}}">GitHub</a></p>
   </div>
 </footer>

@@ -1,0 +1,32 @@
+{
+ "items": [
+  {
+   "file": "assets/horse.jpg",
+   "kind": "照片",
+   "title": "The Horse in Motion: \"Sallie Gardner\"（1878，Eadweard Muybridge，LOC 97502309）",
+   "source": "https://www.loc.gov/item/97502309/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/ppmsca/06600/06607u.tif",
+   "license": "无已知版权限制（美国国会图书馆，No known restrictions on publication）",
+   "author": "Eadweard Muybridge",
+   "credit": "照片 Muybridge 1878 / LOC",
+   "prep": {
+    "max": 2400,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Fast fight / battle music",
+   "source": "https://opengameart.org/content/fast-fight-battle-music",
+   "download": "https://opengameart.org/sites/default/files/fight.ogg",
+   "license": "CC0 1.0",
+   "author": "Bonsaiheldin",
+   "credit": "配乐 Bonsaiheldin（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}
