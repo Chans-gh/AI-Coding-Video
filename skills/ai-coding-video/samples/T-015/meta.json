@@ -1,0 +1,5 @@
+{
+  "en_name": "Year-in-review data cards",
+  "en_how": "One template function plus a three-row data table yields three year-in-review clips (2023, 2024, 2025): over a space-station photo of Earth's limb the year flips in, the NASA GISTEMP temperature anomaly counts up and its record rank is computed, a bar chart since 1880 lights up that year next to NOAA's CO₂ annual mean; the sample plays all three and ends with them side by side above the data table.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

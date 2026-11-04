@@ -1,0 +1,93 @@
+{
+ "items": [
+  {
+   "file": "assets/hero.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "美食摄影：一盘番茄炒蛋，正上方俯拍，白色圆盘放在画面正中的浅木色桌面上，金黄蓬松的鸡蛋块和红亮多汁的番茄块，撒着翠绿的葱花，柔和的自然窗光，四周留出干净的桌面，没有文字、没有标志、没有餐具品牌",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "照片 AI 生成",
+   "prep": {
+    "max": 1400
+   }
+  },
+  {
+   "file": "assets/ingredients.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "美食摄影：番茄炒蛋的食材平铺，正上方俯拍，浅木色桌面上整齐摆着两个红番茄、三个鸡蛋、一小碟盐、一小把葱，间距均匀、四周留白，柔和的自然窗光，没有文字、没有标志、没有包装",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "照片 AI 生成",
+   "prep": {
+    "max": 1400
+   }
+  },
+  {
+   "file": "assets/steps.svg",
+   "kind": "生图",
+   "model": "deepseek-flash",
+   "prompt": "画一组 4 个厨房步骤的线条图标，横排在 viewBox=\"0 0 400 100\"、width=\"400\" height=\"100\" 里，每个图标占一格 100×100、四周留 10 的边：第 1 个是菜刀切一个番茄（<g id=\"step1\">），第 2 个是碗里打一个鸡蛋、旁边一双筷子（<g id=\"step2\">），第 3 个是炒锅里翻炒、上面三缕热气（<g id=\"step3\">），第 4 个是盐罐撒盐、旁边几段葱花（<g id=\"step4\">）。每个 <g> 里只用 path、circle、line、ellipse，全部 fill=\"none\"、stroke=\"#3b2a1a\"、stroke-width=\"3\"、stroke-linecap=\"round\"、stroke-linejoin=\"round\"；线条简洁、像手绘图标，不写文字。",
+   "params": {
+    "temperature": 0.4
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "图标 AI 生成"
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Warm_Girl",
+   "text": "番茄炒蛋，四步上桌。番茄切块，鸡蛋打散，先炒到嫩黄盛出。再把番茄炒出汁，鸡蛋回锅，加盐，撒葱花，出锅！",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 0.6,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 12.46,
+   "lines": [
+    {
+     "t0": 0.043,
+     "t1": 1.749,
+     "text": "番茄炒蛋，四步上桌"
+    },
+    {
+     "t0": 1.749,
+     "t1": 6.101,
+     "text": "番茄切块，鸡蛋打散，先炒到嫩黄盛出"
+    },
+    {
+     "t0": 6.101,
+     "t1": 9.344,
+     "text": "再把番茄炒出汁，鸡蛋回锅"
+    },
+    {
+     "t0": 9.344,
+     "t1": 11.904,
+     "text": "加盐，撒葱花，出锅！"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Greens are good for you!",
+   "source": "https://opengameart.org/content/greens-are-good-for-you",
+   "download": "https://opengameart.org/sites/default/files/Greens%20are%20good%20for%20you.mp3",
+   "license": "CC0 1.0",
+   "author": "Pro Sensory",
+   "credit": "配乐 Pro Sensory（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

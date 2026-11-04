@@ -6317,7 +6317,7 @@
    "name": "食谱动效卡",
    "file": "styles/generated.md",
    "layer": "generated",
-   "image": null,
+   "image": "images/G-013.jpg",
    "prompt": "用「食谱动效卡」：奶油色卡片上，生成的成品菜照片和食材平铺照片做主图，四个做菜步骤的线条图标由语言模型写成 SVG，代码按笔画顺序把它们一笔一笔描出来，再弹出步骤编号和一句话；旁白用亲切的公开音色报步骤，字幕跟着旁白走，图标和照片的切换卡在旁白的句子上；结尾成品照片推近，写上菜名和用时。",
    "theme": "",
    "content_type": "美食",
@@ -6330,14 +6330,22 @@
     "语音合成驱动"
    ],
    "fit": "菜谱短视频、餐饮门店的菜品卡、生活方式类账号",
-   "verified": [],
+   "verified": [
+    "SVG",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D",
     "Playwright",
     "ffmpeg"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/G-013/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-013"
+   },
    "pack": null,
    "refs": []
   },
@@ -6347,7 +6355,7 @@
    "name": "虚构电竞集锦",
    "file": "styles/generated.md",
    "layer": "generated",
-   "image": null,
+   "image": "images/G-014.jpg",
    "prompt": "用「虚构电竞集锦」：两段视频模型连声音一起生成的原创科幻竞技镜头（滑铲躲光束、护盾反打），代码做成电竞集锦的包装——开场队伍对阵牌、比分条和击杀提示、关键一秒的慢放和定格描边、解说字幕条；声音用生成镜头自带的音效和欢呼，配乐卡在镜头切换上，慢放时压低。队伍、角色、游戏全部虚构，画面里不出现真实游戏和战队的名字、标志。",
    "theme": "",
    "content_type": "游戏和电竞",
@@ -6359,13 +6367,20 @@
     "生成音乐与音效"
    ],
    "fit": "电竞集锦、游戏宣传片、直播精彩回放",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "Playwright",
     "ffmpeg"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/G-014/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-014"
+   },
    "pack": null,
    "refs": []
   },
@@ -6837,7 +6852,7 @@
    "name": "发射多机位同步",
    "file": "styles/footage.md",
    "layer": "footage",
-   "image": null,
+   "image": "images/T-013.jpg",
    "prompt": "用「发射多机位同步」：同一次发射的几路机位录像各自从不同时刻开始，先用各路的现场声音做互相关，算出每路差几秒，把它们放到同一条时间线上（片头把几条声波对齐的过程画出来，标出算得的偏移）；然后按统一的倒计时切换机位：近景点火、塔架冲出火焰、远景升空，右上角一直是同一个任务时钟；最后换到跟踪镜头，叠上飞船的真实飞行轨迹（地月之间的路线、距地距离和速度读数随轨迹走），时间压缩着播完整个任务。",
    "theme": "",
    "content_type": "纪录片和纪实",
@@ -6850,13 +6865,20 @@
     "传感器与轨迹叠加"
    ],
    "fit": "发射和赛事的多机位回放、纪录片的重大时刻、带数据的活动回顾",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "Playwright",
     "ffmpeg"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/T-013/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-013"
+   },
    "pack": null,
    "refs": [
     {
@@ -6875,7 +6897,7 @@
    "name": "讲义转片",
    "file": "styles/footage.md",
    "layer": "footage",
-   "image": null,
+   "image": "images/T-014.jpg",
    "prompt": "用「讲义转片」：把一份公开手册的几页做成培训短片——页面像纸一样放在浅灰工作台上，代码读这一页的文字层，找到要讲的那句话在页面上的位置，荧光笔从左到右划过去，镜头推近；接着把这句话抽出来做成大号引文卡（原文加中文译文，注明页码）；图示页按讲解顺序逐块圈出、编号，旁边配一行中文要点；结尾三条要点和出处。",
    "theme": "",
    "content_type": "企业培训和课件",
@@ -6887,13 +6909,20 @@
     "文稿转片"
    ],
    "fit": "新人培训、制度和手册解读、论文和报告速读",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "Playwright",
     "ffmpeg"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/T-014/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-014"
+   },
    "pack": null,
    "refs": [
     {
@@ -6908,7 +6937,7 @@
    "name": "年度数据回顾",
    "file": "styles/footage.md",
    "layer": "footage",
-   "image": null,
+   "image": "images/T-015.jpg",
    "prompt": "用「年度数据回顾」：一套模板加一张数据表，每一行出一条「年度回顾」短片——太空中的地平线照片做底，大号年份翻牌，全球气温距平的数字滚动到位、写出「有记录以来第几热」，下面一条 1880 年以来的柱状图把这一年点亮，旁边是这一年的二氧化碳浓度；换一行数据就是另一条。样片里依次播三条，最后把三条排成一排，标出「同一模板，3 行数据」。",
    "theme": "",
    "content_type": "年度回顾和数据总结",
@@ -6921,13 +6950,20 @@
     "数据可视化"
    ],
    "fit": "年度报告、年终总结、按城市或门店批量出片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "Playwright",
     "ffmpeg"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/T-015/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-015"
+   },
    "pack": null,
    "refs": [
     {

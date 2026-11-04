@@ -1,0 +1,5 @@
+{
+  "en_name": "Handbook to training video",
+  "en_how": "Two scanned pages of NASA's Systems Engineering Handbook sit on a desk; the code reads each page's text layer to locate the sentence it wants, sweeps a highlighter over it, pushes in and lifts it into a quote card with a Chinese translation and page number, circles the three blocks of the SE engine figure in order, and ends on three takeaways with the source.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -238,6 +238,8 @@
 
 ## T-013 发射多机位同步
 
+![发射多机位同步](../images/T-013.jpg)
+
 ```text
 用「发射多机位同步」：同一次发射的几路机位录像各自从不同时刻开始，先用各路的现场声音做互相关，算出每路差几秒，把它们放到同一条时间线上（片头把几条声波对齐的过程画出来，标出算得的偏移）；然后按统一的倒计时切换机位：近景点火、塔架冲出火焰、远景升空，右上角一直是同一个任务时钟；最后换到跟踪镜头，叠上飞船的真实飞行轨迹（地月之间的路线、距地距离和速度读数随轨迹走），时间压缩着播完整个任务。
 ```
@@ -246,12 +248,16 @@
 - 素材：录像 · 数据
 - 技术类型：多机位同步 · 传感器与轨迹叠加
 - 适合：发射和赛事的多机位回放、纪录片的重大时刻、带数据的活动回顾
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-013/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-013)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[NASA 影像库：Artemis I Isolated Launch Views](https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595) · [JPL Horizons](https://ssd.jpl.nasa.gov/horizons/)
 
 <a id="T-014"></a>
 
 ## T-014 讲义转片
+
+![讲义转片](../images/T-014.jpg)
 
 ```text
 用「讲义转片」：把一份公开手册的几页做成培训短片——页面像纸一样放在浅灰工作台上，代码读这一页的文字层，找到要讲的那句话在页面上的位置，荧光笔从左到右划过去，镜头推近；接着把这句话抽出来做成大号引文卡（原文加中文译文，注明页码）；图示页按讲解顺序逐块圈出、编号，旁边配一行中文要点；结尾三条要点和出处。
@@ -261,12 +267,16 @@
 - 素材：照片 · 数据
 - 技术类型：文稿转片
 - 适合：新人培训、制度和手册解读、论文和报告速读
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-014/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-014)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[NASA Systems Engineering Handbook Rev 2（NTRS）](https://ntrs.nasa.gov/citations/20170001761)
 
 <a id="T-015"></a>
 
 ## T-015 年度数据回顾
+
+![年度数据回顾](../images/T-015.jpg)
 
 ```text
 用「年度数据回顾」：一套模板加一张数据表，每一行出一条「年度回顾」短片——太空中的地平线照片做底，大号年份翻牌，全球气温距平的数字滚动到位、写出「有记录以来第几热」，下面一条 1880 年以来的柱状图把这一年点亮，旁边是这一年的二氧化碳浓度；换一行数据就是另一条。样片里依次播三条，最后把三条排成一排，标出「同一模板，3 行数据」。
@@ -276,5 +286,7 @@
 - 素材：数据 · 照片
 - 技术类型：模板化批量生成 · 数据可视化
 - 适合：年度报告、年终总结、按城市或门店批量出片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-015/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-015)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[NASA GISS GISTEMP](https://data.giss.nasa.gov/gistemp/) · [NOAA Mauna Loa CO₂](https://gml.noaa.gov/ccgg/trends/data.html)

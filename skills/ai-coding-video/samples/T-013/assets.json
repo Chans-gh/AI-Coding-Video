@@ -1,0 +1,172 @@
+{
+ "items": [
+  {
+   "file": "assets/closeup.mp4",
+   "kind": "录像",
+   "title": "Artemis I Isolated Launch Views（近景：火箭中段和箭体灯）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 13.1,
+    "t": 11,
+    "w": 960,
+    "crf": 27
+   }
+  },
+  {
+   "file": "assets/closeup.mp3",
+   "kind": "原声",
+   "title": "同一机位的现场声音（近景：火箭中段和箭体灯）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 13.1,
+    "t": 11,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 11.05
+  },
+  {
+   "file": "assets/tower.mp4",
+   "kind": "录像",
+   "title": "Artemis I Isolated Launch Views（塔架 913 号机位）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 1006.7,
+    "t": 11,
+    "w": 960,
+    "crf": 27
+   }
+  },
+  {
+   "file": "assets/tower.mp3",
+   "kind": "原声",
+   "title": "同一机位的现场声音（塔架 913 号机位）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 1006.7,
+    "t": 11,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 11.05
+  },
+  {
+   "file": "assets/wide.mp4",
+   "kind": "录像",
+   "title": "Artemis I Isolated Launch Views（远景：39B 发射台）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 166.9,
+    "t": 11,
+    "w": 960,
+    "crf": 27
+   }
+  },
+  {
+   "file": "assets/wide.mp3",
+   "kind": "原声",
+   "title": "同一机位的现场声音（远景：39B 发射台）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 166.9,
+    "t": 11,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 11.05
+  },
+  {
+   "file": "assets/track.mp4",
+   "kind": "录像",
+   "title": "Artemis I Isolated Launch Views（跟踪机位：升空后的尾焰）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "download": "https://images-assets.nasa.gov/video/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 667.3,
+    "t": 5.5,
+    "w": 960,
+    "crf": 27
+   }
+  },
+  {
+   "file": "assets/sync.json",
+   "kind": "数据",
+   "title": "三路机位的时间偏移（由 sync.py 从三路原声的互相关算出）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "本仓库 sync.py 计算",
+   "credit": "对齐 本仓库计算",
+   "edit": "python3 T-013/sync.py：三段原声两两互相关，取峰值的时移；倒计时归零的时刻从同一份录像里的倒计时牌读出"
+  },
+  {
+   "file": "assets/orion.csv",
+   "kind": "数据",
+   "title": "Artemis I / Orion 飞船相对地心的位置和速度（2 小时一点，2022-11-16 至 12-11）",
+   "source": "https://ssd.jpl.nasa.gov/horizons/",
+   "download": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27-1023%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%40399%27&START_TIME=%272022-11-16+09%3A00%27&STOP_TIME=%272022-12-11+17%3A00%27&STEP_SIZE=%272+h%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&REF_PLANE=%27ECLIPTIC%27",
+   "license": "公共领域（NASA/JPL Horizons 星历，美国政府作品）",
+   "author": "NASA/JPL Solar System Dynamics",
+   "credit": "轨迹 NASA/JPL Horizons",
+   "prep": {
+    "horizons": true
+   }
+  },
+  {
+   "file": "assets/moon.csv",
+   "kind": "数据",
+   "title": "月球相对地心的位置和速度（同一时段）",
+   "source": "https://ssd.jpl.nasa.gov/horizons/",
+   "download": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27301%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%40399%27&START_TIME=%272022-11-16+09%3A00%27&STOP_TIME=%272022-12-11+17%3A00%27&STEP_SIZE=%272+h%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&REF_PLANE=%27ECLIPTIC%27",
+   "license": "公共领域（NASA/JPL Horizons 星历，美国政府作品）",
+   "author": "NASA/JPL Solar System Dynamics",
+   "credit": "轨迹 NASA/JPL Horizons",
+   "prep": {
+    "horizons": true
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Background space track",
+   "source": "https://opengameart.org/content/background-space-track",
+   "download": "https://opengameart.org/sites/default/files/MyVeryOwnDeadShip.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}
