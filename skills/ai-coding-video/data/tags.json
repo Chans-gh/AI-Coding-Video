@@ -79,7 +79,13 @@
     {"name": "教程和录屏演示", "en": "Tutorials & screencasts"},
     {"name": "旅行和城市", "en": "Travel & cities"},
     {"name": "体育赛事", "en": "Sports"},
-    {"name": "儿童绘本动画", "en": "Children's picture books"}
+    {"name": "儿童绘本动画", "en": "Children's picture books"},
+    {"name": "企业培训和课件", "en": "Training & courseware"},
+    {"name": "游戏和电竞", "en": "Gaming & esports"},
+    {"name": "播客和访谈可视化", "en": "Podcast & interview visuals"},
+    {"name": "年度回顾和数据总结", "en": "Year-in-review & data recaps"},
+    {"name": "美食", "en": "Food"},
+    {"name": "健康和运动指导", "en": "Health & fitness guidance"}
   ],
   "materials": {
     "T": [

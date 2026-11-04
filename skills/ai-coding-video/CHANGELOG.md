@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-04 | 0.2.4：内容类型新增 6 个（企业培训和课件、游戏和电竞、播客和访谈可视化、年度回顾和数据总结、美食、健康和运动指导），T、G 条目随阶段 4 补 |
 | 2026-11-04 | 阶段 0：介绍页和 Skill 分开。生成的 `site/index.html`、`site/fonts/` 不再进仓库，由 `pages.yml` 发布时 `site/build.py --page` 生成，改 Skill、样片的推送也会重新发布；`AGENTS.md` 写明按目录分工（介绍页只改 `site/`）。Skill 内容不变，版本号不变 |
 | 2026-11-04 | 0.2.3：新增「T/G 技术类型」一层（17 种 T、16 种 G，每种带轻、中、重难度）：取值在 `data/tags.json` 的 `techniques`，T、G 条目都标「技术类型」，`tags.md` 里的类型 × 条目 × 样片 × 难度表由 `build_index.py` 生成并校验；`materials.md` 新增「统一处理」一节，讲超分、补帧、去噪等工序 |
 | 2026-11-04 | 全面检查后整理：介绍页字体每次重新生成都逐字节相同（`site/build.py` 用原字体的时间戳），不再多出字体改动；Skill README 的目录补上随 Skill 安装的 `samples/`、`packs/`；仓库 README 的结构补全，许可写明 T、G 类素材按各自 `assets.json`；`site/README.md` 写明首页大视频用 `media/m/`。只整理，版本号不变 |
