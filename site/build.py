@@ -24,7 +24,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v9 · 2026-11-04"
+VERSION = "v10 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 

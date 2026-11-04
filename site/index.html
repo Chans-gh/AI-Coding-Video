@@ -21,7 +21,7 @@
       <a href="#skill">Skill</a>
     </nav>
     <div class="bar-end">
-      <span class="ver">v9 · 2026-11-04</span>
+      <span class="ver">v10 · 2026-11-04</span>
       <button class="lang" id="lang-toggle" type="button" aria-label="切换语言 / Switch language"><span lang="zh">EN</span><span lang="en">中文</span></button>
     </div>
   </div>
@@ -31,9 +31,13 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow"><span lang="zh">用代码做视频的风格库</span><span lang="en">A style library for videos made by code</span></p>
-      <h1><span lang="zh">视频每一帧，<br>都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></h1>
-      <p class="lede"><span lang="zh">让 AI 写渲染代码，代码逐帧画出画面、配好声音，再编码成视频。画面可以全部由代码算出来；也可以把照片、录像、数据，或 AI 生成的图片和视频交给代码，由代码剪辑、排版、加动效。同一份代码，每次跑出来的片子都一模一样。</span><span lang="en">An AI assistant writes the rendering code; the code draws each frame, lays in the sound and encodes the video. The picture can be computed entirely by code, or the code can take photos, footage, data, or AI-generated images and clips and cut, lay out and animate them. Run the same code twice and you get the same film, frame for frame.</span></p>
+      <p class="kicker"><span lang="zh">视频每一帧，都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></p>
+      <h1><span lang="zh"><span class="nw">1 句话，</span><span class="nw">让 AI 直接完成</span> <span class="nw">10 分钟的</span><span class="nw">完整视频出片</span></span><span lang="en">One sentence, and the AI delivers a complete <span class="nw">10-minute</span> video</span></h1>
+      <ul class="hero-tags">
+        <li><span lang="zh">0 剪辑</span><span lang="en">No editing</span></li>
+        <li><span lang="zh">0 配音</span><span lang="en">No voice-over</span></li>
+        <li><span lang="zh">0 分镜</span><span lang="en">No storyboard</span></li>
+      </ul>
       <div class="cta">
         <a class="btn primary" href="#skill"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
         <a class="btn" href="https://github.com/Chans-gh/AI-Coding-Video"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub repo</span></a>
@@ -64,7 +68,7 @@
 <section class="sec" id="what">
   <div class="wrap">
     <h2><span lang="zh">什么是 AI Coding Video</span><span lang="en">What AI Coding Video is</span></h2>
-    <p class="sec-lede"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧算出画面、配好声音，最后编码成 MP4。下面这个例子是纯代码的：画面里没有一张现成的图片。要用真实素材或 AI 素材时，流程一样，只是代码在每一帧里多读一份素材。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code computes the picture frame by frame from time t, adds the sound, and encodes an MP4. The example below is pure code, with no ready-made image in the frame. With real or AI-generated material the flow is the same; the code simply reads a piece of material in each frame.</span></p>
+    <p class="sec-lede wide"><span lang="zh">AI Coding Video 是让 AI 编程助手写程序来做视频：你用平常的话说想要什么片子，助手写出渲染代码，代码按时间 t 一帧一帧画出画面、配好声音，最后编码成 MP4。画面可以全部由代码算出来；也可以把照片、录像、数据，或 AI 生成的图片和视频交给代码，由代码剪辑、排版、加动效。下面这个例子是纯代码的，画面里没有一张现成的图片；用素材时流程一样，只是代码在每一帧里多读一份素材。</span><span lang="en">AI Coding Video means having an AI coding assistant write a program that makes the video. You describe the film in plain words; the assistant writes rendering code; the code draws the picture frame by frame from time t, lays in the sound, and encodes an MP4. The picture can be computed entirely by code, or the code can take photos, footage, data, or AI-generated images and clips and cut, lay out and animate them. The example below is pure code, with no ready-made image in the frame; with material the flow is the same, and the code simply reads a piece of material in each frame.</span></p>
     <ol class="flow">
       <li>
         <div class="flow-vis bubble"><span lang="zh">“做一支 3 秒的开场：夜里升起一轮红日，一笔画出一个圆。”</span><span lang="en">"A 3-second opener: a red sun rises at night, and one brushstroke draws a circle."</span></div>
@@ -1816,7 +1820,7 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
 <footer class="foot">
   <div class="wrap foot-in">
     <p><span lang="zh">代码 MIT 许可。纯代码样片的画面和声音全部由本仓库的代码生成；实拍素材样片只用公共领域素材和 CC0 配乐，AI 素材样片的素材由生成服务做出，每份的出处、许可或生成参数见各样片的 <code>assets.json</code>。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">Code under the MIT license. Pure-code samples are generated entirely by code in this repository; real-footage samples use only public-domain material and CC0 music; AI-material samples use material made by generation services. Each sample's <code>assets.json</code> lists the source, license or generation settings of every piece. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
-    <p class="ver">v9 · 2026-11-04 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
+    <p class="ver">v10 · 2026-11-04 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
   </div>
 </footer>
 <script src="assets/site.js"></script>
