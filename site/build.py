@@ -5,6 +5,7 @@
 页面里的数字（风格总数、样片数、各题材数量）都在这里算，不要手改 index.html。
 需要：samples/ 下先 npm install（字体来自 @fontsource），Python 装 fontTools 和 brotli。
 """
+import hashlib
 import html
 import json
 import re
@@ -24,7 +25,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v10 · 2026-11-04"
+VERSION = "v11 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -370,6 +371,10 @@ def main():
     }
     for k, v in fills.items():
         tpl = tpl.replace(k, v)
+    # 样式和脚本带上内容指纹，改了以后浏览器不会继续用缓存里的旧文件
+    for name in ("site.css", "site.js"):
+        tag = hashlib.sha256((HERE / "assets" / name).read_bytes()).hexdigest()[:10]
+        tpl = tpl.replace(f'"assets/{name}"', f'"assets/{name}?v={tag}"')
     left = re.findall(r"{{[A-Z_]+}}", tpl)
     if left:
         sys.exit(f"模板里还有没填的占位符：{left}")
