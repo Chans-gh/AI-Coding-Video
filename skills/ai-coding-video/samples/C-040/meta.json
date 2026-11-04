@@ -1,0 +1,9 @@
+{
+  "en_name": "Data storytelling",
+  "en_how": "A pencil draws the line chart point by point with the camera on its tip, circles the jump in red, then pulls back.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

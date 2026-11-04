@@ -1,0 +1,10 @@
+{
+  "en_name": "Glass product render",
+  "en_how": "A code-built product of clear glass, frosted glass and metal floats in an endless black studio; two long strip lights sweep across its surface, high-IOR transmission gives the edges a dispersed fringe, a caustic ring sits on the floor, and the slow exploded view snaps shut on the beat.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

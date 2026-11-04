@@ -1,0 +1,12 @@
+{
+  "en_name": "Backrooms found footage",
+  "en_how": "An endless yellow-wallpaper room generated in code and looped around the camera as it drifts forward on handheld noise, then run through a GLSL pass for tape tearing, chroma offset, scanlines and grain, with a camcorder date stamp and three 'rules' subtitles composited on top.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

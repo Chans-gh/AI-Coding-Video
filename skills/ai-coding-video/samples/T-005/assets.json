@@ -1,0 +1,34 @@
+{
+ "items": [
+  {
+   "file": "assets/film.mp4",
+   "kind": "录像",
+   "title": "A Trip to the Moon / Le Voyage dans la Lune（1902，Georges Méliès）",
+   "source": "https://archive.org/details/a-trip-to-the-moon-le-voyage-dans-la-lune-1902",
+   "download": "https://archive.org/download/a-trip-to-the-moon-le-voyage-dans-la-lune-1902/A%20Trip%20to%20the%20moon%20%28Le%20voyage%20dans%20la%20lune%29%20%281902%29.mp4",
+   "license": "公共领域（1902 年作品，archive.org 标为 Public Domain Mark）",
+   "author": "Georges Méliès",
+   "credit": "影片 Méliès 1902（公共领域）",
+   "prep": {
+    "ss": 340,
+    "t": 40,
+    "w": 640,
+    "crf": 23
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Vampire's Piano",
+   "source": "https://opengameart.org/content/vampires-piano",
+   "download": "https://opengameart.org/sites/default/files/vampires_piano_6.mp3",
+   "license": "CC0 1.0",
+   "author": "TAD",
+   "credit": "配乐 TAD（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

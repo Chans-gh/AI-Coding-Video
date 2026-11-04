@@ -1,0 +1,5 @@
+{
+  "en_name": "Gongbi (fine-line painting)",
+  "en_how": "Lotus petals, leaves, bud and stems are Bézier curves sampled into polylines; even, fine ink lines trace each one in order, then three colour layers build up — a flat base, a root-to-tip graded wash and a deeper tip with veins — painting back to front so front petals hide what is behind, with the ink always drawn over the colour on a warm silk ground.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

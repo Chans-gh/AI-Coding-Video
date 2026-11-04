@@ -1,0 +1,5 @@
+{
+  "en_name": "Picture-book page turns",
+  "en_how": "Beatrix Potter's 1902 Peter Rabbit illustrations turn page by page, each gently breathing and swaying like a paper puppet, while a playful line of text below changes colour character by character with the narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

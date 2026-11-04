@@ -1,0 +1,9 @@
+{
+  "en_name": "16-bit pixel platformer",
+  "en_how": "Drawn pixel by pixel on a tiny canvas, then scaled up with smoothing off, in a limited palette.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

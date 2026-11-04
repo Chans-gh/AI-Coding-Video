@@ -1,0 +1,5 @@
+{
+  "en_name": "Mockumentary",
+  "en_how": "An AI-generated photo of paper cranes on city rooftops and an AI-generated take-off clip, wrapped in a code-drawn wildlife-documentary viewfinder: handheld shake, a focus pull, REC and running timecode, a lower-third species name, a field-log day counter and a head count, ending on the title as the flock takes off.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

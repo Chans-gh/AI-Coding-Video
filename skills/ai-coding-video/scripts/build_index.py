@@ -8,10 +8,12 @@
 技术标签、题材、内容类型和素材种类的合法取值在 data/tags.json。
 C 类（纯代码）按题材分；T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，每条标出用到的素材种类。
 T、G 类做过样片的，再核对 samples/<编号>/assets.json：素材种类和条目一致、每份素材有出处和许可（或模型和提示词）、合计不超过 10 MB。
+在本仓库里运行时，还把仓库根目录 samples/、packs/ 的代码同步进 Skill 的 samples/、packs/（生成物，随 Skill 一起安装），--check 时核对是否同步。
 """
 import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +24,15 @@ INDEX_PATH = os.path.join(ROOT, 'index.md')
 # 样片代码、风格包放在仓库里 Skill 文件夹之外；条目里写成指向 GitHub 的链接，Skill 单独装进别的项目也能点开。
 # 仓库地址只记在这里，samples/tools/mark.py 从这里取。
 CODE_BASE = 'https://github.com/Chans-gh/AI-Coding-Video/tree/main/'
+RAW_BASE = 'https://raw.githubusercontent.com/Chans-gh/AI-Coding-Video/main/'
 REPO_ROOT = os.path.dirname(os.path.dirname(ROOT))  # 在本仓库里时才有 samples/、packs/，单独安装时跳过存在性检查
+# 随 Skill 安装的代码：仓库里 samples/、packs/ 被 git 跟踪的文件，去掉截图、T/G 类素材（assets/，只留 assets.json）和只给维护者用的文件。
+# 同步到 Skill 里同名的 samples/、packs/，条目「样片代码」「风格包」链接文字里的路径（samples/C-044/）就是它在 Skill 里的位置。
+BUNDLE = ('samples', 'packs')
+BUNDLE_SKIP_DIRS = {'assets', 'node_modules', 'out', '__pycache__'}
+BUNDLE_SKIP_FILES = {'samples/README.md', 'packs/README.md', 'samples/tools/mark.py', 'samples/tools/apidoc.py'}
+BUNDLE_SKIP_EXT = ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4', '.webm', '.mp3', '.wav')
+SKILL_IN_REPO = 'skills/ai-coding-video/'
 CAT_START, CAT_END = '<!-- catalog:start -->', '<!-- catalog:end -->'
 
 ENTRY_RE = re.compile(r'<a id="([CTG]-\d{3})"></a>\s*\n\s*\n## ([CTG]-\d{3}) (.+?)\n(.*?)(?=\n<a id="[CTG]-\d{3}"></a>|\Z)', re.S)
@@ -222,10 +232,91 @@ def catalog(styles, tags):
     return '\n'.join(out)
 
 
+def bundle_want():
+    """仓库里要随 Skill 安装的文件：{在 Skill 里的相对路径: 内容}。不在本仓库里（Skill 单独安装）时返回 None"""
+    if not all(os.path.isdir(os.path.join(REPO_ROOT, b)) for b in BUNDLE):
+        return None
+    try:
+        out = subprocess.run(['git', '-C', REPO_ROOT, 'ls-files', '-z', '--', *BUNDLE], capture_output=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    files = [f for f in out.decode('utf-8').split('\0') if f]
+    keep = [f for f in files if f not in BUNDLE_SKIP_FILES and not f.lower().endswith(BUNDLE_SKIP_EXT)
+            and not BUNDLE_SKIP_DIRS & set(f.split('/')[:-1]) and os.path.isfile(os.path.join(REPO_ROOT, f))]
+    kept = set(keep)
+    want = {}
+    for f in keep:
+        data = open(os.path.join(REPO_ROOT, f), 'rb').read()
+        if f.endswith('.md'):
+            data = relink(data.decode('utf-8'), f, kept).encode('utf-8')
+        want[f] = data
+    return want
+
+
+def relink(text, src, kept):
+    """拷进 Skill 的 .md 里的相对链接：目标也随 Skill 安装的，改成 Skill 里的相对路径；指向 Skill 本体的，改成相对 Skill；其余改成 GitHub 链接"""
+    base = os.path.dirname(src)
+
+    def fix(m):
+        label, target = m.groups()
+        if re.match(r'[a-z]+:', target) or target.startswith('#'):
+            return m.group(0)
+        path, sep, frag = target.partition('#')
+        dest = os.path.normpath(os.path.join(base, path))
+        if dest in kept or any(k.startswith(dest + '/') for k in kept):
+            new = dest
+        elif (dest + '/').startswith(SKILL_IN_REPO):
+            new = dest[len(SKILL_IN_REPO):] or '.'
+        else:                                     # 图片要用原始文件地址才显示得出来
+            img = label.startswith('![') or (m.start() > 0 and m.string[m.start() - 1] == '!')
+            return f'[{label}]({RAW_BASE if img else CODE_BASE}{dest}{sep}{frag})'
+        rel = os.path.relpath(new, base) + ('/' if path.endswith('/') else '')
+        return f'[{label}]({rel}{sep}{frag})'
+    return MDLINK_RE.sub(fix, text)
+
+
+def bundle_have():
+    have = {}
+    for b in BUNDLE:
+        for d, dirs, files in os.walk(os.path.join(ROOT, b)):
+            dirs[:] = [x for x in dirs if x not in ('node_modules', 'out', '__pycache__')]
+            for f in files:
+                p = os.path.join(d, f)
+                have[os.path.relpath(p, ROOT).replace(os.sep, '/')] = p
+    return have
+
+
+def sync_bundle(check, errors):
+    """把仓库的 samples/、packs/ 代码同步进 Skill；--check 时只核对"""
+    want = bundle_want()
+    if want is None:
+        return None
+    have = bundle_have()
+    extra = sorted(set(have) - set(want))
+    stale = sorted(f for f in want if f not in have or open(have[f], 'rb').read() != want[f])
+    if check:
+        if extra or stale:
+            errors.append(f'Skill 里的 samples/、packs/ 和仓库不同步（{len(stale)} 个要更新、{len(extra)} 个多余，如 {(stale + extra)[0]}）：'
+                          '先运行 python3 scripts/build_index.py')
+        return len(want)
+    for f in extra:
+        os.remove(have[f])
+    for f in stale:
+        p = os.path.join(ROOT, f)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        open(p, 'wb').write(want[f])
+    for b in BUNDLE:                              # 删掉同步后变空的目录
+        for d, _, _ in sorted(os.walk(os.path.join(ROOT, b)), key=lambda x: -len(x[0])):
+            if not os.listdir(d):
+                os.rmdir(d)
+    return len(want)
+
+
 def check_links(errors):
     anchors = {}
     md_files = []
-    for d, _, files in os.walk(ROOT):
+    for d, dirs, files in os.walk(ROOT):
+        dirs[:] = [x for x in dirs if x not in ('node_modules', 'out', '__pycache__')]
         for f in files:
             if f.endswith('.md'):
                 p = os.path.join(d, f)
@@ -282,6 +373,7 @@ def main():
     else:
         open(JSON_PATH, 'w', encoding='utf-8').write(data)
         open(INDEX_PATH, 'w', encoding='utf-8').write(new_index)
+    bundled = sync_bundle(check, errors)
     check_links(errors)
     check_versions(errors)
     if errors:
@@ -289,7 +381,8 @@ def main():
         for e in errors:
             print(' -', e)
         sys.exit(1)
-    print(f'通过：{len(styles)} 种风格，{sum(1 for r in styles if r["image"])} 种已有样片' + ('' if check else '，已写入 data/styles.json 和 index.md 目录'))
+    print(f'通过：{len(styles)} 种风格，{sum(1 for r in styles if r["image"])} 种已有样片' + ('' if check else '，已写入 data/styles.json 和 index.md 目录')
+          + ('' if bundled is None else f'；随 Skill 安装的样片和风格包代码 {bundled} 个文件' + ('' if check else '已同步')))
 
 
 if __name__ == '__main__':

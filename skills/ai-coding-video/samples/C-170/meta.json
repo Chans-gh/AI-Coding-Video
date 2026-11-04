@@ -1,0 +1,5 @@
+{
+  "en_name": "Tunnel of words",
+  "en_how": "Rings of characters are spaced along z and projected by dividing by depth while the camera accelerates forward; the tunnel's centre line bends with depth and slowly rolls, far rings shrink to glowing hairlines and near words become readable as they sweep past.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

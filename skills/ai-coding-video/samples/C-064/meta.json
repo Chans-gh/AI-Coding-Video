@@ -1,0 +1,10 @@
+{
+  "en_name": "Terminal / ASCII CRT",
+  "en_how": "Every shape is a real character on a monospace grid, with phosphor glow, scanlines and a curved tube.",
+  "tech": [
+    "终端字符",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

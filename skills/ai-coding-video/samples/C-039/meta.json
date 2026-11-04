@@ -1,0 +1,9 @@
+{
+  "en_name": "Isometric infographic",
+  "en_how": "A hand-written isometric projection builds four stations from shaded boxes; packets ride the conveyor and numbered labels pop up.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

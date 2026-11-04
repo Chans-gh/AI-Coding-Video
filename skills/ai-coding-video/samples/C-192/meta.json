@@ -1,0 +1,5 @@
+{
+  "en_name": "Rick and Morty-style flat cartoon",
+  "en_how": "The garage background (pegboard, a machine made from an old fridge, workbench) is drawn once: flat fills and one uniform black outline everywhere, with a hard shadow added only under the bench and the chin. Each arm of the two original characters is a two-segment outlined stroke; a table of key poses makes them snap to a new pose within a few frames, with a small overshoot. Eyes are white circles with small irregular pupils jittered by a hash, and the acting rests on pauses and where they look. The portal is a few spiral lines rotating over a glowing green disc, its edge rippling with sines, and it washes the whole scene in green light.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

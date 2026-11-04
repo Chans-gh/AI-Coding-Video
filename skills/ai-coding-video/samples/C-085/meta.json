@@ -1,0 +1,10 @@
+{
+  "en_name": "Map route animation",
+  "en_how": "A D3 Mercator projection redrawn each frame while the camera follows the line head: an orange arc is drawn city to city across a fictional noise-built coastline, with a live odometer and a latitude/longitude card.",
+  "tech": [
+    "SVG",
+    "D3.js",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

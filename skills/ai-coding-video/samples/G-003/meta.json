@@ -1,0 +1,5 @@
+{
+  "en_name": "Cinematic product ad",
+  "en_how": "An AI-generated studio shot of a product and a push-in video generated from it as the first frame; code adds letterbox bars, thin callout lines whose labels type out, and an end card with brand, slogan, price tag and buy button.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

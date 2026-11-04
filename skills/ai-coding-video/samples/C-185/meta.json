@@ -1,0 +1,5 @@
+{
+  "en_name": "Ink-wash manga",
+  "en_how": "A four-panel page with wobbly thick ink borders; figures, cliffs, speed lines and the sword arc are drawn with a dry-brush stroke — a bundle of bristles that run out of ink — along polylines, robes are filled smooth shapes swept with dry strokes at the edges; the camera pushes from panel to panel, each panel inking itself as it arrives, then pulls back to the page, with brush-font sound effects and vermilion used only for the blood.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

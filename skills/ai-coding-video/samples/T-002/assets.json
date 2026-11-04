@@ -1,0 +1,93 @@
+{
+ "items": [
+  {
+   "file": "assets/talk.mp4",
+   "kind": "录像",
+   "title": "What Are the Dangers of Going to Space（We Asked a NASA Expert 系列）",
+   "source": "https://images.nasa.gov/details/What%20Are%20the%20Dangers%20of%20Going%20to%20Space",
+   "download": "https://images-assets.nasa.gov/video/What%20Are%20the%20Dangers%20of%20Going%20to%20Space/What%20Are%20the%20Dangers%20of%20Going%20to%20Space~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 8.5,
+    "t": 20,
+    "w": 1280,
+    "crf": 25
+   }
+  },
+  {
+   "file": "assets/talk.mp3",
+   "kind": "原声",
+   "title": "What Are the Dangers of Going to Space 的原声（同一段）",
+   "source": "https://images.nasa.gov/details/What%20Are%20the%20Dangers%20of%20Going%20to%20Space",
+   "download": "https://images-assets.nasa.gov/video/What%20Are%20the%20Dangers%20of%20Going%20to%20Space/What%20Are%20the%20Dangers%20of%20Going%20to%20Space~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "prep": {
+    "ss": 8.5,
+    "t": 20
+   },
+   "ss": 0.05,
+   "len": 7.0,
+   "at": 0.4,
+   "lines": [
+    {
+     "t0": 0,
+     "t1": 1.25,
+     "text": "说到载人航天"
+    },
+    {
+     "t0": 1.25,
+     "t1": 4.3,
+     "text": "我第一个想到的是"
+    },
+    {
+     "t0": 4.3,
+     "t1": 7.0,
+     "text": "航天员把自己绑在一枚火箭上"
+    }
+   ],
+   "dur": 20.036
+  },
+  {
+   "file": "assets/talk.mp3",
+   "kind": "原声",
+   "ss": 14.25,
+   "len": 5.35,
+   "at": 7.6,
+   "lines": [
+    {
+     "t0": 0,
+     "t1": 2.55,
+     "text": "我们还得担心辐射"
+    },
+    {
+     "t0": 2.55,
+     "t1": 5.35,
+     "text": "辐射从四面八方打过来"
+    }
+   ],
+   "source": "https://images.nasa.gov/details/What%20Are%20the%20Dangers%20of%20Going%20to%20Space",
+   "download": "https://images-assets.nasa.gov/video/What%20Are%20the%20Dangers%20of%20Going%20to%20Space/What%20Are%20the%20Dangers%20of%20Going%20to%20Space~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "title": "同上一条 talk.mp3 的第二段（同一份文件，从 ss 处再截一段）"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Chill lofi inspired",
+   "source": "https://opengameart.org/content/chill-lofi-inspired",
+   "download": "https://opengameart.org/sites/default/files/ChillLofiR_0.mp3",
+   "license": "CC0 1.0",
+   "author": "omfgdude",
+   "credit": "配乐 omfgdude（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0,
+   "gain": 0.8
+  }
+ ]
+}

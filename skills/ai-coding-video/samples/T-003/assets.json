@@ -1,0 +1,60 @@
+{
+ "items": [
+  {
+   "file": "assets/food1.jpg",
+   "kind": "照片",
+   "title": "ASTP crews sample space food (S74-20797, 1974)",
+   "source": "https://images.nasa.gov/details/S74-20797",
+   "download": "https://images-assets.nasa.gov/image/S74-20797/S74-20797~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/food2.jpg",
+   "kind": "照片",
+   "title": "ASTP crews sample space food (S74-20798, 1974)",
+   "source": "https://images.nasa.gov/details/S74-20798",
+   "download": "https://images-assets.nasa.gov/image/S74-20798/S74-20798~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/broll.mp4",
+   "kind": "录像",
+   "title": "What Are the Dangers of Going to Space（空间站上吃饭的片段）",
+   "source": "https://images.nasa.gov/details/What%20Are%20the%20Dangers%20of%20Going%20to%20Space",
+   "download": "https://images-assets.nasa.gov/video/What%20Are%20the%20Dangers%20of%20Going%20to%20Space/What%20Are%20the%20Dangers%20of%20Going%20to%20Space~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 69.5,
+    "t": 3.2,
+    "w": 1280,
+    "crf": 25
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Bossa Nova",
+   "source": "https://opengameart.org/content/bossa-nova",
+   "download": "https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",
+   "license": "CC0 1.0",
+   "author": "Joth",
+   "credit": "配乐 Joth（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

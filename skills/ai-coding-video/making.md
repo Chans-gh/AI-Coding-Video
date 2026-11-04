@@ -2,17 +2,46 @@
 
 [← 返回 SKILL](SKILL.md)
 
-讲 1 级（样片）和 2 级（风格包）具体怎么做。提示词怎么写看 [prompting.md](prompting.md)，配声音看 [sound.md](sound.md)。下面提到的代码都在本库仓库里、Skill 文件夹之外，链接指向 GitHub。
+讲 1 级（样片）和 2 级（风格包）具体怎么做。提示词怎么写看 [prompting.md](prompting.md)，配声音看 [sound.md](sound.md)。下面提到的代码都随本 Skill 一起安装：`samples/`（出片工具和每个已验证风格的样片代码）、`packs/`（风格包），不用联网取。
 
 ## 动手之前
 
 1. **确认技术路径在用户项目里跑得通**：要浏览器（Canvas 2D、WebGL、SVG）就确认有 Chromium 或 Playwright；要 GPU 就确认 WebGL2 能开；要配声音就确认有 Python 和 numpy、scipy；出视频要 ffmpeg。缺什么先说，不要写到一半才发现。
-2. **优先改现成代码**：条目有「样片代码」链接的，从那份代码改，比只拿提示词重写稳定得多；有「风格包」链接的，直接用包。只有「技术（建议）」的条目没人验证过，要向用户说明效果靠试。
+2. **优先改现成代码**：条目有「样片代码」的，从 `samples/<编号>/` 改，比只拿提示词重写稳定得多；有「风格包」的，直接用 `packs/<名字>/`。只有「技术（建议）」的条目没人验证过，要向用户说明效果靠试。
 3. **用用户的真东西**：品牌色、字体、产品名、真实的一句文案。用占位文字做出来的样片，用户很难判断合不合适。
 
 ## 1 级：样片
 
 目标是 3–5 秒、横竖两版，让用户判断「这个风格放在我的项目里像不像样」。
+
+### 自带的出片工具
+
+用户项目已经有 Remotion、Motion Canvas 这类管线的，用它自己的，样片代码只当画法参考。没有的，用本 Skill 自带的这套：
+
+```bash
+cp -R <本 Skill 目录>/samples ./video     # 拷进用户项目再改，不要直接改 Skill 安装目录（更新 Skill 会覆盖）
+cd video && npm install                  # 字体和绘图库装进 node_modules/，出片时从本地载入，不联网
+export AICV_SKILL=<本 Skill 目录>          # new.py 从这里读风格条目
+python3 batch.py C-013 --quick           # 先原样跑通一个样片，确认环境没问题
+python3 new.py C-013                     # 或：给还没有样片的风格起骨架（已有的文件不覆盖）
+```
+
+要 Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg；浏览器可用环境变量 `CHROME` 指定。函数速查见 [samples/API.md](samples/API.md)，`batch.py` 的用法写在它文件开头。T 类、G 类样片只带了代码和 `assets.json`（素材清单），素材本身不随 Skill 安装：T 类可以照 `assets.json` 用 `tools/assets.py` 重新下载，G 类要用户自己生成或换成自己的素材。
+
+**改的顺序**（照这个来，比从零设计稳）：
+
+1. 拷对应风格的 `samples/<编号>/`，原样跑通 `--quick`（画面和声音都过）。
+2. 换内容：题材、主体、文字、品牌色、时长，一次只改一处，每改一处跑一次 `--quick`。
+3. 声音单独试：`python3 batch.py <编号> --sound`，别等画面全做完才第一次跑。
+4. 画面都对了，再加细节；时间紧就先交能跑的版本，不要停在半成品。
+
+**哪些照用、哪些自己来**：
+
+| 层 | 内容 | 怎么对待 |
+|---|---|---|
+| 管线 | `lib/lib.js`、`lib/synth.py`、`batch.py`、`render.py`、`player.html` | 照用，不要重写；时间驱动、截帧、合成声音、自检都在里面 |
+| 画法 | 样片里怎么做出这种风格：镂空、光照、纹理、笔触、分层、运动方式 | 可以借，按用户的主体重新组合 |
+| 内容 | 样片里的角色、场景、构图、配色、文字、配乐旋律 | 换成用户自己的；样片只是示范，主体和构图不能和样片一样 |
 
 ### 写法
 
@@ -22,7 +51,7 @@
 - **标志元素要画出来**：提示词里写的 3–5 个标志元素每个都要在画面里认得出，禁止项一条都不能出现。
 - **文字**：中文要折行（标点不放行首），字体等加载完再画第一帧，长句在竖版里会不会挤出画面要单独看。
 
-参考写法：[样片骨架和 API](https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/API.md) · [一个完整样片（C-044）](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-044) · [合成器 synth.py](https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/lib/synth.py)
+参考写法：[样片骨架和 API](samples/API.md) · [一个完整样片（C-044）](samples/C-044/) · [合成器 synth.py](samples/lib/synth.py)
 
 ### 出片和自检
 
@@ -31,6 +60,8 @@
 - 先看数字：时长、帧数、文件大小、首帧和末帧是不是全黑或全白。
 - 再看抽帧拼图：每隔半秒到一秒取一帧拼成一张图，一眼看出节奏和构图。
 - 只有可疑的那几帧才单独放大看：文字出界、元素重叠、竖版挤压、字体没加载成方块。
+- 和风格的缩略图 `images/<编号>.jpg` 并排看：标志元素认不认得出；主体不该被做成虚的、糊的（只有提示词要求的地方才虚化）。
+- 和样片 `samples/<编号>/` 的画面比：主体、构图要是用户自己的，不能只是换了颜色的样片。
 
 ### 交付
 
@@ -38,7 +69,7 @@
 
 ## 2 级：风格包
 
-用户通过的风格，做成一套能反复用的代码，加一份写进项目规范的风格说明。以后这个项目的视频都按它来，换内容不换风格。本库的范例是 [dark-keynote 暗色科技发布会](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/dark-keynote)，下面的做法都能在它里面找到对应代码。
+用户通过的风格，做成一套能反复用的代码，加一份写进项目规范的风格说明。以后这个项目的视频都按它来，换内容不换风格。本库的范例是 [dark-keynote 暗色科技发布会](packs/dark-keynote/)，下面的做法都能在它里面找到对应代码。
 
 ### 包里有什么
 

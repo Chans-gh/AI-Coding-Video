@@ -1,0 +1,9 @@
+{
+  "en_name": "Connecting the stars",
+  "en_how": "Hundreds of twinkling stars and a noise-built Milky Way sit on a sky that slowly turns about an off-screen pole; the main stars of Libra, projected from their real coordinates, are joined line by line with a bright pen tip, then a dashed balance-scale outline and the name fade in and out before the camera pushes toward one star.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

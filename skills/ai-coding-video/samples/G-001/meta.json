@@ -1,0 +1,5 @@
+{
+  "en_name": "Editorial paper-collage explainer",
+  "en_how": "Two AI-generated paper-collage illustrations (a deep-sea backdrop and an octopus on white) are keyed and layered by code with offset parallax; when the narration reaches each keyword, code sticks on paper hearts, red marker circles, handwritten labels and ransom-note letters.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

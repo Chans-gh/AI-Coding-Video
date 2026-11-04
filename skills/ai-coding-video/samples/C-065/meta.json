@@ -1,0 +1,9 @@
+{
+  "en_name": "Sci-fi HUD",
+  "en_how": "Counter-rotating tick rings, a conic-gradient radar sweep and a lock-on box that spins tighter and turns orange, with live readouts.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

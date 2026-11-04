@@ -1,0 +1,11 @@
+{
+  "en_name": "Hand-drawn character short",
+  "en_how": "p5.brush watercolour fills and pencil lines on paper, redrawn each frame in p5 instance mode with a seed that changes 12 times a second: a raindrop hits the sprout on a round character's head, it startles, the bud blooms, and it hops with joy.",
+  "tech": [
+    "Canvas 2D",
+    "p5.js",
+    "p5.brush",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -17,6 +17,8 @@ from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "out"
+# 在本仓库里，samples/ 和 skills/ai-coding-video/ 并排，出片时顺手更新 Skill 的缩略图；
+# 随 Skill 安装或拷进别的项目时没有这个目录，就不写缩略图
 THUMBS = HERE.parent / "skills" / "ai-coding-video" / "images"
 PACKS = HERE.parent / "packs"
 ARGS = ["--force-color-profile=srgb", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
@@ -243,7 +245,7 @@ def encode(p, sid, ar, log):
 
 
 def still_and_thumb(p, sid, ar):
-    """静帧（长边 1280）；16:9 的再缩成 640 宽的缩略图写进 Skill 的 images/"""
+    """静帧（长边 1280）；16:9 的再缩成 640 宽的缩略图写进 Skill 的 images/（只在本仓库里）"""
     still = Image.open(io.BytesIO(p.frame(p.still, "png"))).convert("RGB")
     big = still.copy(); big.thumbnail((1280, 1280), Image.LANCZOS)
     big.save(where(sid) / f"{stem(sid)}-{ar}.jpg", quality=88, optimize=True)
@@ -253,7 +255,8 @@ def still_and_thumb(p, sid, ar):
             buf = io.BytesIO(); th.save(buf, "JPEG", quality=q, optimize=True)
             if buf.tell() <= 100_000:
                 break
-        (THUMBS / f"{sid}.jpg").write_bytes(buf.getvalue())
+        if THUMBS.is_dir():
+            (THUMBS / f"{sid}.jpg").write_bytes(buf.getvalue())
 
 
 def mp4_duration(path):

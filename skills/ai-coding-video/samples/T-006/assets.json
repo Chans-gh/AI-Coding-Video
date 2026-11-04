@@ -1,0 +1,62 @@
+{
+ "items": [
+  {
+   "file": "assets/orbit.mp4",
+   "kind": "录像",
+   "title": "Earth Views from the International Space Station",
+   "source": "https://images.nasa.gov/details/Earth%20Views%20from%20the%20International%20Space%20Station",
+   "download": "https://images-assets.nasa.gov/video/Earth%20Views%20from%20the%20International%20Space%20Station/Earth%20Views%20from%20the%20International%20Space%20Station~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 16,
+    "t": 8,
+    "w": 1280,
+    "crf": 26
+   }
+  },
+  {
+   "file": "assets/sunrise.mp4",
+   "kind": "录像",
+   "title": "Earth Views from the International Space Station（日出段）",
+   "source": "https://images.nasa.gov/details/Earth%20Views%20from%20the%20International%20Space%20Station",
+   "download": "https://images-assets.nasa.gov/video/Earth%20Views%20from%20the%20International%20Space%20Station/Earth%20Views%20from%20the%20International%20Space%20Station~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "prep": {
+    "ss": 160,
+    "t": 8,
+    "w": 1280,
+    "crf": 26
+   }
+  },
+  {
+   "file": "assets/aurora.jpg",
+   "kind": "照片",
+   "title": "Aurora seen from the ISS (iss062e148363)",
+   "source": "https://images.nasa.gov/details/iss062e148363",
+   "download": "https://images-assets.nasa.gov/image/iss062e148363/iss062e148363~large.jpg",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Next to You",
+   "source": "https://opengameart.org/content/next-to-you",
+   "download": "https://opengameart.org/sites/default/files/Next%20to%20You.mp3",
+   "license": "CC0 1.0",
+   "author": "Joth",
+   "credit": "配乐 Joth（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

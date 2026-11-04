@@ -1,0 +1,5 @@
+{
+  "en_name": "South Park-style digital cutout",
+  "en_how": "Every part is a polygon 'piece of paper' whose vertices are nudged slightly by a hash, like a scissor-cut edge, with an offset shadow underneath to show which layer is in front. The characters only slide, turn as a whole piece and swap mouths: walking is a small up-and-down hop, and while talking a random mouth is chosen every two frames. Hard cuts jump between the wide shot and a reaction close-up, the joke sits in the pauses, and at the end the employee falls over flat like a piece of card.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

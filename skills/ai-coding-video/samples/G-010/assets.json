@@ -1,0 +1,86 @@
+{
+ "items": [
+  {
+   "file": "assets/town.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "江南水乡古镇的清晨，一只小木船缓缓划过石拱桥下，白墙黑瓦倒映在平静的水里，薄雾，平稳的跟拍镜头，远处只有模糊的人影",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/night.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "夜晚的老街夜市，一串串红灯笼亮着，小吃摊冒着热气，行人都是模糊的背影，镜头沿着街道缓慢向前推，暖色调，电影感",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Southern_Young_Man",
+   "text": "第一天，坐船进镇。早上的雾还没散，桥下的水安静得像一面镜子。晚上去老街，灯笼一亮，整条街都是香味。",
+   "params": {
+    "speed": 1.05
+   },
+   "at": 0.5,
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 9.221,
+   "lines": [
+    {
+     "t0": 0.041,
+     "t1": 1.422,
+     "text": "第一天，坐船进镇"
+    },
+    {
+     "t0": 1.422,
+     "t1": 5.201,
+     "text": "早上的雾还没散，桥下的水安静得像一面镜子"
+    },
+    {
+     "t0": 5.201,
+     "t1": 7.396,
+     "text": "晚上去老街，灯笼一亮"
+    },
+    {
+     "t0": 7.396,
+     "t1": 8.858,
+     "text": "整条街都是香味"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "lofi Compilation: A cup of tea",
+   "source": "https://opengameart.org/content/lofi-compilation",
+   "download": "https://opengameart.org/sites/default/files/A%20cup%20of%20tea_0.mp3",
+   "license": "CC0 1.0",
+   "author": "TAD",
+   "credit": "配乐 TAD（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

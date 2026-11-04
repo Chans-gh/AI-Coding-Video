@@ -1,0 +1,5 @@
+{
+  "en_name": "Cursor typing",
+  "en_how": "A list of operations (type, pause, delete, mark, new line) yields the time of every keystroke; each frame looks up the text on screen at t, the cursor blinks only while idle, a highlighter sweeps the keyword and the page scrolls up.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

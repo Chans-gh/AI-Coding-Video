@@ -1,0 +1,10 @@
+{
+  "en_name": "Ray-marched ocean",
+  "en_how": "A hand-written GPU ray marcher: a noise height field for the waves, Fresnel sky reflection, two samples per pixel.",
+  "tech": [
+    "WebGL2",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

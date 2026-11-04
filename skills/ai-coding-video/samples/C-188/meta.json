@@ -1,0 +1,5 @@
+{
+  "en_name": "Shinkai-style light",
+  "en_how": "The cumulonimbus outside the window is a density field: hundreds of soft round kernels summed and roughened with fractal noise, lit by subtracting the density one step towards the sun, so the sunward edges turn white; the shape minus itself shifted away from the sun gives the golden rim, blurred and added on top. The light shafts in the room are each window pane moved step by step along the sun's direction down to the floor and added together, then multiplied by drifting noise; dust motes glow only where tracing back along the ray lands inside a pane. The girl is backlit: cool flat colour with a warm rim made by the same subtraction. Bloom, flare ghosts on the line between the sun and the frame centre, and a warm-cool split grade go on last, while the camera slowly pushes in and tilts up.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

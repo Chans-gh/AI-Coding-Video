@@ -1,7 +1,7 @@
 ---
 name: ai-coding-video
 description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及从“选风格”到“出样片”再到“沉淀成风格包”的三级流程。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。
-version: 0.1.0
+version: 0.2.0
 display_name: AI Coding Video 风格库
 display_name_en: AI Coding Video
 description_en: "A style library for videos made frame by frame in code: a hundred-plus styles that pure code can render (class C, tagged by topic and tech: Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more), plus ways to cut real material (class T: footage, screen recordings, photos, data) and AI-generated material (class G: images, video clips, speech) into a film with code, sorted by content type (explainers, talking heads, product ads, brand films, short dramas, music videos, news, documentaries, tutorials, travel, sports, picture books); a copy-ready style prompt for each; lookup indexes; guides to prompts, sourcing and preparing material, music and narration; and a three-level flow from picking a style to a sample clip to a reusable style pack."
@@ -38,6 +38,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 5. **要配声音** → 读 `sound.md`：先按题材定配乐和音效，再按用途挑旁白音色。
 6. **要用素材（T 类、G 类）** → 读 `materials.md`：素材从哪来、许可怎么查、怎么生成、怎么统一处理再交给代码、声音怎么配。
 7. **要出样片（1 级）或做风格包（2 级）** → 读 `making.md`：动手前的检查、样片写法和自检、风格包的五条做法和 STYLE.md 写什么。
+8. **要写渲染代码** → 先看本 Skill 自带的代码：`samples/API.md`（样片骨架和函数速查）、`samples/<编号>/`（每个已验证风格的 `scene.js`、`sound.py`）、`packs/<名字>/`（风格包）。条目「样片代码」「风格包」链接文字里的路径就是它在本 Skill 目录里的位置，不用联网去 GitHub 取。
 
 ## 取用规则
 
@@ -45,7 +46,8 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 - 「技术（已验证）」表示本库仓库里有能跑出样片的代码；「技术（建议）」只是推荐写法，没验证过，向用户说明时要分清。
 - 只写风格名会退化成通用扁平风：必须带 3–5 个标志元素、禁止项和参考作品。
 - 参考作品只学构图、节奏、配色逻辑，不照搬角色、Logo、音乐。名字带作品或作者的「致敬风格」（如 C-187 吉卜力式）也一样：只学画法，角色、场景、标志、台词全部原创。
-- 提示词只定方向，同一句话每次出来的画面不会一模一样。要复现同一个效果，用「技术（已验证）」条目的样片代码改（条目里「样片代码」是指向本库 GitHub 的链接；有「风格包」链接的直接用包），不要只靠提示词。
+- 提示词只定方向，同一句话每次出来的画面不会一模一样。要复现同一个效果，用「技术（已验证）」条目的样片代码改，不要只靠提示词，也不要从零重新设计：先把 `samples/<编号>/` 拷到用户项目里跑通，再换内容（做法见 `making.md`「1 级：样片」）。有「风格包」的直接用包。
+- 样片代码给的是**管线和画法**，不是内容：出片管线（`lib.js`、`synth.py`、`batch.py`）照用；镂空、光影、纹理这类画法可以借；样片里的角色、构图、配色、文字不能原样搬进用户的片子，换成用户自己的题材和品牌。
 - 案例里的工具链、费用、用时是原作者自述，未经核实，不要当成保证向用户承诺。
 - C 类画面全部由代码算出，不用任何素材。写实人脸、真人口播这类效果纯代码做不到，改走 T 类（用户自己的素材）或 G 类（AI 生成素材），并告诉用户要准备什么。
 - T 类只用用户确认有权用的素材，或公共领域、开放许可的素材，出处和许可逐份记下；G 类可以用任何一家生图、生视频、语音合成服务（本库样片用的是青水），不生成真实人物，不克隆真人声音。

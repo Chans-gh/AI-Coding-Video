@@ -1,0 +1,9 @@
+{
+  "en_name": "UI morph loop",
+  "en_how": "One rounded rectangle springs between button, progress card and video card with crossfading content; the last frame matches the first.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

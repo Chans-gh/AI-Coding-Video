@@ -1,0 +1,9 @@
+{
+  "en_name": "Linocut print",
+  "en_how": "Flat red and black with wavy gouge lines and a fixed speckle mask, stepped at 8 fps like hand-pulled prints, opening on a print being lifted.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

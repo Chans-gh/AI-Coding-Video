@@ -1,0 +1,444 @@
+"""T 类、G 类样片的素材：照 <编号>/assets.json 下载或生成，统一处理、去掉元数据，放进 <编号>/assets/。
+
+    python3 tools/assets.py T-001            # 补齐缺的素材（已有的不动），最后打每份的体积和合计
+    python3 tools/assets.py T-001 --only assets/vo.mp3 --force   # 重做某一份
+    python3 tools/assets.py T-001 --check    # 不下载、不生成：只查文件在不在、元数据是否干净、合计是否超过 10 MB
+    python3 tools/assets.py T-001 --subs     # 不再调语音合成：用 out/qs/ 里存的逐字时间重排字幕行（改了断句规则或 show 之后）
+    python3 tools/assets.py --usage          # 本机调用青水的次数（记在 out/qs/usage.jsonl，不进仓库）
+
+assets.json 是 {"items": [...]}，每份素材一项：
+  file      放在哪（相对样片目录，assets/ 下）
+  kind      素材种类：T 类 录像 / 录屏 / 照片 / 数据，G 类 生图 / 生视频 / 语音合成（G 类的旁白记这个）；声音另记 旁白 / 原声 / 配乐 / 音效
+  下载的（T 类素材、公开曲库的配乐音效）：source 出处页面、download 文件地址、license 许可、author 作者、credit 署名
+  生成的（G 类素材、旁白）：model 模型名、prompt 提示词（语音写 text、voice 公开音色）、params 参数、ref 首帧图（相对样片目录）
+  拿到后又改过的（裁切、局部模糊等）：edit 写改了什么、为什么
+  prep      怎么处理：图片 {max 长边, crop [x, y, w, h]（0–1）, q 质量}；视频 {ss 起点, t 长度, w 宽, crop}，统一成 30 帧/秒、无声 H.264；
+            音频 {ss, t, mono}，统一响度后存 mp3；数据默认原样保存，另有 {drop_comments}（CSV 去掉 # 注释行）、
+            {hurdat: 风暴编号}（NOAA 最佳路径取一场）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox}（GeoJSON 线面裁到框里）
+  record    录屏（本仓库自己的页面）：见 record() 的说明；录完写回鼠标轨迹 cursor
+  at、gain  声音在成片里的时刻和音量（synth.assets 用）；语音合成后由本脚本写回 dur 和逐句字幕 lines
+
+脱敏：下载和生成的原始文件、青水的任务记录只放在 out/（不进仓库）；进仓库的文件重新编码，去掉元数据和编码器信息，
+assets.json 只记模型名、参数和提示词。青水经 chans-gh/test 的 .claude/skills/qingshui/ 调用（生图、生视频走 scripts/run.js，
+语音走它的 scripts/api.js audio），位置用环境变量 QINGSHUI_SKILL 指定，默认是和本仓库并排的 ../test/.claude/skills/qingshui；
+Key 只从环境变量 QINGSHUI_API_KEY 读。
+"""
+import argparse
+import hashlib
+import io
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+from PIL import Image
+
+SAMPLES = Path(__file__).resolve().parent.parent
+OUT = SAMPLES / "out"
+DL = OUT / "dl"
+QS_OUT = OUT / "qs"
+QS = Path(os.environ.get("QINGSHUI_SKILL") or SAMPLES.parent.parent / "test" / ".claude" / "skills" / "qingshui")
+LIMIT = 10_000_000
+UA = "AI-Coding-Video-sample-builder/0.1 (https://github.com/Chans-gh/AI-Coding-Video)"
+IMG, VID, AUD = {".jpg", ".jpeg", ".png", ".webp"}, {".mp4", ".webm"}, {".mp3", ".ogg", ".wav", ".m4a"}
+
+
+def ffmpeg():
+    return shutil.which("ffmpeg") or sys.exit("缺 ffmpeg")
+
+
+def run(cmd, **kw):
+    r = subprocess.run(cmd, capture_output=True, text=True, **kw)
+    if r.returncode:
+        raise RuntimeError(f"{Path(cmd[0]).name} 出错：{(r.stderr or r.stdout)[-400:]}")
+    return r.stdout
+
+
+# ---------- 下载（带缓存；公共站点限流时按 Retry-After 等） ----------
+def fetch(url):
+    DL.mkdir(parents=True, exist_ok=True)
+    ext = Path(url.split("?")[0]).suffix[:6]
+    dest = DL / (hashlib.sha1(url.encode()).hexdigest()[:16] + ext)
+    if dest.exists() and dest.stat().st_size:
+        return dest
+    for i in range(6):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
+                shutil.copyfileobj(r, f)
+            return dest
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or i == 5:
+                raise RuntimeError(f"下载失败 {e.code}：{url}")
+            time.sleep(float(e.headers.get("Retry-After") or 5 * 2 ** i) + 1)
+        except urllib.error.URLError as e:
+            if i == 5:
+                raise RuntimeError(f"下载失败 {e.reason}：{url}")
+            time.sleep(3 * 2 ** i)
+
+
+# ---------- 处理：统一格式、去掉元数据 ----------
+STRIP = ["-map_metadata", "-1", "-map_chapters", "-1", "-fflags", "+bitexact", "-flags:v", "+bitexact", "-flags:a", "+bitexact",
+         "-metadata:s:v:0", "encoder=", "-metadata:s:a:0", "encoder="]
+
+
+def prep_image(src, dest, o):
+    im = Image.open(src)
+    im.load()
+    if im.mode.startswith("I"):                         # 16 位灰度（国会图书馆的 TIFF 母版）→ 8 位
+        im = im.point(lambda v: v / 256).convert("L") if im.mode != "I" or im.getextrema()[1] > 255 else im.convert("L")
+    im = im.convert("RGBA" if dest.suffix == ".png" and im.mode in ("RGBA", "LA", "P") else "RGB")
+    if o.get("crop"):
+        x, y, w, h = o["crop"]
+        im = im.crop((round(x * im.width), round(y * im.height), round((x + w) * im.width), round((y + h) * im.height)))
+    if o.get("max"):
+        im.thumbnail((o["max"], o["max"]), Image.LANCZOS)
+    clean = Image.new(im.mode, im.size)                 # 只拷像素：EXIF、ICC、XMP、文字块都不带
+    clean.paste(im)
+    if dest.suffix == ".png":
+        clean.save(dest, optimize=True)
+    else:
+        clean.save(dest, quality=o.get("q", 86), optimize=True, progressive=True)
+
+
+def prep_video(src, dest, o):
+    vf = []
+    if o.get("crop"):
+        vf.append(f"crop={o['crop']}")
+    vf.append(f"scale={o.get('w', 1280)}:-2:flags=lanczos")
+    vf.append("fps=30")
+    cut = (["-ss", str(o["ss"])] if o.get("ss") else []) + ["-i", str(src)] + (["-t", str(o["t"])] if o.get("t") else [])
+    run([ffmpeg(), "-y", "-loglevel", "error", *cut, "-an", "-vf", ",".join(vf), "-c:v", "libx264", "-preset", "slow",
+         "-crf", str(o.get("crf", 24)), "-pix_fmt", "yuv420p",
+         *STRIP, "-bsf:v", "filter_units=remove_types=6", "-movflags", "+faststart", str(dest)])
+    tmp = dest.with_name(dest.stem + ".tmp" + dest.suffix)   # 编码时 ffmpeg 会再写上 encoder 标签：原样转封装一遍去掉
+    run([ffmpeg(), "-y", "-loglevel", "error", "-i", str(dest), "-c", "copy", *STRIP, "-movflags", "+faststart", str(tmp)])
+    tmp.replace(dest)
+
+
+def prep_audio(src, dest, o):
+    cut = (["-ss", str(o["ss"])] if o.get("ss") else []) + ["-i", str(src)] + (["-t", str(o["t"])] if o.get("t") else [])
+    af = "loudnorm=I=-16:TP=-1.5:LRA=11" if o.get("norm", True) else "anull"
+    run([ffmpeg(), "-y", "-loglevel", "error", *cut, "-vn", "-af", af, "-ar", "44100", "-ac", "1" if o.get("mono") else "2",
+         "-c:a", "libmp3lame", "-b:a", o.get("br", "128k"), "-write_xing", "0", "-id3v2_version", "0", "-write_id3v1", "0",
+         *STRIP, str(dest)])
+
+
+def prep(src, dest, o):
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    ext = dest.suffix.lower()
+    if ext in IMG:
+        prep_image(src, dest, o)
+    elif ext in VID:
+        prep_video(src, dest, o)
+    elif ext in AUD:
+        prep_audio(src, dest, o)
+    elif o.get("hurdat"):                               # NOAA HURDAT2 最佳路径：只取一场风暴 → CSV
+        lines = Path(src).read_text(encoding="utf-8").splitlines()
+        i = next(k for k, l in enumerate(lines) if l.startswith(o["hurdat"] + ","))
+        n = int(lines[i].split(",")[2])
+        out = ["date,time,record,status,lat,lon,wind_kt,pressure_mb"]
+        for l in lines[i + 1:i + 1 + n]:
+            f = [x.strip() for x in l.split(",")]
+            lat = float(f[4][:-1]) * (1 if f[4].endswith("N") else -1)
+            lon = float(f[5][:-1]) * (-1 if f[5].endswith("W") else 1)
+            out.append(",".join([f[0], f[1], f[2], f[3], f"{lat:g}", f"{lon:g}", f[6], f[7]]))
+        dest.write_text("\n".join(out) + "\n", encoding="utf-8")
+    elif o.get("points"):                               # GeoJSON 点 → CSV（只留要的属性，可按 sort 排序取前 top 个）
+        js = json.loads(Path(src).read_text(encoding="utf-8"))
+        rows = [{**{k: f["properties"].get(k) for k in o["points"]}, "lon": f["geometry"]["coordinates"][0], "lat": f["geometry"]["coordinates"][1]}
+                for f in js["features"]]
+        if o.get("sort"):
+            rows.sort(key=lambda r: -(r.get(o["sort"]) or 0))
+        rows = rows[:o.get("top", len(rows))]
+        keys = list(o["points"]) + ["lon", "lat"]
+        dest.write_text(",".join(keys) + "\n" + "\n".join(",".join(str(r[k]).replace(",", " ") for k in keys) for r in rows) + "\n", encoding="utf-8")
+    elif o.get("bbox"):                                 # GeoJSON 线、面 → 只留框里的折线 [[lon, lat], …]，坐标保留 3 位小数
+        x0, y0, x1, y1 = o["bbox"]
+        js = json.loads(Path(src).read_text(encoding="utf-8"))
+        lines = []
+        for f in js["features"]:
+            g = f["geometry"]
+            parts = [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"] if g["type"] in ("MultiLineString", "Polygon") else [r for poly in g["coordinates"] for r in poly]
+            for part in parts:
+                cur = []
+                for lon, lat in part:
+                    if x0 <= lon <= x1 and y0 <= lat <= y1:
+                        cur.append([round(lon, 3), round(lat, 3)])
+                    elif cur:
+                        lines.append(cur); cur = []
+                if len(cur) > 1:
+                    lines.append(cur)
+        dest.write_text(json.dumps({"bbox": o["bbox"], "lines": lines}, separators=(",", ":")) + "\n", encoding="utf-8")
+    elif ext == ".csv" and o.get("drop_comments"):     # 只留表头和数据行（说明、联系方式等注释行不带）
+        rows = [l for l in Path(src).read_text(encoding="utf-8").splitlines() if l.strip() and not l.startswith("#")]
+        dest.write_text("\n".join(rows) + "\n", encoding="utf-8")
+    else:
+        shutil.copyfile(src, dest)                     # 数据（CSV、JSON）原样保存
+
+
+def duration(f):
+    out = run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(f)])
+    return float(out.strip())
+
+
+def dirty(f):
+    """查进仓库的文件还有没有元数据：图片看 EXIF/ICC/文字块，音视频看容器和流的标签"""
+    ext = f.suffix.lower()
+    if ext in IMG:
+        im = Image.open(f)
+        keys = set(im.info) - {"jfif", "jfif_version", "jfif_unit", "jfif_density", "dpi", "progressive", "progression", "aspect"}
+        return sorted(keys)
+    if ext in VID | AUD:
+        d = json.loads(run(["ffprobe", "-v", "error", "-show_entries", "format_tags:stream_tags", "-of", "json", str(f)]))
+        tags = dict(d.get("format", {}).get("tags", {}))
+        for s in d.get("streams", []):
+            tags.update(s.get("tags", {}))
+        ok = {"handler_name", "vendor_id", "language", "major_brand", "minor_version", "compatible_brands"}
+        bad = sorted(k for k in tags if k not in ok)
+        if ext in VID and b"x264 - core" in f.read_bytes()[:400000]:
+            bad.append("x264 参数")
+        return bad
+    return []
+
+
+# ---------- 青水：生图、生视频走 run.js，语音走 api.js audio ----------
+def usage(sid, item, kind):
+    QS_OUT.mkdir(parents=True, exist_ok=True)
+    with open(QS_OUT / "usage.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps({"sid": sid, "file": item["file"], "type": kind, "model": item["model"],
+                            "at": time.strftime("%Y-%m-%d %H:%M")}, ensure_ascii=False) + "\n")
+
+
+def qs_env():
+    if not os.environ.get("QINGSHUI_API_KEY"):
+        sys.exit("缺环境变量 QINGSHUI_API_KEY")
+    if not (QS / "scripts" / "run.js").exists():
+        sys.exit(f"找不到青水 Skill：{QS}（把 chans-gh/test 克隆到本仓库旁边，或设 QINGSHUI_SKILL）")
+
+
+def gen_visual(sid, d, item):
+    """生图 / 生视频：写任务文件交给 run.js；任务文件、记录、原始下载都在 out/qs/<编号>/（不进仓库）"""
+    qs_env()
+    work = QS_OUT / sid
+    work.mkdir(parents=True, exist_ok=True)
+    jid = re.sub(r"\W", "_", Path(item["file"]).stem)
+    is_video = Path(item["file"]).suffix.lower() in VID
+    job = {"id": jid, "type": "video" if is_video else "image", "prompt": item["prompt"],
+           "options": {"model": item["model"], **item.get("params", {})}}
+    if item.get("ref"):
+        job["refs"] = [str((d / item["ref"]).resolve())]
+        if item["model"].startswith("Doubao-Seedance"):
+            job["refField"] = "referenceImage"
+    jf = work / f"{jid}.json"
+    jf.write_text(json.dumps(job, ensure_ascii=False, indent=1), encoding="utf-8")
+    run(["node", str(QS / "scripts" / "run.js"), "check", str(jf)])
+    usage(sid, item, job["type"])
+    with open(work / f"{jid}.log", "w") as log:              # run.js 的输出含任务编号和下载链接：只留在 out/
+        r = subprocess.run(["node", str(QS / "scripts" / "run.js"), str(jf)], stdout=log, stderr=subprocess.STDOUT)
+    if r.returncode:
+        raise RuntimeError(f"青水生成失败，看 out/qs/{sid}/{jid}.log 的结尾")
+    got = sorted((work / "gen").glob(f"{jid}.*")) + sorted((work / "gen").glob(f"{jid}_*.*"))
+    got = [g for g in got if g.suffix != ".json"]
+    if not got:
+        raise RuntimeError(f"青水没有返回文件，看 out/qs/{sid}/{jid}.log")
+    return got[0]
+
+
+def gen_speech(sid, d, item):
+    """语音合成：api.js audio（公开音色），同时要逐句字幕；返回 (音频, 字幕行)"""
+    qs_env()
+    if item.get("voice", "").startswith("clone_"):
+        sys.exit(f"{item['file']}：不用克隆音色，换一个公开音色")
+    work = QS_OUT / sid
+    work.mkdir(parents=True, exist_ok=True)
+    jid = re.sub(r"\W", "_", Path(item["file"]).stem)
+    p = item.get("params", {})
+    cmd = ["node", str(QS / "scripts" / "api.js"), "audio", "--text", item["text"], "--model", item["model"],
+           "--voice-id", item["voice"], "--format", "mp3", "--subtitle", "--subtitle-type", "word", "--sample-rate", "32000"]
+    for k, v in p.items():
+        cmd += [f"--{k}", str(v)]
+    usage(sid, item, "audio")
+    log = (work / f"{jid}.log")
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    log.write_text(r.stdout + r.stderr, encoding="utf-8")
+    a = re.search(r"语音文件:\s*(\S+)", r.stdout)
+    sub = re.search(r"字幕文件:\s*(\S+)", r.stdout)
+    if r.returncode or not a:
+        raise RuntimeError(f"语音合成失败，看 out/qs/{sid}/{jid}.log 的结尾")
+    raw = work / f"{jid}.raw.mp3"
+    shutil.copyfile(fetch_noncache(a.group(1)), raw)
+    lines = []
+    if sub:
+        js = json.loads(Path(fetch_noncache(sub.group(1))).read_text(encoding="utf-8"))
+        (work / f"{jid}.subs.json").write_text(json.dumps(js, ensure_ascii=False, indent=1), encoding="utf-8")
+        lines = sub_lines(js, item.get("show", {}))
+    return raw, lines
+
+
+def fetch_noncache(url):
+    """带签名的临时链接：下到 out/qs/tmp，不进下载缓存的文件名"""
+    tmp = QS_OUT / "tmp"
+    tmp.mkdir(parents=True, exist_ok=True)
+    dest = tmp / hashlib.sha1(url.encode()).hexdigest()[:12]
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    for i in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
+                shutil.copyfileobj(r, f)
+            return dest
+        except Exception:
+            if i == 3:
+                raise
+            time.sleep(2 * 2 ** i)
+
+
+def sub_lines(js, show=None):
+    """青水的逐字字幕 JSON → 按标点断成的字幕行 [{t0, t1, text}]（秒）。
+    show 是 {念法: 显示}：旁白里数字要写成念法（一九七二年），字幕上换回 1972 年"""
+    rows = js if isinstance(js, list) else js.get("subtitles") or js.get("data") or []
+    out = []
+    for seg in rows:
+        text, words = seg.get("text", ""), seg.get("timestamped_words") or []
+        if not words:                                                    # 只有句级时间
+            out.append({"t0": seg["time_begin"] / 1000, "t1": seg["time_end"] / 1000, "text": text})
+            continue
+        cur = None
+        for w in words:
+            a, b = w["time_begin"] / 1000, w["time_end"] / 1000          # 毫秒 → 秒
+            if cur is None:
+                cur = {"t0": a, "t1": b, "text": ""}
+            cur["text"] += text[w["word_begin"]:w["word_end"]]
+            cur["t1"] = b
+            nxt = text[w["word_end"]:w["word_end"] + 1]
+            plain = re.sub(r"[，。！？；：,.!?;:—…、\s]", "", cur["text"])
+            if nxt and (nxt in "。！？；.!?;" or (nxt in "，：,:—" and len(plain) >= 9)):   # 句末断行；逗号处够长才断
+                out.append(cur); cur = None
+        if cur:
+            out.append(cur)
+    for i, l in enumerate(out):                                          # 行首的问号、叹号属于上一行
+        m = re.match(r"\s*([？！?!…]+)", l["text"])
+        if m and i:
+            out[i - 1]["text"] += m.group(1)
+            l["text"] = l["text"][m.end():]
+    for l in out:
+        t = l["text"].strip().strip("，。；：,;:、")
+        for k, v in (show or {}).items():
+            t = t.replace(k, v)
+        t = re.sub(r"([\u4e00-\u9fff])([0-9A-Za-z])", r"\1 \2", t)          # 中文和数字、字母之间留一个空格
+        t = re.sub(r"([0-9A-Za-z%])([\u4e00-\u9fff])", r"\1 \2", t)
+        l.update(t0=round(l["t0"], 3), t1=round(l["t1"], 3), text=t)
+    return [l for l in out if l["text"]]
+
+
+# ---------- 录屏：用 Playwright 照 steps 操作本仓库的页面，同时记下鼠标轨迹 ----------
+def record(sid, item):
+    """item["record"] = {"page": 相对样片目录的 HTML, "size": [宽, 高], "steps": [[动作, 参数…], …]}
+    动作：wait 秒 / move 选择器 [秒] / click 选择器 [秒]（先移过去再点）/ scroll 选择器 [留出的像素] [秒]（平滑滚到它）/ key 按键。
+    交给 tools/record.js（Node 版 Playwright）去录；返回 (原始 webm, 鼠标轨迹 [[秒, x, y, 是否按下], …])，坐标是 0–1，画面里由 scene.js 重画鼠标"""
+    spec = item["record"]
+    work = QS_OUT.parent / "rec" / sid
+    shutil.rmtree(work, ignore_errors=True); work.mkdir(parents=True)
+    job = {"url": (SAMPLES / sid / spec["page"]).resolve().as_uri(), "size": spec.get("size", [1280, 720]), "steps": spec["steps"]}
+    (work / "spec.json").write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
+    r = subprocess.run(["node", str(Path(__file__).with_name("record.js")), str(work / "spec.json"), str(work)],
+                       cwd=SAMPLES, capture_output=True, text=True)
+    if r.returncode:
+        raise RuntimeError("录屏失败：" + (r.stderr.strip().splitlines() or ["?"])[-1])
+    return work / "video.webm", json.loads((work / "track.json").read_text())
+
+
+# ---------- 主流程 ----------
+def build(sid, only=None, force=False, check=False):
+    d = SAMPLES / sid
+    af = d / "assets.json"
+    if not af.exists():
+        print(f"✗ {sid}：没有 assets.json"); return False
+    A = json.loads(af.read_text(encoding="utf-8"))
+    ok, changed, total, seen = True, False, 0, set()
+    for it in A["items"]:
+        dest = d / it["file"]
+        if it["file"] in seen:                          # 同一个文件被几项引用（如一段原声分几处用）：只处理、只计一次
+            continue
+        seen.add(it["file"])
+        if only and it["file"] not in only:
+            if dest.exists():
+                total += dest.stat().st_size
+            continue
+        if not check and (force or not dest.exists()):
+            try:
+                if it.get("model") and it.get("text"):
+                    raw, lines = gen_speech(sid, d, it)
+                    prep(raw, dest, {**it.get("prep", {}), "mono": True})
+                    it["dur"] = round(duration(dest), 3)
+                    if lines:
+                        it["lines"] = lines
+                    changed = True
+                elif it.get("model"):
+                    prep(gen_visual(sid, d, it), dest, it.get("prep", {}))
+                elif it.get("record"):
+                    raw, it["cursor"] = record(sid, it)
+                    prep(raw, dest, it.get("prep", {}))
+                    changed = True
+                elif it.get("download"):
+                    prep(fetch(it["download"]), dest, it.get("prep", {}))
+                    if Path(it["file"]).suffix.lower() in AUD and it.get("kind") in ("旁白", "原声", "语音合成"):
+                        it["dur"] = round(duration(dest), 3); changed = True
+            except Exception as e:
+                print(f"✗ {it['file']}：{e}"); ok = False; continue
+        if not dest.exists():
+            print(f"✗ {it['file']}：不存在"); ok = False; continue
+        bad = dirty(dest)
+        size = dest.stat().st_size
+        total += size
+        extra = f"  {duration(dest):.1f}s" if dest.suffix.lower() in VID | AUD else ""
+        print(f"{'✗' if bad else '✓'} {it['file']:28} {it['kind']:4} {size / 1e3:7.0f} KB{extra}" + (f"  残留元数据：{', '.join(bad)}" if bad else ""))
+        ok &= not bad
+    if changed:
+        af.write_text(json.dumps(A, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    over = total > LIMIT
+    print(f"{'✗' if over else '✓'} {sid} 素材合计 {total / 1e6:.2f} MB" + ("（超过 10 MB）" if over else ""))
+    return ok and not over
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("ids", nargs="*")
+    ap.add_argument("--only", nargs="+")
+    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--usage", action="store_true")
+    ap.add_argument("--subs", action="store_true")
+    a = ap.parse_args()
+    if a.subs:
+        for sid in a.ids:
+            af = SAMPLES / sid / "assets.json"
+            A = json.loads(af.read_text(encoding="utf-8"))
+            for it in A["items"]:
+                sj = QS_OUT / sid / (re.sub(r"\W", "_", Path(it["file"]).stem) + ".subs.json")
+                if it.get("text") and sj.exists():
+                    it["lines"] = sub_lines(json.loads(sj.read_text(encoding="utf-8")), it.get("show", {}))
+                    print(f"{sid} {it['file']}：" + " / ".join(l["text"] for l in it["lines"]))
+            af.write_text(json.dumps(A, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        return
+    if a.usage:
+        f = QS_OUT / "usage.jsonl"
+        rows = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines()] if f.exists() else []
+        by = {}
+        for r in rows:
+            by.setdefault((r["sid"], r["type"]), []).append(r["model"])
+        for (sid, t), ms in sorted(by.items()):
+            print(f"{sid} {t:5} {len(ms)} 次  " + "、".join(sorted(set(ms))))
+        print(f"合计 {len(rows)} 次")
+        return
+    good = all([build(s, a.only, a.force, a.check) for s in a.ids])
+    sys.exit(0 if good else 1)
+
+
+if __name__ == "__main__":
+    main()

@@ -11,11 +11,15 @@
   4. python3 batch.py <编号> --quick 看效果，满意了去掉 --quick 出片
 """
 import json
+import os
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STYLES = HERE.parent / "skills" / "ai-coding-video" / "data" / "styles.json"
+# 风格数据：本仓库里在 ../skills/ai-coding-video/data/；随 Skill 安装时 samples/ 就在 Skill 目录里，在 ../data/；
+# 拷进别的项目后找不到，用环境变量 AICV_SKILL 指向 Skill 目录
+_CANDIDATES = ([Path(os.environ["AICV_SKILL"])] if os.environ.get("AICV_SKILL") else []) + [HERE.parent / "skills" / "ai-coding-video", HERE.parent]
+STYLES = next((d / "data" / "styles.json" for d in _CANDIDATES if (d / "data" / "styles.json").exists()), None)
 
 SCENE = """// {id} {name}：（一句话写清画面是怎么用代码做出来的，介绍页会用这一句）
 // 风格提示词：{prompt}
@@ -92,6 +96,8 @@ ASSETS_TG = {"items": [
 
 
 def load():
+    if STYLES is None:
+        sys.exit("找不到风格数据 data/styles.json：设环境变量 AICV_SKILL=<Skill 目录>（装好的 ai-coding-video 文件夹）")
     d = json.loads(STYLES.read_text(encoding="utf-8"))
     return {s["id"]: s for s in (d if isinstance(d, list) else d["styles"])}
 

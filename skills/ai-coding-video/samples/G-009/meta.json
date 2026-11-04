@@ -1,0 +1,5 @@
+{
+  "en_name": "Step-by-step illustrated guide",
+  "en_how": "Three AI-generated overhead photos of a pour-over (later shots referenced to the first so the table and tools stay consistent), overlaid in code with step numbers, a scale reading that counts up to the target weight, a 30-second bloom countdown ring, a dashed circle tracing the pour path and a four-part progress bar; no narration, the big type and counters carry it.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Infinite zoom collage",
+  "en_how": "Four AI-generated paintings each have a round opening at the center; code keeps pushing into the opening, nests the next painting inside it with a feathered circular mask, and swaps seamlessly when the opening fills the frame, layer after layer; lyric characters light up as the zoom advances.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

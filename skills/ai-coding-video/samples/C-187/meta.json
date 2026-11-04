@@ -1,0 +1,5 @@
+{
+  "en_name": "Ghibli-style hand-drawn animation",
+  "en_how": "Sky, cumulus clouds, far hills and the hillside cottage are painted once into three off-screen canvases: each cloud is dozens of round gradients from bright to grey stacked into volume, with gouache dabs dotted along the lit edges, and the three layers pan at different speeds for parallax. Several thousand grass blades in the foreground are redrawn every frame; one gust travels from left to right in order of x, so the grass wave, the big tree, the washing on the line, and the girl's skirt and braid move one after another. The girl uses thin clean lines with two-tone cel fills (the shadow is the shape minus the shape shifted towards the light); when her hat lifts in the wind she raises a hand and holds it down.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

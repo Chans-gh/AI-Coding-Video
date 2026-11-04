@@ -1,0 +1,9 @@
+{
+  "en_name": "Stained glass",
+  "en_how": "A jittered grid cut into jewel-coloured panes with thick leading; a diagonal light band brightens panes by distance, with god rays and dust.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

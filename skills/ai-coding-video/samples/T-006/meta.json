@@ -1,0 +1,5 @@
+{
+  "en_name": "Orbit music video",
+  "en_how": "Two ISS Earth-view clips and an aurora photo cut on the beat, with original lyrics floating up character by character; letterboxed in landscape, centred lyrics in portrait, plus light leaks and grain.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

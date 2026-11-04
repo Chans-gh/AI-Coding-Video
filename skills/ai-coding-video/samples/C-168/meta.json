@@ -1,0 +1,5 @@
+{
+  "en_name": "Digital rain",
+  "en_how": "Columns of glyphs fall at their own speeds on a monospace grid, bright heads and fading tails, glyphs swapping by hash; at two seconds a text mask lights up and the rain spells a hidden word while the camera pushes in.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

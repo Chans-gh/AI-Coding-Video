@@ -1,0 +1,9 @@
+{
+  "en_name": "Kinetic typography",
+  "en_how": "One word per beat at 160 BPM; size, weight, inversion and a punch-in scale carry the rhythm.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

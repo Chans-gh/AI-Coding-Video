@@ -1,0 +1,11 @@
+{
+  "en_name": "HD-2D",
+  "en_how": "Hand-drawn pixel sprites stand like paper cutouts inside a full 3D miniature night scene: every lamp is a real point light casting shadows, exponential fog holds the distance back, and a tilt-shift blur over the three-quarter high angle makes the whole town read as a glowing toy model.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

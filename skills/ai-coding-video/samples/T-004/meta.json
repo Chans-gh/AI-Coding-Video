@@ -1,0 +1,5 @@
+{
+  "en_name": "Countdown split screen",
+  "en_how": "Launch footage on one side and a pad photo with a giant countdown on the other; at zero the footage goes full frame, then three panels roll in with photos and mission numbers read from a CSV, ending on a tagline.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

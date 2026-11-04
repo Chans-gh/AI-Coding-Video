@@ -1,0 +1,9 @@
+{
+  "en_name": "1960s spy title",
+  "en_how": "Each beat changes the background and a flat graphic motif while a silhouette runs at 12 fps; letters slide in from both sides for the title.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

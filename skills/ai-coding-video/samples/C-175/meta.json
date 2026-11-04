@@ -1,0 +1,5 @@
+{
+  "en_name": "Window light and dust",
+  "en_how": "The window is drawn once on a small canvas (bright panes, dark muntins, a potted plant); an affine transform throws it onto the floor as a light patch, and dozens of faint layers interpolated between window and floor build a volumetric shaft with the muntin shadows inside; each dust mote takes its brightness from the shaft layer.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

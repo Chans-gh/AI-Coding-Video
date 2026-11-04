@@ -1,0 +1,9 @@
+{
+  "en_name": "Comic panels",
+  "en_how": "Four panels pop in with screentone dots, speed lines and speech balloons; the sound effect lettering is outlined, sheared and shaken.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

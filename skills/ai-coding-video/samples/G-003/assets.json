@@ -1,0 +1,49 @@
+{
+ "items": [
+  {
+   "file": "assets/hero.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "电影感产品棚拍：一只哑光墨绿色的金属保温杯立在粗糙的深灰色石台上，杯身干净没有任何文字和标志，一束暖色侧光从左边打来，背景是近乎黑色的深色渐变，薄雾贴着石台缓缓流动，浅景深，高级广告摄影，画面右侧留出空间",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/dolly.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "镜头非常缓慢地向前推近保温杯，雾气从石台上缓缓流过，暖色侧光轻轻变化，杯子保持静止不动，电影感，高级产品广告",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/hero.jpg",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "moon chime",
+   "source": "https://opengameart.org/content/moon-chime",
+   "download": "https://opengameart.org/sites/default/files/tipa16-01.mp3",
+   "license": "CC0 1.0",
+   "author": "obscure music",
+   "credit": "配乐 obscure music（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

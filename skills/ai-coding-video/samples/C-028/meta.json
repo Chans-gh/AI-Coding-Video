@@ -1,0 +1,9 @@
+{
+  "en_name": "Claymation",
+  "en_how": "Each object is a smooth blob with a radial highlight, dark rim and fingerprint rings, re-jittered every frame at 12 fps as if re-sculpted.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

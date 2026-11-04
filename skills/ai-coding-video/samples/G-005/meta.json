@@ -1,0 +1,5 @@
+{
+  "en_name": "Anime short-drama storyboard",
+  "en_how": "Two AI-generated anime-style images (the heroine and a train pulling in) plus a head-turn shot generated from the heroine image; code lays them out as manga panels that slide in, blows the key panel up full-screen with speed lines and a white flash, adds a speech bubble, vertical inner-monologue text, code-drawn rain and a title card.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

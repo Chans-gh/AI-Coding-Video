@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-04 | 0.2.0：样片和风格包的代码随 Skill 一起安装（Skill 里的 `samples/`、`packs/`，由 `build_index.py` 从仓库同步，不含截图和 T/G 类素材），条目「样片代码」的路径就是它在 Skill 里的位置；SKILL.md、making.md 改成先拷样片跑通再换内容，写明管线照用、画法可借、内容自己来，自检加上和缩略图、样片对照；`render.py`、`new.py` 在仓库外也能跑；README 按 Claude Code、Codex、DeepSeek Harness、WorkBuddy 分别写注意事项；DeepSeek Harness 0.2.1-rc.5 实测能发现并调用本 Skill |
 | 2026-11-04 | 介绍页 v8：卡片和风格包演示片改用发布时缩小的小版视频和静帧（`site/small.py` → `media/s/`，卡片视频中位数约 1.2 MB → 0.23 MB），静帧也等快滚到时才加载（打开页面不再一次下载一百多张、约 15 MB）；放大播放和首页大视频仍用 1080p 原版 |
 | 2026-11-04 | 改写仓库历史，删掉旧提交里的样片和风格包演示片视频（视频已在 Release「media」），克隆从约 215 MB 降到约 85 MB；提交号全部变了，之前的克隆要重新克隆（维护者定） |
 | 2026-11-04 | 批次 6：收录 G 类（AI 生成素材）12 种 G-001–G-012，新增 [styles/generated.md](styles/generated.md)，每个内容类型一个样片（10–15 秒，横竖两版），图片、视频和旁白用青水生成（模型、参数、提示词记在样片的 `assets.json`），配乐用 CC0；站点 v7 加上 G 类；legacy-ids 补上已收录的旧编号，candidates 删掉已收录的 5 种 |

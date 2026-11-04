@@ -1,0 +1,11 @@
+{
+  "en_name": "TV news package",
+  "en_how": "Dark navy stage with an HTML/CSS and SVG news kit: the logo shrinks into a corner bug, a flip-board price and a broken-line chart carry one fact, and the lower-third strip flips to each new headline — all animated on one paused GSAP timeline seeked per frame.",
+  "tech": [
+    "HTML/CSS",
+    "SVG",
+    "GSAP",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

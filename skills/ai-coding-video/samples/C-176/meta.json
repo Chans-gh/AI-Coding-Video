@@ -1,0 +1,5 @@
+{
+  "en_name": "Faded home movie",
+  "en_how": "A beach scene with a kite is drawn at 18 fps on a quarter-size canvas, graded pixel by pixel (magenta-warm cast, cyan shadows, lifted blacks) with grain that changes every frame, then scaled up soft; a rounded film gate, gate weave, orange light leaks, scratches and dust go on top, ending in a reel change of overexposed frames and sliding perforations.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

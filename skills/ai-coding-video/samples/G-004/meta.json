@@ -1,0 +1,5 @@
+{
+  "en_name": "Big-type brand film",
+  "en_how": "Two AI-generated empty shots (a dawn coastline aerial and hands pouring tea) are cut together; oversized outlined brand type drifts across the frame, the tagline fades in letter by letter in a thin serif, and the end card uses the brand name as a mask with the coastline showing through.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

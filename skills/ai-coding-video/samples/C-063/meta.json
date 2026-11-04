@@ -1,0 +1,11 @@
+{
+  "en_name": "Tilt-shift miniature",
+  "en_how": "A procedurally generated town shot from above in three-quarter view, then given a tilt-shift pass in Canvas 2D so only one horizontal band stays sharp while everything above and below blurs by distance; saturation and contrast are pushed and the cars and pedestrians move at timelapse speed under drifting cloud shadows.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

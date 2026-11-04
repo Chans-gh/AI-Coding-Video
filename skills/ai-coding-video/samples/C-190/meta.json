@@ -1,0 +1,5 @@
+{
+  "en_name": "Kusama-style infinity dots",
+  "en_how": "Wall, floor, figure and table are each a clipped region filled with two offset grids of large and small dots; a hash squashes and turns each dot slightly so it looks hand-painted, and every radius is multiplied by one sine wave spreading out from the centre of the frame, so the whole room swells and shrinks together. Through the window, coloured lights on a 3D grid are projected by 1/z and keep moving towards the camera. At the end a wavy boundary grows outwards from the figure; inside it only one red-and-white dot pattern remains, so the outlines of the objects dissolve into the grid.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

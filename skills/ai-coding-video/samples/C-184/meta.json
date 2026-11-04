@@ -1,0 +1,5 @@
+{
+  "en_name": "Brush calligraphy",
+  "en_how": "The glyphs come from a brush font, but the stroke order and pace are hand-marked: each stroke is a centre line, and as it is written a bundle of two dozen 'bristles' is drawn along it as a mask that reveals only the glyph beneath; toward the end of a stroke bristles run dry at their own thresholds and break, leaving flying-white streaks of paper. The camera follows the brush tip close up, pulls back to the whole sheet and a red seal is stamped.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

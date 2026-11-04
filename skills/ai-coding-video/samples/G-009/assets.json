@@ -1,0 +1,65 @@
+{
+ "items": [
+  {
+   "file": "assets/s1.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "俯拍静物：浅色木桌上，一双手把磨好的咖啡粉倒进滤杯里的白色滤纸，旁边摆着细嘴手冲壶、玻璃分享壶和一台电子秤，柔和的自然光，干净简洁，只露出手，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "edit": "生成画面里分享壶上出现了品牌字样，用 Pillow 局部模糊盖掉"
+  },
+  {
+   "file": "assets/s2.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "俯拍静物：同一张浅色木桌，一双手提着细嘴手冲壶，细细的水流画着圈注进滤杯里的咖啡粉，咖啡粉膨胀冒出小气泡，旁边是玻璃分享壶和电子秤，柔和的自然光，只露出手，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/s1.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "edit": "生成画面里分享壶上出现了品牌字样，用 Pillow 局部模糊盖掉"
+  },
+  {
+   "file": "assets/s3.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "俯拍静物：同一张浅色木桌，一双手把玻璃分享壶里琥珀色的咖啡倒进一只白色陶瓷杯，旁边是用过的滤杯和手冲壶，柔和的自然光，只露出手，没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/s1.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "edit": "生成画面里分享壶上出现了品牌字样，用 Pillow 局部模糊盖掉"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Doodle menu like song",
+   "source": "https://opengameart.org/content/doodle-menu-like-song",
+   "download": "https://opengameart.org/sites/default/files/doodle_0.mp3",
+   "license": "CC0 1.0",
+   "author": "StumpyStrust",
+   "credit": "配乐 StumpyStrust（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

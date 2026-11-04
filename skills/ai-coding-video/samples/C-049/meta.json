@@ -1,0 +1,9 @@
+{
+  "en_name": "1980s cel animation",
+  "en_how": "Two-tone cel shading with a highlight line, parallax city layers, limited animation at 8 fps and a VHS overlay.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

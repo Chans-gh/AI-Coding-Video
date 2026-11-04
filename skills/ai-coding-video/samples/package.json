@@ -1,0 +1,31 @@
+{
+  "name": "ai-coding-video-samples",
+  "private": true,
+  "description": "样片渲染用的字体（全部是 SIL OFL 开源字体），npm install 后放在 node_modules/，不进仓库",
+  "license": "MIT",
+  "dependencies": {
+    "@fontsource/bangers": "5.2.5",
+    "@fontsource/bebas-neue": "5.2.5",
+    "@fontsource/jetbrains-mono": "5.2.5",
+    "@fontsource/limelight": "5.2.5",
+    "@fontsource/ma-shan-zheng": "5.2.5",
+    "@fontsource/noto-sans-sc": "5.2.5",
+    "@fontsource/noto-serif-sc": "5.2.5",
+    "@fontsource/playfair-display": "5.2.5",
+    "@fontsource/press-start-2p": "5.2.5",
+    "@fontsource/zcool-kuaile": "5.2.5",
+    "@remotion/bundler": "4.0.540",
+    "@remotion/cli": "4.0.540",
+    "@remotion/renderer": "4.0.540",
+    "cannon-es": "0.20.0",
+    "d3": "7.9.1",
+    "gsap": "3.15.0",
+    "p5": "2.3.4",
+    "p5.brush": "3.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.540",
+    "roughjs": "4.6.6",
+    "three": "0.187.0"
+  }
+}

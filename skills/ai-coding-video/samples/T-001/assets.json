@@ -1,0 +1,92 @@
+{
+ "items": [
+  {
+   "file": "assets/earth.jpg",
+   "kind": "照片",
+   "title": "View of the Earth seen by the Apollo 17 crew traveling toward the moon (AS17-148-22727, 1972-12-07)",
+   "source": "https://images.nasa.gov/details/as17-148-22727",
+   "download": "https://images-assets.nasa.gov/image/as17-148-22727/as17-148-22727~orig.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Apollo 17 crew",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1800,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/co2_annmean_mlo.csv",
+   "kind": "数据",
+   "title": "Mauna Loa CO2 annual mean data (1959–)",
+   "source": "https://gml.noaa.gov/ccgg/trends/data.html",
+   "download": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv",
+   "license": "公共领域（美国政府作品，NOAA GML；1958–1974 年的数据来自 Scripps）",
+   "author": "NOAA Global Monitoring Laboratory, Scripps Institution of Oceanography",
+   "credit": "数据 NOAA GML / Scripps",
+   "prep": {
+    "drop_comments": true
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Gentle_Youth",
+   "text": "一九七二年，阿波罗十七号在去月球的路上，拍下了这张地球。差不多同一时期，夏威夷的观测站开始每年测一次空气里的二氧化碳。六十多年，它从三百一十六，涨到了四百二十七。",
+   "params": {
+    "speed": 1.15
+   },
+   "at": 0.5,
+   "show": {
+    "一九七二年": "1972 年",
+    "阿波罗十七号": "阿波罗 17 号",
+    "三百一十六": "316 ppm",
+    "四百二十七": "427 ppm"
+   },
+   "dur": 14.054,
+   "lines": [
+    {
+     "t0": 0.037,
+     "t1": 3.005,
+     "text": "1972 年，阿波罗 17 号在去月球的路上"
+    },
+    {
+     "t0": 3.005,
+     "t1": 4.341,
+     "text": "拍下了这张地球"
+    },
+    {
+     "t0": 4.341,
+     "t1": 9.758,
+     "text": "差不多同一时期，夏威夷的观测站开始每年测一次空气里的二氧化碳"
+    },
+    {
+     "t0": 9.758,
+     "t1": 12.021,
+     "text": "六十多年，它从 316 ppm"
+    },
+    {
+     "t0": 12.021,
+     "t1": 13.357,
+     "text": "涨到了 427 ppm"
+    }
+   ],
+   "license": "AI 合成（青水公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Snowfall",
+   "source": "https://opengameart.org/content/snowfall",
+   "download": "https://opengameart.org/sites/default/files/Snowfall_0.ogg",
+   "license": "CC0 1.0",
+   "author": "Kistol",
+   "credit": "配乐 Kistol（CC0）",
+   "prep": {
+    "t": 16
+   },
+   "at": 0,
+   "gain": 1.0
+  }
+ ]
+}

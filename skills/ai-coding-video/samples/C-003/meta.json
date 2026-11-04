@@ -1,0 +1,10 @@
+{
+  "en_name": "Pen and wash sketch",
+  "en_how": "Rough.js draws wobbling sepia pen lines on cream cold-press paper, building a street one house at a time; transparent washes land slightly off the lines and bleed past them, then figures, a lamp and a red seal finish the page.",
+  "tech": [
+    "Canvas 2D",
+    "Rough.js",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

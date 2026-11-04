@@ -1,0 +1,11 @@
+{
+  "en_name": "16mm black-and-white documentary",
+  "en_how": "Canvas 2D draws the black-and-white content — leader countdown, title card, a spotlit loom and typewriter subtitles — and a WebGL shader ages it: coarse grain, random scratches and dust, gate weave, flicker and corner vignette.",
+  "tech": [
+    "Canvas 2D",
+    "WebGL",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

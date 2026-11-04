@@ -1,0 +1,5 @@
+{
+  "en_name": "Signal glitch",
+  "en_how": "A clean station ident is drawn off-screen, then each beat corrupts it with that beat's seed: RGB channels split and offset, horizontal slices tear sideways, low-res blocks drag a ghost of an earlier position, and single pixel rows are stretched into vertical streaks; beat 5 freezes the frame, and intensity decays exponentially from each beat.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

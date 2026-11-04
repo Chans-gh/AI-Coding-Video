@@ -1,0 +1,9 @@
+{
+  "en_name": "Demoscene",
+  "en_how": "A per-pixel tunnel in a low-res buffer (XOR texture by distance and angle, cycling palette) under copper bars, a chrome logo and a sine scroller.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

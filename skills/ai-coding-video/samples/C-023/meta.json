@@ -1,0 +1,9 @@
+{
+  "en_name": "Gold mosaic",
+  "en_how": "Gold tiles fly in and spin into the outline of a fish, which then swims with a sine wave while each tile glints on its own phase.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

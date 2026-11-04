@@ -1,0 +1,9 @@
+{
+  "en_name": "Risograph print",
+  "en_how": "Yellow, pink and blue layers are converted to halftone dots, speckled and misregistered by a few pixels, then multiplied together.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -41,15 +41,65 @@ scripts/install.sh dsh ~/my-project     # 只装进某个项目（→ ~/my-proje
 scripts/install.sh zip      # 打成 dist/ai-coding-video.zip，用于 WorkBuddy 等“上传技能包”的助手
 ```
 
-DeepSeek Harness 按 `<项目>/.dsh/skills`、`<项目>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 的顺序找 Skill，装在哪一处都行。
-
 装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”。
+
+## 在各家助手里用：实际情况和注意事项
+
+### 装进去的是什么
+
+不管走插件还是拷文件夹，装的都是 `skills/ai-coding-video/` 这一个文件夹：
+
+- **词典**：全部风格条目、索引、缩略图，以及提示词、素材、声音、出样片的指南。只选风格、写提示词，用这些就够了，不用跑任何代码。
+- **样片和风格包代码**：Skill 里的 `samples/`、`packs/`，即出片工具（`lib.js`、`synth.py`、`batch.py`）、每个已验证风格的 `scene.js` 和 `sound.py`，以及风格包。由仓库根目录的 `samples/`、`packs/` 同步而来。
+- **不带的**：成片视频（在 GitHub Release）、样片截图（Skill 里只有每种风格一张缩略图）、T 类和 G 类的素材文件（只带素材清单 `assets.json`）。
+
+### 要出片，本机还得有
+
+Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg。第一次 `npm install` 要联网下载字体和绘图库，之后出片不联网。具体步骤见 [making.md「自带的出片工具」](skills/ai-coding-video/making.md#自带的出片工具)。助手会先把样片拷进你的项目再改，不在 Skill 安装目录里动手。
+
+### 约束和自由
+
+| | 约束（Skill 要求助手照做） | 自由（你和助手自己定） |
+|---|---|---|
+| 风格 | 用条目里那句提示词；带上 3–5 个标志元素和禁止项 | 从全部风格里挑，可以混搭；只有「技术（建议）」的条目没有样片，画法完全自己写 |
+| 代码 | 有样片的风格，先拷样片跑通再改；出片管线照用；每帧只由时间 t 决定；横竖两版分别构图 | 用你项目已有的管线（Remotion、Motion Canvas 等）也行，样片只当画法参考 |
+| 内容 | 样片里的角色、构图、配色、文字不能原样搬 | 题材、主体、文案、品牌色、字体、时长、节奏都是你的 |
+| 流程 | 0 级选风格 → 1 级样片 → 2 级风格包，每一级你点头才往下 | 停在哪一级都行 |
+
+提示词只定方向，同一句话每次出来的画面都不一样；模型越弱，越要靠样片代码兜底。本仓库的样片是在维护者的环境里反复调出来的，助手在你项目里第一次做出来的，通常要再改几轮才能到这个水平。
+
+### Claude Code
+
+- 安装：插件市场（见上），或 `scripts/install.sh claude`（→ `~/.claude/skills/`，或项目里的 `.claude/skills/`）。
+- 出片要跑 `npm`、`python3`、`ffmpeg`，第一次会弹权限确认，按需允许。
+- 云端会话（claude.ai/code）的容器里已有 Chromium 和 Playwright，`npm install` 走环境的网络策略；网络被限制时要在环境设置里放开 npm 源。
+
+### Codex
+
+- 安装：插件市场（见上），或 `scripts/install.sh codex`（→ `~/.agents/skills/`）。
+- 维护者实测过 Codex CLI 能发现并加载本 Skill；用 Codex 实际出片还没有实测，下面是按它的工作方式提醒，不是验证过的结论。
+- Codex 默认在沙箱里跑命令，一般只能写当前项目、不联网：`npm install` 可以先在自己的终端里跑好，或者在 Codex 里放开网络。样片要拷进项目里改（Skill 本来就这么要求），不在 `~/.agents/skills` 里改。
+
+### DeepSeek Harness
+
+- 实测版本 `@deepseek-ai/dsh` 0.2.1-rc.5（2026-11，npm 的 latest 标签当时还是候选版）：`npm install -g @deepseek-ai/dsh@latest`。
+- 安装：`scripts/install.sh dsh`（→ `~/.dsh/skills/`）。它按 `<项目>/.dsh/skills`、`<项目>/.agents/skills`、`~/.dsh/skills`、`~/.agents/skills` 的顺序找 Skill，所以 `scripts/install.sh codex` 装的它也能用。
+- Key 放在环境变量 `DEEPSEEK_API_KEY`，默认模型是 deepseek-flash。不开界面、跑一次就退出的用法：`dsh headless "提示词"`（加 `--json` 输出每一步）。
+- 默认权限是只写当前目录（`DSH_PERMISSION_MODE`，默认 `workspace-write`），所以要在你的项目目录里启动它。
+- 实测结果：
+  - 「给一支讲水循环的 60 秒科普片选个风格」：会先加载 Skill，查索引和条目，给出带编号的候选和改好的提示词，约 2 分钟。
+  - 「用 C-013 皮影戏的风格写一段 Canvas 动画」：样片代码随 Skill 安装之前，它要联网去 GitHub 取样片，自己从头设计，画面糊、`sound.py` 出错，十分钟没做完。带上样片代码以后（0.2.0），它照 `making.md` 把 `samples/` 拷进项目、`npm install`、先原样跑通 C-013，再写了一段原创的《逐月》，画面和声音都通过 `--quick`；但它会一直截图细调，二十分钟还没停下来，要给它限定轮数或时间。
+
+### WorkBuddy 等上传技能包的助手
+
+- `scripts/install.sh zip` 打成 `dist/ai-coding-video.zip` 上传。zip 里也带样片代码。
+- 能不能真的跑出片工具，取决于那个助手的运行环境（有没有 Node、Python、浏览器、ffmpeg），没有实测；跑不了时，它仍然可以选风格、写提示词和渲染代码，由你在本机出片。
 
 ## 仓库结构
 
 ```
-skills/ai-coding-video/   Skill 本体（唯一正本）
-samples/                  1 级样片：每种风格的渲染代码和出片脚本（陆续加入）
+skills/ai-coding-video/   Skill 本体（唯一正本；其中 samples/、packs/ 是从下面两处同步来的代码，随 Skill 安装）
+samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图
 packs/                    2 级风格包：部件代码、风格说明、演示片
 site/                     介绍页（纯静态，可整个拷到任意服务器）
 scripts/install.sh        安装到各家助手

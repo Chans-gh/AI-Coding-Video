@@ -1,0 +1,65 @@
+{
+ "items": [
+  {
+   "file": "assets/night.mp4",
+   "kind": "录像",
+   "title": "Earth from Space in 4K – Expedition 65 Edition（夜间城市段）",
+   "source": "https://images.nasa.gov/details/jsc2022m000172_Earth_in_4K_Expedition_65_Edition",
+   "download": "https://images-assets.nasa.gov/video/jsc2022m000172_Earth_in_4K_Expedition_65_Edition/jsc2022m000172_Earth_in_4K_Expedition_65_Edition~medium.mp4",
+   "license": "公共领域（NASA 制作，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 1977,
+    "t": 14,
+    "w": 1280,
+    "crf": 26
+   }
+  },
+  {
+   "file": "assets/broadway.jpg",
+   "kind": "照片",
+   "title": "[Broadway at night from Times Square, New York, N.Y.]（约 1900，LOC 2016815975）",
+   "source": "https://www.loc.gov/item/2016815975/",
+   "download": "https://tile.loc.gov/storage-services/master/pnp/det/4a20000/4a25000/4a25600/4a25603u.tif",
+   "license": "无已知版权限制（美国国会图书馆，No known restrictions on publication）",
+   "author": "Detroit Publishing Co.",
+   "credit": "照片 Detroit Publishing / LOC",
+   "prep": {
+    "max": 1800
+   }
+  },
+  {
+   "file": "assets/cities.csv",
+   "kind": "数据",
+   "title": "Natural Earth 1:110m populated places（按人口取前 60）",
+   "source": "https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/",
+   "download": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_populated_places_simple.geojson",
+   "license": "公共领域（Natural Earth）",
+   "author": "Natural Earth",
+   "credit": "城市数据 Natural Earth",
+   "prep": {
+    "points": [
+     "name",
+     "pop_max"
+    ],
+    "sort": "pop_max",
+    "top": 60
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Enchanted Tiki 86",
+   "source": "https://opengameart.org/content/enchanted-tiki-86",
+   "download": "https://opengameart.org/sites/default/files/enchanted%20tiki%2086_0.mp3",
+   "license": "CC0 1.0",
+   "author": "cynicmusic",
+   "credit": "配乐 cynicmusic（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

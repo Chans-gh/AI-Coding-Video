@@ -7,6 +7,7 @@
 | 路径 | 是什么 | 怎么对待 |
 |---|---|---|
 | `skills/ai-coding-video/` | Skill 本体，唯一正本 | 改风格条目按它 README 的「维护」一节；改完跑 `python3 skills/ai-coding-video/scripts/build_index.py` 和 `--check` |
+| `skills/ai-coding-video/samples/`、`packs/` | 随 Skill 安装的样片和风格包代码（不含截图、T/G 类素材和只给维护者用的工具） | 生成物，不手改：改仓库根目录的 `samples/`、`packs/` 后跑 `build_index.py` 同步，`--check` 会查 |
 | `samples/<编号>/` | 样片：C 类是一种风格的渲染代码；T 类、G 类另带 `assets/` 素材和 `assets.json` | 每帧只由时间 t 决定；出 16:9 和 9:16 两版；C 类不引用任何外部图片、视频或生成模型 |
 | `packs/<名字>/` | 2 级风格包 | 维护者通过的风格才做 |
 | `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，再跑 `python3 site/build.py`，见 [site/README.md](site/README.md) |
@@ -21,7 +22,7 @@
 - **提示词用自己的话写**：参考来源只取做法，不复制原文；来源许可不是 MIT、Apache、CC BY 这类开放许可的，只能借风格名。以商业作品或在世艺术家命名的「致敬风格」可以收，名字写成「某某式」，提示词只描述画法；样片里的角色、场景、标志、台词全部原创。
 - **1 级样片的声音用自带的电子音**：全部由 `samples/lib/synth.py` 用代码合成，不调用第三方声音模型（TTS、AI 作曲），不用曲库、录音或采样（维护者定）。T 类、G 类的声音见下。
 - **视频不进仓库**：样片和风格包演示片的视频放在 GitHub Release，用 `scripts/media.py` 上传、下载，见 [samples/README.md](samples/README.md#视频放在哪)（维护者定）。
-- **编号只增不改**；`data/styles.json` 和 `index.md` 的风格目录是生成物，不要手改。
+- **编号只增不改**；`data/styles.json`、`index.md` 的风格目录和 Skill 里的 `samples/`、`packs/` 是生成物，不要手改。
 - **一件事只记一处**：别处要用就放链接。数字（风格总数等）只出现在生成它的地方。
 - 案例的工具链、费用、用时是原作者自述，写进文档时保留「未经核实」。
 - 路径一律相对于脚本自身位置，不写死绝对路径。

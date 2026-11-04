@@ -1,0 +1,9 @@
+{
+  "en_name": "Sand animation",
+  "en_how": "Two pictures are sampled into grains; each grain swirls along a noise field from the first picture to its spot in the second.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

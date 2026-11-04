@@ -1,0 +1,34 @@
+{
+ "items": [
+  {
+   "file": "assets/dunk.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "体育赛事镜头：一名穿红色无字球衣的篮球运动员从侧后方高高跃起，单手扣篮，篮网剧烈晃动，明亮的室内球馆，观众席模糊，电影感，球衣和场地上没有任何队标和文字",
+   "params": {
+    "aspectRatio": "16:9",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "w": 1280
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Winning the Race",
+   "source": "https://opengameart.org/content/winning-the-race",
+   "download": "https://opengameart.org/sites/default/files/S31-Winning%20the%20Race.ogg",
+   "license": "CC0 1.0",
+   "author": "section31",
+   "credit": "配乐 section31（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

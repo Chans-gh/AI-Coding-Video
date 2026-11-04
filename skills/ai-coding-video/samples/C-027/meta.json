@@ -1,0 +1,9 @@
+{
+  "en_name": "Collage",
+  "en_how": "Colour blocks, a halftone photo, newsprint and letter tiles slam onto kraft paper on the beat, with torn edges, a page shake and a highlighter pass.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

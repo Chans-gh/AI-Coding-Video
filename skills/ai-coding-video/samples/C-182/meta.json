@@ -1,0 +1,5 @@
+{
+  "en_name": "Blue and white porcelain",
+  "en_how": "Neck scrolls, shoulder cloud collars, a front band of scrolling lotus with a fish-and-weed back, and lotus panels at the foot are painted on a wrap-around texture, the front ones stroke by stroke with pale washes and iron-spot specks; a fragment shader maps it onto a plum-vase profile — each pixel's angle on the cylinder is asin(x/r) at its height — adds glaze shading, a sliding highlight and rim light, then turns the vase half round to show the back.",
+  "tech": ["Canvas 2D", "WebGL2", "GLSL", "Playwright", "ffmpeg"]
+}
