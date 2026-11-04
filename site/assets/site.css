@@ -249,6 +249,10 @@ html[data-ar="9x16"] .card .screen { aspect-ratio: 9 / 16; }
 .card-meta code { white-space: nowrap; }
 .card-meta code { font-weight: 700; font-size: 13px; color: var(--muted); }
 .card-meta h4 { margin: 0; font-size: 16px; }
+/* 样片卡片：题材一行、标题固定两行高（超出的省略），同一排卡片下面的内容才对得齐 */
+.card .card-theme { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.card .card-meta h4 { min-width: 0; line-height: 1.4; height: 2.8em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+@media (max-width: 560px) { .card .card-meta h4 { font-size: 15px; } .card .card-meta { gap: 8px; } .card .links { flex-wrap: wrap; gap: 2px 12px; line-height: 1.5; } .card .links a { white-space: nowrap; } }
 .how { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
 /* 卡片描述只露两行，所有卡片一样高；放不下的在第二行末尾显示「更多」，鼠标移上去（手机上点一下）浮出全文 */
 .card .how-box { position: relative; margin-top: 6px; height: calc(2 * 1.6 * 14px); }
@@ -279,7 +283,7 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
   .card-row .chips li, .card-row .chips button { padding: 4px 5px; }
   .card-row .chips li:has(button) { padding: 0; }
 }
-.card details { margin-top: 10px; font-size: 14px; }
+.card details { margin-top: auto; padding-top: 10px; font-size: 14px; }   /* 提示词和链接贴着卡片底部，同一排的对齐 */
 .card summary { cursor: pointer; color: var(--accent); font-weight: 700; }
 .card details p { margin: 8px 0 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; }
 .card .links, .pack .links { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; }
