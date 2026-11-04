@@ -59,7 +59,7 @@ scene({
     tc.textAlign = 'center'; tc.textBaseline = 'alphabetic'; tc.fillStyle = '#fff';
     const fs = TW * rw * (LAND ? .14 : .2);
     tc.font = `900 ${fs}px 'Noto Serif SC'`;
-    const cx = TW * (rx + rw * .5), by = TH * lerp(.54, .38, rise);
+    const cx = TW * (rx + rw * .5), by = TH * (LAND ? lerp(.54, .38, rise) : lerp(.34, .17, rise));
     tc.fillText('山在那里', cx, by);
     tc.font = `400 ${fs * .26}px 'Playfair Display'`;
     tc.fillText('THE MOUNTAIN IS THERE', cx, by + fs * .42);
