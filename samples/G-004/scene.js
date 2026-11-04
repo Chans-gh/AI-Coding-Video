@@ -1,5 +1,5 @@
 // G-004 大字品牌片：两段 AI 生成的空镜（清晨海岸航拍、倒茶的手）按节拍剪在一起，镜头上压整屏的超大描边品牌字，随镜头慢慢滑动、只露出一部分；口号用细衬线体一句句淡入；结尾黑底上的大字当遮罩，海岸镜头从字里透出来，再落标志
-// 素材：生视频 ×2（青水）；配乐 CC0。品牌「远方 FURTHER」是虚构的
+// 素材：生视频 ×2；配乐 CC0。品牌「远方 FURTHER」是虚构的
 scene({
   id: 'G-004', name: '大字品牌片', dur: 12, still: 10.8,
   fonts: ["400 40px 'Bebas Neue'", "700 40px 'Noto Serif SC'", "900 40px 'Noto Serif SC'", "400 40px 'Noto Sans SC'", "italic 400 40px 'Playfair Display'"],

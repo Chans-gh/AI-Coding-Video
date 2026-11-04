@@ -1,4 +1,4 @@
-"""G-005 动漫短剧：旁白（青水公开音色）+ CC0 配乐 + 代码合成的雨声；放大那一格一声冲击加风声，对白气泡一声轻响，片名一声钟"""
+"""G-005 动漫短剧：旁白（语音合成的公开音色）+ CC0 配乐 + 代码合成的雨声；放大那一格一声冲击加风声，对白气泡一声轻响，片名一声钟"""
 from pathlib import Path
 from synth import assets, filt, impact, whoosh, bell, beep, hz
 

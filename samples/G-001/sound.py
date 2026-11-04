@@ -1,4 +1,4 @@
-"""G-001 纸拼贴讲解：旁白（青水公开音色）+ CC0 配乐；章鱼落下一声风声，每贴一张纸、圈一笔放一个短促的纸片声"""
+"""G-001 纸拼贴讲解：旁白（语音合成的公开音色）+ CC0 配乐；章鱼落下一声风声，每贴一张纸、圈一笔放一个短促的纸片声"""
 from pathlib import Path
 from synth import assets, cue_time, whoosh, tick, woodblock
 

@@ -1,5 +1,5 @@
 // T-007 卫星地图新闻简报：Natural Earth 海岸线画底图，NOAA 最佳路径一点点画出飓风伊恩的轨迹（按强度上色），信息卡跟着读数；后半段空间站拍的两张照片滑进来，新闻条和字幕跟旁白走
-// 素材：照片（NASA 空间站拍的伊恩两张）、数据（NOAA HURDAT2 路径、Natural Earth 海岸线）；旁白青水公开音色；配乐 CC0
+// 素材：照片（NASA 空间站拍的伊恩两张）、数据（NOAA HURDAT2 路径、Natural Earth 海岸线）；旁白用语音合成的公开音色；配乐 CC0
 scene({
   id: 'T-007', name: '卫星地图简报', dur: 15, still: 8.0,
   fonts: ["900 40px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 40px 'JetBrains Mono'"],

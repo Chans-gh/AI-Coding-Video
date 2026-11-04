@@ -20,7 +20,9 @@
 | `render.py` | 出片核心（截图、合成声音、编码、缩略图），由 `batch.py` 调用 |
 | `tools/mark.py` | 把出好的样片登记进风格条目 |
 | `tools/apidoc.py` | 生成 `API.md` |
-| `tools/assets.py` | T 类、G 类的素材：下载、录屏、调青水生成、统一处理、去元数据 |
+| `tools/assets.py` | T 类、G 类的素材：下载、录屏、生成、统一处理、去元数据 |
+| `tools/gen.py` | 生图、生视频、语音合成的服务商接口：三类各由一个环境变量指定适配命令，约定写在文件开头 |
+| `tools/adapters/placeholder.py` | 不调任何服务的占位适配命令，用来先跑通流程 |
 
 ## 怎么出片
 
@@ -90,12 +92,14 @@ Remotion 样片不走 `player.html`：`render.py` 认出目录里的 `scene.jsx`
 
 ```bash
 python3 tools/assets.py T-007        # 照 assets.json 下载或生成素材，统一成 30 帧/秒、去掉元数据，写进 assets/；旁白的逐字时间换成字幕写回 assets.json
-python3 tools/assets.py --usage      # 本机调青水的次数
+python3 tools/gen.py                 # 生图、生视频、语音合成三类各配了没有
+python3 tools/assets.py --usage      # 本机调生成服务的次数
 python3 batch.py T-007 --quick       # 之后和 C 类一样出片、检查、登记
 ```
 
 - 场景里用 `loadAssets()`、`loadImage()`、`loadVideo()`（按帧取，第 k 帧只取素材的第 k 帧）、`parseCSV()` 读素材，`cueAt()` 取当前字幕，`credits()` 生成署名行；`sound.py` 一般只写 `assets(m, 样片目录)`，再加几个合成音效。
-- 声音不用 C 类的电子音做主体：旁白用青水的公开音色，配乐、音效用公共领域、CC0 的（CC BY 要署名）。
+- 声音不用 C 类的电子音做主体：旁白用语音合成的公开音色，配乐、音效用公共领域、CC0 的（CC BY 要署名）。
+- 维护者出样片用青水：在仓库根目录 `source scripts/providers/qingshui.env`，三类都交给 `scripts/providers/qingshui.py`（只在本仓库，不随 Skill 安装）；Key 仍只在环境变量 `QINGSHUI_API_KEY`。
 - 规矩见仓库根目录 [AGENTS.md](../AGENTS.md) 的「T 类、G 类」，做法见 Skill 的 [materials.md](../skills/ai-coding-video/materials.md)。
 
 ## 写新样片的规矩

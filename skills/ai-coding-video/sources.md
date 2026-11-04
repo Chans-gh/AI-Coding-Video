@@ -20,6 +20,10 @@
 
 更多 skill 见 [awesome-opus-video-skills](https://github.com/ismoshushi/awesome-opus-video-skills)（17 个）和 [awesome-claude-video-skills](https://github.com/zhuyansen/awesome-claude-video-skills)（168 个仓库，按类型分组）。
 
+## 样片素材的来源
+
+本仓库 G 类样片的生图、生视频和旁白，是维护者经青水调用各模型生成的，用到的模型名、参数和提示词记在每个样片的 `assets.json` 里；T 类样片的素材出处逐份记在同一个文件。
+
 ## 风格条目的来源
 
 本库的风格条目和方法整理自下面这些公开资料。风格提示词是整理者改写的一句话版本，不是原文复制；本库不收录任何来源里的图片，样片都由本仓库的代码渲染。

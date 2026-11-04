@@ -1,4 +1,4 @@
-"""G-002 虚拟主播口播：旁白（青水公开音色）+ CC0 配乐；名牌滑入一声，问题卡、每张要点卡弹出各一声提示音"""
+"""G-002 虚拟主播口播：旁白（语音合成的公开音色）+ CC0 配乐；名牌滑入一声，问题卡、每张要点卡弹出各一声提示音"""
 from pathlib import Path
 from synth import assets, cue_time, beep, pluck, whoosh, hz
 

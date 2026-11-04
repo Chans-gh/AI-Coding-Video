@@ -1,4 +1,4 @@
-"""G-007 插画新闻：旁白（青水公开音色）+ CC0 配乐；开场新闻提示音，换要点时色块扫过一声风声，每条降温办法打勾一声"""
+"""G-007 插画新闻：旁白（语音合成的公开音色）+ CC0 配乐；开场新闻提示音，换要点时色块扫过一声风声，每条降温办法打勾一声"""
 from pathlib import Path
 from synth import assets, cue_time, beep, whoosh, hz
 

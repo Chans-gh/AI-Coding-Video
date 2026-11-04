@@ -3,8 +3,8 @@
     python3 tools/assets.py T-001            # 补齐缺的素材（已有的不动），最后打每份的体积和合计
     python3 tools/assets.py T-001 --only assets/vo.mp3 --force   # 重做某一份
     python3 tools/assets.py T-001 --check    # 不下载、不生成：只查文件在不在、元数据是否干净、合计是否超过 10 MB
-    python3 tools/assets.py T-001 --subs     # 不再调语音合成：用 out/qs/ 里存的逐字时间重排字幕行（改了断句规则或 show 之后）
-    python3 tools/assets.py --usage          # 本机调用青水的次数（记在 out/qs/usage.jsonl，不进仓库）
+    python3 tools/assets.py T-001 --subs     # 不再调语音合成：用 out/gen/ 里存的逐字时间重排字幕行（改了断句规则或 show 之后）
+    python3 tools/assets.py --usage          # 本机调用生成服务的次数（记在 out/gen/usage.jsonl，不进仓库）
 
 assets.json 是 {"items": [...]}，每份素材一项：
   file      放在哪（相对样片目录，assets/ 下）
@@ -18,10 +18,10 @@ assets.json 是 {"items": [...]}，每份素材一项：
   record    录屏（本仓库自己的页面）：见 record() 的说明；录完写回鼠标轨迹 cursor
   at、gain  声音在成片里的时刻和音量（synth.assets 用）；语音合成后由本脚本写回 dur 和逐句字幕 lines
 
-脱敏：下载和生成的原始文件、青水的任务记录只放在 out/（不进仓库）；进仓库的文件重新编码，去掉元数据和编码器信息，
-assets.json 只记模型名、参数和提示词。青水经 chans-gh/test 的 .claude/skills/qingshui/ 调用（生图、生视频走 scripts/run.js，
-语音走它的 scripts/api.js audio），位置用环境变量 QINGSHUI_SKILL 指定，默认是和本仓库并排的 ../test/.claude/skills/qingshui；
-Key 只从环境变量 QINGSHUI_API_KEY 读。
+生成（生图、生视频、语音合成）经 tools/gen.py 交给环境变量里配的适配命令，不绑定哪一家服务；没配置的那类只打提示、跳过，
+其余素材照常处理。服务的 Key 由适配命令自己读，本工具不碰。
+脱敏：下载和生成的原始文件、生成服务的记录只放在 out/（不进仓库）；进仓库的文件重新编码，去掉元数据和编码器信息，
+assets.json 只记模型名、参数和提示词。
 """
 import argparse
 import hashlib
@@ -38,11 +38,11 @@ from pathlib import Path
 
 from PIL import Image
 
+import gen
+
 SAMPLES = Path(__file__).resolve().parent.parent
 OUT = SAMPLES / "out"
 DL = OUT / "dl"
-QS_OUT = OUT / "qs"
-QS = Path(os.environ.get("QINGSHUI_SKILL") or SAMPLES.parent.parent / "test" / ".claude" / "skills" / "qingshui")
 LIMIT = 10_000_000
 UA = "AI-Coding-Video-sample-builder/0.1 (https://github.com/Chans-gh/AI-Coding-Video)"
 IMG, VID, AUD = {".jpg", ".jpeg", ".png", ".webp"}, {".mp4", ".webm"}, {".mp3", ".ogg", ".wav", ".m4a"}
@@ -207,115 +207,59 @@ def dirty(f):
     return []
 
 
-# ---------- 青水：生图、生视频走 run.js，语音走 api.js audio ----------
-def usage(sid, item, kind):
-    QS_OUT.mkdir(parents=True, exist_ok=True)
-    with open(QS_OUT / "usage.jsonl", "a", encoding="utf-8") as f:
-        f.write(json.dumps({"sid": sid, "file": item["file"], "type": kind, "model": item["model"],
-                            "at": time.strftime("%Y-%m-%d %H:%M")}, ensure_ascii=False) + "\n")
+# ---------- 生成：生图、生视频、语音合成都交给 tools/gen.py ----------
+class Skipped(Exception):
+    """这一类生成服务没配置：只提示，不算出错"""
 
 
-def qs_env():
-    if not os.environ.get("QINGSHUI_API_KEY"):
-        sys.exit("缺环境变量 QINGSHUI_API_KEY")
-    if not (QS / "scripts" / "run.js").exists():
-        sys.exit(f"找不到青水 Skill：{QS}（把 chans-gh/test 克隆到本仓库旁边，或设 QINGSHUI_SKILL）")
+def job_id(item):
+    return re.sub(r"\W", "_", Path(item["file"]).stem)
 
 
 def gen_visual(sid, d, item):
-    """生图 / 生视频：写任务文件交给 run.js；任务文件、记录、原始下载都在 out/qs/<编号>/（不进仓库）"""
-    qs_env()
-    work = QS_OUT / sid
-    work.mkdir(parents=True, exist_ok=True)
-    jid = re.sub(r"\W", "_", Path(item["file"]).stem)
-    is_video = Path(item["file"]).suffix.lower() in VID
-    job = {"id": jid, "type": "video" if is_video else "image", "prompt": item["prompt"],
-           "options": {"model": item["model"], **item.get("params", {})}}
+    """生图 / 生视频；返回生成的原始文件（在 out/gen/<编号>/ 下，不进仓库）"""
+    kind = "video" if Path(item["file"]).suffix.lower() in VID else "image"
+    job = {"model": item["model"], "prompt": item["prompt"], "params": item.get("params", {})}
     if item.get("ref"):
         job["refs"] = [str((d / item["ref"]).resolve())]
-        if item["model"].startswith("Doubao-Seedance"):
-            job["refField"] = "referenceImage"
-    jf = work / f"{jid}.json"
-    jf.write_text(json.dumps(job, ensure_ascii=False, indent=1), encoding="utf-8")
-    run(["node", str(QS / "scripts" / "run.js"), "check", str(jf)])
-    usage(sid, item, job["type"])
-    with open(work / f"{jid}.log", "w") as log:              # run.js 的输出含任务编号和下载链接：只留在 out/
-        r = subprocess.run(["node", str(QS / "scripts" / "run.js"), str(jf)], stdout=log, stderr=subprocess.STDOUT)
-    if r.returncode:
-        raise RuntimeError(f"青水生成失败，看 out/qs/{sid}/{jid}.log 的结尾")
-    got = sorted((work / "gen").glob(f"{jid}.*")) + sorted((work / "gen").glob(f"{jid}_*.*"))
-    got = [g for g in got if g.suffix != ".json"]
-    if not got:
-        raise RuntimeError(f"青水没有返回文件，看 out/qs/{sid}/{jid}.log")
-    return got[0]
+    res = gen.generate(kind, sid, job_id(item), job)
+    if res is None:
+        raise Skipped(gen.missing(kind))
+    return res[0]
 
 
 def gen_speech(sid, d, item):
-    """语音合成：api.js audio（公开音色），同时要逐句字幕；返回 (音频, 字幕行)"""
-    qs_env()
-    if item.get("voice", "").startswith("clone_"):
-        sys.exit(f"{item['file']}：不用克隆音色，换一个公开音色")
-    work = QS_OUT / sid
-    work.mkdir(parents=True, exist_ok=True)
-    jid = re.sub(r"\W", "_", Path(item["file"]).stem)
-    p = item.get("params", {})
-    cmd = ["node", str(QS / "scripts" / "api.js"), "audio", "--text", item["text"], "--model", item["model"],
-           "--voice-id", item["voice"], "--format", "mp3", "--subtitle", "--subtitle-type", "word", "--sample-rate", "32000"]
-    for k, v in p.items():
-        cmd += [f"--{k}", str(v)]
-    usage(sid, item, "audio")
-    log = (work / f"{jid}.log")
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    log.write_text(r.stdout + r.stderr, encoding="utf-8")
-    a = re.search(r"语音文件:\s*(\S+)", r.stdout)
-    sub = re.search(r"字幕文件:\s*(\S+)", r.stdout)
-    if r.returncode or not a:
-        raise RuntimeError(f"语音合成失败，看 out/qs/{sid}/{jid}.log 的结尾")
-    raw = work / f"{jid}.raw.mp3"
-    shutil.copyfile(fetch_noncache(a.group(1)), raw)
+    """语音合成（公开音色），同时要逐句字幕；返回 (音频, 字幕行)"""
+    job = {"model": item["model"], "text": item["text"], "voice": item.get("voice", ""), "params": item.get("params", {})}
+    res = gen.generate("tts", sid, job_id(item), job)
+    if res is None:
+        raise Skipped(gen.missing("tts"))
+    raw, subs = res
     lines = []
-    if sub:
-        js = json.loads(Path(fetch_noncache(sub.group(1))).read_text(encoding="utf-8"))
-        (work / f"{jid}.subs.json").write_text(json.dumps(js, ensure_ascii=False, indent=1), encoding="utf-8")
+    if subs:
+        js = json.loads(subs.read_text(encoding="utf-8"))
+        (gen.GEN_OUT / sid / f"{job_id(item)}.subs.json").write_text(json.dumps(js, ensure_ascii=False, indent=1), encoding="utf-8")
         lines = sub_lines(js, item.get("show", {}))
     return raw, lines
 
 
-def fetch_noncache(url):
-    """带签名的临时链接：下到 out/qs/tmp，不进下载缓存的文件名"""
-    tmp = QS_OUT / "tmp"
-    tmp.mkdir(parents=True, exist_ok=True)
-    dest = tmp / hashlib.sha1(url.encode()).hexdigest()[:12]
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    for i in range(4):
-        try:
-            with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
-                shutil.copyfileobj(r, f)
-            return dest
-        except Exception:
-            if i == 3:
-                raise
-            time.sleep(2 * 2 ** i)
-
-
 def sub_lines(js, show=None):
-    """青水的逐字字幕 JSON → 按标点断成的字幕行 [{t0, t1, text}]（秒）。
+    """字幕 JSON（格式见 tools/gen.py 开头）→ 按标点断成的字幕行 [{t0, t1, text}]（秒）。
     show 是 {念法: 显示}：旁白里数字要写成念法（一九七二年），字幕上换回 1972 年"""
-    rows = js if isinstance(js, list) else js.get("subtitles") or js.get("data") or []
     out = []
-    for seg in rows:
-        text, words = seg.get("text", ""), seg.get("timestamped_words") or []
+    for seg in js:
+        text, words = seg.get("text", ""), seg.get("words") or []
         if not words:                                                    # 只有句级时间
-            out.append({"t0": seg["time_begin"] / 1000, "t1": seg["time_end"] / 1000, "text": text})
+            out.append({"t0": seg["t0"], "t1": seg["t1"], "text": text})
             continue
         cur = None
         for w in words:
-            a, b = w["time_begin"] / 1000, w["time_end"] / 1000          # 毫秒 → 秒
+            a, b = w["t0"], w["t1"]
             if cur is None:
                 cur = {"t0": a, "t1": b, "text": ""}
-            cur["text"] += text[w["word_begin"]:w["word_end"]]
+            cur["text"] += text[w["begin"]:w["end"]]
             cur["t1"] = b
-            nxt = text[w["word_end"]:w["word_end"] + 1]
+            nxt = text[w["end"]:w["end"] + 1]
             plain = re.sub(r"[，。！？；：,.!?;:—…、\s]", "", cur["text"])
             if nxt and (nxt in "。！？；.!?;" or (nxt in "，：,:—" and len(plain) >= 9)):   # 句末断行；逗号处够长才断
                 out.append(cur); cur = None
@@ -342,7 +286,7 @@ def record(sid, item):
     动作：wait 秒 / move 选择器 [秒] / click 选择器 [秒]（先移过去再点）/ scroll 选择器 [留出的像素] [秒]（平滑滚到它）/ key 按键。
     交给 tools/record.js（Node 版 Playwright）去录；返回 (原始 webm, 鼠标轨迹 [[秒, x, y, 是否按下], …])，坐标是 0–1，画面里由 scene.js 重画鼠标"""
     spec = item["record"]
-    work = QS_OUT.parent / "rec" / sid
+    work = OUT / "rec" / sid
     shutil.rmtree(work, ignore_errors=True); work.mkdir(parents=True)
     job = {"url": (SAMPLES / sid / spec["page"]).resolve().as_uri(), "size": spec.get("size", [1280, 720]), "steps": spec["steps"]}
     (work / "spec.json").write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
@@ -360,7 +304,7 @@ def build(sid, only=None, force=False, check=False):
     if not af.exists():
         print(f"✗ {sid}：没有 assets.json"); return False
     A = json.loads(af.read_text(encoding="utf-8"))
-    ok, changed, total, seen = True, False, 0, set()
+    ok, changed, total, seen, skipped = True, False, 0, set(), []
     for it in A["items"]:
         dest = d / it["file"]
         if it["file"] in seen:                          # 同一个文件被几项引用（如一段原声分几处用）：只处理、只计一次
@@ -389,6 +333,13 @@ def build(sid, only=None, force=False, check=False):
                     prep(fetch(it["download"]), dest, it.get("prep", {}))
                     if Path(it["file"]).suffix.lower() in AUD and it.get("kind") in ("旁白", "原声", "语音合成"):
                         it["dur"] = round(duration(dest), 3); changed = True
+            except Skipped as e:
+                if str(e) not in skipped:
+                    print(f"– {e}")
+                skipped.append(str(e))
+                if not dest.exists():
+                    print(f"– {it['file']}：先跳过"); continue
+                print(f"– {it['file']}：先跳过，用原来的文件")
             except Exception as e:
                 print(f"✗ {it['file']}：{e}"); ok = False; continue
         if not dest.exists():
@@ -402,7 +353,8 @@ def build(sid, only=None, force=False, check=False):
     if changed:
         af.write_text(json.dumps(A, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     over = total > LIMIT
-    print(f"{'✗' if over else '✓'} {sid} 素材合计 {total / 1e6:.2f} MB" + ("（超过 10 MB）" if over else ""))
+    print(f"{'✗' if over else '✓'} {sid} 素材合计 {total / 1e6:.2f} MB" + ("（超过 10 MB）" if over else "")
+          + (f"；{len(skipped)} 份要生成的没配置服务，先跳过" if skipped else ""))
     return ok and not over
 
 
@@ -420,14 +372,14 @@ def main():
             af = SAMPLES / sid / "assets.json"
             A = json.loads(af.read_text(encoding="utf-8"))
             for it in A["items"]:
-                sj = QS_OUT / sid / (re.sub(r"\W", "_", Path(it["file"]).stem) + ".subs.json")
+                sj = gen.GEN_OUT / sid / (job_id(it) + ".subs.json")
                 if it.get("text") and sj.exists():
                     it["lines"] = sub_lines(json.loads(sj.read_text(encoding="utf-8")), it.get("show", {}))
                     print(f"{sid} {it['file']}：" + " / ".join(l["text"] for l in it["lines"]))
             af.write_text(json.dumps(A, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         return
     if a.usage:
-        f = QS_OUT / "usage.jsonl"
+        f = gen.GEN_OUT / "usage.jsonl"
         rows = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines()] if f.exists() else []
         by = {}
         for r in rows:

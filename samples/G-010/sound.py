@@ -1,4 +1,4 @@
-"""G-010 手账 vlog：旁白（青水公开音色）+ CC0 lofi 配乐；照片落下一声纸响，盖章各一声闷响"""
+"""G-010 手账 vlog：旁白（语音合成的公开音色）+ CC0 lofi 配乐；照片落下一声纸响，盖章各一声闷响"""
 from pathlib import Path
 from synth import assets, cue_time, thud, filt, fade
 

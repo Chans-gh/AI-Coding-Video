@@ -1,4 +1,4 @@
-"""G-012 绘本翻页：旁白（青水公开音色）+ CC0 配乐；每次翻页一声纸页翻动，结尾「完」一声轻铃"""
+"""G-012 绘本翻页：旁白（语音合成的公开音色）+ CC0 配乐；每次翻页一声纸页翻动，结尾「完」一声轻铃"""
 from pathlib import Path
 from synth import assets, cue_time, filt, fade, bell, hz
 

@@ -26,7 +26,7 @@ python3 batch.py C-013 --quick           # 先原样跑通一个样片，确认�
 python3 new.py C-013                     # 或：给还没有样片的风格起骨架（已有的文件不覆盖）
 ```
 
-要 Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg；浏览器可用环境变量 `CHROME` 指定。函数速查见 [samples/API.md](samples/API.md)，`batch.py` 的用法写在它文件开头。T 类、G 类样片只带了代码和 `assets.json`（素材清单），素材本身不随 Skill 安装：T 类可以照 `assets.json` 用 `tools/assets.py` 重新下载，G 类要用户自己生成或换成自己的素材。
+要 Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg；浏览器可用环境变量 `CHROME` 指定。函数速查见 [samples/API.md](samples/API.md)，`batch.py` 的用法写在它文件开头。T 类、G 类样片只带了代码和 `assets.json`（素材清单），素材本身不随 Skill 安装：T 类可以照 `assets.json` 用 `tools/assets.py` 重新下载，G 类要用户按 [materials.md「配置生成服务」](materials.md#配置生成服务) 配好服务再生成，或换成自己的素材。
 
 **改的顺序**（照这个来，比从零设计稳）：
 

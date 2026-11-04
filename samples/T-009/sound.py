@@ -1,4 +1,4 @@
-"""T-009 活体录屏：旁白（青水公开音色）+ CC0 配乐；每次点击一声轻的咔哒"""
+"""T-009 活体录屏：旁白（语音合成的公开音色）+ CC0 配乐；每次点击一声轻的咔哒"""
 from pathlib import Path
 from synth import assets, tick
 

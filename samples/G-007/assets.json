@@ -8,7 +8,7 @@
    "params": {
     "aspectRatio": "16:9"
    },
-   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
     "max": 1920
@@ -22,7 +22,7 @@
    "params": {
     "aspectRatio": "16:9"
    },
-   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
     "max": 1920
@@ -36,7 +36,7 @@
    "params": {
     "aspectRatio": "16:9"
    },
-   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
     "max": 1920
@@ -52,7 +52,7 @@
     "speed": 1.15
    },
    "at": 0.5,
-   "license": "AI 生成（青水），随本仓库按 MIT 发布",
+   "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "旁白 AI 合成（公开音色）",
    "dur": 13.192,
    "lines": [

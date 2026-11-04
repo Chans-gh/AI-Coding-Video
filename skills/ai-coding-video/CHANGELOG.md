@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-04 | 0.3.0：Skill 和青水解耦。生图、生视频、语音合成改走服务商接口 `samples/tools/gen.py`：三类各由环境变量 `AICV_IMAGE_CMD`、`AICV_VIDEO_CMD`、`AICV_TTS_CMD` 指定适配命令，没配置的那类只提示、跳过，不报错不中断；附不调任何服务的占位适配命令 `tools/adapters/placeholder.py`；`materials.md` 新增「配置生成服务」，写明三类怎么配和默认推荐的服务；样片代码和素材清单里不再写服务商，来源说明只在 `sources.md`。维护者用青水的适配命令在仓库根目录 `scripts/providers/`，不随 Skill 安装 |
 | 2026-11-04 | 0.2.4：内容类型新增 6 个（企业培训和课件、游戏和电竞、播客和访谈可视化、年度回顾和数据总结、美食、健康和运动指导），T、G 条目随阶段 4 补 |
 | 2026-11-04 | 阶段 0：介绍页和 Skill 分开。生成的 `site/index.html`、`site/fonts/` 不再进仓库，由 `pages.yml` 发布时 `site/build.py --page` 生成，改 Skill、样片的推送也会重新发布；`AGENTS.md` 写明按目录分工（介绍页只改 `site/`）。Skill 内容不变，版本号不变 |
 | 2026-11-04 | 0.2.3：新增「T/G 技术类型」一层（17 种 T、16 种 G，每种带轻、中、重难度）：取值在 `data/tags.json` 的 `techniques`，T、G 条目都标「技术类型」，`tags.md` 里的类型 × 条目 × 样片 × 难度表由 `build_index.py` 生成并校验；`materials.md` 新增「统一处理」一节，讲超分、补帧、去噪等工序 |

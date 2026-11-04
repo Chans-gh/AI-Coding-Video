@@ -102,7 +102,7 @@ skills/ai-coding-video/   Skill 本体（唯一正本；其中 samples/、packs/
 samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图；T 类、G 类另带素材 assets/ 和清单 assets.json
 packs/                    2 级风格包：部件代码、风格说明、演示片
 site/                     介绍页（纯静态，可整个拷到任意服务器）
-scripts/                  install.sh 安装到各家助手；media.py 管理放在 Release 里的视频；release.sh 发版
+scripts/                  install.sh 安装到各家助手；media.py 管理放在 Release 里的视频；release.sh 发版；providers/ 维护者出样片用的生成服务配置（不随 Skill 安装）
 media.json                视频清单（视频本身在 GitHub Release「media」）
 .claude-plugin/           Claude Code 插件市场清单（插件本体是 skills/，插件清单在 skills/.claude-plugin/）
 .agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）

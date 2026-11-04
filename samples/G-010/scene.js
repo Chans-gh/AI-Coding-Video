@@ -1,5 +1,5 @@
 // G-010 旅行手账 vlog：两段 AI 生成的旅行镜头（清晨水乡、夜晚老街）贴在手账纸上当照片，四角胶带、微微歪着；旁边手绘路线图，虚线跟着旁白从码头走到老街，说到的地方盖一个印章；字幕是手写体，结尾盖「第一天」大章
-// 素材：生视频 ×2、语音合成（青水）；配乐 CC0
+// 素材：生视频 ×2、语音合成；配乐 CC0
 scene({
   id: 'G-010', name: '旅行手账 vlog', dur: 12.5, still: 7.6,
   fonts: ["400 40px 'Ma Shan Zheng'", "400 40px 'ZCOOL KuaiLe'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "400 40px 'JetBrains Mono'"],

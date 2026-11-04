@@ -1,5 +1,5 @@
 // T-009 活体录屏教程：本仓库介绍页的操作录屏放进浏览器窗口，镜头跟着鼠标在点击前后自动推近、拉回；鼠标由代码按录下的轨迹重画，点击处有涟漪，左上角标第几步，底部字幕跟旁白
-// 素材：录屏（Playwright 按脚本操作本仓库的介绍页并录制，鼠标轨迹写在 assets.json）；旁白青水公开音色；配乐 CC0
+// 素材：录屏（Playwright 按脚本操作本仓库的介绍页并录制，鼠标轨迹写在 assets.json）；旁白用语音合成的公开音色；配乐 CC0
 scene({
   id: 'T-009', name: '活体录屏', dur: 14, still: 6.4,
   fonts: ["900 40px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "400 40px 'JetBrains Mono'"],

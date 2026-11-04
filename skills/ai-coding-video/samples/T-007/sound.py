@@ -1,4 +1,4 @@
-"""T-007 新闻简报：旁白（青水公开音色）+ CC0 配乐；开场一声新闻台式的提示音"""
+"""T-007 新闻简报：旁白（语音合成的公开音色）+ CC0 配乐；开场一声新闻台式的提示音"""
 from pathlib import Path
 from synth import assets, beep
 

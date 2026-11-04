@@ -44,13 +44,34 @@ T 类、G 类按**内容类型**分（用户要做的是哪种视频），同一
 
 ## G 类：怎么生成
 
-- 任何生图、生视频、语音合成服务都可以，选用户已经在用的那家。本库的 G 类样片用的是青水（经它的 Skill 调用），模型名、参数和提示词记在每个样片的 `assets.json` 里。
+- 任何生图、生视频、语音合成服务都可以，选用户已经在用的那家，配法见下面「配置生成服务」。模型名、参数和提示词记在每个样片的 `assets.json` 里。
 - **先用最便宜的模型试**：构图、动作、镜头对了，再换好模型出正式版。每支 8–15 秒的片子，一般几张图、一两段视频就够，剩下交给代码剪辑和动效。
 - **同一角色前后一致**：先生成一张定妆图，之后的生图、生视频都拿它当参考图或首帧。
-- **帧率**：生视频模型常出 24 帧/秒（青水的 Seedance 就是），统一成 30 帧/秒时会有少数帧重复；推拉、慢放的镜头只要看着不卡就不用处理，卡了再换插帧或改用素材原帧率出片。
+- **帧率**：生视频模型常出 24 帧/秒（例如 Seedance），统一成 30 帧/秒时会有少数帧重复；推拉、慢放的镜头只要看着不卡就不用处理，卡了再换插帧或改用素材原帧率出片。
 - **不出现真实品牌**：提示词里写「没有文字、没有标志」；生成结果里还是冒出了真实品牌字样的，局部模糊或裁掉，改了什么记在素材清单里。
 - **不生成真实人物**：提示词里不写真人姓名、不描述可辨认的真人长相，也不克隆真人声音；旁白用服务提供的公开音色。
 - 生成结果只留文件本身：账号、Key、任务编号、带签名的下载链接不要写进代码和文档。
+
+## 配置生成服务
+
+生图、生视频、语音合成三类分开配，各用一个环境变量指定一条「适配命令」：拿到任务（提示词、模型、参数、参考图），调用户那家服务，把文件存下来。只用到哪类就配哪类。
+
+| 类 | 环境变量 | 可选 |
+|---|---|---|
+| 生图 | `AICV_IMAGE_CMD` | `AICV_IMAGE_MODEL`：换模型 |
+| 生视频 | `AICV_VIDEO_CMD` | `AICV_VIDEO_MODEL` |
+| 语音合成 | `AICV_TTS_CMD` | `AICV_TTS_MODEL`、`AICV_TTS_VOICE`：换模型、换音色 |
+
+- **用户要做的**：在那家服务开通账号、拿到 Key，把 Key 设成服务自己要求的环境变量（例如本机 shell 的 `export`，或云端环境的环境变量设置）；不要贴进对话，不要写进代码和文件。
+- **AI 助手要做的**：照用户那家服务的 API 文档写一条适配命令（几十行），输入输出的约定写在 [samples/tools/gen.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/gen.py) 开头；写法可以照 [samples/tools/adapters/placeholder.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/adapters/placeholder.py)，它不调任何服务、只出占位素材，先配它能把整条流程跑通。配好后跑 `python3 tools/gen.py` 看三类的状态，`python3 tools/gen.py try image` 试一次（会真的调一次服务）。
+- **没配置时**：那一类不生成，只提示要配哪个环境变量，其余素材和出片照常；不报错、不中断。先告诉用户缺哪一类、去哪里配，或者改用用户自己的素材。
+- **安全**：Key 只由适配命令从环境变量读，不打印；服务返回的任务编号、带签名的下载链接、原始响应只留在 `out/`（不进仓库），交出去的文件只有素材本身。
+
+默认推荐的服务（用户已经有别家的，用那家）：
+
+- 生图：[Google Gemini API 的图片生成](https://aistudio.google.com/docs/image-generation)
+- 生视频：[火山方舟的 Seedance 视频生成](https://docs.volcengine.com/docs/82379/1520757)
+- 语音合成：[MiniMax 语音合成](https://platform.minimax.cn/docs/api-reference/speech-t2a-http)（带逐字时间，字幕能直接对上）；不想用云端服务的，用 [sound.md](sound.md) 里的本地 Kokoro
 
 ## 声音素材
 
@@ -60,6 +81,6 @@ T 类、G 类按**内容类型**分（用户要做的是哪种视频），同一
 
 ## 本库样片里的做法
 
-- 素材下载、生成、统一处理、去元数据：[samples/tools/assets.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/assets.py)。
+- 素材下载、生成、统一处理、去元数据：[samples/tools/assets.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/assets.py)；生成经 [samples/tools/gen.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/gen.py) 交给上面配的适配命令。
 - 画面里读素材（图片、按帧取的视频、CSV、字幕）：`samples/lib/lib.js` 的 `loadAssets`、`loadImage`、`loadVideo`、`parseCSV`、`cueAt`、`caption`，说明见 [samples/API.md](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/API.md)。
 - 声音照素材清单摆放、说话时压低配乐：`samples/lib/synth.py` 的 `assets()`。

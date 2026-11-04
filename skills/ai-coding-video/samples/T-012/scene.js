@@ -1,5 +1,5 @@
 // T-012 儿童绘本动画：1902 年《彼得兔》的插图一页页翻过去，每页插图轻轻呼吸、摇摆，像纸偶；下面一行童趣字体的文字跟着旁白逐字变色（卡拉 OK 式），翻页用一次纸张翻转
-// 素材：照片（Project Gutenberg 扫描的 Beatrix Potter 原书插图五张）；旁白青水公开音色，故事是本仓库用自己的话复述的；配乐 CC0
+// 素材：照片（Project Gutenberg 扫描的 Beatrix Potter 原书插图五张）；旁白用语音合成的公开音色，故事是本仓库用自己的话复述的；配乐 CC0
 scene({
   id: 'T-012', name: '绘本翻页', dur: 15, still: 8.6,
   fonts: ["400 40px 'ZCOOL KuaiLe'", "400 40px 'Noto Sans SC'"],

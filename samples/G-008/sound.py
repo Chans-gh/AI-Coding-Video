@@ -1,4 +1,4 @@
-"""G-008 伪纪录片：旁白（青水公开音色）+ CC0 配乐；底下一层低频的风声，鹤群起飞时一串纸翅膀扑扇声"""
+"""G-008 伪纪录片：旁白（语音合成的公开音色）+ CC0 配乐；底下一层低频的风声，鹤群起飞时一串纸翅膀扑扇声"""
 from pathlib import Path
 from synth import assets, cue_time, filt, whoosh, fade
 
