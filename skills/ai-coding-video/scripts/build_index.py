@@ -118,6 +118,9 @@ def parse(errors):
             errors.append(f'tags.json 技术类型「{t["name"]}」的 class 只能是 T 或 G')
     if len(techs) != len(tags['techniques']):
         errors.append('tags.json 的 techniques 有重名')
+    for k in tags.get('tags_en', {}):   # 不是英文的技术标签在这里登记英文名，介绍页切到英文时用
+        if k not in tags['tags']:
+            errors.append(f'tags.json 的 tags_en 里「{k}」不在 tags 里')
     mats = {c: [m['name'] for m in v] for c, v in tags['materials'].items()}
     styles = []
     for fname in sorted(os.listdir(STYLES_DIR)):

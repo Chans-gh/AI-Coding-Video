@@ -69,7 +69,7 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
    - 参考：[链接文字](https://…) · [链接文字](https://…)
    ````
 
-   题材和技术标签只能用 [`data/tags.json`](data/tags.json) 里有的；要加新标签，先在 `tags.json` 登记。
+   题材和技术标签只能用 [`data/tags.json`](data/tags.json) 里有的；要加新标签，先在 `tags.json` 登记（标签不是英文的，在 `tags_en` 里配上英文名）。
 
    T 类、G 类的条目不写「题材」，改写「内容类型」和「素材」（素材之间用 ` · ` 隔开），取值同样在 `tags.json`：
 

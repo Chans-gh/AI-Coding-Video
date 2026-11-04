@@ -78,10 +78,10 @@
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
   // 样片筛选和分页：类型（C/T/G）、题材、技术、页码都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果
-  const state = { kind: 'c', theme: '', tech: '', ctype: '', page: 0 };
+  const state = { kind: 'c', theme: '', tech: '', ctype: '', qtech: '', page: 0 };
   const cards = Array.from(document.querySelectorAll('.card'));
   const cardsEl = document.getElementById('cards');
-  const DIMS = ['theme', 'tech', 'ctype'];
+  const DIMS = ['theme', 'tech', 'ctype', 'qtech'];
   const groups = Object.fromEntries(DIMS.map(d => [d, document.querySelector(`.filter[data-dim="${d}"]`)]));
   const kindBtns = document.querySelectorAll('.kinds button');
   const filtersEl = document.getElementById('filters'), emptyNone = document.getElementById('empty-none');
@@ -92,7 +92,7 @@
     const v = d => (d in o ? o[d] : state[d]);
     if (c.dataset.kind !== state.kind) return false;
     if (state.kind === 'c') return (!v('theme') || c.dataset.theme === v('theme')) && (!v('tech') || c.dataset.tech.split(' ').includes(v('tech')));
-    return !v('ctype') || c.dataset.ctype === v('ctype');
+    return (!v('ctype') || c.dataset.ctype === v('ctype')) && (!v('qtech') || c.dataset.qtech.split(' ').includes(v('qtech')));
   };
   const matched = () => cards.filter(c => match(c));
   function muteCard(c) { c.querySelector('video').muted = true; c.querySelector('.snd').setAttribute('aria-pressed', 'false'); }
@@ -111,9 +111,10 @@
         b.querySelector('small').textContent = String(n);
         b.setAttribute('aria-pressed', String(v === state[dim]));
         b.disabled = n === 0 && v !== state[dim];
+        if (b.dataset.k) b.hidden = b.dataset.k !== state.kind;   // T、G 类的技术类型各列各的
       });
     }
-    document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tech === state.tech));
+    document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.qtech ? b.dataset.qtech === state.qtech : b.dataset.tech === state.tech));
     const any = cards.some(c => c.dataset.kind === state.kind);
     filtersEl.hidden = !any;
     filtersEl.querySelectorAll('[data-kinds]').forEach(e => { e.hidden = !e.dataset.kinds.split(' ').includes(state.kind); });
@@ -136,7 +137,7 @@
       if (k === state.page) b.setAttribute('aria-current', 'page');
       nums.append(b);
     }
-    poke();
+    poke(); fitHow();
   }
   const reset = () => { state.page = 0; apply(); };
   for (const dim of DIMS) groups[dim].addEventListener('click', e => {
@@ -145,7 +146,8 @@
   });
   cardsEl.addEventListener('click', e => {
     const b = e.target.closest('.chips button'); if (!b) return;
-    state.tech = state.tech === b.dataset.tech ? '' : b.dataset.tech; state.theme = '';
+    if (b.dataset.qtech) { state.qtech = state.qtech === b.dataset.qtech ? '' : b.dataset.qtech; state.ctype = ''; }
+    else { state.tech = state.tech === b.dataset.tech ? '' : b.dataset.tech; state.theme = ''; }
     reset(); filtersEl.scrollIntoView({ block: 'start' });
   });
   const goPage = k => { state.page = k; apply(); cardsEl.scrollIntoView({ block: 'start' }); };
@@ -154,8 +156,8 @@
     if (b.dataset.page) goPage(Number(b.dataset.page));
     else goPage(state.page + (b.classList.contains('pg-next') ? 1 : -1));
   });
-  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = state.ctype = ''; reset(); });
-  const setKind = k => { state.kind = k; state.theme = state.tech = state.ctype = ''; reset(); };
+  document.getElementById('clear-filters').addEventListener('click', () => { state.theme = state.tech = state.ctype = state.qtech = ''; reset(); });
+  const setKind = k => { state.kind = k; state.theme = state.tech = state.ctype = state.qtech = ''; reset(); };
   kindBtns.forEach(b => b.addEventListener('click', () => setKind(b.dataset.kind)));
   // 「是什么」里的三条路：点了切换类型，并跳到样片区
   picks.forEach(b => b.addEventListener('click', () => { setKind(b.dataset.kind); document.getElementById('gallery').scrollIntoView({ block: 'start' }); }));
@@ -163,7 +165,7 @@
   function toHash() {
     const c = location.hash && cards.find(x => '#' + x.id === location.hash);
     if (!c) return false;
-    state.kind = c.dataset.kind; state.theme = state.tech = state.ctype = '';
+    state.kind = c.dataset.kind; state.theme = state.tech = state.ctype = state.qtech = '';
     state.page = Math.floor(matched().indexOf(c) / PAGE); apply();
     c.scrollIntoView({ block: 'center' });
     return true;
@@ -183,6 +185,33 @@
     lb.querySelector('.lb-name').innerHTML = c.querySelector('.card-meta h4').innerHTML;
   }
   function lbStep(d) { const l = matched(), i = l.indexOf(cur); lbShow(l[(i + d + l.length) % l.length]); }
+  // 卡片描述：只露两行，放不下的才显示「更多」；鼠标移到「更多」上浮出全文，移出卡片描述区收起；触屏上点「更多」开关，点别处收起
+  function fitHow() {
+    cards.forEach(c => {
+      if (c.hidden) return;
+      const p = c.querySelector('.how'), m = c.querySelector('.more');
+      if (!p.closest('.pop')) m.hidden = p.scrollHeight <= p.clientHeight + 1;
+    });
+  }
+  const shut = box => { box.classList.remove('pop'); box.querySelector('.more').setAttribute('aria-expanded', 'false'); };
+  const shutAll = keep => document.querySelectorAll('.how-box.pop').forEach(x => { if (x !== keep) shut(x); });
+  const openHow = box => { shutAll(box); box.classList.add('pop'); box.querySelector('.more').setAttribute('aria-expanded', 'true'); };
+  cardsEl.addEventListener('pointerover', e => {
+    const m = e.target.closest('.more'); if (m && e.pointerType === 'mouse') openHow(m.parentElement);
+  });
+  cardsEl.addEventListener('pointerout', e => {
+    const box = e.target.closest('.how-box.pop');
+    if (box && e.pointerType === 'mouse' && !box.contains(e.relatedTarget)) shut(box);
+  });
+  document.addEventListener('click', e => {
+    const m = e.target.closest('.more');
+    if (m) { const box = m.parentElement; if (box.classList.contains('pop') && e.pointerType !== 'mouse') shut(box); else openHow(box); return; }
+    if (!e.target.closest('.how-box.pop')) shutAll();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') shutAll(); });
+  document.getElementById('lang-toggle').addEventListener('click', () => { shutAll(); fitHow(); });
+  window.addEventListener('resize', fitHow);
+  if (document.fonts) document.fonts.ready.then(fitHow);
   cardsEl.addEventListener('click', e => {
     const b = e.target.closest('.open'); if (!b) return;
     vids.forEach(stop); cards.forEach(muteCard);

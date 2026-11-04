@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v12 · 2026-11-04"
+VERSION = "v13 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -56,6 +56,15 @@ def ctype_en():
 
 def mat_en():
     return {m["name"]: m["en"] for ms in tags_json()["materials"].values() for m in ms}
+
+
+def tag_en():
+    """C 类技术标签的英文名：大多本身就是英文，不是的登记在 tags.json 的 tags_en"""
+    return tags_json().get("tags_en", {})
+
+
+def tag_label(t, en):
+    return both(t, en[t]) if t in en else esc(t)
 
 
 def tq_en():
@@ -118,10 +127,11 @@ def tech_bar(styles, ids, by):
     count = {t: sum(t in by[i]["verified"] for i in ids) for t in cand}
     rank = lambda t: (order.index(layer_of.get(t, order[-1])), -count[t], t)
     techs = sorted(cand, key=rank)
+    ten = tag_en()
     tid = {t: f"k{k}" for k, t in enumerate(techs)}
     btns = [f'        <button type="button" data-v="{tid[t]}" aria-pressed="false"'
             + (' disabled class="miss"' if not count[t] else "")
-            + f'>{esc(t)} <small>{count[t]}</small></button>' for t in techs]
+            + f'>{tag_label(t, ten)} <small>{count[t]}</small></button>' for t in techs]
     return btns, tid, sum(1 for t in techs if not count[t])
 
 
@@ -138,7 +148,7 @@ def card(s, sid, label_zh, label_en, attrs, chips):
         </div>
         <p class="card-theme">{both(label_zh, label_en)}</p>
         <div class="card-meta"><code>{sid}</code><h4>{both(s["name"], en_name)}</h4></div>
-        <p class="how">{both(zh_how(sid), en_how)}</p>
+        <div class="how-box"><p class="how">{both(zh_how(sid), en_how)}</p><button type="button" class="more" aria-expanded="false" hidden>{both("更多", "More")}</button></div>
         {chips}
         <details><summary>{both("风格提示词", "Style prompt (Chinese)")}</summary><p lang="zh-CN">{esc(s["prompt"])}</p></details>
         <div class="links"><a href="{REPO}/tree/{BRANCH}/samples/{sid}">{both("样片代码", "Sample code")}</a><a href="{REPO}/blob/{BRANCH}/skills/ai-coding-video/{s["file"]}#{sid}">{both("词典条目", "Dictionary entry")}</a>{extra}</div>
@@ -159,7 +169,9 @@ def gallery(styles, ids):
     btns, tid, miss = tech_bar(styles, cids, by)
     cts = [c["name"] for c in tags_json()["content_types"]]
     cid = {c: f"y{k}" for k, c in enumerate(cts)}
-    cen, men, ten = ctype_en(), mat_en(), tq_en()
+    cen, men, ten, gen = ctype_en(), mat_en(), tq_en(), tag_en()
+    tqs = tags_json()["techniques"]
+    qid = {t["name"]: f"q{k}" for k, t in enumerate(tqs)}
     out = ['    <div class="kinds" role="group" aria-label="类型 / Class">']
     for k, (code, zh, en) in KIND.items():
         out.append(f'      <button type="button" data-kind="{code}" aria-pressed="{str(k == "C").lower()}"><b>{k}</b> {both(zh, en)} <small>{len(kid[k])}</small></button>')
@@ -180,8 +192,14 @@ def gallery(styles, ids):
     for c in cts:
         out.append(f'        <button type="button" data-v="{cid[c]}" aria-pressed="false">{both(c, cen.get(c, c))} <small>0</small></button>')
     out.append('      </div>')
+    # T、G 类的技术类型：两类各自的取值都列上，site.js 只露出当前类型的；数字和置灰也由 site.js 按筛选结果算
+    out.append(f'      <div class="filter" data-dim="qtech" data-kinds="t g" role="group" aria-label="技术 / Technique"><span class="flab">{both("技术", "Technique")}</span>')
+    out.append(f'        <button type="button" data-v="" aria-pressed="true">{both("全部", "All")} <small>0</small></button>')
+    for t in tqs:
+        out.append(f'        <button type="button" data-v="{qid[t["name"]]}" data-k="{t["class"].lower()}" aria-pressed="false">{both(t["name"], t["en"])} <small>0</small></button>')
+    out.append('      </div>')
     out.append(f'      <p class="filter-note" data-kinds="c">{both(f"数字是用到这种技术的样片数；置灰的 {miss} 种风格条目推荐过，但还没有样片。出片工具（Playwright、ffmpeg 等）每支都一样，不列在这里。", f"The number is how many samples use that technique; the {miss} greyed-out ones are recommended by style entries but have no sample yet. Output tools (Playwright, ffmpeg and the like) are the same for every sample and are left out here.")}</p>')
-    out.append(f'      <p class="filter-note" data-kinds="t g">{both("同一个内容类型，T 类用真实素材、G 类用 AI 生成的素材，切换上面的类型对照着看。卡片上的标签是这支样片用到的素材。", "Within one content type, class T uses real material and class G uses AI-generated material; switch the class above to compare. The tags on each card are the materials that sample uses.")}</p>')
+    out.append(f'      <p class="filter-note" data-kinds="t g">{both("同一个内容类型，T 类用真实素材、G 类用 AI 生成的素材，切换上面的类型对照着看。技术的数字是用到这种做法的样片数，置灰的还没有样片；卡片上点技术标签也能筛。", "Within one content type, class T uses real material and class G uses AI-generated material; switch the class above to compare. The number next to a technique is how many samples use it, greyed-out ones have none yet; tapping a technique tag on a card filters too.")}</p>')
     out.append('    </div>')
     out.append(f'    <p class="empty" id="empty-none" hidden>{both("没有同时符合这些条件的样片。", "No sample matches these filters.")} '
                f'<button type="button" class="linkish" id="clear-filters">{both("清除筛选", "Clear filters")}</button></p>')
@@ -190,16 +208,16 @@ def gallery(styles, ids):
     out.append('    <div class="cards" id="cards">')
     for th in order:
         for s in (by[i] for i in cids if by[i]["theme"] == th):
-            chips = row("技术", "Technique", "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
+            chips = row("技术", "Technique", "".join(f'<li><button type="button" data-tech="{tid[t]}">{tag_label(t, gen)}</button></li>' if t in tid else f"<li>{tag_label(t, gen)}</li>"
                                                 for t in s["verified"]), "row-tech")
             out.append(card(s, s["id"], th, THEME_EN.get(th, th),
                             f'data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}"', chips))
     for k in "TG":
         for c in cts:
             for s in (by[i] for i in kid[k] if by[i]["content_type"] == c):
-                chips = (row("技术", "Technique", "".join(f'<li class="tq">{both(t, ten.get(t, t))}</li>' for t in s.get("techniques", [])), "row-tech")
+                chips = (row("技术", "Technique", "".join(f'<li class="tq"><button type="button" data-qtech="{qid[t]}">{both(t, ten.get(t, t))}</button></li>' for t in s.get("techniques", [])), "row-tech")
                          + row("素材", "Material", "".join(f'<li class="mat">{both(m, men.get(m, m))}</li>' for m in s["materials"]), "row-mat"))
-                out.append(card(s, s["id"], c, cen.get(c, c), f'data-kind="{KIND[k][0]}" data-ctype="{cid[c]}"', chips))
+                out.append(card(s, s["id"], c, cen.get(c, c), f'data-kind="{KIND[k][0]}" data-ctype="{cid[c]}" data-qtech="{" ".join(qid[t] for t in s.get("techniques", []))}"', chips))
     out.append("    </div>")
     # 分页：每页张数和页码按钮由 site.js 按筛选结果算；这里只放文案，好让字体裁剪带上这些字
     out.append(f'''    <nav class="pager" id="pager" aria-label="分页 / Pages" hidden>

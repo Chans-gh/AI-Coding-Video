@@ -8,6 +8,7 @@
     {"key": "external", "name": "外部程序", "en": "Scripted software", "note": "用代码驱动的专业软件"},
     {"key": "pipeline", "name": "出片与声音", "en": "Output & audio", "note": "从代码变成视频文件、配声音"}
   ],
+  "tags_en": {"终端字符": "Terminal text", "Python 合成音频": "Python audio synthesis"},
   "tags": {
     "Canvas 2D": "render", "WebGL": "render", "WebGL2": "render", "WebGPU": "render", "SVG": "render", "HTML/CSS": "render", "终端字符": "render",
     "p5.js": "library", "p5.brush": "library", "Three.js": "library", "Babylon.js": "library", "PixiJS": "library", "Paper.js": "library", "Two.js": "library", "Rough.js": "library", "D3.js": "library", "Konva": "library", "Hydra": "library",
