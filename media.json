@@ -1190,6 +1190,66 @@
    "path": "packs/dark-keynote/demo/dark-keynote-purple-9x16.mp4",
    "bytes": 1413377,
    "sha256": "1279305d3ef4ea6e7de540a7898cf08f745b3837a0597a7aba37539681c4d63b"
+  },
+  "pack-news-brief-collage-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-collage-16x9.mp4",
+   "bytes": 3018728,
+   "sha256": "0d6057e78b4bbb0b546a57489f56946881e2ee3d65eb1ed3ddb656571758e6ed"
+  },
+  "pack-news-brief-collage-9x16.mp4": {
+   "path": "packs/news-brief/demo/news-brief-collage-9x16.mp4",
+   "bytes": 3157695,
+   "sha256": "3cbc5779666872cda287a6a02710a8ceea3bd9226ce97e87b6f9e9e9d4b5c978"
+  },
+  "pack-news-brief-kenburns-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-kenburns-16x9.mp4",
+   "bytes": 3017667,
+   "sha256": "efc529f278100f14d944cdcf9ccb21f8acf3ba6102fac5a985efa35622e5549a"
+  },
+  "pack-news-brief-kenburns-9x16.mp4": {
+   "path": "packs/news-brief/demo/news-brief-kenburns-9x16.mp4",
+   "bytes": 3295153,
+   "sha256": "4dcc1e14a3cb6dc6913048f37cc77767ddbe0c1898d89566d7381e20e0b15c5f"
+  },
+  "pack-news-brief-parallax-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-parallax-16x9.mp4",
+   "bytes": 3160317,
+   "sha256": "f4e35c3f091b2ee7a8c79ce07231b8d9e5b75ed95d45657af9892131bbe85ddb"
+  },
+  "pack-news-brief-parallax-9x16.mp4": {
+   "path": "packs/news-brief/demo/news-brief-parallax-9x16.mp4",
+   "bytes": 3754190,
+   "sha256": "0ee048474ff13e8dc26237948298815e5d1fceacae8171d15df41a5ad3122aed"
+  },
+  "pack-style-swap-clay-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-clay-16x9.mp4",
+   "bytes": 3185288,
+   "sha256": "ef18a825e8998bcbcf0b605d1ad651787c0327be93ae2f7c25bd3b746e55f304"
+  },
+  "pack-style-swap-clay-9x16.mp4": {
+   "path": "packs/style-swap/demo/style-swap-clay-9x16.mp4",
+   "bytes": 2921881,
+   "sha256": "4524a1acf82b2ac33f897626af83b17aa765e186b128940d054dce705a22b473"
+  },
+  "pack-style-swap-photo-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-photo-16x9.mp4",
+   "bytes": 3783623,
+   "sha256": "ccbf419a0afb059801161d2c1299326612fcd63d4b354c3c4ad111116130b0f2"
+  },
+  "pack-style-swap-photo-9x16.mp4": {
+   "path": "packs/style-swap/demo/style-swap-photo-9x16.mp4",
+   "bytes": 3404688,
+   "sha256": "f139628f0eac1ae692e13dcf9ea757bd0b816331ed039ea7e1b73951519d236f"
+  },
+  "pack-style-swap-watercolor-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-watercolor-16x9.mp4",
+   "bytes": 3250302,
+   "sha256": "d432c1e3d0fc0038ca9d89e61765776996134f2bb0c431ffa9c31e09222d3406"
+  },
+  "pack-style-swap-watercolor-9x16.mp4": {
+   "path": "packs/style-swap/demo/style-swap-watercolor-9x16.mp4",
+   "bytes": 2793357,
+   "sha256": "667d58938f0303b2abe962dcd2b08d16ab7a53a8cd55b0b8726bdb91b10119a3"
   }
  }
 }
