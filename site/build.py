@@ -344,6 +344,10 @@ def make_font(pkg, weight, chars, out):
             p = Path(tmp) / f"{k}.ttf"; font.save(p); parts.append(str(p))
         merged = Merger().merge(parts) if len(parts) > 1 else TTFont(parts[0])
         merged.flavor = "woff2"
+        # 创建、修改时间都用原字体的，同样的字重新生成出来逐字节相同，不会每次构建都多出一份字体改动
+        head = TTFont(files[0])["head"]
+        merged.recalcTimestamp = False
+        merged["head"].created, merged["head"].modified = head.created, head.modified
         merged.save(out)
     return len(files)
 

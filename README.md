@@ -99,16 +99,18 @@ Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、
 
 ```
 skills/ai-coding-video/   Skill 本体（唯一正本；其中 samples/、packs/ 是从下面两处同步来的代码，随 Skill 安装）
-samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图
+samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图；T 类、G 类另带素材 assets/ 和清单 assets.json
 packs/                    2 级风格包：部件代码、风格说明、演示片
 site/                     介绍页（纯静态，可整个拷到任意服务器）
-scripts/install.sh        安装到各家助手
+scripts/                  install.sh 安装到各家助手；media.py 管理放在 Release 里的视频；release.sh 发版
+media.json                视频清单（视频本身在 GitHub Release「media」）
 .claude-plugin/           Claude Code 插件市场清单（插件本体是 skills/，插件清单在 skills/.claude-plugin/）
 .agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
+PLAN.md                   批次规划和待办
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```
 
 ## 许可
 
-[MIT](LICENSE)。文字、代码和本仓库渲染的样片都适用。风格提示词由整理者用自己的话写成，参考来源见 [sources.md](skills/ai-coding-video/sources.md)；本仓库不收录任何第三方图片。「致敬风格」里提到的作品名和作者名归各自权利人所有，本仓库与他们没有关联，样片里的角色和场景都是原创的。
+[MIT](LICENSE)。文字、代码和本仓库渲染的样片都适用；T 类、G 类样片的素材（`samples/<编号>/assets/`）按各自 `assets.json` 里逐份记的许可（公共领域、CC0，或随本仓库按 MIT 发布的 AI 生成素材）。风格提示词由整理者用自己的话写成，参考来源见 [sources.md](skills/ai-coding-video/sources.md)；缩略图和样片都由本仓库的代码渲染，不收录第三方的成片和截图；T 类用到的公共领域素材也经代码合成后才出片。「致敬风格」里提到的作品名和作者名归各自权利人所有，本仓库与他们没有关联，样片里的角色和场景都是原创的。

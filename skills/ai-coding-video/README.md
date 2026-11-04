@@ -15,6 +15,7 @@
 | [`materials.md`](materials.md) | 用素材做视频（T 类、G 类）：素材从哪来、许可、生成、统一处理、声音 |
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
+| [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
 | [`legacy-ids.md`](legacy-ids.md) | 旧编号对照 |
 | [`CHANGELOG.md`](CHANGELOG.md) | 更新记录 |
@@ -40,7 +41,7 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 3. **取提示词**：复制条目里的那句风格提示词，填进 [`prompting.md`](prompting.md) 的通用模板；按条目的技术标签选制作路径。
 4. **配声音**：先在 [`sound.md`](sound.md) 按题材定配乐，再按用途挑旁白音色。
 5. **用素材**：按 [`materials.md`](materials.md) 找素材、查许可、生成和处理。
-6. **出样片、做风格包**：按 [`making.md`](making.md)；有「样片代码」「风格包」链接的条目，从那份代码改。
+6. **出样片、做风格包**：按 [`making.md`](making.md)；有「样片代码」「风格包」的条目，先把本 Skill 里的 `samples/<编号>/` 或 `packs/<名字>/` 拷进项目跑通，再改。
 
 ## 使用须知
 

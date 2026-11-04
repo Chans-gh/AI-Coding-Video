@@ -10,7 +10,7 @@
 | `small.py` | 把 `media/` 里的原版视频、静帧缩小成卡片用的小版，放进 `media/s/`（卡片长边 768、风格包 1280，H.264 CRF 27）；首页轮播的几支（`HERO`，第一支是默认）另出 1280 宽的放进 `media/m/`；原版没变就不重出 | `build.py` 和发布时自动调用 |
 | `index.html` | 生成物 | 不要手改 |
 | `fonts/` | 按页面用到的字裁出来的字体（思源黑体、思源宋体、JetBrains Mono，均为 OFL） | 生成物 |
-| `media/` | 样片视频和静帧，从 `samples/` 拷来；`media/s/` 是卡片用的小版。卡片的视频和静帧都是快滚到时才由 `site.js` 填上，放大播放和首页大视频用原版 | 生成物，不进仓库 |
+| `media/` | 样片视频和静帧，从 `samples/` 拷来；`media/s/` 是卡片用的小版，`media/m/` 是首页大视频。卡片的视频和静帧都是快滚到时才由 `site.js` 填上；首页大视频用 `media/m/` 的 1280 宽版，放大播放用原版 | 生成物，不进仓库 |
 
 ```bash
 cd samples && npm install && cd ..   # 字体来源（@fontsource）
