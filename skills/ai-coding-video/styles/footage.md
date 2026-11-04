@@ -295,6 +295,8 @@
 
 ## T-016 访谈金句竖屏
 
+![访谈金句竖屏](../images/T-016.jpg)
+
 ```text
 用「访谈金句竖屏」：一段一分钟左右的横屏访谈，先做语音转文字拿到逐词时间，再给每句打分（金句词、长度合适、口头禅少），挑出最好的三句；句子里的「嗯」「你知道」「有点像」和句首的「所以」按词的时间段删掉，剩下的词连成剪辑表。画面先过一遍文字稿：选中的句子高亮、删掉的词划红线；再出竖屏成片——人脸检测的轨迹带着 9:16 裁切框跟着人走，每个跳剪处交替放大一点遮住接缝，逐词弹出的大字幕下面配一行中文翻译，最后一张金句卡收尾。
 ```
@@ -303,12 +305,16 @@
 - 素材：录像 · 数据
 - 技术类型：文字稿剪辑 · 高光切片 · 自动改画幅
 - 适合：播客切片、访谈短视频、发布会金句、课程精华
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-016/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-016)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[faster-whisper](https://github.com/SYSTRAN/faster-whisper) · [MediaPipe 人脸检测](https://ai.google.dev/edge/mediapipe/solutions/vision/face_detector) · [NASA 影像库](https://images.nasa.gov/)
 
 <a id="T-017"></a>
 
 ## T-017 体操骨骼示范
+
+![体操骨骼示范](../images/T-017.jpg)
 
 ```text
 用「体操骨骼示范」：一段老的体能训练示范片，逐帧跑人体姿态估计，拿到骨骼点和人像分割遮罩；画面里有两个人时取身体最横的那个（做俯卧撑的人）。人像按遮罩抠出来放进代码画的训练室，叠上骨骼线、肘部角度弧、按「肩—髋—踝」直不直变色的躯干线；肘角先低于 100° 再回到 150° 以上记一次，计数牌跟着跳，下方一条肘角曲线画出两条阈值线，动作走样时弹出纠正提示，结尾给出次数和平均幅度的小结。
@@ -318,12 +324,16 @@
 - 素材：录像 · 数据
 - 技术类型：追踪与姿态叠加 · 抠像合成
 - 适合：健身教学、动作纠正、体育课件、康复训练示范
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-017/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-017)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：[MediaPipe Pose Landmarker](https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker) · [Internet Archive：DoD 影片](https://archive.org/details/gov.dod.dimoc.614892)
 
 <a id="T-018"></a>
 
 ## T-018 照片深景推镜
+
+![照片深景推镜](../images/T-018.jpg)
 
 ```text
 用「照片深景推镜」：一张老的风景照，先用单目深度估计出一张深度图（白近黑远），片元着色器按每个像素的深度反推它在镜头移动后该在的位置——近处挪得多、远处挪得少，迭代几次补上遮挡——一张静照就有了推近加环绕的立体运镜。品牌标题放在天空和山峰之间那一层，从山后升起、被山尖挡住；中段一道扫光把画面换成深度图，让人看到照片被拆成了远近层；结尾回拉，压暗出虚构户外品牌的落版。横屏加 2.39 电影遮幅。
@@ -333,5 +343,7 @@
 - 素材：照片 · 数据
 - 技术类型：分层视差与投影
 - 适合：品牌片开场、文旅宣传、老照片纪录片、相册回忆
+- 技术（已验证）：WebGL2 · GLSL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-018/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-018)
 - 技术（建议）：WebGL2 · GLSL · Canvas 2D · Playwright · ffmpeg
 - 参考：[Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2) · [美国国家档案馆 Ansel Adams 照片](https://catalog.archives.gov/id/519904)

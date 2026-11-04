@@ -1,0 +1,5 @@
+{
+  "en_name": "Photo depth dolly",
+  "en_how": "depth.py estimates a depth map for a public-domain 1942 landscape with Depth Anything V2; a fragment shader works out where each pixel lands once the camera moves (near pixels shift more than far ones, iterated to fill occlusions), giving one still photo a push-in and orbit; the brand title lives on a layer between the sky and the peaks, rising from behind the mountains and clipped by the summits; midway a sweep reveals the depth map itself, and it ends on a fictional outdoor brand's end card.",
+  "tech": ["WebGL2", "GLSL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

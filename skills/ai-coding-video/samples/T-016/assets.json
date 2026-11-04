@@ -1,0 +1,62 @@
+{
+ "items": [
+  {
+   "file": "assets/talk.mp4",
+   "kind": "录像",
+   "title": "Bob Behnken shares thoughts of the future prior to SpaceX Demo-2 mission（访谈后段 54 秒）",
+   "source": "https://images.nasa.gov/details/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission",
+   "download": "https://images-assets.nasa.gov/video/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Johnson Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 266,
+    "t": 54,
+    "w": 1280,
+    "crf": 28
+   }
+  },
+  {
+   "file": "assets/talk.mp3",
+   "kind": "原声",
+   "title": "同一段访谈的原声",
+   "source": "https://images.nasa.gov/details/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission",
+   "download": "https://images-assets.nasa.gov/video/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission~medium.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Johnson Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 266,
+    "t": 54,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 54.047
+  },
+  {
+   "file": "assets/edit.json",
+   "kind": "数据",
+   "title": "逐词时间、句子打分、剪掉的词和人脸轨迹（由 edit.py 从这段访谈算出）",
+   "source": "https://images.nasa.gov/details/jsc2020m000133_Bob_Behnken_shares_thoughts_of_the_future_prior_to_SpaceX_Demo-2_mission",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "本仓库 edit.py 计算",
+   "credit": "文字稿 本仓库计算（Whisper）",
+   "edit": "python3 T-016/edit.py：faster-whisper small.en 出逐词时间（提示词里带 um、uh，让它把口头禅也写出来）；按句打分挑出 3 句；删掉口头禅和「kind of a」；OpenCV 人脸检测每 0.1 秒一次，平滑后当竖屏裁切框的中心"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Another space background track",
+   "source": "https://opengameart.org/content/another-space-background-track",
+   "download": "https://opengameart.org/sites/default/files/ObservingTheStar.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

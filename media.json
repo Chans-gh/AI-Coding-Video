@@ -961,6 +961,26 @@
    "bytes": 3574451,
    "sha256": "0ee6ddc78868af964e5cb032bbe49622d3ea2a405bbbdb135c2f9e38fae59003"
   },
+  "G-015-16x9.mp4": {
+   "path": "samples/G-015/G-015-16x9.mp4",
+   "bytes": 2510330,
+   "sha256": "1683f135c7508c8ec1abf1069f212de1a52f0e877486579970269506e117e0cf"
+  },
+  "G-015-9x16.mp4": {
+   "path": "samples/G-015/G-015-9x16.mp4",
+   "bytes": 3068075,
+   "sha256": "f0e46b0dcc4b68896b6ffea3671fb6aa422f8f468ecf9e230a77a82aebca1583"
+  },
+  "G-016-16x9.mp4": {
+   "path": "samples/G-016/G-016-16x9.mp4",
+   "bytes": 3162564,
+   "sha256": "d76d2abcca98699f36d3dafa502aa1764ad933707b3ffe70f141f3ddfe15f061"
+  },
+  "G-016-9x16.mp4": {
+   "path": "samples/G-016/G-016-9x16.mp4",
+   "bytes": 3639860,
+   "sha256": "398ad1bfbb73e66849ddc86f12edab1aa0de28c2ecc235b26b46e2b760396482"
+  },
   "T-001-16x9.mp4": {
    "path": "samples/T-001/T-001-16x9.mp4",
    "bytes": 2527849,
@@ -1110,6 +1130,36 @@
    "path": "samples/T-015/T-015-9x16.mp4",
    "bytes": 1357892,
    "sha256": "ea4c7f1a17cc29b6c9f909d4cf84ecc8b52e780f2fd6b0545324af13aa22acea"
+  },
+  "T-016-16x9.mp4": {
+   "path": "samples/T-016/T-016-16x9.mp4",
+   "bytes": 1436615,
+   "sha256": "9d18e2bd2c4d777ac5a0e658402aede46841a3862a721b34b77ca8410382c2df"
+  },
+  "T-016-9x16.mp4": {
+   "path": "samples/T-016/T-016-9x16.mp4",
+   "bytes": 1792783,
+   "sha256": "16688df55ba1233b7a9e7b8a2e263691c64e232db43525bb509efa9f3b56df48"
+  },
+  "T-017-16x9.mp4": {
+   "path": "samples/T-017/T-017-16x9.mp4",
+   "bytes": 2492359,
+   "sha256": "9f9c71740426776f695a21d8e346f003f38543cc3f814d401fc0c842403d5f27"
+  },
+  "T-017-9x16.mp4": {
+   "path": "samples/T-017/T-017-9x16.mp4",
+   "bytes": 2284811,
+   "sha256": "679de0a4dec59b5cb8bbf137103b40f3b9d29560ddfdc68bd4aec39b0d43b534"
+  },
+  "T-018-16x9.mp4": {
+   "path": "samples/T-018/T-018-16x9.mp4",
+   "bytes": 2623928,
+   "sha256": "fd71e36dfdc5569f1ac5f9c685e27f191a6b0f6605205b8cdb13dbc9d49ac408"
+  },
+  "T-018-9x16.mp4": {
+   "path": "samples/T-018/T-018-9x16.mp4",
+   "bytes": 3596558,
+   "sha256": "e805978a94eebbe2b78dd458f3453663d3e8c037f5c862f7170cef5d7c260c6e"
   },
   "pack-dark-keynote-green-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-green-16x9.mp4",

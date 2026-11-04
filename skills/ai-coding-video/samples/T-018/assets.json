@@ -1,0 +1,49 @@
+{
+ "items": [
+  {
+   "file": "assets/photo.jpg",
+   "kind": "照片",
+   "title": "“The Tetons - Snake River,” Grand Teton National Park, Wyoming（Ansel Adams，1942，美国国家档案馆 NAID 519904，79-AAG-1）",
+   "source": "https://catalog.archives.gov/id/519904",
+   "download": "https://catalog.archives.gov/medialz/stillpix/079-aag/079-AAG-01_14-1374M.TIF",
+   "license": "公共领域（Ansel Adams 为美国国家公园管理局拍摄的政府委托作品；NARA 目录标为使用不受限）",
+   "author": "Ansel Adams / National Archives and Records Administration",
+   "credit": "照片 Ansel Adams（NARA，公共领域）",
+   "prep": {
+    "crop": [
+     0.012,
+     0.008,
+     0.976,
+     0.982
+    ],
+    "max": 2000,
+    "q": 90
+   },
+   "edit": "去掉扫描件四周 1% 左右的白边"
+  },
+  {
+   "file": "assets/depth.png",
+   "kind": "数据",
+   "title": "这张照片的深度图（由 depth.py 用 Depth Anything V2 Small 估出，白色近、黑色远）",
+   "source": "https://catalog.archives.gov/id/519904",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 T-018/depth.py：Depth Anything V2 Small（Apache-2.0，ONNX 版，第一次跑时下载到 out/models/，不进仓库）在 CPU 上估一次相对深度，归一到 0–1，存成和照片同比例的 1000 宽灰度 PNG"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Breves dies hominis",
+   "source": "https://opengameart.org/content/breves-dies-hominis",
+   "download": "https://opengameart.org/sites/default/files/breves_dies_hominis.ogg",
+   "license": "CC0 1.0",
+   "author": "ceninan",
+   "credit": "配乐 ceninan（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "file": "assets/drill.mp4",
+   "kind": "录像",
+   "title": "Air Force Fitness Assessment Program（2010，俯卧撑侧面示范）",
+   "source": "https://archive.org/details/gov.dod.dimoc.614892",
+   "download": "https://archive.org/download/gov.dod.dimoc.614892/gov.dod.dimoc.614892.mp4",
+   "license": "CC0 1.0（美国国防部影像，美国政府作品；Internet Archive FedFlix 标为 CC0）",
+   "author": "U.S. Department of Defense / U.S. Air Force（DIMOC PIN 614892）",
+   "credit": "录像 美国国防部",
+   "prep": {
+    "ss": 486.5,
+    "t": 12,
+    "w": 640,
+    "crf": 24
+   }
+  },
+  {
+   "file": "assets/pose.json",
+   "kind": "数据",
+   "title": "每帧 33 个骨骼点、肘角、躯干直线度和计数（由 pose.py 算出）",
+   "source": "https://archive.org/details/gov.dod.dimoc.614892",
+   "license": "CC0 1.0（美国国防部影像，美国政府作品；Internet Archive FedFlix 标为 CC0）",
+   "author": "本仓库 pose.py 计算",
+   "credit": "骨骼 本仓库计算（MediaPipe）",
+   "edit": "python3 T-017/pose.py：MediaPipe Pose Landmarker（full）逐帧出骨骼点，一帧里有两个人时取身体最横的那个（做俯卧撑的人，不是旁边计数的考官）；肘角 = 肩-肘-腕的夹角，躯干直线度 = 肩-髋-踝的夹角，肘角先低于 100° 再回到 150° 以上记一次"
+  },
+  {
+   "file": "assets/mask.mp4",
+   "kind": "数据",
+   "title": "做俯卧撑那个人的抠像遮罩（由 pose.py 算出，白色是人）",
+   "source": "https://archive.org/details/gov.dod.dimoc.614892",
+   "license": "CC0 1.0（美国国防部影像，美国政府作品；Internet Archive FedFlix 标为 CC0）",
+   "author": "本仓库 pose.py 计算",
+   "credit": "抠像 本仓库计算（MediaPipe）",
+   "edit": "pose.py 用同一个模型的人体分割输出，只留选中的那个人，存成 320 宽的灰度视频；scene.js 拿它当透明度，把人从原片里抠出来，放进代码画的训练房"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "5 Chiptunes (Action)：Level 1",
+   "source": "https://opengameart.org/content/5-chiptunes-action",
+   "download": "https://opengameart.org/sites/default/files/level1.mp3",
+   "license": "CC0 1.0",
+   "author": "SubspaceAudio",
+   "credit": "配乐 SubspaceAudio（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

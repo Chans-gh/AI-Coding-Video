@@ -1,0 +1,92 @@
+{
+ "items": [
+  {
+   "file": "assets/vase.gltf",
+   "kind": "三维模型",
+   "title": "Ceramic Vase 01（glTF 描述：网格的顶点、法线、UV 在 vase.bin 里的位置）",
+   "source": "https://polyhaven.com/a/ceramic_vase_01",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/ceramic_vase_01/ceramic_vase_01_1k.gltf",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/vase.bin",
+   "kind": "三维模型",
+   "title": "Ceramic Vase 01（网格数据）",
+   "source": "https://polyhaven.com/a/ceramic_vase_01",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/ceramic_vase_01/ceramic_vase_01.bin",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/vase_nor.jpg",
+   "kind": "三维模型",
+   "title": "Ceramic Vase 01（法线贴图 1k）",
+   "source": "https://polyhaven.com/a/ceramic_vase_01",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/ceramic_vase_01/ceramic_vase_01_nor_gl_1k.jpg",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）",
+   "prep": {
+    "q": 92
+   }
+  },
+  {
+   "file": "assets/vase_arm.jpg",
+   "kind": "三维模型",
+   "title": "Ceramic Vase 01（AO / 粗糙度 / 金属度贴图 1k）",
+   "source": "https://polyhaven.com/a/ceramic_vase_01",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/ceramic_vase_01/ceramic_vase_01_arm_1k.jpg",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）",
+   "prep": {
+    "q": 92
+   }
+  },
+  {
+   "file": "assets/glaze.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "一张无缝平铺的青花瓷纹样贴图：正视的平面图案，象牙白的底色上用钴蓝色画缠枝莲纹和卷草纹，笔触有深浅浓淡，花纹铺满整张、密度均匀，左右边缘的花纹能首尾相接无缝平铺，均匀照明，没有阴影、没有透视、没有器物轮廓、没有文字和印章",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "纹样 AI 生成",
+   "prep": {
+    "max": 1600
+   }
+  },
+  {
+   "file": "assets/backdrop.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "产品摄影棚的空背景：暖米色的无缝背景纸从墙面平滑弯到地面，左上方一盏柔光灯打出大片柔和的光斑，右下渐暗，地面中央留出空位，背景里有一截竹枝的虚化剪影，画面里没有任何产品、没有文字、没有标志",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "背景 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Eye of the Storm",
+   "source": "https://opengameart.org/content/eye-of-the-storm",
+   "download": "https://opengameart.org/sites/default/files/Eye%20of%20the%20Storm.mp3",
+   "license": "CC0 1.0",
+   "author": "joth",
+   "credit": "配乐 joth（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

@@ -61,13 +61,13 @@
 | 剪辑与字幕 | 轻 | [T-002](styles/footage.md#T-002) · [T-003](styles/footage.md#T-003) · [T-004](styles/footage.md#T-004) · [T-005](styles/footage.md#T-005) · [T-006](styles/footage.md#T-006) · [T-010](styles/footage.md#T-010) | 是（6） |
 | 节拍对齐剪辑 | 轻 | [T-006](styles/footage.md#T-006) | 是（1） |
 | 多机位同步 | 轻 | [T-013](styles/footage.md#T-013) | 是（1） |
-| 文字稿剪辑 | 中 | [T-016](styles/footage.md#T-016) | 否 |
-| 高光切片 | 中 | [T-016](styles/footage.md#T-016) | 否 |
-| 自动改画幅 | 中 | [T-016](styles/footage.md#T-016) | 否 |
+| 文字稿剪辑 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
+| 高光切片 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
+| 自动改画幅 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
 | 照片运镜 | 轻 | [T-001](styles/footage.md#T-001) · [T-003](styles/footage.md#T-003) · [T-008](styles/footage.md#T-008) · [T-012](styles/footage.md#T-012) | 是（4） |
-| 分层视差与投影 | 中 | [T-018](styles/footage.md#T-018) | 否 |
-| 抠像合成 | 中 | [T-017](styles/footage.md#T-017) | 否 |
-| 追踪与姿态叠加 | 中 | [T-017](styles/footage.md#T-017) | 否 |
+| 分层视差与投影 | 中 | [T-018](styles/footage.md#T-018) | 是（1） |
+| 抠像合成 | 中 | [T-017](styles/footage.md#T-017) | 是（1） |
+| 追踪与姿态叠加 | 中 | [T-017](styles/footage.md#T-017) | 是（1） |
 | 录屏增强 | 轻 | [T-009](styles/footage.md#T-009) | 是（1） |
 | 数据可视化 | 轻 | [T-001](styles/footage.md#T-001) · [T-004](styles/footage.md#T-004) · [T-007](styles/footage.md#T-007) · [T-010](styles/footage.md#T-010) · [T-015](styles/footage.md#T-015) | 是（5） |
 | 传感器与轨迹叠加 | 轻 | [T-013](styles/footage.md#T-013) | 是（1） |
@@ -77,7 +77,7 @@
 | 相机反求与 AR 叠加 | 重 | — | 否 |
 | **AI 生成素材** | | | |
 | 生图加代码动画 | 轻 | [G-001](styles/generated.md#G-001) · [G-007](styles/generated.md#G-007) · [G-009](styles/generated.md#G-009) · [G-012](styles/generated.md#G-012) | 是（4） |
-| 图生视频与首尾帧 | 轻 | [G-002](styles/generated.md#G-002) · [G-003](styles/generated.md#G-003) · [G-004](styles/generated.md#G-004) · [G-005](styles/generated.md#G-005) · [G-008](styles/generated.md#G-008) · [G-010](styles/generated.md#G-010) · [G-011](styles/generated.md#G-011) · [G-016](styles/generated.md#G-016) | 是（7） |
+| 图生视频与首尾帧 | 轻 | [G-002](styles/generated.md#G-002) · [G-003](styles/generated.md#G-003) · [G-004](styles/generated.md#G-004) · [G-005](styles/generated.md#G-005) · [G-008](styles/generated.md#G-008) · [G-010](styles/generated.md#G-010) · [G-011](styles/generated.md#G-011) · [G-016](styles/generated.md#G-016) | 是（8） |
 | 角色一致性 | 中 | [G-005](styles/generated.md#G-005) · [G-012](styles/generated.md#G-012) | 是（2） |
 | 语音合成驱动 | 轻 | [G-001](styles/generated.md#G-001) · [G-002](styles/generated.md#G-002) · [G-005](styles/generated.md#G-005) · [G-007](styles/generated.md#G-007) · [G-008](styles/generated.md#G-008) · [G-010](styles/generated.md#G-010) · [G-012](styles/generated.md#G-012) · [G-013](styles/generated.md#G-013) | 是（8） |
 | 数字人口播 | 中 | [G-002](styles/generated.md#G-002) | 是（1） |
@@ -85,12 +85,12 @@
 | 视频转视频与风格重绘 | 中 | — | 否 |
 | 动作迁移与角色替换 | 中 | — | 否 |
 | 扩图与局部重绘 | 轻 | [G-006](styles/generated.md#G-006) | 是（1） |
-| 生成三维资产加代码渲染 | 中 | [G-015](styles/generated.md#G-015) | 否 |
+| 生成三维资产加代码渲染 | 中 | [G-015](styles/generated.md#G-015) | 是（1） |
 | 生成场景与自由运镜 | 重 | — | 否 |
 | 生成矢量与动效素材 | 轻 | [G-013](styles/generated.md#G-013) | 是（1） |
 | 生成音乐与音效 | 轻 | [G-014](styles/generated.md#G-014) | 是（1） |
 | 音画同生视频 | 轻 | [G-014](styles/generated.md#G-014) | 是（1） |
-| 分镜到成片编排 | 中 | [G-016](styles/generated.md#G-016) | 否 |
+| 分镜到成片编排 | 中 | [G-016](styles/generated.md#G-016) | 是（1） |
 | 模板化批量生成 | 轻 | [T-015](styles/footage.md#T-015) | 是（1） |
 
 33 个类型中，6 个还没有条目。
