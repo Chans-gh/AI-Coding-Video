@@ -19,4 +19,6 @@ python3 site/build.py
 cd site && python3 -m http.server   # 本地预览 http://localhost:8000
 ```
 
+卡片上的「技术」一行：C 类取 `styles.json` 的 `verified`（技术标签，点了按技术筛），T、G 类取 `techniques`，中英文名来自 `tags.json` 的 `techniques`；T、G 类下面另有「素材」一行（`materials`）。没有英文名的标签两种语言都显示原名。
+
 版本号和日期写在 `build.py` 的 `VERSION`。推到 `main` 后由 `.github/workflows/pages.yml` 发布到 GitHub Pages（仓库设置里 Pages 的来源选 GitHub Actions）：先 `build.py --page` 按最新的 Skill 数据和样片生成页面和字体，再把静帧从 `samples/`、`packs/` 拷进 `media/`，视频从 Release「media」下载进 `media/`，再跑 `small.py` 出小版（原版和 `small.py` 都没变时用缓存）。需要 ffmpeg（本地没有时 `small.py` 用 imageio-ffmpeg 自带的）。

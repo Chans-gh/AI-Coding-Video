@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v11 · 2026-11-04"
+VERSION = "v12 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -56,6 +56,16 @@ def ctype_en():
 
 def mat_en():
     return {m["name"]: m["en"] for ms in tags_json()["materials"].values() for m in ms}
+
+
+def tq_en():
+    """T、G 类技术类型的英文名：tags.json 的 techniques"""
+    return {t["name"]: t["en"] for t in tags_json()["techniques"]}
+
+
+def row(zh, en, chips, cls):
+    """卡片上带标签的一行（技术、素材），三类格式一样"""
+    return f'<div class="card-row {cls}"><span class="row-lab">{both(zh, en)}</span><ul class="chips">{chips}</ul></div>'
 
 
 def meta(sid):
@@ -129,7 +139,7 @@ def card(s, sid, label_zh, label_en, attrs, chips):
         <p class="card-theme">{both(label_zh, label_en)}</p>
         <div class="card-meta"><code>{sid}</code><h4>{both(s["name"], en_name)}</h4></div>
         <p class="how">{both(zh_how(sid), en_how)}</p>
-        <ul class="chips">{chips}</ul>
+        {chips}
         <details><summary>{both("风格提示词", "Style prompt (Chinese)")}</summary><p lang="zh-CN">{esc(s["prompt"])}</p></details>
         <div class="links"><a href="{REPO}/tree/{BRANCH}/samples/{sid}">{both("样片代码", "Sample code")}</a><a href="{REPO}/blob/{BRANCH}/skills/ai-coding-video/{s["file"]}#{sid}">{both("词典条目", "Dictionary entry")}</a>{extra}</div>
       </article>'''
@@ -149,7 +159,7 @@ def gallery(styles, ids):
     btns, tid, miss = tech_bar(styles, cids, by)
     cts = [c["name"] for c in tags_json()["content_types"]]
     cid = {c: f"y{k}" for k, c in enumerate(cts)}
-    cen, men = ctype_en(), mat_en()
+    cen, men, ten = ctype_en(), mat_en(), tq_en()
     out = ['    <div class="kinds" role="group" aria-label="类型 / Class">']
     for k, (code, zh, en) in KIND.items():
         out.append(f'      <button type="button" data-kind="{code}" aria-pressed="{str(k == "C").lower()}"><b>{k}</b> {both(zh, en)} <small>{len(kid[k])}</small></button>')
@@ -180,14 +190,15 @@ def gallery(styles, ids):
     out.append('    <div class="cards" id="cards">')
     for th in order:
         for s in (by[i] for i in cids if by[i]["theme"] == th):
-            chips = "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
-                            for t in s["verified"])
+            chips = row("技术", "Technique", "".join(f'<li><button type="button" data-tech="{tid[t]}">{esc(t)}</button></li>' if t in tid else f"<li>{esc(t)}</li>"
+                                                for t in s["verified"]), "row-tech")
             out.append(card(s, s["id"], th, THEME_EN.get(th, th),
                             f'data-kind="c" data-theme="{ths[th]}" data-tech="{" ".join(tid[t] for t in s["verified"] if t in tid)}"', chips))
     for k in "TG":
         for c in cts:
             for s in (by[i] for i in kid[k] if by[i]["content_type"] == c):
-                chips = "".join(f'<li class="mat">{both(m, men.get(m, m))}</li>' for m in s["materials"])
+                chips = (row("技术", "Technique", "".join(f'<li class="tq">{both(t, ten.get(t, t))}</li>' for t in s.get("techniques", [])), "row-tech")
+                         + row("素材", "Material", "".join(f'<li class="mat">{both(m, men.get(m, m))}</li>' for m in s["materials"]), "row-mat"))
                 out.append(card(s, s["id"], c, cen.get(c, c), f'data-kind="{KIND[k][0]}" data-ctype="{cid[c]}"', chips))
     out.append("    </div>")
     # 分页：每页张数和页码按钮由 site.js 按筛选结果算；这里只放文案，好让字体裁剪带上这些字

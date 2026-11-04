@@ -256,6 +256,21 @@ html[data-ar="9x16"] .card .screen { aspect-ratio: 9 / 16; }
 .chips button { font: inherit; padding: 5px 7px; border: 0; background: none; color: var(--ink); cursor: pointer; }
 .chips button:hover, .chips button.on { color: var(--accent); }
 .chips li.mat { font-family: var(--body); color: var(--ink); border-color: var(--mark); }
+/* 卡片上的「技术」「素材」行：左边小标签，右边标签折行，长词也在卡片里折开 */
+.card-row { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; min-width: 0; }
+.card-row + .card-row { margin-top: 6px; }
+.row-lab { flex: none; min-width: 4.2em; font: 400 11px/1 var(--mono); letter-spacing: .04em; color: var(--muted); }
+.card-row .chips { flex: 1; min-width: 0; margin: 0; }
+.card-row .chips li { max-width: 100%; overflow-wrap: anywhere; line-height: 1.25; }
+.card-row .chips button { max-width: 100%; text-align: left; overflow-wrap: anywhere; line-height: 1.25; }
+.chips li.tq { font-family: var(--body); color: var(--ink); }
+html[data-lang="en"] .row-lab { min-width: 6.6em; }
+@media (max-width: 560px) {   /* 手机两列时卡片很窄：标签放到上面一行，标签本身紧凑些 */
+  .card-row { flex-direction: column; align-items: stretch; gap: 4px; }
+  .card-row .chips { gap: 4px; }
+  .card-row .chips li, .card-row .chips button { padding: 4px 5px; }
+  .card-row .chips li:has(button) { padding: 0; }
+}
 .card details { margin-top: 10px; font-size: 14px; }
 .card summary { cursor: pointer; color: var(--accent); font-weight: 700; }
 .card details p { margin: 8px 0 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; }
