@@ -256,21 +256,45 @@
     }
   }));
 
-  // 首屏时间轴：拖动时暂停，读数跟着帧走
+  // 首屏：几支样片轮播（下面圆点切换，播完自动换下一支；拖过时间轴或点过圆点就只循环当前这支）。时间轴拖动时暂停，读数跟着帧走
   const hv = document.getElementById('hero-video');
-  const range = document.getElementById('scrub-range');
-  const tT = document.getElementById('tc-t'), tF = document.getElementById('tc-f');
+  const range = document.getElementById('scrub-range'), ruler = range.closest('.ruler');
+  const tT = document.getElementById('tc-t'), tF = document.getElementById('tc-f'), tN = document.getElementById('tc-n');
+  const dots = Array.from(document.querySelectorAll('.hero-dots button'));
+  const caps = Array.from(document.querySelectorAll('#scrub figcaption'));
   const FPS = 30;
+  let frames = 90, hi = 0, held = false;
   function show(t) {
-    const f = Math.min(89, Math.floor(t * FPS + 1e-6));
+    const f = Math.min(frames - 1, Math.floor(t * FPS + 1e-6));
     tT.textContent = t.toFixed(3); tF.textContent = String(f);
     range.value = String(f);
   }
+  function meta() {
+    frames = Math.max(1, Math.floor(hv.duration * FPS + 1e-6)) || 90;   // 音轨常比画面长几十毫秒，向下取整
+    range.max = String(frames - 1); tN.textContent = String(frames);
+    ruler.style.setProperty('--secs', String(Math.max(1, Math.round(frames / FPS))));
+    ruler.style.setProperty('--marks', String(Math.max(1, Math.round(frames / 5))));
+    show(hv.currentTime || 0);
+  }
+  if (hv.readyState >= 1) meta();
+  hv.addEventListener('loadedmetadata', meta);
+  function heroGo(k, user) {
+    if (user) { held = true; hv.loop = true; }
+    hi = (k + dots.length) % dots.length;
+    const id = dots[hi].dataset.id;
+    dots.forEach((d, i) => d.setAttribute('aria-pressed', String(i === hi)));
+    caps.forEach((c, i) => { c.hidden = i !== hi; });
+    hv.poster = `media/m/${id}-16x9.jpg`; hv.src = `media/m/${id}-16x9.mp4`;
+    if (!reduce) hv.play().catch(() => {});
+  }
+  dots.forEach((d, i) => d.addEventListener('click', () => heroGo(i, true)));
+  hv.addEventListener('ended', () => { if (!held) heroGo(hi + 1); });
   function tick() { show(hv.currentTime || 0); if (!hv.paused) requestAnimationFrame(tick); }
   hv.addEventListener('play', () => requestAnimationFrame(tick));
   hv.addEventListener('seeked', () => show(hv.currentTime));
   let resume = null;
   range.addEventListener('input', () => {
+    if (!held) { held = true; hv.loop = true; }
     if (resume === null) resume = !hv.paused;
     hv.pause();
     const f = Number(range.value);
@@ -279,6 +303,14 @@
   });
   range.addEventListener('change', () => { if (resume) setTimeout(() => hv.play().catch(() => {}), 900); resume = null; });
   if (reduce) hv.pause();
+
+  // 提示词模板：三类切换，复制按钮跟着换
+  const tplBtns = document.querySelectorAll('.tpl-tabs button'), tplCopy = document.querySelector('.tpl .copy');
+  tplBtns.forEach(b => b.addEventListener('click', () => {
+    tplBtns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    document.querySelectorAll('.tpl pre[data-tpl]').forEach(p => { p.hidden = p.dataset.tpl !== b.dataset.tpl; });
+    tplCopy.dataset.copy = `tpl-${b.dataset.tpl}`;
+  }));
 
   // 复制
   document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
