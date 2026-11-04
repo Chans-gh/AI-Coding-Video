@@ -35,6 +35,13 @@
     poke();
   }, { threshold: [0, .55] }) : null;
   if (io) vids.forEach(v => io.observe(v));
+  // 静帧也等快滚到时才填：HTML 里只写 data-poster，免得一打开页面就把一百多张全下下来
+  const showPoster = v => { if (v.dataset.poster && v.getAttribute('poster') !== v.dataset.poster) v.poster = v.dataset.poster; };
+  const near = new Set();
+  const pio = 'IntersectionObserver' in window ? new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { near.add(e.target); showPoster(e.target); } else near.delete(e.target); });
+  }, { rootMargin: '600px 0px' }) : null;
+  if (pio) vids.forEach(v => pio.observe(v)); else vids.forEach(v => near.add(v));
   window.addEventListener('scroll', poke, { passive: true });
 
   // 画幅
@@ -44,8 +51,9 @@
     segs.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ar === ar)));
     vids.forEach(v => {
       const id = v.dataset.id, had = !!v.getAttribute('src');
-      v.dataset.src = `media/${id}-${ar}.mp4`;
-      v.poster = `media/${id}-${ar}.jpg`;
+      v.dataset.src = `media/s/${id}-${ar}.mp4`;
+      v.dataset.poster = `media/s/${id}-${ar}.jpg`;
+      if (near.has(v)) showPoster(v);
       if (had) { v.pause(); v.src = v.dataset.src; }
     });
     store.set('acv-ar', ar);
@@ -60,8 +68,9 @@
       tabs.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
       const t = v.currentTime, had = !!v.getAttribute('src');
       v.dataset.id = `pack-${v.dataset.pack}-${b.dataset.acc}`;
-      v.dataset.src = `media/${v.dataset.id}-${root.dataset.ar}.mp4`;
-      v.poster = `media/${v.dataset.id}-${root.dataset.ar}.jpg`;
+      v.dataset.src = `media/s/${v.dataset.id}-${root.dataset.ar}.mp4`;
+      v.dataset.poster = `media/s/${v.dataset.id}-${root.dataset.ar}.jpg`;
+      showPoster(v);
       if (had) { v.src = v.dataset.src; v.addEventListener('loadedmetadata', () => { v.currentTime = t; }, { once: true }); }
       start(v);
     }));
@@ -168,7 +177,7 @@
     cur = c;
     const id = c.id, ar = root.dataset.ar;
     lb.dataset.ar = ar;
-    lv.poster = `media/${id}-${ar}.jpg`; lv.src = `media/${id}-${ar}.mp4`;
+    lv.poster = `media/s/${id}-${ar}.jpg`; lv.src = `media/${id}-${ar}.mp4`;
     lv.muted = false; lv.play().catch(() => {});
     lb.querySelector('.lb-id').textContent = id;
     lb.querySelector('.lb-name').innerHTML = c.querySelector('.card-meta h4').innerHTML;

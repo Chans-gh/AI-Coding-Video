@@ -1,7 +1,7 @@
 """生成介绍页：python3 site/build.py
 
 读 Skill 的 data/styles.json 和 samples/ 里已渲染的样片，把 src/index.html 填好写成 site/index.html，
-把样片视频和静帧拷进 site/media/，按页面实际用到的字把字体裁成小文件放进 site/fonts/。
+把样片视频和静帧拷进 site/media/，再由 small.py 出卡片用的小版（site/media/s/），按页面实际用到的字把字体裁成小文件放进 site/fonts/。
 页面里的数字（风格总数、样片数、各题材数量）都在这里算，不要手改 index.html。
 需要：samples/ 下先 npm install（字体来自 @fontsource），Python 装 fontTools 和 brotli。
 """
@@ -13,6 +13,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+import small
+
 HERE = Path(__file__).resolve().parent
 REPO_DIR = HERE.parent
 SKILL = REPO_DIR / "skills" / "ai-coding-video"
@@ -22,7 +24,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v7 · 2026-11-04"
+VERSION = "v8 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -119,7 +121,7 @@ def card(s, sid, label_zh, label_en, attrs, chips):
              if s["id"][0] in "TG" else "")
     return f'''      <article class="card" id="{sid}" {attrs}>
         <div class="screen">
-          <video data-id="{sid}" data-src="media/{sid}-16x9.mp4" poster="media/{sid}-16x9.jpg" muted loop playsinline preload="none" aria-label="{esc(s['name'])}"></video>
+          <video data-id="{sid}" data-src="media/s/{sid}-16x9.mp4" data-poster="media/s/{sid}-16x9.jpg" muted loop playsinline preload="none" aria-label="{esc(s['name'])}"></video>
           <button type="button" class="open" aria-label="放大播放 {sid} / Play {sid} large"><span class="open-hint">{both("点击放大", "Click to enlarge")}</span></button>
           <button type="button" class="snd" aria-pressed="false">{both("声音", "Sound")}</button>
         </div>
@@ -233,7 +235,7 @@ def packs_html(names):
         out.append(f'''    <article class="pack">
       <div class="pack-left">
       <div class="pack-screen">
-        <video class="pack-video" data-id="pack-{n}-{acc[0][0]}" data-pack="{n}" data-src="media/pack-{n}-{acc[0][0]}-16x9.mp4" poster="media/pack-{n}-{acc[0][0]}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
+        <video class="pack-video" data-id="pack-{n}-{acc[0][0]}" data-pack="{n}" data-src="media/s/pack-{n}-{acc[0][0]}-16x9.mp4" data-poster="media/s/pack-{n}-{acc[0][0]}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
       </div>
       <div class="pack-tabs" role="group" aria-label="品牌色 Brand color"><span class="lab">{both("换品牌色", "Brand color")}</span>{tabs}</div>
       </div>
@@ -364,9 +366,10 @@ def main():
     (HERE / "index.html").write_text(tpl, encoding="utf-8")
 
     media = HERE / "media"
-    if media.exists():
-        shutil.rmtree(media)
-    media.mkdir()
+    media.mkdir(exist_ok=True)
+    for p in media.glob("*"):   # 原版每次重拷；小版 media/s/ 留着，原版没变的 small.py 不重出
+        if p.is_file():
+            p.unlink()
     missing = 0   # 本地没下载的视频不拷，本地预览就只有静帧；线上发布时从 Release 下载
     for src, dst in [(SAMPLES / sid / f"{sid}-{ar}.{ext}", f"{sid}-{ar}.{ext}") for sid in ids for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")] + \
             [(PACKS / n / "demo" / f"{n}-{a[0]}-{ar}.{ext}", f"pack-{n}-{a[0]}-{ar}.{ext}")
@@ -377,6 +380,7 @@ def main():
             missing += 1
     if missing:
         print(f"本地缺 {missing} 个视频，预览里只有静帧；要看视频先跑 python3 scripts/media.py pull")
+    small.main()   # 卡片用的小视频、小静帧 → media/s/
 
     if not FONTSRC.exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
