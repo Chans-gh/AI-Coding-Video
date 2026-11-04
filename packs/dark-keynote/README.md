@@ -8,8 +8,8 @@
 
 | 紫 `#8B7BFF`（默认） | 橙 `#FF7A45` | 绿 `#2BD99F` |
 |---|---|---|
-| [![紫](demo/dark-keynote-purple-16x9.jpg)](demo/dark-keynote-purple-16x9.mp4) | [![橙](demo/dark-keynote-orange-16x9.jpg)](demo/dark-keynote-orange-16x9.mp4) | [![绿](demo/dark-keynote-green-16x9.jpg)](demo/dark-keynote-green-16x9.mp4) |
-| [横屏](demo/dark-keynote-purple-16x9.mp4) · [竖屏](demo/dark-keynote-purple-9x16.mp4) | [横屏](demo/dark-keynote-orange-16x9.mp4) · [竖屏](demo/dark-keynote-orange-9x16.mp4) | [横屏](demo/dark-keynote-green-16x9.mp4) · [竖屏](demo/dark-keynote-green-9x16.mp4) |
+| [![紫](demo/dark-keynote-purple-16x9.jpg)](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4) | [![橙](demo/dark-keynote-orange-16x9.jpg)](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-16x9.mp4) | [![绿](demo/dark-keynote-green-16x9.jpg)](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-16x9.mp4) |
+| [横屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4) · [竖屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-9x16.mp4) | [横屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-16x9.mp4) · [竖屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-9x16.mp4) | [横屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-16x9.mp4) · [竖屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-9x16.mp4) |
 
 ## 部件
 

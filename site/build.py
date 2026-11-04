@@ -18,6 +18,8 @@ REPO_DIR = HERE.parent
 SKILL = REPO_DIR / "skills" / "ai-coding-video"
 SAMPLES = REPO_DIR / "samples"
 PACKS = REPO_DIR / "packs"
+_MEDIA = REPO_DIR / "media.json"
+LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
 VERSION = "v5 · 2026-11-03"
@@ -43,6 +45,11 @@ def meta(sid):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
 
 
+def has_video(path, name):
+    """视频在本地，或已登记在 media.json（放在 Release 里，见 scripts/media.py）"""
+    return path.exists() or name in LISTED
+
+
 def load_styles():
     data = json.loads((SKILL / "data" / "styles.json").read_text(encoding="utf-8"))
     return data if isinstance(data, list) else data["styles"]
@@ -52,7 +59,7 @@ def sample_ids(styles):
     ids = []
     for s in styles:
         d = SAMPLES / s["id"]
-        if s.get("verified") and all((d / f"{s['id']}-{ar}.mp4").exists() for ar in ("16x9", "9x16")):
+        if s.get("verified") and all(has_video(d / f"{s['id']}-{ar}.mp4", f"{s['id']}-{ar}.mp4") for ar in ("16x9", "9x16")):
             ids.append(s["id"])
     return ids
 
@@ -171,7 +178,7 @@ def pack_accents(n):
 def pack_names():
     """每种品牌色的演示片都出好了的风格包（packs/<名字>/demo/<名字>-<颜色>-<画幅>.mp4）"""
     return sorted(d.name for d in PACKS.glob("*") if (d / "meta.json").exists() and all(
-        (d / "demo" / f"{d.name}-{a[0]}-{ar}.mp4").exists() for a in pack_accents(d.name) for ar in ("16x9", "9x16")))
+        has_video(d / "demo" / f"{d.name}-{a[0]}-{ar}.mp4", f"pack-{d.name}-{a[0]}-{ar}.mp4") for a in pack_accents(d.name) for ar in ("16x9", "9x16")))
 
 
 def packs_html(names):
@@ -304,16 +311,16 @@ def main():
     if media.exists():
         shutil.rmtree(media)
     media.mkdir()
-    for sid in ids:
-        for ar in ("16x9", "9x16"):
-            for ext in ("mp4", "jpg"):
-                shutil.copy2(SAMPLES / sid / f"{sid}-{ar}.{ext}", media / f"{sid}-{ar}.{ext}")
-    for n in packs:
-        for a in pack_accents(n):
-            for ar in ("16x9", "9x16"):
-                for ext in ("mp4", "jpg"):
-                    f = f"{n}-{a[0]}-{ar}.{ext}"
-                    shutil.copy2(PACKS / n / "demo" / f, media / f"pack-{f}")
+    missing = 0   # 本地没下载的视频不拷，本地预览就只有静帧；线上发布时从 Release 下载
+    for src, dst in [(SAMPLES / sid / f"{sid}-{ar}.{ext}", f"{sid}-{ar}.{ext}") for sid in ids for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")] + \
+            [(PACKS / n / "demo" / f"{n}-{a[0]}-{ar}.{ext}", f"pack-{n}-{a[0]}-{ar}.{ext}")
+             for n in packs for a in pack_accents(n) for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")]:
+        if src.exists():
+            shutil.copy2(src, media / dst)
+        else:
+            missing += 1
+    if missing:
+        print(f"本地缺 {missing} 个视频，预览里只有静帧；要看视频先跑 python3 scripts/media.py pull")
 
     if not FONTSRC.exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")

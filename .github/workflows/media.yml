@@ -1,0 +1,28 @@
+# 把中转分支 media-upload/<时间> 里的视频传到 Release「media」，删掉中转分支，再重新发布介绍页。中转分支由 scripts/media.py upload 推上来。
+name: media
+on:
+  push:
+    branches: ["media-upload/**"]
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: media
+  cancel-in-progress: false
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 传到 Release
+        run: |
+          gh release view media >/dev/null 2>&1 || gh release create media --target main --latest=false \
+            --title "样片视频" --notes "样片和风格包演示片的视频。由 scripts/media.py 维护，清单见仓库根目录的 media.json；不要手动改这里的文件。"
+          gh release upload media media/* --clobber
+      - name: 删掉中转分支
+        run: git push origin --delete "$GITHUB_REF_NAME"
+      - name: 重新发布介绍页
+        run: gh workflow run pages.yml --ref main

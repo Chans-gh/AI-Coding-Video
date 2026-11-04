@@ -17,6 +17,7 @@ SAMPLES = Path(__file__).resolve().parent.parent
 SKILL = SAMPLES.parent / "skills" / "ai-coding-video"
 BUILD = SKILL / "scripts" / "build_index.py"
 PACKS = SAMPLES.parent / "packs"
+MEDIA = SAMPLES.parent / "media.json"
 sys.path.insert(0, str(BUILD.parent))
 from build_index import CODE_BASE  # noqa: E402
 
@@ -32,7 +33,9 @@ def packs_of(sid):
 
 def ready(sid):
     d = SAMPLES / sid
-    return (d / "meta.json").exists() and all((d / f"{sid}-{ar}.mp4").exists() for ar in ("16x9", "9x16"))
+    listed = json.loads(MEDIA.read_text(encoding="utf-8"))["files"] if MEDIA.exists() else {}
+    return (d / "meta.json").exists() and all((d / f"{sid}-{ar}.mp4").exists() or f"{sid}-{ar}.mp4" in listed
+                                              for ar in ("16x9", "9x16"))
 
 
 def mark(sid, styles):

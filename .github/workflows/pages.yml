@@ -1,9 +1,9 @@
-# 把 site/ 发布到 GitHub Pages。样片和风格包演示片的视频、静帧不在 site/ 里重复存一份，发布时从 samples/、packs/ 拷进 site/media/。
+# 把 site/ 发布到 GitHub Pages。静帧发布时从 samples/、packs/ 拷进 site/media/；视频不进仓库，从 Release「media」下载进 site/media/（scripts/media.py 维护）。
 name: pages
 on:
   push:
     branches: [main]
-    paths: ["site/**", "samples/C-*/**", "packs/*/demo/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "samples/*/**", "packs/*/demo/**", "media.json", ".github/workflows/pages.yml"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,12 +20,16 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: 拷样片
+      - name: 拷静帧、下载视频
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p site/media
-          cp samples/C-*/C-*-16x9.mp4 samples/C-*/C-*-9x16.mp4 samples/C-*/C-*-16x9.jpg samples/C-*/C-*-9x16.jpg site/media/
-          # 风格包演示片：packs/<名字>/demo/<名字>-<颜色>-<画幅>.* → media/pack-<名字>-<颜色>-<画幅>.*，命名和 site/build.py 一致
-          for f in packs/*/demo/*.mp4 packs/*/demo/*.jpg; do
+          cp samples/*/*-16x9.jpg samples/*/*-9x16.jpg site/media/
+          # 视频在 Release 里已按 media/ 的命名存放（风格包的带前缀 pack-）
+          gh release download media -R "$GITHUB_REPOSITORY" -p '*.mp4' -D site/media --clobber
+          # 风格包静帧：packs/<名字>/demo/<名字>-<颜色>-<画幅>.jpg → media/pack-<名字>-<颜色>-<画幅>.jpg，命名和 site/build.py 一致
+          for f in packs/*/demo/*.jpg; do
             [ -f "$f" ] && cp "$f" "site/media/pack-$(basename "$f")"
           done
           rm -rf site/src site/build.py site/README.md

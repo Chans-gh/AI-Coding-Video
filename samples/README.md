@@ -9,7 +9,7 @@
 | `<编号>/scene.js` | 场景代码：`init()` 准备纹理，`draw(ctx, t)` 画出 t 秒那一帧；第一行注释是一句「怎么画的」，介绍页直接用 |
 | `<编号>/sound.py` | 这段样片的配乐和音效：在哪个时刻放什么音 |
 | `<编号>/meta.json` | 英文名、英文描述、技术标签（介绍页和风格条目的「技术（已验证）」从这里取） |
-| `<编号>/<编号>-16x9.mp4`、`-9x16.mp4` | 渲染好的样片 |
+| `<编号>/<编号>-16x9.mp4`、`-9x16.mp4` | 渲染好的样片。不进仓库，放在 [Release「media」](https://github.com/Chans-gh/AI-Coding-Video/releases/tag/media)，见下面「视频放在哪」 |
 | `<编号>/<编号>-16x9.jpg`、`-9x16.jpg` | 静帧 |
 | `API.md` | `lib.js` 和 `synth.py` 的函数速查，写场景时读它，不用读源码；由 `tools/apidoc.py` 生成 |
 | `lib/synth.py` | 合成器：鼓、拨弦、钟、方波、锯齿波、风声等，全部用代码算出波形 |
@@ -45,7 +45,19 @@ python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynot
 
 想在浏览器里看，要先在 `samples/` 下起一个本地服务，例如 `python3 -m http.server`，再打开 `http://localhost:8000/player.html?s=C-001&ar=16x9`。
 
-发版用仓库根目录的 `scripts/release.sh "<提交说明>"`：登记样片 → 词典检查 → `API.md` 检查 → 生成介绍页 → 提交并推送当前分支；加 `--live` 再用无头浏览器打开线上介绍页，打一行结果（卡片数、报错、加载失败的文件）。
+发版用仓库根目录的 `scripts/release.sh "<提交说明>"`：登记样片 → 词典检查 → `API.md` 检查 → 生成介绍页 → 新出的视频传到 Release → 提交并推送当前分支；加 `--live` 再用无头浏览器打开线上介绍页，打一行结果（卡片数、报错、加载失败的文件）。
+
+## 视频放在哪
+
+样片和风格包演示片的视频不进 Git 仓库（`.gitignore` 已排除），放在 GitHub 的 [Release「media」](https://github.com/Chans-gh/AI-Coding-Video/releases/tag/media) 里；仓库根目录的 `media.json` 记每个视频的位置、大小和 sha256，由 `scripts/media.py` 维护，不手改。静帧、代码和 T 类、G 类的素材（`assets/`）照旧进仓库。
+
+```bash
+python3 scripts/media.py pull C-001 C-002   # 要看已有样片的视频时，下载到原来的位置；不写编号就全部下载
+python3 scripts/media.py upload             # 出片后把新出或改过的视频传上去，并更新 media.json（release.sh 会自动跑）
+python3 scripts/media.py check              # 核对清单和 Release 一致
+```
+
+`upload` 不需要 GitHub 令牌：它把要传的视频放进一个只含它们的中转分支 `media-upload/<时间>` 推上去，由 `.github/workflows/media.yml` 传到 Release、删掉中转分支、重新发布介绍页，一两分钟后 `check` 就能对上。本机 `gh` 已登录的，可以加 `--gh` 直接上传。介绍页发布时从 Release 下载视频，和静帧一起放进 `site/media/`。在别的分支上传也会覆盖 Release 里同名的视频，所以改已有样片的视频，等合并时再传。
 
 ## 用到的库
 
