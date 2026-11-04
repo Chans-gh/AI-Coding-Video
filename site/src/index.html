@@ -19,7 +19,6 @@
       <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#prompt"><span lang="zh">提示词</span><span lang="en">Prompts</span></a>
       <a href="#skill">Skill</a>
-      <a href="#library"><span lang="zh">词典</span><span lang="en">Dictionary</span></a>
     </nav>
     <div class="bar-end">
       <span class="ver">{{VERSION}}</span>
@@ -40,22 +39,7 @@
         <a class="btn" href="{{REPO}}"><span lang="zh">GitHub 仓库</span><span lang="en">GitHub repo</span></a>
       </div>
     </div>
-    <figure class="scrub" id="scrub">
-      <div class="scrub-screen">
-        <video id="hero-video" src="media/C-001-16x9.mp4" poster="media/C-001-16x9.jpg" muted loop playsinline autoplay preload="auto"></video>
-      </div>
-      <div class="scrub-read" aria-live="off">
-        <code class="tc">t = <b id="tc-t">0.000</b> s</code>
-        <code class="tc"><span lang="zh">帧</span><span lang="en">frame</span> <b id="tc-f">0</b> / 90</code>
-        <code class="tc fn">draw(ctx, t)</code>
-      </div>
-      <label class="ruler" for="scrub-range">
-        <span class="sr"><span lang="zh">拖动时间轴</span><span lang="en">Drag the timeline</span></span>
-        <input type="range" id="scrub-range" min="0" max="89" step="1" value="0">
-        <span class="ticks" aria-hidden="true"></span>
-      </label>
-      <figcaption><span lang="zh">C-001 水墨 · 3 秒 · 30 帧/秒。拖动下面的时间轴，画面只跟着 t 变。</span><span lang="en">C-001 Ink wash · 3 s · 30 fps. Drag the timeline: the picture depends on t alone.</span></figcaption>
-    </figure>
+{{HERO}}
   </div>
 </section>
 
@@ -177,23 +161,23 @@ scene({
 <section class="sec" id="prompt">
   <div class="wrap">
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
-    <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result.</span></p>
+    <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。纯代码、真实素材、AI 素材三类都按这 8 点写；用素材的，另外写清素材从哪来、怎么处理。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result. All three classes (pure code, real material, AI material) follow them; with material, also say where it comes from and how it is handled.</span></p>
     <ol class="eight">
-      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明纯代码，还是用哪些素材（录像、照片、数据、生图、生视频）、素材从哪来。</span><span lang="en">Say whether it is pure code or which material it uses (footage, photos, data, generated images or clips) and where that comes from.</span></li>
-      <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface.</span></li>
-      <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow).</span></li>
-      <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe; place it at the climax.</span></li>
-      <li><b><span lang="zh">镜头语言</span><span lang="en">Camera</span></b><span lang="zh">卷轴横移、俯视、推拉、结尾拉远。</span><span lang="en">Scroll-like pans, top-down views, push-ins, a closing pull-back.</span></li>
-      <li><b><span lang="zh">声音</span><span lang="en">Sound</span></b><span lang="zh">配乐乐器、音效跟着材质走、有没有旁白。</span><span lang="en">Instruments, effects that match the material, narration or none.</span></li>
+      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">纯代码逐帧；或用哪些真实素材（录像、录屏、照片、数据）、出处和许可；或用哪个模型生图、生视频、合成旁白。代码负责剪辑、排版和动效。</span><span lang="en">Pure code frame by frame; or which real material (footage, screen recordings, photos, data) with its source and license; or which model makes the images, clips and narration. Code does the editing, layout and motion.</span></li>
+      <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。用素材时写统一的色调、裁切和字幕样式；AI 素材先出一张定妆图当参考，前后才一致。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface. With material: one color grade, crop and caption style; for AI material, make a reference image first so every shot matches.</span></li>
+      <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。素材片段的快慢、照片的推拉平移、数据怎么一步步长出来。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow). How fast clips run, how photos pan and push, how data builds up.</span></li>
+      <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过、漫画分格滑入，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe, comic panels sliding in; place it at the climax.</span></li>
+      <li><b><span lang="zh">镜头语言</span><span lang="en">Camera</span></b><span lang="zh">推拉、横移、俯视、结尾拉远。真实素材写剪辑表（哪份素材的第几秒到第几秒、裁哪块）；AI 素材给每个镜头写首帧、动作和运镜。</span><span lang="en">Push-ins, pans, top-down views, a closing pull-back. For real material, an edit list (which seconds of which file, cropped where); for AI material, each shot's first frame, action and camera move.</span></li>
+      <li><b><span lang="zh">声音</span><span lang="en">Sound</span></b><span lang="zh">配乐乐器、音效跟着材质走、有没有旁白。用素材的写清保不保留原声、旁白用哪个公开音色、配乐的许可。</span><span lang="en">Instruments, effects that match the material, narration or none. With material: keep the original sound or not, which stock voice narrates, the music's license.</span></li>
       <li><b><span lang="zh">参考作品</span><span lang="en">References</span></b><span lang="zh">写清学构图、节奏、配色，不学角色和 Logo。</span><span lang="en">Say what to learn (composition, rhythm, color) and what not to copy (characters, logos).</span></li>
-      <li><b><span lang="zh">规格与验收</span><span lang="en">Specs and checks</span></b><span lang="zh">时长、画幅、帧率；先出样片再出整片，每步抽帧自检。</span><span lang="en">Length, frame shape, fps; sample before the full film, and check a contact sheet at every step.</span></li>
+      <li><b><span lang="zh">规格与验收</span><span lang="en">Specs and checks</span></b><span lang="zh">时长、画幅、帧率；先出样片再出整片，每步抽帧自检。用素材的先列素材清单（出处和许可，或模型、参数和提示词），出片前去掉元数据。</span><span lang="en">Length, frame shape, fps; sample before the full film, and check a contact sheet at every step. With material, list every piece first (source and license, or model, settings and prompt) and strip metadata before export.</span></li>
     </ol>
     <div class="tpl">
       <div class="tpl-head">
-        <p><span lang="zh">通用模板（方括号换成你的内容）</span><span lang="en">Template (in Chinese, as the Skill uses it; replace the brackets)</span></p>
-        <button type="button" class="copy" data-copy="tpl-text"><span lang="zh">复制</span><span lang="en">Copy</span></button>
+        <p><span lang="zh">通用模板，三类各一份（方括号换成你的内容）</span><span lang="en">Templates, one per class (in Chinese, as the Skill uses them; replace the brackets)</span></p>
+        <button type="button" class="copy" data-copy="tpl-C"><span lang="zh">复制</span><span lang="en">Copy</span></button>
       </div>
-      <pre class="code" tabindex="0"><code id="tpl-text">{{TEMPLATE}}</code></pre>
+{{TEMPLATE}}
     </div>
   </div>
 </section>
@@ -289,24 +273,6 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
     </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="sec" id="library">
-  <div class="wrap">
-    <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
-    <p class="sec-lede"><span lang="zh">全部 {{N_STYLES}} 种风格。纯代码的 {{N_C}} 种按题材分布，深色部分是已出样片的。</span><span lang="en">All {{N_STYLES}} styles. The {{N_C}} pure-code ones by theme; the solid part of each bar has rendered samples.</span></p>
-    <div class="bars">
-{{THEMES}}
-    </div>
-    <p class="note"><span lang="zh">用素材的按内容类型分，格子里是「已出样片 / 种数」：</span><span lang="en">The material styles by content type, as "rendered / total":</span></p>
-    <table class="ctypes">
-      <thead><tr><th><span lang="zh">内容类型</span><span lang="en">Content type</span></th><th><span lang="zh">T 类 实拍素材</span><span lang="en">T · real footage</span></th><th><span lang="zh">G 类 AI 素材</span><span lang="en">G · AI material</span></th></tr></thead>
-      <tbody>
-{{CTYPES}}
-      </tbody>
-    </table>
-    <p class="note"><span lang="zh">按「画在哪」分：{{LAYERS_ZH}}。</span><span lang="en">By where it is drawn: {{LAYERS_EN}}.</span></p>
   </div>
 </section>
 </main>

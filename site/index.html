@@ -19,10 +19,9 @@
       <a href="#how"><span lang="zh">怎么组成</span><span lang="en">How</span></a>
       <a href="#prompt"><span lang="zh">提示词</span><span lang="en">Prompts</span></a>
       <a href="#skill">Skill</a>
-      <a href="#library"><span lang="zh">词典</span><span lang="en">Dictionary</span></a>
     </nav>
     <div class="bar-end">
-      <span class="ver">v8 · 2026-11-04</span>
+      <span class="ver">v9 · 2026-11-04</span>
       <button class="lang" id="lang-toggle" type="button" aria-label="切换语言 / Switch language"><span lang="zh">EN</span><span lang="en">中文</span></button>
     </div>
   </div>
@@ -42,11 +41,12 @@
     </div>
     <figure class="scrub" id="scrub">
       <div class="scrub-screen">
-        <video id="hero-video" src="media/C-001-16x9.mp4" poster="media/C-001-16x9.jpg" muted loop playsinline autoplay preload="auto"></video>
+        <video id="hero-video" src="media/m/T-001-16x9.mp4" poster="media/m/T-001-16x9.jpg" muted playsinline autoplay preload="auto"></video>
       </div>
+      <div class="hero-dots" role="group" aria-label="换一支 / Switch sample"><button type="button" data-i="0" data-id="T-001" aria-pressed="true" aria-label="T-001 数据实体化 / Data made physical"></button><button type="button" data-i="1" data-id="G-005" aria-pressed="false" aria-label="G-005 动漫短剧分镜 / Anime short-drama storyboard"></button><button type="button" data-i="2" data-id="C-001" aria-pressed="false" aria-label="C-001 中国水墨 / 写意 / Chinese ink wash"></button></div>
       <div class="scrub-read" aria-live="off">
         <code class="tc">t = <b id="tc-t">0.000</b> s</code>
-        <code class="tc"><span lang="zh">帧</span><span lang="en">frame</span> <b id="tc-f">0</b> / 90</code>
+        <code class="tc"><span lang="zh">帧</span><span lang="en">frame</span> <b id="tc-f">0</b> / <span id="tc-n">0</span></code>
         <code class="tc fn">draw(ctx, t)</code>
       </div>
       <label class="ruler" for="scrub-range">
@@ -54,7 +54,9 @@
         <input type="range" id="scrub-range" min="0" max="89" step="1" value="0">
         <span class="ticks" aria-hidden="true"></span>
       </label>
-      <figcaption><span lang="zh">C-001 水墨 · 3 秒 · 30 帧/秒。拖动下面的时间轴，画面只跟着 t 变。</span><span lang="en">C-001 Ink wash · 3 s · 30 fps. Drag the timeline: the picture depends on t alone.</span></figcaption>
+        <figcaption data-i="0"><span lang="zh">T-001 数据实体化 · 实拍素材 · 真实素材（照片、数据）交给代码，代码排版、加动效。拖动下面的时间轴，画面只跟着 t 变。</span><span lang="en">T-001 Data made physical · Real footage · Real material (photos, data) handed to code for layout and motion. Drag the timeline: the picture depends on t alone.</span></figcaption>
+        <figcaption data-i="1" hidden><span lang="zh">G-005 动漫短剧分镜 · AI 素材 · AI 生成的素材（生图、生视频、语音合成）交给代码，代码剪辑、加动效。拖动下面的时间轴，画面只跟着 t 变。</span><span lang="en">G-005 Anime short-drama storyboard · AI material · AI-generated material (generated images, generated video, speech synthesis) handed to code for editing and motion. Drag the timeline: the picture depends on t alone.</span></figcaption>
+        <figcaption data-i="2" hidden><span lang="zh">C-001 中国水墨 / 写意 · 纯代码 · 画面全部由代码算出，没有一张现成图片。拖动下面的时间轴，画面只跟着 t 变。</span><span lang="en">C-001 Chinese ink wash · Pure code · Every pixel is computed by code; no ready-made image. Drag the timeline: the picture depends on t alone.</span></figcaption>
     </figure>
   </div>
 </section>
@@ -1649,23 +1651,24 @@ scene({
 <section class="sec" id="prompt">
   <div class="wrap">
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
-    <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result.</span></p>
+    <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。纯代码、真实素材、AI 素材三类都按这 8 点写；用素材的，另外写清素材从哪来、怎么处理。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result. All three classes (pure code, real material, AI material) follow them; with material, also say where it comes from and how it is handled.</span></p>
     <ol class="eight">
-      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">写明纯代码，还是用哪些素材（录像、照片、数据、生图、生视频）、素材从哪来。</span><span lang="en">Say whether it is pure code or which material it uses (footage, photos, data, generated images or clips) and where that comes from.</span></li>
-      <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface.</span></li>
-      <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow).</span></li>
-      <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe; place it at the climax.</span></li>
-      <li><b><span lang="zh">镜头语言</span><span lang="en">Camera</span></b><span lang="zh">卷轴横移、俯视、推拉、结尾拉远。</span><span lang="en">Scroll-like pans, top-down views, push-ins, a closing pull-back.</span></li>
-      <li><b><span lang="zh">声音</span><span lang="en">Sound</span></b><span lang="zh">配乐乐器、音效跟着材质走、有没有旁白。</span><span lang="en">Instruments, effects that match the material, narration or none.</span></li>
+      <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">纯代码逐帧；或用哪些真实素材（录像、录屏、照片、数据）、出处和许可；或用哪个模型生图、生视频、合成旁白。代码负责剪辑、排版和动效。</span><span lang="en">Pure code frame by frame; or which real material (footage, screen recordings, photos, data) with its source and license; or which model makes the images, clips and narration. Code does the editing, layout and motion.</span></li>
+      <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。用素材时写统一的色调、裁切和字幕样式；AI 素材先出一张定妆图当参考，前后才一致。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface. With material: one color grade, crop and caption style; for AI material, make a reference image first so every shot matches.</span></li>
+      <li><b><span lang="zh">运动语言</span><span lang="en">Motion</span></b><span lang="zh">帧率、缓动、禁止项（不要弹跳、粒子、发光）。素材片段的快慢、照片的推拉平移、数据怎么一步步长出来。</span><span lang="en">Frame rate, easing, and what to avoid (no bounce, particles, glow). How fast clips run, how photos pan and push, how data builds up.</span></li>
+      <li><b><span lang="zh">独有的转场</span><span lang="en">A signature transition</span></b><span lang="zh">墨晕开、纸页折叠、网格扫过、漫画分格滑入，放在高潮。</span><span lang="en">Ink bloom, paper fold, grid wipe, comic panels sliding in; place it at the climax.</span></li>
+      <li><b><span lang="zh">镜头语言</span><span lang="en">Camera</span></b><span lang="zh">推拉、横移、俯视、结尾拉远。真实素材写剪辑表（哪份素材的第几秒到第几秒、裁哪块）；AI 素材给每个镜头写首帧、动作和运镜。</span><span lang="en">Push-ins, pans, top-down views, a closing pull-back. For real material, an edit list (which seconds of which file, cropped where); for AI material, each shot's first frame, action and camera move.</span></li>
+      <li><b><span lang="zh">声音</span><span lang="en">Sound</span></b><span lang="zh">配乐乐器、音效跟着材质走、有没有旁白。用素材的写清保不保留原声、旁白用哪个公开音色、配乐的许可。</span><span lang="en">Instruments, effects that match the material, narration or none. With material: keep the original sound or not, which stock voice narrates, the music's license.</span></li>
       <li><b><span lang="zh">参考作品</span><span lang="en">References</span></b><span lang="zh">写清学构图、节奏、配色，不学角色和 Logo。</span><span lang="en">Say what to learn (composition, rhythm, color) and what not to copy (characters, logos).</span></li>
-      <li><b><span lang="zh">规格与验收</span><span lang="en">Specs and checks</span></b><span lang="zh">时长、画幅、帧率；先出样片再出整片，每步抽帧自检。</span><span lang="en">Length, frame shape, fps; sample before the full film, and check a contact sheet at every step.</span></li>
+      <li><b><span lang="zh">规格与验收</span><span lang="en">Specs and checks</span></b><span lang="zh">时长、画幅、帧率；先出样片再出整片，每步抽帧自检。用素材的先列素材清单（出处和许可，或模型、参数和提示词），出片前去掉元数据。</span><span lang="en">Length, frame shape, fps; sample before the full film, and check a contact sheet at every step. With material, list every piece first (source and license, or model, settings and prompt) and strip metadata before export.</span></li>
     </ol>
     <div class="tpl">
       <div class="tpl-head">
-        <p><span lang="zh">通用模板（方括号换成你的内容）</span><span lang="en">Template (in Chinese, as the Skill uses it; replace the brackets)</span></p>
-        <button type="button" class="copy" data-copy="tpl-text"><span lang="zh">复制</span><span lang="en">Copy</span></button>
+        <p><span lang="zh">通用模板，三类各一份（方括号换成你的内容）</span><span lang="en">Templates, one per class (in Chinese, as the Skill uses them; replace the brackets)</span></p>
+        <button type="button" class="copy" data-copy="tpl-C"><span lang="zh">复制</span><span lang="en">Copy</span></button>
       </div>
-      <pre class="code" tabindex="0"><code id="tpl-text">用【风格名】风格做一支【45】秒、【16:9】、1920×1080、24fps 的短片，主题是【主题】，给【受众】看。
+      <div class="tpl-tabs" role="group" aria-label="模板 / Template"><button type="button" data-tpl="C" aria-pressed="true"><b>C</b> <span lang="zh">纯代码</span><span lang="en">Pure code</span></button><button type="button" data-tpl="T" aria-pressed="false"><b>T</b> <span lang="zh">实拍素材</span><span lang="en">Real footage</span></button><button type="button" data-tpl="G" aria-pressed="false"><b>G</b> <span lang="zh">AI 素材</span><span lang="en">AI material</span></button></div>
+      <pre class="code" tabindex="0" data-tpl="C"><code id="tpl-C">用【风格名】风格做一支【45】秒、【16:9】、1920×1080、24fps 的短片，主题是【主题】，给【受众】看。
 
 制作路径：纯代码逐帧渲染（Canvas 2D / WebGL + 无头浏览器 + ffmpeg），不用任何图像/视频生成模型和素材库。
 
@@ -1683,6 +1686,34 @@ scene({
 声音：【配乐乐器/风格】；音效跟材质走；【旁白语言与语气 / 无旁白】；字幕烧录并导出 .srt。
 
 流程：先给我分镜表和 3 张风格样片 → 再渲染最难的 3 秒 → 最后整片。每一步抽帧拼成一张图自检，对照上面的风格标志逐条检查。</code></pre>
+      <pre class="code" tabindex="0" data-tpl="T" hidden><code id="tpl-T">用【做法名，如 数据实体化、卫星地图简报】的做法做一支【15】秒、【16:9 和 9:16 各一版】、30fps 的短片，主题是【主题】，给【受众】看。
+
+制作路径：真实素材 + 代码剪辑排版。素材是【录像（含口播）/ 录屏 / 照片 / 数据（表格、地图、卫星图）】，来自【我提供的文件路径 / 公共领域来源，如 NASA、美国国会图书馆、NOAA】，只用有权使用的，每份记下出处和许可。标题、字幕、图表和动效全部由代码画，不用生成模型。
+
+素材处理：
+- 视频统一成 30fps、原声另存；照片缩到用得着的大小；数据只留【要用的列和行】
+- 剪辑表：每个镜头用哪份素材的第几秒到第几秒、放多快、裁哪一块
+- 统一色调：【调色板，写色值】；字幕和花字：【字体、位置、样式】
+- 运动：照片【缓慢推近 / 平移】；数据【一年一根柱子长出来，数字跟着滚动】
+禁止：编造数据和引语、给素材里的人物另加姓名等个人信息、【…】
+
+声音：【保留原声 / 旁白（语言、语气，用公开音色合成）】；配乐用【公共领域 / CC0 / CC BY 并在片尾署名】，说话时压低配乐；字幕时刻按旁白的逐字时间算。
+
+流程：先列素材清单（文件、种类、出处、许可、用在哪几秒）和分镜表 → 渲染最难的 3 秒 → 整片。每一步抽帧拼图自检；出片前去掉素材的元数据，片尾写清出处。</code></pre>
+      <pre class="code" tabindex="0" data-tpl="G" hidden><code id="tpl-G">用【做法名，如 动漫短剧分镜、电影感产品广告】的做法做一支【15】秒、【16:9 和 9:16 各一版】、30fps 的短片，主题是【主题】，给【受众】看。
+
+制作路径：AI 生成素材 + 代码剪辑排版。生图、生视频用【服务 / 模型】，旁白用【语音合成服务】的公开音色；你写分镜和每个镜头的提示词，标题、字幕和动效由代码画。先用最便宜的模型试，构图和动作对了再换好模型。
+
+素材：
+- 定妆图：【主角或产品的样子、画风】；之后的生图、生视频都拿它当参考图或首帧
+- 每个镜头：首帧画面、动作、镜头运动、时长【…】
+- 统一画风：【调色板，写色值】；字幕和花字：【字体、样式】
+- 一支片子大约【几】张图、【一两】段视频，其余交给代码剪辑和动效
+禁止：真实人物的脸和声音、真人姓名、真实品牌和标志（提示词里写「没有文字、没有标志」）、【…】
+
+声音：旁白【语言、语气】；配乐用【CC0 / CC BY 并在片尾署名】，说话时压低配乐；字幕时刻按旁白的逐字时间算。
+
+流程：先给分镜表和每个镜头的提示词 → 用便宜的模型出样图 → 我确认后出正式素材 → 渲染整片。素材清单记下每份的模型、参数和提示词；只留生成的文件，不留 Key、任务编号和带签名的下载链接；每一步抽帧拼图自检。</code></pre>
     </div>
   </div>
 </section>
@@ -1780,50 +1811,12 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
     </div>
   </div>
 </section>
-
-<section class="sec" id="library">
-  <div class="wrap">
-    <h2><span lang="zh">词典里有什么</span><span lang="en">What the dictionary holds</span></h2>
-    <p class="sec-lede"><span lang="zh">全部 219 种风格。纯代码的 195 种按题材分布，深色部分是已出样片的。</span><span lang="en">All 219 styles. The 195 pure-code ones by theme; the solid part of each bar has rendered samples.</span></p>
-    <div class="bars">
-      <div class="bar-row"><span class="lab"><span lang="zh">手绘与绘画</span><span lang="en">Hand-drawn &amp; painting</span></span><span class="bar-track" role="img" aria-label="手绘与绘画 38"><span class="bar-all" style="width:100.0%"></span><span class="bar-done" style="width:34.2%"></span></span><span class="n">13/38</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">3D 与实时图形</span><span lang="en">3D &amp; real-time graphics</span></span><span class="bar-track" role="img" aria-label="3D 与实时图形 27"><span class="bar-all" style="width:71.1%"></span><span class="bar-done" style="width:23.7%"></span></span><span class="n">9/27</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">信息讲解与产品发布</span><span lang="en">Explainers &amp; launches</span></span><span class="bar-track" role="img" aria-label="信息讲解与产品发布 25"><span class="bar-all" style="width:65.8%"></span><span class="bar-done" style="width:26.3%"></span></span><span class="n">10/25</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">电影年代与屏幕科技</span><span lang="en">Film eras &amp; screen tech</span></span><span class="bar-track" role="img" aria-label="电影年代与屏幕科技 19"><span class="bar-all" style="width:50.0%"></span><span class="bar-done" style="width:26.3%"></span></span><span class="n">10/19</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">平面设计与动态排版</span><span lang="en">Graphic design &amp; motion type</span></span><span class="bar-track" role="img" aria-label="平面设计与动态排版 18"><span class="bar-all" style="width:47.4%"></span><span class="bar-done" style="width:18.4%"></span></span><span class="n">7/18</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">印刷、版画与装饰</span><span lang="en">Print &amp; ornament</span></span><span class="bar-track" role="img" aria-label="印刷、版画与装饰 17"><span class="bar-all" style="width:44.7%"></span><span class="bar-done" style="width:15.8%"></span></span><span class="n">6/17</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">卡通与动漫</span><span lang="en">Cartoon &amp; anime</span></span><span class="bar-track" role="img" aria-label="卡通与动漫 16"><span class="bar-all" style="width:42.1%"></span><span class="bar-done" style="width:28.9%"></span></span><span class="n">11/16</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">纸艺、材质与定格</span><span lang="en">Paper, material &amp; stop-motion</span></span><span class="bar-track" role="img" aria-label="纸艺、材质与定格 15"><span class="bar-all" style="width:39.5%"></span><span class="bar-done" style="width:10.5%"></span></span><span class="n">4/15</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">东方传统</span><span lang="en">East Asian traditions</span></span><span class="bar-track" role="img" aria-label="东方传统 12"><span class="bar-all" style="width:31.6%"></span><span class="bar-done" style="width:23.7%"></span></span><span class="n">9/12</span></div>
-      <div class="bar-row"><span class="lab"><span lang="zh">游戏</span><span lang="en">Games</span></span><span class="bar-track" role="img" aria-label="游戏 8"><span class="bar-all" style="width:21.1%"></span><span class="bar-done" style="width:7.9%"></span></span><span class="n">3/8</span></div>
-    </div>
-    <p class="note"><span lang="zh">用素材的按内容类型分，格子里是「已出样片 / 种数」：</span><span lang="en">The material styles by content type, as "rendered / total":</span></p>
-    <table class="ctypes">
-      <thead><tr><th><span lang="zh">内容类型</span><span lang="en">Content type</span></th><th><span lang="zh">T 类 实拍素材</span><span lang="en">T · real footage</span></th><th><span lang="zh">G 类 AI 素材</span><span lang="en">G · AI material</span></th></tr></thead>
-      <tbody>
-      <tr><th><span lang="zh">知识科普讲解</span><span lang="en">Explainers &amp; science</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">口播 / 数字人</span><span lang="en">Talking head &amp; avatars</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">产品广告和带货</span><span lang="en">Product ads &amp; shopping</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">品牌宣传片</span><span lang="en">Brand films</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">短剧 / 动漫剧 / 故事</span><span lang="en">Short drama, anime &amp; stories</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">音乐 MV</span><span lang="en">Music videos</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">新闻资讯解说</span><span lang="en">News explainers</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">纪录片和纪实</span><span lang="en">Documentary</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">教程和录屏演示</span><span lang="en">Tutorials &amp; screencasts</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">旅行和城市</span><span lang="en">Travel &amp; cities</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">体育赛事</span><span lang="en">Sports</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      <tr><th><span lang="zh">儿童绘本动画</span><span lang="en">Children&#x27;s picture books</span></th><td><span class="n">1/1</span></td><td><span class="n">1/1</span></td></tr>
-      </tbody>
-    </table>
-    <p class="note"><span lang="zh">按「画在哪」分：Canvas 2D 88 种、SVG / HTML 54 种、WebGL / 3D 49 种、AI 生成素材 12 种、公共领域素材 12 种、讲解框架 2 种、终端字符 1 种、外部工具 1 种。</span><span lang="en">By where it is drawn: Canvas 2D 88, SVG / HTML 54, WebGL / 3D 49, AI-generated material 12, public-domain material 12, explainer frameworks 2, terminal text 1, external tools 1.</span></p>
-  </div>
-</section>
 </main>
 
 <footer class="foot">
   <div class="wrap foot-in">
     <p><span lang="zh">代码 MIT 许可。纯代码样片的画面和声音全部由本仓库的代码生成；实拍素材样片只用公共领域素材和 CC0 配乐，AI 素材样片的素材由生成服务做出，每份的出处、许可或生成参数见各样片的 <code>assets.json</code>。「致敬风格」里的作品名和作者名归各自权利人所有，本仓库与他们没有关联。</span><span lang="en">Code under the MIT license. Pure-code samples are generated entirely by code in this repository; real-footage samples use only public-domain material and CC0 music; AI-material samples use material made by generation services. Each sample's <code>assets.json</code> lists the source, license or generation settings of every piece. Names in homage styles belong to their owners; this project is not affiliated with them.</span></p>
-    <p class="ver">v8 · 2026-11-04 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
+    <p class="ver">v9 · 2026-11-04 · <a href="https://github.com/Chans-gh/AI-Coding-Video">GitHub</a></p>
   </div>
 </footer>
 <script src="assets/site.js"></script>

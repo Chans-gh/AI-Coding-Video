@@ -24,7 +24,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = SAMPLES / "node_modules" / "@fontsource"
 
-VERSION = "v8 · 2026-11-04"
+VERSION = "v9 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -34,11 +34,6 @@ THEME_EN = {
     "平面设计与动态排版": "Graphic design & motion type", "印刷、版画与装饰": "Print & ornament",
     "卡通与动漫": "Cartoon & anime", "纸艺、材质与定格": "Paper, material & stop-motion",
     "东方传统": "East Asian traditions", "游戏": "Games",
-}
-LAYER = {  # 画在哪：中文、英文
-    "canvas-2d": ("Canvas 2D", "Canvas 2D"), "svg-html": ("SVG / HTML", "SVG / HTML"), "webgl": ("WebGL / 3D", "WebGL / 3D"),
-    "framework": ("讲解框架", "explainer frameworks"), "terminal": ("终端字符", "terminal text"), "external": ("外部工具", "external tools"),
-    "footage": ("公共领域素材", "public-domain material"), "generated": ("AI 生成素材", "AI-generated material"),
 }
 KIND = {  # 三类：卡片的 data-kind、名字（中、英）
     "C": ("c", "纯代码", "Pure code"), "T": ("t", "实拍素材", "Real footage"), "G": ("g", "AI 素材", "AI material"),
@@ -249,51 +244,67 @@ def packs_html(names):
     return "\n".join(out)
 
 
-def theme_bars(styles, ids):
-    counts, done = {}, {}
-    for s in styles:
-        if s["id"][0] != "C":
-            continue
-        counts[s["theme"]] = counts.get(s["theme"], 0) + 1
-        done[s["theme"]] = done.get(s["theme"], 0) + (s["id"] in ids)
-    top = max(counts.values())
-    rows = []
-    for th, n in sorted(counts.items(), key=lambda kv: -kv[1]):
-        rows.append(f'      <div class="bar-row"><span class="lab">{both(th, THEME_EN.get(th, th))}</span>'
-                    f'<span class="bar-track" role="img" aria-label="{esc(th)} {n}">'
-                    f'<span class="bar-all" style="width:{n / top * 100:.1f}%"></span>'
-                    f'<span class="bar-done" style="width:{done[th] / top * 100:.1f}%"></span></span>'
-                    f'<span class="n">{done[th]}/{n}</span></div>')
-    return "\n".join(rows)
+HERO_NOTE = {  # 首页轮播每类一句：素材怎么来、代码做什么
+    "C": ("画面全部由代码算出，没有一张现成图片", "Every pixel is computed by code; no ready-made image"),
+    "T": ("真实素材（{m}）交给代码，代码排版、加动效", "Real material ({m}) handed to code for layout and motion"),
+    "G": ("AI 生成的素材（{m}）交给代码，代码剪辑、加动效", "AI-generated material ({m}) handed to code for editing and motion"),
+}
 
 
-def ctype_rows(styles, ids):
-    """T 类、G 类按内容类型：每个内容类型两类各有几种（几种已有样片）"""
-    cen, rows = ctype_en(), []
-    for c in tags_json()["content_types"]:
-        cell = []
-        for k in "TG":
-            ss = [s for s in styles if s["id"][0] == k and s.get("content_type") == c["name"]]
-            cell.append(f'<span class="n">{sum(s["id"] in ids for s in ss)}/{len(ss)}</span>')
-        rows.append(f'      <tr><th>{both(c["name"], c["en"])}</th><td>{cell[0]}</td><td>{cell[1]}</td></tr>')
-    return "\n".join(rows)
+def hero_html(styles):
+    """首页轮播：small.HERO 里每类一支，下面一排圆点切换；视频用 media/m/ 的 1280 宽版。时长和帧数由 site.js 读视频得到"""
+    by, men = {s["id"]: s for s in styles}, mat_en()
+    slides, dots = [], []
+    for k, sid in enumerate(small.HERO):
+        s, mt = by[sid], meta(sid)
+        cls = sid[0]
+        zh, en = HERO_NOTE[cls]
+        mats = s.get("materials", [])
+        zh, en = zh.format(m="、".join(mats)), en.format(m=", ".join(men.get(x, x).lower() for x in mats))
+        name_en = mt.get("en_name") or s["name"]
+        slides.append(f'        <figcaption data-i="{k}"{"" if k == 0 else " hidden"}>'
+                      f'<span lang="zh">{sid} {esc(s["name"])} · {KIND[cls][1]} · {zh}。拖动下面的时间轴，画面只跟着 t 变。</span>'
+                      f'<span lang="en">{sid} {esc(name_en)} · {KIND[cls][2]} · {en}. Drag the timeline: the picture depends on t alone.</span></figcaption>')
+        dots.append(f'<button type="button" data-i="{k}" data-id="{sid}" aria-pressed="{str(k == 0).lower()}" '
+                    f'aria-label="{sid} {esc(s["name"])} / {esc(name_en)}"></button>')
+    first = small.HERO[0]
+    return f'''    <figure class="scrub" id="scrub">
+      <div class="scrub-screen">
+        <video id="hero-video" src="media/m/{first}-16x9.mp4" poster="media/m/{first}-16x9.jpg" muted playsinline autoplay preload="auto"></video>
+      </div>
+      <div class="hero-dots" role="group" aria-label="换一支 / Switch sample">{"".join(dots)}</div>
+      <div class="scrub-read" aria-live="off">
+        <code class="tc">t = <b id="tc-t">0.000</b> s</code>
+        <code class="tc"><span lang="zh">帧</span><span lang="en">frame</span> <b id="tc-f">0</b> / <span id="tc-n">0</span></code>
+        <code class="tc fn">draw(ctx, t)</code>
+      </div>
+      <label class="ruler" for="scrub-range">
+        <span class="sr"><span lang="zh">拖动时间轴</span><span lang="en">Drag the timeline</span></span>
+        <input type="range" id="scrub-range" min="0" max="89" step="1" value="0">
+        <span class="ticks" aria-hidden="true"></span>
+      </label>
+{chr(10).join(slides)}
+    </figure>'''
 
 
-def layers(styles):
-    c = {}
-    for s in styles:
-        c[s["layer"]] = c.get(s["layer"], 0) + 1
-    items = sorted(c.items(), key=lambda kv: -kv[1])
-    zh = "、".join(f"{LAYER.get(k, (k, k))[0]} {n} 种" for k, n in items)
-    en = ", ".join(f"{LAYER.get(k, (k, k))[1]} {n}" for k, n in items)
-    return zh, en
-
-
-def template_text():
+def templates():
+    """prompting.md 「通用模板」里三类各一份：[(类, 模板文字)]，按 C、T、G 的顺序"""
     s = (SKILL / "prompting.md").read_text(encoding="utf-8")
-    i = s.index("通用模板")
-    m = re.search(r"```text\n(.*?)\n```", s[i:], re.S)
-    return m.group(1)
+    s = s[s.index("通用模板"):]
+    out = re.findall(r"\*\*[^*\n]*（([CTG]) 类）\*\*\n\n```text\n(.*?)\n```", s, re.S)
+    if [k for k, _ in out] != list("CTG"):
+        sys.exit("prompting.md 的通用模板要有纯代码（C 类）、真实素材（T 类）、AI 生成素材（G 类）三份")
+    return out
+
+
+def template_html():
+    """提示词一节的模板：三类各一块，上面一排按钮切换，复制的是当前那块"""
+    btns, pres = [], []
+    for k, (cls, text) in enumerate(templates()):
+        _, zh, en = KIND[cls]
+        btns.append(f'<button type="button" data-tpl="{cls}" aria-pressed="{str(k == 0).lower()}"><b>{cls}</b> {both(zh, en)}</button>')
+        pres.append(f'      <pre class="code" tabindex="0" data-tpl="{cls}"{"" if k == 0 else " hidden"}><code id="tpl-{cls}">{esc(text)}</code></pre>')
+    return (f'      <div class="tpl-tabs" role="group" aria-label="模板 / Template">{"".join(btns)}</div>\n' + "\n".join(pres))
 
 
 # ---------- 字体：只留页面用到的字 ----------
@@ -348,15 +359,14 @@ def main():
     ids = sample_ids(styles)
     if not ids:
         sys.exit("还没有渲染好的样片：先在 samples/ 下运行 batch.py")
-    zh_l, en_l = layers(styles)
     packs = pack_names()
     tpl = (HERE / "src" / "index.html").read_text(encoding="utf-8")
     fills = {
         "{{VERSION}}": VERSION, "{{REPO}}": REPO, "{{N_STYLES}}": str(len(styles)), "{{N_SAMPLES}}": str(len(ids)), "{{N_PACKS}}": str(len(packs)), "{{PACKS}}": packs_html(packs),
-        "{{GALLERY}}": gallery(styles, ids), "{{THEMES}}": theme_bars(styles, ids), "{{CTYPES}}": ctype_rows(styles, ids),
+        "{{GALLERY}}": gallery(styles, ids),
         "{{N_C}}": str(sum(s["id"][0] == "C" for s in styles)), "{{N_T}}": str(sum(s["id"][0] == "T" for s in styles)),
         "{{N_G}}": str(sum(s["id"][0] == "G" for s in styles)),
-        "{{LAYERS_ZH}}": zh_l, "{{LAYERS_EN}}": en_l, "{{TEMPLATE}}": esc(template_text()),
+        "{{HERO}}": hero_html(styles), "{{TEMPLATE}}": template_html(),
     }
     for k, v in fills.items():
         tpl = tpl.replace(k, v)

@@ -1,4 +1,4 @@
-# 把 site/ 发布到 GitHub Pages。静帧发布时从 samples/、packs/ 拷进 site/media/；视频不进仓库，从 Release「media」下载进 site/media/（scripts/media.py 维护）；再由 site/small.py 出卡片用的小版到 site/media/s/。
+# 把 site/ 发布到 GitHub Pages。静帧发布时从 samples/、packs/ 拷进 site/media/；视频不进仓库，从 Release「media」下载进 site/media/（scripts/media.py 维护）；再由 site/small.py 出卡片用的小版到 site/media/s/、首页大视频到 site/media/m/。
 name: pages
 on:
   push:
@@ -36,7 +36,9 @@ jobs:
       - id: small-cache
         uses: actions/cache@v4
         with:
-          path: site/media/s
+          path: |
+            site/media/s
+            site/media/m
           key: small-${{ hashFiles('media.json', 'site/small.py', 'samples/*/*-16x9.jpg', 'samples/*/*-9x16.jpg', 'packs/*/demo/*.jpg') }}
       - name: 出小版
         if: steps.small-cache.outputs.cache-hit != 'true'
