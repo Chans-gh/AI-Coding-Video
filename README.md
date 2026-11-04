@@ -101,6 +101,7 @@ Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、
 skills/ai-coding-video/   Skill 本体（唯一正本；其中 samples/、packs/ 是从下面两处同步来的代码，随 Skill 安装）
 samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图；T 类、G 类另带素材 assets/ 和清单 assets.json
 packs/                    2 级风格包：部件代码、风格说明、演示片
+cases/                    真实应用案例：3 支约 5 分钟的完整视频的分镜、代码、素材清单和制作记录
 site/                     介绍页（纯静态，可整个拷到任意服务器）
 scripts/                  install.sh 安装到各家助手；media.py 管理放在 Release 里的视频；release.sh 发版；providers/ 维护者出样片用的生成服务配置（不随 Skill 安装）
 media.json                视频清单（视频本身在 GitHub Release「media」）
