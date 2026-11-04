@@ -18,6 +18,7 @@
 
 - 内容类型：知识科普讲解
 - 素材：生图 · 语音合成
+- 技术类型：生图加代码动画 · 语音合成驱动
 - 适合：科普、冷知识、观点解读
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-001/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-001)
@@ -36,6 +37,7 @@
 
 - 内容类型：口播 / 数字人
 - 素材：生图 · 生视频 · 语音合成
+- 技术类型：图生视频与首尾帧 · 语音合成驱动 · 数字人口播
 - 适合：知识口播、账号日更、产品说明
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-002/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-002)
@@ -54,6 +56,7 @@
 
 - 内容类型：产品广告和带货
 - 素材：生图 · 生视频
+- 技术类型：图生视频与首尾帧
 - 适合：新品发布、电商主图视频、广告片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-003/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-003)
@@ -72,6 +75,7 @@
 
 - 内容类型：品牌宣传片
 - 素材：生视频
+- 技术类型：图生视频与首尾帧
 - 适合：品牌片、招募片、活动开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-004/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-004)
@@ -90,6 +94,7 @@
 
 - 内容类型：短剧 / 动漫剧 / 故事
 - 素材：生图 · 生视频 · 语音合成
+- 技术类型：角色一致性 · 图生视频与首尾帧 · 语音合成驱动
 - 适合：动漫短剧、小说推文、剧情预告
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-005/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-005)
@@ -108,6 +113,7 @@
 
 - 内容类型：音乐 MV
 - 素材：生图
+- 技术类型：扩图与局部重绘
 - 适合：MV、歌词视频、片头
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-006/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-006)
@@ -126,6 +132,7 @@
 
 - 内容类型：新闻资讯解说
 - 素材：生图 · 语音合成
+- 技术类型：生图加代码动画 · 语音合成驱动
 - 适合：资讯解读、政策和科学新闻、行业简报
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-007/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-007)
@@ -144,6 +151,7 @@
 
 - 内容类型：纪录片和纪实
 - 素材：生图 · 生视频 · 语音合成
+- 技术类型：图生视频与首尾帧 · 语音合成驱动
 - 适合：伪纪录片、品牌故事、创意短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-008/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-008)
@@ -162,6 +170,7 @@
 
 - 内容类型：教程和录屏演示
 - 素材：生图
+- 技术类型：生图加代码动画
 - 适合：做菜、手工、开箱和安装步骤
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-009/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-009)
@@ -180,6 +189,7 @@
 
 - 内容类型：旅行和城市
 - 素材：生视频 · 语音合成
+- 技术类型：图生视频与首尾帧 · 语音合成驱动
 - 适合：旅行 vlog、城市推荐、文旅宣传
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-010/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-010)
@@ -198,6 +208,7 @@
 
 - 内容类型：体育赛事
 - 素材：生视频
+- 技术类型：图生视频与首尾帧
 - 适合：赛事集锦、运动品牌、校园比赛
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-011/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-011)
@@ -216,6 +227,7 @@
 
 - 内容类型：儿童绘本动画
 - 素材：生图 · 语音合成
+- 技术类型：角色一致性 · 生图加代码动画 · 语音合成驱动
 - 适合：睡前故事、儿童教育、绘本推广
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-012/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-012)

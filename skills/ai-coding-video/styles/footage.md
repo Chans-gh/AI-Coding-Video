@@ -18,6 +18,7 @@
 
 - 内容类型：知识科普讲解
 - 素材：照片 · 数据
+- 技术类型：数据可视化 · 照片运镜
 - 适合：科普、气候和环境、长期趋势
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-001/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-001)
@@ -36,6 +37,7 @@
 
 - 内容类型：口播 / 数字人
 - 素材：录像
+- 技术类型：剪辑与字幕
 - 适合：知识口播、访谈切片、短视频带观点
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-002/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-002)
@@ -54,6 +56,7 @@
 
 - 内容类型：产品广告和带货
 - 素材：照片 · 录像
+- 技术类型：照片运镜 · 剪辑与字幕
 - 适合：产品介绍、老物件新卖点、品牌历史
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-003/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-003)
@@ -72,6 +75,7 @@
 
 - 内容类型：品牌宣传片
 - 素材：录像 · 照片 · 数据
+- 技术类型：剪辑与字幕 · 数据可视化
 - 适合：发布会、发射和开幕、品牌节点
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-004/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-004)
@@ -90,6 +94,7 @@
 
 - 内容类型：短剧 / 动漫剧 / 故事
 - 素材：录像
+- 技术类型：剪辑与字幕
 - 适合：老电影新讲、短故事、历史趣闻
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-005/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-005)
@@ -108,6 +113,7 @@
 
 - 内容类型：音乐 MV
 - 素材：录像 · 照片
+- 技术类型：节拍对齐剪辑 · 剪辑与字幕
 - 适合：歌曲、氛围短片、旅行和风景剪辑
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-006/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-006)
@@ -126,6 +132,7 @@
 
 - 内容类型：新闻资讯解说
 - 素材：照片 · 数据
+- 技术类型：数据可视化
 - 适合：灾害和天气新闻、航线和迁徙、事件复盘
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-007/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-007)
@@ -144,6 +151,7 @@
 
 - 内容类型：纪录片和纪实
 - 素材：照片
+- 技术类型：批注与前后对比 · 照片运镜
 - 适合：历史纪录、人物和档案、博物馆藏品
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-008/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-008)
@@ -162,6 +170,7 @@
 
 - 内容类型：教程和录屏演示
 - 素材：录屏
+- 技术类型：录屏增强
 - 适合：软件教程、产品演示、操作说明
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-009/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-009)
@@ -180,6 +189,7 @@
 
 - 内容类型：旅行和城市
 - 素材：录像 · 照片 · 数据
+- 技术类型：数据可视化 · 剪辑与字幕
 - 适合：城市、旅行目的地、人口和发展
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-010/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-010)
@@ -198,6 +208,7 @@
 
 - 内容类型：体育赛事
 - 素材：照片
+- 技术类型：批注与前后对比
 - 适合：体育动作分析、比赛复盘、运动科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-011/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-011)
@@ -216,6 +227,7 @@
 
 - 内容类型：儿童绘本动画
 - 素材：照片
+- 技术类型：照片运镜
 - 适合：儿童故事、睡前故事、亲子科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/T-012/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-012)

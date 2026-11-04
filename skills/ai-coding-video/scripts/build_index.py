@@ -19,6 +19,8 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STYLES_DIR = os.path.join(ROOT, 'styles')
 JSON_PATH = os.path.join(ROOT, 'data', 'styles.json')
+TAGS_MD_PATH = os.path.join(ROOT, 'tags.md')
+TECH_START, TECH_END = '<!-- techniques:start -->', '<!-- techniques:end -->'
 TAGS_PATH = os.path.join(ROOT, 'data', 'tags.json')
 INDEX_PATH = os.path.join(ROOT, 'index.md')
 # 样片代码、风格包放在仓库里 Skill 文件夹之外；条目里写成指向 GitHub 的链接，Skill 单独装进别的项目也能点开。
@@ -41,7 +43,7 @@ CODE_RE = re.compile(r'```text\n(.*?)\n```', re.S)
 FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
 FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
-FIELDS = {'题材': 'theme', '内容类型': 'content_type', '素材': 'materials', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
+FIELDS = {'题材': 'theme', '内容类型': 'content_type', '素材': 'materials', '技术类型': 'techniques', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
           '样片代码': 'render_code', '风格包': 'pack', '参考': 'refs'}
 REPO_LINKS = {'render_code': 'samples/', 'pack': 'packs/'}
 CLASS_NAME = {'C': '纯代码', 'T': '公共领域素材', 'G': 'AI 生成素材'}
@@ -107,6 +109,15 @@ def parse(errors):
     tags = json.load(open(TAGS_PATH, encoding='utf-8'))
     themes = [t['name'] for t in tags['themes']]
     ctypes = [t['name'] for t in tags['content_types']]
+    techs = {t['name']: t for t in tags['techniques']}
+    diffs = [d['name'] for d in tags['difficulty']]
+    for t in tags['techniques']:
+        if t['difficulty'] not in diffs:
+            errors.append(f'tags.json 技术类型「{t["name"]}」的难度「{t["difficulty"]}」不在 difficulty 里')
+        if t['class'] not in 'TG':
+            errors.append(f'tags.json 技术类型「{t["name"]}」的 class 只能是 T 或 G')
+    if len(techs) != len(tags['techniques']):
+        errors.append('tags.json 的 techniques 有重名')
     mats = {c: [m['name'] for m in v] for c, v in tags['materials'].items()}
     styles = []
     for fname in sorted(os.listdir(STYLES_DIR)):
@@ -131,14 +142,14 @@ def parse(errors):
             imgs = IMG_RE.findall(body)
             rec = {'id': sid, 'class': sid[0], 'name': name.strip(), 'file': f'styles/{fname}', 'layer': layer,
                    'image': f'images/{imgs[0]}' if imgs else None, 'prompt': prompts[0].strip() if prompts else '',
-                   'theme': '', 'content_type': '', 'materials': [], 'fit': '', 'verified': [], 'suggested': [],
+                   'theme': '', 'content_type': '', 'materials': [], 'techniques': [], 'fit': '', 'verified': [], 'suggested': [],
                    'render_code': None, 'pack': None, 'refs': []}
             for key, value in FIELD_RE.findall(FENCE_RE.sub('', body)):
                 if key not in FIELDS:
                     errors.append(f'{where}: 不认识的字段「{key}」')
                     continue
                 k = FIELDS[key]
-                if k in ('verified', 'suggested', 'materials'):
+                if k in ('verified', 'suggested', 'materials', 'techniques'):
                     rec[k] = split_tags(value)
                 elif k == 'refs':
                     rec[k] = [{'label': a, 'url': b} for a, b in MDLINK_RE.findall(value)]
@@ -152,8 +163,8 @@ def parse(errors):
             if rec['class'] == 'C':
                 if rec['theme'] not in themes:
                     errors.append(f'{where}: 题材「{rec["theme"]}」不在 tags.json 的 themes 里')
-                if rec['content_type'] or rec['materials']:
-                    errors.append(f'{where}: C 类按题材分，不写「内容类型」「素材」')
+                if rec['content_type'] or rec['materials'] or rec['techniques']:
+                    errors.append(f'{where}: C 类按题材分，不写「内容类型」「素材」「技术类型」')
             else:
                 if rec['theme']:
                     errors.append(f'{where}: {rec["class"]} 类按内容类型分，不写「题材」')
@@ -164,6 +175,13 @@ def parse(errors):
                 for mname in rec['materials']:
                     if mname not in mats[rec['class']]:
                         errors.append(f'{where}: 素材「{mname}」不是 {rec["class"]} 类的素材种类（{" / ".join(mats[rec["class"]])}）')
+                if not 1 <= len(rec['techniques']) <= 3:
+                    errors.append(f'{where}: 「技术类型」写 1–3 个')
+                if len(set(rec['techniques'])) != len(rec['techniques']):
+                    errors.append(f'{where}: 「技术类型」有重复')
+                for tname in rec['techniques']:
+                    if tname not in techs:
+                        errors.append(f'{where}: 技术类型「{tname}」不在 tags.json 的 techniques 里')
                 if rec['render_code']:
                     check_assets(rec, where, mats[rec['class']], errors)
             if not rec['fit']:
@@ -229,6 +247,21 @@ def catalog(styles, tags):
     out.append('按技术分的文件：' + ' · '.join(
         f'[{v["name"]}](styles/{k}.md)（{sum(1 for r in styles if r["layer"] == k)}）'
         for k, v in tags['files'].items() if any(r['layer'] == k for r in styles)))
+    return '\n'.join(out)
+
+
+def coverage(styles, tags):
+    """T/G 技术类型 × 条目 × 样片 × 难度（从条目算出来）"""
+    out = ['| 类型 | 难度 | 条目 | 有样片 |', '|---|---|---|---|']
+    for cls in 'TG':
+        out.append(f'| **{CLASS_NAME[cls]}** | | | |')
+        for t in (t for t in tags['techniques'] if t['class'] == cls):
+            rs = [r for r in styles if t['name'] in r['techniques']]
+            ids = ' · '.join(f'[{r["id"]}](styles/{r["layer"]}.md#{r["id"]})' for r in rs) or '—'
+            n = sum(1 for r in rs if r['image'])
+            out.append(f'| {t["name"]} | {t["difficulty"]} | {ids} | {"是（%d）" % n if n else "否"} |')
+    miss = sum(1 for t in tags['techniques'] if not any(t['name'] in r['techniques'] for r in styles))
+    out += ['', f'{len(tags["techniques"])} 个类型中，{miss} 个还没有条目。']
     return '\n'.join(out)
 
 
@@ -365,7 +398,17 @@ def main():
         head, rest = index.split(CAT_START, 1)
         _, tail = rest.split(CAT_END, 1)
         new_index = f'{head}{CAT_START}\n{catalog(styles, tags)}\n{CAT_END}{tail}'
+    tmd = open(TAGS_MD_PATH, encoding='utf-8').read()
+    if TECH_START not in tmd or TECH_END not in tmd:
+        errors.append('tags.md: 缺少技术类型表的起止标记')
+        new_tmd = tmd
+    else:
+        head, rest = tmd.split(TECH_START, 1)
+        _, tail = rest.split(TECH_END, 1)
+        new_tmd = f'{head}{TECH_START}\n{coverage(styles, tags)}\n{TECH_END}{tail}'
     if check:
+        if new_tmd != tmd:
+            errors.append('tags.md 的技术类型表不是最新的：先运行 python3 scripts/build_index.py')
         if not os.path.exists(JSON_PATH) or open(JSON_PATH, encoding='utf-8').read() != data:
             errors.append('data/styles.json 不是最新的：先运行 python3 scripts/build_index.py')
         if new_index != index:
@@ -373,6 +416,7 @@ def main():
     else:
         open(JSON_PATH, 'w', encoding='utf-8').write(data)
         open(INDEX_PATH, 'w', encoding='utf-8').write(new_index)
+        open(TAGS_MD_PATH, 'w', encoding='utf-8').write(new_tmd)
     bundled = sync_bundle(check, errors)
     check_links(errors)
     check_versions(errors)
