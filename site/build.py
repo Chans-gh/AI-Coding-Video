@@ -1,13 +1,18 @@
-"""生成介绍页：python3 site/build.py
+"""生成介绍页：python3 site/build.py [--page | --font-packages]
+
+--page 只出 index.html 和字体，不拷媒体、不出小版（发布时媒体由 .github/workflows/pages.yml 准备）。
+--font-packages 打出要用的字体包和版本（版本取 samples/package.json），发布时只装这几个。
+index.html、fonts/、media/ 都是生成物，不进仓库，发布时在 CI 里生成。
 
 读 Skill 的 data/styles.json 和 samples/ 里已渲染的样片，把 src/index.html 填好写成 site/index.html，
 把样片视频和静帧拷进 site/media/，再由 small.py 出卡片用的小版（site/media/s/），按页面实际用到的字把字体裁成小文件放进 site/fonts/。
 页面里的数字（风格总数、样片数、各题材数量）都在这里算，不要手改 index.html。
-需要：samples/ 下先 npm install（字体来自 @fontsource），Python 装 fontTools 和 brotli。
+需要：samples/ 下先 npm install（字体来自 @fontsource；环境变量 FONTSRC 可指向别处的 @fontsource 目录），Python 装 fontTools 和 brotli。
 """
 import hashlib
 import html
 import json
+import os
 import re
 import shutil
 import sys
@@ -23,7 +28,7 @@ SAMPLES = REPO_DIR / "samples"
 PACKS = REPO_DIR / "packs"
 _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
-FONTSRC = SAMPLES / "node_modules" / "@fontsource"
+FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
 VERSION = "v11 · 2026-11-04"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
@@ -360,6 +365,9 @@ def page_chars(text):
 
 
 def main():
+    if "--font-packages" in sys.argv:
+        print(" ".join(font_packages()))
+        return
     styles = load_styles()
     ids = sample_ids(styles)
     if not ids:
@@ -383,7 +391,14 @@ def main():
     if left:
         sys.exit(f"模板里还有没填的占位符：{left}")
     (HERE / "index.html").write_text(tpl, encoding="utf-8")
+    if "--page" not in sys.argv:
+        copy_media(ids, packs)
+    make_fonts(tpl)
+    size = sum(p.stat().st_size for p in HERE.rglob("*") if p.is_file() and "src" not in p.parts)
+    print(f"写好 site/index.html：{len(ids)} 个样片，{len(packs)} 个风格包，{len(styles)} 种风格；整站 {size / 1e6:.1f} MB")
 
+
+def copy_media(ids, packs):
     media = HERE / "media"
     media.mkdir(exist_ok=True)
     for p in media.glob("*"):   # 原版每次重拷；小版 media/s/ 留着，原版没变的 small.py 不重出
@@ -401,19 +416,28 @@ def main():
         print(f"本地缺 {missing} 个视频，预览里只有静帧；要看视频先跑 python3 scripts/media.py pull")
     small.main()   # 卡片用的小视频、小静帧 → media/s/
 
+
+# 页面用的字体：(@fontsource 包, 字重, 输出名, 是否只要拉丁字符)
+FONTS = [("noto-sans-sc", 400, "sans-400", False), ("noto-sans-sc", 700, "sans-700", False),
+         ("noto-serif-sc", 900, "serif-900", False),
+         ("jetbrains-mono", 400, "mono-400", True), ("jetbrains-mono", 700, "mono-700", True)]
+
+
+def font_packages():
+    deps = json.loads((SAMPLES / "package.json").read_text(encoding="utf-8"))["dependencies"]
+    return [f"@fontsource/{pkg}@{deps['@fontsource/' + pkg]}" for pkg in dict.fromkeys(f[0] for f in FONTS)]
+
+
+def make_fonts(tpl):
     if not FONTSRC.exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
     fonts = HERE / "fonts"
     fonts.mkdir(exist_ok=True)
     chars = page_chars(tpl)
     ascii_ = {c for c in chars if ord(c) < 0x250}
-    for pkg, w, name, cs in [("noto-sans-sc", 400, "sans-400", chars), ("noto-sans-sc", 700, "sans-700", chars),
-                             ("noto-serif-sc", 900, "serif-900", chars),
-                             ("jetbrains-mono", 400, "mono-400", ascii_), ("jetbrains-mono", 700, "mono-700", ascii_)]:
-        n = make_font(pkg, w, cs, fonts / f"{name}.woff2")
+    for pkg, w, name, latin in FONTS:
+        n = make_font(pkg, w, ascii_ if latin else chars, fonts / f"{name}.woff2")
         print(f"字体 {name}：{n} 个分片 → {(fonts / f'{name}.woff2').stat().st_size / 1e3:.0f} KB")
-    size = sum(p.stat().st_size for p in HERE.rglob("*") if p.is_file() and "src" not in p.parts)
-    print(f"写好 site/index.html：{len(ids)} 个样片，{len(packs)} 个风格包，{len(styles)} 种风格；整站 {size / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":

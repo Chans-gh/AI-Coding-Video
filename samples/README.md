@@ -48,7 +48,7 @@ python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynot
 
 想在浏览器里看，要先在 `samples/` 下起一个本地服务，例如 `python3 -m http.server`，再打开 `http://localhost:8000/player.html?s=C-001&ar=16x9`。
 
-发版用仓库根目录的 `scripts/release.sh "<提交说明>"`：登记样片 → 词典检查 → `API.md` 检查 → 生成介绍页 → 新出的视频传到 Release → 提交并推送当前分支；加 `--live` 再用无头浏览器打开线上介绍页，打一行结果（卡片数、报错、加载失败的文件）。
+发版用仓库根目录的 `scripts/release.sh "<提交说明>"`：登记样片 → 词典检查 → `API.md` 检查 → 试生成介绍页（页面不进仓库，发布时在 CI 里生成）→ 新出的视频传到 Release → 提交并推送当前分支；加 `--live` 再用无头浏览器打开线上介绍页，打一行结果（卡片数、报错、加载失败的文件）。
 
 ## 视频放在哪
 

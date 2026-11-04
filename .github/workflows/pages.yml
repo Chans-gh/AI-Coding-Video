@@ -1,9 +1,9 @@
-# 把 site/ 发布到 GitHub Pages。静帧发布时从 samples/、packs/ 拷进 site/media/；视频不进仓库，从 Release「media」下载进 site/media/（scripts/media.py 维护）；再由 site/small.py 出卡片用的小版到 site/media/s/、首页大视频到 site/media/m/。
+# 生成介绍页并发布到 GitHub Pages。页面和字体在这里由 site/build.py --page 生成，不进仓库，所以改 Skill、样片不用动 site/。静帧发布时从 samples/、packs/ 拷进 site/media/；视频不进仓库，从 Release「media」下载进 site/media/（scripts/media.py 维护）；再由 site/small.py 出卡片用的小版到 site/media/s/、首页大视频到 site/media/m/。
 name: pages
 on:
   push:
     branches: [main]
-    paths: ["site/**", "samples/*/**", "packs/*/demo/**", "media.json", ".github/workflows/pages.yml"]
+    paths: ["site/**", "skills/ai-coding-video/**", "samples/*/**", "packs/*/**", "media.json", ".github/workflows/pages.yml"]
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,6 +20,25 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # 裁字体用的原字体：只装 site/build.py 用到的几个 @fontsource 包（版本取 samples/package.json），装在仓库外面
+      - name: 准备生成页面的工具
+        run: |
+          pip install -q fonttools brotli
+          echo "FONTSRC=$RUNNER_TEMP/fontsrc/node_modules/@fontsource" >> "$GITHUB_ENV"
+          echo "FONT_PKGS=$(python3 site/build.py --font-packages)" >> "$GITHUB_ENV"
+      - id: font-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/fontsrc/node_modules
+          key: fontsrc-${{ hashFiles('samples/package.json') }}
+      - name: 下载原字体
+        if: steps.font-cache.outputs.cache-hit != 'true'
+        run: npm install --no-save --no-package-lock --no-audit --no-fund --prefix "$RUNNER_TEMP/fontsrc" $FONT_PKGS
+      - name: 生成页面和字体
+        run: python3 site/build.py --page
       - name: 拷静帧、下载视频
         env:
           GH_TOKEN: ${{ github.token }}

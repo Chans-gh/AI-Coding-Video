@@ -10,7 +10,7 @@
 | `skills/ai-coding-video/samples/`、`packs/` | 随 Skill 安装的样片和风格包代码（不含截图、T/G 类素材和只给维护者用的工具） | 生成物，不手改：改仓库根目录的 `samples/`、`packs/` 后跑 `build_index.py` 同步，`--check` 会查 |
 | `samples/<编号>/` | 样片：C 类是一种风格的渲染代码；T 类、G 类另带 `assets/` 素材和 `assets.json` | 每帧只由时间 t 决定；出 16:9 和 9:16 两版；C 类不引用任何外部图片、视频或生成模型 |
 | `packs/<名字>/` | 2 级风格包 | 维护者通过的风格才做 |
-| `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，再跑 `python3 site/build.py`，见 [site/README.md](site/README.md) |
+| `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，本地预览跑 `python3 site/build.py`。生成的页面、字体、媒体不进仓库，发布时在 CI 里生成，见 [site/README.md](site/README.md) |
 | `media.json` | 样片和风格包演示片视频的清单（视频本身在 GitHub Release） | 由 `scripts/media.py` 生成，不手改 |
 | `candidates.md` | T 类、G 类候选及其截图、样片链接 | 正式收录时搬进 Skill 并删掉对应行 |
 | `PLAN.md` | 批次规划和待办 | 做完的批次删掉，记进 Skill 的 CHANGELOG |
@@ -22,6 +22,7 @@
 - **提示词用自己的话写**：参考来源只取做法，不复制原文；来源许可不是 MIT、Apache、CC BY 这类开放许可的，只能借风格名。以商业作品或在世艺术家命名的「致敬风格」可以收，名字写成「某某式」，提示词只描述画法；样片里的角色、场景、标志、台词全部原创。
 - **1 级样片的声音用自带的电子音**：全部由 `samples/lib/synth.py` 用代码合成，不调用第三方声音模型（TTS、AI 作曲），不用曲库、录音或采样（维护者定）。T 类、G 类的声音见下。
 - **视频不进仓库**：样片和风格包演示片的视频放在 GitHub Release，用 `scripts/media.py` 上传、下载，见 [samples/README.md](samples/README.md#视频放在哪)（维护者定）。
+- **按目录分工**：介绍页的优化只改 `site/`，不碰 `skills/`、`samples/`、`packs/`；改 Skill、样片也不用动 `site/`，推到 `main` 后页面按最新的数据重新生成。页面要用的新数据，先进 Skill 的 `data/styles.json` 或样片的 `meta.json`，再由 `site/build.py` 读（维护者定）。
 - **编号只增不改**；`data/styles.json`、`index.md` 的风格目录和 Skill 里的 `samples/`、`packs/` 是生成物，不要手改。
 - **一件事只记一处**：别处要用就放链接。数字（风格总数等）只出现在生成它的地方。
 - 案例的工具链、费用、用时是原作者自述，写进文档时保留「未经核实」。
@@ -44,6 +45,6 @@
 - 出片用 `samples/batch.py`，在后台跑，跑完会通知，不写轮询循环；命令输出只看摘要和结尾几行，出错再看日志。
 - 看图按顺序来：先看数字摘要，再看批量总览图，只有 ✗ 或可疑的才单独看。
 - 不开子代理；临时脚本不放会话的临时目录，需要反复用的写进仓库。
-- 预览页每批发一次；`main` 每批推一次（推到 `main` 会自动重新发布介绍页）。
+- 预览页每批发一次；`main` 每批推一次（改了 `site/`、`skills/`、`samples/`、`packs/`、`media.json` 的推送会自动重新发布介绍页）。
 - 分支：每次从最新的 `main` 开一个新分支干活，做完合并回 `main`，不留长期分支（维护者定）。
 - 原仓库 `chans-gh/test` 平时用不到（opus40 的 40 种场景已全部移植），同步回原仓库时再临时加进来。

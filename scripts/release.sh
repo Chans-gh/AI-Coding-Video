@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 发版：登记样片 → 词典检查 → API.md 检查 → 生成介绍页 → 新出的视频传到 Release → 提交并推送当前分支。
+# 发版：登记样片 → 词典检查 → API.md 检查 → 试生成介绍页（只查能不能生成，页面不进仓库）→ 新出的视频传到 Release → 提交并推送当前分支。
 #   scripts/release.sh "<提交说明>"          提交说明可以多行（附署名行）
 #   scripts/release.sh --live "<提交说明>"   推送后再用无头浏览器打开线上介绍页，打一行结果
 #   scripts/release.sh --live                只检查线上介绍页，不提交
@@ -14,7 +14,7 @@ if [[ -n "$msg" ]]; then
   python3 samples/tools/mark.py all | grep -v '^= ' || true
   python3 skills/ai-coding-video/scripts/build_index.py --check
   python3 samples/tools/apidoc.py --check
-  python3 site/build.py | tail -1
+  python3 site/build.py --page | tail -1
   python3 scripts/media.py upload
   git add -A
   git commit -q -m "$msg"
