@@ -8,7 +8,7 @@ from synth import SR, fade, load
 
 # 发布会原话（assets/dl/quote.mp3 从原录像第 855 秒起截 40 秒）：两截，[素材里的起点, 终点, 放在第 7 段的第几秒]
 # 和 segments/07.js 的 QUOTE 一致；字词时间见 log.md 的核对记录
-QUOTE = [(9.75, 22.6, 23.6), (29.8, 35.4, 37.05)]
+QUOTE = [(10.0, 22.42, 23.85), (29.8, 35.4, 37.05)]
 LAUNCH_AT = .5          # 发射原声（塔架机位，素材第 8.5 秒是固体助推器点火）放在第 3 段第 0.5 秒：点火落在第 9 秒，和画面的任务时钟 T-0 对齐
 PLAN = [("insistent", 1, 3), ("star", 4, 6), ("insistent", 7, 7), ("star", 8, 9)]
 MUSIC, DUCK, XF = .30, .62, 2.0

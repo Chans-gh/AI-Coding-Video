@@ -10,13 +10,15 @@ timing.json：每段 {title, dur 秒（整帧）, vo: [每句 {ss 从整稿旁�
 """
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 CASES = Path(__file__).resolve().parent.parent
 FPS = 30
 VO = "assets/vo.mp3"
-PUNCT = r"[\s，。！？；：、,.!?;:—…·“”\"'（）()]"
+QUIET, SNAP, PAD = -45, .7, .06   # 停顿的电平（dB）；句界离停顿最多几秒还算这个停顿；切点在发音前后各留几秒（落在停顿里）
+PUNCT =r"[\s，。！？；：、,.!?;:—…·“”\"'（）()]"
 
 
 def load(d):
@@ -42,6 +44,28 @@ def sync(d):
     print(f"旁白 {len(text)} 字 → assets.json")
 
 
+def silences(path):
+    """旁白里的停顿 [(起, 止)]，秒"""
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", f"silencedetect=n={QUIET}dB:d=0.06", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    st = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", r.stderr)]
+    en = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", r.stderr)]
+    return list(zip(st, en))
+
+
+def edges(path, clips, sr=16000):
+    """每个旁白片段首尾 30 毫秒的电平，高于 QUIET 的（切在发音上）返回 [(第几句, 起点秒, dB)]"""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-ac", "1", "-ar", str(sr), "-f", "f32le", "-"], capture_output=True).stdout
+    x, n, bad = np.frombuffer(raw, np.float32), int(.03 * sr), []
+    for i, c in enumerate(clips):
+        a, b = int(c["ss"] * sr), int((c["ss"] + c["t"]) * sr)
+        db = max(20 * np.log10(np.sqrt(np.mean(x[j:j + n] ** 2)) + 1e-9) for j in (a, max(a, b - n)))
+        if db > QUIET:
+            bad.append((i + 1, round(c["ss"], 2), round(float(db), 1)))
+    return bad
+
+
 def frames(x):
     return round(x * FPS) / FPS
 
@@ -51,7 +75,7 @@ def build(d):
     it = vo_item(A)
     if "".join("".join(s["vo"]) for s in S["segments"]) != it.get("text"):
         sys.exit("script.json 改过、旁白还没重配：先 --sync，再 python3 cases/tools/assets.py <名字> --only assets/vo.mp3 --force")
-    lines, k, out = it["lines"], 0, []
+    lines, k, out, segs = it["lines"], 0, [], []
     for i, s in enumerate(S["segments"]):
         want, got, mine = bare("".join(s["vo"]), S["show"]), "", []
         while k < len(lines) and len(got) < len(want):
@@ -70,19 +94,40 @@ def build(d):
                 clips.append({"s": si, "t0": l["t0"], "t1": l["t1"]})
             clips[-1]["t1"] = l["t1"]
             outl.append({**l, "s": si})
-        nxt = lines[k]["t0"] if k < len(lines) else it["dur"]
+        segs.append((s, p, clips, outl))
+    # 字幕的时间和真实发音差 0.3–0.5 秒，直接按字幕切会切掉句尾、下一句开头带上上一句的尾音：
+    # 每个句界改到旁白里离它最近的真实停顿上，在停顿中间切；句内字幕按真实起止等比例挪
+    allc = [c for _, _, cl, _ in segs for c in cl]
+    pauses, bad = silences(d / VO), []
+    for a, b in zip(allc, allc[1:]):
+        x = (a["t1"] + b["t0"]) / 2
+        q = min(pauses, key=lambda q: abs((q[0] + q[1]) / 2 - x), default=None)
+        if q is None or abs((q[0] + q[1]) / 2 - x) > SNAP:
+            bad.append(round(x, 2)); q = (x, x)
+        a["e"], b["b"] = q[0], q[1]
+    allc[0]["b"] = max(0, next((q[1] for q in pauses if q[0] <= .05), 0)) if pauses else 0
+    allc[-1]["e"] = next((q[0] for q in pauses if q[1] >= it["dur"] - .05), it["dur"])
+    if bad:
+        print(f"！这些句界附近没有停顿，按字幕切：{bad}")
+    for s, p, clips, outl in segs:
         vo, at = [], p["lead"]
-        for j, c in enumerate(clips):
-            ss = max(0, c["t0"] - .12)
-            end = min((clips[j + 1]["t0"] if j + 1 < len(clips) else nxt) - .03, c["t1"] + .25)
+        for c in clips:
+            ss, end = max(0, c["b"] - PAD), c["e"] + PAD
             c.update(ss=ss, t=end - ss, at=at)
             vo.append({"ss": round(ss, 3), "t": round(end - ss, 3), "at": round(at, 3)})
             at += end - ss + p["gap"]
         at -= p["gap"]
         dur = frames(max(p["min"], at + p["tail"]))
-        shift = {c["s"]: c["at"] - c["ss"] for c in clips}
+        C = {c["s"]: c for c in clips}
+
+        def mv(t, c):                                      # 字幕时间 → 本段时间：句内按真实发音起止等比例挪
+            k = (c["e"] - c["b"]) / max(c["t1"] - c["t0"], 1e-3)
+            return round(c["at"] + (c["b"] - c["ss"]) + (t - c["t0"]) * k, 3)
         out.append({"title": s["title"], "dur": dur, "vo": vo,
-                    "lines": [{"t0": round(l["t0"] + shift[l["s"]], 3), "t1": round(l["t1"] + shift[l["s"]], 3), "text": l["text"], "s": l["s"]} for l in outl]})
+                    "lines": [{"t0": mv(l["t0"], C[l["s"]]), "t1": mv(l["t1"], C[l["s"]]), "text": l["text"], "s": l["s"]} for l in outl]})
+    cut = edges(d / VO, [c for _, _, cl, _ in segs for c in cl])
+    if cut:
+        sys.exit(f"这些句子的切点落在发音上（首尾 30 毫秒高于 {QUIET} dB），会听到断句：{cut}")
     (d / "segments").mkdir(exist_ok=True)
     (d / "segments" / "timing.json").write_text(json.dumps({"fps": FPS, "segments": out}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     tot = sum(s["dur"] for s in out)

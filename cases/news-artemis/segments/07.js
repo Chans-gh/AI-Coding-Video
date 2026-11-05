@@ -1,6 +1,6 @@
 // 第 7 段 返回和发布会金句：舱内降落伞、溅落、回收；发布会长录像（faster-whisper 转文字稿后挑句、对照原声核过）切两截竖屏，
 // 原话中英大字幕。QUOTE 和 sound.py 的 QUOTE 一致：[quote.mp4 里的起点, 终点, 放在本段第几秒]。
-const QUOTE = [[9.75, 22.6, 23.6], [29.8, 35.4, 37.05]];
+const QUOTE = [[10.0, 22.42, 23.85], [29.8, 35.4, 37.05]];
 // 原话（本段秒）：按文字稿的逐词时间；英文照原声，中文是本片的翻译
 const SAYS = [
   [23.69, 30.23, 'The sense I had was this sense of fragility and feeling small, infinitesimally small.', '我当时的感觉，是一种脆弱，觉得自己很小，小到微不足道。'],
