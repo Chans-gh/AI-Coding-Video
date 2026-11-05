@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v14 · 2026-11-04"
+VERSION = "v15 · 2026-11-05"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -250,7 +250,7 @@ def pack_accents(n):
 
 
 def pack_names():
-    """每种品牌色的演示片都出好了的风格包（packs/<名字>/demo/<名字>-<颜色>-<画幅>.mp4）"""
+    """每种切换的演示片都出好了的风格包（packs/<名字>/demo/<名字>-<键>-<画幅>.mp4）"""
     return sorted(d.name for d in PACKS.glob("*") if (d / "meta.json").exists() and all(
         has_video(d / "demo" / f"{d.name}-{a[0]}-{ar}.mp4", f"pack-{d.name}-{a[0]}-{ar}.mp4") for a in pack_accents(d.name) for ar in ("16x9", "9x16")))
 
