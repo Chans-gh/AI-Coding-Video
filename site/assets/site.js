@@ -75,6 +75,26 @@
       start(v);
     }));
   });
+  // 风格包横向滑动：» 翻到下一个，« 翻回上一个；到头的那一侧按钮藏起来。按钮的高度对准演示片的中线
+  const track = document.querySelector('.pack-track');
+  if (track) {
+    const rail = track.parentElement, prev = rail.querySelector('.pack-nav.prev'), next = rail.querySelector('.pack-nav.next');
+    const step = () => track.clientWidth + parseFloat(getComputedStyle(track).columnGap || 0);
+    const sync = () => {
+      const x = track.scrollLeft, max = track.scrollWidth - track.clientWidth - 2;
+      prev.hidden = x <= 2; next.hidden = x >= max;
+      const sc = track.querySelector('.pack-screen');
+      if (sc) rail.style.setProperty('--nav-y', (sc.getBoundingClientRect().top - rail.getBoundingClientRect().top + sc.offsetHeight / 2) + 'px');
+    };
+    const go = d => track.scrollBy({ left: d * step(), behavior: reduce ? 'auto' : 'smooth' });
+    next.addEventListener('click', () => go(1));
+    prev.addEventListener('click', () => go(-1));
+    track.addEventListener('keydown', e => { if (e.target === track && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); go(e.key === 'ArrowRight' ? 1 : -1); } });
+    track.addEventListener('scroll', () => { sync(); poke(); }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+    segs.forEach(b => b.addEventListener('click', () => requestAnimationFrame(sync)));   // 换画幅后演示片高度变了
+  }
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
   // 样片筛选和分页：类型（C/T/G）、题材、技术、页码都放在 state 里，每次点击都从头算一遍，不依赖上一次的结果

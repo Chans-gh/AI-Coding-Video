@@ -288,7 +288,21 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
 .card details p { margin: 8px 0 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; }
 .card .links, .pack .links { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; }
 
-/* packs */
+/* packs：横向滑动，一屏一个包；右侧 » 提示还有下一个（点了翻一页），翻过以后左侧出 « */
+.pack-rail { position: relative; }
+.pack-track { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding: 4px 0 28px; margin-bottom: -28px; }
+.pack-track::-webkit-scrollbar { display: none; }
+.pack-track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.pack-track > .pack { flex: 0 0 100%; scroll-snap-align: start; }
+.pack-nav { position: absolute; top: var(--nav-y, 40%); z-index: 2; display: grid; place-items: center; width: 48px; height: 48px; margin-top: -24px; padding: 0 0 4px; border: 1px solid var(--rule); border-radius: 50%; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(6px); box-shadow: var(--shadow); color: var(--ink); font: 700 26px/1 var(--display); cursor: pointer; transition: opacity .2s, border-color .2s; }
+.pack-nav:hover { border-color: var(--ink); }
+.pack-nav[hidden] { display: none; }
+.pack-nav.next { right: -8px; }
+.pack-nav.prev { left: -8px; }
+.pack-nav.next span { display: block; animation: pack-nudge 1.6s ease-in-out infinite; }
+@keyframes pack-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@media (max-width: 860px) { .pack-nav.next { right: 0; } .pack-nav.prev { left: 0; } }
+@media (prefers-reduced-motion: reduce) { .pack-nav.next span { animation: none; } }
 .pack { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 28px 36px; align-items: start; }
 html[data-ar="9x16"] .pack { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); }
 .pack-screen { background: var(--screen); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; aspect-ratio: 16 / 9; }

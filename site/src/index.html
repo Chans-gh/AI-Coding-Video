@@ -34,9 +34,9 @@
       <p class="kicker"><span lang="zh">视频每一帧，都由代码在时间 <i>t</i> 上算出来</span><span lang="en">Every frame of the video is computed by code, from time <i>t</i></span></p>
       <h1><span lang="zh">1 句话<br>AI 直接完成<br><em>10 分钟</em>视频出片</span><span lang="en">One sentence,<br>the AI delivers<br>a <em>10-minute</em> video</span></h1>
       <ul class="hero-tags">
-        <li><b>0</b><span lang="zh">剪辑</span><span lang="en">editing</span></li>
-        <li><b>0</b><span lang="zh">配音</span><span lang="en">voice-over</span></li>
-        <li><b>0</b><span lang="zh">分镜</span><span lang="en">storyboard</span></li>
+        <li><b>0</b><span lang="zh">编导</span><span lang="en">directing</span></li>
+        <li><b>0</b><span lang="zh">素材</span><span lang="en">footage</span></li>
+        <li><b>0</b><span lang="zh">后期</span><span lang="en">post</span></li>
       </ul>
       <div class="cta">
         <a class="btn primary" href="#skill"><span lang="zh">安装 Skill</span><span lang="en">Install the Skill</span></a>
@@ -124,8 +124,14 @@
 <section class="sec" id="packs">
   <div class="wrap">
     <h2><span lang="zh">风格包</span><span lang="en">Style packs</span></h2>
-    <p class="sec-lede"><span lang="zh">样片通过以后，这种风格就沉淀成一套可复用的代码，再附一份能抄进项目规范的风格说明。每个包只切换一个维度：纯代码的包换品牌色，素材做的包换画面组织或画风，片头、讲解、数据、转场、字幕都跟着走。下面的演示片由风格包的部件拼成，点视频下面的标签切换，画幅跟着上面的样片区切换。</span><span lang="en">Once a sample is approved, the style becomes reusable code, plus a style guide you can paste into your project rules. Each pack switches exactly one dimension: code-only packs swap the brand color, material-based packs swap the layout or the art style, and the opener, explainer, data, transitions and captions all follow. The demos below are built from each pack's parts; use the tabs under a demo to switch, and its frame shape follows the switch in the samples section.</span></p>
+    <p class="sec-lede"><span lang="zh">样片通过以后，这种风格就沉淀成一套可复用的代码，再附一份能抄进项目规范的风格说明。每个包只切换一个维度：纯代码的包换品牌色，素材做的包换画面组织或画风，片头、讲解、数据、转场、字幕都跟着走。下面的演示片由风格包的部件拼成，点视频下面的标签切换，画幅跟着上面的样片区切换；左右滑动或点右侧的 » 看下一个包。</span><span lang="en">Once a sample is approved, the style becomes reusable code, plus a style guide you can paste into your project rules. Each pack switches exactly one dimension: code-only packs swap the brand color, material-based packs swap the layout or the art style, and the opener, explainer, data, transitions and captions all follow. The demos below are built from each pack's parts; use the tabs under a demo to switch, and its frame shape follows the switch in the samples section. Swipe sideways, or tap » on the right, for the next pack.</span></p>
+    <div class="pack-rail">
+      <div class="pack-track" tabindex="0" aria-label="风格包 Style packs">
 {{PACKS}}
+      </div>
+      <button type="button" class="pack-nav prev" hidden aria-label="上一个 Previous"><span aria-hidden="true">«</span></button>
+      <button type="button" class="pack-nav next" aria-label="下一个 Next"><span aria-hidden="true">»</span></button>
+    </div>
   </div>
 </section>
 
