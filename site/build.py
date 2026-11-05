@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v16 · 2026-11-05"
+VERSION = "v17 · 2026-11-05"
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -398,6 +398,166 @@ def page_chars(text):
     return {c for c in chars if not c.isspace() or c == " "}
 
 
+CASES = REPO_DIR / "cases"
+CASE_KIND = {"C": ("c", "C 代码画", "C · code"), "T": ("t", "T 真实素材", "T · real material"), "G": ("g", "G AI 生成", "G · AI-generated")}
+
+
+def md_inline(s):
+    """case.json、log.md 里的行内 Markdown：链接、代码；样片编号 [C-038] 链到页面里那张卡片"""
+    out, pos = [], 0
+    for m in re.finditer(r"\[([^\]]+)\]\((https?://[^)\s]+)\)|`([^`]+)`|\[([CTG]-\d{3})\]", s):
+        out.append(esc(s[pos:m.start()]))
+        if m.group(2):
+            out.append(f'<a href="{esc(m.group(2))}">{esc(m.group(1))}</a>')
+        elif m.group(3):
+            out.append(f"<code>{esc(m.group(3))}</code>")
+        else:
+            out.append(f'<a href="#{m.group(4)}">{m.group(4)}</a>')
+        pos = m.end()
+    return "".join(out) + esc(s[pos:])
+
+
+def mmss(t):
+    t = int(round(t))
+    return f"{t // 60}:{t % 60:02d}"
+
+
+def case_dirs():
+    """有 case.json 的案例，做完的排前面"""
+    cs = [(d.name, json.loads((d / "case.json").read_text(encoding="utf-8"))) for d in sorted(CASES.glob("*")) if (d / "case.json").exists()]
+    return sorted(cs, key=lambda x: x[1]["status"] != "完成")
+
+
+def case_ready(n, c):
+    """做完、成片和封面登记在 media.json、每段有实际起止的才放播放器；其余只出一张「制作中」的卡片"""
+    return c["status"] == "完成" and all(f"case-{n}{x}" in LISTED for x in ("-mid.mp4", ".mp4", ".jpg")) \
+        and all("start" in s for s in c["segments"])
+
+
+def log_summary(n):
+    """log.md 末尾「## 汇总」下面的表：[(项目, 数, 说明)]"""
+    p = CASES / n / "log.md"
+    text = p.read_text(encoding="utf-8") if p.exists() else ""
+    if "## 汇总" not in text:
+        return []
+    rows = []
+    for ln in text.split("## 汇总", 1)[1].splitlines():
+        if ln.startswith("## "):
+            break
+        cells = [x.strip() for x in ln.strip().strip("|").split("|")]
+        if ln.startswith("|") and len(cells) >= 2 and not set(cells[0]) <= set("-: ") and cells[0] != "项目":
+            rows.append((cells + ["", ""])[:3])
+    return rows
+
+
+def use_kind(u):
+    """一条技术的类别：跟样片走，风格包跟它沉淀自的样片走，没样片的看 class（和 cases/tools/build.py 一致）"""
+    r = u.get("ref")
+    if not r:
+        return u["class"]
+    if r.startswith("pack:"):
+        return json.loads((PACKS / r[5:] / "meta.json").read_text(encoding="utf-8"))["from"][0]
+    return r[0]
+
+
+def ref_link(r, by):
+    if r.startswith("pack:"):
+        return f'<a href="#packs">{both("风格包 " + r[5:], "pack " + r[5:])}</a>'
+    return f'<a href="#{r}">{r} {esc(by.get(r, {}).get("name", ""))}</a>'
+
+
+def case_html(n, c, by):
+    segs, end = c["segments"], c["segments"][-1]["end"]
+    lead_sec = dict.fromkeys("CTG", 0.0)
+    for s in segs:
+        lead_sec[s["lead"]] += s["end"] - s["start"]
+    bar = "".join(f'<button type="button" class="cb k-{CASE_KIND[s["lead"]][0]}" style="flex-grow:{s["end"] - s["start"]:.2f}" data-i="{i}" '
+                  f'aria-label="{i + 1} {esc(s["title"])}" title="{i + 1} {esc(s["title"])}"></button>' for i, s in enumerate(segs))
+    toc = "".join(f'<li><button type="button" data-i="{i}" aria-pressed="{str(i == 0).lower()}"><i class="kd k-{CASE_KIND[s["lead"]][0]}"></i>'
+                  f'<code>{mmss(s["start"])}</code>{esc(s["title"])}</button></li>' for i, s in enumerate(segs))
+    cards = []
+    for i, s in enumerate(segs):
+        used = {use_kind(u) for u in s["uses"]}
+        chips = "".join(f'<span class="kc k-{CASE_KIND[k][0]}{" on" if k in used else ""}{" lead" if k == s["lead"] else ""}">{both(CASE_KIND[k][1], CASE_KIND[k][2])}</span>' for k in "CTG")
+        uses = "".join(f'<li><i class="kd k-{CASE_KIND[use_kind(u)][0]}" title="{use_kind(u)}"></i><span>{esc(u["what"])}</span>'
+                       f'{ref_link(u["ref"], by) if u.get("ref") else ""}</li>' for u in sorted(s["uses"], key=lambda u: "CTG".index(use_kind(u))))
+        note = f'<p class="cs-note"><b>{both("编排", "How it is built")}</b>{esc(s["note"])}</p>' if s.get("note") else ""
+        swap = f'<p class="cs-swap"><b>{both("换掉会怎样", "Without it")}</b>{esc(s["swap"])}</p>' if s.get("swap") else ""
+        cards.append(f'''          <section class="cs" data-i="{i}" data-s="{s["start"]:.2f}" data-e="{s["end"]:.2f}"{"" if i == 0 else " hidden"}>
+            <p class="cs-time"><code>{mmss(s["start"])}–{mmss(s["end"])}</code>{both(f"第 {i + 1} 段", f"Part {i + 1}")}</p>
+            <h4>{esc(s["title"])}<small>{esc(s["content"])}</small></h4>
+            <div class="cs-kinds">{chips}</div>
+            <ul class="cs-uses">{uses}</ul>
+            {note}{swap}
+          </section>''')
+    split = "".join(f'<span class="k-{CASE_KIND[k][0]}" style="flex-grow:{lead_sec[k]:.2f}">{k} {mmss(lead_sec[k])}</span>' for k in "CTG" if lead_sec[k])
+    refs = sorted({u["ref"] for s in segs for u in s["uses"] if u.get("ref")} | {u["ref"] for x in c.get("extras", []) for u in x.get("uses", []) if u.get("ref")})
+    usage = "".join(f'<tr><td>{esc(u["item"])}</td><td>{esc(u["qty"])}</td><td>{"—" if u.get("cost") is None else u["cost"]}</td></tr>' for u in c["usage"])
+    logrows = "".join(f"<tr><td>{esc(a)}</td><td>{esc(b)}</td><td>{md_inline(x)}</td></tr>" for a, b, x in log_summary(n))
+    logtab = f'<h5>{both("用时和用量（制作记录）", "Time and usage (production log)")}</h5><table class="cs-tab log">{logrows}</table>' if logrows else ""
+    compare = "".join(f'<li><b>{esc(x["side"])}</b>{md_inline(x["text"])}</li>' for x in c["compare"])
+    down = "".join(f"<li>{md_inline(d)}</li>" for d in c["downgrade"]) + "".join(
+        f'<li><b>{both(f"第 {i + 1} 段", f"Part {i + 1}")} {esc(s["title"])}</b>{esc(s["swap"])}</li>' for i, s in enumerate(segs) if s.get("swap"))
+    extras = "".join(f'<li>{x["count"]} × {x["sec"]}s · {esc(x["what"])}</li>' for x in c.get("extras", []))
+    extras = f'<h5>{both("附带成片", "Extra cuts")}</h5><ul class="sum-list">{extras}</ul>' if extras else ""
+    return f'''    <article class="case" data-case="{n}" data-ar="{c["ar"].replace(":", "x")}" hidden>
+      <div class="case-main">
+        <div class="case-screen"><video data-src="media/case-{n}-mid.mp4" data-poster="media/case-{n}.jpg" controls playsinline preload="none" aria-label="{esc(c["title"])}"></video></div>
+        <div class="case-bar" data-dur="{end:.2f}">{bar}<i class="cb-head" aria-hidden="true"></i></div>
+        <p class="case-links"><a href="media/case-{n}.mp4">{both("原版 1080p", "Full 1080p")}</a><a href="{REPO}/tree/{BRANCH}/cases/{n}">{both("分镜和代码", "Storyboard & code")}</a><a href="{REPO}/blob/{BRANCH}/cases/{n}/log.md">{both("制作记录", "Production log")}</a></p>
+      </div>
+      <div class="case-side">
+        <ol class="case-toc">{toc}</ol>
+        <div class="case-segs">
+{chr(10).join(cards)}
+        </div>
+        <details class="case-sum">
+          <summary>{both("整支汇总", "Whole-video summary")}</summary>
+          <h5>{both("三类各占多少（按每段的主角类）", "Share of each kind (by each part's lead)")}</h5>
+          <div class="sum-split">{split}</div>
+          <h5>{both("用到的样片和风格包", "Samples and packs used")}</h5>
+          <p class="sum-refs">{" ".join(ref_link(r, by) for r in refs)}</p>
+          {extras}
+          <h5>{both("生成用量（青水算力）", "Generation usage (credits)")}</h5>
+          <table class="cs-tab">{usage}</table>
+          {logtab}
+          <h5>{both("和人工、过去的 AI 工具比", "Versus manual work and earlier AI tools")}</h5>
+          <ul class="sum-list">{compare}</ul>
+          <h5>{both("降级用法", "Simpler versions")}</h5>
+          <ul class="sum-list">{down}</ul>
+        </details>
+      </div>
+    </article>'''
+
+
+def cases_html(styles):
+    """「真实应用」一节：每个案例一张卡片，只加载封面；点开后下面出播放器（中版）和跟着进度切段的说明栏。数据读 cases/<名字>/case.json"""
+    by = {s["id"]: s for s in styles}
+    cards, arts = [], []
+    for n, c in case_dirs():
+        ready, k, segs = case_ready(n, c), CASE_KIND[c["lead"]], c["segments"]
+        dur = segs[-1]["end"] if ready else sum(s["sec"] for s in segs)
+        meta_line = f'<span class="kc k-{k[0]} on lead">{both(k[1], k[2])}</span><span>{c["ar"]} · {mmss(dur)}</span>'
+        body = f'<span class="cc-body"><span class="cc-meta">{meta_line}</span><b>{esc(c["title"])}</b><span class="cc-sum">{esc(c["summary"])}</span></span>'
+        if ready:
+            cards.append(f'''      <button type="button" class="case-card" data-case="{n}" aria-pressed="false">
+        <span class="cc-cover"><span class="cc-blur" style="background-image:url(media/case-{n}.jpg)"></span><img src="media/case-{n}.jpg" alt="" loading="lazy"><span class="cc-play" aria-hidden="true">▶</span></span>
+        {body}
+      </button>''')
+            arts.append(case_html(n, c, by))
+        else:
+            cards.append(f'''      <div class="case-card soon">
+        <span class="cc-cover"><span class="cc-soon">{both("制作中", "In production")}</span></span>
+        {body}
+      </div>''')
+    return f'''    <div class="case-cards">
+{chr(10).join(cards)}
+    </div>
+    <div class="case-stage" hidden>
+{chr(10).join(arts)}
+    </div>'''
+
+
 def main():
     if "--font-packages" in sys.argv:
         print(" ".join(font_packages()))
@@ -413,7 +573,7 @@ def main():
         "{{GALLERY}}": gallery(styles, ids),
         "{{N_C}}": str(sum(s["id"][0] == "C" for s in styles)), "{{N_T}}": str(sum(s["id"][0] == "T" for s in styles)),
         "{{N_G}}": str(sum(s["id"][0] == "G" for s in styles)),
-        "{{HERO}}": hero_html(styles), "{{TEMPLATE}}": template_html(),
+        "{{HERO}}": hero_html(styles), "{{TEMPLATE}}": template_html(), "{{CASES}}": cases_html(styles),
     }
     for k, v in fills.items():
         tpl = tpl.replace(k, v)
@@ -446,6 +606,9 @@ def copy_media(ids, packs):
             shutil.copy2(src, media / dst)
         else:
             missing += 1
+    for name, rec in LISTED.items():   # 案例的成片和封面：cases/<名字>/media/ → media/case-…（已下载的才拷）
+        if name.startswith("case-") and (REPO_DIR / rec["path"]).exists():
+            shutil.copy2(REPO_DIR / rec["path"], media / name)
     if missing:
         print(f"本地缺 {missing} 个视频，预览里只有静帧；要看视频先跑 python3 scripts/media.py pull")
     small.main()   # 卡片用的小视频、小静帧 → media/s/

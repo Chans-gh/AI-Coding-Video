@@ -361,6 +361,43 @@
     tplCopy.dataset.copy = `tpl-${b.dataset.tpl}`;
   }));
 
+  // 真实应用：点卡片才加载中版；说明栏、分段目录、进度条跟着播放进度切到当前这一段，播完展开整支汇总
+  const caseCards = document.querySelectorAll('.case-card[data-case]'), caseStage = document.querySelector('.case-stage');
+  const caseArts = Array.from(document.querySelectorAll('.case'));
+  const caseLoad = v => { if (!v.getAttribute('src')) { v.poster = v.dataset.poster; v.src = v.dataset.src; } };
+  caseArts.forEach(a => {
+    const v = a.querySelector('video'), secs = Array.from(a.querySelectorAll('.cs'));
+    const toc = a.querySelectorAll('.case-toc button'), bars = a.querySelectorAll('.cb');
+    const head = a.querySelector('.cb-head'), dur = Number(a.querySelector('.case-bar').dataset.dur), sum = a.querySelector('.case-sum');
+    let cur = 0;
+    const show = i => {
+      if (i === cur) return;
+      cur = i;
+      secs.forEach((s, k) => { s.hidden = k !== i; });
+      toc.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+      bars.forEach((b, k) => b.classList.toggle('on', k === i));
+    };
+    const at = t => { const i = secs.findIndex(s => t < Number(s.dataset.e)); return i < 0 ? secs.length - 1 : i; };
+    const sync = () => { const t = v.currentTime || 0; show(at(t)); head.style.left = `${Math.min(100, t / dur * 100)}%`; };
+    const jump = i => { caseLoad(v); v.currentTime = Number(secs[i].dataset.s) + 0.05; show(i); v.play().catch(() => {}); };
+    bars[0].classList.add('on');
+    v.addEventListener('timeupdate', sync);
+    v.addEventListener('seeked', sync);
+    v.addEventListener('ended', () => { sum.open = true; });
+    toc.forEach((b, i) => b.addEventListener('click', () => jump(i)));
+    bars.forEach((b, i) => b.addEventListener('click', () => jump(i)));
+  });
+  caseCards.forEach(c => c.addEventListener('click', () => {
+    caseStage.hidden = false;
+    caseCards.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+    caseArts.forEach(a => {
+      const on = a.dataset.case === c.dataset.case, v = a.querySelector('video');
+      a.hidden = !on;
+      if (on) { caseLoad(v); v.play().catch(() => {}); } else v.pause();
+    });
+    caseStage.scrollIntoView({ block: 'start' });
+  }));
+
   // 复制
   document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
     const el = document.getElementById(b.dataset.copy);
