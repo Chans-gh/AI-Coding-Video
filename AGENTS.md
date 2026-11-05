@@ -10,7 +10,7 @@
 | `skills/ai-coding-video/samples/`、`packs/` | 随 Skill 安装的样片和风格包代码（不含截图、T/G 类样片的素材和只给维护者用的工具；风格包演示片的素材 `packs/<名字>/demo/assets/` 随包安装，拷出去就能跑） | 生成物，不手改：改仓库根目录的 `samples/`、`packs/` 后跑 `build_index.py` 同步，`--check` 会查 |
 | `samples/<编号>/` | 样片：C 类是一种风格的渲染代码；T 类、G 类另带 `assets/` 素材和 `assets.json` | 每帧只由时间 t 决定；出 16:9 和 9:16 两版；C 类不引用任何外部图片、视频或生成模型 |
 | `packs/<名字>/` | 2 级风格包 | 维护者通过的风格才做；C 类切换品牌色（`accents`），T、G 类切换别的维度（`switch` + `variants`），素材规矩同 T、G 类样片，每个包合计不超过 10 MB |
-| `cases/<名字>/` | 介绍页「真实应用」模块的 3 支完整视频：分镜、代码、素材清单、制作记录 | 规矩见 [cases/README.md](cases/README.md)；不受样片素材 10 MB 的限制 |
+| `cases/<名字>/` | 介绍页「真实应用」模块的 3 支完整视频：分镜、代码、素材清单、制作记录 | 规矩见 [cases/README.md](cases/README.md)；`case.json` 是正本，改了跑 `python3 cases/tools/build.py` 和 `--check`；不受样片素材 10 MB 的限制 |
 | `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，本地预览跑 `python3 site/build.py`。生成的页面、字体、媒体不进仓库，发布时在 CI 里生成，见 [site/README.md](site/README.md) |
 | `media.json` | 样片和风格包演示片视频的清单（视频本身在 GitHub Release） | 由 `scripts/media.py` 生成，不手改 |
 | `candidates.md` | T 类、G 类候选及其截图、样片链接 | 正式收录时搬进 Skill 并删掉对应行 |

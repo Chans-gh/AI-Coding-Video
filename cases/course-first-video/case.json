@@ -1,0 +1,60 @@
+{
+  "title": "课件教程：零基础用 AI 编程助手做第一条短片",
+  "summary": "一节 5 分钟的视频课：图解、终端和代码都由代码画，录屏和讲义是本仓库自己的，虚构讲师和换画风演示由 AI 生成；工具更新后改一段重出一段。",
+  "ar": "16:9",
+  "lead": "C",
+  "status": "策划",
+  "segments": [
+    {"title": "先看成品", "content": "这节课做出来的 15 秒短片", "sec": 20, "lead": "C", "uses": [
+      {"what": "结尾定格字卡「5 分钟后你也能做」", "class": "C"},
+      {"what": "课上做出的成片全屏播放", "class": "T"}]},
+    {"title": "讲师开场", "content": "这节课学什么", "sec": 20, "lead": "G", "uses": [
+      {"what": "3 个学习目标逐条出现", "class": "C"},
+      {"what": "虚构讲师图生视频，不对口型、不像任何真人", "ref": "G-002"},
+      {"what": "语音合成旁白（公开音色，全片同一条）", "class": "G"}],
+      "swap": "不要讲师，开头直接上学习目标卡，和第 9 段一起省约 23 算力；少了「有人在讲」的亲切感。"},
+    {"title": "概念", "content": "画面怎么来的：纯代码、真实素材、AI 生成三类", "sec": 50, "lead": "C", "uses": [
+      {"what": "三栏图解", "ref": "C-031"},
+      {"what": "等距图", "ref": "C-039"},
+      {"what": "「每帧只由时间 t 决定」用一条时间轴讲", "class": "C"},
+      {"what": "每栏放 2 个样片的小窗", "class": "T"}]},
+    {"title": "讲义", "content": "Skill 说明里最关键的一段", "sec": 25, "lead": "T", "uses": [
+      {"what": "荧光笔划过、推镜", "class": "C"},
+      {"what": "Skill 文档的页面当讲义，按引文定位", "ref": "T-014"}]},
+    {"title": "装 Skill、选风格", "content": "一行命令装上 Skill，在介绍页里按题材选风格", "sec": 40, "lead": "T", "uses": [
+      {"what": "安装命令逐字打出", "ref": "C-169"},
+      {"what": "浏览器录屏，自动放大到正在操作的地方，点击处出波纹", "ref": "T-009"}]},
+    {"title": "写场景、出片", "content": "让 AI 助手写场景代码，渲染出片", "sec": 55, "lead": "C", "uses": [
+      {"what": "终端照真实命令回放：给助手的话、它写的场景代码逐行打出，关键命令打字幕", "ref": "C-169"},
+      {"what": "出片进度条", "class": "C"},
+      {"what": "成片小窗", "class": "T"}]},
+    {"title": "原理", "content": "为什么改一个数就能重出、能批量", "sec": 45, "lead": "C", "uses": [
+      {"what": "代码高亮", "ref": "C-044"},
+      {"what": "同一个场景改参数出 3 个变体并排", "ref": "T-015"},
+      {"what": "同一分镜换写实、水彩、黏土三种画风，和上面的参数变体并排", "ref": "pack:style-swap"}],
+      "swap": "不演示换画风，只并排 3 个参数变体，省约 10 算力；少了「AI 生成的画面也能批量改」这一半。"},
+    {"title": "小结", "content": "3 条要点、课后练习", "sec": 30, "lead": "C", "uses": [
+      {"what": "要点卡片逐条出现", "class": "C"},
+      {"what": "要点从讲义里摘出、定位", "ref": "T-014"}]},
+    {"title": "讲师收尾", "content": "收尾、片尾出处", "sec": 15, "lead": "G", "uses": [
+      {"what": "片尾出处", "class": "C"},
+      {"what": "讲师第 2 段", "ref": "G-002"}]}
+  ],
+  "extras": [
+    {"what": "知识点竖屏短片：概念、写场景出片、原理三段各一条", "count": 3, "sec": 60, "uses": [{"what": "自动改画幅", "ref": "T-016"}]}
+  ],
+  "usage": [
+    {"item": "生图", "qty": "讲师 1 张、图解配图 2 张，留 2 张试错", "cost": 5},
+    {"item": "生图（换画风）", "qty": "3 个镜头 × 3 种画风 9 张，留 1 张试错", "cost": 10},
+    {"item": "生视频", "qty": "讲师 2 段 × 5 秒，留 1 段试错", "cost": 23},
+    {"item": "语音合成", "qty": "旁白约 1300 字 1 次；重配 1 次", "cost": 2}
+  ],
+  "downgrade": [
+    "只用 C 类 + 语音合成 + 录屏：图解全部代码画，不用生图、生视频；最省、最好改，适合工具更新后快速重录。"
+  ],
+  "compare": [
+    {"side": "传统人工", "text": "Chapman Alliance 2010 年的调查，开发 1 小时在线课程要 49–716 小时，看互动程度（[Leading Learning 的整理](https://www.leadinglearning.com/cost-to-create-e-learning)、[Karl Kapp 的汇总](https://karlkapp.com/resource-for-finding-out-how-long-it-takes-to-develop-elearning/)，作者自述，数据较老）；录屏讲解视频的厂商报价每分钟约 900–4000 美元（[Advids](https://advids.co/pricing/how-much-screencast-explainer-video-creation-cost)，厂商报价）。"},
+    {"side": "过去的 AI 工具", "text": "数字人课件平台，按分钟订阅（例如 Synthesia，[第三方整理的价格](https://www.arcade.software/post/synthesia-pricing)，以官网为准）；讲师和版式由平台决定，录屏、图解要另外做。"},
+    {"side": "本方法", "text": "取 `log.md` 的实际记录；工具更新后重录的用时单独记一次。"}
+  ]
+}

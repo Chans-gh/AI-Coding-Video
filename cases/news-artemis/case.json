@@ -1,0 +1,61 @@
+{
+  "title": "资讯解说：Artemis II 绕月任务回顾",
+  "summary": "一条大新闻做成 5 分钟竖屏解说：NASA 的录像、照片、星历数据当主角，代码做新闻包装和图解，AI 只补还没有真实画面的未来。",
+  "ar": "9:16",
+  "lead": "T",
+  "status": "策划",
+  "segments": [
+    {"title": "冷开场", "content": "一个最大的数字（离地球最远的距离），一句话说清这条新闻", "sec": 15, "lead": "C", "uses": [
+      {"what": "大字砸进来", "ref": "C-036"},
+      {"what": "发射录像慢放", "class": "T"},
+      {"what": "语音合成旁白（公开音色，全片同一条）", "class": "G"}]},
+    {"title": "片头", "content": "栏目包装：标题条、日期、栏目名（虚构栏目）", "sec": 10, "lead": "C", "uses": [
+      {"what": "栏目包装", "ref": "C-112"},
+      {"what": "段落图标一套，语言模型写 SVG", "ref": "G-013"}]},
+    {"title": "发射", "content": "倒计时到离开发射塔", "sec": 45, "lead": "T", "uses": [
+      {"what": "任务时钟、标题条", "class": "C"},
+      {"what": "三路机位按声音对齐后切换", "ref": "T-013"}]},
+    {"title": "航线", "content": "为什么绕一圈就能回来（自由返回轨道）", "sec": 50, "lead": "T", "uses": [
+      {"what": "地月示意、路线一步步标注", "ref": "C-085"},
+      {"what": "Horizons 星历画猎户座和月球的轨迹，日期、距离、速度读数跟着走", "ref": "T-013"},
+      {"what": "数据读数和刻度", "ref": "T-007"}]},
+    {"title": "飞掠", "content": "宇航员拍到的月面、地球落下", "sec": 50, "lead": "T", "uses": [
+      {"what": "批注框", "class": "C"},
+      {"what": "照片估深度图后分层视差推镜", "ref": "T-018"},
+      {"what": "局部放大加批注", "ref": "T-008"},
+      {"what": "画面组织用「2.5D 视差分层」", "ref": "pack:news-brief"}]},
+    {"title": "和阿波罗比", "content": "距离纪录、乘组、飞船", "sec": 40, "lead": "T", "uses": [
+      {"what": "数据卡", "ref": "C-040"},
+      {"what": "档案照片灯箱", "ref": "T-008"},
+      {"what": "同一张卡片模板套「阿波罗 13 号 / Artemis II」两行", "ref": "T-015"},
+      {"what": "画面组织用「多图拼贴分屏」", "ref": "pack:news-brief"}]},
+    {"title": "返回和发布会金句", "content": "回收录像；任务后发布会的一句话", "sec": 40, "lead": "T", "uses": [
+      {"what": "大字幕", "class": "C"},
+      {"what": "发布会长视频用 faster-whisper 转文字稿，按文字稿切出金句、改竖屏", "ref": "T-016"}]},
+    {"title": "接下来", "content": "后续任务的时间表；还没有真实画面的月面着陆和月面基地", "sec": 30, "lead": "G", "uses": [
+      {"what": "时间线逐个点亮", "class": "C"},
+      {"what": "示意插画用「单图推拉」", "ref": "pack:news-brief"},
+      {"what": "月面着陆示意插画 2 张，标「示意图 · AI 生成」", "ref": "G-007"},
+      {"what": "「未来月面基地」图生视频 1–2 段，各 5 秒，标「AI 生成示意」", "ref": "G-003"}],
+      "swap": "不用生图、生视频，改成纯时间线卡片，没有画面感，但不会被误当成真实画面。"},
+    {"title": "结尾", "content": "一句话总结、素材出处滚动、关注", "sec": 20, "lead": "C", "uses": [
+      {"what": "栏目落版、出处滚动", "ref": "C-112"}]}
+  ],
+  "extras": [
+    {"what": "按文字稿自动切的竖屏短片：发射、飞掠、和阿波罗比", "count": 3, "sec": 60, "uses": [{"what": "高光切片", "ref": "T-016"}]}
+  ],
+  "usage": [
+    {"item": "生图", "qty": "示意插画 2 张，留 2 张试错；月面基地首帧 2 张", "cost": 6},
+    {"item": "生视频", "qty": "月面基地 1–2 段 × 5 秒，含试错按 2 段算（Seedance 2.0 mini，每秒 1.5）", "cost": 15},
+    {"item": "语音合成", "qty": "旁白约 1300 字 1 次；重配 1 次", "cost": 2},
+    {"item": "DeepSeek 生成矢量", "qty": "段落图标 1 套，1–2 次", "cost": null}
+  ],
+  "downgrade": [
+    "只用 C 类 + 语音合成：去掉 NASA 录像和照片，发射、飞掠改成代码画的示意动画（科普扁平 [C-038] 一类）；能做，但「真」的感觉没了，适合没有公开素材的选题。"
+  ],
+  "compare": [
+    {"side": "传统人工", "text": "报纸网站视频平均每分钟成片约 4 小时制作（[journalism.co.uk 报道的调查](https://www.journalism.co.uk/lack-of-production-experience-holding-back-web-video-for-newspapers-survey-suggests/)，作者自述）；Vox 的解说视频平均约 3 周（[RJI](https://rjionline.org/news/breaking-down-the-explainer-video/)，作者自述）。"},
+    {"side": "过去的 AI 工具", "text": "数字人或「文字一键成片」类工具，按分钟订阅（例如 Synthesia，[第三方整理的价格](https://www.arcade.software/post/synthesia-pricing)，以官网为准）；成片改一处要整段重出。"},
+    {"side": "本方法", "text": "取 `log.md` 的实际记录。"}
+  ]
+}
