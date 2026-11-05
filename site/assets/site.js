@@ -254,42 +254,58 @@
     poke();
   });
 
-  // 现场画的小样：和「是什么」一节里写的 draw(ctx, t) 是同一件事
-  function demo(ctx, t, w, h) {
-    const sky = ctx.createLinearGradient(0, 0, 0, h); sky.addColorStop(0, '#0a0f1f'); sky.addColorStop(1, '#2a2340');
-    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
-    const sy = h * (0.7 - 0.2 * t), r = h * .12;                                  // sun(ctx, 0.7 - 0.2 * t)
-    const g = ctx.createRadialGradient(w * .5, sy, 0, w * .5, sy, r * 3); g.addColorStop(0, 'rgba(232,69,46,.55)'); g.addColorStop(1, 'rgba(232,69,46,0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    ctx.fillStyle = '#e8452e'; ctx.beginPath(); ctx.arc(w * .5, sy, r, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = '#05070c'; ctx.beginPath(); ctx.moveTo(0, h);
-    for (let x = 0; x <= w; x += w / 24) ctx.lineTo(x, h * (.78 + .07 * Math.sin(x / w * 7) + .04 * Math.sin(x / w * 17)));
-    ctx.lineTo(w, h); ctx.fill();
-    const p = Math.min(1, Math.max(0, t / 2));                                     // stroke(ctx, t / 2)
-    if (p > 0) {
-      ctx.strokeStyle = '#f2efe6'; ctx.lineCap = 'round';
-      const a0 = -Math.PI / 2 + .35, n = 40;
-      for (let i = 0; i < n * p; i++) {
-        const a = a0 + i / n * Math.PI * 1.85, b2 = a0 + (i + 1) / n * Math.PI * 1.85;
-        ctx.lineWidth = h * (.055 - .035 * i / n);
-        ctx.beginPath(); ctx.arc(w * .5, h * .46, h * .3, a, b2); ctx.stroke();
-      }
-    }
-  }
-  const strip = document.getElementById('demo-strip');
-  if (strip) [0, 1, 2, 2.9].forEach(t => {
-    const f = document.createElement('figure'), c = document.createElement('canvas'), cap = document.createElement('figcaption');
-    c.width = 192; c.height = 108; demo(c.getContext('2d'), t, 192, 108);
-    cap.textContent = `t=${t.toFixed(1)} #${Math.round(t * 30)}`;
-    f.append(c, cap); strip.append(f);
-  });
+  // 现场画的小样：一支 4 秒的新品开场，三层叠起来。bg 代表 AI 生成的背景，photo 代表你拍的产品照片（页面不放外来图片，两层都用代码画的图形代替），code 是代码画的标题和评分
+  const ease = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
+  const LAYERS = {
+    bg(ctx, t, w, h) {
+      const sky = ctx.createLinearGradient(0, 0, 0, h); sky.addColorStop(0, '#1b1530'); sky.addColorStop(1, '#4a2f4f');
+      ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
+      const sx = w * .3, sy = h * (.62 - .12 * ease(t / 4)), r = h * .14;
+      const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, r * 3.2); g.addColorStop(0, 'rgba(255,150,90,.55)'); g.addColorStop(1, 'rgba(255,150,90,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = '#ff9a5c'; ctx.beginPath(); ctx.arc(sx, sy, r, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#120d1f'; ctx.beginPath(); ctx.moveTo(0, h);
+      for (let x = 0; x <= w; x += w / 24) ctx.lineTo(x, h * (.8 + .06 * Math.sin(x / w * 6 + 1) + .03 * Math.sin(x / w * 19)));
+      ctx.lineTo(w, h); ctx.fill();
+    },
+    photo(ctx, t, w, h) {
+      const k = ease((t - .3) / .9), cw = h * .5, ch = h * .66, x = w * .64 + (1 - k) * w * .5, y = h * .17;
+      ctx.save(); ctx.globalAlpha = k; ctx.translate(x + cw / 2, y + ch / 2); ctx.rotate((1 - k) * .3 + .05); ctx.translate(-cw / 2, -ch / 2);
+      ctx.fillStyle = '#f4f1ea'; ctx.fillRect(0, 0, cw, ch);                     // 相纸白边
+      const pad = cw * .08, iw = cw - pad * 2, ih = ch - pad * 3.2;
+      const bg = ctx.createLinearGradient(0, pad, 0, pad + ih); bg.addColorStop(0, '#d9e4ea'); bg.addColorStop(1, '#a9bcc8');
+      ctx.fillStyle = bg; ctx.fillRect(pad, pad, iw, ih);
+      const bx = pad + iw / 2, bw = iw * .34;                                     // 一只瓶子
+      ctx.fillStyle = '#2f5d73'; ctx.beginPath(); ctx.roundRect(bx - bw / 2, pad + ih * .36, bw, ih * .58, bw * .18); ctx.fill();
+      ctx.fillStyle = '#1d3a48'; ctx.fillRect(bx - bw * .22, pad + ih * .22, bw * .44, ih * .15);
+      ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.fillRect(bx - bw * .32, pad + ih * .42, bw * .1, ih * .4);
+      ctx.restore();
+    },
+    code(ctx, t, w, h) {
+      const k1 = ease((t - .9) / .6), k2 = ease((t - 1.3) / .6), k3 = ease((t - 1.8) / 1.2);
+      const x = w * .08;
+      if (k1 > 0) { ctx.fillStyle = '#e8452e'; ctx.beginPath(); ctx.roundRect(x, h * .2, h * .3, h * .11, h * .055); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = `700 ${Math.round(h * .07)}px system-ui, sans-serif`; ctx.textBaseline = 'middle'; ctx.fillText('NEW', x + h * .05, h * .257); }
+      ctx.fillStyle = '#f2efe6';
+      if (k1 > 0) ctx.fillRect(x, h * .37, w * .42 * k1, h * .09);
+      if (k2 > 0) ctx.fillRect(x, h * .5, w * .3 * k2, h * .05);
+      if (k3 > 0) { ctx.font = `800 ${Math.round(h * .13)}px system-ui, sans-serif`; ctx.textBaseline = 'alphabetic';
+        ctx.fillText((4.9 * k3).toFixed(1), x, h * .78); ctx.fillStyle = '#ffc94d'; ctx.fillText('★', x + h * .25, h * .78); }
+    },
+  };
+  const ORDER = ['bg', 'photo', 'code'];
+  const composite = (ctx, t, w, h) => ORDER.forEach(k => LAYERS[k](ctx, t, w, h));
+  const layerCs = Array.from(document.querySelectorAll('.stack canvas'));
   const pc = document.getElementById('demo-play'), pt = document.getElementById('demo-t');
+  const frame = t => {
+    layerCs.forEach(c => { const x = c.getContext('2d'); x.clearRect(0, 0, c.width, c.height); LAYERS[c.dataset.layer](x, t, c.width, c.height); });
+    if (pc) { composite(pc.getContext('2d'), t, pc.width, pc.height); pt.textContent = t.toFixed(2); }
+  };
   if (pc) {
-    const ctx = pc.getContext('2d'); let vis = false, t0 = performance.now();
-    demo(ctx, 0, pc.width, pc.height);
-    const loop = now => { const t = ((now - t0) / 1000) % 3; demo(ctx, t, pc.width, pc.height); pt.textContent = t.toFixed(2); if (vis) requestAnimationFrame(loop); };
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { demo(ctx, 2.5, pc.width, pc.height); pt.textContent = '2.50'; }
-    else if ('IntersectionObserver' in window) new IntersectionObserver(es => { const was = vis; vis = es[0].isIntersecting; if (vis && !was) requestAnimationFrame(loop); }).observe(pc);
+    let vis = false, t0 = performance.now();
+    const loop = now => { frame(((now - t0) / 1000) % 4); if (vis) requestAnimationFrame(loop); };
+    if (reduce) frame(3.5);
+    else if ('IntersectionObserver' in window) { frame(0); new IntersectionObserver(es => { const was = vis; vis = es[0].isIntersecting; if (vis && !was) requestAnimationFrame(loop); }).observe(pc); }
     else { vis = true; requestAnimationFrame(loop); }
   }
 
