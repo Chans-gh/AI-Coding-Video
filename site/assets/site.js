@@ -309,6 +309,12 @@
     else { vis = true; requestAnimationFrame(loop); }
   }
 
+  // 综合应用的例子：点标签换一条时间线
+  const mixTabs = document.querySelectorAll('.mix-tabs [role="tab"]');
+  mixTabs.forEach(b => b.addEventListener('click', () => mixTabs.forEach(x => {
+    const on = x === b; x.setAttribute('aria-selected', String(on)); document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+  })));
+
   // 声音：同一时间只开一个
   const snds = document.querySelectorAll('.snd');
   snds.forEach(b => b.addEventListener('click', () => {

@@ -111,9 +111,14 @@
       </article>
     </div>
     <h3 class="sub"><span lang="zh">实际场景：3 类路线的综合应用</span><span lang="en">In practice: mixing the three routes</span></h3>
-    <p class="sub-lede"><span lang="zh">真正要交付的片子，很少只走一条路。接下来更常见的做法是三类混着用：真实的东西用实拍和数据，拍不到的让 AI 生成，图表、标题、转场交给代码画，最后由代码把它们剪在一起。下面拿一支 60 秒的新品介绍片举例：每一行是一类素材，从左到右是时间。</span><span lang="en">A film you actually ship rarely sticks to one route. The usual way from here on is to mix all three: real things come from footage and data, what you can't film comes from AI, and charts, titles and transitions are drawn by code, which then cuts it all together. Below is a 60-second product video: one row per kind of material, time running left to right.</span></p>
-    <div class="mix">
-      <div class="tl" role="img" aria-label="60 秒新品介绍片的素材时间线 / Material timeline of a 60-second product video">
+    <p class="sub-lede"><span lang="zh">真正要交付的片子，很少只走一条路。接下来更常见的做法是三类混着用：真实的东西用实拍和数据，拍不到的让 AI 生成，图表、标题、转场交给代码画，最后由代码把它们剪在一起。每支片子混法不同，下面举两个例子，点标签切换：每一行是一类素材，从左到右是时间。</span><span lang="en">A film you actually ship rarely sticks to one route. The usual way from here on is to mix all three: real things come from footage and data, what you can't film comes from AI, and charts, titles and transitions are drawn by code, which then cuts it all together. Every film mixes them differently; switch between the two examples below. One row per kind of material, time running left to right.</span></p>
+    <div class="mix-tabs" role="tablist" aria-label="例子 / Examples">
+      <button type="button" role="tab" aria-controls="mix-prod" aria-selected="true"><span lang="zh">新品介绍 · 三类都用</span><span lang="en">Product video · all three</span></button>
+      <button type="button" role="tab" aria-controls="mix-expl" aria-selected="false"><span lang="zh">原理说明 · 代码画 + AI 配音</span><span lang="en">Explainer · code + AI voice</span></button>
+    </div>
+    <div class="mix-panel" id="mix-prod" role="tabpanel">
+      <div class="mix">
+      <div class="tl" style="--n:60" role="img" aria-label="60 秒新品介绍片的素材时间线 / Material timeline of a 60-second product video">
         <div class="tl-corner"></div>
         <div class="tl-seg" style="grid-column:2/10"><b><span lang="zh">片头</span><span lang="en">Opener</span></b><span>0–8s</span></div>
         <div class="tl-seg" style="grid-column:10/27"><b><span lang="zh">产品亮相</span><span lang="en">Product</span></b><span>8–25s</span></div>
@@ -136,6 +141,33 @@
         <div class="tl-lab r-c"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg><span lang="zh">代码合成</span><span lang="en">Code</span></div>
         <div class="tl-base" style="grid-column:2/62"><span lang="zh">剪辑 · 排版 · 字幕 · 转场 · 配乐 · 出片，全程由代码完成</span><span lang="en">Editing · layout · captions · transitions · music · export, all done by code</span></div>
       </div>
+      </div>
+      <p class="tl-note"><span lang="zh">三类都用：实拍和数据当主角，AI 补上拍不到的场景和旁白，代码做图表和整体包装。</span><span lang="en">All three routes: footage and data lead, AI fills in the scenes you can't film and the narration, code draws the charts and the packaging.</span></p>
+    </div>
+    <div class="mix-panel" id="mix-expl" role="tabpanel">
+      <div class="mix">
+      <div class="tl" style="--n:90" role="img" aria-label="90 秒原理说明片的素材时间线 / Material timeline of a 90-second explainer">
+        <div class="tl-corner"></div>
+        <div class="tl-seg" style="grid-column:2/12"><b><span lang="zh">提问</span><span lang="en">The question</span></b><span>0–10s</span></div>
+        <div class="tl-seg" style="grid-column:12/42"><b><span lang="zh">拆开讲</span><span lang="en">Break it down</span></b><span>10–40s</span></div>
+        <div class="tl-seg" style="grid-column:42/72"><b><span lang="zh">动画演示</span><span lang="en">Show it moving</span></b><span>40–70s</span></div>
+        <div class="tl-seg" style="grid-column:72/92"><b><span lang="zh">小结</span><span lang="en">Recap</span></b><span>70–90s</span></div>
+        <div class="tl-lab r-c"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg><span lang="zh">代码画</span><span lang="en">Code draws</span></div>
+        <div class="tl-bar r-c" style="grid-column:2/12"><span lang="zh">问题卡片</span><span lang="en">Question</span></div>
+        <div class="tl-bar r-c" style="grid-column:12/42"><span lang="zh">示意图一步步画出</span><span lang="en">Diagram drawn step by step</span></div>
+        <div class="tl-bar r-c" style="grid-column:42/72"><span lang="zh">原理动画</span><span lang="en">Mechanism animation</span></div>
+        <div class="tl-bar r-c" style="grid-column:72/92"><span lang="zh">要点卡片</span><span lang="en">Key-point cards</span></div>
+        <div class="tl-lab r-t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7H7l1.6-2.2h6.8L17 7h2.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg><span lang="zh">实拍素材</span><span lang="en">Real footage</span></div>
+        <div class="tl-none" style="grid-column:2/92"><span lang="zh">这支用不到</span><span lang="en">Not used here</span></div>
+        <div class="tl-lab r-g"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9zM18.5 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><span lang="zh">AI 生成</span><span lang="en">AI-made</span></div>
+        <div class="tl-none" style="grid-column:2/92"><span lang="zh">这支用不到</span><span lang="en">Not used here</span></div>
+        <div class="tl-lab r-g"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3.5l1.9 5.1 5.1 1.9-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9zM18.5 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><span lang="zh">AI 配音</span><span lang="en">AI voice</span></div>
+        <div class="tl-bar r-g" style="grid-column:2/92"><span lang="zh">旁白，从头讲到尾</span><span lang="en">Narration, start to finish</span></div>
+        <div class="tl-lab r-c"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg><span lang="zh">代码合成</span><span lang="en">Code</span></div>
+        <div class="tl-base" style="grid-column:2/92"><span lang="zh">剪辑 · 排版 · 字幕 · 转场 · 配乐 · 出片，全程由代码完成</span><span lang="en">Editing · layout · captions · transitions · music · export, all done by code</span></div>
+      </div>
+      </div>
+      <p class="tl-note"><span lang="zh">只用两类：画面全部由代码画，AI 只负责配音。不用拍摄，也不用生图，改一句讲解只重出那一段。</span><span lang="en">Just two routes: code draws every picture and AI only does the voice. No filming, no image generation; change one line of the script and only that part is re-rendered.</span></p>
     </div>
     <ul class="why mix-why">
       <li><b><span lang="zh">一类当主角，两类补位</span><span lang="en">One lead, two in support</span></b><span lang="zh">资讯片靠实拍和数据，带货片靠 AI 画面，教程靠代码图解；另两类补上主角做不到的部分。</span><span lang="en">News leans on footage and data, product ads on AI imagery, tutorials on code-drawn diagrams; the other two fill in what the lead can't do.</span></li>
