@@ -79,13 +79,16 @@ def visual(job, out):
 def subtitles(js):
     """青水（MiniMax）的逐字字幕：毫秒、timestamped_words → gen.py 的字幕格式（秒、words）"""
     rows = js if isinstance(js, list) else js.get("subtitles") or js.get("data") or []
-    out = []
+    out, off = [], 0
     for seg in rows:
         s = {"text": seg.get("text", ""), "t0": seg["time_begin"] / 1000, "t1": seg["time_end"] / 1000}
         words = seg.get("timestamped_words") or []
+        # 长稿分成几句返回时，word_begin / word_end 是整稿里的位置：减去前面几句的字数，换成这一句里的位置（gen.py 的约定）
+        k = off if words and words[-1]["word_end"] > len(s["text"]) else 0
         if words:
-            s["words"] = [{"t0": w["time_begin"] / 1000, "t1": w["time_end"] / 1000, "begin": w["word_begin"], "end": w["word_end"]}
+            s["words"] = [{"t0": w["time_begin"] / 1000, "t1": w["time_end"] / 1000, "begin": w["word_begin"] - k, "end": w["word_end"] - k}
                           for w in words]
+        off += len(s["text"])
         out.append(s)
     return out
 

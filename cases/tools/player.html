@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>案例分段播放器</title>
+<!-- 和 samples/player.html 同一套：字体、库都从 samples/node_modules 载入（先在 samples/ 下 npm install），不用 CDN -->
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/noto-sans-sc/400.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/noto-sans-sc/700.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/noto-sans-sc/900.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/noto-serif-sc/900.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/jetbrains-mono/400.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/jetbrains-mono/700.css">
+<link rel="stylesheet" href="../../samples/node_modules/@fontsource/bebas-neue/400.css">
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden }
+  canvas { display: block }
+  #stage { position: absolute; left: 0; top: 0; overflow: hidden }
+  body:not(.render) canvas { max-width: 100vw; max-height: 100vh; margin: 0 auto; object-fit: contain }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// 用法：player.html?c=news-artemis&seg=3&ar=9x16            浏览器里循环播放第 3 段（要在仓库根目录起本地服务）
+//       player.html?c=news-artemis&seg=3&ar=9x16&render=1&t=1.5   cases/tools/render.py 用：停在本段 t 秒那一帧
+// 段的场景文件是 cases/<名字>/segments/<两位段号>.js（01.js、02.js…），写法和样片的 scene.js 一样（scene({...})，直接用 samples/lib/lib.js）；
+// 播放器先读 segments/timing.json，把这一段的 {title, dur, vo, lines} 放进全局 SEG，场景的 dur 不写时用 SEG.dur。
+// asset()、loadAssets() 读的是案例目录的 assets/、assets.json；needs、libs 的写法同 samples/player.html。
+const LIBS = {
+  'gsap': ['node_modules/gsap/dist/gsap.min.js'],
+  'd3': ['node_modules/d3/dist/d3.min.js'],
+  'rough': ['node_modules/roughjs/bundled/rough.js'],
+  'three': [{ m: 'node_modules/three/build/three.module.js', as: 'THREE' }],
+};
+const Q = new URLSearchParams(location.search), CASE = Q.get('c'), SEGNO = +Q.get('seg');
+const DIR = `../${CASE}`, SAMPLES = '../../samples';
+let READY = false, SC = null, DUR = 3, STAGE = null, SEG = null, TIMING = null;
+const loaded = new Set();
+async function load(src) {
+  if (typeof src === 'object') {
+    if (loaded.has(src.m)) return; loaded.add(src.m);
+    window[src.as] = await import(`${SAMPLES}/${src.m}`); return;
+  }
+  if (loaded.has(src)) return; loaded.add(src);
+  return new Promise((ok, no) => { const e = document.createElement('script'); e.src = src; e.onload = ok; e.onerror = () => no(new Error('载入失败 ' + src)); document.body.appendChild(e); });
+}
+(async () => {
+  await load(`${SAMPLES}/lib/lib.js`);
+  TIMING = JSON.parse(await xhr(`${DIR}/segments/timing.json`));
+  SEG = { no: SEGNO, ...TIMING.segments[SEGNO - 1] };
+  await load(`${DIR}/segments/${String(SEGNO).padStart(2, '0')}.js`);
+  SC = S[0]; SC.dur = SC.dur || SEG.dur; DUR = SC.dur;
+  for (const n of SC.libs || []) for (const src of LIBS[n]) await load(typeof src === 'string' ? `${SAMPLES}/${src}` : src);
+  for (const n of SC.needs || []) await load(`${DIR}/segments/${n}`);
+  if (Q.has('render')) document.body.classList.add('render');
+  const cv = document.getElementById('c'); cv.width = W; cv.height = H;
+  const ctx = cv.getContext('2d');
+  if (SC.dom) { STAGE = document.createElement('div'); STAGE.id = 'stage'; STAGE.style.width = W + 'px'; STAGE.style.height = H + 'px'; document.body.appendChild(STAGE); }
+  const txt = [...new Set('0123456789,.:·—–' + (SC.text || '') + SEG.lines.map(l => l.text).join(''))].join('');
+  await Promise.all((SC.fonts || []).map(f => document.fonts.load(f, txt).catch(() => {})));
+  await document.fonts.ready;
+  SC.st = SC.init ? await SC.init() : {};
+  window.seek = async t => {
+    ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
+    try { await SC.draw(ctx, t, SC.st, Math.round(t * FPS)); } finally { ctx.restore(); }
+  };
+  await seek(Number(Q.get('t') || 0));
+  READY = true;
+  if (!Q.has('render')) {
+    const t0 = performance.now();
+    const loop = async () => { await seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); };
+    loop();
+  }
+})().catch(e => { document.title = 'ERROR'; console.error(e); });
+</script>
+</body>
+</html>

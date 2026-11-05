@@ -5,3 +5,7 @@ __pycache__/
 # 样片和风格包演示片的视频放在 Release，不进仓库，见 scripts/media.py
 samples/*/*.mp4
 packs/*/demo/*.mp4
+# 案例：中间产物、能重新下载的素材、成品视频（成品放 Release，见 scripts/media.py）
+cases/*/out/
+cases/*/assets/dl/
+cases/*/media/

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" width="600" height="100">
+  <g id="icon1" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="rocket-body" d="M50 22 C42 32 38 46 38 58 L38 68 L62 68 L62 58 C62 46 58 32 50 22 Z"/>
+    <path id="rocket-nose" d="M50 22 L50 14"/>
+    <path id="rocket-fin-left" d="M38 58 L30 68 L38 68"/>
+    <path id="rocket-fin-right" d="M62 58 L70 68 L62 68"/>
+    <path id="rocket-window" d="M50 38 A4 4 0 1 1 49.9 38"/>
+    <path id="flame1" d="M44 72 L42 84"/>
+    <path id="flame2" d="M50 72 L50 88"/>
+    <path id="flame3" d="M56 72 L58 84"/>
+  </g>
+
+  <g id="icon2" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle id="earth" cx="130" cy="50" r="22"/>
+    <circle id="moon" cx="190" cy="38" r="10"/>
+    <path id="orbit8" d="M152 50 C152 34 168 30 180 34 C192 38 196 50 190 58 C184 66 168 70 156 64 C144 58 140 46 146 38 C152 30 168 26 180 30 C192 34 196 46 190 54" stroke-dasharray="4 4"/>
+  </g>
+
+  <g id="icon3" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="lunar-horizon" d="M212 72 Q250 48 288 72"/>
+    <path id="earth-setting" d="M250 42 A14 14 0 0 1 250 70"/>
+    <path id="earth-line" d="M250 42 L250 70"/>
+    <path id="horizon-detail1" d="M224 68 L230 62"/>
+    <path id="horizon-detail2" d="M270 68 L276 62"/>
+  </g>
+
+  <g id="icon4" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <line id="bar-left" x1="330" y1="72" x2="330" y2="40"/>
+    <line id="bar-right" x1="370" y1="72" x2="370" y2="28"/>
+    <line id="arrow-up" x1="350" y1="56" x2="350" y2="36"/>
+    <path id="arrow-up-head" d="M344 42 L350 36 L356 42"/>
+    <line id="arrow-down" x1="350" y1="56" x2="350" y2="76"/>
+    <path id="arrow-down-head" d="M344 70 L350 76 L356 70"/>
+  </g>
+
+  <g id="icon5" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="parachute-left" d="M430 26 Q440 14 450 26"/>
+    <path id="parachute-center" d="M450 26 Q460 14 470 26"/>
+    <path id="parachute-right" d="M470 26 Q480 14 490 26"/>
+    <path id="chute-line-left" d="M430 26 L446 46"/>
+    <path id="chute-line-center" d="M450 26 L450 46"/>
+    <path id="chute-line-right" d="M470 26 L454 46"/>
+    <path id="capsule" d="M442 46 Q442 62 450 66 Q458 62 458 46 Z"/>
+    <path id="wave1" d="M432 78 Q440 72 448 78 Q456 84 464 78"/>
+    <path id="wave2" d="M436 86 Q444 80 452 86 Q460 92 468 86"/>
+  </g>
+
+  <g id="icon6" fill="none" stroke="#F5F7FA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="moon-surface" d="M512 72 Q550 60 588 72"/>
+    <path id="dome" d="M530 72 Q530 50 550 50 Q570 50 570 72"/>
+    <line id="dome-door" x1="550" y1="72" x2="550" y2="62"/>
+    <line id="flag-pole" x1="520" y1="72" x2="520" y2="48"/>
+    <path id="flag" d="M520 48 L534 52 L520 56"/>
+  </g>
+</svg>

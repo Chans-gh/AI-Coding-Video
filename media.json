@@ -1161,6 +1161,36 @@
    "bytes": 3596558,
    "sha256": "e805978a94eebbe2b78dd458f3453663d3e8c037f5c862f7170cef5d7c260c6e"
   },
+  "case-news-artemis-mid.mp4": {
+   "path": "cases/news-artemis/media/news-artemis-mid.mp4",
+   "bytes": 23435262,
+   "sha256": "6258b92d2329c607f5eda489f0f8670e8cb85c5569e79015c133f86b99d18714"
+  },
+  "case-news-artemis-short-1.mp4": {
+   "path": "cases/news-artemis/media/news-artemis-short-1.mp4",
+   "bytes": 14994670,
+   "sha256": "1dca85e6bff000b35858524da8e1bb31e0bcc00f8d30484ae0ce6e949c2fae6e"
+  },
+  "case-news-artemis-short-2.mp4": {
+   "path": "cases/news-artemis/media/news-artemis-short-2.mp4",
+   "bytes": 13170041,
+   "sha256": "4132d593fab91ec416449522636f517053df1eecc5c8b7da5ccbf2983b546585"
+  },
+  "case-news-artemis-short-3.mp4": {
+   "path": "cases/news-artemis/media/news-artemis-short-3.mp4",
+   "bytes": 15496237,
+   "sha256": "79d517a20696197cd8c66729c26db3b7b79746ea77f378ff3297cd4a73461f2f"
+  },
+  "case-news-artemis.jpg": {
+   "path": "cases/news-artemis/media/news-artemis.jpg",
+   "bytes": 77760,
+   "sha256": "85c18d7b90dca6179b2cbef70705c7679aa7cf5791a31adef7b5f9bf99694e2a"
+  },
+  "case-news-artemis.mp4": {
+   "path": "cases/news-artemis/media/news-artemis.mp4",
+   "bytes": 79964106,
+   "sha256": "63c86901eacf60337fea25fa74fb94150d2e936f66bc77f6cbb86f3377bde83f"
+  },
   "pack-dark-keynote-green-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-green-16x9.mp4",
    "bytes": 1591532,

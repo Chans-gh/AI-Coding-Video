@@ -1,0 +1,869 @@
+{
+ "items": [
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "title": "整支旁白（新闻播报公开音色）",
+   "license": "AI 合成（公开音色），随本仓库按 MIT 发布",
+   "credit": "旁白 AI 语音合成",
+   "at": 0,
+   "gain": 0,
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_News_Anchor",
+   "params": {
+    "speed": 1.15
+   },
+   "text": "四十万零六千七百七十一公里。这是人类离开地球最远的一次。两千零二十六年四月，阿尔忒弥斯二号的四名宇航员绕到月球背面，又平安回到了地球。欢迎收看星海速递。今天，我们回顾这趟十天的绕月旅程。美国东部时间四月一日傍晚六点三十五分，太空发射系统火箭从肯尼迪航天中心三十九B发射台起飞。飞船里坐着四个人：指令长里德·怀斯曼，驾驶员维克多·格洛弗，任务专家克里斯蒂娜·科赫，还有加拿大航天局的杰里米·汉森。起飞七秒，火箭越过发射塔；两分零九秒，两枚固体助推器分离。这是半个多世纪以来，人类第一次飞向月球。它没有直接奔月。头一天，飞船先在绕地球的大椭圆轨道上检查各个系统。第二天，服务舱发动机点火五分五十五秒，飞船进入奔月轨道。这条路叫自由返回轨道：飞船绕到月球背面，借月球的引力拐一个弯，地球的引力自然会把它拉回家，不用再大幅点火。整个航程只做了几次小的修正，最小的一次，速度只改变了每秒零点四九米。屏幕上的轨迹，来自喷气推进实验室的星历数据，每十分钟一个点。四月六日，飞掠月球。美国东部时间下午一点五十六分，乘组打破了阿波罗十三号保持了五十六年的距离纪录。傍晚六点四十一分，他们看着地球沉到月球的地平线下面。三分钟后，飞船转到月球背面，和地球断了联系，整整四十一分钟。七点整，离月面最近，大约六千五百四十五公里；两分钟后，离地球最远。窗外是东方盆地，一个宽将近一千公里的古老撞击盆地。上一次走这么远，是一九七零年的阿波罗十三号。那一次，飞船服务舱的氧气罐出了故障，登月取消，三名宇航员绕过月球紧急返航，最远到了四十万零一百七十一公里。这一次，阿尔忒弥斯二号多走了六千六百一十六公里。阿波罗十三号是洛弗尔、斯威格特、海斯三个人；这一次是四个人，其中有第一位飞向月球的女性、第一位有色人种宇航员，和第一位加拿大人。四月十日，太平洋时间下午五点零七分，飞船在圣迭戈外海溅落。直升机把四个人送上了美国海军的约翰·P·穆尔萨号。十天，总航程一百一十一万八千六百二十四公里。回到休斯敦，乘组在发布会上这样说。接下来呢？按 NASA 十月公布的计划，二零二七年，阿尔忒弥斯三号在近地轨道上，试验和登月器对接。二零二八年，阿尔忒弥斯四号，降落在月球南极附近。再往后，NASA 的目标是在月面长期驻留。这几个画面是 AI 生成的示意图，还没有真实的影像。四十万公里之外，他们看着地球落下。下一次，人类要站在月面上看。本期素材来自 NASA 和喷气推进实验室，我们下期见。",
+   "show": {
+    "阿尔忒弥斯二号": "Artemis II",
+    "阿尔忒弥斯三号": "Artemis III",
+    "阿尔忒弥斯四号": "Artemis IV",
+    "阿波罗十三号": "阿波罗 13 号",
+    "四十万零六千七百七十一公里": "406,771 公里",
+    "四十万零一百七十一公里": "400,171 公里",
+    "六千五百四十五公里": "6,545 公里",
+    "六千六百一十六公里": "6,616 公里",
+    "一百一十一万八千六百二十四公里": "1,118,624 公里",
+    "三十九B": "39B",
+    "两千零二十六年": "2026 年",
+    "一九七零年": "1970 年",
+    "二零二七年": "2027 年",
+    "二零二八年": "2028 年"
+   },
+   "dur": 183.014,
+   "lines": [
+    {
+     "t0": 0.037,
+     "t1": 2.486,
+     "text": "406,771 公里"
+    },
+    {
+     "t0": 2.486,
+     "t1": 4.86,
+     "text": "这是人类离开地球最远的一次"
+    },
+    {
+     "t0": 4.86,
+     "t1": 6.53,
+     "text": "2026 年四月"
+    },
+    {
+     "t0": 6.53,
+     "t1": 10.054,
+     "text": "Artemis II 的四名宇航员绕到月球背面"
+    },
+    {
+     "t0": 10.054,
+     "t1": 11.613,
+     "text": "又平安回到了地球"
+    },
+    {
+     "t0": 12.153,
+     "t1": 13.304,
+     "text": "欢迎收看星海速递"
+    },
+    {
+     "t0": 13.304,
+     "t1": 16.494,
+     "text": "今天，我们回顾这趟十天的绕月旅程"
+    },
+    {
+     "t0": 16.494,
+     "t1": 19.908,
+     "text": "美国东部时间四月一日傍晚六点三十五分"
+    },
+    {
+     "t0": 19.908,
+     "t1": 24.805,
+     "text": "太空发射系统火箭从肯尼迪航天中心 39B 发射台起飞"
+    },
+    {
+     "t0": 25.273,
+     "t1": 28.019,
+     "text": "飞船里坐着四个人：指令长里德·怀斯曼"
+    },
+    {
+     "t0": 28.019,
+     "t1": 29.799,
+     "text": "驾驶员维克多·格洛弗"
+    },
+    {
+     "t0": 29.799,
+     "t1": 31.951,
+     "text": "任务专家克里斯蒂娜·科赫"
+    },
+    {
+     "t0": 31.951,
+     "t1": 34.474,
+     "text": "还有加拿大航天局的杰里米·汉森"
+    },
+    {
+     "t0": 34.94,
+     "t1": 36.906,
+     "text": "起飞七秒，火箭越过发射塔"
+    },
+    {
+     "t0": 36.906,
+     "t1": 39.911,
+     "text": "两分零九秒，两枚固体助推器分离"
+    },
+    {
+     "t0": 39.911,
+     "t1": 41.729,
+     "text": "这是半个多世纪以来"
+    },
+    {
+     "t0": 41.729,
+     "t1": 43.473,
+     "text": "人类第一次飞向月球"
+    },
+    {
+     "t0": 43.473,
+     "t1": 45.106,
+     "text": "它没有直接奔月"
+    },
+    {
+     "t0": 45.686,
+     "t1": 50.175,
+     "text": "头一天，飞船先在绕地球的大椭圆轨道上检查各个系统"
+    },
+    {
+     "t0": 50.175,
+     "t1": 53.811,
+     "text": "第二天，服务舱发动机点火五分五十五秒"
+    },
+    {
+     "t0": 53.811,
+     "t1": 55.852,
+     "text": "飞船进入奔月轨道"
+    },
+    {
+     "t0": 56.269,
+     "t1": 58.013,
+     "text": "这条路叫自由返回轨道"
+    },
+    {
+     "t0": 58.013,
+     "t1": 61.5,
+     "text": "飞船绕到月球背面，借月球的引力拐一个弯"
+    },
+    {
+     "t0": 61.5,
+     "t1": 63.875,
+     "text": "地球的引力自然会把它拉回家"
+    },
+    {
+     "t0": 63.875,
+     "t1": 65.173,
+     "text": "不用再大幅点火"
+    },
+    {
+     "t0": 65.634,
+     "t1": 67.712,
+     "text": "整个航程只做了几次小的修正"
+    },
+    {
+     "t0": 67.712,
+     "t1": 71.385,
+     "text": "最小的一次，速度只改变了每秒零点四九米"
+    },
+    {
+     "t0": 71.385,
+     "t1": 75.317,
+     "text": "屏幕上的轨迹，来自喷气推进实验室的星历数据"
+    },
+    {
+     "t0": 75.317,
+     "t1": 76.727,
+     "text": "每十分钟一个点"
+    },
+    {
+     "t0": 77.228,
+     "t1": 78.823,
+     "text": "四月六日，飞掠月球"
+    },
+    {
+     "t0": 78.823,
+     "t1": 81.457,
+     "text": "美国东部时间下午一点五十六分"
+    },
+    {
+     "t0": 81.457,
+     "t1": 85.65,
+     "text": "乘组打破了阿波罗 13 号保持了五十六年的距离纪录"
+    },
+    {
+     "t0": 86.077,
+     "t1": 90.084,
+     "text": "傍晚六点四十一分，他们看着地球沉到月球的地平线下面"
+    },
+    {
+     "t0": 90.084,
+     "t1": 92.792,
+     "text": "三分钟后，飞船转到月球背面"
+    },
+    {
+     "t0": 92.792,
+     "t1": 95.798,
+     "text": "和地球断了联系，整整四十一分钟"
+    },
+    {
+     "t0": 96.371,
+     "t1": 99.895,
+     "text": "七点整，离月面最近，大约 6,545 公里"
+    },
+    {
+     "t0": 99.895,
+     "t1": 101.787,
+     "text": "两分钟后，离地球最远"
+    },
+    {
+     "t0": 101.787,
+     "t1": 106.685,
+     "text": "窗外是东方盆地，一个宽将近一千公里的古老撞击盆地"
+    },
+    {
+     "t0": 106.685,
+     "t1": 110.284,
+     "text": "上一次走这么远，是 1970 年的阿波罗 13 号"
+    },
+    {
+     "t0": 110.845,
+     "t1": 113.405,
+     "text": "那一次，飞船服务舱的氧气罐出了故障"
+    },
+    {
+     "t0": 113.405,
+     "t1": 116.856,
+     "text": "登月取消，三名宇航员绕过月球紧急返航"
+    },
+    {
+     "t0": 116.856,
+     "t1": 119.712,
+     "text": "最远到了 400,171 公里"
+    },
+    {
+     "t0": 119.712,
+     "t1": 123.645,
+     "text": "这一次，Artemis II 多走了 6,616 公里"
+    },
+    {
+     "t0": 124.366,
+     "t1": 128.188,
+     "text": "阿波罗 13 号是洛弗尔、斯威格特、海斯三个人"
+    },
+    {
+     "t0": 128.188,
+     "t1": 134.309,
+     "text": "这一次是四个人，其中有第一位飞向月球的女性、第一位有色人种宇航员"
+    },
+    {
+     "t0": 134.309,
+     "t1": 135.942,
+     "text": "和第一位加拿大人"
+    },
+    {
+     "t0": 136.413,
+     "t1": 139.01,
+     "text": "四月十日，太平洋时间下午五点零七分"
+    },
+    {
+     "t0": 139.01,
+     "t1": 141.125,
+     "text": "飞船在圣迭戈外海溅落"
+    },
+    {
+     "t0": 141.517,
+     "t1": 145.042,
+     "text": "直升机把四个人送上了美国海军的约翰·P·穆尔萨号"
+    },
+    {
+     "t0": 145.042,
+     "t1": 148.937,
+     "text": "十天，总航程 1,118,624 公里"
+    },
+    {
+     "t0": 148.937,
+     "t1": 151.72,
+     "text": "回到休斯敦，乘组在发布会上这样说"
+    },
+    {
+     "t0": 151.72,
+     "t1": 152.573,
+     "text": "接下来呢？"
+    },
+    {
+     "t0": 153.111,
+     "t1": 154.706,
+     "text": "按 NASA 十月公布的计划"
+    },
+    {
+     "t0": 154.706,
+     "t1": 158.083,
+     "text": "2027 年，Artemis III 在近地轨道上"
+    },
+    {
+     "t0": 158.083,
+     "t1": 159.789,
+     "text": "试验和登月器对接"
+    },
+    {
+     "t0": 159.789,
+     "t1": 162.349,
+     "text": "2028 年，Artemis IV"
+    },
+    {
+     "t0": 162.349,
+     "t1": 164.353,
+     "text": "降落在月球南极附近"
+    },
+    {
+     "t0": 164.891,
+     "t1": 167.525,
+     "text": "再往后，NASA 的目标是在月面长期驻留"
+    },
+    {
+     "t0": 167.525,
+     "t1": 170.122,
+     "text": "这几个画面是 AI 生成的示意图"
+    },
+    {
+     "t0": 170.122,
+     "t1": 171.606,
+     "text": "还没有真实的影像"
+    },
+    {
+     "t0": 172.009,
+     "t1": 174.606,
+     "text": "四十万公里之外，他们看着地球落下"
+    },
+    {
+     "t0": 174.606,
+     "t1": 177.611,
+     "text": "下一次，人类要站在月面上看"
+    },
+    {
+     "t0": 177.611,
+     "t1": 181.396,
+     "text": "本期素材来自 NASA 和喷气推进实验室"
+    },
+    {
+     "t0": 181.396,
+     "t1": 182.583,
+     "text": "我们下期见"
+    }
+   ]
+  },
+  {
+   "file": "assets/icons.svg",
+   "kind": "生图",
+   "title": "段落图标一套（语言模型写的 SVG）",
+   "model": "deepseek-flash",
+   "params": {
+    "temperature": 0.4
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "图标 AI 生成",
+   "prompt": "画一组 6 个航天主题的线条图标，横排在 viewBox=\"0 0 600 100\"、width=\"600\" height=\"100\" 里，每个图标占一格 100×100、四周留 12 的边：第 1 个是一枚竖着起飞的火箭、尾部三道火焰（<g id=\"icon1\">），第 2 个是一个大圆（地球）和一个小圆（月球）之间画一条 8 字形的虚线轨道（<g id=\"icon2\">），第 3 个是月球的一段弧形地平线、上方半个地球正在落下（<g id=\"icon3\">），第 4 个是两根高低不同的竖条、中间一个对比用的双向箭头（<g id=\"icon4\">），第 5 个是一个钟形返回舱挂在三顶降落伞下面、下方两道波浪线（<g id=\"icon5\">），第 6 个是月面上一面小旗和一个半圆形的穹顶小屋（<g id=\"icon6\">）。每个 <g> 里只用 path、circle、line、ellipse、rect，全部 fill=\"none\"、stroke=\"#F5F7FA\"、stroke-width=\"4\"、stroke-linecap=\"round\"、stroke-linejoin=\"round\"；线条简洁利落，不写文字。"
+  },
+  {
+   "file": "assets/dock.jpg",
+   "kind": "生图",
+   "title": "示意插画：近地轨道上的对接试验",
+   "model": "gemini-3.1-flash-image-preview",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "示意插画 AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "prompt": "扁平矢量插画，新闻图解风格：近地轨道上，一艘白色锥形载人飞船正缓缓靠近一艘高大的银色登月着陆器，两者之间有一条细细的对接引导光线，下方是蓝色的地球弧线和白色云层，背景是深蓝色太空和稀疏的星星，配色以深蓝、白、少量红色点缀，画面干净，没有人物，没有文字，没有任何标志"
+  },
+  {
+   "file": "assets/land.jpg",
+   "kind": "生图",
+   "title": "示意插画：月球南极附近着陆",
+   "model": "gemini-3.1-flash-image-preview",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "示意插画 AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "prompt": "扁平矢量插画，新闻图解风格：月球南极附近的灰色崎岖地面，太阳贴着地平线、投下很长的影子，一台高大的着陆器刚刚落稳，四条着陆腿扬起少量月尘，远处地平线上挂着蓝色的地球，两个穿白色宇航服的小小剪影站在着陆器旁边、背对画面、看不到脸，配色以深蓝、灰、白为主、少量红色点缀，没有文字，没有任何标志"
+  },
+  {
+   "file": "assets/base.jpg",
+   "kind": "生图",
+   "title": "「未来月面基地」首帧",
+   "model": "gemini-3.1-flash-image-preview",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "示意画面 AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "prompt": "电影感写实画面：未来的月面基地，月球南极附近的灰色平原上，几座半埋在月壤里的白色圆顶舱和圆柱形舱段由加压通道连在一起，旁边一排太阳能板斜对着低低的太阳，舱窗透出暖黄色的灯光，地面上有车辙，远处地平线上悬着蓝色的地球，黑色天空，长长的影子，没有人物，没有文字，没有任何标志，竖构图"
+  },
+  {
+   "file": "assets/base.mp4",
+   "kind": "生视频",
+   "title": "「未来月面基地」图生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/base.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "示意画面 AI 生成",
+   "prep": {
+    "w": 720
+   },
+   "prompt": "镜头非常缓慢地向前推进、略微向右平移，月面基地保持静止，舱窗的暖黄灯光轻轻闪烁，太阳能板反射着低角度的阳光，远处的地球缓缓移动，没有人物，没有文字，电影感，写实"
+  },
+  {
+   "file": "assets/dl/causeway.mp4",
+   "kind": "录像",
+   "title": "Artemis II 发射（堤道低机位，慢放段）",
+   "source": "https://images.nasa.gov/details/KSC ART II Cause Way Launch low angle",
+   "download": "https://images-assets.nasa.gov/video/KSC%20ART%20II%20Cause%20Way%20Launch%20low%20angle/KSC%20ART%20II%20Cause%20Way%20Launch%20low%20angle~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 20,
+    "t": 17,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/crowd.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（观众区机位：倒计时最后几秒）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 1150,
+    "t": 16,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/close.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（近景：主发动机点火）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 481,
+    "t": 12,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/tower.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（塔架机位：越过发射塔）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 929,
+    "t": 16,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/track.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（跟踪机位：升空到助推器分离）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 680,
+    "t": 50,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/sep.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（跟踪机位：固体助推器分离）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 800,
+    "t": 16,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/water.mp4",
+   "kind": "录像",
+   "title": "Artemis II Isolated Launch Views（水面机位：倒影里的尾焰）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 1433,
+    "t": 30,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/chute.mp4",
+   "kind": "录像",
+   "title": "Artemis II 返回：舱内拍到的降落伞（GoPro）",
+   "source": "https://images.nasa.gov/details/GP011149",
+   "download": "https://images-assets.nasa.gov/video/GP011149/GP011149~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 545,
+    "t": 40,
+    "crop": "1440:1080",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/splash.mp4",
+   "kind": "录像",
+   "title": "Artemis II 溅落（空中机位，60 帧）",
+   "source": "https://images.nasa.gov/details/KSC-20260410-MH-JBP01-0001-Artemis_II_Splashdown_GSS_Visual_60fps-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260410-MH-JBP01-0001-Artemis_II_Splashdown_GSS_Visual_60fps-M19183/KSC-20260410-MH-JBP01-0001-Artemis_II_Splashdown_GSS_Visual_60fps-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 128,
+    "t": 47,
+    "crop": "1350:1012",
+    "w": 1440,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/quote.mp4",
+   "kind": "录像",
+   "title": "任务后发布会：杰里米·汉森谈「渺小与脆弱」",
+   "source": "https://images.nasa.gov/details/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416",
+   "download": "https://images-assets.nasa.gov/video/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Johnson Space Center",
+   "credit": "录像 NASA",
+   "prep": {
+    "ss": 855,
+    "t": 40,
+    "crop": "1080:1080:360:0",
+    "w": 1080,
+    "crf": 22
+   }
+  },
+  {
+   "file": "assets/dl/launch.mp3",
+   "kind": "原声",
+   "title": "发射现场声音（塔架机位）",
+   "source": "https://images.nasa.gov/details/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183",
+   "download": "https://images-assets.nasa.gov/video/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183/KSC-20260401-MH-AJN01-0001-Artemis_II_Isolated_Launch_Views-M19183~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 929,
+    "t": 30,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 30.041
+  },
+  {
+   "file": "assets/dl/quote.mp3",
+   "kind": "原声",
+   "title": "任务后发布会原声：杰里米·汉森（加拿大航天局）",
+   "source": "https://images.nasa.gov/details/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416",
+   "download": "https://images-assets.nasa.gov/video/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416~large.mp4",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA / Johnson Space Center",
+   "credit": "原声 NASA",
+   "prep": {
+    "ss": 855,
+    "t": 40,
+    "mono": true
+   },
+   "at": 0,
+   "gain": 0,
+   "dur": 40.046
+  },
+  {
+   "file": "assets/dl/crew.jpg",
+   "kind": "照片",
+   "title": "Artemis II 乘组公布（2023-04-03，休斯敦）",
+   "source": "https://images.nasa.gov/details/jsc2023e018469",
+   "download": "https://images-assets.nasa.gov/image/jsc2023e018469/jsc2023e018469~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "James Blair / NASA JSC",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/cabin.jpg",
+   "kind": "照片",
+   "title": "舱内：怀斯曼和科赫（飞行第 7 天）",
+   "source": "https://images.nasa.gov/details/art002e026139",
+   "download": "https://images-assets.nasa.gov/image/art002e026139/art002e026139~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/earthset.jpg",
+   "kind": "照片",
+   "title": "地球落下（2026-04-06 18:41 EDT，舷窗拍摄）",
+   "source": "https://images.nasa.gov/details/art002e009288",
+   "download": "https://images-assets.nasa.gov/image/art002e009288/art002e009288~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/earthset2.jpg",
+   "kind": "照片",
+   "title": "地球落下（飞掠时另一张）",
+   "source": "https://images.nasa.gov/details/art002e021278",
+   "download": "https://images-assets.nasa.gov/image/art002e021278/art002e021278~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/orientale.jpg",
+   "kind": "照片",
+   "title": "东方盆地的环形结构",
+   "source": "https://images.nasa.gov/details/art002e012090",
+   "download": "https://images-assets.nasa.gov/image/art002e012090/art002e012090~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/crescent.jpg",
+   "kind": "照片",
+   "title": "飞掠后的月牙",
+   "source": "https://images.nasa.gov/details/art002e019570",
+   "download": "https://images-assets.nasa.gov/image/art002e019570/art002e019570~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/a13crew.jpg",
+   "kind": "照片",
+   "title": "阿波罗 13 号乘组正式照（1970-04）",
+   "source": "https://images.nasa.gov/details/S70-36485",
+   "download": "https://images-assets.nasa.gov/image/S70-36485/S70-36485~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/a13mcc.jpg",
+   "kind": "照片",
+   "title": "阿波罗 13 号期间的任务控制中心（1970-04-14）",
+   "source": "https://images.nasa.gov/details/S70-34902",
+   "download": "https://images-assets.nasa.gov/image/S70-34902/S70-34902~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/a13moon.jpg",
+   "kind": "照片",
+   "title": "阿波罗 13 号返航途中拍的月球",
+   "source": "https://images.nasa.gov/details/as13-60-8703",
+   "download": "https://images-assets.nasa.gov/image/as13-60-8703/as13-60-8703~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/a13rec.jpg",
+   "kind": "照片",
+   "title": "阿波罗 13 号回收（1970-04-17）",
+   "source": "https://images.nasa.gov/details/S70-35651",
+   "download": "https://images-assets.nasa.gov/image/S70-35651/S70-35651~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/recovery.jpg",
+   "kind": "照片",
+   "title": "Artemis II 回收：直升机接走筏子上的乘组",
+   "source": "https://images.nasa.gov/details/JB5_0814",
+   "download": "https://images-assets.nasa.gov/image/JB5_0814/JB5_0814~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "James Blair / NASA",
+   "credit": "照片 NASA",
+   "prep": {
+    "max": 1920,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/dl/earthset-depth.png",
+   "kind": "数据",
+   "title": "earthset.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://images.nasa.gov/details/art002e009288",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py cases/news-artemis/assets/dl/earthset.jpg cases/news-artemis/assets/dl/earthset-depth.png：Depth Anything V2 Small（Apache-2.0，ONNX 版）在 CPU 上估一次相对深度；能重新算出，不进仓库"
+  },
+  {
+   "file": "assets/dl/orientale-depth.png",
+   "kind": "数据",
+   "title": "orientale.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://images.nasa.gov/details/art002e012090",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py cases/news-artemis/assets/dl/orientale.jpg cases/news-artemis/assets/dl/orientale-depth.png：Depth Anything V2 Small（Apache-2.0，ONNX 版）在 CPU 上估一次相对深度；能重新算出，不进仓库"
+  },
+  {
+   "file": "assets/dl/orion.csv",
+   "kind": "数据",
+   "title": "Artemis II / Orion 相对地心的位置和速度（10 分钟一点，2026-04-02 02:00 至 04-10 23:50 TDB）",
+   "source": "https://ssd.jpl.nasa.gov/horizons/",
+   "download": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27-1024%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%40399%27&START_TIME=%272026-04-02+02%3A00%27&STOP_TIME=%272026-04-10+23%3A50%27&STEP_SIZE=%2710m%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&REF_PLANE=%27ECLIPTIC%27",
+   "license": "公共领域（NASA/JPL Horizons 星历，美国政府作品）",
+   "author": "NASA/JPL Solar System Dynamics",
+   "credit": "轨迹 NASA/JPL Horizons",
+   "prep": {
+    "horizons": true
+   }
+  },
+  {
+   "file": "assets/dl/moon.csv",
+   "kind": "数据",
+   "title": "月球相对地心的位置和速度（同一时段）",
+   "source": "https://ssd.jpl.nasa.gov/horizons/",
+   "download": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND=%27301%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%40399%27&START_TIME=%272026-04-02+02%3A00%27&STOP_TIME=%272026-04-10+23%3A50%27&STEP_SIZE=%2710m%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&REF_PLANE=%27ECLIPTIC%27",
+   "license": "公共领域（NASA/JPL Horizons 星历，美国政府作品）",
+   "author": "NASA/JPL Solar System Dynamics",
+   "credit": "轨迹 NASA/JPL Horizons",
+   "prep": {
+    "horizons": true
+   }
+  },
+  {
+   "file": "assets/dl/insistent.mp3",
+   "kind": "配乐",
+   "title": "配乐 Insistent",
+   "source": "https://opengameart.org/content/insistent-background-loop",
+   "download": "https://opengameart.org/sites/default/files/Insistent.ogg",
+   "license": "CC0",
+   "author": "yd",
+   "credit": "配乐 Insistent（yd，CC0）",
+   "prep": {
+    "br": "160k"
+   },
+   "at": 0,
+   "gain": 0
+  },
+  {
+   "file": "assets/dl/star.mp3",
+   "kind": "配乐",
+   "title": "配乐 ObservingTheStar",
+   "source": "https://opengameart.org/content/another-space-background-track",
+   "download": "https://opengameart.org/sites/default/files/ObservingTheStar.ogg",
+   "license": "CC0",
+   "author": "yd",
+   "credit": "配乐 ObservingTheStar（yd，CC0）",
+   "prep": {
+    "br": "160k"
+   },
+   "at": 0,
+   "gain": 0
+  }
+ ]
+}

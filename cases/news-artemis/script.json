@@ -1,0 +1,351 @@
+{
+ "about": "旁白稿：segments 和 case.json 的段一一对应（按顺序）；vo 是念的稿子（一句一项），pace 是这段的节奏（旁白前后、句间留几秒，见 cases/tools/timing.py），整稿一次语音合成，cases/tools/timing.py 按字幕把每段的旁白切开。show 是念法 → 字幕上的写法。facts 是本段旁白和画面上的每个数字、事实，src 是出处（NASA、JPL 原文）；calc 写明是换算或由星历算出。",
+ "voice": {
+  "model": "speech-2.8-turbo",
+  "voice": "Chinese (Mandarin)_News_Anchor",
+  "params": {
+   "speed": 1.15
+  }
+ },
+ "show": {
+  "阿尔忒弥斯二号": "Artemis II",
+  "阿尔忒弥斯三号": "Artemis III",
+  "阿尔忒弥斯四号": "Artemis IV",
+  "阿波罗十三号": "阿波罗 13 号",
+  "四十万零六千七百七十一公里": "406,771 公里",
+  "四十万零一百七十一公里": "400,171 公里",
+  "六千五百四十五公里": "6,545 公里",
+  "六千六百一十六公里": "6,616 公里",
+  "一百一十一万八千六百二十四公里": "1,118,624 公里",
+  "三十九B": "39B",
+  "两千零二十六年": "2026 年",
+  "一九七零年": "1970 年",
+  "二零二七年": "2027 年",
+  "二零二八年": "2028 年"
+ },
+ "segments": [
+  {
+   "title": "冷开场",
+   "vo": [
+    "四十万零六千七百七十一公里。",
+    "这是人类离开地球最远的一次。",
+    "两千零二十六年四月，阿尔忒弥斯二号的四名宇航员绕到月球背面，又平安回到了地球。"
+   ],
+   "facts": [
+    {
+     "what": "离地球最远 252,756 英里（约 406,771 公里）",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/",
+     "calc": "英里按 1.609344 换算成公里"
+    },
+    {
+     "what": "2026 年 4 月，4 名宇航员，绕月返回",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/"
+    }
+   ],
+   "pace": {
+    "lead": 1.2,
+    "gap": 0.5,
+    "min": 15
+   }
+  },
+  {
+   "title": "片头",
+   "vo": [
+    "欢迎收看星海速递。",
+    "今天，我们回顾这趟十天的绕月旅程。"
+   ],
+   "facts": [
+    {
+     "what": "任务约 10 天",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/"
+    },
+    {
+     "what": "栏目「星海速递」是虚构的",
+     "src": null
+    }
+   ],
+   "pace": {
+    "lead": 3.5,
+    "min": 10
+   }
+  },
+  {
+   "title": "发射",
+   "vo": [
+    "美国东部时间四月一日傍晚六点三十五分，太空发射系统火箭从肯尼迪航天中心三十九B发射台起飞。",
+    "飞船里坐着四个人：指令长里德·怀斯曼，驾驶员维克多·格洛弗，任务专家克里斯蒂娜·科赫，还有加拿大航天局的杰里米·汉森。",
+    "起飞七秒，火箭越过发射塔；两分零九秒，两枚固体助推器分离。",
+    "这是半个多世纪以来，人类第一次飞向月球。"
+   ],
+   "facts": [
+    {
+     "what": "4 月 1 日美东 18:35，39B 发射台",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/"
+    },
+    {
+     "what": "UTC 22:35:12 发射",
+     "src": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='-1024'&OBJ_DATA=YES&MAKE_EPHEM=NO"
+    },
+    {
+     "what": "乘组和分工",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/"
+    },
+    {
+     "what": "MET +00:00:07 越过发射塔，+00:02:09 助推器分离",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/01/live-artemis-ii-launch-day-updates/"
+    },
+    {
+     "what": "50 多年来第一次有人飞到月球附近",
+     "src": "https://www.nasa.gov/news-release/nasa-names-astronauts-to-next-moon-mission-first-crew-under-artemis/"
+    }
+   ],
+   "pace": {
+    "lead": 5,
+    "gap": 1.2,
+    "tail": 8,
+    "min": 45
+   }
+  },
+  {
+   "title": "航线",
+   "vo": [
+    "它没有直接奔月。",
+    "头一天，飞船先在绕地球的大椭圆轨道上检查各个系统。",
+    "第二天，服务舱发动机点火五分五十五秒，飞船进入奔月轨道。",
+    "这条路叫自由返回轨道：飞船绕到月球背面，借月球的引力拐一个弯，地球的引力自然会把它拉回家，不用再大幅点火。",
+    "整个航程只做了几次小的修正，最小的一次，速度只改变了每秒零点四九米。",
+    "屏幕上的轨迹，来自喷气推进实验室的星历数据，每十分钟一个点。"
+   ],
+   "facts": [
+    {
+     "what": "远地点抬升到 70,377 公里（地球轨道上检查）",
+     "src": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='-1024'&OBJ_DATA=YES&MAKE_EPHEM=NO"
+    },
+    {
+     "what": "4 月 2 日 23:49 UTC 奔月点火 5 分 55 秒，速度增量 388 米/秒",
+     "src": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='-1024'&OBJ_DATA=YES&MAKE_EPHEM=NO"
+    },
+    {
+     "what": "自由返回轨道：地球引力自然把 Orion 拉回",
+     "src": "https://svs.gsfc.nasa.gov/5632"
+    },
+    {
+     "what": "返回途中修正 0.49 米/秒、1.62 米/秒、1.28 米/秒",
+     "src": "https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='-1024'&OBJ_DATA=YES&MAKE_EPHEM=NO"
+    },
+    {
+     "what": "画面读数（离地距离、速度）：Horizons -1024 和 301 的状态向量，每 10 分钟",
+     "src": "https://ssd.jpl.nasa.gov/horizons/",
+     "calc": "由星历算出"
+    }
+   ],
+   "pace": {
+    "lead": 2,
+    "gap": 1.6,
+    "tail": 5,
+    "min": 50
+   }
+  },
+  {
+   "title": "飞掠",
+   "vo": [
+    "四月六日，飞掠月球。",
+    "美国东部时间下午一点五十六分，乘组打破了阿波罗十三号保持了五十六年的距离纪录。",
+    "傍晚六点四十一分，他们看着地球沉到月球的地平线下面。",
+    "三分钟后，飞船转到月球背面，和地球断了联系，整整四十一分钟。",
+    "七点整，离月面最近，大约六千五百四十五公里；两分钟后，离地球最远。",
+    "窗外是东方盆地，一个宽将近一千公里的古老撞击盆地。"
+   ],
+   "facts": [
+    {
+     "what": "美东 13:56 打破纪录",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/"
+    },
+    {
+     "what": "1970 → 2026，56 年",
+     "src": "https://www.nasa.gov/news-release/nasas-artemis-ii-crew-eclipses-record-for-farthest-human-spaceflight/",
+     "calc": "年份相减"
+    },
+    {
+     "what": "美东 18:41 地球落下（Earthset）",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/"
+    },
+    {
+     "what": "美东 18:44–19:25 失联，41 分钟",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/",
+     "calc": "起止相减"
+    },
+    {
+     "what": "美东 19:00 离月面约 4,067 英里（约 6,545 公里）；19:02 离地球最远",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/",
+     "calc": "英里换算成公里"
+    },
+    {
+     "what": "星历核对：离月心最近 8,283 公里（减月球半径 1,737.4 公里 ≈ 6,546 公里）",
+     "src": "https://ssd.jpl.nasa.gov/horizons/",
+     "calc": "由星历算出"
+    },
+    {
+     "what": "东方盆地宽将近 600 英里（约 966 公里）",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/",
+     "calc": "英里换算成公里"
+    }
+   ],
+   "pace": {
+    "lead": 2,
+    "gap": 2.2,
+    "tail": 6,
+    "min": 50
+   }
+  },
+  {
+   "title": "和阿波罗比",
+   "vo": [
+    "上一次走这么远，是一九七零年的阿波罗十三号。",
+    "那一次，飞船服务舱的氧气罐出了故障，登月取消，三名宇航员绕过月球紧急返航，最远到了四十万零一百七十一公里。",
+    "这一次，阿尔忒弥斯二号多走了六千六百一十六公里。",
+    "阿波罗十三号是洛弗尔、斯威格特、海斯三个人；这一次是四个人，其中有第一位飞向月球的女性、第一位有色人种宇航员，和第一位加拿大人。"
+   ],
+   "facts": [
+    {
+     "what": "阿波罗 13 号纪录 248,655 英里（约 400,171 公里），1970 年",
+     "src": "https://www.nasa.gov/news-release/nasas-artemis-ii-crew-eclipses-record-for-farthest-human-spaceflight/",
+     "calc": "英里换算成公里"
+    },
+    {
+     "what": "比阿波罗 13 号远 4,111 英里（约 6,616 公里）",
+     "src": "https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/",
+     "calc": "英里换算成公里"
+    },
+    {
+     "what": "阿波罗 13 号氧气罐故障",
+     "src": "https://images.nasa.gov/details/S70-34902"
+    },
+    {
+     "what": "阿波罗 13 号乘组 Lovell、Swigert、Haise",
+     "src": "https://images.nasa.gov/details/S70-36485"
+    },
+    {
+     "what": "第一位女性、第一位有色人种、第一位加拿大人",
+     "src": "https://www.nasa.gov/news-release/nasa-names-astronauts-to-next-moon-mission-first-crew-under-artemis/"
+    }
+   ],
+   "pace": {
+    "lead": 1.5,
+    "gap": 1.6,
+    "tail": 3,
+    "min": 40
+   }
+  },
+  {
+   "title": "返回和发布会金句",
+   "vo": [
+    "四月十日，太平洋时间下午五点零七分，飞船在圣迭戈外海溅落。",
+    "直升机把四个人送上了美国海军的约翰·P·穆尔萨号。",
+    "十天，总航程一百一十一万八千六百二十四公里。",
+    "回到休斯敦，乘组在发布会上这样说。"
+   ],
+   "facts": [
+    {
+     "what": "4 月 10 日太平洋时间 17:07，圣迭戈外海",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/"
+    },
+    {
+     "what": "USS John P. Murtha",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/"
+    },
+    {
+     "what": "总航程 695,081 英里（约 1,118,624 公里，NASA 5 月 7 日更新的官方数）",
+     "src": "https://www.nasa.gov/news-release/nasa-welcomes-record-setting-artemis-ii-moonfarers-back-to-earth/",
+     "calc": "英里换算成公里"
+    },
+    {
+     "what": "发布会原话：取自 NASA 任务后发布会录像，faster-whisper 转写后人工对照原声",
+     "src": "https://images.nasa.gov/details/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416"
+    },
+    {
+     "what": "任务后发布会上，杰里米·汉森（加拿大航天局）的原话：the sense I had was this sense of fragility and feeling small, infinitesimally small. But yet, this very powerful feeling as a human being, like as a group. …small and powerless, but yet powerful together.",
+     "src": "https://images.nasa.gov/details/art002m1501061829_Artemis_II_Crew_Discusses_Historic_Moon_Mission_at_Post-Flight_News_Conference_250416",
+     "calc": "录像第 864.8–877.4 秒、884.9–890.2 秒；faster-whisper small.en 束宽 5 对照原声核过，说话人按画面（加拿大国旗臂章）认"
+    }
+   ],
+   "pace": {
+    "lead": 3,
+    "gap": 1.5,
+    "tail": 21.9,
+    "min": 45
+   }
+  },
+  {
+   "title": "接下来",
+   "vo": [
+    "接下来呢？按 NASA 十月公布的计划，二零二七年，阿尔忒弥斯三号在近地轨道上，试验和登月器对接。",
+    "二零二八年，阿尔忒弥斯四号，降落在月球南极附近。",
+    "再往后，NASA 的目标是在月面长期驻留。",
+    "这几个画面是 AI 生成的示意图，还没有真实的影像。"
+   ],
+   "facts": [
+    {
+     "what": "Artemis III 2027 年，近地轨道对接测试",
+     "src": "https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/"
+    },
+    {
+     "what": "Artemis IV 2028 年登月（南极）",
+     "src": "https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/"
+    },
+    {
+     "what": "长期驻留（enduring human presence），没给年份",
+     "src": "https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/"
+    },
+    {
+     "what": "月面基地的时间：没查到，片里不给年份",
+     "src": null
+    }
+   ],
+   "pace": {
+    "lead": 1.5,
+    "gap": 1.8,
+    "tail": 2,
+    "min": 30
+   }
+  },
+  {
+   "title": "结尾",
+   "vo": [
+    "四十万公里之外，他们看着地球落下。",
+    "下一次，人类要站在月面上看。",
+    "本期素材来自 NASA 和喷气推进实验室，我们下期见。"
+   ],
+   "facts": [
+    {
+     "what": "素材出处见 assets.json，片尾滚动",
+     "src": null
+    }
+   ],
+   "pace": {
+    "lead": 1,
+    "gap": 1,
+    "tail": 5,
+    "min": 20
+   }
+  }
+ ],
+ "cover": [
+  5,
+  17
+ ],
+ "shorts": [
+  {
+   "seg": 3,
+   "sec": 60
+  },
+  {
+   "seg": 5,
+   "sec": 60
+  },
+  {
+   "seg": 6,
+   "sec": 60
+  }
+ ]
+}

@@ -10,9 +10,9 @@
 | 目录 | 用途 | 主角 | 画幅 | 时长 | 青水算力（约，含试错） | 状态 |
 |---|---|---|---|---|---|---|
 | [course-first-video/](course-first-video/) | 课件教程：零基础用 AI 编程助手做第一条短片 | C 代码画 | 16:9 | 约 5 分钟 + 3 × 60 秒 | 40 | 策划 |
-| [news-artemis/](news-artemis/) | 资讯解说：Artemis II 绕月任务回顾 | T 真实素材 | 9:16 | 约 5 分钟 + 3 × 60 秒 | 23 | 策划 |
+| [news-artemis/](news-artemis/) | 资讯解说：Artemis II 绕月任务回顾 | T 真实素材 | 9:16 | 约 5.1 分钟 + 3 × 60 秒 | 19 | 完成 |
 | [shop-skincare/](shop-skincare/) | 电商带货：虚构品牌精华液上新讲解 | G AI 生成 | 9:16 | 约 4.5 分钟 + 6 × 15 秒 | 56 | 策划 |
-| 合计 | | | | | 约 119 | |
+| 合计 | | | | | 约 115 | |
 <!-- /gen -->
 
 上表、各案例 README 里的分镜表、用量、降级用法、对比口径，都由 `python3 cases/tools/build.py` 从各自的 `case.json` 生成，不要手改；`--check` 核对两边一致。
@@ -28,9 +28,35 @@ cases/<名字>/
   assets/          素材
   segments/        每段一个场景文件，写法和样片的 scene.js 一样，直接用 samples/lib/lib.js
   sound.py         整支的混音：旁白、配乐、音效
-  log.md           制作记录：每一步用时、生成用量、返工
-cases/tools/build.py   生成和检查
+  log.md           制作记录：每一步用时、生成用量、返工；末尾是汇总表（格式见下）
+  media/、out/、assets/dl/   成片、中间产物、能重新下载的素材（不进仓库）
+cases/tools/
+  build.py         生成和检查
+  assets.py        照 assets.json 下载、截取、生成素材（长录像按时间段读取，不整个下载）
+  timing.py        旁白驱动的分段时长 → segments/timing.json
+  player.html      分段播放器（浏览器预览、出片共用）
+  render.py        分段渲染、每段检查、接片混音、出原版、中版、封面、附带短片
+  transcribe.py    长录像转逐词文字稿（faster-whisper），挑金句、切短片用
 ```
+
+一支片的流程：`script.json` 定稿 → `timing.py --sync` → `assets.py` 拿素材、配旁白 → `timing.py` 算每段时长 → 写 `segments/NN.js`、`sound.py` →
+`render.py <名字> all --quick` 抽帧看 → `render.py <名字> all` 出各段 → `render.py <名字> --join`、`--shorts` → `scripts/media.py upload`。
+原版要同时低于 100 MB，`media.py` 经 git 中转分支上传，GitHub 拒收更大的单个文件。
+
+## log.md 的汇总表
+
+`log.md` 末尾固定一张表，介绍页的「用量和用时」只取这张表。时间按墙上时钟、精确到分钟；同一段时间只算进一类。
+
+| 项目 | 数 | 说明 |
+|---|---|---|
+| 总用时 | 分钟 | 从接到任务到推送 |
+| 等人 | 分钟 | 等需求方确认、回复 |
+| 人在改 | 分钟 | 需求方动手改稿、改素材 |
+| 机器在跑 | 分钟 | 生成、下载截取素材、渲染、接片（助手同时在做别的也算这里） |
+| 助手在做 | 分钟 | 其余：查资料、写稿、写代码、看片 |
+| 青水算力 | 数 | 按类分：生图、生视频、语音合成 |
+| DeepSeek | 次 | 调用次数 |
+| 返工 | 次 | 重新生成、重渲整段、重配旁白的次数，各记原因 |
 
 ## case.json
 

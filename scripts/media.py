@@ -1,4 +1,4 @@
-"""样片和风格包演示片的视频放在 GitHub Release「media」里，不进 Git 仓库；仓库只留清单 media.json（文件名、位置、大小、sha256）。
+"""样片、风格包演示片和案例（cases/）的视频放在 GitHub Release「media」里，不进 Git 仓库；仓库只留清单 media.json（文件名、位置、大小、sha256）。
 
     python3 scripts/media.py upload [--gh]   # 把本地新出或改过的视频传上去，并更新 media.json（之后要提交它）
     python3 scripts/media.py pull [编号…]     # 从 Release 下载视频到原来的位置（已有且一致的跳过）
@@ -33,6 +33,9 @@ def local_files():
             out[p.name] = p
     for p in sorted(ROOT.glob("packs/*/demo/*.mp4")):
         out["pack-" + p.name] = p
+    for p in sorted(ROOT.glob("cases/*/media/*")):          # 案例：原版、中版、封面、附带短片，加前缀 case-
+        if p.suffix in (".mp4", ".jpg") and p.stem.startswith(p.parent.parent.name):
+            out["case-" + p.name] = p
     return out
 
 
@@ -69,6 +72,9 @@ def upload(use_gh):
     if not todo:
         print("没有要传的视频")
         return
+    big = [n for n, (p, _) in todo.items() if p.stat().st_size >= 100_000_000]
+    if big and not use_gh:                                   # 中转分支经 git 推送，GitHub 拒收 100 MB 以上的单个文件
+        sys.exit(f"✗ {' '.join(big)} 超过 100 MB，中转分支推不上去：先压小，或用 --gh 直接传")
     if use_gh:
         subprocess.run(["gh", "release", "upload", TAG, "--clobber", "-R", REPO, *[str(p) for p, _ in todo.values()]], check=True)
     else:
@@ -102,7 +108,7 @@ def pull(ids):
     m = load()
     n = 0
     for name, rec in m["files"].items():
-        if ids and not any(name.startswith(i + "-") or name.startswith("pack-" + i) for i in ids):
+        if ids and not any(name.startswith(i + "-") or name.startswith("pack-" + i) or name.startswith("case-" + i) for i in ids):
             continue
         p = ROOT / rec["path"]
         if p.exists() and p.stat().st_size == rec["bytes"] and sha256(p) == rec["sha256"]:
