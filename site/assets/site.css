@@ -169,10 +169,6 @@ h3 { margin: 0; font-size: 17px; line-height: 1.4; }
 .tl-bar { margin: 0 3px; padding: 7px 9px; border-radius: 6px; background: color-mix(in srgb, var(--r) 16%, transparent); border: 1px solid color-mix(in srgb, var(--r) 45%, transparent); border-left: 3px solid var(--r); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tl-base { margin: 4px 3px 0; padding: 8px 12px; border-radius: 6px; border: 1.5px dashed var(--rc); color: var(--rc); font-weight: 700; text-align: center; }
 .tl > div:nth-last-child(2) { margin-top: 4px; }
-.mix-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
-.mix-tabs button { font: 400 14px/1 var(--body); padding: 9px 15px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
-.mix-tabs button[aria-selected="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
-.tl-none { margin: 0 3px; padding: 7px 9px; border-radius: 6px; border: 1px dashed var(--rule); color: var(--muted); font-size: 12.5px; line-height: 1.3; }
 .tl-note { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
 .mix-why { margin-top: 28px; }
 .mix-more { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
