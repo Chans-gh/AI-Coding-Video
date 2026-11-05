@@ -397,3 +397,72 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
   .tree li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 真实应用：卡片（只有封面）→ 播放器 + 跟着进度切段的说明栏；三类的颜色 */
+:root { --kc: #2A41C9; --kt: #C2571A; --kg: #8A3FD1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --kc: #8C9CFF; --kt: #F0924F; --kg: #C08CFF; } }
+:root[data-theme="dark"] { --kc: #8C9CFF; --kt: #F0924F; --kg: #C08CFF; }
+.k-c { --k: var(--kc); } .k-t { --k: var(--kt); } .k-g { --k: var(--kg); }
+.case-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.case-card { display: flex; flex-direction: column; text-align: left; padding: 0; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); color: var(--ink); font: inherit; overflow: hidden; box-shadow: var(--shadow); }
+button.case-card { cursor: pointer; transition: transform .2s, box-shadow .2s; }
+button.case-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.case-card[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cc-cover { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--screen); }
+.cc-blur { position: absolute; inset: -20px; background: center / cover no-repeat; filter: blur(18px) brightness(.55); }
+.cc-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.cc-play { position: absolute; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(0, 0, 0, .55); color: #fff; font-size: 20px; padding-left: 4px; }
+.cc-soon { color: #94A0AE; font: 700 14px/1 var(--mono); letter-spacing: .08em; }
+.case-card.soon { opacity: .72; }
+.cc-body { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px 16px; }
+.cc-body b { font-size: 16px; line-height: 1.45; }
+.cc-meta { display: flex; align-items: center; gap: 10px; color: var(--muted); font: 400 12px/1.4 var(--mono); }
+.cc-sum { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.kc { display: inline-block; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 999px; font: 400 12px/1.5 var(--mono); color: var(--muted); opacity: .5; white-space: nowrap; }
+.kc.on { opacity: 1; border-color: var(--k); color: var(--k); }
+.kc.lead { background: var(--k); color: var(--accent-ink); font-weight: 700; }
+.kd { display: inline-block; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--k); }
+.case-stage { margin-top: 32px; }
+.case { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.case[data-ar="9x16"] { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); }
+.case-screen { background: var(--screen); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 16 / 9; }
+.case[data-ar="9x16"] .case-screen { aspect-ratio: 9 / 16; }
+.case-screen video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.case-bar { position: relative; display: flex; gap: 2px; height: 12px; margin-top: 10px; }
+.cb { flex: 1 1 0; min-width: 4px; padding: 0; border: 0; border-radius: 2px; background: var(--k); opacity: .45; cursor: pointer; }
+.cb:hover { opacity: .75; } .cb.on { opacity: 1; }
+.cb-head { position: absolute; top: -4px; bottom: -4px; left: 0; width: 2px; background: var(--ink); pointer-events: none; }
+.case-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 10px 0 0; font-size: 14px; }
+.case-toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
+.case-toc button { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--muted); font: 400 13px/1.4 var(--body); cursor: pointer; }
+.case-toc button code { font-size: 12px; }
+.case-toc button:hover { color: var(--ink); }
+.case-toc button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); background: var(--card); }
+.cs { padding: 16px 18px; border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+.cs-time { display: flex; gap: 10px; margin: 0; color: var(--muted); font-size: 13px; }
+.cs h4 { margin: 4px 0 10px; font-size: 20px; line-height: 1.4; }
+.cs h4 small { display: block; font-size: 14px; font-weight: 400; color: var(--muted); }
+.cs-kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-uses { margin: 12px 0 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.55; }
+.cs-uses li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 5px 0; border-top: 1px solid var(--rule); }
+.cs-uses .kd { transform: translateY(-1px); }
+.cs-uses span { flex: 1 1 12em; }
+.cs-uses a { font-size: 13px; white-space: nowrap; }
+.cs-note, .cs-swap { margin: 12px 0 0; font-size: 14px; line-height: 1.7; }
+.cs-note b, .cs-swap b { display: block; font: 700 12px/1.6 var(--mono); color: var(--muted); }
+.case-sum { margin-top: 14px; padding: 12px 18px; border: 1px solid var(--rule); border-radius: var(--radius); font-size: 14px; }
+.case-sum summary { cursor: pointer; font-weight: 700; }
+.case-sum h5 { margin: 16px 0 6px; font-size: 13px; color: var(--muted); }
+.sum-split { display: flex; gap: 2px; }
+.sum-split span { flex: 1 1 0; min-width: 3.5em; padding: 2px 6px; border-radius: 2px; background: var(--k); color: var(--accent-ink); font: 700 12px/1.6 var(--mono); white-space: nowrap; overflow: hidden; }
+.sum-refs { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; font-size: 13px; }
+.sum-list { margin: 0; padding-left: 1.2em; line-height: 1.65; }
+.sum-list b { margin-right: 6px; }
+.cs-tab { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.5; }
+.cs-tab td { padding: 5px 8px 5px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.cs-tab td:first-child { white-space: nowrap; font-weight: 700; }
+.cs-tab.log td:nth-child(2) { white-space: nowrap; }
+@media (max-width: 860px) {
+  .case, .case[data-ar="9x16"] { grid-template-columns: minmax(0, 1fr); }
+  .case[data-ar="9x16"] .case-main { width: 100%; max-width: min(380px, 80vw); margin: 0 auto; }
+}

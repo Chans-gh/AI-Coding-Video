@@ -56,7 +56,7 @@ def job(src, out=OUT, long=None):
 
 
 def main():
-    srcs = sorted(p for p in MEDIA.glob("*") if p.suffix in (".mp4", ".jpg"))
+    srcs = sorted(p for p in MEDIA.glob("*") if p.suffix in (".mp4", ".jpg") and not p.name.startswith("case-"))   # 案例成片自带中版，不出小版
     if not srcs:
         sys.exit("site/media/ 里没有视频和静帧：先跑 site/build.py（线上由 pages.yml 下载）")
     hero = [p for p in srcs if p.stem in {f"{h}-16x9" for h in HERO}]

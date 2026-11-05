@@ -47,6 +47,8 @@ jobs:
           cp samples/*/*-16x9.jpg samples/*/*-9x16.jpg site/media/
           # 视频在 Release 里已按 media/ 的命名存放（风格包的带前缀 pack-）
           gh release download media -R "$GITHUB_REPOSITORY" -p '*.mp4' -D site/media --clobber
+          # 真实应用案例的封面（视频已在上一行：原版、中版 case-<名字>.mp4、case-<名字>-mid.mp4）
+          gh release download media -R "$GITHUB_REPOSITORY" -p 'case-*.jpg' -D site/media --clobber
           # 风格包静帧：packs/<名字>/demo/<名字>-<颜色>-<画幅>.jpg → media/pack-<名字>-<颜色>-<画幅>.jpg，命名和 site/build.py 一致
           for f in packs/*/demo/*.jpg; do
             [ -f "$f" ] && cp "$f" "site/media/pack-$(basename "$f")"
