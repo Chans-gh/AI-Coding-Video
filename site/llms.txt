@@ -1,0 +1,21 @@
+# AI Coding Video
+
+> A style library and Agent Skill (SKILL.md) for making videos by having an AI coding agent write code: every frame is rendered deterministically from time t. Frames are drawn by code (class C), or code edits public-domain / CC0 footage (class T) or AI-generated material (class G). Documentation is in Chinese; this page is bilingual.
+
+- Repository: https://github.com/chans-gh/AI-Coding-Video
+- Install for Claude Code: `claude plugin marketplace add chans-gh/AI-Coding-Video` then `claude plugin install ai-coding-video@ai-coding-video`
+- License: MIT
+
+## Docs
+
+- [README](https://github.com/chans-gh/AI-Coding-Video/blob/main/README.md): what it is, install for Claude Code, Codex, DeepSeek Harness, WorkBuddy
+- [SKILL.md](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md): instructions the agent follows
+- [Style index](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/index.md): all styles by topic, content type, purpose, mood, platform
+- [Making samples](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md): render pipeline (browser frames, Playwright, ffmpeg)
+- [Materials](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/materials.md): classes C, T, G and material rules
+
+## Examples
+
+- [Samples](https://github.com/chans-gh/AI-Coding-Video/tree/main/samples): reproducible render code per style, 16:9 and 9:16
+- [Style packs](https://github.com/chans-gh/AI-Coding-Video/blob/main/packs/README.md): reusable, re-brandable code modules
+- [Case studies](https://github.com/chans-gh/AI-Coding-Video/blob/main/cases/README.md): complete ~5-minute videos with storyboard, code, time and cost

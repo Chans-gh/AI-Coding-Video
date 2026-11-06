@@ -8,6 +8,7 @@
 | `assets/site.css`、`assets/site.js` | 样式和交互 | 直接改 |
 | `build.py` | 填模板、拷样片、裁字体；`--page` 只出页面和字体 | 本地预览时跑；发布时由 CI 跑 |
 | `small.py` | 把 `media/` 里的原版视频、静帧缩小成卡片用的小版，放进 `media/s/`（卡片长边 768、风格包 1280，H.264 CRF 27）；首页轮播的几支（`HERO`，第一支是默认）另出 1280 宽的放进 `media/m/`；原版没变就不重出 | `build.py` 和发布时自动调用 |
+| `llms.txt` | 给 AI 检索用的简介和文档链接（[llms.txt 约定](https://llmstxt.org/)），页面 `<head>` 里另有 canonical、Open Graph 分享卡片 | 直接改；README 改了定位或入口时一起改 |
 | `index.html` | 生成物 | 不进仓库，发布时生成 |
 | `fonts/` | 按页面用到的字裁出来的字体（思源黑体、思源宋体、JetBrains Mono，均为 OFL） | 生成物，不进仓库，发布时生成 |
 | `media/` | 样片视频和静帧，从 `samples/` 拷来；`media/s/` 是卡片用的小版，`media/m/` 是首页大视频。卡片的视频和静帧都是快滚到时才由 `site.js` 填上；首页大视频用 `media/m/` 的 1280 宽版，放大播放用原版 | 生成物，不进仓库 |

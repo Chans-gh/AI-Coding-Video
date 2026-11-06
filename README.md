@@ -1,8 +1,20 @@
-# AI Coding Video
+# AI Coding Video：让 AI 编程助手写代码做视频的风格库和 Agent Skill
+
+> **Code-driven video style library and Agent Skill** for Claude Code, Codex, DeepSeek Harness and other AI coding agents: 100+ video styles with copy-ready style prompts, reproducible sample code (Canvas, WebGL, SVG, Three.js), and long-form case studies. [English ↓](#english)
+
+**[在线介绍页：看样片、选风格](https://chans-gh.github.io/AI-Coding-Video/)** · [真实应用案例](https://chans-gh.github.io/AI-Coding-Video/#cases) · [安装](#安装) · [风格目录](skills/ai-coding-video/index.md) · [样片](samples/) · [风格包](packs/)
 
 **Coding Video**：让 AI 写代码，由代码逐帧算出画面来做视频，每一帧都由程序在时间 t 上确定地画出来。画面可以全部由代码算出（C 类），也可以由代码排版、剪辑真实素材（T 类）或 AI 生成的素材（G 类），见 [materials.md](skills/ai-coding-video/materials.md)。
 
 这个仓库是一个给 AI 助手用的 Skill：上百种纯代码能做出来的视觉风格，加上按内容类型（口播、带货、MV、新闻……）整理的素材做法，每种一句可复制的风格提示词和技术标签，配上选风格索引、提示词方法、配乐与中文旁白音色指南。Claude Code、Codex、DeepSeek Harness、WorkBuddy 等支持 Agent Skills（`SKILL.md`）格式的助手都能直接装。
+
+## 能拿来做什么
+
+- **短视频和动效**：知识科普、产品广告和带货、新闻资讯解说、课件和培训、数据可视化、片头片尾、音乐 MV、竖屏短视频（抖音、视频号、小红书、Reels、Shorts）。
+- **选风格**：按题材、用途、受众、情绪、平台在[风格目录和索引](skills/ai-coding-video/index.md)里挑，每种附一句风格提示词和技术标签，可以直接贴给 AI。
+- **出片**：有样片的风格带可复现的渲染代码（浏览器里逐帧渲染，Playwright 截帧，ffmpeg 合成，配乐和音效由代码合成），横屏 16:9、竖屏 9:16 各一版；也可以换成你项目里的 Remotion、Motion Canvas 等管线。
+- **三类画面混用**：纯代码画（Canvas 2D、WebGL、SVG、HTML/CSS、Three.js），公共领域和 CC0 真实素材的加工（录像对齐、深度视差、逐词转写切金句、讲义转片），AI 生图、生视频、语音合成的素材再由代码排版。
+- **完整案例**：[cases/](cases/README.md) 里是约 5 分钟的完整视频，从分镜、代码、素材清单到实际用时和生成用量都公开，在介绍页里边看边对照每一段用了什么技术。
 
 ## 三级用法
 
@@ -10,9 +22,9 @@
 |---|---|---|
 | 0 级：词典 | 全部风格的提示词、题材、技术标签、选风格索引 | [`skills/ai-coding-video/`](skills/ai-coding-video/) |
 | 1 级：样片 | 选中的风格做成样片（C 类 3–5 秒，T 类、G 类 8–15 秒并附素材），横屏 16:9 和竖屏 9:16 各一版，附可复现的代码 | [`samples/`](samples/) |
-| 2 级：风格包 | 通过的风格做成可换品牌色的代码模块，覆盖片头、讲解、数据、转场等常用呈现 | [`packs/`](packs/)（第 1 个：暗色科技发布会） |
+| 2 级：风格包 | 通过的风格做成可换品牌色的代码模块，覆盖片头、讲解、数据、转场等常用呈现 | [`packs/`](packs/)（现有的见 [packs/README.md](packs/README.md)） |
 
-Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里帮你选风格、出样片、沉淀成风格包。本仓库的样片和风格包是示范。进度见 [PLAN.md](PLAN.md)。
+Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里帮你选风格、出样片、沉淀成风格包。本仓库的样片、风格包和[真实应用案例](cases/README.md)是示范。进度见 [PLAN.md](PLAN.md)。
 
 ## 安装
 
@@ -115,3 +127,16 @@ AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ## 许可
 
 [MIT](LICENSE)。文字、代码和本仓库渲染的样片都适用；T 类、G 类样片的素材（`samples/<编号>/assets/`）按各自 `assets.json` 里逐份记的许可（公共领域、CC0，或随本仓库按 MIT 发布的 AI 生成素材）。风格提示词由整理者用自己的话写成，参考来源见 [sources.md](skills/ai-coding-video/sources.md)；缩略图和样片都由本仓库的代码渲染，不收录第三方的成片和截图；T 类用到的公共领域素材也经代码合成后才出片。「致敬风格」里提到的作品名和作者名归各自权利人所有，本仓库与他们没有关联，样片里的角色和场景都是原创的。
+
+## English
+
+**AI Coding Video** is a style library and [Agent Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) (`SKILL.md`) for making videos by having an AI coding agent write code: every frame is rendered deterministically from time *t*. Frames can be drawn entirely by code (class C), or code can lay out and edit real public-domain / CC0 footage (class T) or AI-generated images, video and voice (class G).
+
+- **What is inside**: 100+ visual styles, each with a copy-ready style prompt, topic and technique tags, and an index for choosing by topic, purpose, audience, mood and platform; guides for prompting, materials, music and Chinese voice-over. Styles with samples ship reproducible render code (`scene.js`, `sound.py`) in 16:9 and 9:16.
+- **Three levels**: a dictionary of styles → samples you can copy and run → style packs (reusable, re-brandable code modules for intros, explainers, data cards, transitions and captions).
+- **Case studies**: [cases/](cases/README.md) holds complete ~5-minute videos (storyboard, code, asset list, time and generation cost) that mix all three classes; watch them with per-segment notes on the [project page](https://chans-gh.github.io/AI-Coding-Video/#cases).
+- **Works with**: Claude Code and Codex (plugin marketplace, see [Install](#安装)), DeepSeek Harness, WorkBuddy and other agents that read `SKILL.md` (`scripts/install.sh`). Rendering needs Node.js 18+, Python 3 with Playwright, and ffmpeg.
+- **Typical uses**: explainer and science videos, product ads, news briefs, courseware, data visualization, motion graphics, music videos, vertical short-form video.
+
+The documentation is in Chinese; the [project page](https://chans-gh.github.io/AI-Coding-Video/) is bilingual. License: MIT.
+
