@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 挂起：批 1、批 2 做完，剩下 4 个条目（G-017、G-018、T-019、G-019）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
 | 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）做完，介绍页模块第一版已上线；第 2 支（课件）、第 3 支（护肤）、模块改版等维护者说开工，见下面 |
-| 7 | 新 Skill「视频内容策划」video-content-planner（阶段 1、2：内容整理和补齐），ai-coding-video 接入 | — | 批 0 做完（PRD、SPEC），等维护者确认 PRD 第 9 节再开批 A，见下面 |
+| 7 | 新 Skill「视频内容策划」video-content-planner（阶段 1、2：内容整理和补齐），ai-coding-video 接入 | — | 批 0 做完，PRD 第 9 节已确认；下一步批 A，见下面 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 
@@ -96,14 +96,19 @@
 
 - 做什么、为什么：[PRD](docs/video-content-planner/PRD.md)；怎么做、改哪些文件：[SPEC](docs/video-content-planner/SPEC.md)。严格按 SPEC 做，要偏离先改 SPEC 并经维护者确认。
 - 分工：策划管阶段 1、2（内容整理、补齐），ai-coding-video 管阶段 3、4（风格、分镜、逐字稿、出片），靠用户项目里的 `videos/<短名>/` 衔接（维护者定）。
+- 分支：阶段 7 的几批都在 `claude/dazzling-faraday-lwjvus`（[PR #1](https://github.com/Chans-gh/AI-Coding-Video/pull/1)）上接着做，暂不合并回 `main`（维护者定）。
 - 本阶段不改介绍页（`site/`、`pages.yml`）（维护者定）。批 C 改 `skills/ai-coding-video/` 会让介绍页按原数据重新生成一次，内容不变。
 
 | 批 | 内容 | 状态 |
 |---|---|---|
-| 0 | PRD、SPEC、本段、AGENTS 目录表 | 做完，等维护者确认 PRD 第 9 节的待确认项 |
+| 0 | PRD、SPEC、本段、AGENTS 目录表 | 做完；PRD 第 9 节已确认（2026-11-08） |
 | A | Skill 本体、模板、`check.py` 和测试、install.sh、插件文案、README | 未开始 |
 | B | 三支案例回放和四个边界任务，按结果修 Skill，换上正式例子 | 未开始 |
 | C | ai-coding-video 接入：入口、`storyboard.md`、版本 0.7.0 | 未开始 |
+
+阶段 7 之后的待办：
+
+- **抓原文脚本随包（重要，维护者定）**：把 Test 仓库 `chansclaude-research` 的 `fetch_article.py` 改写后放进策划 Skill 的 `scripts/`。原文先落成本地 Markdown（正文、图表清单），助手按需读片段，不把整页网页灌进对话，是省 token 的关键。要定：依赖（beautifulsoup4、Pillow）缺了怎么降级、离线测试怎么带、抓下来的文件哪些进用户项目。批 C 之后排期。
 
 ## 待办：内容类型再补充（维护者自己研发）
 
