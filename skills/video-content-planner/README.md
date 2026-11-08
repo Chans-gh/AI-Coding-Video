@@ -30,8 +30,8 @@
 ## 检查脚本
 
 ```bash
-python3 -I scripts/check.py videos/<短名>            # 格式：节、表头、编号、引用、取值、时长
-python3 -I scripts/check.py videos/<短名> --handoff  # 再加交接条件
+python3 -I <本 Skill 目录>/scripts/check.py videos/<短名>            # 格式：节、表头、编号、引用、取值、时长
+python3 -I <本 Skill 目录>/scripts/check.py videos/<短名> --handoff  # 再加交接条件
 ```
 
 只用 Python 标准库。按标题找节、按表头找表，不依赖行号。每个问题一行「文件:节: 问题」，最后一行「通过」或「N 个错、M 个提示」；有错退出码 1。

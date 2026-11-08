@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """检查 videos/<短名>/ 下的 plan.md、research.md 是否符合模板，交接前加 --handoff。
 
-用法：python3 -I scripts/check.py <videos/短名 目录> [--handoff]
+用法：python3 -I <本 Skill 目录>/scripts/check.py <videos/短名 目录> [--handoff]
 
 只用标准库。按 Markdown 标题找节、按表头找表，不依赖行号。
 输出每个问题一行「文件:节: 问题」，最后一行「通过」或「N 个错、M 个提示」。
@@ -35,7 +35,7 @@ REF_SEG = re.compile(r'(?<![A-Za-z0-9_])P(\d+)(?![\d])')
 REF_GAP = re.compile(r'(?<![A-Za-z0-9_])Q(\d+)(?![\d])')
 NUM = r'\d+(?:\.\d+)?'
 UNIT_SEC = {'秒': 1, 's': 1, '分钟': 60, '分': 60, 'min': 60}
-DUR_FIND = re.compile(rf'{NUM}\s*分\s*{NUM}\s*秒|{NUM}\s*(?:[–\-~—至到]\s*{NUM}\s*)?(?:秒|分钟|分|min|s)(?![A-Za-z])')
+DUR_FIND = re.compile(rf'{NUM}\s*分钟?\s*{NUM}\s*秒|{NUM}\s*(?:[–\-~—至到]\s*{NUM}\s*)?(?:秒|分钟|分|min|s)(?![A-Za-z])')
 
 
 def is_placeholder(cell):
@@ -45,10 +45,11 @@ def is_placeholder(cell):
 
 
 def parse_duration(text):
-    """'45 秒'、'40–50 秒'、'1 分 30 秒'、'2 分钟' → (下限, 上限) 秒；解析不了返回 None"""
+    """'45 秒'、'40–50 秒'、'1 分 30 秒'、'1 分钟 30 秒'、'2 分钟'、'约 45 秒'、'45 秒左右' → (下限, 上限) 秒；解析不了返回 None"""
     s = re.sub(r'\s+', '', text)
     s = re.sub(r'^(约|大约|~)', '', s)
-    m = re.fullmatch(rf'({NUM})分({NUM})秒', s)
+    s = re.sub(r'(左右|上下)$', '', s)
+    m = re.fullmatch(rf'({NUM})分钟?({NUM})秒', s)
     if m:
         v = float(m.group(1)) * 60 + float(m.group(2))
         return v, v
@@ -266,22 +267,30 @@ def check(folder, handoff=False):
                 if row['状态'] == '改内容关闭' and (not how or is_placeholder(how)):
                     r.err(where, f'{q} 是「改内容关闭」，「怎么解决的」要写删了、收窄了或改了什么')
 
-    # 引用都要存在
-    for name, lines in psecs:
-        body = '\n'.join(lines)
-        where = f'plan.md:{name or "开头"}'
-        for m in sorted(set(x.group(0) for x in REF_DATA.finditer(body))):
-            if m not in data:
-                r.err(where, f'引用的 {m} 在 research.md 里没有')
-        for m in sorted(set(x.group(0) for x in REF_UNIT.finditer(body))):
-            if m not in units:
-                r.err(where, f'引用的单元 {m} 在 research.md 里没有')
-        for m in sorted(set(x.group(0) for x in REF_SEG.finditer(body))):
-            if m not in segs:
-                r.err(where, f'引用的段 {m} 在段落表里没有')
-        for m in sorted(set(x.group(0) for x in REF_GAP.finditer(body))):
-            if m not in gaps:
-                r.err(where, f'引用的缺口 {m} 在缺口表里没有')
+    # 引用都要存在：只查规定写编号的那几格（SPEC 3.1「编号写在哪」），别处的「华为 P40」「2026 年 Q1」是正文
+    cells = []   # (位置, 格子内容, 查哪几种编号)
+    for row in seg_rows:
+        cells += [('段落', row['作用'], 'P'), ('段落', row['核心内容'], 'U'), ('段落', row['素材编排'], 'Q')]
+    t = find_table(pmap.get('立意', []), ['项', '内容'])
+    for row in (t[1] if t else []):
+        if row['项'] == '凭什么信':
+            cells.append(('立意', row['内容'], 'U'))
+    for row in gap_rows:
+        cells += [('缺口', row['段'], 'P'), ('缺口', row['怎么解决的'], 'U')]
+    seen = set()
+    for sec, cell, kinds in cells:
+        found = []
+        if 'U' in kinds:
+            found += [(x.group(0), data, '引用的 {} 在 research.md 里没有') for x in REF_DATA.finditer(cell)]
+            found += [(x.group(0), units, '引用的单元 {} 在 research.md 里没有') for x in REF_UNIT.finditer(cell)]
+        if 'P' in kinds:
+            found += [(x.group(0), segs, '引用的段 {} 在段落表里没有') for x in REF_SEG.finditer(cell)]
+        if 'Q' in kinds:
+            found += [(x.group(0), gaps, '引用的缺口 {} 在缺口表里没有') for x in REF_GAP.finditer(cell)]
+        for ref, pool, msg in found:
+            if ref not in pool and (sec, ref) not in seen:
+                seen.add((sec, ref))
+                r.err(f'plan.md:{sec}', msg.format(ref))
 
     # 时长合计和目标比
     target = None
@@ -317,8 +326,8 @@ def check(folder, handoff=False):
         if row['归谁'] == '策划' and row['状态'] == '待补':
             r.err('plan.md:缺口', f'{row["编号"]} 归策划、还待补，补完或改内容关闭后才能交接')
         if row['归谁'] in ('风格后', '分镜后'):
-            if not row['缺什么'] or not REF_SEG.search(row['段']):
-                r.err('plan.md:缺口', f'{row["编号"]} 归{row["归谁"]}，要写清缺什么、哪段')
+            if not row['缺什么'] or not (REF_SEG.search(row['段']) or row['段'] == '全片'):
+                r.err('plan.md:缺口', f'{row["编号"]} 归{row["归谁"]}，要写清缺什么、哪段（段号，或「全片」）')
     for row in seg_rows:
         cell = row['核心内容']
         refs = set(x.group(0) for x in REF_DATA.finditer(cell))

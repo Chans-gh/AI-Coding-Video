@@ -103,6 +103,9 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(p('40–50 秒'), (40, 50))
         self.assertEqual(p('1 分 30 秒'), (90, 90))
         self.assertEqual(p('2 分钟'), (120, 120))
+        self.assertEqual(p('1 分钟 30 秒'), (90, 90))
+        self.assertEqual(p('约 45 秒'), (45, 45))
+        self.assertEqual(p('45 秒左右'), (45, 45))
         self.assertIsNone(p('四十秒'))
         self.assertIsNone(p('45'))
 
@@ -114,6 +117,40 @@ class CheckTest(unittest.TestCase):
         code, out = run(d)
         self.assertEqual(code, 0)
         self.assertIn('相差超过 15%', out)
+
+    def test_model_names_not_refs(self):
+        """规定格子以外的「华为 P40」「2026 年 Q1」「仰望 U9」是正文，不当引用"""
+        d = self.case('ok')
+        path = os.path.join(d, 'plan.md')
+        text = read(path).replace('| 背景故事 | 延后 | 时长不够 |', '| 华为 P40、仰望 U9 的对比 | 删除 | 2026 年 Q1 的旧闻 |')
+        write(path, text)
+        for handoff in (False, True):
+            code, out = run(d, handoff)
+            self.assertEqual((code, out.strip()), (0, '通过'))
+
+    def test_scoped_refs_still_checked(self):
+        """规定的格子里写了不存在的编号照样报：素材编排的 Q、作用的 P、凭什么信的 U"""
+        d = self.case('ok')
+        path = os.path.join(d, 'plan.md')
+        text = read(path).replace('照片，见 Q1', '照片，见 Q9').replace('收尾，承接 P1', '收尾，承接 P7')
+        text = text.replace('| 用途 | 测试夹具 | 建议 |', '| 用途 | 测试夹具 | 建议 |\n| 凭什么信 | 官方公告（U4-1） | 材料里的 |')
+        write(path, text)
+        code, out = run(d, False)
+        self.assertEqual(code, 1)
+        self.assertIn('plan.md:立意: 引用的 U4-1 在 research.md 里没有', out)
+        self.assertIn('plan.md:段落: 引用的缺口 Q9 在缺口表里没有', out)
+        self.assertIn('plan.md:段落: 引用的段 P7 在段落表里没有', out)
+
+    def test_whole_film_gap(self):
+        """归风格后、分镜后的缺口，「段」可以写「全片」；空着不行"""
+        d = self.case('ok')
+        path = os.path.join(d, 'plan.md')
+        write(path, read(path).replace('| Q1 | P1 | 现场照片一张 |', '| Q1 | 全片 | 品牌标识 |'))
+        self.assertEqual(run(d, True)[0], 0)
+        write(path, read(path).replace('| Q1 | 全片 | 品牌标识 |', '| Q1 | | 品牌标识 |'))
+        code, out = run(d, True)
+        self.assertEqual(code, 1)
+        self.assertIn('Q1 归分镜后，要写清缺什么、哪段', out)
 
     def test_enum(self):
         d = self.case('ok')

@@ -51,7 +51,7 @@ description_en: "Content planning before a video is made: turns a one-line idea,
 
 在用户项目的 `videos/<短名>/` 下复制 `templates/plan.md`、`templates/research.md` 两份，照模板填，节和表头不改。
 
-- **段落表六列**：段、作用、观众收益、核心内容、素材编排、预计时长。核心内容引用 `research.md` 的 U 编号，素材编排引用缺口的 Q 编号。
+- **段落表六列**：段、作用、观众收益、核心内容、素材编排、预计时长。编号只写在规定的格子里，脚本也只查这几格：U 编号写在核心内容、立意「凭什么信」、缺口「怎么解决的」；Q 编号写在素材编排；P 编号写在作用（承接哪段）和缺口的「段」（整片都要的写「全片」）。
 - **缺口表的「归谁」三种**：策划 = 讲清楚需要的事实、参数、步骤、解释（挡交接）；风格后 = 按风格找的图、品牌资产；分镜后 = 某个镜头的截图、录屏、生成片段。缺截图但连点哪个按钮都不知道的，拆两行：步骤归策划，截图归分镜后。
 - **资料底稿**：每条信息数据标种类（`types.md`），写清该种类必须写清的；各题材至少要有什么看 `genres.md`。
 - **实质变化**：以下五种要用户确认受影响的段，确认后在确认记录加一行「局部」；其余补充直接回填，在缺口表「怎么解决的」写一句：
@@ -70,7 +70,7 @@ description_en: "Content planning before a video is made: turns a one-line idea,
 3. 核心内容引用的信息数据没有〔待核实〕和「有冲突」；
 4. 每段核心内容是具体内容，不是动作标题（按 `genres.md` 的「不算数」自查）；
 5. 归「风格后」「分镜后」的行写清了缺什么、哪段；
-6. `python3 -I scripts/check.py videos/<短名> --handoff` 通过（`scripts/` 在本 Skill 目录下）。
+6. `python3 -I <本 Skill 目录>/scripts/check.py videos/<短名> --handoff` 通过。
 
 给用户的交接说明写这几句：一句话主线和段数、总时长；第 4 条的自查依据；留给下游的缺口几条、各归谁；下一步转 ai-coding-video 的 `storyboard.md`。
 
