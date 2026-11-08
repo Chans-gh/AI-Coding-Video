@@ -28,6 +28,8 @@ Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里�
 
 ## 安装
 
+装上后有两个 Skill：video-content-planner 管内容（立意、段落、资料、缺口），ai-coding-video 管风格到出片。
+
 **Claude Code**（插件市场）：
 
 ```bash
@@ -45,12 +47,12 @@ codex plugin add ai-coding-video@ai-coding-video
 **其他助手**（拷贝 Skill 文件夹）：先 `git clone` 本仓库，再运行：
 
 ```bash
-scripts/install.sh claude   # → ~/.claude/skills/ai-coding-video
-scripts/install.sh codex    # → ~/.agents/skills/ai-coding-video（Codex 不走插件时用；DeepSeek Harness 也读这里）
-scripts/install.sh dsh      # → ~/.dsh/skills/ai-coding-video（DeepSeek Harness）
+scripts/install.sh claude   # → ~/.claude/skills/
+scripts/install.sh codex    # → ~/.agents/skills/（Codex 不走插件时用；DeepSeek Harness 也读这里）
+scripts/install.sh dsh      # → ~/.dsh/skills/（DeepSeek Harness）
 scripts/install.sh all      # 以上三处都装
 scripts/install.sh dsh ~/my-project     # 只装进某个项目（→ ~/my-project/.dsh/skills）
-scripts/install.sh zip      # 打成 dist/ai-coding-video.zip，用于 WorkBuddy 等“上传技能包”的助手
+scripts/install.sh zip      # 每个 Skill 打一个 dist/<Skill 名>.zip，用于 WorkBuddy 等“上传技能包”的助手
 ```
 
 装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”。
@@ -111,6 +113,7 @@ Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、
 
 ```
 skills/ai-coding-video/   Skill 本体（唯一正本；其中 samples/、packs/ 是从下面两处同步来的代码，随 Skill 安装）
+skills/video-content-planner/  视频内容策划 Skill（唯一正本）：立意、段落、资料底稿、缺口表，交接给 ai-coding-video
 samples/                  1 级样片：每种风格的渲染代码、出片脚本和截图；T 类、G 类另带素材 assets/ 和清单 assets.json
 packs/                    2 级风格包：部件代码、风格说明、演示片
 cases/                    真实应用案例：3 支约 5 分钟的完整视频的分镜、代码、素材清单和制作记录
@@ -120,6 +123,7 @@ media.json                视频清单（视频本身在 GitHub Release「media�
 .claude-plugin/           Claude Code 插件市场清单（插件本体是 skills/，插件清单在 skills/.claude-plugin/）
 .agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
+docs/                     设计记录（PRD、SPEC），不随 Skill 安装
 PLAN.md                   批次规划和待办
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```

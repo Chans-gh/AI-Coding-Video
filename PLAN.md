@@ -102,7 +102,7 @@
 | 批 | 内容 | 状态 |
 |---|---|---|
 | 0 | PRD、SPEC、本段、AGENTS 目录表 | 做完；PRD 第 9 节已确认（2026-11-08） |
-| A | Skill 本体、模板、`check.py` 和测试、install.sh、插件文案、README | 未开始 |
+| A | Skill 本体、模板、`check.py` 和测试、install.sh、插件文案、README | 做完（2026-11-08）；`example/` 是虚构的占位例子，批 B 换成 `news-artemis` |
 | B | 三支案例回放和四个边界任务，按结果修 Skill，换上正式例子 | 未开始 |
 | C | ai-coding-video 接入：入口、`storyboard.md`、版本 0.7.0 | 未开始 |
 

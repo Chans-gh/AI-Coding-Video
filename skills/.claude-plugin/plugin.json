@@ -1,6 +1,6 @@
 {
   "name": "ai-coding-video",
-  "description": "纯代码逐帧做动画视频的风格库：风格提示词、技术标签、选风格索引、提示词方法、配乐与旁白音色指南。",
+  "description": "用代码做视频：内容策划（立意、段落、资料底稿、缺口表）、风格库（风格提示词、技术标签、选风格索引）、从分镜到出片的方法，附提示词方法、配乐与旁白音色指南。",
   "version": "0.6.0",
   "author": {
     "name": "Chans"
@@ -14,7 +14,9 @@
     "canvas",
     "webgl",
     "motion-graphics",
-    "styles"
+    "styles",
+    "planning",
+    "storyboard"
   ],
   "skills": "./"
 }
