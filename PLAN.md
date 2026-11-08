@@ -109,6 +109,7 @@
 阶段 7 之后的待办：
 
 - **抓原文脚本随包（重要，维护者定）**：把 Test 仓库 `chansclaude-research` 的 `fetch_article.py` 改写后放进策划 Skill 的 `scripts/`。原文先落成本地 Markdown（正文、图表清单），助手按需读片段，不把整页网页灌进对话，是省 token 的关键。要定：依赖（beautifulsoup4、Pillow）缺了怎么降级、离线测试怎么带、抓下来的文件哪些进用户项目。批 C 之后排期。
+- **README 按两个 Skill 改写（维护者定）**：「在各家助手里用 · 装进去的是什么」现在写的是「装的都是 `skills/ai-coding-video/` 这一个文件夹」，改成装进去的是两个 Skill（video-content-planner、ai-coding-video），各带什么；WorkBuddy 一段的 `dist/ai-coding-video.zip` 改成每个 Skill 一个 zip。批 A 的 SPEC 第 7 节没列这两处，阶段 7 之后改。
 
 ## 待办：内容类型再补充（维护者自己研发）
 
