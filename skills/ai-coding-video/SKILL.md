@@ -1,7 +1,7 @@
 ---
 name: ai-coding-video
 description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及两条线：风格演示（选样式 → 出样片 → 沉淀成风格包）和完整出片（定内容 → 分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 整片）。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。内容策划用 ai-content-planner。
-version: 0.11.0
+version: 0.12.0
 display_name: AI Coding Video 风格库
 display_name_en: AI Coding Video
 description_en: "A style library for videos made frame by frame in code: a hundred-plus styles that pure code can render (class C, tagged by topic and tech: Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more), plus ways to cut real material (class T: footage, screen recordings, photos, data) and AI-generated material (class G: images, video clips, speech) into a film with code, sorted by content type (explainers, talking heads, product ads, brand films, short dramas, music videos, news, documentaries, tutorials, travel, sports, picture books); a copy-ready style prompt for each; lookup indexes; guides to prompts, sourcing and preparing material, music and narration; and two tracks: a style demo (pick a look, make a sample clip, turn it into a reusable style pack) and a full film (content, storyboard and looks, script, user sign-off, a typical segment with narration, the whole film)."
@@ -72,7 +72,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 - 样片代码给的是**管线和画法**，不是内容：出片管线（`lib.js`、`synth.py`、`batch.py`）照用；镂空、光影、纹理这类画法可以借；样片里的角色、构图、配色、文字不能原样搬进用户的片子，换成用户自己的题材和品牌。
 - 案例里的工具链、费用、用时是原作者自述，未经核实，不要当成保证向用户承诺。
 - C 类画面全部由代码算出，不用任何素材。写实人脸、真人口播这类效果纯代码做不到，改走 T 类（用户自己的素材）或 G 类（AI 生成素材），并告诉用户要准备什么。
-- T 类只用用户确认有权用的素材，或公共领域、开放许可的素材，出处和许可逐份记下；G 类可以用任何一家生图、生视频、语音合成服务，按 [materials.md「配置生成服务」](materials.md#配置生成服务) 配好；哪一类没配置，先告诉用户要配什么，不需要生成的部分照常做；不生成真实人物。克隆声音本 Skill 不做：用户要用自己有权使用的声音，请用户自己接第三方 Skill 或接口，把它的输出当旁白文件放进来。
+- T 类只用用户确认有权用的素材，或公共领域、开放许可的素材，出处和许可逐份记下；G 类可以用任何一家生图、生视频、语音合成服务，按 [materials.md「配置生成服务」](materials.md#配置生成服务) 配好；哪一类没配置，先告诉用户要配什么，不需要生成的部分照常做；不生成真实人物。克隆声音本 Skill 不做，见 [sound.md「完整出片的配音流程」](sound.md#完整出片的配音流程)。
 
 ## 改内容
 
