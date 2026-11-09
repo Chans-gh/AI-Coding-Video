@@ -5,7 +5,7 @@
 | 项 | 内容 |
 |---|---|
 | 版本 | 2.0（2026-11-09）：解耦成新仓库 `Chans-gh/AI-content-planner`，Skill 改名 `ai-content-planner`，产出不限于视频 |
-| 状态 | 草案，等 PRD 第 9 节确认后实施 |
+| 状态 | PRD 第 9 节已确认（2026-11-09），按本文件实施 |
 | 起点 | AI-Coding-Video 分支 `claude/dazzling-faraday-lwjvus` 的提交 `6151c44`：`skills/video-content-planner/`（批 A、B 做完）和 `docs/video-content-planner/` |
 
 开发严格按本文件做。本文件没写的，不加；要偏离的，先改本文件并经维护者确认，再动代码。下面「照旧」指起点提交里的写法不变。
@@ -213,7 +213,7 @@ description_en: "〔上面那段的英文〕"
 ## 8 迁移步骤（批 D）
 
 1. 维护者在 GitHub 建空仓库 `Chans-gh/AI-content-planner`（不勾初始化 README），加到会话里。
-2. 初始提交：照第 1 节建外壳，`skills/ai-content-planner/` 和 `docs/` 先原样拷入起点提交的内容（不改内容，只改目录名）。提交说明写「从 Chans-gh/AI-Coding-Video 分支 claude/dazzling-faraday-lwjvus 提交 6151c44 迁入」。推到新仓库的 `main`（PRD 第 9 节待确认）。
+2. 初始提交：照第 1 节建外壳，`skills/ai-content-planner/` 和 `docs/` 先原样拷入起点提交的内容（不改内容，只改目录名）。提交说明写「从 Chans-gh/AI-Coding-Video 分支 claude/dazzling-faraday-lwjvus 提交 6151c44 迁入」。推到新仓库的 `main`。
 3. 之后在新仓库开分支做第 2–7 节的改动，PR 合并到 `main`。
 4. Skill 的 CHANGELOG 记一行 0.2.0：改名、解耦、格式 1、`handoff.md`、`formats.md`。旧的 0.1.0 三行保留，标「在 AI-Coding-Video 分支上做，没发布」。
 
