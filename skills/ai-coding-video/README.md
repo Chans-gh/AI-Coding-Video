@@ -15,7 +15,8 @@
 | [`materials.md`](materials.md) | 用素材做视频（T 类、G 类）：素材从哪来、许可、生成、统一处理、声音 |
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
-| [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 2）：认格式和状态、写分镜 `storyboard.json` 和逐字稿 `script.json`、缺内容怎么回流 |
+| [`film.md`](film.md) | 完整出片的六步（定内容 → 拆分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜 `storyboard.json` 和逐字稿 `script.json` 的格式、事实的规矩 |
+| [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 2）：认格式和状态、读什么、`seg` 和 `ref` 怎么填、缺内容怎么回流 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
 | [`legacy-ids.md`](legacy-ids.md) | 旧编号对照 |
@@ -37,6 +38,13 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 编号只增不改，和放在哪个文件无关。
 
 ## 怎么用
+
+分两条线，每一步都要用户点头才往下：
+
+| 线 | 步骤 | 读哪份 |
+|---|---|---|
+| 风格演示 | 0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包 | 下面 1–6、[`making.md`](making.md) |
+| 完整出片 | 定内容 → 拆分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片 | [`film.md`](film.md)；有策划时另读 [`storyboard.md`](storyboard.md) |
 
 1. **不知道用哪种**：知道要做哪种视频（口播、带货、MV……）就看 [`index.md`](index.md) 的「按内容类型」表；要纯代码的，在其余索引表里各找对应的一行，几张表里重复出现的风格就是首选。
 2. **已经知道风格名**：在 [`index.md`](index.md) 的「风格目录」里点名字，跳到条目。

@@ -7,7 +7,7 @@
 
 退出码：0 能接（可能有提醒）；1 能接，但分镜、逐字稿或框架有问题要改；2 停下，不接（格式、状态、输出形式不对，
 或缺 content.md），照提示请用户先回策划。分镜、逐字稿的 "plan" 相对于 --root（默认当前目录，即项目根目录）。
-规矩见本 Skill 的 storyboard.md；交接格式以策划的 handoff.md 为准。
+规矩见本 Skill 的 storyboard.md，分镜、逐字稿的格式见 film.md；交接格式以策划的 handoff.md 为准。
 """
 import argparse
 import json
