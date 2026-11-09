@@ -7,6 +7,12 @@
       "source": { "source": "local", "path": "./skills" },
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
       "category": "Design"
+    },
+    {
+      "name": "ai-content-planner",
+      "source": { "source": "git-subdir", "url": "https://github.com/Chans-gh/AI-content-planner.git", "path": "./skills" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
     }
   ]
 }
