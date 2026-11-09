@@ -1,0 +1,426 @@
+{
+ "about": "旁白稿：segments 和 case.json 的段一一对应（按顺序），seg 是策划段落表的段号；vo 是念的稿子（一句一项），pace 见 cases/tools/timing.py；整稿一次语音合成。show 是念法 → 字幕写法。facts 是本段旁白和画面上的每个事实：ref 是 plans/course-first-video/research.md 的编号（设定写在 research.md 的 U1），src 是出处，实测的（G1）src 写 null，记录在 research.md。 shorts 是附带短片：以哪一段为主体、目标秒数、画幅（横屏原版切竖屏）。",
+ "plan": "plans/course-first-video/plan.md",
+ "voice": {
+  "model": "speech-2.8-turbo",
+  "voice": "Chinese (Mandarin)_Warm_Girl",
+  "params": {
+   "speed": 1.1
+  }
+ },
+ "show": {
+  "十五秒": "15 秒",
+  "Node.js 十八": "Node.js 18",
+  "Python 三": "Python 3",
+  "C 零三八": "C-038",
+  "三到五秒": "3–5 秒",
+  "第七秒": "第 7 秒"
+ },
+ "segments": [
+  {
+   "seg": "P1",
+   "title": "先看成品",
+   "vo": [
+    "先看这节课要做的片子。",
+    "这条十五秒的水循环短片，没有一张图是画师画的，每一帧都是代码算出来的；写代码的，是 AI 编程助手。",
+    "五分钟后，你也能做一条。"
+   ],
+   "facts": [
+    {
+     "what": "水循环四步：蒸发、凝结、降水、汇流",
+     "ref": "U9-1",
+     "src": "https://gpm.nasa.gov/education/water-cycle"
+    },
+    {
+     "what": "汇流：落到陆地的水汇进河湖，大部分流回海洋",
+     "ref": "U9-2",
+     "src": "https://gpm.nasa.gov/education/water-cycle"
+    },
+    {
+     "what": "这节课的成品是一条 15 秒科普短片",
+     "ref": "U1-4",
+     "src": null
+    },
+    {
+     "what": "C 类画面全部由代码算出",
+     "ref": "U2-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    }
+   ],
+   "pace": {
+    "lead": 1.0,
+    "gap": 0.4,
+    "min": 20
+   }
+  },
+  {
+   "seg": "P2",
+   "title": "讲师开场",
+   "vo": [
+    "你好，欢迎来到用 AI 做视频的第一课。",
+    "我是这门课的讲师，一个 AI 生成的虚拟形象。",
+    "这节课学三件事：",
+    "第一，装上 AI Coding Video 这个 Skill；",
+    "第二，选一种风格；",
+    "第三，让 AI 编程助手写代码，出一条你自己的短片。"
+   ],
+   "facts": [
+    {
+     "what": "讲师是 AI 生成的虚构形象",
+     "ref": "U1-2",
+     "src": null
+    },
+    {
+     "what": "三个学习目标：装 Skill、选风格、让助手写代码出片",
+     "ref": "U1-4",
+     "src": null
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.3,
+    "min": 20
+   }
+  },
+  {
+   "seg": "P3",
+   "title": "概念",
+   "vo": [
+    "先弄清一件事：视频里的画面从哪来。",
+    "这个 Skill 把画面分成三类。",
+    "C 类，画面全部由代码算出来：图形、文字、动画。",
+    "T 类，用真实素材：录像、录屏、照片、数据。",
+    "G 类，用 AI 生成的素材：生图、生视频、语音合成。",
+    "写实的人脸、真人口播，代码画不出来，要靠 T 类或 G 类。",
+    "不管哪一类，最后都由代码排进时间线，合成一条片子。",
+    "代码画面有一条规矩：每一帧只由时间 t 决定。",
+    "给它一个时间，它就画出那一帧；同一个 t，永远画出同一张。",
+    "所以能直接跳到第七秒检查，逐帧导出也不会掉帧。"
+   ],
+   "facts": [
+    {
+     "what": "三类画面：C 代码算出、T 真实素材、G AI 生成",
+     "ref": "U2-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    },
+    {
+     "what": "写实人脸、真人口播要走 T 类或 G 类",
+     "ref": "U2-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    },
+    {
+     "what": "三类都由代码剪辑合成",
+     "ref": "U2-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    },
+    {
+     "what": "画面写成 draw(t)，每帧只由时间 t 决定",
+     "ref": "U3-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "能任意跳帧检查，逐帧导出不掉帧",
+     "ref": "U3-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.5,
+    "min": 40
+   }
+  },
+  {
+   "seg": "P4",
+   "title": "讲义",
+   "vo": [
+    "这是 Skill 自带的出样片指南，最关键的是这一段：改的顺序。",
+    "第一，拷一个现成的样片，原样跑通；",
+    "第二，换内容，一次只改一处，每改一处跑一次；",
+    "第三，声音单独试；",
+    "第四，画面都对了，再加细节。",
+    "提示词只定方向；要稳，就从样片代码改。"
+   ],
+   "facts": [
+    {
+     "what": "making.md「改的顺序」四条",
+     "ref": "U7-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "提示词只定方向，要复现从样片代码改",
+     "ref": "U7-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.5,
+    "min": 20
+   }
+  },
+  {
+   "seg": "P5",
+   "title": "装 Skill、选风格",
+   "vo": [
+    "动手之前，电脑上要有 Node.js 十八以上、Python 三和 ffmpeg；第一次安装依赖要联网。",
+    "以 Claude Code 为例，在终端里输入两行命令。",
+    "第一行加上插件市场，第二行装上 Skill。",
+    "看到 Successfully installed，就装好了。",
+    "用 Codex 或者别的助手，仓库说明里有对应的装法。",
+    "接着打开介绍页，到样片查看，点纯代码，题材选信息讲解与产品发布。",
+    "我们选 C 零三八，科普扁平：Skill 的索引给水循环推荐的就是它，而且它有现成的样片代码。"
+   ],
+   "facts": [
+    {
+     "what": "要 Node.js 18 以上、Python 3（Playwright、Chromium 等）和 ffmpeg",
+     "ref": "U10-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "第一次 npm install 要联网",
+     "ref": "U10-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "claude plugin marketplace add chans-gh/AI-Coding-Video",
+     "ref": "U4-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "claude plugin install ai-coding-video@ai-coding-video",
+     "ref": "U4-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "实测输出 Successfully installed plugin、Version 0.7.0、Status enabled",
+     "ref": "U4-3",
+     "src": null
+    },
+    {
+     "what": "Codex 和其他助手的装法",
+     "ref": "U4-4",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "介绍页「样片查看」：纯代码 → 题材",
+     "ref": "U5-1",
+     "src": "https://chans-gh.github.io/AI-Coding-Video/#gallery"
+    },
+    {
+     "what": "索引给水循环推荐科普扁平",
+     "ref": "U5-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/index.md"
+    },
+    {
+     "what": "C-038 属于「信息讲解与产品发布」，有样片代码",
+     "ref": "U5-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/index.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.6,
+    "min": 30
+   }
+  },
+  {
+   "seg": "P6",
+   "title": "写场景、出片",
+   "vo": [
+    "然后建一个项目文件夹，把 Skill 里的样片目录拷进来，运行 npm install。",
+    "先原样跑一个样片，看到两行对勾，结尾写着通过，说明环境没问题。",
+    "现在跟助手说一句话：用 C 零三八，做一条十五秒的横屏短片，讲水循环的四步：蒸发、凝结、降水、汇流。",
+    "助手先读样片代码，再写出新的场景文件。",
+    "它先跑快速预览看截图，满意了再出横竖两版。",
+    "十五秒的片子，在我们的机器上出一版大约一分半钟。",
+    "检查会打一个叉，说时长不在三到五秒。",
+    "这是样片的时长规矩，片子已经出好了；别的叉才要改。"
+   ],
+   "facts": [
+    {
+     "what": "把 samples/ 拷进项目，不在 Skill 安装目录里改",
+     "ref": "U6-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "npm install 装字体和绘图库",
+     "ref": "U6-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "实测 npm install：added 317 packages",
+     "ref": "U6-3",
+     "src": null
+    },
+    {
+     "what": "实测 batch.py C-031 --quick：2/2 通过",
+     "ref": "U6-4",
+     "src": null
+    },
+    {
+     "what": "助手照改的顺序写 scene.js、跑 --quick、出横竖两版",
+     "ref": "U6-5",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "水循环四步",
+     "ref": "U9-1",
+     "src": "https://gpm.nasa.gov/education/water-cycle"
+    },
+    {
+     "what": "15 秒出一版约 93 秒（4 核容器，没有 GPU）",
+     "ref": "U6-6",
+     "src": null
+    },
+    {
+     "what": "出片文件名 <编号>-16x9.mp4、<编号>-9x16.mp4",
+     "ref": "U6-7",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/render.py"
+    },
+    {
+     "what": "检查报 ✗「时长 15s 不在 3–5 秒」，片子照样出",
+     "ref": "U11-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/batch.py"
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.7,
+    "min": 40
+   }
+  },
+  {
+   "seg": "P7",
+   "title": "原理",
+   "vo": [
+    "为什么改一个数就能重出？",
+    "因为代码画的画面，颜色、文字、时长，都是代码里的一个值。",
+    "把天空的颜色改一个值，重跑一次，就是新的一版，别的都不动。",
+    "AI 生成的画面也能这样批量。",
+    "风格包分镜换画风，把生图提示词拆成三段：镜头段、风格段、约束段。",
+    "分镜只有一份，只换风格段那一行，同一组镜头就变成写实、水彩、黏土三种画风。"
+   ],
+   "facts": [
+    {
+     "what": "画面是参数算出来的，改一个值重跑就是新版",
+     "ref": "U8-1",
+     "src": null,
+     "calc": "由 U3-1、U3-3 推出"
+    },
+    {
+     "what": "同一份代码每次渲染结果一致",
+     "ref": "U3-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/render.py"
+    },
+    {
+     "what": "提示词拆成镜头段、风格段、约束段，只换风格段",
+     "ref": "U8-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/packs/style-swap/README.md"
+    },
+    {
+     "what": "三种画风：写实摄影、水彩插画、3D 黏土",
+     "ref": "U8-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/packs/style-swap/README.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.8,
+    "min": 35
+   }
+  },
+  {
+   "seg": "P8",
+   "title": "小结",
+   "vo": [
+    "最后，三条要点。",
+    "一，分清三类画面：代码画的、真实素材、AI 生成。",
+    "二，先跑通样片，一次只改一处。",
+    "三，细调最多三轮，就先出完整的片子。",
+    "最常见的错，是第一次装依赖时没联网；十五秒片子报的时长叉，可以不管。",
+    "课后练习：把水循环短片换一种风格，或者换一个主题，再出一次。"
+   ],
+   "facts": [
+    {
+     "what": "三类画面",
+     "ref": "U2-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    },
+    {
+     "what": "先跑通样片、一次只改一处",
+     "ref": "U7-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "细调最多 3 轮",
+     "ref": "U7-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md"
+    },
+    {
+     "what": "助手会一直细调停不下来",
+     "ref": "U11-3",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "第一次 npm install 没联网装不上",
+     "ref": "U11-2",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/README.md"
+    },
+    {
+     "what": "15 秒片子的时长 ✗",
+     "ref": "U11-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/samples/batch.py"
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.6,
+    "min": 25
+   }
+  },
+  {
+   "seg": "P9",
+   "title": "讲师收尾",
+   "vo": [
+    "这节课就到这里。下一节，我们用真实素材，做一条 T 类的片子。",
+    "我是 AI 生成的虚拟讲师，下节课见。"
+   ],
+   "facts": [
+    {
+     "what": "T 类用真实素材",
+     "ref": "U2-1",
+     "src": "https://github.com/Chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md"
+    },
+    {
+     "what": "讲师虚构、AI 生成",
+     "ref": "U1-2",
+     "src": null
+    }
+   ],
+   "pace": {
+    "lead": 0.6,
+    "gap": 0.4,
+    "tail": 3.0,
+    "min": 12
+   }
+  }
+ ],
+ "shorts": [
+  {
+   "seg": 3,
+   "sec": 60,
+   "ar": "9x16"
+  },
+  {
+   "seg": 6,
+   "sec": 60,
+   "ar": "9x16"
+  },
+  {
+   "seg": 7,
+   "sec": 60,
+   "ar": "9x16"
+  }
+ ]
+}

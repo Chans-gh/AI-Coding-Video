@@ -9,7 +9,7 @@
 <!-- gen:index -->
 | 目录 | 用途 | 主角 | 画幅 | 时长 | 青水算力（约，含试错） | 状态 |
 |---|---|---|---|---|---|---|
-| [course-first-video/](course-first-video/) | 课件教程：零基础用 AI 编程助手做第一条短片 | C 代码画 | 16:9 | 约 5 分钟 + 3 × 60 秒 | 40 | 策划 |
+| [course-first-video/](course-first-video/) | 课件教程：零基础用 AI 编程助手做第一条短片 | C 代码画 | 16:9 | 约 5.0 分钟 + 3 × 60 秒 | 40 | 制作中 |
 | [news-artemis/](news-artemis/) | 资讯解说：Artemis II 绕月任务回顾 | T 真实素材 | 9:16 | 约 5.1 分钟 + 3 × 60 秒 | 19 | 完成 |
 | [shop-skincare/](shop-skincare/) | 电商带货：虚构品牌精华液上新讲解 | G AI 生成 | 9:16 | 约 4.5 分钟 + 6 × 15 秒 | 56 | 策划 |
 | 合计 | | | | | 约 115 | |
@@ -39,7 +39,7 @@ cases/tools/
   transcribe.py    长录像转逐词文字稿（faster-whisper），挑金句、切短片用
 ```
 
-一支片的流程：`script.json` 定稿 → `timing.py --sync` → `assets.py` 拿素材、配旁白 → `timing.py` 算每段时长 → 写 `segments/NN.js`、`sound.py` →
+一支片的流程：策划交接（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的 `plans/<名字>/plan.md` 状态「已交接」）→ 照 [storyboard.md](../skills/ai-coding-video/storyboard.md) 写 `case.json`、`script.json` → `script.json` 定稿 → `timing.py --sync` → `assets.py` 拿素材、配旁白 → `timing.py` 算每段时长 → 写 `segments/NN.js`、`sound.py` →
 `render.py <名字> all --quick` 抽帧看 → `render.py <名字> all` 出各段 → `render.py <名字> --join`、`--shorts` → `scripts/media.py upload`。
 原版要同时低于 100 MB，`media.py` 经 git 中转分支上传，GitHub 拒收更大的单个文件。
 
@@ -66,7 +66,8 @@ cases/tools/
 | `ar` | 画幅，每支只出一种 |
 | `lead` | 整支的主角类，C、T、G 之一；要等于各段主角类时长最长的那类（自检算） |
 | `status` | 策划、制作中、完成 |
-| `segments` | 每段：`title` 标题，`content` 讲什么，`sec` 预计秒数，`lead` 本段主角类，`uses` 用到的技术，`swap` 换掉会怎样（可选），`note` 编排说明，`start`、`end` 实际起止 |
+| `plan` | 接了策划的写：策划稿相对本案例目录的路径（`plans/<名字>/plan.md`），没接的不写 |
+| `segments` | 每段：`seg` 对应策划段落表的段号（接了策划才写），`title` 标题，`content` 讲什么，`sec` 预计秒数，`lead` 本段主角类，`uses` 用到的技术，`swap` 换掉会怎样（可选），`note` 编排说明，`start`、`end` 实际起止 |
 | `extras` | 附带成片：`what`、`count` 条数、`sec` 每条秒数、`uses` |
 | `usage` | 用量：`item`、`qty`、`cost`（青水算力，数字或 `[低, 高]`，不花算力的写 `null`） |
 | `downgrade` | 整支的降级用法；只关一段的写在那段的 `swap` |
@@ -74,6 +75,7 @@ cases/tools/
 
 - **`uses` 的每一条**：`what` 写做什么；有对应样片写 `ref`（样片编号，或 `pack:风格包名`），类别跟着样片走（风格包跟它沉淀自的样片），比如估深度图跟 T-018 走、转文字稿跟 T-016 走，都算 T；没有对应样片的写 `class`。`ref`、`class` 只写一个。
 - **`start`、`end`**：接片时由程序写进来，不手填；写进来之前，分镜表按 `sec` 累加显示预计时间。
+- **接策划**：`case.json` 就是 `storyboard.md` 里 `videos/<短名>/storyboard.json` 的超集，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`research.md` 的 U 编号，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 查这三项：`plan` 指的文件在、`seg` 都在段落表里且每个段号都用到、`ref` 都能在 `research.md` 找到。
 - **`note`**：每段做完后照实写，80–150 字：分几层、谁驱动时间、怎么接进整支。不提前写。
 
 ## 规矩

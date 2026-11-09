@@ -124,6 +124,50 @@ def check(name, case):
     top = max(lead_sec, key=lead_sec.get)
     if case["lead"] != top:
         e(f"lead 是 {case['lead']}，但按各段 lead 的时长算，最长的是 {top}（{lead_sec}）")
+    if "plan" in case:
+        errs += check_plan(CASES / name, case)
+    return errs
+
+
+def check_plan(d, case):
+    """接了策划（case.json 有 plan）：plan 指的文件在；case.json、script.json 每段的 seg 都在段落表里，每个段号至少用一次；
+    script.json 的 facts 里 ref 都能在同目录的 research.md 找到（U1-2 找数据行，U1 找单元节；设定写 null）"""
+    errs = []
+    e = errs.append
+    plan = d / case["plan"]
+    if not plan.is_file():
+        return [f"plan 指的文件不在：{case['plan']}"]
+    segs, inseg = [], False
+    for line in plan.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            inseg = line.strip() == "## 段落"
+        elif inseg and (m := re.match(r"\|\s*(P\d+)\s*\|", line)):
+            segs.append(m.group(1))
+    if not segs:
+        return [f"{case['plan']} 里没读到段落表"]
+    for i, s in enumerate(case["segments"], 1):
+        if s.get("seg") not in segs:
+            e(f"第 {i} 段：seg {s.get('seg')} 不在 {case['plan']} 的段落表里")
+    missing = [p for p in segs if p not in {s.get("seg") for s in case["segments"]}]
+    if missing:
+        e(f"段落表的 {'、'.join(missing)} 在 case.json 里一段都没用到")
+    sp = d / "script.json"
+    if sp.exists():
+        S = json.loads(sp.read_text(encoding="utf-8"))
+        rs = plan.parent / "research.md"
+        research = rs.read_text(encoding="utf-8") if rs.exists() else ""
+        for i, (a, b) in enumerate(zip(case["segments"], S["segments"]), 1):
+            if b.get("seg") != a.get("seg"):
+                e(f"script.json 第 {i} 段：seg {b.get('seg')} 和 case.json 的 {a.get('seg')} 不一致")
+            for f in b.get("facts", []):
+                r = f.get("ref", "缺")
+                if r is None:
+                    continue
+                pat = rf"^\|\s*{re.escape(r)}\s*\|" if "-" in r else rf"^## {re.escape(r)} "
+                if r == "缺" or not re.search(pat, research, re.M):
+                    e(f"script.json 第 {i} 段「{f.get('what')}」：ref {r} 在 research.md 里找不到")
+        if len(S["segments"]) != len(case["segments"]):
+            e(f"script.json 有 {len(S['segments'])} 段，case.json 有 {len(case['segments'])} 段")
     return errs
 
 
