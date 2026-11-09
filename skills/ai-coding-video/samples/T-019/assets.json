@@ -1,0 +1,67 @@
+{
+ "items": [
+  {
+   "file": "assets/apple.jpg",
+   "kind": "照片",
+   "title": "Honeycrisp-Apple",
+   "source": "https://commons.wikimedia.org/wiki/File:Honeycrisp-Apple.jpg",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/1280px-Honeycrisp-Apple.jpg",
+   "license": "CC0 1.0",
+   "author": "Evan-Amos",
+   "credit": "照片 Evan-Amos（CC0）",
+   "prep": {
+    "max": 1280
+   }
+  },
+  {
+   "file": "assets/banana.jpg",
+   "kind": "照片",
+   "title": "Bunch of bananas",
+   "source": "https://commons.wikimedia.org/wiki/File:Bunch_of_bananas.JPG",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bunch_of_bananas.JPG/1280px-Bunch_of_bananas.JPG",
+   "license": "CC0 1.0",
+   "author": "Pdpics.com",
+   "credit": "照片 Pdpics.com（CC0）",
+   "prep": {
+    "max": 1280
+   }
+  },
+  {
+   "file": "assets/avocado.jpg",
+   "kind": "照片",
+   "title": "A half cut avocado in West Bengal, India, photographed on December 3, 2023",
+   "source": "https://commons.wikimedia.org/wiki/File:A_half_cut_avocado_in_West_Bengal,_India,_photographed_on_December_3,_2023.jpg",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/A_half_cut_avocado_in_West_Bengal,_India,_photographed_on_December_3,_2023.jpg/1280px-A_half_cut_avocado_in_West_Bengal,_India,_photographed_on_December_3,_2023.jpg",
+   "license": "CC0 1.0",
+   "author": "Billjones94",
+   "credit": "照片 Billjones94（CC0）",
+   "prep": {
+    "max": 1280
+   }
+  },
+  {
+   "file": "assets/nutrients.csv",
+   "kind": "数据",
+   "title": "FoodData Central SR Legacy：苹果、香蕉、牛油果每 100 克的 7 项营养素（由 fdc.py 从数据包里取出）",
+   "source": "https://fdc.nal.usda.gov/download-datasets",
+   "download": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
+   "license": "CC0 1.0",
+   "author": "USDA Agricultural Research Service",
+   "credit": "数据 USDA FoodData Central（CC0）"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Bossa Nova",
+   "source": "https://opengameart.org/content/bossa-nova",
+   "download": "https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",
+   "license": "CC0 1.0",
+   "author": "Joth",
+   "credit": "配乐 Joth（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

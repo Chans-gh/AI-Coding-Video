@@ -1,0 +1,68 @@
+{
+ "items": [
+  {
+   "file": "assets/months.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "一张 4 列 3 行、12 个等大方格的拼图插画，格子之间用均匀的白色细线隔开，每一格画同一家虚构的街角小咖啡馆在一年里某个月的样子，同一个角度、同一个画风；从左上到右下依次是：一月屋顶积着厚雪，二月窗上贴着红色窗花，三月门前樱花盛开，四月下着春雨，五月门口摆满盆花，六月梅雨中撑着伞，七月烈日下的遮阳伞，八月夏夜挂满灯串，九月树叶开始泛黄，十月满地红叶，十一月窗里透出暖光和热饮，十二月挂着彩灯和小松树；温暖的扁平水彩插画，没有文字、没有数字、没有人脸特写",
+   "params": {
+    "aspectRatio": "4:3"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "插画 AI 生成",
+   "prep": {
+    "max": 2048
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Gentle_Youth",
+   "text": "街角咖啡的二〇二六：十二个月，一共卖出四万一千杯。最忙的是八月，冰咖啡卖了五千多杯。谢谢你，明年见！",
+   "params": {
+    "speed": 1.05
+   },
+   "at": 0.5,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 10.24,
+   "lines": [
+    {
+     "t0": 0.041,
+     "t1": 1.382,
+     "text": "街角咖啡的二〇二六"
+    },
+    {
+     "t0": 1.382,
+     "t1": 4.267,
+     "text": "十二个月，一共卖出四万一千杯"
+    },
+    {
+     "t0": 4.267,
+     "t1": 7.477,
+     "text": "最忙的是八月，冰咖啡卖了五千多杯"
+    },
+    {
+     "t0": 7.477,
+     "t1": 9.468,
+     "text": "谢谢你，明年见！"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Meadow Thoughts",
+   "source": "https://opengameart.org/content/meadow-thoughts",
+   "download": "https://opengameart.org/sites/default/files/Meadow%20Thoughts.ogg",
+   "license": "CC0 1.0",
+   "author": "Écrivain",
+   "credit": "配乐 Écrivain（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}
