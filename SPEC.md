@@ -183,7 +183,6 @@
 
 | 阶段 | 做什么 | 验收 |
 |---|---|---|
-| 7 | 两条线和改名：`SKILL.md`、两份 README、`AGENTS.md` 的术语；`storyboard.md` 拆出 `film.md`（先搬现有的分镜、逐字稿格式） | 新开一个对话只读 `SKILL.md`，能分清两条线、知道各读哪份；`storyboard.md` 里不再有格式定义；链接都通 |
 | 8 | 完整出片前半：无策划的定内容（`brief`）、样式列（`uses` 多条、`materials`）、`unify`、`typical`、`status`、事实的 `confirm`；`check_storyboard.py` 和测试 | 测试覆盖：无策划的例子通过；缺 `unify`、`ref` 不存在、`plan` 和 `brief` 都写、`--ready` 时还有「待用户确认」，各自报错；案例检查照旧通过 |
 | 9 | 典型样片和配音：`sound.md` 的配音流程、`film.md` 的 6.5、6.6，`making.md` 的「整片」一节 | 用一个无策划的小题（约 60 秒）照 `film.md` 走到典型样片：分镜、逐字稿、确认、带旁白的 1 段典型样片出来，记下哪里卡住 |
 | 10 | 风格包新规格写进 `making.md`（只写规格，不升级现有的包） | `making.md` 的 2 级和第 5 节一致；`AGENTS.md` 的体积上限跟着改 |
