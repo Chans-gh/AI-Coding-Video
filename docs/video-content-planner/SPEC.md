@@ -1,294 +1,267 @@
-# 视频内容策划 Skill：实现规格
+# 内容策划 Skill（AI-content-planner）：实现规格
 
 [← PRD：做什么、为什么](PRD.md)
 
-开发严格按本文件做。本文件没写的，不加；要偏离的，先改本文件并经维护者确认，再动代码。PRD 第 9 节的决策已由维护者确认（2026-11-08），本文件按它写。
+| 项 | 内容 |
+|---|---|
+| 版本 | 2.0（2026-11-09）：解耦成新仓库 `Chans-gh/AI-content-planner`，Skill 改名 `ai-content-planner`，产出不限于视频 |
+| 状态 | 草案，等 PRD 第 9 节确认后实施 |
+| 起点 | AI-Coding-Video 分支 `claude/dazzling-faraday-lwjvus` 的提交 `6151c44`：`skills/video-content-planner/`（批 A、B 做完）和 `docs/video-content-planner/` |
 
-## 0 改动范围
+开发严格按本文件做。本文件没写的，不加；要偏离的，先改本文件并经维护者确认，再动代码。下面「照旧」指起点提交里的写法不变。
 
-### 0.1 仓库结构调整
+## 0 两个仓库各改什么
 
-不迁移、不改名任何现有目录。只**新增**两个目录：
+| 仓库 | 批 | 做什么 |
+|---|---|---|
+| 新仓库 `AI-content-planner` | D | 迁入、改名、去掉视频专属的写法、加 `formats.md` 和 `handoff.md`、仓库外壳（README、清单、安装、自检、CI），见第 1–8 节 |
+| AI-Coding-Video（本分支，PR #1） | C | 删掉策划的文件、撤回给两个 Skill 加的改动、做 ai-coding-video 接入，见第 9 节 |
+| AI-Coding-Video | E（可选） | 插件市场清单加一条指向新仓库的插件，先实测，见第 10 节 |
 
-```
-skills/video-content-planner/   新 Skill 本体（唯一正本，随插件和 install.sh 安装）
-docs/video-content-planner/     本 PRD 和 SPEC（设计记录，不安装，不触发介绍页重建）
-```
+顺序：D 做完、新仓库测试全过，才做 C（C 要删掉本分支上的策划文件，删之前新仓库里得有）。
 
-`skills/` 下的插件清单写的是 `"skills": "./"`，`skills/` 里的每个 Skill 目录都会被插件带上，所以插件结构不用改。
+## 1 新仓库的结构
 
-### 0.2 文件清单
-
-| 文件 | 动作 | 批次 | 会不会触发介绍页重建 |
-|---|---|---|---|
-| `docs/video-content-planner/PRD.md`、`SPEC.md` | 新增 | 0（本次） | 不会 |
-| `PLAN.md` | 加阶段 7 | 0 | 不会 |
-| `AGENTS.md` | 目录表加 `docs/`、`skills/video-content-planner/` 两行 | 0 | 不会 |
-| `skills/video-content-planner/**` | 新增，见第 1 节 | A | 不会（`pages.yml` 只听 `skills/ai-coding-video/**`） |
-| `scripts/install.sh` | 改成装 `skills/` 下所有 Skill，见第 6 节 | A | 不会 |
-| `.gitattributes` | 加新 Skill 的 `CHANGELOG.md merge=union` | A | 不会 |
-| `README.md` | 安装段、仓库结构段各加一处，见第 7 节 | A | 不会 |
-| `skills/.claude-plugin/plugin.json`、`skills/.codex-plugin/plugin.json`、`.claude-plugin/marketplace.json` | 只改描述文案，加两个关键词；`version` 不动 | A | 不会 |
-| `docs/video-content-planner/replay/` | 新增，回放结果 | B | 不会 |
-| `skills/ai-coding-video/SKILL.md`、`storyboard.md`（新）、`CHANGELOG.md` | 见第 5 节 | C | **会**：页面会重新生成一次，内容不变（`site/build.py` 只读 `data/` 和 `prompting.md`） |
-| 两份 `plugin.json` 的 `version` | 0.6.0 → 0.7.0，和 `ai-coding-video/SKILL.md` 一起改 | C | 同上 |
-
-### 0.3 不动
-
-`site/`、`.github/workflows/`、`samples/`、`packs/`、`cases/`、`media.json`、`candidates.md`、`skills/ai-coding-video/` 里第 5 节以外的文件、`build_index.py`、`release.sh`。
-
-## 1 新 Skill 的文件
+照 AI-Coding-Video 的样子，各家助手都能装：
 
 ```
-skills/video-content-planner/
-  SKILL.md              入口，≤100 行
+AI-content-planner/
+  README.md                 给人看：做什么、怎么装、和下游怎么配合（中文，末尾一节 English）
+  LICENSE                   MIT，同 AI-Coding-Video
+  AGENTS.md                 给在本仓库干活的助手看的约定（目录表、规矩、改完跑什么）
+  CLAUDE.md                 只有一行 `@AGENTS.md`（Claude Code 读 CLAUDE.md）
+  PLAN.md                   批次和待办；抓原文脚本那条待办从 AI-Coding-Video 的 PLAN 搬来
+  .gitattributes            skills/ai-content-planner/CHANGELOG.md merge=union
+  .gitignore                dist/、__pycache__/
+  .claude-plugin/marketplace.json
+  .agents/plugins/marketplace.json
+  skills/.claude-plugin/plugin.json
+  skills/.codex-plugin/plugin.json
+  skills/ai-content-planner/     Skill 本体，唯一正本（第 2 节）
+  scripts/install.sh             照 AI-Coding-Video 批 A 改过的那版（装 skills/ 下每个含 SKILL.md 的目录）
+  scripts/selfcheck.py           自检（第 7 节）
+  .github/workflows/test.yml     push 和 PR 时跑 selfcheck
+  docs/PRD.md、docs/SPEC.md      本两份
+  docs/replay/                   批 B 的回放，转成第 2 版格式（第 6 节）
+```
+
+不加本表以外的文件。
+
+### 1.1 插件清单
+
+| 文件 | 内容 |
+|---|---|
+| `.claude-plugin/marketplace.json` | `name: ai-content-planner`，`owner.name: Chans`，`description`、一条插件 `{name: ai-content-planner, source: ./skills, description}` |
+| `.agents/plugins/marketplace.json` | 照 AI-Coding-Video 那份，名字换成 `ai-content-planner`，`displayName: AI Content Planner`，`category: Productivity` |
+| `skills/.claude-plugin/plugin.json` | 照 AI-Coding-Video 那份：`name`、`description`、`version`（= SKILL.md 的 version）、`author`、`homepage`、`repository`（`https://github.com/chans-gh/AI-content-planner`）、`license: MIT`、`keywords`（`planning`、`research`、`content`、`outline`、`fact-check`）、`skills: ./` |
+| `skills/.codex-plugin/plugin.json` | 同上，加 `interface`（`displayName`、`shortDescription`、`longDescription`、`developerName`、`category`） |
+
+描述统一意思：「做内容之前的策划：立意、段落、资料底稿、缺口表；产出可交给视频、PPT、报告、课件等下游。」
+
+### 1.2 README
+
+各节：一句话是什么 → 产出能用在哪（视频、PPT、报告、课件、图文、知识库；第一版写全的是视频）→ 安装（Claude Code、Codex 插件市场两行命令；其他助手 `scripts/install.sh claude|codex|dsh|all [项目目录]`、`zip`）→ 和下游配合（做视频再装 AI-Coding-Video，附链接和它的两行安装命令；其他下游照 `handoff.md`）→ 装好以后怎么问（两三句例子）→ 仓库结构 → English（五六句：what、install、handoff）。≤120 行。
+
+## 2 Skill 的文件
+
+```
+skills/ai-content-planner/
+  SKILL.md              入口，≤110 行
   README.md             维护说明，≤60 行
-  CHANGELOG.md          更新记录，格式同 ai-coding-video
-  templates/plan.md     策划稿模板
-  templates/research.md 资料底稿模板
-  types.md              信息种类和每类必须写清的，≤130 行
-  genres.md             各题材交接时至少要有的，≤120 行
-  example/plan.md       填好的例子（第 8 节）
-  example/research.md
-  scripts/check.py      检查脚本，只用标准库
-  scripts/tests/        check.py 的离线测试和夹具
+  CHANGELOG.md          更新记录
+  handoff.md            交接说明：给下游 Skill 看的接口，≤80 行（新）
+  formats.md            各输出形式：段是什么、篇幅单位、交接前多查什么，≤80 行（新）
+  genres.md             各内容题材，≤120 行
+  types.md              信息种类，≤130 行
+  templates/plan.md
+  templates/research.md
+  example/plan.md、example/research.md
+  scripts/check.py
+  scripts/tests/
 ```
 
-行数是上限，不是目标。不加本表以外的文件。
-
-## 2 SKILL.md
+从起点提交的 `skills/video-content-planner/` 迁过来（`git mv` 改名，内容按下面各节改）。
 
 ### 2.1 frontmatter
 
-字段和 ai-coding-video 一致：
-
 ```yaml
-name: video-content-planner
-description: 〔中文，一段〕做视频之前的内容策划：把一句话、要求、链接、文件、图片、音视频整理成立意、段落表、资料底稿和缺口表，定向补齐事实、参数、步骤、案例，确认方向后交接。用户只有想法、资料太多要取舍、资料不够要补、要定主线和段落、下游发现内容缺口时使用。定风格、分镜、逐字稿、出片用 ai-coding-video。
-version: 0.1.0
-display_name: 视频内容策划
-display_name_en: Video Content Planner
+name: ai-content-planner
+description: 〔中文一段〕做内容之前的策划：把一句话、要求、链接、文件、图片、音视频整理成立意、段落表、资料底稿和缺口表，定向补齐事实、参数、步骤、案例，确认方向后交给下游。产出能做视频、PPT、报告、课件、图文、知识库。用户只有想法、资料太多要取舍、资料不够要补、要定主线和段落、下游发现内容缺口时使用。做成成品交给对应的 Skill（视频用 ai-coding-video）。
+version: 0.2.0
+display_name: 内容策划
+display_name_en: AI Content Planner
 description_en: "〔上面那段的英文〕"
 ```
 
-### 2.2 正文各节（顺序固定）
+`description` 不超过 1024 个字符，`name` 和目录名一致（自检查）。
 
-| 节 | 必须写的 | 行数 |
-|---|---|---|
-| 开头 | 一句话：管什么、终点是交接；链接 README | 3 |
-| 什么时候用 | 要用的 5 种情况；不用的情况（只选风格、改构图、处理编码、渲染已定镜头），这些转 ai-coding-video | 10 |
-| 两个阶段 | PRD 第 2 节的阶段 1、2 两行；每个阶段结束要用户确认；交接后转 ai-coding-video 的 `storyboard.md` | 12 |
-| 按输入读到什么程度 | 表格：五类输入 ×「方向确认前」「确认后」两列（第 2.3 节） | 10 |
-| 怎么问 | 先用已有输入写出方向，再问最影响结构的一个问题；已给的不问；「你来定」只授权创作选择；方向开放时给 2–3 个角度、标一个推荐 | 8 |
-| 写什么 | 在 `videos/<短名>/` 下复制两份模板；段落表六列；缺口表三种 `归谁`；什么算实质变化（第 2.4 节） | 15 |
-| 交接 | 第 4 节的六条；跑 `check.py --handoff`；给用户的交接说明写哪几句 | 12 |
-| 回流 | 下游加进缺口表的行怎么处理；版本不同时按当前段落判断，不恢复已删的内容 | 6 |
-| 规矩 | PRD 第 6 节，每条一行 | 8 |
-| 文件 | 本 Skill 各文件一行 | 10 |
+### 2.2 SKILL.md 改哪些
 
-### 2.3 读取深度表（写进 SKILL.md 的内容）
+各节顺序照旧，只改这些：
 
-| 输入 | 方向确认前 | 确认后 |
-|---|---|---|
-| 一句话 | 只用常识出方向，真实产品、新闻、数字一律列进缺口 | 按缺口补解释、例子、步骤 |
-| 详细要求 | 拆出必须、禁止、偏好、冲突，用户给的结构先沿用 | 只补选定重点的参数和场景 |
-| 链接、文件 | 读目录、摘要、和目标相关的章节；官网不全站抓，报告不逐页读 | 回到选定的章节、表格、原始来源，补口径、日期、限制 |
-| 图片、音视频 | 看图，长媒体按时长、关键帧、已有字幕粗看，不整段转写 | 只对承担内容的片段转写、记时间码 |
-| 混合 | 按要讲的内容归组，不按上传顺序；先标重复和冲突 | 核对影响选定表达的冲突 |
+| 节 | 改成 |
+|---|---|
+| 开头 | 「终点是交接给下游」；不写死 ai-coding-video |
+| 什么时候用 | 照旧五条；「不用」改成「只做形式（选风格、排版、改构图、渲染）的，直接用对应的下游 Skill」 |
+| 两个阶段 | 照旧；结尾改成「交接后按 `handoff.md` 交给下游；交给谁看立意的『输出形式』和 `formats.md`」 |
+| 按输入读到什么程度 | 照旧，含批 B 加的「先在同一来源找别的入口」 |
+| 写什么 | 目录改成 `plans/<短名>/`；段落表六列改名（第 3.1 节）；「归谁」改成两种（第 3.1 节）；加一句「先在立意里定输出形式，段怎么切、篇幅怎么写看 `formats.md`」 |
+| 交接 | 第 5 条改成「归『下游』的行写清了缺什么、哪段」；第 4 条加「按 `formats.md` 该形式的『交接前多查』自查」；命令改成 `python3 -I <本 Skill 目录>/scripts/check.py plans/<短名> --handoff`；交接说明加一句「交给哪个下游」 |
+| 回流 | 「`提出于` 是分镜或制作」改成「`提出于` 是下游」 |
+| 文件 | 加 `handoff.md`、`formats.md` 两行 |
 
-读不到的（没工具、打不开、要登录），先在同一来源找别的入口（官网附件、接口、官方转载），仍读不到就在资料清单「读到哪」写「没读成：原因」，请用户补原文，其余照常推进。（批 B 回放后加「先在同一来源找别的入口」，待维护者确认）
-
-### 2.4 实质变化（写进 SKILL.md 的内容）
-
-以下五种要用户确认受影响的段；其余补充直接回填，在缺口表「怎么解决的」写一句：
-
-1. 核心结论或卖点被推翻、改弱；
-2. 段落增删或顺序变化；
-3. 删掉用户的必须内容；
-4. 受众、用途、时长目标变化；
-5. 作为核心表达的数字变了。
+全文把只属于视频的说法换成通用的：「片子」→「成品」，「观众」→「受众」，「画面素材」→「素材」；讲视频的例子留在 `formats.md` 的视频一节。
 
 ## 3 模板
 
 ### 3.1 `templates/plan.md`
 
-节和列固定如下，`check.py` 按这些标题和表头检查。〔〕是要填的。
+和起点相比改这几处，其余照旧：
 
 ```markdown
-# 视频策划：〔片名〕
+# 内容策划：〔题目〕
 
+格式：ai-content-planner/1
 状态：〔阶段 1 整理中 | 阶段 1 待确认 | 阶段 2 补齐中 | 已交接 | 回流中〕（〔日期〕）。〔下一步一句〕
-
-## 确认记录
-
-- 〔日期〕方向：〔用户确认了什么：立意、段落、取舍；原话或摘要〕
-- 〔日期〕局部：〔哪几段、改了什么〕
-
-## 立意
-
-| 项 | 内容 | 来源 |
-|---|---|---|
-| 用途 | | 〔用户给的 / 材料里的 / 建议〕 |
-| 给谁看 | | |
-| 看完得到什么 | | |
-| 一句话主线 | | |
-| 怎么讲 | | |
-| 凭什么信 | | |
-| 不讲什么 | | |
-| 时长与规格 | 〔目标时长；画幅；语言；有没有旁白〕 | |
-| 已有品牌与风格 | 〔没有写「无」；有就写出处，具体怎么用留给风格阶段〕 | |
-
-## 段落
-
-| 段 | 作用 | 观众收益 | 核心内容 | 素材编排 | 预计时长 |
-|---|---|---|---|---|---|
-| P1 | 〔本段任务，及承接上下段〕 | 〔具体结果〕 | 〔要讲的具体内容，引用 U 编号〕 | 〔已有材料怎么用，引用缺口 Q 编号〕 | 〔N 秒 或 N–M 秒〕 |
-
-## 取舍
-
-| 内容 | 处理 | 理由 |
-|---|---|---|
-| | 〔保留 / 合并 / 延后 / 删除〕 | |
-
-## 缺口
-
-| 编号 | 段 | 缺什么 | 归谁 | 提出于 | 状态 | 怎么解决的 |
-|---|---|---|---|---|---|---|
-| Q1 | P1 | 〔具体到能验收〕 | 〔策划 / 风格后 / 分镜后〕 | 〔阶段 1 / 阶段 2 / 分镜 / 制作〕 | 〔待补 / 已补 / 改内容关闭〕 | |
 ```
 
-规则：
-
-- **编号**：段 `P1`、缺口 `Q1`，只增不改；调顺序时编号跟着内容走，表格按播放顺序排，编号可以不连续；删掉的号不再用。
-- **编号写在哪**：引用只写在这几格，`check.py` 也只在这几格里查（别处的「华为 P40」「2026 年 Q1」是正文，不当引用）：U 编号写在段落表「核心内容」、立意「凭什么信」、缺口表「怎么解决的」；Q 编号写在段落表「素材编排」；P 编号写在段落表「作用」（承接哪段）和缺口表「段」。
-- **缺口表的「段」**：写段号，几段用「、」隔开；整支片子都要用的（如品牌标识）写「全片」。
-- **归谁**：「策划」= 讲清楚这件事需要的事实、参数、步骤、解释（挡交接）；「风格后」= 按风格找的图、品牌资产；「分镜后」= 某个镜头的截图、录屏、生成片段。缺截图但连该点哪个按钮都不知道的，拆成两行：步骤归「策划」，截图归「分镜后」。
-- **改内容关闭**：「怎么解决的」必须写删了、收窄了或改了什么；属于第 2.4 节的，确认记录里要有对应的「局部」一行。
-- **预计时长**：各段相加应落在立意的目标时长内（差超过 15% 时 `check.py` 提示）。
+- **立意**：「时长与规格」一行拆成两行，共十行：
+  - `| 输出形式 | 〔视频 / PPT / 课件 / 报告 / 图文 / 知识库；别的写明；见 formats.md〕 | |`
+  - `| 篇幅与规格 | 〔目标篇幅：60 秒、12 页、3000 字；规格：画幅或页面尺寸、语言、有没有旁白〕 | |`
+- **段落表**表头：`| 段 | 作用 | 受众收益 | 核心内容 | 素材编排 | 篇幅 |`；篇幅占位 `〔N 秒 / N 页 / N 字，或区间；不适用写「不限」〕`。
+- **缺口表**：`归谁` 取「策划 / 下游」；`提出于` 取「阶段 1 / 阶段 2 / 下游」；`段` 写段号，几段用「、」，全部都要的写「全部」。
+- 规则段照旧，把「风格后、分镜后」换成「下游」，「按播放顺序」换成「按成品里的顺序」，「预计时长」换成「篇幅」。
 
 ### 3.2 `templates/research.md`
 
-以 Test 仓库 `chansclaude-research/templates/research.md` 的结构为底改写，节固定为：
-
-1. `## 资料清单`：`| 资料 | 位置 | 读到哪 | 用途 | 能不能公开 | 用到哪些编号 |`。`读到哪` 写「全文」「第 x–y 页 / 第 n 节 / 00:12–01:40」或「没读成：原因」；`用途` 取「文案依据 / 画面素材 / 创作参考」，可多选，用「、」隔开。
-2. `## 要哪些单元`：`| 单元 | 回答什么 | 用在哪段 | 状态 |`，状态取「收集中 / 够了」。
-3. `## U1 〔单元名〕`：先写「说明什么」「用在」，再接表 `| # | 内容 | 种类 | 来源 | 必须写清的 | 状态 |`。`#` 写 `U1-1`；`来源` 写「资料名 · 页、节、时间码或链接 · 获取日期 · 一手 / 媒体 / 二手」；`状态` 取「已核实 / 〔待核实〕 / 有冲突 / 已过期」；创作设定的 `种类` 写「设定」，`状态` 写「设定」，`来源` 写依据（用户要求、设定说明）。
-4. `## 待核实和有冲突`：`| 编号 | 卡在哪 | 打算怎么办 |`。
-5. `## 检索记录`：`| 查的是什么 | 关键词 / 网站 | 找到了什么 | 好不好用 |`。
-
-`内容` 写信息本身（数字带单位、口径、时间；步骤带前提、顺序、成功标志），不能只写「见某报告第 3 页」。
+照旧，只改：资料清单的 `用途` 取「内容依据 / 素材 / 参考」（原来是文案依据、画面素材、创作参考）；说明文字里的「片子」换成「成品」。
 
 ### 3.3 `types.md`
 
-由 Test 的 `types.md`（7 大类 31 小类）改写：大类、代号、「必须写清」照搬；例子换成新闻、带货、教程三条线；另加一类「设定」（虚构或创作设定，不核实，写依据）。末尾留修改记录表。
+照旧（大类、代号、必须写清的、例子都不变）；只把通用规则里「片子」「旁白」这类视频说法换成「成品」「讲的时候」。修改记录加一行。
 
 ### 3.4 `genres.md`
 
-每个题材一节，固定三项：常见段落组织、交接前至少要有、不算数的写法。题材名用 `skills/ai-coding-video/data/tags.json` 的 `content_types` 里的名字，不另起名字。
+- 开头去掉「名字同 ai-coding-video 的内容类型」，改成「按内容题材找对应的一节；输出形式另看 `formats.md`」。题材名照旧。
+- 三个写全的题材、其他题材照旧，只把「片」字样的通用说法换掉。
+- 「无旁白、纯情绪、虚构的片子」一节改名「非事实型内容（纯情绪、虚构）」，只留和形式无关的两条（每段仍要具体；虚构记「设定」、真实的照样核实）；「不强制写事实型口播」那条搬到 `formats.md` 视频一节。
 
-- 写全的（P0）：新闻资讯解说、产品广告和带货、教程和录屏演示（企业培训和课件并入这一节）。
-- 每个一两行的：知识科普讲解、品牌宣传片、短剧 / 动漫剧 / 故事、音乐 MV、旅行和城市、年度回顾和数据总结；其余题材写一句「按最接近的一节」。
-- 无旁白、纯情绪、虚构的片子：不强制事实型口播，但每段要写清画面推进和对应的素材；一旦出现真实地点、事件、产品能力，照事实处理。
+### 3.5 `formats.md`（新）
 
-三个 P0 题材「至少要有」的内容：
+每种输出形式一节，固定四项：**段是什么**、**篇幅写法**、**素材编排写什么**、**交接前多查**，再加一行「交给谁」。
 
-| 题材 | 交接前至少要有 | 不算数 |
-|---|---|---|
-| 新闻资讯解说 | 核心事实、发生和发布时间、背景、来源和说法归属、限制 | 「介绍这条新闻，分析影响」 |
-| 产品广告和带货 | 商品名和版本、具体参数或卖点的依据、适用场景、使用条件和限制；品牌自述标「公司自己说的」 | 「展示产品优势」 |
-| 教程和录屏演示 | 前提（系统、权限、版本）、先后步骤、每步的界面或控件名、成功标志、常见错 | 「演示安装流程」 |
+- **视频**（写全）：段 = 一段画面加旁白；篇幅写秒（「45 秒」「40–50 秒」「1 分 30 秒」）；素材编排写已有的画面素材和要拍、录、生成的；多查：各段合计贴近目标时长、有没有旁白定了、每段素材有着落或进了缺口表；无旁白的片子「核心内容」写画面推进和情绪变化（从 genres.md 搬来）；交给 ai-coding-video（附仓库链接）。
+- **PPT**、**课件**、**报告**、**图文**、**知识库**：各一两行，写段是什么、篇幅单位（页、字、条；知识库写「不限」），注明「第一版只留位置，用到时补全」。
+
+### 3.6 `handoff.md`（新）
+
+给下游 Skill 看的接口，写全以下各项（下游可能没装策划，所以写全，不只放链接）：
+
+1. 文件：`plans/<短名>/plan.md`、`research.md`、`source/`。
+2. 格式版本：`plan.md` 第二行 `格式：ai-content-planner/1`。下游先认这一行；版本号不认识就停下，请用户更新下游或策划。
+3. 能用的编号：段 `P1`；信息数据 `U1-1`、单元 `U1`；缺口 `Q1`。它们写在哪几格（照第 3.1 节「编号写在哪」）。
+4. 什么时候能接：状态是「已交接」。「回流中」时等策划处理完。
+5. 下游产物放下游自己的目录（视频是 `videos/<短名>/`），不写进 `plans/`；引用段号写 `seg`，引用事实写 `ref`（U 编号，设定写 `null`），产物里写明来自哪份 `plan.md`。
+6. 下游只许改 `plan.md` 两处：缺口表加行（`提出于=下游`；缺内容的 `归谁=策划`、缺素材的 `归谁=下游`；`状态=待补`），以及把状态行改成「回流中」。别的不改，也不改 `research.md`。
+7. 格式升级：改节名、表头、取值、编号规则时格式号加 1，CHANGELOG 写明怎么从旧格式转；只加说明不升。
 
 ## 4 交接条件
 
-`plan.md` 状态改成「已交接」之前，全部满足：
+照旧六条，第 4、5 条改为：
 
-1. 确认记录里有「方向」一行；
-2. 缺口表没有 `归谁=策划` 且 `状态=待补` 的行；
-3. `核心内容` 引用的信息数据，没有〔待核实〕和「有冲突」；
-4. 每段 `核心内容` 是具体内容，不是动作标题（按 `genres.md` 的「不算数」自查）；
-5. 归「风格后」「分镜后」的行写清了缺什么、哪段；
-6. `check.py --handoff` 通过。
+4. 每段核心内容是具体内容，不是动作标题（按 `genres.md` 的「不算数」和 `formats.md` 该形式的「交接前多查」自查）；
+5. 归「下游」的行写清了缺什么、哪段（段号或「全部」）。
 
-1–3、5、6 由脚本查；4 由助手按 `genres.md` 判断，并在交接说明里写一句依据。
+## 5 check.py
 
-## 5 ai-coding-video 的改动（批 C）
-
-1. **`SKILL.md` 的「什么时候用」**加两条：
-   - 内容还没定（只有想法、资料没整理）→ 先用 video-content-planner；
-   - 项目里已有 `videos/<短名>/plan.md` 且状态是「已交接」→ 从 `storyboard.md` 开始。
-2. **`SKILL.md` 的 description** 句末加：「内容策划用 video-content-planner。」
-3. **新文件 `storyboard.md`**（≤80 行）：阶段 3 的写法。
-   - 读 `plan.md`、`research.md`，选风格照现有 0 级。
-   - 分镜写 `videos/<短名>/storyboard.json`：`{"segments": [{"seg": "P1", "title", "content", "sec", "lead", "uses", "note"}]}`。字段含义同 `cases/` 的 `case.json` 段落，`seg` 对上 `plan.md` 的段号，一段策划可拆成几段分镜。
-   - 逐字稿写 `script.json`：格式同 `cases/` 的 `script.json`（`vo`、`facts`、`pace`），`facts` 每条加 `ref`（U 编号；设定写 `null`）。
-   - 用户确认后进阶段 4，照 `making.md`。
-   - 回流：缺内容就在 `plan.md` 缺口表加一行（`提出于=分镜`，`归谁=策划`），把状态改成「回流中」，转策划处理；缺画面自己处理。
-   - 字段要在本文件里写全：`cases/` 不随 Skill 安装，不能只放链接。
-4. **版本**：`ai-coding-video/SKILL.md` 和两份 `plugin.json` 的 `version` 升到 0.7.0；CHANGELOG 记一行。
-5. 不改 `cases/README.md`：它管仓库自己的案例，`storyboard.md` 管用户项目，各管各的。
-
-## 6 安装
-
-`scripts/install.sh` 的用法不变（`claude|codex|dsh|all [项目目录]`、`zip`），行为改成：
-
-- 装 `skills/` 下每个含 `SKILL.md` 的目录，各自拷成 `<目标>/<Skill 名>/`，排除规则不变；
-- `zip` 每个 Skill 打一个包：`dist/<Skill 名>.zip`；
-- 开头的用法注释改成「把 skills/ 下的 Skill 拷到……」。
-
-插件清单（两份 `plugin.json`、`marketplace.json`）：`description` 改成「用代码做视频：内容策划、风格库、分镜到出片的方法」这一类，关键词加 `planning`、`storyboard`；`version` 批 A 不动。
-
-## 7 README 和 AGENTS
-
-- `README.md`：
-  - 「安装」段开头加一句：装上后有两个 Skill——video-content-planner 管内容，ai-coding-video 管风格到出片；
-  - `scripts/install.sh` 那几行的注释把 `→ ~/.claude/skills/ai-coding-video` 改成 `→ ~/.claude/skills/`；
-  - 「仓库结构」加 `skills/video-content-planner/` 和 `docs/` 两行。
-- `AGENTS.md` 目录表：加 `skills/video-content-planner/`（Skill 本体，唯一正本；改完跑 `check.py` 的测试）和 `docs/`（设计记录，不安装）两行。批 0 先加。
-
-## 8 例子
-
-`example/` 放一份填好的 `plan.md` 和 `research.md`：取批 B 的 `news-artemis` 回放结果，裁成 3 段、约 60 秒。全部是公开来源的真实事实（NASA），带真实链接，状态如实填。`check.py --handoff example/` 必须通过。
-
-## 9 check.py
-
-```
-python3 -I <skill>/scripts/check.py <videos/短名 目录> [--handoff]
-```
-
-只用 Python 标准库。按 Markdown 标题找节，按表头找表，不依赖行号。
+用法：`python3 -I <本 Skill 目录>/scripts/check.py <plans/短名 目录> [--handoff]`。检查表照旧，改这几行：
 
 | 查什么 | 普通 | `--handoff` |
 |---|---|---|
-| `plan.md`、`research.md` 都在；第 3.1、3.2 节规定的节都在 | 错 | 错 |
-| 段落表表头正好是那六列，顺序一致 | 错 | 错 |
-| `P`、`Q`、`U` 编号格式对、不重复 | 错 | 错 |
-| 第 3.1 节「编号写在哪」那几格里引用的 `U1-1`、`U1`、`Q1`、`P1` 都存在 | 错 | 错 |
-| `归谁`、`提出于`、缺口`状态`、资料`状态`、`用途` 的取值在枚举里 | 错 | 错 |
-| `预计时长` 能解析成秒数或区间（「45 秒」「40–50 秒」「1 分 30 秒」「1 分钟 30 秒」「约 45 秒」「45 秒左右」；只写数字不带单位的算错） | 错 | 错 |
-| 各段时长合计和目标时长相差超过 15% | 提示 | 提示 |
-| 「改内容关闭」的行「怎么解决的」非空 | 错 | 错 |
-| 还有〔〕占位没填 | 提示 | 错 |
-| 确认记录有「方向」一行 | — | 错 |
-| 没有 `归谁=策划` 且 `状态=待补` 的行 | — | 错 |
-| 核心内容引用的 U 数据没有〔待核实〕、有冲突（只写单元号 `U1` 的，查这个单元的每一条） | — | 错 |
-| 归「风格后」「分镜后」的行「缺什么」非空，「段」是段号或「全片」 | — | 错 |
-| 状态行是「已交接」或「回流中」以外的值 | — | 提示 |
+| `plan.md` 有「格式：ai-content-planner/1」一行（版本号不是 1 也报，说明本脚本只认 1） | 错 | 错 |
+| 立意有十行，项名照第 3.1 节 | 错 | 错 |
+| 段落表表头正好是新六列 | 错 | 错 |
+| `归谁`、`提出于`、`用途` 用新取值 | 错 | 错 |
+| `篇幅` 能解析：时间（秒、分、分钟）、页、字（含「千字」「万字」），或「不限」；只写数字不带单位算错 | 错 | 错 |
+| 各段篇幅单位和目标篇幅单位一致时，合计相差超过 15% | 提示 | 提示 |
+| 各段篇幅单位不一致（「不限」除外） | 提示 | 提示 |
+| 归「下游」的行「缺什么」非空，「段」是段号或「全部」 | — | 错 |
+| 核心内容引用的单元一条数据都没有（新，批 B 留下的建议） | — | 错 |
 
-输出：每个问题一行「文件:节: 问题」，最后一行「通过」或「N 个错、M 个提示」。有错退出码 1，只有提示退出码 0。
+其余各行（节、编号、引用只在规定格子里查、枚举、占位、方向一行含括注、改内容关闭要写理由、待核实和冲突）照旧。
 
-`scripts/tests/`：用 `unittest`，夹具放 `scripts/tests/fixtures/`。至少有：一份全通过的、六列错一列的、引用不存在的 U 编号、归「策划」的缺口没补就 `--handoff`、引用〔待核实〕的数据、「改内容关闭」没写理由，加 `example/` 的 `--handoff`。另一个测试在仓库里运行时（能找到 `../ai-coding-video/data/tags.json`）核对 `genres.md` 的题材名都在 `content_types` 里，找不到就跳过。
+`scripts/tests/`：起点的 17 个测试照旧改成新格式；去掉核对 `../ai-coding-video/data/tags.json` 的那个，换成：`genres.md` 每节都有那三项；`formats.md` 每节都有那四项，且节名和模板「输出形式」的选项一致。新加：缺格式行、格式版本是 2、篇幅用页和字、单位不一致的提示、引用空单元。运行：`python3 -m unittest discover -s skills/ai-content-planner/scripts/tests`。
 
-运行：`python3 -m unittest discover -s skills/video-content-planner/scripts/tests`。
+## 6 例子和回放
 
-## 10 批次
+- `example/`：起点的 Artemis II 例子转成新格式（加格式行、立意十行、新表头和取值），内容不变；`--handoff` 通过。
+- `docs/replay/`：起点 `docs/video-content-planner/replay/` 的 7 个目录和 `README.md` 搬过来，转成新格式。README 开头加一句「这是第 1 版（video-content-planner）的回放，第 2 版只转了格式，结论不变」；链到 AI-Coding-Video 文件的相对路径改成 GitHub 链接。7 个目录 `--handoff` 都通过。
+- 转格式用一次性的脚本做，脚本不进仓库；转完逐个跑 `check.py` 核。
 
-AGENTS.md 规定一批一个对话、从最新 `main` 开分支、做完合并回 `main`。
+## 7 自检和 CI
 
-| 批 | 内容 | 验收 |
-|---|---|---|
-| 0 | 本 PRD、SPEC；PLAN 阶段 7；AGENTS 目录表 | 维护者确认 PRD 第 9 节 |
-| A | 第 1–4、6、7、9 节：Skill 本体、模板、`check.py` 和测试、install、插件文案、README；`example/` 先放一份最小的虚构例子占位 | 测试通过；`install.sh claude <临时目录>` 装出两个 Skill；`build_index.py --check` 通过 |
-| B | 回放验收：PRD 第 8 节第 1–3 项；结果放 `docs/video-content-planner/replay/<案例>/`；按回放的问题修 Skill（只改第 1 节的文件）；用 `news-artemis` 的回放换掉 `example/` | 三支回放和四个边界任务的结论写进 `replay/README.md`，每条附通过或不通过的原因 |
-| C | 第 5 节：ai-coding-video 接入，版本 0.7.0 | `build_index.py --check` 通过；从 `example/` 起，在新对话里写出 `storyboard.json`、`script.json`，段号和 `ref` 都对得上 |
+`scripts/selfcheck.py`（只用标准库），在仓库根目录运行，依次：
 
-每批做完：Skill 的 CHANGELOG 记一行，PLAN 阶段 7 更新状态；三批都完成后从 PLAN 删掉阶段 7，PRD、SPEC 状态改成「已实施，以 Skill 为准」。
+1. 四份清单是合法 JSON；两份 `plugin.json` 的 `version` 等于 SKILL.md 的 `version`；`name` 都是 `ai-content-planner`；
+2. SKILL.md 有 frontmatter，`name` 和目录名一致，`description` ≤1024 字符，有 `description_en`；
+3. 第 2 节各文件的行数上限；
+4. 跑 `scripts/tests/` 的测试；
+5. 对 `example/` 和 `docs/replay/` 下每个目录跑 `check.py --handoff`。
+
+输出每项一行，最后一行「通过」或「N 项不通过」，不通过退出码 1。`.github/workflows/test.yml`：`ubuntu-latest`、Python 3，跑 `python3 scripts/selfcheck.py`。
+
+## 8 迁移步骤（批 D）
+
+1. 维护者在 GitHub 建空仓库 `Chans-gh/AI-content-planner`（不勾初始化 README），加到会话里。
+2. 初始提交：照第 1 节建外壳，`skills/ai-content-planner/` 和 `docs/` 先原样拷入起点提交的内容（不改内容，只改目录名）。提交说明写「从 Chans-gh/AI-Coding-Video 分支 claude/dazzling-faraday-lwjvus 提交 6151c44 迁入」。推到新仓库的 `main`（PRD 第 9 节待确认）。
+3. 之后在新仓库开分支做第 2–7 节的改动，PR 合并到 `main`。
+4. Skill 的 CHANGELOG 记一行 0.2.0：改名、解耦、格式 1、`handoff.md`、`formats.md`。旧的 0.1.0 三行保留，标「在 AI-Coding-Video 分支上做，没发布」。
+
+验收：`python3 scripts/selfcheck.py` 通过；GitHub 上 CI 绿；`scripts/install.sh claude <临时目录>` 装出 `ai-content-planner`；在一个没有 AI-Coding-Video 的干净目录里克隆新仓库，selfcheck 照样通过。
+
+## 9 AI-Coding-Video 这边（批 C，本分支）
+
+批 D 验收通过后做。
+
+### 9.1 撤回
+
+| 动作 | 文件 |
+|---|---|
+| 删除 | `skills/video-content-planner/`、`docs/video-content-planner/`（`docs/` 空了就整个删） |
+| 恢复成 `main` 上的样子 | `scripts/install.sh`、`.gitattributes`、`skills/.claude-plugin/plugin.json`、`skills/.codex-plugin/plugin.json`、`.claude-plugin/marketplace.json`、`AGENTS.md` |
+| 恢复后再按 9.2 改 | `README.md`、`PLAN.md` |
+
+### 9.2 接入
+
+1. **`skills/ai-coding-video/SKILL.md`**：
+   - 「什么时候用」加两条：内容还没定（只有想法、资料没整理）→ 先用 ai-content-planner（附新仓库链接）；项目里有 `plans/<短名>/plan.md`、状态「已交接」、输出形式是视频 → 从 `storyboard.md` 开始。
+   - description 句末加：「内容策划用 ai-content-planner。」
+2. **新文件 `skills/ai-coding-video/storyboard.md`**（≤80 行）：
+   - 先认 `plan.md` 的格式行，只接 `ai-content-planner/1`；状态不是「已交接」的不接。
+   - 读 `plan.md`、`research.md`，选风格照现有 0 级。
+   - 分镜写 `videos/<短名>/storyboard.json`：`{"plan": "plans/<短名>/plan.md", "segments": [{"seg": "P1", "title", "content", "sec", "lead", "uses", "note"}]}`。字段含义写全（同 `cases/` 的 `case.json` 段落，`cases/` 不随 Skill 安装，不能只放链接）；一段策划可拆成几段分镜。
+   - 逐字稿写 `videos/<短名>/script.json`：`vo`、`facts`、`pace`，`facts` 每条加 `ref`（U 编号；设定写 `null`）。
+   - 用户确认后进阶段 4，照 `making.md`。
+   - 回流：缺内容在 `plan.md` 缺口表加一行（`提出于=下游`、`归谁=策划`、`状态=待补`），状态改「回流中」，转策划处理；缺画面自己处理。
+3. **版本**：`ai-coding-video/SKILL.md` 和两份 `plugin.json` 升到 0.7.0；CHANGELOG 记一行。
+4. **`README.md`**：「安装」段开头加一句「内容还没想好的，先装 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再用本 Skill 出片」，附它的两行插件命令。
+5. **`PLAN.md`**：阶段 7 改成一行「策划已搬到 AI-content-planner；本仓库只做接入（批 C）」，做完删掉；抓原文脚本的待办删掉（已搬到新仓库 PLAN）。
+
+不动：`site/`、`.github/workflows/`、`samples/`、`packs/`、`cases/`、`media.json`、`candidates.md`、`build_index.py`、`release.sh`。改 `skills/ai-coding-video/SKILL.md` 会在合进 `main` 后触发一次介绍页重建，内容不变。
+
+验收：`build_index.py --check` 通过；`git diff main --stat` 只有 9.2 列的文件；从新仓库的 `example/` 起，在新对话里写出 `storyboard.json`、`script.json`，`seg` 和 `ref` 都对得上 `plan.md`、`research.md`。
+
+## 10 一站式安装（批 E，可选）
+
+先实测再定：在 AI-Coding-Video 的 `.claude-plugin/marketplace.json` 的 `plugins` 里加一条 `{"name": "ai-content-planner", "source": {"source": "github", "repo": "Chans-gh/AI-content-planner"}, "description": …}`，看 `claude plugin install ai-content-planner@ai-coding-video` 能不能装上；Codex 的清单查文档、实测。能装就加，README 写一句；不能装就不加，README 照第 9.2 节写两行命令。
+
+## 11 批次
+
+| 批 | 在哪 | 内容 | 验收 |
+|---|---|---|---|
+| 0 | 本分支 | PRD、SPEC 第 2 版 | 维护者确认 PRD 第 9 节 |
+| D | 新仓库 | 第 1–8 节 | 第 8 节验收 |
+| C | 本分支 | 第 9 节 | 第 9 节验收 |
+| E | 本分支 | 第 10 节（可选） | 实测结果写进 PLAN |
+
+一批一个对话。每批做完：对应仓库的 CHANGELOG 记一行、PLAN 更新状态。
