@@ -225,7 +225,10 @@ scene({
 <section class="sec" id="prompt">
   <div class="wrap">
     <h2><span lang="zh">提示词怎么写</span><span lang="en">Writing the prompt</span></h2>
-    <p class="sec-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。纯代码、真实素材、AI 素材三类都按这 8 点写；用素材的，另外写清素材从哪来、怎么处理。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result. All three classes (pure code, real material, AI material) follow them; with material, also say where it comes from and how it is handled.</span></p>
+    <p class="sec-lede"><span lang="zh">两种用法，提示词的重点不一样：风格演示要写清<b>样式</b>，也就是画面长什么样、怎么做；完整出片先说清<b>内容和需求</b>，每段的样式由助手拆分镜时按段定，你看过再点头。</span><span lang="en">The two ways of using it call for different prompts. A style demo needs the <b>look</b> spelled out: what the picture is and how it is made. A full film starts from the <b>content and the brief</b>; the assistant picks a look for each segment while breaking down the storyboard, and you approve it.</span></p>
+
+    <h3 class="sub"><span lang="zh">风格演示：写清样式的 8 个要点</span><span lang="en">Style demo: eight points that pin down a look</span></h3>
+    <p class="sub-lede"><span lang="zh">只写风格名，结果常常退化成通用扁平动画。真正起作用的是这 8 个要点，写得越具体越稳。纯代码、真实素材、AI 素材三类都按这 8 点写；用素材的，另外写清素材从哪来、怎么处理。完整出片里每段的样式，也照这 8 点定。</span><span lang="en">A style name alone usually collapses into generic flat animation. These eight points do the work; the more specific, the steadier the result. All three classes (pure code, real material, AI material) follow them; with material, also say where it comes from and how it is handled. In a full film, each segment's look is pinned down the same way.</span></p>
     <ol class="eight">
       <li><b><span lang="zh">制作路径</span><span lang="en">Production path</span></b><span lang="zh">纯代码逐帧；或用哪些真实素材（录像、录屏、照片、数据）、出处和许可；或用哪个模型生图、生视频、合成旁白。代码负责剪辑、排版和动效。</span><span lang="en">Pure code frame by frame; or which real material (footage, screen recordings, photos, data) with its source and license; or which model makes the images, clips and narration. Code does the editing, layout and motion.</span></li>
       <li><b><span lang="zh">3–5 个标志元素</span><span lang="en">3–5 signature elements</span></b><span lang="zh">材质、限定调色板（写色值）、线条、留白、字体。用素材时写统一的色调、裁切和字幕样式；AI 素材先出一张定妆图当参考，前后才一致。</span><span lang="en">Material, a limited palette with hex values, line quality, negative space, typeface. With material: one color grade, crop and caption style; for AI material, make a reference image first so every shot matches.</span></li>
@@ -243,13 +246,38 @@ scene({
       </div>
 {{TEMPLATE}}
     </div>
+
+    <h3 class="sub"><span lang="zh">完整出片：先说清这 8 样</span><span lang="en">Full film: eight things to say first</span></h3>
+    <p class="sub-lede"><span lang="zh">不用一开始就选风格。说清给谁看、讲什么，助手先写分镜表（每段讲什么、几秒、用什么样式，一段可以混用几种）和逐字稿，再定全片统一的色板、字体、字幕、转场、配乐和旁白音色。它补的数据和事实都标「待你确认」，你点头才进片子。</span><span lang="en">No need to choose a style up front. Say who it is for and what it says; the assistant first writes a storyboard (what each segment says, how long, which looks, several mixed in one segment if needed) and a script, then sets what stays the same across the film: palette, type, captions, transitions, music and narration voice. Any data or facts it adds are marked for your confirmation and go in only when you approve.</span></p>
+    <ol class="eight">
+      <li><b><span lang="zh">给谁看</span><span lang="en">Who it is for</span></b><span lang="zh">受众是谁、在哪儿看：刚开始做饭的大学生、新员工培训、发在视频号。</span><span lang="en">The audience and where they watch: students who just started cooking, new-hire training, a social video channel.</span></li>
+      <li><b><span lang="zh">看完得到什么</span><span lang="en">What they take away</span></b><span lang="zh">一句话：看完知道什么、会做什么、记住什么。</span><span lang="en">One sentence: what they know, can do or remember afterwards.</span></li>
+      <li><b><span lang="zh">一句话主线</span><span lang="en">The one-line story</span></b><span lang="zh">整支片子围着哪句话转，比如「水开了不等于够热」。</span><span lang="en">The line the whole film turns on, such as "boiling isn't the same as hot enough".</span></li>
+      <li><b><span lang="zh">时长和画幅</span><span lang="en">Length and frame</span></b><span lang="zh">几分钟；横版 16:9（默认）或竖版 9:16，只出一版。</span><span lang="en">How many minutes; landscape 16:9 (the default) or portrait 9:16, one version only.</span></li>
+      <li><b><span lang="zh">语言和旁白</span><span lang="en">Language and narration</span></b><span lang="zh">什么语言，要不要旁白。旁白用语音合成的公开音色，也可以用本地 Kokoro；要用自己的声音，请自带克隆声音的第三方工具。</span><span lang="en">Which language, narrated or not. Narration uses a stock voice from a speech service, or local Kokoro; to use your own voice, bring your own voice-cloning tool.</span></li>
+      <li><b><span lang="zh">内容素材</span><span lang="en">Your content</span></b><span lang="zh">你手上的稿子、要点、数据、链接，贴给它整理；只有一个主题的，它从主题往外扩展。内容多、要查证的，先用 AI-content-planner 做策划。</span><span lang="en">Drafts, notes, data or links you already have, for it to organize; with only a topic, it expands from there. For heavy, fact-checked content, plan it first with AI-content-planner.</span></li>
+      <li><b><span lang="zh">必须有和不要</span><span lang="en">Musts and don'ts</span></b><span lang="zh">一定要出现的品牌色、产品、口播句；不想要的画风、说法、音乐。</span><span lang="en">Brand colors, products or lines that must appear; looks, phrasing or music to avoid.</span></li>
+      <li><b><span lang="zh">怎么确认</span><span lang="en">How you sign off</span></b><span lang="zh">先给分镜表和逐字稿，确认后先做 1–2 段带旁白的典型样片，满意了再出整片。</span><span lang="en">Storyboard and script first; after sign-off, one or two narrated typical segments; the whole film once you are happy.</span></li>
+    </ol>
+    <div class="tpl2">
+      <div class="tpl-head">
+        <p><span lang="zh">完整出片的说法示例（方括号换成你的内容）</span><span lang="en">A full-film request (in Chinese; replace the brackets)</span></p>
+        <button type="button" class="copy" data-copy="tpl-film"><span lang="zh">复制</span><span lang="en">Copy</span></button>
+      </div>
+      <pre class="code" tabindex="0"><code id="tpl-film">用 ai-coding-video 做一支【3】分钟的【科普】片，【横版 16:9】，【中文、要旁白】。
+给【刚开始做饭的大学生】看，看完知道【为什么高原上煮面要更久】，主线是【水开了不等于够热】。
+内容：【贴上你的稿子、要点或数据；只有主题就写主题】
+必须有：【品牌色 #2F6FEB、片尾一句口号】；不要：【卡通人物、激昂的配乐】。
+先给我分镜表（每段讲什么、几秒、用什么样式）、全片统一和逐字稿，
+你补的数据和事实标「待用户确认」；我确认后先做 1 段带旁白的典型样片，满意了再出整片。</code></pre>
+    </div>
   </div>
 </section>
 
 <section class="sec" id="skill">
   <div class="wrap">
     <h2><span lang="zh">什么是 Skill，这个 Skill 怎么用？</span><span lang="en">What a Skill is, and how to use this one</span></h2>
-    <p class="sec-lede"><span lang="zh">这个仓库的核心是一个 Skill。下面分三块说：它是什么、怎么装、装好以后怎么一级一级用。</span><span lang="en">At the heart of this repository is a Skill. Three parts below: what it is, how to install it, and how to use it level by level.</span></p>
+    <p class="sec-lede"><span lang="zh">这个仓库的核心是一个 Skill。下面分三块说：它是什么、怎么装、装好以后的两种用法。</span><span lang="en">At the heart of this repository is a Skill. Three parts below: what it is, how to install it, and the two ways to use it once installed.</span></p>
 
     <div class="part" id="skill-what">
       <p class="part-n">1</p>
@@ -274,7 +302,9 @@ scene({
             <li><code>prompting.md</code><span lang="zh">提示词写法和通用模板</span><span lang="en">How to write prompts, plus a template</span></li>
             <li><code>materials.md</code><span lang="zh">用真实素材、AI 素材做视频的做法</span><span lang="en">Making videos with real or AI-generated material</span></li>
             <li><code>sound.md</code><span lang="zh">配乐、音效和旁白</span><span lang="en">Music, effects and narration</span></li>
-            <li><code>scripts/</code><span lang="zh">生成索引、检查条目的脚本</span><span lang="en">Scripts that build and check the index</span></li>
+            <li><code>making.md</code><span lang="zh">出样片、做风格包、整片的规矩</span><span lang="en">Making samples, style packs and the whole film</span></li>
+            <li><code>film.md</code><span lang="zh">完整出片的六步，分镜和逐字稿的格式</span><span lang="en">The six steps of a full film; storyboard and script formats</span></li>
+            <li><code>scripts/</code><span lang="zh">生成索引、检查条目和分镜的脚本</span><span lang="en">Scripts that build the index and check entries and storyboards</span></li>
           </ul>
         </div>
       </div>
@@ -306,35 +336,48 @@ scripts/install.sh dsh   <span class="c"># or: claude · codex · all · zip</sp
         <button type="button" class="copy" data-copy="inst-sh"><span lang="zh">复制</span><span lang="en">Copy</span></button>
       </div>
     </div>
-    <p class="note"><span lang="zh">装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”。</span><span lang="en">Then just ask: "Pick a style for a 60-second explainer on the water cycle", or "Write a Canvas animation in the C-013 shadow-puppet style".</span></p>
+    <p class="note"><span lang="zh">装好以后直接问：“给一支讲水循环的 60 秒科普片选个风格”“用 C-013 皮影戏的风格写一段 Canvas 动画”，或者“做一支 3 分钟讲高原煮面的科普片，横版带旁白”。</span><span lang="en">Then just ask: "Pick a style for a 60-second explainer on the water cycle", "Write a Canvas animation in the C-013 shadow-puppet style", or "Make a 3-minute narrated explainer on cooking noodles at altitude, landscape".</span></p>
       </div>
     </div>
 
     <div class="part" id="levels">
       <p class="part-n">3</p>
       <div class="part-body">
-        <h3><span lang="zh">三级用法</span><span lang="en">Three levels</span></h3>
-        <p class="part-lede"><span lang="zh">装好以后，助手在你自己的项目里按这三级走，每一级你点头才进下一级。</span><span lang="en">Once installed, your assistant works through three levels in your own project, moving on only when you approve.</span></p>
+        <h3><span lang="zh">两种用法</span><span lang="en">Two ways to use it</span></h3>
+        <p class="part-lede"><span lang="zh">装好以后，助手在你自己的项目里按你要的走其中一条：只想看看效果、挑一套风格的，走风格演示；要做一支几分钟的片子，走完整出片。每一步你点头才往下，停在哪一步都行。</span><span lang="en">Once installed, your assistant follows one of two tracks in your own project: a style demo if you want to see looks and settle on one, or a full film if you want a video several minutes long. It moves on only when you approve, and you can stop at any step.</span></p>
+
+        <h4 class="track"><span lang="zh">风格演示：看看效果、挑风格、定一套风格</span><span lang="en">Style demo: see the looks, choose one, settle on a set</span></h4>
         <div class="levels">
       <article>
         <p class="lv">0</p>
-        <h4><span lang="zh">词典</span><span lang="en">Dictionary</span></h4>
+        <h4><span lang="zh">选样式</span><span lang="en">Pick a look</span></h4>
         <p class="num">{{N_STYLES}} <span lang="zh">种风格</span><span lang="en">styles</span></p>
-        <p><span lang="zh">每种一句可复制的风格提示词。纯代码的标题材和技术，用素材的标内容类型和素材种类，配几张选风格索引表。</span><span lang="en">Each style has a copy-ready prompt (in Chinese). Pure-code styles carry a theme and techniques; material styles carry a content type and the kinds of material, with lookup tables for choosing.</span></p>
+        <p><span lang="zh">从词典里挑：每种一句可复制的风格提示词，纯代码的标题材和技术，用素材的标内容类型和素材种类，配几张选风格索引表。样式就是风格加技术路线和素材类型。</span><span lang="en">Choose from the dictionary: each style has a copy-ready prompt (in Chinese); pure-code styles carry a theme and techniques, material styles a content type and kinds of material, with lookup tables for choosing. A look is a style plus its tech route and kind of material.</span></p>
       </article>
       <article>
         <p class="lv">1</p>
-        <h4><span lang="zh">样片</span><span lang="en">Samples</span></h4>
+        <h4><span lang="zh">出样片</span><span lang="en">Make a sample</span></h4>
         <p class="num">{{N_SAMPLES}} <span lang="zh">种已出样片</span><span lang="en">rendered so far</span></p>
-        <p><span lang="zh">候选风格套上你的品牌色和内容（用素材的换成你的素材），跑一小段，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate style with your colors and content (and your own material where it uses some), a short clip in both frame shapes. The samples here are worked examples you can edit.</span></p>
+        <p><span lang="zh">候选样式套上你的品牌色和内容（用素材的换成你的素材），跑一小段，横竖各一版。本库的样片是示范，代码可以直接改。</span><span lang="en">A candidate look with your colors and content (and your own material where it uses some), a short clip in both frame shapes. The samples here are worked examples you can edit.</span></p>
       </article>
       <article>
         <p class="lv">2</p>
-        <h4><span lang="zh">风格包</span><span lang="en">Style packs</span></h4>
+        <h4><span lang="zh">风格包</span><span lang="en">Style pack</span></h4>
         <p class="num">{{N_PACKS}} <span lang="zh">个风格包</span><span lang="en">packs so far</span> · <a href="#packs"><span lang="zh">看演示</span><span lang="en">See the demo</span></a></p>
         <p><span lang="zh">通过的风格沉淀成可复用的代码模块，覆盖片头、讲解、数据、转场、字幕；每个包可换一个维度：品牌色、画面组织或画风。</span><span lang="en">An approved style becomes a reusable code module: openers, explainers, data, transitions, captions. Each pack swaps one dimension: brand color, layout or art style.</span></p>
       </article>
     </div>
+
+        <h4 class="track"><span lang="zh">完整出片：做一支几分钟的片子</span><span lang="en">Full film: a video several minutes long</span></h4>
+        <ol class="steps">
+          <li><h4><span lang="zh">定内容</span><span lang="en">Settle the content</span></h4><p><span lang="zh">有策划稿的照着接；没有的，助手整理或扩展你给的内容，补的事实标「待你确认」。</span><span lang="en">With a plan from AI-content-planner, it follows it; without one, it organizes or expands what you give, marking any facts it adds for your confirmation.</span></p></li>
+          <li><h4><span lang="zh">拆分镜与样式</span><span lang="en">Storyboard and looks</span></h4><p><span lang="zh">分段、每段讲什么、几秒、用什么样式，一段可以混用几种风格、技术和素材；同时定全片统一。</span><span lang="en">Segments, what each says, how long, which looks, mixing styles, techniques and material within a segment; plus what stays the same across the film.</span></p></li>
+          <li><h4><span lang="zh">逐字稿</span><span lang="en">Script</span></h4><p><span lang="zh">每段念什么，画面上每个数字和事实从哪来。</span><span lang="en">What each segment says aloud, and where every number and fact on screen comes from.</span></p></li>
+          <li><h4><span lang="zh">你确认</span><span lang="en">Your sign-off</span></h4><p><span lang="zh">一次看分镜表、全片统一、逐字稿和待确认的事实；检查脚本打印分镜表，不手抄。</span><span lang="en">Storyboard table, film-wide settings, script and facts to confirm, all at once; a check script prints the table.</span></p></li>
+          <li><h4><span lang="zh">典型样片</span><span lang="en">Typical segment</span></h4><p><span lang="zh">先做 1–2 段最难或最能代表全片的，带旁白和配乐，用整片的画幅。</span><span lang="en">One or two of the hardest or most representative segments first, with narration and music, in the final frame shape.</span></p></li>
+          <li><h4><span lang="zh">渲染整片</span><span lang="en">The whole film</span></h4><p><span lang="zh">配完全部旁白、定好段长，分段渲染、单独检查，再接成整片、统一混音。</span><span lang="en">All narration done and segment lengths set, then render and check segment by segment, join them and mix the sound once.</span></p></li>
+        </ol>
+        <p class="note"><span lang="zh">默认出一版：横版 16:9，要竖版就只出竖版，不另剪短片。做法和格式见 Skill 里的 <code>film.md</code>；下面「真实应用」是完整出片的示范。</span><span lang="en">One version by default: landscape 16:9, or portrait only if you need it, with no extra cut-downs. The method and formats are in the Skill's <code>film.md</code>; "In real work" below shows full films made with it.</span></p>
       </div>
     </div>
   </div>

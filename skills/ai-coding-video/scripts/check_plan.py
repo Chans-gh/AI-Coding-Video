@@ -3,17 +3,22 @@
 
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md \\
-        --storyboard videos/<短名>/storyboard.json --script videos/<短名>/script.json
+        --storyboard videos/<短名>/storyboard.json --script videos/<短名>/script.json [--ready] [--table]
 
+接策划的部分在这里查（段号在框架里、事实的编号在 content.md 里能进成片）；分镜、逐字稿通用的部分（uses、unify、
+事实的出处、--ready、--table）调 check_storyboard.py。
 退出码：0 能接（可能有提醒）；1 能接，但分镜、逐字稿或框架有问题要改；2 停下，不接（格式、状态、输出形式不对，
 或缺 content.md），照提示请用户先回策划。分镜、逐字稿的 "plan" 相对于 --root（默认当前目录，即项目根目录）。
-规矩见本 Skill 的 storyboard.md；交接格式以策划的 handoff.md 为准。
+规矩见本 Skill 的 storyboard.md，分镜、逐字稿的格式见 film.md；交接格式以策划的 handoff.md 为准。
 """
 import argparse
 import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import check_storyboard as cs  # noqa: E402  通用检查（uses、unify、事实的出处、--ready、--table）
 
 FORMAT = 'ai-content-planner/2'
 FRAME_HEAD = ['段', '作用', '受众收益', '要讲的点', '用到哪些输入', '篇幅']
@@ -224,12 +229,7 @@ def check_script(P, sc, plan_rel=None, storyboard=None):
         errs.append(f'逐字稿的 "plan" 要写 "{plan_rel}"，现在是 {sc.get("plan")!r}')
     segs = sc.get('segments', [])
     if storyboard is not None:
-        sb = storyboard.get('segments', [])
-        if len(sb) != len(segs):
-            errs.append(f'逐字稿有 {len(segs)} 段，分镜有 {len(sb)} 段，要一一对应')
-        for i, (a, b) in enumerate(zip(sb, segs), 1):
-            if a.get('seg') != b.get('seg'):
-                errs.append(f'逐字稿第 {i} 段：seg {b.get("seg")} 和分镜的 {a.get("seg")} 不一致')
+        errs += cs.check_align(storyboard, sc)
     for i, s in enumerate(segs, 1):
         g = s.get('seg')
         if g not in P['frame']:
@@ -277,6 +277,8 @@ def main(argv=None):
     ap.add_argument('--storyboard', help='videos/<短名>/storyboard.json')
     ap.add_argument('--script', help='videos/<短名>/script.json')
     ap.add_argument('--root', default='.', help='分镜、逐字稿里 "plan" 相对的目录（默认当前目录）')
+    ap.add_argument('--ready', action='store_true', help='再查用户确认过了（见 check_storyboard.py）')
+    ap.add_argument('--table', action='store_true', help='打印分镜表和全片统一，给用户看')
     a = ap.parse_args(argv)
     try:
         P = read_plan(a.plan)
@@ -289,17 +291,34 @@ def main(argv=None):
     except ValueError:
         rel = None
     errs, notes = list(P['errors']), list(P['notes'])
-    sb = None
-    if a.storyboard:
-        sb = json.loads(Path(a.storyboard).read_text(encoding='utf-8'))
+    try:
+        sb = cs.load(a.storyboard) if a.storyboard else None
+        sc = cs.load(a.script) if a.script else None
+    except cs.Unreadable as x:
+        print(f'读不了：{x}')
+        return 2
+    if sb is not None:
         e, n = check_storyboard(P, sb, rel)
         errs += e
         notes += n
-    if a.script:
-        sc = json.loads(Path(a.script).read_text(encoding='utf-8'))
-        e, n = check_script(P, sc, rel, sb)
+    if sc is not None:
+        e, n = check_script(P, sc, rel)  # 和分镜对不对得上由下面的通用检查查
         errs += e
         notes += n
+    lib = cs.library()
+    if sb is not None:
+        e, n = cs.check(sb, sc, a.ready, lib)
+        errs += e
+        notes += n
+        if a.table:
+            print(cs.table(sb, sc, lib))
+            print()
+    elif sc is not None:
+        e, n = cs.check_facts(sc, True)
+        errs += e
+        notes += n
+    if a.ready and sb is None:
+        errs.append('--ready 要连分镜一起查（写 --storyboard）')
     for x in notes:
         print(f'提醒：{x}')
     for x in errs:

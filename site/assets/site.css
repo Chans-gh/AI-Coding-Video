@@ -229,6 +229,13 @@ h3 { margin: 0; font-size: 17px; line-height: 1.4; }
 .lv::before { content: "LEVEL "; }
 .num { margin: 6px 0 10px; font: 700 15px/1.3 var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
 .levels p:last-child { margin: 0; font-size: 15px; }
+.track { margin: 30px 0 14px; font-size: 17px; line-height: 1.4; }
+.part-lede + .track { margin-top: 0; }
+.steps { list-style: none; counter-reset: st; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 20px; }
+.steps li { counter-increment: st; padding: 20px 22px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
+.steps li::before { content: "STEP " counter(st); display: block; margin: 0 0 6px; font: 700 13px/1 var(--mono); color: var(--muted); }
+.steps h4 { margin: 0 0 6px; font-size: 16px; line-height: 1.4; }
+.steps p { margin: 0; font-size: 14.5px; color: var(--muted); }
 
 /* gallery */
 .gal-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
@@ -385,6 +392,12 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
 .tpl-tabs button:hover { color: var(--ink); }
 .tpl-tabs button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
 .tpl .code { margin-top: 12px; max-height: 420px; }
+.sub { margin: 48px 0 8px; font: 900 22px/1.3 var(--display); }
+.sec-lede + .sub { margin-top: 8px; }
+.sub-lede { margin: 0 0 18px; color: var(--muted); max-width: 48em; }
+.tpl2 { margin-top: 28px; }
+.tpl2 .code { margin-top: 12px; }
+.tpl2 .code code { white-space: pre-wrap; }
 .copy { font: 700 12px/1 var(--mono); padding: 8px 14px; border: 1px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
 .copy.done { background: var(--ink); color: var(--paper); }
 
@@ -400,6 +413,7 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
 
 @media (max-width: 900px) {
   .hero-grid, .paths, .levels, .inst, .eight, .skill-grid, .why { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
   .flow > li + li::before { display: none; }
   .part { grid-template-columns: 40px minmax(0, 1fr); }
@@ -420,6 +434,7 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
   .flow { grid-template-columns: minmax(0, 1fr); }
   .flab { width: 100%; }
   .tree li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
