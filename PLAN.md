@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 挂起：批 1、批 2 做完，剩下 4 个条目（G-017、G-018、T-019、G-019）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
 | 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）做完，介绍页模块第一版已上线；第 2 支（课件）、第 3 支（护肤）、模块改版等维护者说开工，见下面 |
-| 7 | 新 Skill「视频内容策划」video-content-planner（阶段 1、2：内容整理和补齐），ai-coding-video 接入 | — | 批 0 做完，PRD 第 9 节已确认；下一步批 A，见下面 |
+| 7 | 新 Skill「视频内容策划」video-content-planner（阶段 1、2：内容整理和补齐），ai-coding-video 接入 | — | 批 0、A、B 做完；下一步批 C，见下面 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 
@@ -103,7 +103,7 @@
 |---|---|---|
 | 0 | PRD、SPEC、本段、AGENTS 目录表 | 做完；PRD 第 9 节已确认（2026-11-08） |
 | A | Skill 本体、模板、`check.py` 和测试、install.sh、插件文案、README | 做完（2026-11-08）；`example/` 是虚构的占位例子，批 B 换成 `news-artemis` |
-| B | 三支案例回放和四个边界任务，按结果修 Skill，换上正式例子 | 未开始 |
+| B | 三支案例回放和四个边界任务，按结果修 Skill，换上正式例子 | 做完（2026-11-08），结论见 [replay/README.md](docs/video-content-planner/replay/README.md)；SPEC 第 2.3 节改了一句，待维护者确认 |
 | C | ai-coding-video 接入：入口、`storyboard.md`、版本 0.7.0 | 未开始 |
 
 阶段 7 之后的待办：

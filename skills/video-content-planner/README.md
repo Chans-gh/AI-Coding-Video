@@ -22,7 +22,7 @@
 | [`templates/research.md`](templates/research.md) | 资料底稿模板 |
 | [`types.md`](types.md) | 信息的种类（7 大类 31 小类和「设定」）和每类必须写清的 |
 | [`genres.md`](genres.md) | 各题材的段落组织、交接前至少要有的、不算数的写法 |
-| [`example/`](example/) | 填好的例子（现在是虚构的占位例子） |
+| [`example/`](example/) | 填好的例子：Artemis II 的 60 秒短解说，事实全部来自 NASA 公开来源 |
 | [`scripts/check.py`](scripts/check.py) | 检查两份文件；`--handoff` 按交接条件查 |
 | [`scripts/tests/`](scripts/tests/) | `check.py` 的离线测试和夹具 |
 | [`CHANGELOG.md`](CHANGELOG.md) | 更新记录 |

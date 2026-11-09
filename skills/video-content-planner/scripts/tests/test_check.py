@@ -152,6 +152,20 @@ class CheckTest(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn('Q1 归分镜后，要写清缺什么、哪段', out)
 
+    def test_direction_with_note(self):
+        """「方向」后面带括注也算方向一行（回放里写「方向（回放模拟）：」被误报过）；只有「局部」不算"""
+        d = self.case('ok')
+        path = os.path.join(d, 'plan.md')
+        text = read(path)
+        lines = [l for l in text.split('\n') if re.match(r'\s*-\s.*方向[：:]', l)]
+        self.assertTrue(lines)
+        write(path, text.replace(lines[0], lines[0].replace('方向：', '方向（演示用）：', 1)))
+        self.assertEqual(run(d, True), (0, '通过\n'))
+        write(path, text.replace(lines[0], '- 2026-11-08 局部：只改了 P1'))
+        code, out = run(d, True)
+        self.assertEqual(code, 1)
+        self.assertIn('没有「方向」一行', out)
+
     def test_enum(self):
         d = self.case('ok')
         path = os.path.join(d, 'plan.md')

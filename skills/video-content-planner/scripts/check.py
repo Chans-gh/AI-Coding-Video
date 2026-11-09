@@ -320,7 +320,7 @@ def check(folder, handoff=False):
         return r
 
     # ---------- 交接 ----------
-    if not any(re.match(r'\s*[-*]\s.*方向[：:]', line) for line in pmap.get('确认记录', [])):
+    if not any(re.match(r'\s*[-*]\s.*方向(?:[（(][^）)]*[）)])?[：:]', line) for line in pmap.get('确认记录', [])):
         r.err('plan.md:确认记录', '没有「方向」一行：用户还没确认方向，不能交接')
     for row in gap_rows:
         if row['归谁'] == '策划' and row['状态'] == '待补':
