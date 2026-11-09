@@ -4,6 +4,7 @@ const P = {
   sky: ['#7FD4FF', '#DFF6FF'],      // 天空：上、下
   sea: ['#2E86DE', '#1B4F9C'],      // 海：近、远
   hill: '#3BB273', sun: '#FFC93C',
+  rain: 1,                          // 雨量：1 是默认，可以换成真实数据（月降水毫米 / 100）
   title: '水循环', steps: ['蒸发', '凝结', '降水', '汇流'],
 };
 scene({
@@ -13,6 +14,7 @@ scene({
     const R = mulberry32(38), drops = [], vap = [];
     for (let i = 0; i < 60; i++) drops.push([R(), R(), R()]);
     for (let i = 0; i < 28; i++) vap.push([R(), R()]);
+    for (let i = 0; i < 60; i++) drops.push([R(), R(), R()]);   // 雨量大于 1 时多下的雨，排在后面，默认画面不变
     return { drops, vap };
   },
   draw(ctx, t, s) {
@@ -61,8 +63,9 @@ scene({
     cloud(30, 30, 'rgba(40,60,100,.18)');
     const c0 = [255, 255, 255], c1 = [150, 165, 190], cc = c0.map((v, i) => Math.round(lerp(v, c1[i], grey)));
     cloud(0, 0, `rgb(${cc})`);
+    const RAIN = Q.has('rain') ? +Q.get('rain') : P.rain, nDrop = Math.min(s.drops.length, Math.round(60 * RAIN));
     const rain = allOn ? .7 : step === 2 ? smooth(0, .15, sp) : step === 3 ? .4 * (1 - sp) : 0;
-    if (rain > 0) for (const [a, b, c] of s.drops) { const p = (b + t * 1.6) % 1, x = cx + (a - .5) * 300 * cs - p * 30 * u, y = cy + 60 * cs + p * (Y(.62) - cy); ctx.strokeStyle = `rgba(70,140,230,${rain * (.5 + .5 * c)})`; ctx.lineWidth = 5 * u; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 8 * u, y + 34 * u); ctx.stroke(); }
+    if (rain > 0) for (const [a, b, c] of s.drops.slice(0, nDrop)) { const p = (b + t * 1.6) % 1, x = cx + (a - .5) * 300 * cs - p * 30 * u, y = cy + 60 * cs + p * (Y(.62) - cy); ctx.strokeStyle = `rgba(70,140,230,${rain * (.5 + .5 * c)})`; ctx.lineWidth = 5 * u; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 8 * u, y + 34 * u); ctx.stroke(); }
     // 标题
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillStyle = '#123'; ctx.font = `900 ${Math.round((LAND ? 64 : 96) * u)}px 'Noto Sans SC'`;
