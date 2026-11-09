@@ -394,6 +394,17 @@ def check_versions(errors):
                 errors.append(f'skills/{d}/plugin.json: version {v} 和 SKILL.md 的 {m.group(1)} 不一致')
 
 
+def run_tests(errors):
+    """scripts/tests/ 下的离线测试（check_plan.py 等），只用标准库"""
+    import io
+    import unittest
+    here = os.path.dirname(os.path.abspath(__file__))
+    suite = unittest.defaultTestLoader.discover(os.path.join(here, 'tests'), top_level_dir=os.path.join(here, 'tests'))
+    res = unittest.TextTestRunner(stream=io.StringIO(), verbosity=0).run(suite)
+    for case, tb in res.failures + res.errors:
+        errors.append(f'scripts/tests：{case.id()} 没通过：{tb.strip().splitlines()[-1]}')
+
+
 def main():
     check = '--check' in sys.argv
     errors = []
@@ -429,6 +440,7 @@ def main():
     bundled = sync_bundle(check, errors)
     check_links(errors)
     check_versions(errors)
+    run_tests(errors)
     if errors:
         print(f'发现 {len(errors)} 个问题：')
         for e in errors:

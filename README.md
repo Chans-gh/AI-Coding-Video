@@ -28,7 +28,7 @@ Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里�
 
 ## 安装
 
-内容还没想好的，先装 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再用本 Skill 出片。它也在本仓库的市场里，加完市场多装一条即可（下面带「可选」的那行）。
+内容还没想好的，可以先装 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再用本 Skill 出片。策划也在本仓库的市场里，加完市场多装一条即可（下面带「可选」的那行）。不装也行，本 Skill 单独就能选风格、出样片、做片子。
 
 **Claude Code**（插件市场）：
 

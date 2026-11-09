@@ -1,0 +1,9 @@
+{"plan": "plans/demo/plan.md", "style": "C-038", "ar": "9:16",
+ "segments": [
+  {"seg": "P1", "title": "100 度", "content": "一个标准大气压下，水在 100 °C 沸腾", "sec": 8, "lead": "C",
+   "uses": [{"what": "大字温度计", "ref": "C-038"}], "note": "测试夹具"},
+  {"seg": "P1", "title": "气压低了", "content": "气压越低，沸点越低", "sec": 7, "lead": "C",
+   "uses": [{"what": "气压表指针", "ref": "C-038"}], "note": "测试夹具"},
+  {"seg": "P2", "title": "高原", "content": "海拔 4000 米约 87 °C；青禾官方称 3 分钟烧开", "sec": 15, "lead": "T",
+   "uses": [{"what": "高原风景照（Q1）", "class": "T"}], "note": "测试夹具"}
+ ]}
