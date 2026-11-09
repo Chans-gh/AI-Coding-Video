@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 挂起：批 1、批 2 做完，剩下 4 个条目（G-017、G-018、T-019、G-019）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
 | 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）做完，介绍页模块第一版已上线；第 2 支（课件）、第 3 支（护肤）、模块改版等维护者说开工，见下面 |
-| 7 | 策划已搬到 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner)；本仓库只做接入（批 C） | — | 进行中：分支 `claude/dazzling-faraday-lwjvus`（[PR #1](https://github.com/Chans-gh/AI-Coding-Video/pull/1)），做完删掉这一行 |
+| 7 | 策划已搬到 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner)；本仓库只做接入 | 维护者定 | 批 C 做完，在分支 `claude/dazzling-faraday-lwjvus`（[PR #1](https://github.com/Chans-gh/AI-Coding-Video/pull/1)）等合并；批 E（一站式安装，可选）等维护者说开工。合并后删掉这一行 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 

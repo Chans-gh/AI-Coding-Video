@@ -33,6 +33,9 @@ Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里�
 ```bash
 claude plugin marketplace add chans-gh/AI-content-planner
 claude plugin install ai-content-planner@ai-content-planner
+# Codex：
+codex plugin marketplace add chans-gh/AI-content-planner
+codex plugin add ai-content-planner@ai-content-planner
 ```
 
 **Claude Code**（插件市场）：

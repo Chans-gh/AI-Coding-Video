@@ -15,6 +15,7 @@
 | [`materials.md`](materials.md) | 用素材做视频（T 类、G 类）：素材从哪来、许可、生成、统一处理、声音 |
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
+| [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)）：认格式和状态、写分镜 `storyboard.json` 和逐字稿 `script.json`、缺内容怎么回流 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
 | [`legacy-ids.md`](legacy-ids.md) | 旧编号对照 |
