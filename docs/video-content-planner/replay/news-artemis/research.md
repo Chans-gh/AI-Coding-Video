@@ -13,7 +13,7 @@
 | NASA 博客：第 6 天飞掠实况（2026-04-06） | https://www.nasa.gov/blogs/missions/2026/04/06/artemis-ii-flight-day-6-lunar-flyby-updates/ | 全文 | 文案依据 | 能 | U4-1–U4-4、U4-6、U5-2 |
 | NASA 新闻稿：打破最远纪录（2026-04-06） | https://www.nasa.gov/news-release/nasas-artemis-ii-crew-eclipses-record-for-farthest-human-spaceflight/ | 全文 | 文案依据 | 能 | U4-1、U4-3、U5-1 |
 | NASA 新闻稿：公布乘组（2023-04-03） | https://www.nasa.gov/news-release/nasa-names-astronauts-to-next-moon-mission-first-crew-under-artemis/ | 全文 | 文案依据 | 能 | U2-5、U5-5 |
-| NASA：加速重返月球的计划（10-23 更新，页面 2026-11-04） | https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/ | 全文 | 文案依据 | 能 | U7-1–U7-3 |
+| NASA：加速重返月球的计划（讲的是 2026-10-23 NASA 领导层的通报，页面 2026-11-04 发布） | https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/ | 全文 | 文案依据 | 能 | U7-1–U7-3 |
 | JPL Horizons：Orion（-1024）对象说明 | https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='-1024'&OBJ_DATA=YES&MAKE_EPHEM=NO | 全文（对象说明和事件表） | 文案依据 | 能 | U2-2、U3-1、U3-2、U3-4、U4-5 |
 | JPL Horizons：月球（301）对象说明 | https://ssd.jpl.nasa.gov/api/horizons.api?format=text&COMMAND='301'&OBJ_DATA=YES&MAKE_EPHEM=NO | 半径一行 | 文案依据 | 能 | U4-5 |
 | NASA SVS 5632（Artemis II 轨道动画页） | https://svs.gsfc.nasa.gov/5632 | 页面开头的任务说明 | 文案依据、画面素材 | 能 | U3-3 |
@@ -71,7 +71,7 @@
 
 | # | 内容 | 种类 | 来源 | 必须写清的 | 状态 |
 |---|---|---|---|---|---|
-| U3-1 | 起飞后约 1 小时 48 分，远地点抬升到 70,377 公里，在地球轨道上检查飞船 | A1 | JPL Horizons -1024 · 事件表 0/01:47:57 · 2026-11-08 · 一手 | 时间、主体、出处 | 已核实 |
+| U3-1 | 起飞后约 1 小时 48 分，远地点抬升到 70,377 公里，在地球轨道上检查飞船 | A1 | JPL Horizons -1024 · 事件表 0/01:47:57 · 2026-11-08 · 一手 | 时间、主体、出处；事件表没写是离地面还是离地心，旁白说「约 7 万公里」 | 已核实 |
 | U3-2 | UTC 4 月 2 日 23:49 奔月点火，持续 5 分 55 秒，23:54 结束，速度增量 388 米/秒 | A1 | JPL Horizons -1024 · 事件表 1/01:14、1/01:19 · 2026-11-08 · 一手 | 时间、主体、出处 | 已核实 |
 | U3-3 | 自由返回轨道：借地球和月球的引力，绕过月球后自然被带回地球 | E2 | NASA SVS 5632 · 页面开头的任务说明 · 2026-11-08 · 一手 | 出处；简化到「不用再大推力点火就能回来」为止 | 已核实 |
 | U3-4 | 返回途中三次小修正：0.49、1.62、1.28 米/秒 | A1 | JPL Horizons -1024 · 事件表 6/01:28、8/04:18、8/20:18 · 2026-11-08 · 一手 | 时间、主体、出处 | 已核实 |
@@ -98,10 +98,10 @@
 | # | 内容 | 种类 | 来源 | 必须写清的 | 状态 |
 |---|---|---|---|---|---|
 | U5-1 | 阿波罗 13 号 1970 年创下 248,655 英里（约 400,171 公里）的纪录 | B1 | 破纪录新闻稿 · 「made history」一句 · 2026-11-08 · 一手 | 口径：离地球最远；NASA；1970；英里 | 已核实 |
-| U5-2 | 新纪录比阿波罗 13 号远 4,111 英里（约 6,616 公里） | B1 | 飞掠博客 · 7:02 p.m. 条 · 2026-11-08 · 一手 | 口径同 U5-1 | 已核实 |
+| U5-2 | 博客写：新纪录比阿波罗 13 号远 4,111 英里 | B1 | 飞掠博客 · 7:02 p.m. 条 · 2026-11-08 · 一手 | 口径同 U5-1；和 U1-2、U5-1 相减的 4,101 英里对不上 | 有冲突 |
 | U5-3 | 1970 年 4 月 14 日阿波罗 13 号氧气故障，控制中心在处理（NASA 照片 S70-34902 的标题和说明） | A1 | NASA 图片 S70-34902 · images-api 元数据 · 2026-11-08 · 一手 | 时间、主体、出处 | 已核实 |
 | U5-4 | 阿波罗 13 号主乘组：James Lovell（指令长）、John Swigert、Fred Haise | A5 | NASA 图片 S70-36485 · images-api 元数据 · 2026-11-08 · 一手 | 身份、日期（1970 年 4 月） | 已核实 |
-| U5-5 | 乘组里有登月任务的第一位女性、第一位有色人种、第一位加拿大人（Wyche 2023 年的原话） | C1 | NASA 公布乘组新闻稿 · Wyche 引语 · 2026-11-08 · 一手 | 说话人、场合、日期、原文：「the first woman, first person of color, and first Canadian on a lunar mission」 | 已核实 |
+| U5-5 | 乘组里有月球任务（lunar mission，不是登月）的第一位女性、第一位有色人种、第一位加拿大人（Wyche 2023 年的原话） | C1 | NASA 公布乘组新闻稿 · Wyche 引语 · 2026-11-08 · 一手 | 说话人、场合、日期、原文：「the first woman, first person of color, and first Canadian on a lunar mission」 | 已核实 |
 
 ## U6 发布会
 
@@ -120,7 +120,7 @@
 
 | # | 内容 | 种类 | 来源 | 必须写清的 | 状态 |
 |---|---|---|---|---|---|
-| U7-1 | Artemis III 计划 2027 年：4 名宇航员在近地轨道里，让 Orion 和 SpaceX、Blue Origin 的着陆器测试件对接，计划 14 天 | C4 | NASA 加速计划页 · Artemis III 一节 · 10-23 更新 · 2026-11-08 · 一手 | 标「NASA 的计划」；没有第三方佐证 | 已核实 |
+| U7-1 | Artemis III 计划 2027 年：4 名宇航员在近地轨道里，让 Orion 和 SpaceX、Blue Origin 的着陆器测试件对接，计划 14 天 | C4 | NASA 加速计划页 · Artemis III 一节 · 2026-10-23 通报、2026-11-04 发布 · 2026-11-08 · 一手 | 标「NASA 的计划」；没有第三方佐证 | 已核实 |
 | U7-2 | Artemis IV 计划 2028 年载人登月 | C4 | NASA 加速计划页 · Artemis IV 一节 · 2026-11-08 · 一手 | 同上 | 已核实 |
 | U7-3 | 之后的任务去月球南极，NASA 要建立长期驻留（enduring human presence），没给年份 | C4 | NASA 加速计划页 · 「Golden Age」一段 · 2026-11-08 · 一手 | 同上；页面没说 Artemis IV 在南极着陆 | 已核实 |
 
@@ -143,11 +143,13 @@
 | U9-1 | 1 英里 = 1.609344 公里 | E1 | NIST SP 811 附录 B.9 · mile → kilometer · 2026-11-08 · 一手 | 出处；大白话：英里乘 1.609 | 已核实 |
 | U9-2 | 失联 41 分钟 = 19:25 − 18:44 | B6 | 用 U4-3 | 公式、用到的编号 | 已核实 |
 | U9-3 | 隔了 56 年 = 2026 − 1970 | B6 | 用 U4-1、U5-1 | 公式、用到的编号 | 已核实 |
+| U9-4 | 比阿波罗 13 号远 4,101 英里（约 6,600 公里）= 252,756 − 248,655 | B6 | 用 U1-2、U5-1 | 公式、用到的编号 | 已核实 |
 
 ## 待核实和有冲突
 
 | 编号 | 卡在哪 | 打算怎么办 |
 |---|---|---|
+| U5-2 | 博客的 4,111 英里和两个官方纪录相减的 4,101 英里差 10 英里，原文没说口径 | 不引用；片里讲相减得出的「约 4,100 英里」（U9-4），见 plan 的 Q10 |
 
 ## 检索记录
 
