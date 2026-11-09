@@ -9,7 +9,7 @@
 | 阶段 | 内容 | 依赖 | 状态 |
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 挂起：批 1、批 2 做完，剩下 4 个条目（G-017、G-018、T-019、G-019）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
-| 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）做完，介绍页模块第一版已上线；第 2 支（课件）不等策划仓库，用策划 Skill 现有版本做；第 3 支（护肤）等策划仓库的抓原文脚本做完；每支一个对话做完策划、出片两步；开工和模块改版等维护者说，见下面 |
+| 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）、第 2 支（课件）做完，已在介绍页上；第 3 支（护肤）等策划仓库的抓原文脚本做完；开工和模块改版等维护者说，见下面 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 
@@ -78,15 +78,14 @@
 - 3 支约 5 分钟的完整视频，每支 C、T、G 三类都用、各有一个主角类；场景、分镜、技术清单、用量和案例目录的规矩都在 [cases/](cases/README.md)，用量的总表也在那里（由 `case.json` 生成）。
 - 介绍页模块的设计（播放器 + 跟着进度切段的说明栏）见 [cases/README.md 的「介绍页模块」](cases/README.md#介绍页模块)。
 - 验收：线上模块正常；每段说明里的每项技术都能点到对应的样片或风格包；页面只加载封面，点开才加载中版；`python3 cases/tools/build.py --check` 通过。
-- 第 2、3 支同时是 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 和本 Skill 连起来的验收：先策划、交接，再照 [storyboard.md](skills/ai-coding-video/storyboard.md) 出片。
+- 第 2 支已做完，第 3 支同时是 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 和本 Skill 连起来的验收：先策划、交接，再照 [storyboard.md](skills/ai-coding-video/storyboard.md) 出片。
 
 | 顺序 | 内容 | 说明 |
 |---|---|---|
-| 2 | [课件教程：零基础用 AI 编程助手做第一条短片](cases/course-first-video/README.md) | 不等策划仓库，用策划 Skill 现有版本：讲义、录屏、命令都是本仓库的，读本地文件；出片用 `cases/tools/render.py` |
 | 3 | [电商带货：虚构品牌精华液上新讲解](cases/shop-skincare/README.md) | 等策划仓库的抓原文脚本做完再开工；生成最多，另出 6 条 15 秒投流短片 |
-| 4 | 介绍页模块 | 第一版已上线（介绍页 v17），后两支做完自动出现；等维护者看效果给改版意见 |
+| 4 | 介绍页模块 | 已上线，做完的案例按 `site/build.py` 的 `CASE_ORDER` 排；第 3 支做完自动出现；等维护者看效果给改版意见 |
 
-每支一个对话，先策划、交接，再出片；出片时只照 `plans/` 里的文件写 `case.json`、`script.json`，不靠对话里的记忆补内容。每支等维护者说开工，开工时再细算用量；做完合并回 `main`、汇报，再做下一支。
+一个对话，先策划、交接，再出片；出片时只照 `plans/` 里的文件写 `case.json`、`script.json`，不靠对话里的记忆补内容（对应关系见 [cases/README.md](cases/README.md) 的「接策划」）。等维护者说开工，开工时再细算用量；做完合并回 `main`、汇报。做法照第 2 支：[cases/course-first-video/](cases/course-first-video/) 的 `plans/`、`log.md`。
 
 **策划怎么做**
 
@@ -95,15 +94,10 @@
 - 交给策划的输入：案例 README 的「场景」「讲法」「规矩」和下面「已定」的几条当详细要求；README 里原有的分镜当用户给的结构（策划会先沿用）。交接后照 `plan.md` 重写 `case.json` 和 README 的手写部分。
 - 交接条件照策划 Skill：`check.py plans/<名字> --handoff` 通过，状态「已交接」。
 
-**接策划（第 2 支交接后做一次）**
-
-- 不另建 `videos/<短名>/storyboard.json`：`case.json` 当它的超集，顶层加 `plan`，每段加 `seg`；`script.json` 每段加 `seg`，`facts` 加 `ref`。`cases/README.md` 写明这个对应关系，流程最前面加「策划交接 → 照 `storyboard.md` 写 `case.json`、`script.json`」。
-- `cases/tools/build.py --check` 多查：`plan` 指的文件存在；`seg` 都在段落表里、每个段号至少用一次；`ref` 都能在 `research.md` 找到。
-
 **用量分开记**
 
 - `log.md` 汇总表三列不变（介绍页按这个读）：原有各行记整支合计，下面加「其中策划：总用时」「其中策划：等人」「其中策划：助手在做」，另加「token：策划」「token：出片」两行。
-- 交接时助手停下请维护者读一次会话用量，做完再读一次：前一个数记策划，两数之差记出片；说明里写「维护者从会话用量读」。策划、出片的分界是 `plan.md` 状态改成「已交接」那一刻。
+- 分界是 `plan.md` 状态改成「已交接」那一刻。那时用 claude-code-remote 的 `get_session` 读本会话的累计 `usage`（不是 `context_usage`，那只是当前上下文大小）；返回里没有累计字段，就停下请维护者从后台读一次。做完再读一次，差值记出片。第 2 支交接时没读到累计数，策划、出片没分开，见它的 `log.md`。
 
 **策划 Skill 的问题怎么反馈**
 

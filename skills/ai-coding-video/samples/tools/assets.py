@@ -325,6 +325,9 @@ def sub_lines(js, show=None):
             cur["t1"] = b
             nxt = text[w["end"]:w["end"] + 1]
             plain = re.sub(r"[，。！？；：,.!?;:—…、\s]", "", cur["text"])
+            after = text[w["end"] + 1:w["end"] + 2]
+            if nxt == "." and after.isascii() and after.isalnum():   # Node.js、2.8 这类点不断行
+                continue
             if nxt and (nxt in "。！？；.!?;" or (nxt in "，：,:—" and len(plain) >= 9)):   # 句末断行；逗号处够长才断
                 out.append(cur); cur = None
         if cur:
@@ -337,7 +340,7 @@ def sub_lines(js, show=None):
     for l in out:
         t = l["text"].strip().strip("，。；：,;:、")
         for k, v in (show or {}).items():
-            t = t.replace(k, v)
+            t = t.replace(k, v).replace(re.sub(r"\s+", "", k), v)        # 语音合成回来的字幕常把中英之间的空格去掉
         t = re.sub(r"([\u4e00-\u9fff])([0-9A-Za-z])", r"\1 \2", t)          # 中文和数字、字母之间留一个空格
         t = re.sub(r"([0-9A-Za-z%])([\u4e00-\u9fff])", r"\1 \2", t)
         l.update(t0=round(l["t0"], 3), t1=round(l["t1"], 3), text=t)
