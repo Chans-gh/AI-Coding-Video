@@ -125,6 +125,7 @@ media.json                视频清单（视频本身在 GitHub Release「media�
 .agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
 PLAN.md                   批次规划和待办
+SPEC.md                   阶段 7–10 的设计稿（两条线：风格演示、完整出片）
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```
 
