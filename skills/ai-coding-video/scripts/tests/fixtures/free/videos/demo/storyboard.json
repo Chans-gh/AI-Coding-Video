@@ -1,0 +1,15 @@
+{"brief": {"for": "刚开始做饭的大学生", "gain": "知道为什么高原上煮面要更久", "line": "水开了不等于够热",
+           "sec": 30, "lang": "zh", "voice": true, "must": ["高原煮面的例子"], "avoid": ["化学公式"]},
+ "ar": "16:9", "status": "草稿",
+ "unify": {"pack": null, "palette": "从品牌色 #2F6FEB 推", "fonts": "思源黑体粗、细两档",
+           "subs": "底部安全区内，白字带深色描边", "trans": "横推、溶解", "music": "轻快的电子铺底，数字出现时一声提示音",
+           "voice": "语音合成的公开音色，男声，聊天语气"},
+ "segments": [
+  {"seg": "P1", "title": "冷开场", "content": "锅里的水开了，面却煮不熟", "sec": 8, "lead": "T", "typical": true,
+   "uses": [{"what": "锅里沸水的录像", "class": "T", "materials": ["录像"]},
+            {"what": "大字砸进来", "ref": "C-036"}], "note": "测试夹具"},
+  {"seg": "P2", "title": "沸点跟着气压走", "content": "海平面 100 °C，海拔越高沸点越低", "sec": 12, "lead": "C",
+   "uses": [{"what": "海拔和沸点的折线", "ref": "C-038"}], "note": "测试夹具"},
+  {"seg": "P3", "title": "怎么办", "content": "高原上煮面多煮几分钟，或用高压锅", "sec": 10, "lead": "C",
+   "uses": [{"what": "要点卡逐条出", "ref": "C-038"}, {"what": "高压锅的示意图", "class": "C"}], "note": "测试夹具"}
+ ]}
