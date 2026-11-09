@@ -1,0 +1,5 @@
+{
+  "en_name": "Follow-along stretch",
+  "en_how": "A generated portrait of a fictional coach is the first frame of a 5-second image-to-video clip; code drives playback from the narration's per-character timings — the arm rises on cue, the bend follows the words, the hold rocks slowly at the lowest point like breathing — while a checklist lights item by item, a countdown ring runs through three-two-one and flips to Done.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

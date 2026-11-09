@@ -1,0 +1,5 @@
+{
+  "en_name": "Twelve-month illustrated recap",
+  "en_how": "One generated 4 × 3 illustration is sliced along tile bounds measured from the image; each month flips in as a page with the same number-card template reading one row of a monthly table, counts rolling up and a running yearly total in the corner, August timed to the narration; then all twelve tiles fly back into a wall with the busiest month outlined.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

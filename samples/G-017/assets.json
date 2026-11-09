@@ -1,0 +1,88 @@
+{
+ "items": [
+  {
+   "file": "assets/office.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "扁平矢量插画风格的开放式办公室，略微俯视的正面视角，明亮干净的配色：画面左半边的地面上，一根黑色电源线从墙边插满插头的插线板一直横穿过道，拖到对面的办公桌下；画面右侧的墙上有一扇浅灰色的门，门上方挂着绿色的安全出口图标（只有奔跑小人和箭头的图形），门前堆着三个棕色纸箱把门挡住；其余是几张办公桌、电脑、椅子和绿植；画面里没有人物，没有任何文字和品牌标志",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "插画 AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/fixed.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "同一间办公室，保持完全相同的视角、构图、画风和陈设，只改两处：地上的黑色电源线不见了，改成一条沿墙脚铺设的灰色线槽，过道地面干净空旷；右侧安全出口门前的纸箱全部搬走，门前畅通；画面里没有人物，没有任何文字和品牌标志",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "插画 AI 生成",
+   "ref": "assets/office.jpg",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Sincere_Adult",
+   "text": "安全演练：这间办公室藏着两处隐患——电线横穿过道，纸箱堵住了安全出口。电线横在过道上，直接跨过去？不对！先报告，再用线槽收好。",
+   "params": {
+    "speed": 1.15
+   },
+   "at": 0.5,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 12.304,
+   "lines": [
+    {
+     "t0": 0.037,
+     "t1": 2.783,
+     "text": "安全演练：这间办公室藏着两处隐患"
+    },
+    {
+     "t0": 2.783,
+     "t1": 6.085,
+     "text": "电线横穿过道，纸箱堵住了安全出口"
+    },
+    {
+     "t0": 6.085,
+     "t1": 8.719,
+     "text": "电线横在过道上，直接跨过去？"
+    },
+    {
+     "t0": 8.719,
+     "t1": 9.832,
+     "text": "不对！"
+    },
+    {
+     "t0": 9.832,
+     "t1": 11.872,
+     "text": "先报告，再用线槽收好"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Doodle menu like song",
+   "source": "https://opengameart.org/content/doodle-menu-like-song",
+   "download": "https://opengameart.org/sites/default/files/doodle_0.mp3",
+   "license": "CC0 1.0",
+   "author": "StumpyStrust",
+   "credit": "配乐 StumpyStrust（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+# 每 100 克可食部分（fdc_id 是 FoodData Central 的食物编号：171688 Apples, raw, with skin、173944 Bananas, raw、171705 Avocados, raw, all commercial varieties）；来源 USDA FoodData Central SR Legacy（2018-04），CC0 1.0
+fdc_id,food,热量(kcal),脂肪(g),碳水(g),糖(g),膳食纤维(g),蛋白质(g),钾(mg)
+171688,苹果,52.0,0.17,13.81,10.39,2.4,0.26,107.0
+173944,香蕉,89.0,0.33,22.84,12.23,2.6,1.09,358.0
+171705,牛油果,160.0,14.66,8.53,0.66,6.7,2.0,485.0

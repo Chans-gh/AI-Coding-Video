@@ -1,5 +1,5 @@
 {
- "count": 229,
+ "count": 235,
  "styles": [
   {
    "id": "C-001",
@@ -6471,6 +6471,124 @@
    "refs": []
   },
   {
+   "id": "G-017",
+   "class": "G",
+   "name": "情景安全演练",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「情景安全演练」：生成一张有安全隐患的办公室场景图（电线横穿过道、纸箱堵住消防通道），代码在图上逐个圈出隐患、拉出编号标签；接着弹出一道选择题，先选错的那个——选项变红、轻轻一抖，再亮出正确答案打勾；最后切到同一间办公室整改后的图（以第一张为参考图生成），画面左右滑动对比，写上「整改完成」。旁白用沉稳的公开音色讲解，圈出隐患、出题、揭晓答案的时刻都卡在旁白的句子上。",
+   "theme": "",
+   "content_type": "企业培训和课件",
+   "materials": [
+    "生图",
+    "语音合成"
+   ],
+   "techniques": [
+    "生图加代码动画",
+    "语音合成驱动"
+   ],
+   "fit": "安全培训、新员工入职课件、合规考试的情景题",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-018",
+   "class": "G",
+   "name": "双人播客声波",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「双人播客声波」：两位虚构主持人的插画头像（生图）一左一右，两段公开音色的语音合成一问一答；代码在浏览器里解码音频算出音量包络，谁在说话谁的头像外圈跟着声波起伏、亮起，另一位变暗；下面是逐字点亮的字幕，答到金句时弹出一张金句卡，结尾落节目名和期数。",
+   "theme": "",
+   "content_type": "播客和访谈可视化",
+   "materials": [
+    "生图",
+    "语音合成"
+   ],
+   "techniques": [
+    "语音合成驱动",
+    "生图加代码动画"
+   ],
+   "fit": "播客切片、音频节目的视频版、访谈金句卡",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Web Audio",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-019",
+   "class": "G",
+   "name": "十二月插画回顾",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「十二月插画回顾」：生成一张 4 列 3 行的拼图插画，每格是一家虚构咖啡馆一个月的样子（雪天、樱花、梅雨、盛夏、落叶……），代码按格子切开，一月一张快速翻页；每页套同一个数字卡模板，写这个月卖了多少杯、最受欢迎的饮品，数字滚动到位；最后十二张缩回原位拼成总览墙，最忙的那个月描边，写出全年总数。旁白用轻快的公开音色报全年数字。",
+   "theme": "",
+   "content_type": "年度回顾和数据总结",
+   "materials": [
+    "生图",
+    "语音合成"
+   ],
+   "techniques": [
+    "生图加代码动画",
+    "模板化批量生成"
+   ],
+   "fit": "年终总结、门店和账号的年度回顾、月报合集",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-020",
+   "class": "G",
+   "name": "拉伸跟练",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": null,
+   "prompt": "用「拉伸跟练」：生成一位虚构教练的定妆图当首帧，图生视频让教练做一个侧腰拉伸，来回放慢衔接成跟练镜头；代码在旁边叠动作名、要点清单（逐条随旁白点亮）、保持阶段的倒计时圆环和组数；旁白用温和的公开音色带练，数到「三、二、一」时圆环走完、亮起「完成」。",
+   "theme": "",
+   "content_type": "健康和运动指导",
+   "materials": [
+    "生图",
+    "生视频",
+    "语音合成"
+   ],
+   "techniques": [
+    "图生视频与首尾帧",
+    "语音合成驱动"
+   ],
+   "fit": "健身跟练、康复动作指导、办公室微运动",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": []
+  },
+  {
    "id": "T-001",
    "class": "T",
    "name": "数据实体化",
@@ -7205,6 +7323,76 @@
     {
      "label": "美国国家档案馆 Ansel Adams 照片",
      "url": "https://catalog.archives.gov/id/519904"
+    }
+   ]
+  },
+  {
+   "id": "T-019",
+   "class": "T",
+   "name": "营养成分对比",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": null,
+   "prompt": "用「营养成分对比」：三张公共领域、CC0 的食物照片（苹果、香蕉、牛油果）各占一栏，缓慢推近；下面套同一套条形图，数据取自美国农业部 FoodData Central 的每 100 克营养成分——热量、脂肪、碳水、膳食纤维、蛋白质、钾逐项长出来，每一项最高的那栏亮起；最后一项写出一句结论，角落注明数据来源。",
+   "theme": "",
+   "content_type": "美食",
+   "materials": [
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "数据可视化",
+    "照片运镜"
+   ],
+   "fit": "营养科普、菜单和食材对比、健康饮食账号",
+   "verified": [],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "USDA FoodData Central",
+     "url": "https://fdc.nal.usda.gov/"
+    }
+   ]
+  },
+  {
+   "id": "T-020",
+   "class": "T",
+   "name": "对局复盘",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": null,
+   "prompt": "用「对局复盘」：用 CC0 三维模型（木箱、油桶）在 Three.js 里搭一块俯视的竞技场，按一份虚构的对局数据表回放两队六名选手的走位，身后拖着轨迹；击杀发生时标出位置、时间线上落下一个点、数据面板的击杀和伤害跳动；关键一刻暂停，像解说用的战术板一样画圈、画箭头，再把「实际走位」和「建议走位」左右对比。",
+   "theme": "",
+   "content_type": "游戏和电竞",
+   "materials": [
+    "三维模型",
+    "数据"
+   ],
+   "techniques": [
+    "数据可视化",
+    "批注与前后对比"
+   ],
+   "fit": "电竞复盘、战术教学、比赛数据解说",
+   "verified": [],
+   "suggested": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": null,
+   "pack": null,
+   "refs": [
+    {
+     "label": "Poly Haven",
+     "url": "https://polyhaven.com"
     }
    ]
   }

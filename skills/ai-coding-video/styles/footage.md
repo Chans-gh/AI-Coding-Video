@@ -1,4 +1,4 @@
-# T 类：公共领域素材（18 种）
+# T 类：公共领域素材（20 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -348,3 +348,33 @@
 - 样片代码：[samples/T-018/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-018)
 - 技术（建议）：WebGL2 · GLSL · Canvas 2D · Playwright · ffmpeg
 - 参考：[Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2) · [美国国家档案馆 Ansel Adams 照片](https://catalog.archives.gov/id/519904)
+
+<a id="T-019"></a>
+
+## T-019 营养成分对比
+
+```text
+用「营养成分对比」：三张公共领域、CC0 的食物照片（苹果、香蕉、牛油果）各占一栏，缓慢推近；下面套同一套条形图，数据取自美国农业部 FoodData Central 的每 100 克营养成分——热量、脂肪、碳水、膳食纤维、蛋白质、钾逐项长出来，每一项最高的那栏亮起；最后一项写出一句结论，角落注明数据来源。
+```
+
+- 内容类型：美食
+- 素材：照片 · 数据
+- 技术类型：数据可视化 · 照片运镜
+- 适合：营养科普、菜单和食材对比、健康饮食账号
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[USDA FoodData Central](https://fdc.nal.usda.gov/)
+
+<a id="T-020"></a>
+
+## T-020 对局复盘
+
+```text
+用「对局复盘」：用 CC0 三维模型（木箱、油桶）在 Three.js 里搭一块俯视的竞技场，按一份虚构的对局数据表回放两队六名选手的走位，身后拖着轨迹；击杀发生时标出位置、时间线上落下一个点、数据面板的击杀和伤害跳动；关键一刻暂停，像解说用的战术板一样画圈、画箭头，再把「实际走位」和「建议走位」左右对比。
+```
+
+- 内容类型：游戏和电竞
+- 素材：三维模型 · 数据
+- 技术类型：数据可视化 · 批注与前后对比
+- 适合：电竞复盘、战术教学、比赛数据解说
+- 技术（建议）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 参考：[Poly Haven](https://polyhaven.com)
