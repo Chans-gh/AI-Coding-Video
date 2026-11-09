@@ -1163,33 +1163,33 @@
   },
   "case-course-first-video-mid.mp4": {
    "path": "cases/course-first-video/media/course-first-video-mid.mp4",
-   "bytes": 23365636,
-   "sha256": "3c8c708c0016c15c3a20f4e6f48473a5b038460944648852906b1f415ab4ba92"
+   "bytes": 23365589,
+   "sha256": "50bfc7de1f882048071f683c104ddb3940e7c0bc29abfcc6d7ecfb4a4a8f8850"
   },
   "case-course-first-video-short-1.mp4": {
    "path": "cases/course-first-video/media/course-first-video-short-1.mp4",
-   "bytes": 4557406,
-   "sha256": "2fe0162b450cf176632bfc21a6b16a2263a1de14344c30da20feadd0a57de081"
+   "bytes": 4410960,
+   "sha256": "f107d1b6f95cae51978e2e69466dc383cb5e03414b47bbca5a8afa10b3112491"
   },
   "case-course-first-video-short-2.mp4": {
    "path": "cases/course-first-video/media/course-first-video-short-2.mp4",
-   "bytes": 2911680,
-   "sha256": "bcf427523af652f56ceb529220bfe24e5ea7fadce4b0ede6d4301ffdf374ad63"
+   "bytes": 2823292,
+   "sha256": "904cca0f2b08a6dbf71fa52e027c0bb16201ed0bedff496ff7ff427727c3c19a"
   },
   "case-course-first-video-short-3.mp4": {
    "path": "cases/course-first-video/media/course-first-video-short-3.mp4",
-   "bytes": 3185041,
-   "sha256": "bbd3089fc018d48bdc325ea7c211899921b9dcfba351a03c0beede224415acfe"
+   "bytes": 3585536,
+   "sha256": "fbbbfa7e7bc518df8bbed3a46b934717c325b25065ee756387632f87bfe30642"
   },
   "case-course-first-video.jpg": {
    "path": "cases/course-first-video/media/course-first-video.jpg",
-   "bytes": 46918,
-   "sha256": "3e9525d420639185698319cf342482a137027b2329363cc97b48ac9dc5a53c98"
+   "bytes": 52405,
+   "sha256": "363990e28ea5d7f8778371d1668668c556d001afc3d4c7dc722744f16ac5475b"
   },
   "case-course-first-video.mp4": {
    "path": "cases/course-first-video/media/course-first-video.mp4",
-   "bytes": 43774431,
-   "sha256": "ae29457412d7bd4c433e71f48ba3969b6184d05cc7aeff8add3c79834cfce563"
+   "bytes": 56498784,
+   "sha256": "41094bc12e0c6cca2a772d68fec90072ec1e9a0cf7f3ad865eac557ca31c8a64"
   },
   "case-news-artemis-mid.mp4": {
    "path": "cases/news-artemis/media/news-artemis-mid.mp4",

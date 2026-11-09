@@ -9,10 +9,10 @@
 <!-- gen:index -->
 | 目录 | 用途 | 主角 | 画幅 | 时长 | 青水算力（约，含试错） | 状态 |
 |---|---|---|---|---|---|---|
-| [course-first-video/](course-first-video/) | 课件教程：零基础用 AI 编程助手做第一条短片 | C 代码画 | 16:9 | 约 5.0 分钟 + 3 × 60 秒 | 26 | 完成 |
+| [course-first-video/](course-first-video/) | 课件教程：零基础用 AI 编程助手做第一条短片 | C 代码画 | 16:9 | 约 5.0 分钟 + 3 × 60 秒 | 27 | 完成 |
 | [news-artemis/](news-artemis/) | 资讯解说：Artemis II 绕月任务回顾 | T 真实素材 | 9:16 | 约 5.1 分钟 + 3 × 60 秒 | 19 | 完成 |
 | [shop-skincare/](shop-skincare/) | 电商带货：虚构品牌精华液上新讲解 | G AI 生成 | 9:16 | 约 4.5 分钟 + 6 × 15 秒 | 56 | 策划 |
-| 合计 | | | | | 约 101 | |
+| 合计 | | | | | 约 102 | |
 <!-- /gen -->
 
 上表、各案例 README 里的分镜表、用量、降级用法、对比口径，都由 `python3 cases/tools/build.py` 从各自的 `case.json` 生成，不要手改；`--check` 核对两边一致。
