@@ -9,9 +9,10 @@
 ## Docs
 
 - [README](https://github.com/chans-gh/AI-Coding-Video/blob/main/README.md): what it is, install for Claude Code, Codex, DeepSeek Harness, WorkBuddy
-- [SKILL.md](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md): instructions the agent follows
+- [SKILL.md](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/SKILL.md): instructions the agent follows; two tracks: a style demo (pick a look, a sample, a style pack) or a full film
 - [Style index](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/index.md): all styles by topic, content type, purpose, mood, platform
 - [Making samples](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/making.md): render pipeline (browser frames, Playwright, ffmpeg)
+- [Full film](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/film.md): the second track: content, storyboard and looks, script, sign-off, a narrated typical segment, the whole film
 - [Materials](https://github.com/chans-gh/AI-Coding-Video/blob/main/skills/ai-coding-video/materials.md): classes C, T, G and material rules
 
 ## Examples

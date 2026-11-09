@@ -6,7 +6,7 @@
 
 **Coding Video**：让 AI 写代码，由代码逐帧算出画面来做视频，每一帧都由程序在时间 t 上确定地画出来。画面可以全部由代码算出（C 类），也可以由代码排版、剪辑真实素材（T 类）或 AI 生成的素材（G 类），见 [materials.md](skills/ai-coding-video/materials.md)。
 
-这个仓库是一个给 AI 助手用的 Skill：上百种纯代码能做出来的视觉风格，加上按内容类型（口播、带货、MV、新闻……）整理的素材做法，每种一句可复制的风格提示词和技术标签，配上选风格索引、提示词方法、配乐与中文旁白音色指南。Claude Code、Codex、DeepSeek Harness、WorkBuddy 等支持 Agent Skills（`SKILL.md`）格式的助手都能直接装。
+这个仓库是一个给 AI 助手用的 Skill：上百种纯代码能做出来的视觉风格，加上按内容类型（口播、带货、MV、新闻……）整理的素材做法，每种一句可复制的风格提示词和技术标签，配上选风格索引、提示词方法、配乐与中文旁白音色指南；既能只出样片挑风格，也能从内容一路做到带旁白的整片。Claude Code、Codex、DeepSeek Harness、WorkBuddy 等支持 Agent Skills（`SKILL.md`）格式的助手都能直接装。
 
 ## 能拿来做什么
 
@@ -14,6 +14,7 @@
 - **选风格**：按题材、用途、受众、情绪、平台在[风格目录和索引](skills/ai-coding-video/index.md)里挑，每种附一句风格提示词和技术标签，可以直接贴给 AI。
 - **出片**：有样片的风格带可复现的渲染代码（浏览器里逐帧渲染，Playwright 截帧，ffmpeg 合成，配乐和音效由代码合成），横屏 16:9、竖屏 9:16 各一版；也可以换成你项目里的 Remotion、Motion Canvas 等管线。
 - **三类画面混用**：纯代码画（Canvas 2D、WebGL、SVG、HTML/CSS、Three.js），公共领域和 CC0 真实素材的加工（录像对齐、深度视差、逐词转写切金句、讲义转片），AI 生图、生视频、语音合成的素材再由代码排版。
+- **完整出片**：给一个主题或一份稿子，助手拆分镜（每段讲什么、几秒、用什么样式，一段可以混用几种）、写逐字稿，你确认后先出 1–2 段带旁白的典型样片，再出整片。不装策划也能做，内容多、要查证的可以先用 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner)。
 - **完整案例**：[cases/](cases/README.md) 里是约 5 分钟的完整视频，从分镜、代码、素材清单到实际用时和生成用量都公开，在介绍页里边看边对照每一段用了什么技术。
 
 ## 两条线
@@ -21,7 +22,7 @@
 | 线 | 步骤 | 示范在哪 |
 |---|---|---|
 | 风格演示：看看效果、挑风格、定一套风格 | 0 级 选样式（全部风格的提示词、题材、技术标签、选风格索引）→ 1 级 出样片（C 类 3–5 秒，T 类、G 类 8–15 秒并附素材，横竖各一版，附可复现的代码）→ 2 级 风格包（可换品牌色等的代码模块，覆盖片头、讲解、数据、转场等常用呈现） | [`skills/ai-coding-video/`](skills/ai-coding-video/)、[`samples/`](samples/)、[`packs/`](packs/)（现有的见 [packs/README.md](packs/README.md)） |
-| 完整出片：做一支几分钟的片子 | 定内容 → 拆分镜与样式 → 逐字稿 → 你确认 → 典型样片（含配音）→ 渲染整片，做法见 [film.md](skills/ai-coding-video/film.md) | [`cases/`](cases/README.md) |
+| 完整出片：做一支几分钟的片子 | 定内容（接策划稿；没有就由助手整理或扩展你给的内容，补的事实标「待用户确认」）→ 拆分镜与样式（每段可混用几种，另定全片统一的色板、字体、字幕、转场、配乐、旁白音色）→ 逐字稿 → 你确认（`check_storyboard.py --table` 打印分镜表）→ 典型样片（含配音）→ 渲染整片。默认出一版，横版 16:9，要竖版只出竖版。做法和格式见 [film.md](skills/ai-coding-video/film.md) | [`cases/`](cases/README.md) |
 
 Skill 里写的是指引：AI 助手会按这两条线，在你自己的项目里帮你选风格、出样片、沉淀成风格包，或从内容一路做到整片。本仓库的样片、风格包和[真实应用案例](cases/README.md)是示范。进度见 [PLAN.md](PLAN.md)。
 
@@ -70,7 +71,7 @@ scripts/install.sh zip      # 打成 dist/ai-coding-video.zip，用于 WorkBuddy
 
 ### 要出片，本机还得有
 
-Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg。第一次 `npm install` 要联网下载字体和绘图库，之后出片不联网。具体步骤见 [making.md「自带的出片工具」](skills/ai-coding-video/making.md#自带的出片工具)。助手会先把样片拷进你的项目再改，不在 Skill 安装目录里动手。
+Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、scipy）和 ffmpeg。第一次 `npm install` 要联网下载字体和绘图库，之后出片不联网。具体步骤见 [making.md「自带的出片工具」](skills/ai-coding-video/making.md#自带的出片工具)。完整出片要旁白的，另要一个语音合成服务（配好 `AICV_TTS_CMD`，用公开音色）或本地的 Kokoro，回听校对用 Whisper，见 [sound.md「完整出片的配音流程」](skills/ai-coding-video/sound.md#完整出片的配音流程)。想用自己的声音，自带克隆声音的第三方 Skill 或接口，本 Skill 不做克隆。助手会先把样片拷进你的项目再改，不在 Skill 安装目录里动手。
 
 ### 约束和自由
 
@@ -78,7 +79,7 @@ Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、
 |---|---|---|
 | 风格 | 用条目里那句提示词；带上 3–5 个标志元素和禁止项 | 从全部风格里挑，可以混搭；只有「技术（建议）」的条目没有样片，画法完全自己写 |
 | 代码 | 有样片的风格，先拷样片跑通再改；出片管线照用；每帧只由时间 t 决定；横竖两版分别构图 | 用你项目已有的管线（Remotion、Motion Canvas 等）也行，样片只当画法参考 |
-| 内容 | 样片里的角色、构图、配色、文字不能原样搬 | 题材、主体、文案、品牌色、字体、时长、节奏都是你的 |
+| 内容 | 样片里的角色、构图、配色、文字不能原样搬；完整出片里助手补的数据和事实标「待用户确认」，你确认了才进片子 | 题材、主体、文案、品牌色、字体、时长、节奏都是你的 |
 | 流程 | 风格演示：0 级选样式 → 1 级样片 → 2 级风格包；完整出片：定内容 → 分镜与样式 → 逐字稿 → 你确认 → 典型样片 → 整片。每一步你点头才往下 | 停在哪一步都行 |
 
 提示词只定方向，同一句话每次出来的画面都不一样；模型越弱，越要靠样片代码兜底。本仓库的样片是在维护者的环境里反复调出来的，助手在你项目里第一次做出来的，通常要再改几轮才能到这个水平。
@@ -124,7 +125,7 @@ media.json                视频清单（视频本身在 GitHub Release「media�
 .agents/plugins/          Codex 插件市场清单（插件本体同样是 skills/，插件清单在 skills/.codex-plugin/）
 candidates.md             待收录的 T 类、G 类候选（带原作者的截图和样片链接）
 PLAN.md                   批次规划和待办
-SPEC.md                   阶段 7–10 的设计稿（两条线：风格演示、完整出片）
+SPEC.md                   两条线（风格演示、完整出片）的设计稿：剩下阶段 10 和待办，下一轮做
 AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 ```
 
@@ -137,7 +138,7 @@ AGENTS.md                 给在本仓库里干活的 AI 助手看的约定
 **AI Coding Video** is a style library and [Agent Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) (`SKILL.md`) for making videos by having an AI coding agent write code: every frame is rendered deterministically from time *t*. Frames can be drawn entirely by code (class C), or code can lay out and edit real public-domain / CC0 footage (class T) or AI-generated images, video and voice (class G).
 
 - **What is inside**: 100+ visual styles, each with a copy-ready style prompt, topic and technique tags, and an index for choosing by topic, purpose, audience, mood and platform; guides for prompting, materials, music and Chinese voice-over. Styles with samples ship reproducible render code (`scene.js`, `sound.py`) in 16:9 and 9:16.
-- **Two tracks**: a style demo (pick a look from the dictionary → a sample you can copy and run → a style pack: reusable, re-brandable code modules for intros, explainers, data cards, transitions and captions), or a full film (content → storyboard and looks → script → your sign-off → a typical segment with narration → the whole film).
+- **Two tracks**: a style demo (pick a look from the dictionary → a sample you can copy and run → a style pack: reusable, re-brandable code modules for intros, explainers, data cards, transitions and captions), or a full film (content → storyboard and looks → script → your sign-off → a typical segment with narration → the whole film). The full film works without a separate planning step: the assistant organizes or expands what you give, marks any facts it adds for your confirmation, mixes several looks per segment, and narrates with a stock text-to-speech voice or local Kokoro.
 - **Case studies**: [cases/](cases/README.md) holds complete ~5-minute videos (storyboard, code, asset list, time and generation cost) that mix all three classes; watch them with per-segment notes on the [project page](https://chans-gh.github.io/AI-Coding-Video/#cases).
 - **Works with**: Claude Code and Codex (plugin marketplace, see [Install](#安装)), DeepSeek Harness, WorkBuddy and other agents that read `SKILL.md` (`scripts/install.sh`). Rendering needs Node.js 18+, Python 3 with Playwright, and ffmpeg.
 - **Typical uses**: explainer and science videos, product ads, news briefs, courseware, data visualization, motion graphics, music videos, vertical short-form video.
