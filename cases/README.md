@@ -75,7 +75,7 @@ cases/tools/
 
 - **`uses` 的每一条**：`what` 写做什么；有对应样片写 `ref`（样片编号，或 `pack:风格包名`），类别跟着样片走（风格包跟它沉淀自的样片），比如估深度图跟 T-018 走、转文字稿跟 T-016 走，都算 T；没有对应样片的写 `class`。`ref`、`class` 只写一个。
 - **`start`、`end`**：接片时由程序写进来，不手填；写进来之前，分镜表按 `sec` 累加显示预计时间。
-- **接策划**：`case.json` 就是 `film.md` 里 `videos/<短名>/storyboard.json` 的超集，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
+- **接策划**：`case.json` 当 `film.md` 里 `videos/<短名>/storyboard.json` 用，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。分镜后来加的 `unify`、`status`、`typical` 案例不写，`case.json` 不改格式。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
 - **`note`**：每段做完后照实写，80–150 字：分几层、谁驱动时间、怎么接进整支。不提前写。
 
 ## 规矩

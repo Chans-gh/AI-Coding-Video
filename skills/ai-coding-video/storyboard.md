@@ -53,16 +53,11 @@ python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md
 - 只引用状态「已核实」的（`ref` 写编号）或「设定」的（`ref` 写 `null`）；「不用」「有冲突」「〔待核实〕」的不引用，也不自己挑一个数讲。
 - 照写「必须写清的」：时区、口径、单位、版本。种类 `C4`（某方自己说的、计划）讲成「官方称」「按计划」。
 - 确认记录里定过的讲法（例如只讲时段、不讲分钟数）照着讲。
-- `ref` 都要能在 `content.md` 里找到；记在别的段、又没写「（本段 … 也用）」的，核对是不是这段该讲的。`seg` 都要在框架里。交给用户前跑一遍检查：
-
-```bash
-python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md \
-    --storyboard videos/<短名>/storyboard.json --script videos/<短名>/script.json
-```
+- `ref` 都要能在 `content.md` 里找到；记在别的段、又没写「（本段 … 也用）」的，核对是不是这段该讲的。`seg` 都要在框架里。交给用户前跑一遍 `check_plan.py`，带上分镜和逐字稿，命令见 [film.md「检查」](film.md#检查)。
 
 ## 5 确认后出片
 
-分镜和逐字稿给用户看，确认后照 [film.md](film.md) 往下走：典型样片、渲染整片。
+分镜和逐字稿照 [film.md](film.md) 第 4 步给用户确认，确认后往下走：典型样片、渲染整片。
 
 ## 6 回流：做的时候发现缺东西
 
