@@ -12,7 +12,7 @@ const ASK = '用 C-038 科普扁平，做一条 15 秒的横屏短片，讲水�
 scene({
   id: 'course-first-video:6', name: '写场景、出片',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() { await L.init(); return { V: await loadVideo('C-038-16x9.mp4') }; },
   async draw(ctx, t, s) {
     const { u, K, F } = L;
@@ -40,13 +40,13 @@ scene({
       { at: aX + .3, k: 'bad', text: '✗ C-038 9x16  15s  1.4 MB  动 0.7  声 -17 dB  149s  时长 15s 不在 3–5 秒', hl: '时长 15s 不在 3–5 秒' },
       { at: aX + .6, k: 'out', text: '0/2 通过，用时 149s；总览图 → out/sheet.jpg' },
     ];
-    L.term(ctx, t, 80 * u, 110 * u, W - 160 * u, 800 * u, rows, { fs: 26, lh: 44, title: '终端 — water-cycle/video' });
+    L.term(ctx, t, 80 * u, 100 * u, W - 160 * u, 790 * u, rows, { fs: 26, lh: 44, title: '终端 — water-cycle/video' });
     // 出片进度条（示意：按旁白时长走，不代表真实进度）
     if (t > aFull + .4 && t < aX) {
       const p = inv(aFull + .4, aX, t);
       ctx.fillStyle = K.gray; ctx.font = F(400, 24, L.MONO); ctx.textBaseline = 'middle';
-      ctx.fillText('出片中…', 112 * u, 870 * u); ctx.fillStyle = K.termBar; rr(ctx, 260 * u, 858 * u, 900 * u, 24 * u, 12 * u); ctx.fill();
-      ctx.fillStyle = K.T; rr(ctx, 260 * u, 858 * u, 900 * u * p, 24 * u, 12 * u); ctx.fill();
+      ctx.fillStyle = K.ink; ctx.fillText('出片中…', 90 * u, 935 * u); ctx.fillStyle = K.line; rr(ctx, 240 * u, 923 * u, 900 * u, 24 * u, 12 * u); ctx.fill();
+      ctx.fillStyle = K.T; rr(ctx, 240 * u, 923 * u, 900 * u * p, 24 * u, 12 * u); ctx.fill();
     }
     // 用时卡：两版一起出 149 秒，单出一版 93 秒
     if (t > aTime - .2 && t < aDone) {
@@ -60,7 +60,7 @@ scene({
     if (t > aDone - .3) {
       const e = L.pop(t - aDone + .3);
       ctx.save(); ctx.globalAlpha = clamp((t - aDone + .3) / .3);
-      const mw = 720 * u, mh = mw * 9 / 16, mx = W - mw - 110 * u, my = 450 * u - (1 - e) * 40 * u;
+      const mw = 640 * u, mh = mw * 9 / 16, mx = W - mw - 110 * u, my = 230 * u - (1 - e) * 40 * u;
       L.card(ctx, mx - 14 * u, my - 70 * u, mw + 28 * u, mh + 84 * u);
       const el = await s.V.at((t - aDone + .3) % (s.V.dur - .05));
       ctx.save(); rr(ctx, mx, my, mw, mh, 10 * u); ctx.clip(); drawCover(ctx, el, mx, my, mw, mh); ctx.restore();

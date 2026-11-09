@@ -2,7 +2,7 @@
 scene({
   id: 'course-first-video:8', name: '小结',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() { await L.init(); return {}; },
   draw(ctx, t) {
     const { u, K, F } = L;

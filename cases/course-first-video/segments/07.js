@@ -5,7 +5,7 @@ const ROWS = [['photo', '写实'], ['watercolor', '水彩'], ['clay', '黏土']]
 scene({
   id: 'course-first-video:7', name: '原理',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() {
     const A = JSON.parse(await xhr(`${DIR}/assets.json`)).items;
     const pr = f => A.find(a => a.file === `assets/swap/${f}.jpg`).prompt;
@@ -32,8 +32,8 @@ scene({
         ["  title: '水循环', steps: ['蒸发', '凝结', '降水', '汇流'],", 'w'], ['};'], [''], ["scene({ id: 'C-038', dur: 15, still: 13.5,", 'd'],
       ];
       const hlAt = { c: L.cue('颜色'), w: L.cue('文字'), d: L.cue('时长') };
-      const cx = 80 * u, cy = 230 * u, cw = 960 * u, lh = 52 * u;
-      ctx.fillStyle = K.term; rr(ctx, cx, cy, cw, 500 * u, 16 * u); ctx.fill();
+      const cx = 80 * u, cy = 230 * u, cw = 960 * u, lh = 56 * u;
+      ctx.fillStyle = K.term; rr(ctx, cx, cy, cw, 540 * u, 16 * u); ctx.fill();
       ctx.font = F(400, 24, L.MONO); ctx.fillStyle = K.gray; ctx.textBaseline = 'middle'; ctx.fillText('C-038/scene.js', cx + 28 * u, cy + 30 * u);
       code.forEach(([l, tag], i) => {
         const y = cy + 80 * u + i * lh;
@@ -42,7 +42,7 @@ scene({
           const flash = tag === 'c' && t > tSky + .8 ? Math.max(0, 1 - kt / .5) : 0;
           if (on) { ctx.fillStyle = `rgba(255,224,102,${.22 + .4 * flash})`; ctx.fillRect(cx + 10 * u, y - lh / 2, cw - 20 * u, lh); }
         }
-        L.codeLine(ctx, l, cx + 28 * u, y, 25);
+        L.codeLine(ctx, l, cx + 28 * u, y, 28);
       });
       // 右：这一版的画面；下：三版并排
       const ix = 1090 * u, iw = 750 * u, ih = iw * 9 / 16;
@@ -52,12 +52,11 @@ scene({
       L.chip(ctx, 'C', ix + 16 * u, cy + 16 * u, { label: `第 ${k + 1} 版 · ${SKY[k][0]}`, s: .9 });
       if (t > tSky + .8) SKY.forEach(([n, , f], i) => {
         if (i > k) return;
-        const w = 340 * u, h = w * 9 / 16, x = 1090 * u + i * 380 * u - (i === 0 ? 0 : 0), y = 780 * u;
-        if (x + w > W) return;
+        const w = 236 * u, h = w * 9 / 16, x = 1090 * u + i * 257 * u, y = 760 * u;
         ctx.save(); ctx.globalAlpha *= L.fadeIn(t - tSky - .8 - i * 1.6); rr(ctx, x, y, w, h, 10 * u); ctx.clip(); drawCover(ctx, s.img[f], x, y, w, h); ctx.restore();
         ctx.fillStyle = K.ink; ctx.font = F(700, 26); ctx.fillText(n, x, y - 22 * u);
       });
-      if (t > L.cue('别的都不动')) { ctx.fillStyle = K.soft; ctx.font = F(400, 30); ctx.fillText('只改了第 2 行，别的都不动', 80 * u, 790 * u); }
+      if (t > L.cue('别的都不动')) { ctx.fillStyle = K.soft; ctx.font = F(400, 30); ctx.fillText('只改了第 2 行，别的都不动', 80 * u, 830 * u); }
       ctx.restore();
     }
     if (bA > 0) {
@@ -75,7 +74,7 @@ scene({
         ctx.save(); ctx.globalAlpha *= clamp((p + .2) / .3);
         L.card(ctx, x, py, w, ph, { edge: cols[i], fill: i === 1 && r >= 0 && t - rAt[r] < .4 ? '#FFF4E5' : K.paper });
         ctx.fillStyle = cols[i]; ctx.font = F(900, 30); ctx.textBaseline = 'middle'; ctx.fillText(n + (i === 1 ? '（只换这一段）' : ''), x + 30 * u, py + 36 * u);
-        ctx.fillStyle = K.ink; ctx.font = F(400, 22);
+        ctx.fillStyle = K.ink; ctx.font = F(400, 24);
         wrapCJK(ctx, cur[i], w - 60 * u).slice(0, 3).forEach((l, j) => ctx.fillText(l, x + 30 * u, py + 76 * u + j * 32 * u));
         ctx.restore(); x += pw * ws[i];
       });

@@ -4,7 +4,7 @@ const MINI = { C: ['C-031', 'C-044'], T: ['T-009', 'T-015'], G: ['G-002', 'G-016
 scene({
   id: 'course-first-video:3', name: '概念',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() {
     await L.init();
     const V = {};
@@ -24,7 +24,7 @@ scene({
       const gather = eInOutCubic(inv(tLine, tLine + 1, t));
       for (let i = 0; i < 3; i++) {
         const [k, at, name, sub] = cols[i], p = t - at; if (p < -.2) continue;
-        const x = 80 * u + i * 600 * u, y = 230 * u, w = 560 * u, h = 640 * u;
+        const x = 80 * u + i * 600 * u, y = 230 * u, w = 560 * u, h = 600 * u;
         const e = L.pop(p + .2);
         ctx.save(); ctx.globalAlpha *= clamp((p + .2) / .3); ctx.translate(x + w / 2, y + h / 2); ctx.scale(lerp(.9, 1, e) * lerp(1, .9, gather), lerp(.9, 1, e) * lerp(1, .9, gather)); ctx.translate(-w / 2, -h / 2);
         L.card(ctx, 0, 0, w, h);
@@ -37,7 +37,7 @@ scene({
         ctx.fillStyle = K.soft; ctx.font = F(400, 28); ctx.fillText(sub, 140 * u, 108 * u);
         for (let j = 0; j < 2; j++) {
           const id = MINI[k][j], v = s.V[id], el = await v.at((Math.max(0, t - at) + j * 1.3) % (v.dur - .05));
-          const mx = 30 * u, my = 160 * u + j * 235 * u, mw = w - 60 * u, mh = 215 * u;
+          const mx = 30 * u, my = 160 * u + j * 220 * u, mw = w - 60 * u, mh = 200 * u;
           ctx.save(); rr(ctx, mx, my, mw, mh, 12 * u); ctx.clip(); drawCover(ctx, el, mx, my, mw, mh); ctx.restore();
           ctx.fillStyle = 'rgba(20,24,33,.75)'; rr(ctx, mx + 12 * u, my + 12 * u, 120 * u, 40 * u, 8 * u); ctx.fill();
           ctx.fillStyle = '#fff'; ctx.font = F(700, 22, L.MONO); ctx.fillText(id, mx + 26 * u, my + 33 * u);
@@ -48,14 +48,14 @@ scene({
       const tFace = L.cue('写实的人脸');
       if (t > tFace && gather < 1) {
         ctx.save(); ctx.globalAlpha *= L.fadeIn(t - tFace) * (1 - gather);
-        L.card(ctx, 140 * u, 880 * u, 1640 * u, 90 * u, { fill: '#FFF4E5' });
+        L.card(ctx, 140 * u, 850 * u, 1640 * u, 90 * u, { fill: '#FFF4E5' });
         ctx.fillStyle = K.G; ctx.font = F(700, 34); ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
-        ctx.fillText('写实人脸、真人口播 → 代码画不出来，交给 T 类或 G 类', W / 2, 926 * u); ctx.restore();
+        ctx.fillText('写实人脸、真人口播 → 代码画不出来，交给 T 类或 G 类', W / 2, 896 * u); ctx.restore();
       }
       // 三栏收成一条时间线
       if (gather > 0) {
         ctx.save(); ctx.globalAlpha *= gather;
-        const y = 920 * u; L.card(ctx, 140 * u, y - 30 * u, 1640 * u, 90 * u, { fill: K.ink });
+        const y = 880 * u; L.card(ctx, 140 * u, y - 30 * u, 1640 * u, 90 * u, { fill: K.ink });
         ['C', 'T', 'G', 'C', 'G', 'T', 'C'].forEach((k, i) => { ctx.fillStyle = K[k]; rr(ctx, 170 * u + i * 175 * u, y - 10 * u, 160 * u, 50 * u, 8 * u); ctx.fill(); });
         ctx.fillStyle = '#fff'; ctx.font = F(900, 34); ctx.textBaseline = 'middle'; ctx.fillText('→ 一条片子', 1420 * u, y + 15 * u);
         ctx.restore();
@@ -71,12 +71,12 @@ scene({
       const lt = t - tRule, sweep = (lt * 2.2) % 15;
       const tv = t > tJump ? 7 : t > tSame ? 4.5 : sweep;
       const twin = smooth(tSame, tSame + .6, t) * (1 - smooth(tJump - .3, tJump, t));
-      const fx = 80 * u, fy = 280 * u, fh = 540 * u, fw = fh * 16 / 9;
+      const fx = 80 * u, fy = 280 * u, fh = lerp(540, 470, twin) * u, fw = fh * 16 / 9;
       const el = await s.S.at(tv);
       const drawF = (x, lab) => { ctx.save(); rr(ctx, x, fy, fw, fh, 14 * u); ctx.clip(); drawCover(ctx, el, x, fy, fw, fh); ctx.restore();
         ctx.fillStyle = 'rgba(20,24,33,.78)'; rr(ctx, x + 16 * u, fy + 16 * u, 320 * u, 52 * u, 10 * u); ctx.fill();
         ctx.fillStyle = '#fff'; ctx.font = F(700, 28, L.MONO); ctx.textBaseline = 'middle'; ctx.fillText(lab, x + 32 * u, fy + 43 * u); };
-      drawF(fx + lerp(0, -40 * u, twin), `t = ${tv.toFixed(2)} 秒`);
+      drawF(fx, `t = ${tv.toFixed(2)} 秒`);
       if (twin > 0) { ctx.save(); ctx.globalAlpha *= twin; drawF(fx + fw + 60 * u, `t = ${tv.toFixed(2)} 秒 · 再画一次`); ctx.restore(); }
       // 时间轴
       const ax = 80 * u, ay = 900 * u, aw = W - 160 * u;

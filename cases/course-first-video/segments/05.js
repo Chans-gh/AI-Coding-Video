@@ -5,7 +5,7 @@ const OUT2 = '√ Successfully installed plugin: ai-coding-video@ai-coding-video
 scene({
   id: 'course-first-video:5', name: '装 Skill、选风格',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() {
     await L.init();
     return { R: await loadVideo('rec.mp4'), track: JSON.parse(await xhr(asset('rec-track.json'))) };
@@ -69,8 +69,8 @@ scene({
       for (let d = -1; d <= 1; d += .1) { const p = at(rt + d); fx += p[1]; fy += p[2]; n++; }
       fx /= n; fy /= n;
       const el = await s.R.at(rt), cur = at(rt);
-      const x = 120 * u, y = 110 * u, w = W - 240 * u, h = w * 9 / 16 > H - 190 * u ? H - 190 * u : w * 9 / 16, ww = h * 16 / 9, xx = (W - ww) / 2;
-      const z = lerp(1, 1.45, smooth(tRec + .8, tRec + 2, t));
+      const x = 120 * u, y = 110 * u, w = W - 240 * u, h = w * 9 / 16 > H - 250 * u ? H - 250 * u : w * 9 / 16, ww = h * 16 / 9, xx = (W - ww) / 2;
+      const z = lerp(1, 1.3, smooth(tRec + .8, tRec + 2, t) * (1 - smooth(19.6, 20.4, rt)));   // 点开样片后退回全景
       ctx.save(); ctx.globalAlpha = recA;
       L.card(ctx, xx, y, ww, h, { r: 12 });
       ctx.save(); rr(ctx, xx, y, ww, h, 12 * u); ctx.clip(); drawCover(ctx, el, xx, y, ww, h, { zoom: z, fx, fy }); ctx.restore();

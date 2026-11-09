@@ -4,7 +4,7 @@ const DOC = '../../skills/ai-coding-video/';
 scene({
   id: 'course-first-video:4', name: '讲义',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() {
     const md = await xhr(`${DIR}/${DOC}making.md`), sk = await xhr(`${DIR}/${DOC}SKILL.md`);
     const a = md.indexOf('**改的顺序**'), b = md.indexOf('**哪些照用');
@@ -18,7 +18,7 @@ scene({
     const { u, K, F } = L;
     L.bg(ctx);
     // 文档页：浏览器式外框 + 文件路径
-    const scroll = 0, px = 260 * u, py = 120 * u, pw = W - 520 * u, ph = H - 200 * u;
+    const scroll = 0, px = 160 * u, py = 110 * u, pw = W - 320 * u, ph = H - 240 * u;
     const inA = L.fadeIn(t - .1, .5);
     ctx.save(); ctx.globalAlpha = inA; ctx.translate(0, (1 - eOutCubic(inA)) * 40 * u);
     L.card(ctx, px, py, pw, ph, { r: 14 });
@@ -28,21 +28,21 @@ scene({
     L.chip(ctx, 'T', px + pw - 330 * u, py + 9 * u, { label: '本仓库的讲义 · 原文', s: .9 });
     // 正文
     const x0 = px + 70 * u, mw = pw - 140 * u;
-    ctx.fillStyle = K.ink; ctx.font = F(900, 40); ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = K.ink; ctx.font = F(900, 48); ctx.textBaseline = 'alphabetic';
     ctx.fillText(s.head, x0, py + 150 * u - scroll);
     const at = ['第一', '第二', '第三', '第四'].map(k => L.cue(k));
     let y = py + 230 * u;
     s.steps.forEach((txt, i) => {
-      ctx.font = F(400, 30);
-      const lines = wrapCJK(ctx, txt, mw - 70 * u).slice(0, i === 3 ? 3 : 2), lh = 46 * u;
+      ctx.font = F(400, 36);
+      const lines = wrapCJK(ctx, txt, mw - 70 * u).slice(0, i === 3 ? 4 : 2), lh = 54 * u;
       const p = eOutCubic(clamp((t - at[i]) / .6)), past = t > (at[i + 1] ?? L.cue('提示词只定方向'));
       // 荧光笔：逐行划过
       if (p > 0) lines.forEach((l, j) => {
         const lw = ctx.measureText(l).width, q = clamp(p * lines.length - j);
-        ctx.fillStyle = past ? 'rgba(255,224,102,.45)' : K.hi; ctx.fillRect(x0 + 60 * u - 6 * u, y + j * lh - 32 * u, (lw + 12 * u) * q, 42 * u);
+        ctx.fillStyle = past ? 'rgba(255,224,102,.45)' : K.hi; ctx.fillRect(x0 + 60 * u - 6 * u, y + j * lh - 38 * u, (lw + 12 * u) * q, 50 * u);
       });
-      ctx.fillStyle = p > 0 ? K.C : K.soft; ctx.font = F(900, 32); ctx.fillText(`${i + 1}.`, x0, y);
-      ctx.fillStyle = K.ink; ctx.font = F(400, 30);
+      ctx.fillStyle = p > 0 ? K.C : K.soft; ctx.font = F(900, 38); ctx.fillText(`${i + 1}.`, x0, y);
+      ctx.fillStyle = K.ink; ctx.font = F(400, 36);
       lines.forEach((l, j) => ctx.fillText(l, x0 + 60 * u, y + j * lh));
       y += lines.length * lh + 34 * u;
     });

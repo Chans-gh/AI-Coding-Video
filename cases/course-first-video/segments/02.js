@@ -2,7 +2,7 @@
 scene({
   id: 'course-first-video:2', name: '讲师开场',
   needs: ['common.js'],
-  fonts: L.FONTS,
+  fonts: ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "400 40px 'Noto Sans SC'", "700 24px 'JetBrains Mono'", "400 24px 'JetBrains Mono'"],
   async init() { await L.init(); return { V: await loadVideo('host1.mp4') }; },
   async draw(ctx, t, s) {
     const { u, K, F } = L, d = s.V.dur - .05;
