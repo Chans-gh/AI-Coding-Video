@@ -325,7 +325,7 @@ def dump_case(case):
 
 # ---------- 附带短片：按文字稿切 ----------
 def shorts(name):
-    """script.json 的 shorts：[{seg 段号, sec 目标秒数}]。以这一段为主体，往前、往后按整句（timing.json 的旁白句）补，
+    """script.json 的 shorts：[{seg 段号, sec 目标秒数, ar 可选}]。ar 写 "9x16" 时把横屏原版切成竖屏（原画面居中，上下垫模糊底）。以这一段为主体，往前、往后按整句（timing.json 的旁白句）补，
     补到不超过 sec 为止；从原版里切（画面、声音都是接好、混好的那一版，不重混），头尾 0.3 秒淡入淡出。"""
     d, case, timing = load_case(name)
     S = json.loads((d / "script.json").read_text(encoding="utf-8"))
@@ -345,7 +345,13 @@ def shorts(name):
         tail = max([x for x in post if x - b <= room] or [b])
         a, b = lead, tail
         dst = d / "media" / f"{name}-short-{k}.mp4"
-        ff("-ss", f"{a:.3f}", "-i", full, "-t", f"{b - a:.3f}", "-vf", f"fade=in:st=0:d=0.3,fade=out:st={b - a - .4:.3f}:d=0.4",
+        fades = f"fade=in:st=0:d=0.3,fade=out:st={b - a - .4:.3f}:d=0.4"
+        if sh.get("ar") == "9x16":       # 横屏原版切竖屏：原画面按宽铺在中间，上下垫同一画面放大、模糊、压暗的底
+            vf = ("split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=40:4,eq=brightness=-0.18[bg];"
+                  f"[b]scale=1080:-2[fg];[bg][fg]overlay=0:(H-h)/2,{fades}")
+        else:
+            vf = fades
+        ff("-ss", f"{a:.3f}", "-i", full, "-t", f"{b - a:.3f}", "-vf", vf,
            "-af", f"afade=in:st=0:d=0.3,afade=out:st={b - a - .4:.3f}:d=0.4", "-c:v", "libx264", "-preset", "medium", "-crf", "21",
            "-pix_fmt", "yuv420p", "-bsf:v", "filter_units=remove_types=6", "-c:a", "aac", "-b:a", "160k", *STRIP, "-movflags", "+faststart", dst)
         print(f"✓ {dst.relative_to(ROOT)} {b - a:.1f}s（原版 {a:.1f}–{b:.1f}，第 {n} 段 {T.segs[n - 1]['title']}）{dst.stat().st_size / 1e6:.1f} MB")

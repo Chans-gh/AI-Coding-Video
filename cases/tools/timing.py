@@ -44,9 +44,9 @@ def sync(d):
     print(f"旁白 {len(text)} 字 → assets.json")
 
 
-def silences(path):
+def silences(path, quiet=QUIET):
     """旁白里的停顿 [(起, 止)]，秒"""
-    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", f"silencedetect=n={QUIET}dB:d=0.06", "-f", "null", "-"],
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", f"silencedetect=n={quiet}dB:d=0.06", "-f", "null", "-"],
                        capture_output=True, text=True)
     st = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", r.stderr)]
     en = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", r.stderr)]
@@ -99,9 +99,12 @@ def build(d):
     # 每个句界改到旁白里离它最近的真实停顿上，在停顿中间切；句内字幕按真实起止等比例挪
     allc = [c for _, _, cl, _ in segs for c in cl]
     pauses, bad = silences(d / VO), []
+    loose = silences(d / VO, QUIET + 5)                    # 停顿里有一点底噪、没到 QUIET 的，放宽 5 dB 再找一次
     for a, b in zip(allc, allc[1:]):
         x = (a["t1"] + b["t0"]) / 2
         q = min(pauses, key=lambda q: abs((q[0] + q[1]) / 2 - x), default=None)
+        if q is None or abs((q[0] + q[1]) / 2 - x) > SNAP:
+            q = min(loose, key=lambda q: abs((q[0] + q[1]) / 2 - x), default=None)
         if q is None or abs((q[0] + q[1]) / 2 - x) > SNAP:
             bad.append(round(x, 2)); q = (x, x)
         a["e"], b["b"] = q[0], q[1]

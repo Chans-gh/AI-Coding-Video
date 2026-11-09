@@ -30,7 +30,8 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v18 · 2026-11-05"
+VERSION = "v19 · 2026-11-09"
+CASE_ORDER = ["news-artemis", "course-first-video", "shop-skincare"]  # 「真实应用」卡片的先后：第 1、2、3 支
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
@@ -423,9 +424,10 @@ def mmss(t):
 
 
 def case_dirs():
-    """有 case.json 的案例，做完的排前面"""
+    """有 case.json 的案例，做完的排前面，同样做完的按做完的先后（CASE_ORDER，没列的排最后）"""
     cs = [(d.name, json.loads((d / "case.json").read_text(encoding="utf-8"))) for d in sorted(CASES.glob("*")) if (d / "case.json").exists()]
-    return sorted(cs, key=lambda x: x[1]["status"] != "完成")
+    rank = {n: i for i, n in enumerate(CASE_ORDER)}
+    return sorted(cs, key=lambda x: (x[1]["status"] != "完成", rank.get(x[0], len(rank))))
 
 
 def case_ready(n, c):

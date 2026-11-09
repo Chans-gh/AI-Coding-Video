@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" width="600" height="100">
+  <g id="icon1" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <rect id="i1-frame" x="20" y="20" width="60" height="60" rx="4"/>
+    <path id="i1-notch" d="M50 20 L50 32 A8 8 0 0 0 50 48 L50 60"/>
+    <path id="i1-piece" d="M62 30 L78 30 L78 42 A6 6 0 0 1 78 54 L78 66 L62 66 L62 54 A6 6 0 0 0 62 42 Z"/>
+    <line id="i1-arrow" x1="72" y1="48" x2="64" y2="48"/>
+    <polyline id="i1-arrowhead" points="67,45 64,48 67,51"/>
+  </g>
+
+  <g id="icon2" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="i2-palette" d="M30 50 C30 30 50 22 70 22 C88 22 92 34 88 44 C84 54 76 56 70 56 C64 56 62 62 66 66 C70 70 66 78 56 78 C40 78 30 66 30 50 Z"/>
+    <circle id="i2-dot1" cx="48" cy="38" r="4"/>
+    <circle id="i2-dot2" cx="64" cy="34" r="4"/>
+    <circle id="i2-dot3" cx="76" cy="46" r="4"/>
+    <line id="i2-brush" x1="82" y1="72" x2="94" y2="60"/>
+    <path id="i2-brush-tip" d="M82 72 L78 76 L80 78 L84 74 Z"/>
+  </g>
+
+  <g id="icon3" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="i3-bubble" d="M22 26 L78 26 A6 6 0 0 1 84 32 L84 58 A6 6 0 0 1 78 64 L48 64 L36 76 L36 64 L22 64 A6 6 0 0 1 16 58 L16 32 A6 6 0 0 1 22 26 Z"/>
+    <polygon id="i3-play" points="42,36 42,54 58,45"/>
+  </g>
+
+  <g id="icon4" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle id="i4-circle" cx="28" cy="50" r="14"/>
+    <rect id="i4-square" x="44" y="36" width="28" height="28" rx="2"/>
+    <polygon id="i4-triangle" points="86,64 72,36 100,36"/>
+  </g>
+
+  <g id="icon5" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle id="i5-circle" cx="46" cy="46" r="26"/>
+    <polyline id="i5-check" points="34,46 43,55 60,37"/>
+    <line id="i5-arrow" x1="66" y1="70" x2="82" y2="70"/>
+    <polyline id="i5-arrowhead" points="76,64 82,70 76,76"/>
+  </g>
+
+  <g id="icon6" fill="none" stroke="#1F2533" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path id="i6-ring" d="M50 22 A28 28 0 1 1 22 50"/>
+    <polyline id="i6-arrowhead" points="22,38 22,50 34,50"/>
+    <circle id="i6-dot1" cx="42" cy="50" r="2.5"/>
+    <circle id="i6-dot2" cx="50" cy="50" r="2.5"/>
+    <circle id="i6-dot3" cx="58" cy="50" r="2.5"/>
+  </g>
+</svg>
