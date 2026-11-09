@@ -1,17 +1,17 @@
 {
   "name": "ai-coding-video",
-  "version": "0.6.0",
-  "description": "用代码做视频：内容策划（立意、段落、资料底稿、缺口表）、风格库（风格提示词、技术标签、选风格索引）、从分镜到出片的方法，附提示词方法、配乐与旁白音色指南。",
+  "version": "0.7.0",
+  "description": "纯代码逐帧做动画视频的风格库：风格提示词、技术标签、选风格索引、提示词方法、配乐与旁白音色指南。",
   "author": { "name": "Chans" },
   "homepage": "https://github.com/chans-gh/AI-Coding-Video",
   "repository": "https://github.com/chans-gh/AI-Coding-Video",
   "license": "MIT",
-  "keywords": ["video", "animation", "canvas", "webgl", "motion-graphics", "styles", "planning", "storyboard"],
+  "keywords": ["video", "animation", "canvas", "webgl", "motion-graphics", "styles"],
   "skills": "./.",
   "interface": {
     "displayName": "AI Coding Video",
-    "shortDescription": "用代码做视频：内容策划、风格库、分镜到出片",
-    "longDescription": "带两个 Skill：video-content-planner 做视频前的内容策划，把想法和资料整理成立意、段落、资料底稿和缺口表；ai-coding-video 是只靠代码就能画出来的视频风格库，每种带提示词、技术标签和样片；附选风格索引、提示词写法、配乐与旁白音色指南，以及 1 级样片、2 级风格包的制作说明。",
+    "shortDescription": "纯代码做动画视频的风格库",
+    "longDescription": "只靠代码就能画出来的视频风格库，每种带提示词、技术标签和样片；附选风格索引、提示词写法、配乐与旁白音色指南，以及 1 级样片、2 级风格包的制作说明。",
     "developerName": "Chans",
     "category": "Design"
   }

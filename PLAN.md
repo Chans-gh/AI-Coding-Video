@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 挂起：批 1、批 2 做完，剩下 4 个条目（G-017、G-018、T-019、G-019）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
 | 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）做完，介绍页模块第一版已上线；第 2 支（课件）、第 3 支（护肤）、模块改版等维护者说开工，见下面 |
-| 7 | 内容策划 Skill 解耦成新仓库 AI-content-planner，本仓库只留 ai-coding-video 接入 | — | 第 1 版批 0、A、B 做完；批 D 做完（新仓库已上线）；下一步批 C，见下面 |
+| 7 | 策划已搬到 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner)；本仓库只做接入（批 C） | — | 进行中：分支 `claude/dazzling-faraday-lwjvus`（[PR #1](https://github.com/Chans-gh/AI-Coding-Video/pull/1)），做完删掉这一行 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 
@@ -91,25 +91,6 @@
 已定（需求方定）：三个选题照 [cases/](cases/README.md) 的总表；资讯以 T 为主、课件以 C 为主、带货以 G 为主；`news-brief` 用在资讯，`style-swap` 用在课件和带货；课件保留虚构讲师；画幅资讯、带货竖屏，课件横屏，每支一种（需求方没另说，按这个做）。
 
 开工时核实、附来源链接：Poly Haven 有没有 CC0 滴管瓶；化妆品功效宣称评价规范的原文。
-
-### 阶段 7：内容策划 Skill（解耦成新仓库 AI-content-planner）
-
-- 做什么、为什么：[PRD](docs/video-content-planner/PRD.md)；怎么做、改哪些文件：[SPEC](docs/video-content-planner/SPEC.md)（都是第 2 版）。严格按 SPEC 做，要偏离先改 SPEC 并经维护者确认。
-- 解耦（维护者定，2026-11-09）：策划单独成仓库 `Chans-gh/AI-content-planner`，Skill 名 `ai-content-planner`，产出不限于视频，第一版只写全视频；用户项目里放在 `plans/<短名>/`。本仓库最后只留 ai-coding-video 的接入。
-- 分支：本仓库这边都在 `claude/dazzling-faraday-lwjvus`（[PR #1](https://github.com/Chans-gh/AI-Coding-Video/pull/1)），暂不合并回 `main`（维护者定）。
-- 本阶段不改介绍页（`site/`、`pages.yml`）（维护者定）。
-
-| 批 | 在哪 | 内容 | 状态 |
-|---|---|---|---|
-| 0、A、B | 本分支 | 第 1 版 `video-content-planner`：PRD、SPEC、Skill 本体、回放验收 | 做完（2026-11-08），是迁移的起点（提交 `6151c44`） |
-| 0 | 本分支 | PRD、SPEC 第 2 版 | 做完；PRD 第 9 节已确认（2026-11-09） |
-| D | 新仓库 | 迁入、改名、通用化、`handoff.md`、`formats.md`、仓库外壳和 CI | 做完（2026-11-09）：[Chans-gh/AI-content-planner](https://github.com/Chans-gh/AI-content-planner) PR #1 已合并到它的 `main`，CI 通过 |
-| C | 本分支 | 删掉策划文件、撤回两个 Skill 的改动、ai-coding-video 接入，版本 0.7.0 | 未开始（D 已做完，可以开工） |
-| E | 本分支 | 插件市场一站式安装（可选，先实测） | 未开始 |
-
-阶段 7 之后的待办：
-
-- **抓原文脚本随包（重要，维护者定）**：把 Test 仓库 `chansclaude-research` 的 `fetch_article.py` 改写后放进策划 Skill 的 `scripts/`。原文先落成本地 Markdown（正文、图表清单），助手按需读片段，不把整页网页灌进对话，是省 token 的关键。要定：依赖（beautifulsoup4、Pillow）缺了怎么降级、离线测试怎么带、抓下来的文件哪些进用户项目。批 D 时搬进新仓库的 PLAN。
 
 ## 待办：内容类型再补充（维护者自己研发）
 
