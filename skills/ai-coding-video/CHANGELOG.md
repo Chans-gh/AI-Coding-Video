@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-09 | 生成矢量改由做片的助手自己写 SVG，materials.md 不再推荐外部服务；DeepSeek 只作为测试 Skill 的 Harness。已出的 G-013 和案例第 1、2 支照实保留原记录 |
 | 2026-11-09 | 阶段 6 第 2 支 [课件教程：零基础用 AI 编程助手做第一条短片](../../cases/course-first-video/) 做完：第一次「ai-content-planner 策划 → 交接 → 本 Skill 出片」实跑，`case.json` 当 `storyboard.json` 的超集（加 `plan`、`seg`），`cases/tools/build.py --check` 查段号和事实编号；介绍页 v19：「真实应用」放上第 2 支，做完的案例按 `CASE_ORDER` 排（资讯、课件、带货） |
 | 2026-11-09 | 两个插件市场（`.claude-plugin/`、`.agents/plugins/`）加 `ai-content-planner` 一条（`git-subdir` 指向 Chans-gh/AI-content-planner 的 `skills/`），Claude Code、Codex 都能 `ai-content-planner@ai-coding-video` 直接装；README 安装段改成多装一条。只整理，版本号不变；阶段 7（策划解耦）做完，PLAN 删掉这一行 |
 | 2026-11-09 | 0.7.0：接内容策划 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner)（交接格式 `ai-content-planner/1`）。新文件 `storyboard.md`：认格式和状态、读 `plan.md` 和 `research.md`、写 `videos/<短名>/storyboard.json` 分镜和 `script.json` 逐字稿（`seg` 对段号、`ref` 对 U 编号）、确认后照 `making.md` 出片、缺内容回流给策划；SKILL.md「什么时候用」加两条，Skill 的 README 文件表加一行；仓库 README 安装段加策划的插件命令（Claude Code、Codex） |
