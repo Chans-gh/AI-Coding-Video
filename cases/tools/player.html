@@ -54,7 +54,7 @@ async function load(src) {
   for (const n of SC.needs || []) await load(`${DIR}/segments/${n}`);
   if (Q.has('render')) document.body.classList.add('render');
   const cv = document.getElementById('c'); cv.width = W; cv.height = H;
-  const ctx = cv.getContext('2d');
+  const ctx = cv.getContext('2d', { willReadFrequently: true });   // 软件画布：画视频时不切 GPU，切的那一下会丢掉这一帧先画的内容（出黑帧）
   if (SC.dom) { STAGE = document.createElement('div'); STAGE.id = 'stage'; STAGE.style.width = W + 'px'; STAGE.style.height = H + 'px'; document.body.appendChild(STAGE); }
   const txt = [...new Set('0123456789,.:·—–' + (SC.text || '') + SEG.lines.map(l => l.text).join(''))].join('');
   await Promise.all((SC.fonts || []).map(f => document.fonts.load(f, txt).catch(() => {})));
