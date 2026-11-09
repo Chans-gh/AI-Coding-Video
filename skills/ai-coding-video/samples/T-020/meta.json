@@ -1,0 +1,5 @@
+{
+  "en_name": "Match replay breakdown",
+  "en_how": "CC0 crates and barrels from Poly Haven build a top-down arena in Three.js; a fictional per-second match table replays six players with fading trails, kill rings, a timeline and a stats panel; at the first death the replay pauses for telestrator circles and arrows, then a slider compares the actual route with the suggested one.",
+  "tech": ["Three.js", "WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

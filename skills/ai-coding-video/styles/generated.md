@@ -1,4 +1,4 @@
-# G 类：AI 生成素材（16 种）
+# G 类：AI 生成素材（20 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -308,5 +308,81 @@
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/G-016/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-016)
 - 风格包：[packs/style-swap/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/style-swap)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：—
+
+<a id="G-017"></a>
+
+## G-017 情景安全演练
+
+![情景安全演练](../images/G-017.jpg)
+
+```text
+用「情景安全演练」：生成一张有安全隐患的办公室场景图（电线横穿过道、纸箱堵住消防通道），代码在图上逐个圈出隐患、拉出编号标签；接着弹出一道选择题，先选错的那个——选项变红、轻轻一抖，再亮出正确答案打勾；最后切到同一间办公室整改后的图（以第一张为参考图生成），画面左右滑动对比，写上「整改完成」。旁白用沉稳的公开音色讲解，圈出隐患、出题、揭晓答案的时刻都卡在旁白的句子上。
+```
+
+- 内容类型：企业培训和课件
+- 素材：生图 · 语音合成
+- 技术类型：生图加代码动画 · 语音合成驱动
+- 适合：安全培训、新员工入职课件、合规考试的情景题
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-017/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-017)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：—
+
+<a id="G-018"></a>
+
+## G-018 双人播客声波
+
+![双人播客声波](../images/G-018.jpg)
+
+```text
+用「双人播客声波」：两位虚构主持人的插画头像（生图）一左一右，两段公开音色的语音合成一问一答；代码在浏览器里解码音频算出音量包络，谁在说话谁的头像外圈跟着声波起伏、亮起，另一位变暗；下面是逐字点亮的字幕，答到金句时弹出一张金句卡，结尾落节目名和期数。
+```
+
+- 内容类型：播客和访谈可视化
+- 素材：生图 · 语音合成
+- 技术类型：语音合成驱动 · 生图加代码动画
+- 适合：播客切片、音频节目的视频版、访谈金句卡
+- 技术（已验证）：Canvas 2D · Web Audio · Playwright · ffmpeg
+- 样片代码：[samples/G-018/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-018)
+- 技术（建议）：Canvas 2D · Web Audio · Playwright · ffmpeg
+- 参考：—
+
+<a id="G-019"></a>
+
+## G-019 十二月插画回顾
+
+![十二月插画回顾](../images/G-019.jpg)
+
+```text
+用「十二月插画回顾」：生成一张 4 列 3 行的拼图插画，每格是一家虚构咖啡馆一个月的样子（雪天、樱花、梅雨、盛夏、落叶……），代码按格子切开，一月一张快速翻页；每页套同一个数字卡模板，写这个月卖了多少杯、最受欢迎的饮品，数字滚动到位；最后十二张缩回原位拼成总览墙，最忙的那个月描边，写出全年总数。旁白用轻快的公开音色报全年数字。
+```
+
+- 内容类型：年度回顾和数据总结
+- 素材：生图 · 语音合成
+- 技术类型：生图加代码动画 · 模板化批量生成
+- 适合：年终总结、门店和账号的年度回顾、月报合集
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-019/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-019)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：—
+
+<a id="G-020"></a>
+
+## G-020 拉伸跟练
+
+![拉伸跟练](../images/G-020.jpg)
+
+```text
+用「拉伸跟练」：生成一位虚构教练的定妆图当首帧，图生视频让教练做一个侧腰拉伸，来回放慢衔接成跟练镜头；代码在旁边叠动作名、要点清单（逐条随旁白点亮）、保持阶段的倒计时圆环和组数；旁白用温和的公开音色带练，数到「三、二、一」时圆环走完、亮起「完成」。
+```
+
+- 内容类型：健康和运动指导
+- 素材：生图 · 生视频 · 语音合成
+- 技术类型：图生视频与首尾帧 · 语音合成驱动
+- 适合：健身跟练、康复动作指导、办公室微运动
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-020/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-020)
 - 技术（建议）：Canvas 2D · Playwright · ffmpeg
 - 参考：—

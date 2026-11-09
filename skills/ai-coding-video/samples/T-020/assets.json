@@ -1,0 +1,95 @@
+{
+ "items": [
+  {
+   "file": "assets/barrel.gltf",
+   "kind": "三维模型",
+   "title": "Barrel 03（glTF 描述：网格的顶点、法线、UV 在 barrel.bin 里的位置）",
+   "source": "https://polyhaven.com/a/barrel_03",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/barrel_03/barrel_03_1k.gltf",
+   "license": "CC0 1.0",
+   "author": "Serhii Khromov / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/barrel.bin",
+   "kind": "三维模型",
+   "title": "Barrel 03（网格数据）",
+   "source": "https://polyhaven.com/a/barrel_03",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/barrel_03/barrel_03.bin",
+   "license": "CC0 1.0",
+   "author": "Serhii Khromov / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/barrel_diff.jpg",
+   "kind": "三维模型",
+   "title": "Barrel 03（颜色贴图 1k）",
+   "source": "https://polyhaven.com/a/barrel_03",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/barrel_03/barrel_03_diff_1k.jpg",
+   "license": "CC0 1.0",
+   "author": "Serhii Khromov / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）",
+   "prep": {
+    "max": 512,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/crate.gltf",
+   "kind": "三维模型",
+   "title": "Wooden Crate 02（glTF 描述）",
+   "source": "https://polyhaven.com/a/wooden_crate_02",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/wooden_crate_02/wooden_crate_02_1k.gltf",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock、Jurita Burger / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/crate.bin",
+   "kind": "三维模型",
+   "title": "Wooden Crate 02（网格数据）",
+   "source": "https://polyhaven.com/a/wooden_crate_02",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/wooden_crate_02/wooden_crate_02.bin",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock、Jurita Burger / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/crate_diff.jpg",
+   "kind": "三维模型",
+   "title": "Wooden Crate 02（颜色贴图 1k）",
+   "source": "https://polyhaven.com/a/wooden_crate_02",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/wooden_crate_02/wooden_crate_02_diff_1k.jpg",
+   "license": "CC0 1.0",
+   "author": "James Ray Cock、Jurita Burger / Poly Haven",
+   "credit": "三维模型 Poly Haven（CC0）",
+   "prep": {
+    "max": 512,
+    "q": 88
+   }
+  },
+  {
+   "file": "assets/match.csv",
+   "kind": "数据",
+   "title": "虚构的 3 对 3 对局数据（每秒位置和击杀）",
+   "source": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-020",
+   "license": "MIT（本仓库编写的虚构数据，由 match.py 生成）",
+   "author": "AI-Coding-Video",
+   "credit": "对局数据虚构"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Fast fight / battle music",
+   "source": "https://opengameart.org/content/fast-fight-battle-music",
+   "download": "https://opengameart.org/sites/default/files/fight.ogg",
+   "license": "CC0 1.0",
+   "author": "Bonsaiheldin",
+   "credit": "配乐 Bonsaiheldin（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

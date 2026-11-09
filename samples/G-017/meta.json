@@ -1,0 +1,5 @@
+{
+  "en_name": "Workplace safety drill",
+  "en_how": "A generated office illustration is the base; timed from the narration's per-character timings, code circles each hazard and pops a numbered tag, then a quiz card picks the wrong answer (red shake) before ticking the right one; finally a slider wipes in the fixed office, generated from the first image as a reference.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Two-host podcast waveform",
+  "en_how": "Two generated illustrated avatars of fictional hosts sit side by side; Web Audio decodes the two synthesized voice tracks in the browser into a loudness envelope, so the speaker's ring of bars pulses with their voice and glows while the other dims; subtitles light up character by character, a gold quote card pops on the key line, and the show name and episode close it out.",
+  "tech": ["Canvas 2D", "Web Audio", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Nutrition comparison",
+  "en_how": "Three CC0 food photos sit in columns with slow push-ins; one bar-chart template reads USDA FoodData Central per-100 g values and grows seven nutrient rows one by one, lighting the highest column on each row, then writes a conclusion computed from the data.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

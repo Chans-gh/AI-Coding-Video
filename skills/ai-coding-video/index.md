@@ -15,7 +15,7 @@
 ## 风格目录
 
 <!-- catalog:start -->
-共 229 种（纯代码 195 种，公共领域素材 18 种，AI 生成素材 16 种），其中 116 种已有样片。点名字跳到条目。
+共 235 种（纯代码 195 种，公共领域素材 20 种，AI 生成素材 20 种），其中 122 种已有样片。点名字跳到条目。
 
 | 题材 | 风格 |
 |---|---|
@@ -46,14 +46,14 @@ T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，�
 | 旅行和城市 | [T-010 延时城市交响](styles/footage.md#T-010)（录像、照片、数据） | [G-010 旅行手账 vlog](styles/generated.md#G-010)（生视频、语音合成） |
 | 体育赛事 | [T-011 体育战术板](styles/footage.md#T-011)（照片） | [G-011 高光慢放集锦](styles/generated.md#G-011)（生视频） |
 | 儿童绘本动画 | [T-012 绘本翻页](styles/footage.md#T-012)（照片） | [G-012 水彩绘本朗读](styles/generated.md#G-012)（生图、语音合成） |
-| 企业培训和课件 | [T-014 讲义转片](styles/footage.md#T-014)（照片、数据） | — |
-| 游戏和电竞 | — | [G-014 虚构电竞集锦](styles/generated.md#G-014)（生视频） |
-| 播客和访谈可视化 | [T-016 访谈金句竖屏](styles/footage.md#T-016)（录像、数据） | — |
-| 年度回顾和数据总结 | [T-015 年度数据回顾](styles/footage.md#T-015)（数据、照片） | — |
-| 美食 | — | [G-013 食谱动效卡](styles/generated.md#G-013)（生图、语音合成） |
-| 健康和运动指导 | [T-017 体操骨骼示范](styles/footage.md#T-017)（录像、数据） | — |
+| 企业培训和课件 | [T-014 讲义转片](styles/footage.md#T-014)（照片、数据） | [G-017 情景安全演练](styles/generated.md#G-017)（生图、语音合成） |
+| 游戏和电竞 | [T-020 对局复盘](styles/footage.md#T-020)（三维模型、数据） | [G-014 虚构电竞集锦](styles/generated.md#G-014)（生视频） |
+| 播客和访谈可视化 | [T-016 访谈金句竖屏](styles/footage.md#T-016)（录像、数据） | [G-018 双人播客声波](styles/generated.md#G-018)（生图、语音合成） |
+| 年度回顾和数据总结 | [T-015 年度数据回顾](styles/footage.md#T-015)（数据、照片） | [G-019 十二月插画回顾](styles/generated.md#G-019)（生图、语音合成） |
+| 美食 | [T-019 营养成分对比](styles/footage.md#T-019)（照片、数据） | [G-013 食谱动效卡](styles/generated.md#G-013)（生图、语音合成） |
+| 健康和运动指导 | [T-017 体操骨骼示范](styles/footage.md#T-017)（录像、数据） | [G-020 拉伸跟练](styles/generated.md#G-020)（生图、生视频、语音合成） |
 
-按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（18） · [G 类：AI 生成素材](styles/generated.md)（16）
+按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（20） · [G 类：AI 生成素材](styles/generated.md)（20）
 <!-- catalog:end -->
 
 ## 按题材选风格

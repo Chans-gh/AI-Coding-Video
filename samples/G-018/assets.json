@@ -1,0 +1,99 @@
+{
+ "items": [
+  {
+   "file": "assets/host_a.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "扁平矢量插画风格的头像：一位虚构的年轻女主持人，蓬松的短卷发，戴一副大号头戴式耳机，面前一支播客麦克风，正面胸像，表情轻松、微微笑，暖橙色纯色背景，线条干净、色块简洁的扁平插画，卡通形象，不像任何真人，没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "头像 AI 生成",
+   "prep": {
+    "max": 1024
+   }
+  },
+  {
+   "file": "assets/host_b.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "扁平矢量插画风格的头像：一位虚构的中年男嘉宾，戴圆框眼镜，留短短的络腮胡，穿深绿色圆领毛衣，面前一支播客麦克风，正面胸像，表情温和、在思考，青绿色纯色背景，线条干净、色块简洁的扁平插画，卡通形象，不像任何真人，没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "头像 AI 生成",
+   "prep": {
+    "max": 1024
+   }
+  },
+  {
+   "file": "assets/vo_a.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Warm_Girl",
+   "text": "今天聊个扎心的问题：每天只睡六个小时，真的够吗？",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 0.6,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 4.65,
+   "lines": [
+    {
+     "t0": 0.043,
+     "t1": 1.365,
+     "text": "今天聊个扎心的问题"
+    },
+    {
+     "t0": 1.365,
+     "t1": 4.139,
+     "text": "每天只睡六个小时，真的够吗？"
+    }
+   ]
+  },
+  {
+   "file": "assets/vo_b.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Gentleman",
+   "text": "说实话，大多数成年人需要七到九个小时。睡觉不是浪费时间，是大脑在给自己大扫除。",
+   "params": {
+    "speed": 1.0
+   },
+   "at": 5.6,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 6.687,
+   "lines": [
+    {
+     "t0": 0.043,
+     "t1": 2.901,
+     "text": "说实话，大多数成年人需要七到九个小时"
+    },
+    {
+     "t0": 2.901,
+     "t1": 6.187,
+     "text": "睡觉不是浪费时间，是大脑在给自己大扫除"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Chill lofi inspired",
+   "source": "https://opengameart.org/content/chill-lofi-inspired",
+   "download": "https://opengameart.org/sites/default/files/ChillLofiR_0.mp3",
+   "license": "CC0 1.0",
+   "author": "omfgdude",
+   "credit": "配乐 omfgdude（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0,
+   "gain": 0.8
+  }
+ ]
+}
