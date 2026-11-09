@@ -1,6 +1,6 @@
-// 第 7 段 原理：左边是课上那份场景代码的参数块，「颜色、文字、时长」依次高亮；天空那一行的值换三次，右边是三次各自出的画面（本仓库代码渲染）；
+// 第 7 段 原理：前半「值也可以来自真实数据」——先是三张值卡（颜色、文字、时长）跟着旁白亮起；说到「西雅图」变成 NOAA 的
+// 12 个月平均降水柱状图（T 类数据，D3 式按代码画），游标逐月走，右边是课上成片按这个月雨量（P.rain = 毫米 / 100）出的降水帧；
 // 后半是风格包「分镜换画风」：生图提示词拆成镜头段、风格段、约束段（原文从 assets.json 读），只换风格段，3 个镜头 × 3 种画风排成九宫格。
-const SKY = [['白天', "['#7FD4FF', '#DFF6FF']", 'var-day.jpg'], ['黄昏', "['#FF8E6E', '#FFE2B8']", 'var-dusk.jpg'], ['夜晚', "['#152A5C', '#5468B0']", 'var-night.jpg']];
 const ROWS = [['photo', '写实'], ['watercolor', '水彩'], ['clay', '黏土']];
 scene({
   id: 'course-first-video:7', name: '原理',
@@ -13,50 +13,64 @@ scene({
     const parts = ROWS.map(([k]) => split(pr(`${k}-s1`)));
     await L.init(parts.flat().join(''));
     const img = {};
-    for (const [, , f] of SKY) img[f] = await loadImage(f);
+    for (let m = 1; m <= 12; m++) img[`m${m}`] = await loadImage(`rain/m${String(m).padStart(2, '0')}.jpg`);
     for (const [k] of ROWS) for (let n = 1; n <= 3; n++) img[`${k}-s${n}`] = await loadImage(`swap/${k}-s${n}.jpg`);
-    return { img, parts };
+    const mm = (await loadText('rain-seattle.csv')).trim().split('\n').slice(1).map(l => +l.split(',')[1]);
+    return { img, parts, mm };
   },
   draw(ctx, t, s) {
     const { u, K, F } = L;
     L.bg(ctx);
-    const tB = L.cue('AI 生成的画面'), tSky = L.cue('把天空的颜色'), bA = smooth(tB - .5, tB + .2, t);
+    const tB = L.cue('AI 生成的画面'), tD = L.cue('西雅图'), bA = smooth(tB - .5, tB + .2, t);
     if (bA < 1) {
       ctx.save(); ctx.globalAlpha = 1 - bA;
-      L.title(ctx, '改一个值，重出一版', 80 * u, 170 * u, 64);
-      // 当前天空：说到「把天空的颜色」后每 1.4 秒换一个值
-      const k = t < tSky + .8 ? 0 : Math.min(2, 1 + Math.floor((t - tSky - .8) / 1.6));
-      const kt = t < tSky + .8 ? 0 : (t - tSky - .8) - (k - 1) * 1.6;
-      const code = [
-        ['const P = {'], ['  sky: ' + SKY[k][1] + ',', 'c'], ["  sea: ['#2E86DE', '#1B4F9C'],"], ["  hill: '#3BB273', sun: '#FFC93C',"],
-        ["  title: '水循环', steps: ['蒸发', '凝结', '降水', '汇流'],", 'w'], ['};'], [''], ["scene({ id: 'C-038', dur: 15, still: 13.5,", 'd'],
-      ];
-      const hlAt = { c: L.cue('颜色'), w: L.cue('文字'), d: L.cue('时长') };
-      const cx = 80 * u, cy = 230 * u, cw = 960 * u, lh = 56 * u;
-      ctx.fillStyle = K.term; rr(ctx, cx, cy, cw, 540 * u, 16 * u); ctx.fill();
-      ctx.font = F(400, 24, L.MONO); ctx.fillStyle = K.gray; ctx.textBaseline = 'middle'; ctx.fillText('C-038/scene.js', cx + 28 * u, cy + 30 * u);
-      code.forEach(([l, tag], i) => {
-        const y = cy + 80 * u + i * lh;
-        if (tag) {
-          const on = t > hlAt[tag] && (tag === 'c' ? true : t < tSky);
-          const flash = tag === 'c' && t > tSky + .8 ? Math.max(0, 1 - kt / .5) : 0;
-          if (on) { ctx.fillStyle = `rgba(255,224,102,${.22 + .4 * flash})`; ctx.fillRect(cx + 10 * u, y - lh / 2, cw - 20 * u, lh); }
-        }
-        L.codeLine(ctx, l, cx + 28 * u, y, 28);
-      });
-      // 右：这一版的画面；下：三版并排
-      const ix = 1090 * u, iw = 750 * u, ih = iw * 9 / 16;
-      ctx.save(); rr(ctx, ix, cy, iw, ih, 14 * u); ctx.clip(); drawCover(ctx, s.img[SKY[k][2]], ix, cy, iw, ih);
-      if (kt < .35 && t > tSky + .8) { ctx.fillStyle = `rgba(255,255,255,${1 - kt / .35})`; ctx.fillRect(ix, cy, iw, ih); }
-      ctx.restore();
-      L.chip(ctx, 'C', ix + 16 * u, cy + 16 * u, { label: `第 ${k + 1} 版 · ${SKY[k][0]}`, s: .9 });
-      if (t > tSky + .8) SKY.forEach(([n, , f], i) => {
-        if (i > k) return;
-        const w = 236 * u, h = w * 9 / 16, x = 1090 * u + i * 257 * u, y = 760 * u;
-        ctx.save(); ctx.globalAlpha *= L.fadeIn(t - tSky - .8 - i * 1.6); rr(ctx, x, y, w, h, 10 * u); ctx.clip(); drawCover(ctx, s.img[f], x, y, w, h); ctx.restore();
-        ctx.fillStyle = K.ink; ctx.font = F(700, 26); ctx.fillText(n, x, y - 22 * u);
-      });
-      if (t > L.cue('别的都不动')) { ctx.fillStyle = K.soft; ctx.font = F(400, 30); ctx.fillText('只改了第 2 行，别的都不动', 80 * u, 830 * u); }
+      L.title(ctx, t < tD ? '画面里的每样东西，都是一个值' : '值也可以来自真实数据', 80 * u, 170 * u, 64);
+      const chart = eInOutCubic(inv(tD - .3, tD + .5, t));
+      // 前：三张值卡
+      if (chart < 1) {
+        const cards = [['颜色', "sky: ['#7FD4FF', '#DFF6FF']", L.cue('颜色')], ['文字', "title: '水循环'", L.cue('文字')], ['时长', 'dur: 15', L.cue('时长')]];
+        cards.forEach(([n, v, at], i) => {
+          const p = t - at; if (p < 0) return;
+          const x = 80 * u, y = 250 * u + i * 190 * u, e = L.pop(p);
+          ctx.save(); ctx.globalAlpha *= clamp(p / .25) * (1 - chart); ctx.translate(x, y + (1 - e) * 20 * u);
+          L.card(ctx, 0, 0, 900 * u, 160 * u, { edge: K.C });
+          ctx.fillStyle = K.C; ctx.font = F(900, 44); ctx.textBaseline = 'middle'; ctx.fillText(n, 40 * u, 80 * u);
+          ctx.fillStyle = K.term; rr(ctx, 180 * u, 40 * u, 680 * u, 80 * u, 12 * u); ctx.fill();
+          L.codeLine(ctx, v, 210 * u, 80 * u, 30); ctx.restore();
+        });
+        if (t > L.cue('真实数据')) { ctx.save(); ctx.globalAlpha *= L.fadeIn(t - L.cue('真实数据')) * (1 - chart); L.chip(ctx, 'T', 80 * u, 850 * u, { label: '这些值，也可以直接来自真实数据' }); ctx.restore(); }
+      }
+      // 后：12 个月降水柱状图 + 这个月的画面
+      const month = t < tD + .8 ? -1 : Math.min(11, Math.floor((t - tD - .8) / .15));
+      const hiW = smooth(L.cue('冬天') - .1, L.cue('冬天') + .3, t), hiS = smooth(L.cue('夏天') - .1, L.cue('夏天') + .3, t);
+      const show = month < 0 ? 10 : t > L.cue('夏天') ? 6 : t > L.cue('冬天') ? 10 : month;
+      if (chart > 0) {
+        ctx.save(); ctx.globalAlpha *= chart;
+        const gx = 110 * u, gy = 300 * u, gw = 900 * u, gh = 440 * u, bw = gw / 12;
+        ctx.fillStyle = K.soft; ctx.font = F(400, 24, L.MONO); ctx.textBaseline = 'middle';
+        ctx.fillText('rain-seattle.csv · 1991–2020 各月平均降水（毫米）', gx, gy - 50 * u);
+        ctx.strokeStyle = K.line; ctx.lineWidth = 2 * u;
+        [0, 50, 100, 150].forEach(v => { const y = gy + gh - gh * v / 170; ctx.beginPath(); ctx.moveTo(gx, y); ctx.lineTo(gx + gw, y); ctx.stroke(); ctx.fillStyle = K.soft; ctx.textAlign = 'right'; ctx.fillText(String(v), gx - 12 * u, y); ctx.textAlign = 'left'; });
+        s.mm.forEach((v, i) => {
+          const grow = eOutCubic(clamp((t - tD - i * .04) / .6)), h = gh * v / 170 * grow, x = gx + i * bw + 8 * u, y = gy + gh - h;
+          const winter = [0, 10, 11].includes(i), summer = [6, 7].includes(i);
+          ctx.fillStyle = i === show ? K.T : winter && hiW > 0 && !hiS ? K.blue : summer && hiS > 0 ? K.G : '#9DB7D8';
+          rr(ctx, x, y, bw - 16 * u, h, 6 * u); ctx.fill();
+          ctx.fillStyle = K.soft; ctx.textAlign = 'center'; ctx.font = F(400, 22, L.MONO); ctx.fillText(String(i + 1), x + (bw - 16 * u) / 2, gy + gh + 28 * u);
+          if (i === show) { ctx.fillStyle = K.ink; ctx.font = F(700, 26, L.MONO); ctx.fillText(String(v), x + (bw - 16 * u) / 2, y - 22 * u); }
+          ctx.textAlign = 'left';
+        });
+        ctx.fillStyle = K.soft; ctx.font = F(400, 22); ctx.fillText('月', gx + gw + 12 * u, gy + gh + 28 * u);
+        L.chip(ctx, 'T', gx, gy + gh + 70 * u, { label: '数据 · NOAA 美国国家环境信息中心' });
+        // 右：这个月的画面
+        const ix = 1090 * u, iw = 750 * u, ih = iw * 9 / 16, iy = 250 * u, m = show;
+        ctx.save(); rr(ctx, ix, iy, iw, ih, 14 * u); ctx.clip(); drawCover(ctx, s.img[`m${m + 1}`], ix, iy, iw, ih); ctx.restore();
+        L.chip(ctx, 'C', ix + 16 * u, iy + 16 * u, { label: `${m + 1} 月 · ${s.mm[m]} 毫米`, s: .9 });
+        ctx.fillStyle = K.term; rr(ctx, ix, iy + ih + 30 * u, iw, 80 * u, 12 * u); ctx.fill();
+        L.codeLine(ctx, `rain: ${(s.mm[m] / 100).toFixed(2)},   // ${m + 1} 月降水 / 100`, ix + 28 * u, iy + ih + 70 * u, 28);
+        ctx.fillStyle = K.soft; ctx.font = F(400, 26); ctx.textBaseline = 'middle'; ctx.fillText('同一份场景代码，只换这一个值', ix, iy + ih + 150 * u);
+        ctx.restore();
+      }
       ctx.restore();
     }
     if (bA > 0) {

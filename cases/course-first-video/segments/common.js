@@ -131,6 +131,14 @@ const L = (() => {
       if (!m[0]) break;
     }
   }
+  // DeepSeek 写的线条图标（assets/icons.svg，6 个 <g id="iconN">，都画在 0–100 的格子里）：拆成 6 张图，col 换线条颜色
+  async function icons(col) {
+    const txt = await xhr(asset('icons.svg')), gs = txt.match(/<g id="icon\d"[\s\S]*?<\/g>/g);
+    return Promise.all(gs.map(g => new Promise((ok, no) => {
+      const im = new Image(); im.onload = () => ok(im); im.onerror = () => no(new Error('图标载入失败'));
+      im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 116 116" width="348" height="348">${col ? g.split('#1F2533').join(col) : g}</svg>`);
+    })));
+  }
   // 点击波纹（T-009 的做法）
   function ripple(ctx, x, y, p) {
     if (p <= 0 || p >= 1) return;
@@ -148,5 +156,5 @@ const L = (() => {
     ctx.save(); ctx.globalAlpha *= o.alpha ?? 1; ctx.fillStyle = o.color || K.ink; ctx.font = F(o.w || 900, px);
     ctx.textAlign = o.align || 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText(text, x, y); ctx.restore();
   }
-  return { u, K, G, START, TOTAL, say, sayEnd, cue, F, SANS, MONO, FONTS, init, pop, fadeIn, bg, card, chip, frame, sub, term, codeLine, ripple, cursor, title, CLASS };
+  return { u, K, G, START, TOTAL, say, sayEnd, cue, F, SANS, MONO, FONTS, init, pop, fadeIn, bg, card, chip, frame, sub, term, codeLine, ripple, cursor, title, CLASS, icons };
 })();
