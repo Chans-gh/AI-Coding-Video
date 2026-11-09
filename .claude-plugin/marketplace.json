@@ -9,6 +9,15 @@
       "name": "ai-coding-video",
       "source": "./skills",
       "description": "纯代码逐帧做动画视频的风格库与方法"
+    },
+    {
+      "name": "ai-content-planner",
+      "source": {
+        "source": "git-subdir",
+        "url": "Chans-gh/AI-content-planner",
+        "path": "skills"
+      },
+      "description": "做内容之前的策划：立意、段落、资料底稿、缺口表；先策划再出片（独立仓库 Chans-gh/AI-content-planner）"
     }
   ]
 }

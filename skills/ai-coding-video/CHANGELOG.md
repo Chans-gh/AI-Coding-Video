@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-09 | 两个插件市场（`.claude-plugin/`、`.agents/plugins/`）加 `ai-content-planner` 一条（`git-subdir` 指向 Chans-gh/AI-content-planner 的 `skills/`），Claude Code、Codex 都能 `ai-content-planner@ai-coding-video` 直接装；README 安装段改成多装一条。只整理，版本号不变 |
 | 2026-11-09 | 0.7.0：接内容策划 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner)（交接格式 `ai-content-planner/1`）。新文件 `storyboard.md`：认格式和状态、读 `plan.md` 和 `research.md`、写 `videos/<短名>/storyboard.json` 分镜和 `script.json` 逐字稿（`seg` 对段号、`ref` 对 U 编号）、确认后照 `making.md` 出片、缺内容回流给策划；SKILL.md「什么时候用」加两条，Skill 的 README 文件表加一行；仓库 README 安装段加策划的插件命令（Claude Code、Codex） |
 | 2026-11-06 | 仓库 README 开头加一句中英文定位、介绍页链接和「能拿来做什么」，末尾加英文简介；介绍页加 canonical、Open Graph 分享卡片和 `site/llms.txt`，方便搜索和 AI 检索；PLAN 里阶段 6 改成暂停，阶段分支合并后删掉。只整理，版本号不变 |
 | 2026-11-05 | 介绍页 v18：「是什么」一节按三类路线混用重写流程，加「实际场景：3 类路线的综合应用」时间线，在使用场景和结尾之间加「原理说明」一段。只整理，版本号不变 |

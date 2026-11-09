@@ -28,21 +28,14 @@ Skill 里写的是指引：AI 助手会按这三级，在你自己的项目里�
 
 ## 安装
 
-内容还没想好的，先装 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再用本 Skill 出片：
-
-```bash
-claude plugin marketplace add chans-gh/AI-content-planner
-claude plugin install ai-content-planner@ai-content-planner
-# Codex：
-codex plugin marketplace add chans-gh/AI-content-planner
-codex plugin add ai-content-planner@ai-content-planner
-```
+内容还没想好的，先装 [AI-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再用本 Skill 出片。它也在本仓库的市场里，加完市场多装一条即可（下面带「可选」的那行）。
 
 **Claude Code**（插件市场）：
 
 ```bash
 claude plugin marketplace add chans-gh/AI-Coding-Video
 claude plugin install ai-coding-video@ai-coding-video
+claude plugin install ai-content-planner@ai-coding-video   # 可选：内容策划
 ```
 
 **Codex**（插件市场）：
@@ -50,6 +43,7 @@ claude plugin install ai-coding-video@ai-coding-video
 ```bash
 codex plugin marketplace add chans-gh/AI-Coding-Video
 codex plugin add ai-coding-video@ai-coding-video
+codex plugin add ai-content-planner@ai-coding-video   # 可选：内容策划
 ```
 
 **其他助手**（拷贝 Skill 文件夹）：先 `git clone` 本仓库，再运行：
