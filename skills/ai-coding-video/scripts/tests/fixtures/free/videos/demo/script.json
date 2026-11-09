@@ -1,0 +1,11 @@
+{"segments": [
+  {"seg": "P1", "vo": ["水开了，面怎么还是硬的？"],
+   "facts": [{"what": "锅里的场景是设定的", "ref": null, "src": "设定"}]},
+  {"seg": "P2", "vo": ["在海边，水一百度才开。", "到了海拔四千米，八十七度就开了。"],
+   "facts": [{"what": "一个标准大气压下沸点 100 °C", "ref": null, "src": "用户提供"},
+             {"what": "海拔 4000 米约 87 °C 沸腾", "ref": null, "src": "https://example.com/boiling-point",
+              "confirm": "用户确认"}]},
+  {"seg": "P3", "vo": ["所以多煮一会儿，或者干脆用高压锅。"],
+   "facts": [{"what": "高压锅里水能到约 120 °C", "ref": null, "src": "https://example.com/pressure-cooker",
+              "confirm": "用户确认"}]}
+ ]}

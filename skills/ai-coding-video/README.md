@@ -25,7 +25,8 @@
 | [`data/styles.json`](data/styles.json) | 所有风格的机器可读索引（生成物，不要手改） |
 | [`data/tags.json`](data/tags.json) | 技术标签、题材、内容类型、素材种类的合法取值 |
 | [`scripts/build_index.py`](scripts/build_index.py) | 生成 `styles.json` 和风格目录，并做完整性自检 |
-| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜、逐字稿的段号和事实编号；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
+| [`scripts/check_storyboard.py`](scripts/check_storyboard.py) | 完整出片的通用检查：分镜和逐字稿对得上、样式、全片统一、事实的出处；`--ready` 查用户确认过了，`--table` 打印分镜表，见 [film.md「检查」](film.md#检查) |
+| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜、逐字稿的段号和事实编号，通用的部分调 `check_storyboard.py`；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
 
 ## 分类与编号
 
