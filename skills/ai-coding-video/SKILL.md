@@ -18,7 +18,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 - 用户想先看看某种风格在自己项目里的效果（出样片），或想把选中的风格固定下来（做风格包）。
 - 用户手上有录像、录屏、照片、数据，或者要用 AI 生图、生视频、语音合成做素材，想由代码剪成片子。
 - 要给视频挑配乐、音效或中文旁白音色。
-- 内容还没定（只有想法，资料没整理，主线和段落没定）→ 先用 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 做策划，再回来。
+- 内容还没定（只有想法，资料没整理，主线和段落没定）→ 装了 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的先用它做策划，再回来；没装的不用装，请用户把要讲的内容定下来（或给现成的稿子），照 0 级往下走。本 Skill 不要求有 `plan.md`。
 - 项目里有 `plans/<短名>/plan.md`，格式行 `格式：ai-content-planner/2`、状态「已交接」，需求的「输出形式」是视频 → 从 `storyboard.md` 开始：接策划、写分镜和逐字稿（格式 1 的先请用户用策划转成格式 2）。
 
 ## 三级用法：从选风格到风格包
