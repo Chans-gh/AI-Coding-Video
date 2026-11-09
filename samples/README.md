@@ -99,7 +99,7 @@ python3 batch.py T-007 --quick       # 之后和 C 类一样出片、检查、�
 
 - 场景里用 `loadAssets()`、`loadImage()`、`loadVideo()`（按帧取，第 k 帧只取素材的第 k 帧）、`parseCSV()` 读素材，`cueAt()` 取当前字幕，`credits()` 生成署名行；`sound.py` 一般只写 `assets(m, 样片目录)`，再加几个合成音效。
 - 声音不用 C 类的电子音做主体：旁白用语音合成的公开音色，配乐、音效用公共领域、CC0 的（CC BY 要署名）。
-- 维护者出样片用青水：在仓库根目录 `source scripts/providers/qingshui.env`，生图、生视频、语音合成交给 `scripts/providers/qingshui.py`；生成矢量用 DeepSeek，`source scripts/providers/deepseek.env`，交给 `scripts/providers/deepseek.py`（两份都只在本仓库，不随 Skill 安装）；Key 只在环境变量 `QINGSHUI_API_KEY`、`DEEPSEEK_API_KEY`。
+- 维护者出样片用青水：在仓库根目录 `source scripts/providers/qingshui.env`，生图、生视频、语音合成交给 `scripts/providers/qingshui.py`（只在本仓库，不随 Skill 安装），Key 只在环境变量 `QINGSHUI_API_KEY`；生成矢量由出片的助手自己写 SVG，不调外部服务。
 - 规矩见仓库根目录 [AGENTS.md](../AGENTS.md) 的「T 类、G 类」，做法见 Skill 的 [materials.md](../skills/ai-coding-video/materials.md)。
 
 ## 写新样片的规矩

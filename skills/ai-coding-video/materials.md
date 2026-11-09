@@ -73,7 +73,7 @@ T 类、G 类按**内容类型**分（用户要做的是哪种视频），同一
 
 - 生图：[Google Gemini API 的图片生成](https://aistudio.google.com/docs/image-generation)
 - 生视频：[火山方舟的 Seedance 视频生成](https://docs.volcengine.com/docs/82379/1520757)
-- 生成矢量：[DeepSeek API](https://api-docs.deepseek.com/)（对话接口，让它只回一段 SVG；关掉深度思考，不然长度用在推理上，回不出图）
+- 生成矢量：不用另配服务，做片的 AI 助手自己照提示词写 SVG；想交给别的语言模型时再配 `AICV_SVG_CMD`
 - 语音合成：[MiniMax 语音合成](https://platform.minimax.cn/docs/api-reference/speech-t2a-http)（带逐字时间，字幕能直接对上）；不想用云端服务的，用 [sound.md](sound.md) 里的本地 Kokoro
 
 ## 声音素材
