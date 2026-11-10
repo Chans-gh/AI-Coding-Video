@@ -426,9 +426,9 @@ def sound_checks(P, names):
     return why
 
 
-def mux(video, wav, dest):
+def mux(video, wav, dest):                    # 不用 -shortest：混音按毫秒取整，比画面短一点点，-shortest 会剪掉视频最后几帧
     subprocess.run([R.ffmpeg(), "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", *AAC, "-shortest", "-map_metadata", "-1", "-fflags", "+bitexact",
+                    "-c:v", "copy", *AAC, "-map_metadata", "-1", "-fflags", "+bitexact",
                     "-flags:a", "+bitexact", "-metadata:s:v:0", "encoder=", "-metadata:s:a:0", "encoder=",
                     "-movflags", "+faststart", str(dest)], check=True)
 

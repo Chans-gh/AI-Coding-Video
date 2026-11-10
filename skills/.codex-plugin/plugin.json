@@ -1,6 +1,6 @@
 {
   "name": "ai-coding-video",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "纯代码逐帧做动画视频的风格库：风格提示词、技术标签、选风格索引、提示词方法、配乐与旁白音色指南。",
   "author": { "name": "Chans" },
   "homepage": "https://github.com/chans-gh/AI-Coding-Video",

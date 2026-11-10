@@ -528,6 +528,11 @@ def check(d):
     if not tf.exists():
         raise Stop("还没有 timing.json：先跑 python3 tools/voice.py <目录>", 2)
     T = json.loads(tf.read_text(encoding="utf-8"))
+    done = {s["seg"]: [it["text"] for it in s["vo"]] for s in T["segments"]}   # 回听比的是配好的句子，先核它们还是不是现在的稿子
+    stale = [f"{seg} 没配「{s}」" for seg, _, sents, _ in segments(sb, sc) for s in sents if s not in done.get(seg, [])]
+    stale += [f"{seg} 多了「{s}」" for seg, _, sents, _ in segments(sb, sc) for s in done.get(seg, []) if s not in sents]
+    if stale:
+        raise Stop("稿子改了还没重配，先跑 python3 tools/voice.py <目录>：\n  " + "\n  ".join(stale), 1)
     lang = (sb.get("brief") or {}).get("lang") or "zh"
     heard_map = sc.get("heard") or {}
     items = [(s["seg"], it) for s in T["segments"] for it in s["vo"]]
