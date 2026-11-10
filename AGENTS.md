@@ -11,11 +11,12 @@
 | `samples/<编号>/` | 样片：C 类是一种风格的渲染代码；T 类、G 类另带 `assets/` 素材和 `assets.json` | 每帧只由时间 t 决定；出 16:9 和 9:16 两版；C 类不引用任何外部图片、视频或生成模型 |
 | `packs/<名字>/` | 2 级风格包 | 维护者通过的风格才做；C 类切换品牌色（`accents`），T、G 类切换别的维度（`switch` + `variants`），素材规矩同 T、G 类样片，每个包合计不超过 10 MB |
 | `cases/<名字>/` | 介绍页「真实应用」模块的 3 支完整视频：分镜、代码、素材清单、制作记录 | 规矩见 [cases/README.md](cases/README.md)；`case.json` 是正本，改了跑 `python3 cases/tools/build.py` 和 `--check`；不受样片素材 10 MB 的限制 |
+| `videos/demo/` | 配音和整片工具的 3 段演示片，用来验收 `samples/tools/voice.py` 这类整片工具；不进 Skill | 只提交分镜、逐字稿和场景代码；配音、`timing.json`、成片不进仓库（`.gitignore`） |
 | `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，本地预览跑 `python3 site/build.py`。生成的页面、字体、媒体不进仓库，发布时在 CI 里生成，见 [site/README.md](site/README.md) |
 | `media.json` | 样片和风格包演示片视频的清单（视频本身在 GitHub Release） | 由 `scripts/media.py` 生成，不手改 |
 | `candidates.md` | T 类、G 类候选及其截图、样片链接 | 正式收录时搬进 Skill 并删掉对应行 |
 | `PLAN.md` | 批次规划和待办 | 做完的批次删掉，记进 Skill 的 CHANGELOG |
-| `SPEC.md` | 两条线的设计稿：阶段 7–9 已做完，剩阶段 10、配音和整片工具（阶段 11–13）和待办（下一轮） | 开发照它做，偏离先改它；做完的部分删掉，全部做完删掉本文件 |
+| `SPEC.md` | 两条线的设计稿：阶段 7–9、11 已做完，剩阶段 10、整片工具（阶段 12、13）和待办（下一轮） | 开发照它做，偏离先改它；做完的部分删掉，全部做完删掉本文件 |
 
 ## 规矩
 
@@ -35,7 +36,7 @@
 - **按内容类型分**，站在用户的角度：他看到或想做的那种视频属于哪一类，就去哪一类找做法。内容类型两类共用，取值在 `skills/ai-coding-video/data/tags.json` 的 `content_types`；C 类仍按风格和题材分。
 - **每个样片标出用到的素材**，3 种、2 种、1 种的组合都要有。T 类：录像（含口播）、录屏、照片、数据（表格、地图、卫星图、点云）、三维模型（CC0 网格和贴图）；G 类：生图（含语言模型写的 SVG）、生视频、语音合成，也可以搭配 T 类的公开素材（如 CC0 三维模型），出处、许可照 T 类记。
 - **T 类只用公共领域素材**（NASA、美国国会图书馆、Wikimedia Commons 上标为公共领域或 CC0 的等），每份记下出处链接和许可。素材里有人物的，照出处原样使用，不另加个人信息。
-- **G 类经服务商接口生成**：样片代码和 Skill 只认 `samples/tools/gen.py` 的四个环境变量（`AICV_IMAGE_CMD`、`AICV_VIDEO_CMD`、`AICV_TTS_CMD`、`AICV_SVG_CMD`），不写死哪一家服务；Skill 里提到青水只在 `sources.md` 的来源说明。维护者出样片用青水：把 `chans-gh/test` 加进会话、克隆到本仓库旁边，再 `source scripts/providers/qingshui.env`，生图、生视频、语音合成交给 `scripts/providers/qingshui.py`，它调青水 Skill 的 `scripts/run.js`、`scripts/api.js`，不把青水的文件复制进本仓库。Key 只用环境变量 `QINGSHUI_API_KEY`，绝不写进代码、日志、提交。生成矢量（SVG 图标、线条图）由出片的助手自己写，不调外部服务。DeepSeek 只作为测试 Skill 的 Harness（装上 Skill 试用），不用在出片里。先用最便宜的模型试，满意再用好的；每个样片几张图、一两段视频即可。不生成真实人物的脸和声音，提示词里不写真实人名和私人信息。
+- **G 类经服务商接口生成**：样片代码和 Skill 只认 `samples/tools/gen.py` 的四个环境变量（`AICV_IMAGE_CMD`、`AICV_VIDEO_CMD`、`AICV_TTS_CMD`、`AICV_SVG_CMD`），不写死哪一家服务；Skill 里提到青水只在 `sources.md` 的来源说明。维护者出样片用青水：把 `Chans-gh/AI-Video-Project`（原名 `chans-gh/test`）加进会话、克隆到本仓库旁边，再 `source scripts/providers/qingshui.env`，生图、生视频、语音合成交给 `scripts/providers/qingshui.py`，它调青水 Skill 的 `scripts/run.js`、`scripts/api.js`，不把青水的文件复制进本仓库。Key 只用环境变量 `QINGSHUI_API_KEY`，绝不写进代码、日志、提交。生成矢量（SVG 图标、线条图）由出片的助手自己写，不调外部服务。DeepSeek 只作为测试 Skill 的 Harness（装上 Skill 试用），不用在出片里。先用最便宜的模型试，满意再用好的；每个样片几张图、一两段视频即可。不生成真实人物的脸和声音，提示词里不写真实人名和私人信息。
 - **素材进仓库**：放在 `samples/<编号>/assets/`，每个样片合计不超过 10 MB；同目录的 `assets.json` 记每份素材的出处链接、许可（G 类记模型名、参数和提示词）。进仓库前脱敏：不留 Key、账号、任务编号、带签名的下载链接和青水返回的原始响应；图片、视频去掉元数据（ffmpeg 加 `-map_metadata -1`，图片用 Pillow 重存）。
 - **声音**：不用 C 类样片的电子音。旁白用语音合成的公开音色，不用克隆音色；配乐和音效用公开曲库里允许再分发的（公共领域、CC0，或 CC BY 并在片尾和样片说明里署名），不用只许在作品里使用、不许单独再分发音频文件的那类许可。每个音频也记进 `assets.json`。
 - **样片规格**：8–15 秒，横竖两版，每个视频不超过 4 MB；仍用 `samples/batch.py` 出片。
@@ -49,4 +50,4 @@
 - 不开子代理；临时脚本不放会话的临时目录，需要反复用的写进仓库。
 - 预览页每批发一次；`main` 每批推一次（改了 `site/`、`skills/`、`samples/`、`packs/`、`media.json` 的推送会自动重新发布介绍页）。
 - 分支：每次从最新的 `main` 开一个新分支干活，做完合并回 `main`，不留长期分支（维护者定）。Skill 的 `CHANGELOG.md` 在 `.gitattributes` 里设了 `merge=union`，并行的分支各在表头下加一行，合并时两行都保留；合并后看一眼顺序。
-- 原仓库 `chans-gh/test` 平时用不到（opus40 的 40 种场景已全部移植），同步回原仓库时再临时加进来。
+- 原仓库 `Chans-gh/AI-Video-Project`（原名 `chans-gh/test`）平时用不到（opus40 的 40 种场景已全部移植），同步回原仓库时再临时加进来。

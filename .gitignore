@@ -9,3 +9,8 @@ packs/*/demo/*.mp4
 cases/*/out/
 cases/*/assets/dl/
 cases/*/media/
+# 配音和整片工具的演示片：只进分镜、逐字稿和代码；配音、timing.json、典型样片和成片不进
+videos/*/vo/
+videos/*/timing.json
+videos/*/typical/
+videos/*/out/

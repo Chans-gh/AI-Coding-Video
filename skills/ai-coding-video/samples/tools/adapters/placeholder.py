@@ -4,7 +4,7 @@
     python3 tools/gen.py try image
 
 生图：按 params.aspectRatio 出一张渐变色图（长边 1280）；生视频：参考图（没有就是渐变图）缓慢推近，长度取 params.duration（默认 5 秒）；
-语音合成：静音，时长按字数估（每字 0.22 秒），字幕按句子、按字数分时间；生成矢量：两个同心圆。写自己的适配命令时照这个文件的输入输出来，约定见 tools/gen.py 开头。
+语音合成：每个字一声轻哼、标点处停顿（见 hum），字幕一句一行、带逐字时间；生成矢量：两个同心圆。写自己的适配命令时照这个文件的输入输出来，约定见 tools/gen.py 开头。
 """
 import hashlib
 import json
@@ -47,6 +47,35 @@ def gradient(job, path):
     return path
 
 
+def hum(job, path, sr=24000):
+    """语音合成的占位：每个字一声 0.2 秒的轻哼，逗号停 0.25 秒、句号停 0.5 秒，字幕一句一行、带逐字时间。
+    有声、有停顿、有逐字时间，配音工具的切句和切点检查能照真的跑"""
+    import numpy as np
+    from scipy.io import wavfile
+    speed = float(job.get("params", {}).get("speed") or 1)
+    text = job["text"]
+    parts = [s for s in re.findall(r"[^。！？.!?]+[。！？.!?]?", text) if s.strip()]
+    one, buf, subs, t, pos = .2 / speed, [np.zeros(int(.3 * sr))], [], .3, 0
+    for s in parts:
+        line, words = {"text": s, "t0": round(t, 3)}, []
+        for k, ch in enumerate(s):
+            if re.match(r"[\s，、；：,;:]", ch):
+                buf.append(np.zeros(int(.25 * sr))); t += .25
+            elif re.match(r"[。！？.!?…“”\"'（）()]", ch):
+                continue
+            else:
+                n = int(one * sr)
+                f = 180 + (hashlib.sha1(ch.encode()).digest()[0] % 60)
+                x = np.sin(2 * np.pi * f * np.arange(n) / sr) * np.hanning(n) * .3
+                buf.append(x); words.append({"t0": round(t, 3), "t1": round(t + one, 3), "begin": k, "end": k + 1})
+                buf.append(np.zeros(int(.03 * sr))); t += one + .03
+        line["t1"], line["words"] = round(t, 3), words
+        subs.append(line)
+        buf.append(np.zeros(int(.5 * sr))); t += .5
+    wavfile.write(path, sr, (np.concatenate(buf) * 32767).astype(np.int16))
+    return path, subs
+
+
 def main():
     job = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     out = Path(sys.argv[2])
@@ -64,17 +93,7 @@ def main():
                         "-c:v", "libx264", str(dest)], check=True)
         print(json.dumps({"file": str(dest)}))
     elif kind == "tts":
-        text = job["text"]
-        parts = [s for s in re.findall(r"[^。！？.!?]+[。！？.!?]?", text) if s.strip()]
-        dur = round(max(1.0, len(re.sub(r"\s", "", text)) * 0.22), 3)
-        dest = out / f"{jid}.mp3"
-        subprocess.run([ffmpeg(), "-y", "-loglevel", "error", "-f", "lavfi", "-i", "anullsrc=r=32000:cl=mono",
-                        "-t", str(dur), "-c:a", "libmp3lame", "-q:a", "6", str(dest)], check=True)
-        subs, t, total = [], 0.0, sum(len(s) for s in parts) or 1
-        for s in parts:
-            d = dur * len(s) / total
-            subs.append({"text": s, "t0": round(t, 3), "t1": round(t + d, 3)})
-            t += d
+        dest, subs = hum(job, out / f"{jid}.wav")
         sj = out / f"{jid}.subs.json"
         sj.write_text(json.dumps(subs, ensure_ascii=False, indent=1), encoding="utf-8")
         print(json.dumps({"file": str(dest), "subtitles": str(sj)}))

@@ -3,7 +3,7 @@
  "ar": "16:9", "status": "草稿",
  "unify": {"pack": null, "palette": "从品牌色 #2F6FEB 推", "fonts": "思源黑体粗、细两档",
            "subs": "底部安全区内，白字带深色描边", "trans": "横推、溶解", "music": "轻快的电子铺底，数字出现时一声提示音",
-           "voice": "语音合成的公开音色，男声，聊天语气"},
+           "voice": {"model": "kokoro-v1.1-zh", "voice": "zm_010", "speed": 0.95}},
  "segments": [
   {"seg": "P1", "title": "冷开场", "content": "锅里的水开了，面却煮不熟", "sec": 8, "lead": "T", "typical": true,
    "uses": [{"what": "锅里沸水的录像", "class": "T", "materials": ["录像"]},

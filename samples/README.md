@@ -23,6 +23,9 @@
 | `tools/assets.py` | T 类、G 类的素材：下载、录屏、生成、统一处理、去元数据 |
 | `tools/gen.py` | 生图、生视频、语音合成、生成矢量的服务商接口：每类各由一个环境变量指定适配命令，约定写在文件开头 |
 | `tools/adapters/placeholder.py` | 不调任何服务的占位适配命令，用来先跑通流程 |
+| `tools/adapters/kokoro.py` | 本地语音合成的适配命令：sherpa-onnx 跑 Kokoro v1.1-zh，不花钱 |
+| `tools/voice.py` | 完整出片的配音：合成、切句、排段长（写 `timing.json`）、回听；用法见 Skill 的 `sound.md`「完整出片的配音流程」 |
+| `tools/heavy.py` | 重任务排队：回听、渲染一次只跑一个 |
 
 ## 怎么出片
 

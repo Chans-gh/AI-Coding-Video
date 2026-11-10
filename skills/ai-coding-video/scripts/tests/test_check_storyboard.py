@@ -165,6 +165,31 @@ class CheckStoryboard(unittest.TestCase):
         self.assertFails(bad, 'confirm 写「待用户确认」或「用户确认」')
 
 
+    # ---------- 配音工具读的字段 ----------
+    def test_voice_old_string(self):
+        def old(sb, sc):
+            sb['unify']['voice'] = '语音合成的公开音色，男声'
+        code, out = self.run_check(self.project(edit=old))
+        self.assertEqual(code, 0, out)
+        self.assertIn('unify.voice 还是一句话', out)
+
+    def test_voice_object_bad(self):
+        def bad(sb, sc):
+            sb['unify']['voice'] = {'model': 'kokoro-v1.1-zh', 'speed': 3}
+        out = self.assertFails(bad, 'unify.voice 缺 voice')
+        self.assertIn('unify.voice.speed 写 0.5–2', out)
+
+    def test_heard(self):
+        def ok(sb, sc):
+            sc['heard'] = {'氢键': ['清箭', '轻剑']}
+        code, out = self.run_check(self.project(edit=ok))
+        self.assertEqual(code, 0, out)
+        self.assertFails(lambda sb, sc: sc.update(heard={'氢键': '清箭'}), '逐字稿的 heard 写')
+
+    def test_table_voice(self):
+        code, out = self.run_check(self.project(), '--table')
+        self.assertIn('旁白音色：zm_010（kokoro-v1.1-zh，语速 0.95）', out)
+
 class CheckPlanCallsCommon(unittest.TestCase):
     """接策划时 check_plan.py 调通用检查"""
     def setUp(self):

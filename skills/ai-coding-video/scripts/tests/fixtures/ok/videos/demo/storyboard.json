@@ -1,7 +1,7 @@
 {"plan": "plans/demo/plan.md", "ar": "9:16", "status": "草稿",
  "unify": {"pack": null, "palette": "科普扁平：奶白底、深蓝字、一个橙色强调", "fonts": "思源黑体粗、细两档",
            "subs": "底部安全区内，白底深蓝字", "trans": "横推", "music": "轻快的电子铺底，数字出现时一声提示音",
-           "voice": "语音合成的公开音色，女声，讲解语气"},
+           "voice": {"model": "kokoro-v1.1-zh", "voice": "zf_083", "speed": 1.0}},
  "segments": [
   {"seg": "P1", "title": "100 度", "content": "一个标准大气压下，水在 100 °C 沸腾", "sec": 8, "lead": "C", "typical": true,
    "uses": [{"what": "大字温度计", "ref": "C-038"}], "note": "测试夹具"},

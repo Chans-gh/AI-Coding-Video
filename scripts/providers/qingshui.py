@@ -3,8 +3,8 @@
     source scripts/providers/qingshui.env          # 三类都指向本文件
     python3 samples/tools/gen.py                   # 看三类是否都配好
 
-青水的 Skill 在 chans-gh/test 的 .claude/skills/qingshui/：生图、生视频走它的 scripts/run.js，语音走 scripts/api.js audio。
-位置用环境变量 QINGSHUI_SKILL 指定，默认是和本仓库并排的 ../test/.claude/skills/qingshui。
+青水的 Skill 在 Chans-gh/AI-Video-Project（原名 chans-gh/test）的 .claude/skills/qingshui/：生图、生视频走它的 scripts/run.js，语音走 scripts/api.js audio。
+位置用环境变量 QINGSHUI_SKILL 指定，默认是和本仓库并排的 ../AI-Video-Project/.claude/skills/qingshui（旧的 ../test/ 也认）。
 Key 只由青水的脚本从环境变量 QINGSHUI_API_KEY 读，本文件只查有没有，不读出来、不打印。
 青水的输出含任务编号和带签名的下载链接：只进 gen.py 写的 out/gen/ 日志（不进仓库）。
 """
@@ -20,7 +20,9 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-QS = Path(os.environ.get("QINGSHUI_SKILL") or ROOT.parent / "test" / ".claude" / "skills" / "qingshui")
+QS = Path(os.environ.get("QINGSHUI_SKILL") or next(
+    (p for p in (ROOT.parent / n / ".claude" / "skills" / "qingshui" for n in ("AI-Video-Project", "test")) if p.is_dir()),
+    ROOT.parent / "AI-Video-Project" / ".claude" / "skills" / "qingshui"))
 UA = "AI-Coding-Video-sample-builder/0.1 (https://github.com/Chans-gh/AI-Coding-Video)"
 
 
@@ -28,7 +30,7 @@ def check():
     if not os.environ.get("QINGSHUI_API_KEY"):
         sys.exit("缺环境变量 QINGSHUI_API_KEY")
     if not (QS / "scripts" / "run.js").exists():
-        sys.exit(f"找不到青水 Skill：{QS}（把 chans-gh/test 克隆到本仓库旁边，或设 QINGSHUI_SKILL）")
+        sys.exit(f"找不到青水 Skill：{QS}（把 Chans-gh/AI-Video-Project 克隆到本仓库旁边，或设 QINGSHUI_SKILL）")
 
 
 def fetch(url, dest):

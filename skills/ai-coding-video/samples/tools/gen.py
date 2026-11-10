@@ -11,7 +11,8 @@
 
 适配命令的约定：在命令后面加两个参数 <任务.json> <输出目录> 运行，工作目录是 samples/（tools/ 的上一级）。
   任务.json：{"type": "image" | "video" | "tts" | "svg", "id": 文件名（不含扩展名）, "model", "params": {…},
-             生图、生视频另有 "prompt"、"refs": [参考图或首帧的绝对路径]；语音另有 "text"、"voice"；
+             生图、生视频另有 "prompt"、"refs": [参考图或首帧的绝对路径]；语音另有 "text"、"voice"，可选 "sentences"（text 按句拆开的数组，
+             适配命令能一句一次合成的可以照它拆，再拼成一个文件、字幕一句一行）；
              生成矢量另有 "prompt"，交给语言模型写一份 SVG 代码（图标、插画、路径动画用的线稿）}
   成功：把文件写进输出目录，退出码 0，标准输出最后一行打 JSON {"file": 文件路径}；
         语音可以再带 "subtitles": 字幕 JSON 的路径，格式是
@@ -61,8 +62,9 @@ def usage(sid, file, kind, model):
                             "at": time.strftime("%Y-%m-%d %H:%M")}, ensure_ascii=False) + "\n")
 
 
-def generate(kind, sid, jid, job):
-    """交给适配命令生成一份素材。返回 (文件, 字幕 JSON 路径或 None)；没配置返回 None；生成失败抛 RuntimeError"""
+def generate(kind, sid, jid, job, work=None, logdir=None):
+    """交给适配命令生成一份素材。返回 (文件, 字幕 JSON 路径或 None)；没配置返回 None；生成失败抛 RuntimeError。
+    work：放任务和返回文件的目录（默认 out/gen/<sid>/，并记进 out/gen/usage.jsonl）；logdir：放日志的目录（默认同 work）"""
     if missing(kind):
         return None
     _, env = KINDS[kind]
@@ -71,18 +73,20 @@ def generate(kind, sid, jid, job):
         job["model"] = os.environ[env + "_MODEL"]
     if kind == "tts" and os.environ.get("AICV_TTS_VOICE"):
         job["voice"] = os.environ["AICV_TTS_VOICE"]
-    work = GEN_OUT / sid
-    out = work / jid
+    if work is None:
+        work = GEN_OUT / sid
+        usage(sid, jid, kind, job.get("model", ""))
+    out = Path(work) / jid
     out.mkdir(parents=True, exist_ok=True)
-    jf = work / f"{jid}.json"
+    jf = Path(work) / f"{jid}.json"
     jf.write_text(json.dumps(job, ensure_ascii=False, indent=1), encoding="utf-8")
-    usage(sid, jid, kind, job.get("model", ""))
-    log = work / f"{jid}.log"
+    log = Path(logdir or work) / f"{jid}.log"
+    log.parent.mkdir(parents=True, exist_ok=True)
     with open(log, "w", encoding="utf-8") as f:
         r = subprocess.run(shlex.split(command(kind)) + [str(jf), str(out)], cwd=SAMPLES,
                            stdout=subprocess.PIPE, stderr=f, text=True)
         f.write(r.stdout)
-    rel = log.relative_to(SAMPLES)
+    rel = log.relative_to(SAMPLES) if log.is_relative_to(SAMPLES) else log
     if r.returncode:
         raise RuntimeError(f"{KINDS[kind][0]}失败，看 {rel} 的结尾")
     try:

@@ -1,0 +1,13 @@
+{"brief": {"for": "第一次用本 Skill 出完整片子的人", "gain": "知道配音和整片工具各做什么", "line": "写好稿子，剩下的交给工具",
+           "sec": 30, "lang": "zh", "voice": true, "must": [], "avoid": []},
+ "ar": "16:9", "status": "用户确认",
+ "unify": {"pack": null, "palette": "深底 #101418，品牌色 #2F6FEB，强调 #F2B33D", "fonts": "Noto Sans SC 700/400",
+           "subs": "底部居中白字，安全区内", "trans": "淡入淡出", "music": "synth.py 的轻电子铺底，说话时压低",
+           "voice": {"model": "kokoro-v1.1-zh", "voice": "zf_083", "speed": 1.0}},
+ "segments": [
+  {"seg": "P1", "title": "片头", "content": "说明这是一支演示片、拿来验收什么", "sec": 8, "lead": "C",
+   "uses": [{"what": "标题一个字一个字亮起", "class": "C"}], "note": "旁白驱动：标题随第一句亮起，第二句时副标题滑入；背景缓慢流动的网格，淡出接下一段。"},
+  {"seg": "P2", "title": "配音", "content": "逐字稿一句一项、按段合成再切回每句、改一句只重配一句", "sec": 12, "lead": "C", "typical": true,
+   "uses": [{"what": "三张卡片随旁白逐张翻出", "ref": "C-044"}], "note": "旁白驱动：每句开始时翻出一张卡，卡上的字和字幕同时出；淡入淡出接前后段。"},
+  {"seg": "P3", "title": "整片", "content": "分段渲染、接片、自检", "sec": 10, "lead": "C",
+   "uses": [{"what": "进度条分三格填满，最后打勾", "class": "C"}], "note": "旁白驱动：每句填一格，最后一句打勾；收尾淡出到黑。"}]}

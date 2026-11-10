@@ -101,7 +101,35 @@ def check_head(sb, lib):
         errs.append('brief.voice 是 true，unify.voice 要写旁白音色')
     if voice is False and u.get('voice'):
         notes.append('brief.voice 是 false（无旁白），unify.voice 写 null')
-    return errs, notes
+    e, n = check_voice(u.get('voice'))
+    return errs + e, notes + n
+
+
+def check_voice(v):
+    """unify.voice：对象 {model, voice, speed}，配音工具 voice.py 读它；旧的一句话写法只提醒"""
+    if v is None:
+        return [], []
+    if isinstance(v, str):
+        return [], [f'unify.voice 还是一句话（{v[:20]}）：改成 {{"model": …, "voice": …, "speed": …}}，配音工具读它']
+    if not isinstance(v, dict):
+        return [f'unify.voice 写对象 {{"model", "voice", "speed"}}，无旁白写 null，现在是 {v!r}'], []
+    errs = [f'unify.voice 缺 {k}' for k in ('model', 'voice') if not isinstance(v.get(k), str) or not v.get(k)]
+    sp = v.get('speed', 1)
+    if isinstance(sp, bool) or not isinstance(sp, (int, float)) or not 0.5 <= sp <= 2:
+        errs.append(f'unify.voice.speed 写 0.5–2 的数（默认 1），现在是 {sp!r}')
+    extra = sorted(set(v) - {'model', 'voice', 'speed'})
+    return errs, ([f'unify.voice 只认 model、voice、speed，{"、".join(extra)} 不读'] if extra else [])
+
+
+def check_heard(sc):
+    """script.json 顶层的 heard：{"稿子里的词": ["识别器听成的", …]}，只影响回听"""
+    h = sc.get('heard')
+    if h is None:
+        return []
+    if not isinstance(h, dict) or not all(isinstance(k, str) and k and isinstance(x, list) and x and
+                                          all(isinstance(y, str) and y for y in x) for k, x in h.items()):
+        return ['逐字稿的 heard 写 {"稿子里的词": ["听成的", …]}']
+    return []
 
 
 def check_segments(sb, lib, has_plan):
@@ -252,6 +280,7 @@ def check(sb, sc=None, ready=False, lib=None):
         if sb.get('plan') != sc.get('plan'):
             errs.append(f'逐字稿的 "plan" 要和分镜一样（{sb.get("plan")!r}），现在是 {sc.get("plan")!r}')
         errs += check_align(sb, sc)
+        errs += check_heard(sc)
         e, n = check_facts(sc, has_plan)
         errs += e
         notes += n
@@ -291,7 +320,12 @@ def table(sb, sc=None, lib=None):
     u = sb.get('unify') or {}
     names = {'pack': '风格包', 'palette': '色板', 'fonts': '字体', 'subs': '字幕', 'trans': '转场', 'music': '配乐',
              'voice': '旁白音色'}
-    out += ['', '全片统一：'] + [f'- {names[k]}：{u[k] if u[k] is not None else "无"}' for k in names if k in u]
+    def val(k):
+        x = u[k]
+        if k == 'voice' and isinstance(x, dict):
+            return f'{x.get("voice")}（{x.get("model")}，语速 {x.get("speed", 1)}）'
+        return x if x is not None else '无'
+    out += ['', '全片统一：'] + [f'- {names[k]}：{val(k)}' for k in names if k in u]
     if sc is not None:
         pend = [(s.get('seg'), f.get('what')) for s in sc.get('segments', []) for f in s.get('facts', [])
                 if f.get('confirm') == PENDING]

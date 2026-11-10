@@ -2,7 +2,7 @@
 
 [← 返回说明](README.md) · [批次规划](PLAN.md)
 
-阶段 7–10 的设计稿，2026-11-09 和维护者对齐；第 9 节配音和整片工具（阶段 11–13）2026-11-10 和维护者对齐。阶段 7–9 已做完、落进 Skill，剩下阶段 10–13 和第 10 节的待办。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
+阶段 7–10 的设计稿，2026-11-09 和维护者对齐；第 9 节配音和整片工具（阶段 11–13）2026-11-10 和维护者对齐。阶段 7–9、11 已做完、落进 Skill，剩下阶段 10、12、13 和第 10 节的待办。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
 
 ## 1 为什么改
 
@@ -89,9 +89,6 @@
 |---|---|---|
 | `making.md` | 2 级换新规格 | 10 |
 | `AGENTS.md` | 风格包体积 | 10 |
-| `samples/tools/voice.py`、`samples/tools/heavy.py`、`samples/tools/adapters/kokoro.py`（新） | 配音、回听、重任务排队、本地 Kokoro | 11 |
-| `sound.md`、`film.md`、`materials.md`、`scripts/check_storyboard.py` | 配音流程改成用工具；`unify.voice` 改成对象，`script.json` 加 `heard` | 11 |
-| `AGENTS.md`、`scripts/providers/qingshui.py` | 原仓库改名：`chans-gh/test` → `Chans-gh/AI-Video-Project`，青水 Skill 的默认位置跟着改 | 11 |
 | `samples/tools/film.py`（新）、`samples/player.html`、`samples/API.md` | 整片：分段渲染、检查、接片、混音、自检；播放器能载入用户项目的段 | 12 |
 | `making.md`「整片」、`film.md` 第 5、6 步 | 改成怎么用工具，删掉「本 Skill 还没有整片工具」 | 12 |
 | `cases/tools/` | 改成调 Skill 的工具，只留案例专用的部分 | 13 |
@@ -129,22 +126,7 @@ videos/<短名>/                    用户项目里，命令的唯一输入
 
 `vo/` 和 `timing.json` 留在用户项目里（建议提交）：同样的文字每次合成时长会差几个百分点，靠缓存保证重跑不变、不重复花钱。
 
-### 9.3 配音：`tools/voice.py`
-
-```bash
-python3 tools/voice.py ../videos/<短名> --dry-run   # 要请求几次、多少字；不请求
-python3 tools/voice.py ../videos/<短名>             # 合成缺的句子、切句、写 timing.json
-python3 tools/voice.py ../videos/<短名> --check     # 回听：逐句识别，和稿子比读音
-```
-
-- **怎么配**：只走 `AICV_TTS_CMD`（`gen.py` 的约定不变）。云端服务是默认；本地用随 Skill 带的 `tools/adapters/kokoro.py`（sherpa-onnx 跑 Kokoro v1.1-zh，首次用时下载模型，不装 torch），把 `AICV_TTS_CMD` 指向它即可。两条路一个接口，下游不分两套。`sound.md` 的音色名（`zf_083`）和 sherpa 版的音色编号怎么对应，阶段 11 先核。
-- **音色记在哪**：`unify.voice` 改成对象 `{"model", "voice", "speed"}`，全片一个；无旁白写 `null`。旧的一句话写法 `check_storyboard.py` 仍能读，只提醒。不另做声音卡：一个项目一个音色，卡里的三项就写在这里。
-- **合成按段、存按句**：一段分镜请求一次（整段的 `vo` 连起来念，语气连贯，按次计费的服务也省），按返回的逐字时间切回每句，存成一句一个文件。改了一句，只把改的句子合成一次（句子池：先在 `vo/cache/` 里找同音色、同语速、同文字的旧句子复用）；换音色或语速则全部重做。服务不返回逐字时间的，按句数在静音里切，切不准就退回一句一次请求。本地 Kokoro 不花钱，直接一句一次。
-- **切句**：句界放在两句之间真实的停顿里：从时间戳往后找声音真正停下的地方（时间戳常偏早），下一句从停顿结束处开始；找不到够静的停顿时，在最静处切，不切在字中间。切完查每句首尾 30 毫秒，高于 −45 dB 就报错（`cases/tools/timing.py` 的检查）。
-- **请求前先预估**：打印要请求几次、多少字。超过 `--max-chars`（默认 3000）或 `--max-requests`（默认 20）的不加 `--yes` 就停，退出码 2。每次真实请求在 `vo/usage.jsonl` 记一行（时间、段号、字数、时长），不记任务编号和链接。
-- **排段长**：照 `script.json` 的 `pace`（`film.md`「逐字稿」）算每句的 `at` 和段长，段长取整帧。`timing.json`：`{"fps", "voice", "segments": [{"seg", "dur", "vo": [{"file", "at", "t", "text", "show", "chars": [{"i", "j", "s", "d"}]}]}]}`，`chars` 是逐字时间（`text[i:j]` 在本段第 `s` 秒起、念 `d` 秒；没有逐字时间的不写），字幕、`TL.word` 一类的取时都从这里读。算出的段长和分镜 `sec` 差 20% 以上的打提醒。
-- **回听**：逐句离线识别，和稿子都转成无声调拼音再比（同音字不算错，数字两种写法都试）。两个以上字母的英文词只查那里听到了东西，列出来请人听；只因一个字挪到相邻句的单独报「跨句挪字」（是切句问题，不是读音）。识别器总听错的词写在 `script.json` 顶层的 `heard`（`{"稿子里的词": ["听成的", …]}`），只影响回听。中文用 SenseVoice（sherpa-onnx，约 230 MB），其他语言用 faster-whisper。最后一行「0 句不一致」才算过；不一致的人再听，确实念错的改稿子里的念法、只重做那一句。
-- **重任务排队**：回听、渲染都经 `tools/heavy.py` 加锁，同一台机器上第二个打印「排队」后等前一个跑完（4 核、15 GB 的容器同时跑会被杀）。
+9.3 配音（`tools/voice.py`、`tools/heavy.py`、`tools/adapters/kokoro.py`）已落进 Skill（阶段 11）：用法以 [sound.md「完整出片的配音流程」](skills/ai-coding-video/sound.md#完整出片的配音流程) 为准，`timing.json` 的格式见 [film.md](skills/ai-coding-video/film.md)。
 
 ### 9.4 整片：`tools/film.py`
 
@@ -185,7 +167,6 @@ python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音�
 | 阶段 | 做什么 | 验收 |
 |---|---|---|
 | 10 | 风格包新规格写进 `making.md`（只写规格，不升级现有的包） | `making.md` 的 2 级和第 5 节一致；`AGENTS.md` 的体积上限跟着改 |
-| 11 | 配音（9.3）：`voice.py`、Kokoro 适配命令、回听、`heavy.py`；`sound.md`、`film.md`、`materials.md` 改成用工具，`check_storyboard.py` 认 `unify.voice` 对象和 `heard`；原仓库改名的引用跟着改 | 新建一支 3 段的演示片 `videos/demo/`（不进 Skill），用占位适配命令、Kokoro 各配一遍：`timing.json` 齐，切点检查不报错；改一句只重配那一句（`usage.jsonl` 只多一行）；Kokoro 那遍回听「0 句不一致」；`--dry-run` 不请求；生成服务只在维护者同意后试一次 |
 | 12 | 整片（9.4）：`film.py`、播放器载入用户项目的段、`API.md`；`making.md`「整片」和 `film.md` 第 5、6 步改成用工具 | 在 `videos/demo/` 上从配音跑到 `out/`：典型样片、整片都出；响度 −14 ± 1 LUFS、真峰值 ≤ −1 dBTP；没有 0.05 秒以上的黑段；只改一段时只重渲那一段；照 `making.md` 把 `samples/` 拷到一个空目录，不靠本仓库的目录结构跑通 |
 | 13 | `cases/tools/` 改成调 Skill 的工具（9.5） | `news-artemis` 不重配旁白重出：每段段长和现在差不到一帧，句子切点差不到 0.05 秒，回听不比现在差；`cases/tools/build.py --check` 通过 |
 
