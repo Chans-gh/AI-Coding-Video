@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-10 | 同步回 AI-Video-Project：那边的 `video-styles/` 换成本 Skill 0.15.2（[PR #95](https://github.com/Chans-gh/AI-Video-Project/pull/95)），只用风格演示，备注在那边的 `LOCAL.md`；PLAN「暂缓」、SPEC 9.6 删掉这一条。只整理，版本号不变 |
 | 2026-11-10 | 0.15.2：风格样片 `samples/render.py` 合音轨也不用 `-shortest`（同 0.15.1 的整片）。`README.md`「新增一种风格」第 2 步删掉 `mark.py` 自动写的那几行示例，只写说明；本表两条案例链接改成 GitHub 链接，Skill 单独装进别的项目也能点开 |
 | 2026-11-10 | 0.15.1：`tools/voice.py --check` 先核 `timing.json` 里配好的句子和 `script.json` 的稿子一致，稿子改了还没重配就停下、列出哪几句（原来照旧比老句子，会报「0 句不一致」）。`sound.md` 回听一步跟着改。`tools/film.py` 合成音轨时不再用 `-shortest`（混音按毫秒取整、比画面短一点点时，会剪掉视频最后几帧，整片自检报总时长不等） |
 | 2026-11-10 | 0.15.0：阶段 13，本仓库的案例改用 Skill 的出片工具。`tools/voice.py` 加 `--import 整稿 --subs 字幕`：已有的整稿录音当成一次覆盖全部段的请求读进缓存、切回每句，不重配；字幕可以是屏幕上的写法。切句找停顿改按每 5 毫秒的峰值电平（原来按 10 毫秒的均方根，句尾轻的余音会被切掉）。段代码多一个全局 `TIMING`（整片的 `timing.json`），读了它的段别的段长变了也重渲。`sound.md` 配音流程、`film.md`「时间」跟着改。`cases/tools/` 的 `timing.py`、`player.html` 删掉，`render.py` 改成调 `voice.py`、`film.py`，只留每段起止回写 `case.json`、原版体积、中版、封面、附带短片；SPEC 第 9 节、PLAN 删掉阶段 13 |

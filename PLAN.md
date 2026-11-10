@@ -131,4 +131,3 @@
 
 - 1 级其余的样片（批次 4 没点到的），以及整套视频框架和外部程序里除 Remotion 以外的（Manim、HyperFrames、Blender 等）：太重，等维护者再点（维护者定）。
 - 风格包扩充：等 1 级样片覆盖完后，维护者再从中点几种，按 Skill 的 [making.md](skills/ai-coding-video/making.md) 做（维护者定）。
-- 同步回原仓库（`Chans-gh/AI-Video-Project` 的 `.claude/skills/video-styles` 换成本仓库版本，并更新那边的 3 处引用），等本仓库完全建好再做。

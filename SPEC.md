@@ -131,7 +131,6 @@ videos/<短名>/                    用户项目里，命令的唯一输入
 
 ### 9.6 反过来给 AI-Video-Project 的（只记下来，这一轮不动那边）
 
-- 它的 `.claude/skills/video-styles/` 是本 Skill 的旧版，可以换成新版。
 - 本仓库的切点检查（切点首尾高于 −45 dB 就报错）可以补进它的 `chansclaude-voice/scripts/tts.py`。
 - 它的 `video-render/README.md` 准备合并两套渲染器时，可以参考本仓库阶段 12 的 `film.py`（段缓存简单版、整片自检）。
 
