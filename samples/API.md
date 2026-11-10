@@ -7,6 +7,7 @@
 要用库就写 `libs: ['gsap']`（可选 `gsap` `p5` `p5.brush` `rough` `d3`，见 `player.html` 的 `LIBS`），播放器从本地 `node_modules` 载入，不联网；
 SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×H 的 div）里；`init`、`draw` 可以是 `async`，播放器等它画完再截图。
 声音文件的写法：`score(m)` 里用 `m.put(声音, 秒, 音量, 声像)`；`m.dur` 是时长，`m.rng` 是固定种子的随机数。
+完整出片的段（`videos/<短名>/segments/<段号>.js`）写法同场景，不写 `dur`：段长取 `SEG.dur`，每句的时刻用 `say`、`subAt` 读；整片的 `sound.py` 写 `score(m, T)`，`T` 见 `tools/film.py` 开头。
 
 ## lib.js（场景里直接用，全局可见）
 - `AR` — 画幅：'16x9' 或 '9x16'
@@ -91,6 +92,14 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `cueTime(A, kw, fallback = Infinity)` — 旁白说到关键词 kw 的时刻（秒）：在字幕行里找，按字数在这一行的起止之间线性估计；找不到返回 fallback（默认 Infinity）
 - `caption(ctx, text, o = {})` — 字幕条：文字居中，按 maxW 折行，画在 y（底边）上方；o：{size, font, color, bg 底色（null 不画底）, stroke 描边色, maxW, y, align}；返回字幕块高度
 - `credits(A)` — 素材出处：assets.json 里每份素材的 credit 拼成一行（片尾、角落的小字署名用）
+
+**完整出片的段（player.html?p=<项目>&seg=<段号>：段长和每句的时间从 timing.json 读进 SEG）**
+
+- `SEG` — 本段的时间 {seg, dur, vo: [{file, at, t, text, show, chars}]}（格式见 Skill 的 film.md「时间」）；样片里是 null
+- `say(i)` — 第 i 句的起止（秒，本段时间）：{t0, t1, text 念的, show 字幕写法}；没有这句返回 null
+- `sayingAt(t, hold = 0)` — t 时刻正在说第几句（没在说返回 -1）；hold 秒内的句间空隙算上一句
+- `sayP(i, t)` — 第 i 句到 t 时刻念到第几个字（按 chars 的逐字时间；没有逐字时间的按句长均分），返回 0–1 的进度
+- `subAt(t, hold = .35)` — t 时刻的字幕（show 写法）：说完后留 hold 秒，下一句开始就换；没有返回 null
 - `S` — 场景列表（播放器读 S[0]）
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 

@@ -2,7 +2,7 @@
 
 [← 返回说明](README.md) · [批次规划](PLAN.md)
 
-阶段 7–10 的设计稿，2026-11-09 和维护者对齐；第 9 节配音和整片工具（阶段 11–13）2026-11-10 和维护者对齐。阶段 7–9、11 已做完、落进 Skill，剩下阶段 10、12、13 和第 10 节的待办。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
+阶段 7–10 的设计稿，2026-11-09 和维护者对齐；第 9 节配音和整片工具（阶段 11–13）2026-11-10 和维护者对齐。阶段 7–9、11、12 已做完、落进 Skill，剩下阶段 10、13 和第 10 节的待办。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
 
 ## 1 为什么改
 
@@ -89,8 +89,6 @@
 |---|---|---|
 | `making.md` | 2 级换新规格 | 10 |
 | `AGENTS.md` | 风格包体积 | 10 |
-| `samples/tools/film.py`（新）、`samples/player.html`、`samples/API.md` | 整片：分段渲染、检查、接片、混音、自检；播放器能载入用户项目的段 | 12 |
-| `making.md`「整片」、`film.md` 第 5、6 步 | 改成怎么用工具，删掉「本 Skill 还没有整片工具」 | 12 |
 | `cases/tools/` | 改成调 Skill 的工具，只留案例专用的部分 | 13 |
 
 
@@ -128,23 +126,7 @@ videos/<短名>/                    用户项目里，命令的唯一输入
 
 9.3 配音（`tools/voice.py`、`tools/heavy.py`、`tools/adapters/kokoro.py`）已落进 Skill（阶段 11）：用法以 [sound.md「完整出片的配音流程」](skills/ai-coding-video/sound.md#完整出片的配音流程) 为准，`timing.json` 的格式见 [film.md](skills/ai-coding-video/film.md)。
 
-### 9.4 整片：`tools/film.py`
-
-```bash
-python3 tools/film.py ../videos/<短名> P2 --quick     # 改代码时：本段每 2 秒半分辨率抽一帧，检查，出总览图
-python3 tools/film.py ../videos/<短名> --typical      # 第 5 步：typical 标的段各出一支带声音的典型样片到 typical/
-python3 tools/film.py ../videos/<短名> all -j 2       # 第 6 步：各段整帧渲染（无声）到 out/seg/，逐段检查
-python3 tools/film.py ../videos/<短名> --join         # 接片、混音、整片自检，出成片和报告
-python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音到 out/mix.wav，试听
-```
-
-- **分段渲染**：一段分镜一个场景，播放器载入 `segments/<段号>.js`，段的时间（`T.seg`：段长、每句起止、逐字时间）从 `timing.json` 传进去；画幅取分镜的 `ar`。段长取整帧，接片时直接拼、不重新编码。
-- **没变的段不重渲**：段代码、`lib/`、播放器、本段的 `timing.json` 条目、`assets.json` 算一个哈希，存在 `out/seg/<段号>.json`；一样就跳过，`--force` 全部重渲。不做抽查帧和远端缓存。
-- **单段检查**（任一项不过打 ✗）：脚本报错、黑屏或白屏、画面不动（同 `batch.py`）、静音、削波、段长 10–60 秒；可选 `--max-mb` 查体积。另查「每句有没有画面事件」：一句话的时间里画面主区一块都没变的列出来，只作提醒（`review_video.py events` 的做法）。
-- **混音**：整片一条时间轴，一次混好：旁白照 `timing.json` 摆；配乐、音效由 `sound.py` 写（C 类配乐用 `synth.py`，T、G 类用 `assets.json` 里允许再分发的曲子），跨段连续；说话时配乐压低约 9 dB，起落有包络。最后两遍 loudnorm 到 −14 LUFS，4 倍采样率限幅，真峰值不超过 −1 dBTP。样片的 `synth.assets` 不改（改了已出的样片声音会变），`sound.md` 注明 8–12 dB 的压低只管整片。
-- **整片自检**：总时长等于各段之和（差不到一帧）；全片 `blackdetect` 查 0.05 秒以上的黑段；查帧间隔；实测响度和真峰值；音频和 `timing.json` 对得上（`review_video.py align` 的做法）；每段一张抽帧拼图。结果写进 `out/report.md`。
-- **交付**：`out/<短名>-<画幅>.mp4`、`out/sheets/<段号>.jpg`、`out/report.md`（段长表：段、分镜的 `sec`、实际秒数；音色；响度；检查结果）。封面、平台版本、附带短片不在 Skill 里，用户要时由助手另做。
-- **长任务**：整片可能跑半小时以上，`making.md` 写一句脱离会话运行、日志写文件、进程号由任务自己写进文件。
+9.4 整片（`tools/film.py`、播放器载入用户项目的段、`lib.js` 的 `SEG`）已落进 Skill（阶段 12）：用法以 [making.md「整片」](skills/ai-coding-video/making.md#整片) 为准。
 
 ### 9.5 `cases/tools/` 以后
 
@@ -167,7 +149,6 @@ python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音�
 | 阶段 | 做什么 | 验收 |
 |---|---|---|
 | 10 | 风格包新规格写进 `making.md`（只写规格，不升级现有的包） | `making.md` 的 2 级和第 5 节一致；`AGENTS.md` 的体积上限跟着改 |
-| 12 | 整片（9.4）：`film.py`、播放器载入用户项目的段、`API.md`；`making.md`「整片」和 `film.md` 第 5、6 步改成用工具 | 在 `videos/demo/` 上从配音跑到 `out/`：典型样片、整片都出；响度 −14 ± 1 LUFS、真峰值 ≤ −1 dBTP；没有 0.05 秒以上的黑段；只改一段时只重渲那一段；照 `making.md` 把 `samples/` 拷到一个空目录，不靠本仓库的目录结构跑通 |
 | 13 | `cases/tools/` 改成调 Skill 的工具（9.5） | `news-artemis` 不重配旁白重出：每段段长和现在差不到一帧，句子切点差不到 0.05 秒，回听不比现在差；`cases/tools/build.py --check` 通过 |
 
 阶段 6 的第 3 支案例（护肤）拿来验收「有策划 + 完整出片」，等策划仓库的抓原文脚本做完。

@@ -25,6 +25,7 @@
 | `tools/adapters/placeholder.py` | 不调任何服务的占位适配命令，用来先跑通流程 |
 | `tools/adapters/kokoro.py` | 本地语音合成的适配命令：sherpa-onnx 跑 Kokoro v1.1-zh，不花钱 |
 | `tools/voice.py` | 完整出片的配音：合成、切句、排段长（写 `timing.json`）、回听；用法见 Skill 的 `sound.md`「完整出片的配音流程」 |
+| `tools/film.py` | 完整出片的整片：分段渲染、检查、典型样片、接片、混音、自检；用法见 Skill 的 `making.md`「整片」 |
 | `tools/heavy.py` | 重任务排队：回听、渲染一次只跑一个 |
 
 ## 怎么出片

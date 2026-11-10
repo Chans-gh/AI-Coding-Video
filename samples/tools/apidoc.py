@@ -23,6 +23,7 @@ HEAD = """# 样片 API 速查
 要用库就写 `libs: ['gsap']`（可选 `gsap` `p5` `p5.brush` `rough` `d3`，见 `player.html` 的 `LIBS`），播放器从本地 `node_modules` 载入，不联网；
 SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×H 的 div）里；`init`、`draw` 可以是 `async`，播放器等它画完再截图。
 声音文件的写法：`score(m)` 里用 `m.put(声音, 秒, 音量, 声像)`；`m.dur` 是时长，`m.rng` 是固定种子的随机数。
+完整出片的段（`videos/<短名>/segments/<段号>.js`）写法同场景，不写 `dur`：段长取 `SEG.dur`，每句的时刻用 `say`、`subAt` 读；整片的 `sound.py` 写 `score(m, T)`，`T` 见 `tools/film.py` 开头。
 """
 
 
@@ -45,7 +46,7 @@ def js_items():
             args = m.group(2) if m.group(2).startswith("(") else f"({m.group(2)})"
             out.append((m.group(1) + args, doc))
             continue
-        m = re.match(r"const (.+?);\s*//\s*(.+)$", ln)
+        m = re.match(r"(?:const|let) (.+?);\s*//\s*(.+)$", ln)
         if m:
             names = re.findall(r"(?:^|,\s*)([A-Z]\w*) =", m.group(1))
             out.append((" ".join(names), m.group(2)))

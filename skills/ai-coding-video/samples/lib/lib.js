@@ -459,6 +459,21 @@ function caption(ctx, text, o = {}) {
 // 素材出处：assets.json 里每份素材的 credit 拼成一行（片尾、角落的小字署名用）
 function credits(A) { return [...new Set(A.items.map(i => i.credit).filter(Boolean))].join(' · '); }
 
+// ---------- 完整出片的段（player.html?p=<项目>&seg=<段号>：段长和每句的时间从 timing.json 读进 SEG） ----------
+let SEG = null;   // 本段的时间 {seg, dur, vo: [{file, at, t, text, show, chars}]}（格式见 Skill 的 film.md「时间」）；样片里是 null
+// 第 i 句的起止（秒，本段时间）：{t0, t1, text 念的, show 字幕写法}；没有这句返回 null
+function say(i) { const v = SEG && SEG.vo[i]; return v ? { t0: v.at, t1: v.at + v.t, text: v.text, show: v.show } : null; }
+// t 时刻正在说第几句（没在说返回 -1）；hold 秒内的句间空隙算上一句
+function sayingAt(t, hold = 0) { if (!SEG) return -1; for (let i = SEG.vo.length - 1; i >= 0; i--) { const v = SEG.vo[i]; if (t >= v.at && t < v.at + v.t + hold) return i; } return -1; }
+// 第 i 句到 t 时刻念到第几个字（按 chars 的逐字时间；没有逐字时间的按句长均分），返回 0–1 的进度
+function sayP(i, t) {
+  const v = SEG && SEG.vo[i]; if (!v) return 0;
+  if (v.chars && v.chars.length) { let n = 0; for (const c of v.chars) if (t >= c.s) n++; return n / v.chars.length; }
+  return clamp((t - v.at) / v.t);
+}
+// t 时刻的字幕（show 写法）：说完后留 hold 秒，下一句开始就换；没有返回 null
+function subAt(t, hold = .35) { const i = sayingAt(t, hold); return i < 0 ? null : { i, text: SEG.vo[i].show, p: sayP(i, t) }; }
+
 const S = [];   // 场景列表（播放器读 S[0]）
 // 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 function scene(def) { S.push(def); }

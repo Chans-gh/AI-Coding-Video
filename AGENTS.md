@@ -11,12 +11,12 @@
 | `samples/<编号>/` | 样片：C 类是一种风格的渲染代码；T 类、G 类另带 `assets/` 素材和 `assets.json` | 每帧只由时间 t 决定；出 16:9 和 9:16 两版；C 类不引用任何外部图片、视频或生成模型 |
 | `packs/<名字>/` | 2 级风格包 | 维护者通过的风格才做；C 类切换品牌色（`accents`），T、G 类切换别的维度（`switch` + `variants`），素材规矩同 T、G 类样片，每个包合计不超过 10 MB |
 | `cases/<名字>/` | 介绍页「真实应用」模块的 3 支完整视频：分镜、代码、素材清单、制作记录 | 规矩见 [cases/README.md](cases/README.md)；`case.json` 是正本，改了跑 `python3 cases/tools/build.py` 和 `--check`；不受样片素材 10 MB 的限制 |
-| `videos/demo/` | 配音和整片工具的 3 段演示片，用来验收 `samples/tools/voice.py` 这类整片工具；不进 Skill | 只提交分镜、逐字稿和场景代码；配音、`timing.json`、成片不进仓库（`.gitignore`） |
+| `videos/demo/` | 配音和整片工具（`samples/tools/voice.py`、`film.py`）的 3 段演示片，用来验收；不进 Skill | 只提交分镜、逐字稿和场景代码；配音、`timing.json`、成片不进仓库（`.gitignore`） |
 | `site/` | 介绍页 | 纯静态、相对路径、所有资源放在本地（不用 CDN），中英双语；改模板 `site/src/index.html`，本地预览跑 `python3 site/build.py`。生成的页面、字体、媒体不进仓库，发布时在 CI 里生成，见 [site/README.md](site/README.md) |
 | `media.json` | 样片和风格包演示片视频的清单（视频本身在 GitHub Release） | 由 `scripts/media.py` 生成，不手改 |
 | `candidates.md` | T 类、G 类候选及其截图、样片链接 | 正式收录时搬进 Skill 并删掉对应行 |
 | `PLAN.md` | 批次规划和待办 | 做完的批次删掉，记进 Skill 的 CHANGELOG |
-| `SPEC.md` | 两条线的设计稿：阶段 7–9、11 已做完，剩阶段 10、整片工具（阶段 12、13）和待办（下一轮） | 开发照它做，偏离先改它；做完的部分删掉，全部做完删掉本文件 |
+| `SPEC.md` | 两条线的设计稿：阶段 7–9、11、12 已做完，剩阶段 10、13 和待办（下一轮） | 开发照它做，偏离先改它；做完的部分删掉，全部做完删掉本文件 |
 
 ## 规矩
 

@@ -33,6 +33,8 @@
 //       player.html?s=C-001&ar=9x16&render=1&t=1.5   出片脚本用：停在 t 秒那一帧
 //       player.html?s=pack:dark-keynote&ar=16x9&accent=%23FF7A45   风格包演示片（packs/<名字>/demo/）：accent 品牌色；
 //       player.html?s=pack:news-brief&ar=9x16&v=parallax            切别的维度的包用 v（meta.json 的 variants）；其余参数场景可用 Q.get() 读
+//       player.html?p=../videos/demo&seg=P2&ar=16x9    完整出片的一段：载入 <p>/segments/<seg>.js（p 相对本页），
+//                                                      段长和每句的时间从 <p>/timing.json 读进 SEG，素材 asset() 指 <p>/assets/
 // 场景可以写 needs: ['../pack.js']（相对场景文件），播放器在 init 之前按顺序载入
 // 场景可以写 libs: ['gsap', 'p5', 'three', …]（下面 LIBS 里的名字），从本地 node_modules 载入，不联网
 // LIBS 的每一项是一串文件：字符串 = 普通 <script>；{m: 路径, as: '全局名'} = ES 模块，import 后挂到 window[as]
@@ -47,8 +49,8 @@ const LIBS = {
   'three': [{ m: 'node_modules/three/build/three.module.js', as: 'THREE' }],
   'cannon-es': [{ m: 'node_modules/cannon-es/dist/cannon-es.js', as: 'CANNON' }],
 };
-const Q = new URLSearchParams(location.search), SID = Q.get('s');
-const DIR = SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
+const Q = new URLSearchParams(location.search), SID = Q.get('s') || '', PROJ = Q.get('p');
+const DIR = PROJ ? PROJ.replace(/\/$/, '') : SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
 let READY = false, SC = null, DUR = 3, STAGE = null;
 const loaded = new Set();
 async function load(src) {
@@ -62,13 +64,18 @@ async function load(src) {
 }
 (async () => {
   await load('lib/lib.js');
-  await load(`${DIR}/scene.js`);
-  SC = S[0]; DUR = SC.dur || 3;
+  if (PROJ) {                                            // 完整出片的段：先读时间，场景的 init、draw 里就能用 SEG
+    const seg = Q.get('seg'), T = JSON.parse(await xhr(`${DIR}/timing.json`));
+    SEG = T.segments.find(s => s.seg === seg);
+    if (!SEG) throw new Error(`timing.json 里没有 ${seg}：先跑 tools/voice.py`);
+    await load(`${DIR}/segments/${seg}.js`);
+  } else await load(`${DIR}/scene.js`);
+  SC = S[0]; DUR = SEG ? SEG.dur : SC.dur || 3;
   for (const n of SC.libs || []) {
     if (!LIBS[n]) throw new Error('player.html 的 LIBS 里没有 ' + n);
     for (const src of LIBS[n]) await load(src);
   }
-  for (const n of SC.needs || []) await load(`${DIR}/${n}`);
+  for (const n of SC.needs || []) await load(`${PROJ ? DIR + '/segments' : DIR}/${n}`);   // 相对场景文件
   if (Q.has('render')) document.body.classList.add('render');
   const cv = document.getElementById('c'); cv.width = W; cv.height = H;
   const ctx = cv.getContext('2d');
