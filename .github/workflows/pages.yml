@@ -72,5 +72,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+      # 等 Pages 同步文件最多 30 分钟（默认 10 分钟，页面连视频约 800 MB，GitHub 那边慢时会超时）
       - id: deploy
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
