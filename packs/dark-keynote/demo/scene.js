@@ -1,37 +1,47 @@
-// 暗色科技发布会风格包演示：虚构产品「帧流 3」的 15 秒发布短片，依次用到片头、讲解、数据、片尾，段间用光边转场，字幕贯穿全片
-// 品牌色从播放器参数 accent 读（默认紫 #8B7BFF），换色只改这一处。
+// 暗色科技发布会风格包的完整演示片：虚构产品「帧流 3」的发布短片，片头 → 四章（每章一张章节卡加 2–3 个部件）→ 片尾。
+// 分段表在 segments.json（画面和 sound.py 都读它）：每行一个段部件 part、时长 d、进场转场 tr（edge 光边 / push 推移 / fade 叠化）、
+// 内容 o、叠在这一段上的部件 over（标注、信息条）、字幕 cues（段内时刻和文字，结束时刻按每秒约 4.5 个字算）。
+// 背景、角标、字幕、转场是层，不占段。品牌色从播放器参数 accent 读（默认紫 #8B7BFF）。15 秒的切换片段见 clip.js。
+const FONTS = ["900 64px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "330px 'Bebas Neue'", "700 24px 'JetBrains Mono'"];
 scene({
-  id: 'pack:dark-keynote', name: '暗色科技发布会风格包', dur: 15, still: 10.4,
-  needs: ['../pack.js'],
-  fonts: ["900 150px 'Noto Sans SC'", "700 40px 'Noto Sans SC'", "330px 'Bebas Neue'", "700 24px 'JetBrains Mono'"],
-  text: '帧流3今天起免费试用一句话出一支视频怎么用三步写风格提示词AI渲染代码浏览器逐帧画成速度对比上一代倍现已开放这是只要提升到',
-  init() {
+  id: 'pack:dark-keynote', name: '暗色科技发布会风格包', dur: 87.6, still: 31.8,
+  needs: ['../pack.js'], fonts: FONTS,
+  async init() {
+    const plan = JSON.parse(await xhr(`${DIR}/segments.json`));
+    const txt = [...new Set('0123456789' + JSON.stringify(plan))].join('');
+    await Promise.all(FONTS.map(f => document.fonts.load(f, txt).catch(() => {})));
     const K = DK.theme({ accent: (typeof Q !== 'undefined' && Q.get('accent')) || '#8B7BFF' });
-    const segs = [
-      { at: 0, f: (c, t) => DK.title(c, K, t, { kicker: 'LAUNCH 2026', title: '帧流 3', sub: '一句话，出一支视频' }) },
-      { at: 3.4, f: (c, t) => DK.explain(c, K, t, { kicker: 'HOW IT WORKS', title: '三步出一支视频', label: 'steps.md',
-        steps: ['写一句风格提示词', 'AI 写出渲染代码', '浏览器逐帧画成视频'], start: .55, every: .75 }) },
-      { at: 8.2, f: (c, t) => DK.data(c, K, t, { kicker: 'PERFORMANCE', title: '渲染速度（帧 / 秒）', unit: '',
-        bars: [{ label: 'v1', v: 12 }, { label: 'v2', v: 21 }, { label: 'v3', v: 50 }],
-        big: { from: 1, to: 4.2, suffix: '×', label: '对比上一代', start: 1.4 } }) },
-      { at: 12.6, f: (c, t) => DK.title(c, K, t, { kicker: 'AVAILABLE NOW', title: '帧流 3', sub: '今天起，免费试用' }) },
-    ];
-    const cues = [
-      { a: .5, b: 3.0, text: '这是帧流 3。' },
-      { a: 3.7, b: 5.7, text: '只要三步：写一句提示词，' },
-      { a: 5.8, b: 8.0, text: 'AI 写代码，浏览器逐帧画成视频。' },
-      { a: 8.5, b: 10.3, text: '渲染速度提升到' },
-      { a: 10.4, b: 12.3, text: '上一代的 4.2 倍。' },
-      { a: 13.0, b: 14.8, text: '帧流 3，今天起免费试用。' },
-    ];
-    return { K, segs, cues, TR: .6 };
+    let at = 0, ch = null;
+    const segs = plan.segs.map(s => {
+      if (s.part === 'chapter') ch = s.o;
+      const r = { ...s, at, ch: s.part === 'chapter' || s.part === 'outro' || s.part === 'title' ? null : ch };
+      at += s.d; return r;
+    });
+    if (Math.abs(at - this.dur) > 1e-6) throw new Error(`scene.js 的 dur ${this.dur} 和 segments.json 的总长 ${at.toFixed(2)} 不一致`);
+    const cues = [];
+    segs.forEach(s => (s.cues || []).forEach(([a, text]) => {
+      const n = [...text.replace(/[\s，。、：；！？,.]/g, '')].length;
+      cues.push({ a: s.at + a, b: s.at + a + n / 4.5 + .25, text, end: s.at + s.d });
+    }));
+    cues.forEach((c, i) => { if (c.b > c.end + .01 || (cues[i + 1] && c.b > cues[i + 1].a - .1)) console.warn(`字幕太挤：${c.text}`); });
+    return { K, segs, cues, TR: plan.tr, brand: plan.brand };
   },
   draw(ctx, t, s) {
     const { K, segs, TR } = s;
     let i = segs.length - 1; while (i > 0 && t < segs[i].at) i--;
-    const frame = k => c => { DK.backdrop(c, K, t); segs[k].f(c, t - segs[k].at); };
-    if (i > 0 && t < segs[i].at + TR) DK.transition(ctx, K, (t - segs[i].at) / TR, frame(i - 1), frame(i));
+    const frame = k => c => {
+      const g = segs[k], lt = t - g.at;
+      DK.backdrop(c, K, t);
+      const res = DK[g.part](c, K, lt, g.o);
+      (g.over || []).forEach(v => DK[v.part](c, K, lt - v.at, v.anchor != null && res ? { ...res[v.anchor], ...v.o } : v.o));
+    };
+    const g = segs[i], tr = { edge: DK.transition, push: DK.push, fade: DK.dissolve }[g.tr], d = TR[g.tr];
+    if (i > 0 && tr && t < g.at + d) tr(ctx, K, (t - g.at) / d, frame(i - 1), frame(i));
     else frame(i)(ctx);
+    // 角标：进入有章的一段时淡入，离开时淡出；片头、章节卡、片尾不显示
+    const on = k => !!(segs[k] && segs[k].ch), fadeIn = on(i) && !on(i - 1) ? smooth(g.at + .2, g.at + .7, t) : 1;
+    const fadeOut = on(i) && !on(i + 1) ? 1 - smooth(g.at + g.d - .45, g.at + g.d - .05, t) : 1;
+    DK.corner(ctx, K, t, { brand: s.brand, ch: g.ch, al: on(i) ? fadeIn * fadeOut : 0 });
     DK.caption(ctx, K, t, s.cues);
   }
 });

@@ -114,10 +114,6 @@
 
 已定（需求方定）：三个选题照 [cases/](cases/README.md) 的总表；资讯以 T 为主、课件以 C 为主、带货以 G 为主；`news-brief` 用在资讯，`style-swap` 用在课件和带货；课件保留虚构讲师；画幅资讯、带货竖屏，课件横屏，每支一种（需求方没另说，按这个做）。
 
-### 阶段 10：风格包新规格 + 升级 `dark-keynote`
-
-一个任务、一个对话做完（需求方定）：照 [SPEC.md](SPEC.md) 第 5 节把新规格写进 `making.md` 的 2 级，同时把 `dark-keynote` 升级成新规格（最便宜：C 类，不用素材、不调生成服务），做完按实际回头改规格；验收见 SPEC 第 11 节。看片通过后再排 `news-brief`、`style-swap`。
-
 ## 待办：下一轮大优化
 
 - **升级 `news-brief`、`style-swap`** 到 SPEC 第 5 节的新规格（等阶段 10 的 `dark-keynote` 看片通过）。

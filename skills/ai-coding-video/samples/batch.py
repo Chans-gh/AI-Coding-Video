@@ -1,7 +1,8 @@
 """批量出片和自动检查。每个样片每个画幅只打一行摘要，详细日志写到 out/<编号>-<画幅>.log。
 
     python3 batch.py C-001 C-064            # 出横竖两版视频 + 声音 + 静帧 + 缩略图，并检查
-    python3 batch.py C-001 --quick          # 不出视频：只抽几帧低分辨率截图、合成声音、检查（改代码时用）
+    python3 batch.py C-001 --quick          # 不出视频：只抽几帧低分辨率截图、合成声音、检查（改代码时用）；
+                                            # 风格包的完整演示片另外每 2 秒抽一帧，拼成 out/quick/<名字>-<画幅>.jpg
     python3 batch.py all --quick            # 所有已有 scene.js 的样片
     python3 batch.py C-001 --ar 16x9        # 只出一个画幅
     python3 batch.py C-001 --sound          # 只合成声音到 out/C-001.wav，改配乐时试听
@@ -10,9 +11,11 @@
     python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
     python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），每种切换（品牌色、画面组织、画风…）一支，时长可到 30 秒
     python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色（切别的维度的包写 variants 的键，如 pack:style-swap@clay）
+    python3 batch.py pack:dark-keynote@purple --ar 16x9   # 只出完整演示片（meta.json 写了 full 的包：默认那一种在 full 画幅，60–90 秒）
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
-时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒。
+时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒，
+完整演示片 60–90 秒、每个视频不超过 20 MB。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
 有 ✗ 时退出码为 1。
 """
@@ -78,6 +81,9 @@ def task(sid, ar, quick):
                 pairs = [float(np.abs(R.probe(a) - R.probe(b)).mean()) for a, b in shots]
                 res["thumbs"] = [small(a) for a, _ in shots]
                 size = ""
+                if R.is_full(sid, ar):                    # 完整演示片：另外每 2 秒抽一帧，拼成 out/quick/<名字>-<画幅>.jpg
+                    full_sheet([p.frame(k * 2.0 + 1.0, quality=80) for k in range(int((dur - 1.0) // 2) + 1)],
+                               R.OUT / "quick" / f"{R.stem(sid)}-{ar}.jpg")
             else:
                 frames, vbytes = R.encode(p, sid, ar, log)
                 grays = [R.probe(b) for b in frames]
@@ -86,7 +92,10 @@ def task(sid, ar, quick):
                 R.still_and_thumb(p, sid, ar)
                 mp4 = R.where(sid) / f"{R.stem(sid)}-{ar}.mp4"
                 size = f"{mp4.stat().st_size / 1e6:.1f} MB"
-                if R.is_asset_class(sid):
+                if R.is_full(sid, ar):
+                    if mp4.stat().st_size > R.FULL_MAX_FILE:
+                        why.append(f"体积超限（{mp4.stat().st_size / 1e6:.1f} MB > 20 MB）")
+                elif R.is_asset_class(sid):
                     if mp4.stat().st_size > R.MAX_FILE_TG:
                         why.append(f"体积超限（{mp4.stat().st_size / 1e6:.1f} MB > 4 MB）")
                 elif vbytes > R.MAX_BYTES * max(1, dur / 5):
@@ -99,11 +108,12 @@ def task(sid, ar, quick):
             log += p.log
             why += check_frames(grays, pairs)
             log.append(f"帧差（相隔 {GAP}s）：" + " ".join(f"{d:.2f}" for d in pairs[:: max(1, len(pairs) // 12)]))
-            lo, hi = (5, 30) if sid.startswith("pack:") else (8, 15) if R.is_asset_class(sid) else (3, 5)   # 风格包演示片、带素材的样片更长
+            lo, hi = ((60, 90) if R.is_full(sid, ar) else (5, 30) if sid.startswith("pack:")   # 风格包完整演示片、切换片段、带素材的样片更长
+                      else (8, 15) if R.is_asset_class(sid) else (3, 5))
             if not lo <= dur <= hi:
                 why.append(f"时长 {dur}s 不在 {lo}–{hi} 秒")
             snd = ""
-            _, x, raw = R.make_sound(sid, dur, f"-{ar}-chk")
+            _, x, raw = R.make_sound(sid, dur, f"-{ar}-chk", ar)
             if x is None:
                 why.append("没有 sound.py")
             else:
@@ -120,6 +130,19 @@ def task(sid, ar, quick):
     except Exception as e:                                   # 出片流程本身出错
         log.append(f"异常：{e!r}")
         return finish(res, [f"出片失败：{str(e)[:80]}"], log, t0, "")
+
+
+def full_sheet(jpegs, out, cols=6):
+    """一串抽帧拼成一张总览图，每格左上角标出秒数（第 k 格是 1 + 2k 秒）"""
+    ims = [Image.open(io.BytesIO(b)).convert("RGB") for b in jpegs]
+    w = 480; h = round(w * ims[0].height / ims[0].width)
+    sheet = Image.new("RGB", (cols * w, -(-len(ims) // cols) * h), "black")
+    d = ImageDraw.Draw(sheet)
+    for k, im in enumerate(ims):
+        x, y = k % cols * w, k // cols * h
+        sheet.paste(im.resize((w, h), Image.LANCZOS), (x, y))
+        d.rectangle([x, y, x + 54, y + 22], fill="black"); d.text((x + 4, y + 3), f"{1 + 2 * k}s", fill="white", font=font(16))
+    out.parent.mkdir(parents=True, exist_ok=True); sheet.save(out, quality=82)
 
 
 def finish(res, why, log, t0, info):
@@ -187,8 +210,9 @@ def main():
     a = ap.parse_args()
     ids = all_ids() if a.ids == ["all"] else [x for i in a.ids for x in R.expand(i)]
     if a.sound:
+        ar = "9x16" if a.ar == "9x16" else "16x9"         # 风格包：完整演示片和切换片段的声音不同，按 --ar 取
         for sid in ids:
-            wav, x, raw = R.make_sound(sid, R.scene_dur(sid))
+            wav, x, raw = R.make_sound(sid, R.scene_dur(sid, ar), "", ar)
             if wav is None:
                 print(f"✗ {sid} 没有 sound.py"); continue
             pk, rms, over = audio_stats(x, raw)
