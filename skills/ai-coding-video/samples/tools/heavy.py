@@ -7,6 +7,7 @@
     python3 tools/heavy.py <命令…>   # 在命令行里排队跑一条命令
 
 锁文件默认在系统临时目录的 aicv-heavy.lock，可用环境变量 AICV_HEAVY_LOCK 换。锁跟着进程走：进程被杀、退出，锁自动放开。
+拿到锁的任务设环境变量 AICV_HEAVY_HELD，它里面（本进程或子进程）再排队的直接跑，不等自己。
 """
 import contextlib
 import fcntl
@@ -17,11 +18,15 @@ import tempfile
 import time
 from pathlib import Path
 
+HELD = "AICV_HEAVY_HELD"
 LOCK = Path(os.environ.get("AICV_HEAVY_LOCK") or Path(tempfile.gettempdir()) / "aicv-heavy.lock")
 
 
 @contextlib.contextmanager
 def slot(what):
+    if os.environ.get(HELD):
+        yield
+        return
     LOCK.parent.mkdir(parents=True, exist_ok=True)
     with open(LOCK, "a+") as f:
         try:
@@ -35,9 +40,11 @@ def slot(what):
             print(f"排到了（等了 {time.time() - t0:.0f} 秒），开始{what}", flush=True)
         f.seek(0); f.truncate()
         f.write(f"{what}（进程 {os.getpid()}，{time.strftime('%H:%M:%S')} 开始）"); f.flush()
+        os.environ[HELD] = str(os.getpid())
         try:
             yield
         finally:
+            os.environ.pop(HELD, None)
             f.seek(0); f.truncate(); f.flush()
             fcntl.flock(f, fcntl.LOCK_UN)
 

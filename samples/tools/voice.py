@@ -405,7 +405,7 @@ def num_zh(n):
 
 
 def readings(text):
-    """识别结果里的阿拉伯数字两种念法都试：按数念（四百零六）、逐位念（四零六）"""
+    """文字里的阿拉伯数字的两种念法：按数念（四百零六）、逐位念（四零六）"""
     pat = re.compile(r"(\d+(?:\.\d+)?)(%?)")
     def say(m, digitwise):
         a, _, b = m.group(1).partition(".")
@@ -480,14 +480,14 @@ def compare(want_text, heard_text, heard_map):
         if word in want_text:
             for alt in alts:
                 heard_text = heard_text.replace(alt, word)
-    want = tokens(want_text, True)
-    if want_text.isascii() and want:                         # 整句外文：不比拼音，比词
+    if want_text.isascii() and tokens(want_text, True):                         # 整句外文：不比拼音，比词
         w = re.findall(r"[a-z0-9']+", want_text.lower()); h = re.findall(r"[a-z0-9']+", heard_text.lower())
         return [] if w == h else None
-    for r in readings(heard_text):
-        got = matches(want, tokens(r))
-        if got is not None:
-            return got
+    for w in readings(want_text):                            # 稿子和听到的阿拉伯数字都按两种念法试
+        for r in readings(heard_text):
+            got = matches(tokens(w, True), tokens(r))
+            if got is not None:
+                return got
     return None
 
 

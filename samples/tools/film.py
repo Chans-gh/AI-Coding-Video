@@ -36,7 +36,9 @@ sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE / "lib")); sys.path.i
 import render as R  # noqa: E402
 import heavy  # noqa: E402
 
-LUFS, TP, TP_AIM = -14.0, -1.0, -1.5
+LUFS, TP, TP_AIM = -14.0, -1.0, -2.0   # 限幅压到 −2，给 AAC 编码留余量
+# ffmpeg 默认的 AAC 编码器（twoloop）在 192k 时会冒出 +2～+5 dB 的孤立尖峰，用 fast、256k
+AAC = ["-c:a", "aac", "-aac_coder", "fast", "-b:a", "256k"]
 DUCK_DB = 9.0
 CRF = 20
 SEG_MIN, SEG_MAX = 10, 60
@@ -110,7 +112,8 @@ def checks_frames(grays, pairs):
 
 
 def events(P, s, grays):
-    """每句有没有画面事件：一句话的时间里画面主区（中间 80%）8×8 的块一块都没变的，列出来（只作提醒）"""
+    """每句有没有画面事件：一句话的时间里画面主区 8×8 的块一块都没变的，列出来（只作提醒）。
+    主区左右各让 10%，上让 10%，下面让到 75% 高：lib.js 的 caption() 字幕（横竖版、两行以内）都在它下面，换字幕不算画面事件"""
     quiet = []
     for i, v in enumerate(s["vo"]):
         a, b = int(v["at"] * P.fps), min(len(grays), int((v["at"] + v["t"]) * P.fps))
@@ -118,7 +121,7 @@ def events(P, s, grays):
             continue
         g = np.stack(grays[a:b])
         hh, ww = g.shape[1:]
-        g = g[:, int(hh * .1): int(hh * .9), int(ww * .1): int(ww * .9)]
+        g = g[:, int(hh * .1): int(hh * .75), int(ww * .1): int(ww * .9)]
         by, bx = g.shape[1] // 8, g.shape[2] // 8
         blocks = g[:, : by * 8, : bx * 8].reshape(len(g), 8, by, 8, bx).mean(axis=(2, 4))
         if np.abs(blocks - blocks[0]).max() < 4:
@@ -420,7 +423,7 @@ def sound_checks(P, names):
 
 def mux(video, wav, dest):
     subprocess.run([R.ffmpeg(), "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-map_metadata", "-1", "-fflags", "+bitexact",
+                    "-c:v", "copy", *AAC, "-shortest", "-map_metadata", "-1", "-fflags", "+bitexact",
                     "-flags:a", "+bitexact", "-metadata:s:v:0", "encoder=", "-metadata:s:a:0", "encoder=",
                     "-movflags", "+faststart", str(dest)], check=True)
 
