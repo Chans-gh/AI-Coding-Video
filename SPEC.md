@@ -2,7 +2,7 @@
 
 [← 返回说明](README.md) · [批次规划](PLAN.md)
 
-阶段 7–10 的设计稿，2026-11-09 和维护者对齐。阶段 7–9 已做完、落进 Skill，剩下阶段 10 和第 9 节的待办，放到下一轮大优化。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
+阶段 7–10 的设计稿，2026-11-09 和维护者对齐；第 9 节配音和整片工具（阶段 11–13）2026-11-10 和维护者对齐。阶段 7–9 已做完、落进 Skill，剩下阶段 10–13 和第 10 节的待办。开发照这份做，偏离的先改这份、维护者点头再动手。每个阶段做完，已落进 Skill 的部分从这里删掉；全部做完删掉本文件，CHANGELOG 记一行。
 
 ## 1 为什么改
 
@@ -89,6 +89,12 @@
 |---|---|---|
 | `making.md` | 2 级换新规格 | 10 |
 | `AGENTS.md` | 风格包体积 | 10 |
+| `samples/tools/voice.py`、`samples/tools/heavy.py`、`samples/tools/adapters/kokoro.py`（新） | 配音、回听、重任务排队、本地 Kokoro | 11 |
+| `sound.md`、`film.md`、`materials.md`、`scripts/check_storyboard.py` | 配音流程改成用工具；`unify.voice` 改成对象，`script.json` 加 `heard` | 11 |
+| `AGENTS.md`、`scripts/providers/qingshui.py` | 原仓库改名：`chans-gh/test` → `Chans-gh/AI-Video-Project`，青水 Skill 的默认位置跟着改 | 11 |
+| `samples/tools/film.py`（新）、`samples/player.html`、`samples/API.md` | 整片：分段渲染、检查、接片、混音、自检；播放器能载入用户项目的段 | 12 |
+| `making.md`「整片」、`film.md` 第 5、6 步 | 改成怎么用工具，删掉「本 Skill 还没有整片工具」 | 12 |
+| `cases/tools/` | 改成调 Skill 的工具，只留案例专用的部分 | 13 |
 
 
 ## 8 不变的
@@ -98,17 +104,89 @@
 - 素材、许可、生成服务的规矩（`materials.md`、`AGENTS.md`）；
 - 不生成真实人物；C 类样片只用自带的电子音。
 
-## 9 待办（不在阶段 7–10 里做）
+## 9 配音和整片工具（阶段 11–13）
 
-- **整片工具**：分段出片、按旁白算时长、接片、混音、回听。先不搬 `cases/tools/`，以后单独和 `chans-gh/test` 仓库对齐（那边做的片子多，整片工具沉淀得多），看哪些能互相补充、整合，再定搬什么。
+### 9.1 目标
+
+完整出片从配音到交付都有随 Skill 安装的工具：用户项目的 `videos/<短名>/` 里有了分镜、逐字稿和每段的场景代码，助手跑几条命令就能配音、回听、出典型样片、出整片、自检。现在只写了规矩、代码由助手现写，踩过的坑（切点落在发音上、字幕时间偏早、重任务撑爆内存、短黑帧查不出）每个用户都会再踩一遍。
+
+做法来自两处，对照后取长补短（2026-11-10）：本仓库的 `cases/tools/`（两支案例），维护者的 [Chans-gh/AI-Video-Project](https://github.com/Chans-gh/AI-Video-Project)（原名 `chans-gh/test`，课件视频和资讯视频）的配音 Skill `chansclaude-voice`、看片工具 `chansclaude-qc/scripts/review_video.py`、两套渲染器 `projects/ai-news/engine/`、`projects/courseware/engine/video/`。只搬做法和代码思路，按本仓库的约定重写；那边的克隆音色、HeyGen、数字人小窗、曲库、Drive 缓存和交付都不搬。
+
+### 9.2 放哪、输入输出
+
+工具放在随 Skill 安装的出片工具 `samples/` 里（仓库根目录的 `samples/` 是正本，`build_index.py` 同步进 Skill），用户照 `making.md` 拷进项目成 `video/`，和样片共用 `render.py`、`lib/`、`player.html`、`synth.py`。不放 `scripts/`：那里是只用标准库的检查脚本。
+
+```text
+videos/<短名>/                    用户项目里，命令的唯一输入
+  storyboard.json  script.json    分镜、逐字稿（film.md）
+  segments/<段号>.js              每段的场景代码，写法同样片的 scene.js，每帧只由 t 决定
+  sound.py                        可选：score(m, T) 写配乐和音效；没有就只放旁白
+  assets/  assets.json            本片的素材和清单（materials.md）
+  vo/                             配音产物：每句一个文件 <段号>_<两位句号>.wav，cache/ 存每次请求的原样返回
+  timing.json                     每段的段长、每句的起止和逐字时间（voice.py 写，场景、sound.py、film.py 读）
+  typical/  out/                  典型样片、整片和检查图
+```
+
+`vo/` 和 `timing.json` 留在用户项目里（建议提交）：同样的文字每次合成时长会差几个百分点，靠缓存保证重跑不变、不重复花钱。
+
+### 9.3 配音：`tools/voice.py`
+
+```bash
+python3 tools/voice.py ../videos/<短名> --dry-run   # 要请求几次、多少字；不请求
+python3 tools/voice.py ../videos/<短名>             # 合成缺的句子、切句、写 timing.json
+python3 tools/voice.py ../videos/<短名> --check     # 回听：逐句识别，和稿子比读音
+```
+
+- **怎么配**：只走 `AICV_TTS_CMD`（`gen.py` 的约定不变）。云端服务是默认；本地用随 Skill 带的 `tools/adapters/kokoro.py`（sherpa-onnx 跑 Kokoro v1.1-zh，首次用时下载模型，不装 torch），把 `AICV_TTS_CMD` 指向它即可。两条路一个接口，下游不分两套。`sound.md` 的音色名（`zf_083`）和 sherpa 版的音色编号怎么对应，阶段 11 先核。
+- **音色记在哪**：`unify.voice` 改成对象 `{"model", "voice", "speed"}`，全片一个；无旁白写 `null`。旧的一句话写法 `check_storyboard.py` 仍能读，只提醒。不另做声音卡：一个项目一个音色，卡里的三项就写在这里。
+- **合成按段、存按句**：一段分镜请求一次（整段的 `vo` 连起来念，语气连贯，按次计费的服务也省），按返回的逐字时间切回每句，存成一句一个文件。改了一句，只把改的句子合成一次（句子池：先在 `vo/cache/` 里找同音色、同语速、同文字的旧句子复用）；换音色或语速则全部重做。服务不返回逐字时间的，按句数在静音里切，切不准就退回一句一次请求。本地 Kokoro 不花钱，直接一句一次。
+- **切句**：句界放在两句之间真实的停顿里：从时间戳往后找声音真正停下的地方（时间戳常偏早），下一句从停顿结束处开始；找不到够静的停顿时，在最静处切，不切在字中间。切完查每句首尾 30 毫秒，高于 −45 dB 就报错（`cases/tools/timing.py` 的检查）。
+- **请求前先预估**：打印要请求几次、多少字。超过 `--max-chars`（默认 3000）或 `--max-requests`（默认 20）的不加 `--yes` 就停，退出码 2。每次真实请求在 `vo/usage.jsonl` 记一行（时间、段号、字数、时长），不记任务编号和链接。
+- **排段长**：照 `script.json` 的 `pace`（`film.md`「逐字稿」）算每句的 `at` 和段长，段长取整帧。`timing.json`：`{"fps", "voice", "segments": [{"seg", "dur", "vo": [{"file", "at", "t", "text", "show", "chars": [{"i", "j", "s", "d"}]}]}]}`，`chars` 是逐字时间（`text[i:j]` 在本段第 `s` 秒起、念 `d` 秒；没有逐字时间的不写），字幕、`TL.word` 一类的取时都从这里读。算出的段长和分镜 `sec` 差 20% 以上的打提醒。
+- **回听**：逐句离线识别，和稿子都转成无声调拼音再比（同音字不算错，数字两种写法都试）。两个以上字母的英文词只查那里听到了东西，列出来请人听；只因一个字挪到相邻句的单独报「跨句挪字」（是切句问题，不是读音）。识别器总听错的词写在 `script.json` 顶层的 `heard`（`{"稿子里的词": ["听成的", …]}`），只影响回听。中文用 SenseVoice（sherpa-onnx，约 230 MB），其他语言用 faster-whisper。最后一行「0 句不一致」才算过；不一致的人再听，确实念错的改稿子里的念法、只重做那一句。
+- **重任务排队**：回听、渲染都经 `tools/heavy.py` 加锁，同一台机器上第二个打印「排队」后等前一个跑完（4 核、15 GB 的容器同时跑会被杀）。
+
+### 9.4 整片：`tools/film.py`
+
+```bash
+python3 tools/film.py ../videos/<短名> P2 --quick     # 改代码时：本段每 2 秒半分辨率抽一帧，检查，出总览图
+python3 tools/film.py ../videos/<短名> --typical      # 第 5 步：typical 标的段各出一支带声音的典型样片到 typical/
+python3 tools/film.py ../videos/<短名> all -j 2       # 第 6 步：各段整帧渲染（无声）到 out/seg/，逐段检查
+python3 tools/film.py ../videos/<短名> --join         # 接片、混音、整片自检，出成片和报告
+python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音到 out/mix.wav，试听
+```
+
+- **分段渲染**：一段分镜一个场景，播放器载入 `segments/<段号>.js`，段的时间（`T.seg`：段长、每句起止、逐字时间）从 `timing.json` 传进去；画幅取分镜的 `ar`。段长取整帧，接片时直接拼、不重新编码。
+- **没变的段不重渲**：段代码、`lib/`、播放器、本段的 `timing.json` 条目、`assets.json` 算一个哈希，存在 `out/seg/<段号>.json`；一样就跳过，`--force` 全部重渲。不做抽查帧和远端缓存。
+- **单段检查**（任一项不过打 ✗）：脚本报错、黑屏或白屏、画面不动（同 `batch.py`）、静音、削波、段长 10–60 秒；可选 `--max-mb` 查体积。另查「每句有没有画面事件」：一句话的时间里画面主区一块都没变的列出来，只作提醒（`review_video.py events` 的做法）。
+- **混音**：整片一条时间轴，一次混好：旁白照 `timing.json` 摆；配乐、音效由 `sound.py` 写（C 类配乐用 `synth.py`，T、G 类用 `assets.json` 里允许再分发的曲子），跨段连续；说话时配乐压低约 9 dB，起落有包络。最后两遍 loudnorm 到 −14 LUFS，4 倍采样率限幅，真峰值不超过 −1 dBTP。样片的 `synth.assets` 不改（改了已出的样片声音会变），`sound.md` 注明 8–12 dB 的压低只管整片。
+- **整片自检**：总时长等于各段之和（差不到一帧）；全片 `blackdetect` 查 0.05 秒以上的黑段；查帧间隔；实测响度和真峰值；音频和 `timing.json` 对得上（`review_video.py align` 的做法）；每段一张抽帧拼图。结果写进 `out/report.md`。
+- **交付**：`out/<短名>-<画幅>.mp4`、`out/sheets/<段号>.jpg`、`out/report.md`（段长表：段、分镜的 `sec`、实际秒数；音色；响度；检查结果）。封面、平台版本、附带短片不在 Skill 里，用户要时由助手另做。
+- **长任务**：整片可能跑半小时以上，`making.md` 写一句脱离会话运行、日志写文件、进程号由任务自己写进文件。
+
+### 9.5 `cases/tools/` 以后
+
+改成调 Skill 的工具（阶段 13），只留本仓库发布用的部分：每段起止回写 `case.json`、中版、封面、附带短片、体积上限和 `PUSH_MB`、`build.py`、`transcribe.py`、按时间段截长录像（`assets.py`）。`case.json` 仍是正本，段名和 `segments/01.js` 这类文件名在 `cases/tools/` 里对照到 `script.json` 的段。老案例的整稿 `vo.mp3` 带逐字字幕，在 `voice.py` 里当成「一次覆盖几段的请求」读进缓存，不重配旁白、不花钱。
+
+### 9.6 反过来给 AI-Video-Project 的（只记下来，这一轮不动那边）
+
+- 它的 `.claude/skills/video-styles/` 是本 Skill 的旧版，可以换成新版。
+- 本仓库的切点检查（切点首尾高于 −45 dB 就报错）可以补进它的 `chansclaude-voice/scripts/tts.py`。
+- 它的 `video-render/README.md` 准备合并两套渲染器时，可以参考本仓库阶段 12 的 `film.py`（段缓存简单版、整片自检）。
+
+## 10 待办（不在阶段 7–13 里做）
+
 - **升级现有三个风格包**到第 5 节的规格。
 
-## 10 阶段和验收
+## 11 阶段和验收
 
-每个阶段一个分支、一个 PR，做完跑 `build_index.py --check`、`cases/tools/build.py --check`，升版本（次版本号），CHANGELOG 一行，向维护者汇报，维护者确认再合并。
+每个阶段一个分支、一个 PR，做完跑 `build_index.py --check`、`cases/tools/build.py --check`，升版本（次版本号；阶段 13 不改 Skill 就不升），CHANGELOG 一行，向维护者汇报，维护者确认再合并。
 
 | 阶段 | 做什么 | 验收 |
 |---|---|---|
 | 10 | 风格包新规格写进 `making.md`（只写规格，不升级现有的包） | `making.md` 的 2 级和第 5 节一致；`AGENTS.md` 的体积上限跟着改 |
+| 11 | 配音（9.3）：`voice.py`、Kokoro 适配命令、回听、`heavy.py`；`sound.md`、`film.md`、`materials.md` 改成用工具，`check_storyboard.py` 认 `unify.voice` 对象和 `heard`；原仓库改名的引用跟着改 | 新建一支 3 段的演示片 `videos/demo/`（不进 Skill），用占位适配命令、Kokoro 各配一遍：`timing.json` 齐，切点检查不报错；改一句只重配那一句（`usage.jsonl` 只多一行）；Kokoro 那遍回听「0 句不一致」；`--dry-run` 不请求；生成服务只在维护者同意后试一次 |
+| 12 | 整片（9.4）：`film.py`、播放器载入用户项目的段、`API.md`；`making.md`「整片」和 `film.md` 第 5、6 步改成用工具 | 在 `videos/demo/` 上从配音跑到 `out/`：典型样片、整片都出；响度 −14 ± 1 LUFS、真峰值 ≤ −1 dBTP；没有 0.05 秒以上的黑段；只改一段时只重渲那一段；照 `making.md` 把 `samples/` 拷到一个空目录，不靠本仓库的目录结构跑通 |
+| 13 | `cases/tools/` 改成调 Skill 的工具（9.5） | `news-artemis` 不重配旁白重出：每段段长和现在差不到一帧，句子切点差不到 0.05 秒，回听不比现在差；`cases/tools/build.py --check` 通过 |
 
 阶段 6 的第 3 支案例（护肤）拿来验收「有策划 + 完整出片」，等策划仓库的抓原文脚本做完。
