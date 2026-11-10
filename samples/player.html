@@ -66,7 +66,7 @@ async function load(src) {
   await load('lib/lib.js');
   if (PROJ) {                                            // 完整出片的段：先读时间，场景的 init、draw 里就能用 SEG
     const seg = Q.get('seg'), T = JSON.parse(await xhr(`${DIR}/timing.json`));
-    SEG = T.segments.find(s => s.seg === seg);
+    TIMING = T; SEG = T.segments.find(s => s.seg === seg);
     if (!SEG) throw new Error(`timing.json 里没有 ${seg}：先跑 tools/voice.py`);
     await load(`${DIR}/segments/${seg}.js`);
   } else await load(`${DIR}/scene.js`);

@@ -461,6 +461,7 @@ function credits(A) { return [...new Set(A.items.map(i => i.credit).filter(Boole
 
 // ---------- 完整出片的段（player.html?p=<项目>&seg=<段号>：段长和每句的时间从 timing.json 读进 SEG） ----------
 let SEG = null;   // 本段的时间 {seg, dur, vo: [{file, at, t, text, show, chars}]}（格式见 Skill 的 film.md「时间」）；样片里是 null
+let TIMING = null;   // 整片的 timing.json（SEG 是其中一段）：跨段连续的东西（整片时钟、进度条）用它算本段在整片里的起点；样片里是 null
 // 第 i 句的起止（秒，本段时间）：{t0, t1, text 念的, show 字幕写法}；没有这句返回 null
 function say(i) { const v = SEG && SEG.vo[i]; return v ? { t0: v.at, t1: v.at + v.t, text: v.text, show: v.show } : null; }
 // t 时刻正在说第几句（没在说返回 -1）；hold 秒内的句间空隙算上一句

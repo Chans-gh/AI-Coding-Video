@@ -7,7 +7,8 @@
     python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音到 out/mix.wav，试听
 
 先跑 tools/voice.py 写好 timing.json（段长、每句的时间）。每段的场景是 segments/<段号>.js，写法同样片，段长取 SEG.dur；
-画幅取分镜的 ar。段代码、lib/、player.html、本段的 timing.json 条目、assets.json 都没变的段不重渲（--force 全部重渲）。
+画幅取分镜的 ar。段代码、lib/、player.html、本段的 timing.json 条目、assets.json 都没变的段不重渲（--force 全部重渲）；
+段代码读了整片的 TIMING 的，别的段的段长变了也重渲。
 可选的 sound.py 写 score(m, T)：m 是整片长的 synth.Mix，T = {"fps", "dur" 整片秒数, "segments": [{"seg", "start" 在整片第几秒,
 "dur", "vo": [{"at" 在整片第几秒, "t", "text"}]}]}，配乐跨段连续；旁白由本工具照 timing.json 摆，说话时把配乐压低约 9 dB。
 混好后两遍定响度到 −14 LUFS，4 倍采样率限幅，真峰值不超过 −1 dBTP。
@@ -95,9 +96,13 @@ class Project:
         m = re.search(r"needs\s*:\s*\[([^\]]*)\]", src.read_text(encoding="utf-8"))       # 本段和它 needs 的文件
         needs = [src.parent / n for n in re.findall(r"['\"]([^'\"]+)['\"]", m.group(1))] if m else []
         files = [src, *needs] + sorted((HERE / "lib").glob("*")) + [HERE / "player.html", self.d / "assets.json"]
+        whole = False
         for f in files:
             if f.is_file():
                 h.update(f.name.encode()); h.update(f.read_bytes())
+                whole |= f in (src, *needs) and "TIMING" in f.read_text(encoding="utf-8", errors="ignore")
+        if whole:                                    # 段代码读了整片的 TIMING：别的段的段长变了也要重渲
+            h.update(json.dumps([[x["seg"], x["dur"]] for x in self.segs]).encode())
         s = {k: v for k, v in self.seg(name).items() if k != "start"}
         h.update(json.dumps([s, self.ar, self.fps, CRF, extra], ensure_ascii=False, sort_keys=True).encode())
         return h.hexdigest()[:16]

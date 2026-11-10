@@ -9,6 +9,9 @@ packs/*/demo/*.mp4
 cases/*/out/
 cases/*/assets/dl/
 cases/*/media/
+# 案例的分镜由 cases/tools/render.py 从 case.json 生成；vo/ 能从整稿 assets/vo.mp3 重新导入
+cases/*/storyboard.json
+cases/*/vo/
 # 配音和整片工具的演示片：只进分镜、逐字稿和代码；配音、timing.json、典型样片和成片不进
 videos/*/vo/
 videos/*/timing.json

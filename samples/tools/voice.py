@@ -3,6 +3,7 @@
     python3 tools/voice.py ../videos/<短名> --dry-run   # 要请求几次、多少字；不请求
     python3 tools/voice.py ../videos/<短名>             # 合成缺的句子、切句、写 timing.json
     python3 tools/voice.py ../videos/<短名> --check     # 回听：逐句识别，和稿子比读音
+    python3 tools/voice.py ../videos/<短名> --import 整稿.mp3 --subs 字幕.json   # 已有的整稿录音读进缓存，不重配
 
 合成只走 AICV_TTS_CMD（约定见 tools/gen.py；本地 Kokoro 用 tools/adapters/kokoro.py）。音色取分镜的 unify.voice {"model", "voice", "speed"}。
 一段里连着缺的句子请求一次，按返回的逐字时间切回每句；改了一句，只合成那一句（句子池 vo/cache/pool/：同音色、同语速、同文字的复用）。
@@ -39,7 +40,7 @@ FPS = 30
 QUIET = -45            # 停顿的电平（dB）；切出来的每句首尾 EDGE 秒也要低于它
 EDGE = 0.03
 PAD = 0.06             # 每句有声部分前后各留几秒（落在停顿里）
-HOP = 0.01
+HOP = 0.005
 MIN_PAUSE = 0.06
 PACE = {"lead": 0.6, "gap": 0.3, "tail": 0.8, "min": 0}
 WARN_SEC = 0.2         # 算出的段长和分镜 sec 差这么多（比例）就提醒
@@ -120,8 +121,9 @@ def db(x):
 
 
 def levels(x):
+    """每 HOP 秒里的峰值电平（dB）。用峰值不用均方根：句尾轻的余音、轻起的辅音均方根已低于 QUIET，峰值还在，不算进停顿"""
     n = int(HOP * SR); m = len(x) // n
-    r = np.sqrt(np.mean(x[: m * n].reshape(m, n).astype(np.float64) ** 2, axis=1))
+    r = np.abs(x[: m * n].reshape(m, n)).max(axis=1).astype(np.float64)
     return 20 * np.log10(r + 1e-9)
 
 
@@ -186,12 +188,18 @@ def find_cut(lv, est, lo, hi):
     return c, c, False
 
 
-def cut(x, sents, subs):
-    """一次请求的音频切回每句：[(片段, 前留, 后留, 逐字时间)]；切不准（没有字幕又找不到够多的停顿）返回 None"""
+def cut(x, sents, subs, shown=None):
+    """一次请求的音频切回每句：[(片段, 前留, 后留, 逐字时间)]；切不准（没有字幕又找不到够多的停顿）返回 None。
+    字幕是屏幕上的写法（shown：念法换成写法后的句子，如「406,771 公里」）的也认，只是不出逐字时间"""
     lv = levels(x)
     v0, v1 = voiced(lv)
-    ends = np.cumsum([len(bare(s)) for s in sents])
+    base = sents
     ct = char_times(sents, subs)
+    if ct is None and shown and shown != sents:
+        ct = char_times(shown, subs)
+        if ct:
+            base, ct = shown, (ct[0], False)
+    ends = np.cumsum([len(bare(s)) for s in base])
     bounds, rough = [], []
     if ct:
         times, has_words = ct
@@ -261,7 +269,7 @@ def plan(d, sb, sc, v):
     return reqs, have
 
 
-def request(d, v, seg, sents):
+def request(d, v, seg, sents, table=None):
     """一次请求：原样返回存进 vo/cache/req/<哈希>/，切好的句子存进句子池。已请求过（中途停下的）直接用缓存"""
     rk = hashlib.sha1(json.dumps([v, sents], ensure_ascii=False).encode()).hexdigest()[:12]
     work = d / "vo" / "cache" / "req"
@@ -290,7 +298,7 @@ def request(d, v, seg, sents):
             f.write(json.dumps({"at": time.strftime("%Y-%m-%d %H:%M:%S"), "seg": seg, "chars": len(bare("".join(sents))),
                                 "dur": round(len(x) / SR, 2)}, ensure_ascii=False) + "\n")
     x = read(audio)
-    parts = cut(x, sents, subs)
+    parts = cut(x, sents, subs, [show(s, table or {}) for s in sents])
     if parts is None:
         return False
     pool = d / "vo" / "cache" / "pool"
@@ -301,6 +309,27 @@ def request(d, v, seg, sents):
                                                     "post": round(post, 3), "chars": chars, "req": rk},
                                                    ensure_ascii=False), encoding="utf-8")
     return True
+
+
+def take(d, sb, sc, v, audio, subs):
+    """已有的整稿录音（--import）当成一次覆盖全部段的请求放进缓存，切进句子池；不请求、不花钱"""
+    if v is None:
+        raise Stop("分镜的 unify.voice 是 null（无旁白），不能导入录音", 2)
+    sents = [s for _, _, ss, _ in segments(sb, sc) for s in ss]
+    rk = hashlib.sha1(json.dumps([v, sents], ensure_ascii=False).encode()).hexdigest()[:12]
+    dest = d / "vo" / "cache" / "req" / rk
+    dest.mkdir(parents=True, exist_ok=True)
+    try:
+        shutil.copy(audio, dest / f"take{audio.suffix}")
+        if subs:
+            shutil.copy(subs, dest / "take-subs.json")
+    except OSError as e:
+        raise Stop(f"读不了要导入的录音、字幕：{e}", 2)
+    (dest / "result.json").write_text(json.dumps({"file": f"take{audio.suffix}", "subs": "take-subs.json" if subs else None,
+                                                  "import": audio.name}, ensure_ascii=False), encoding="utf-8")
+    if not request(d, v, "导入", sents, sc.get("show")):
+        raise Stop("导入的录音切不回每句：没有字幕，停顿也对不上句数；给 --subs 字幕（格式同适配命令返回的）", 2)
+    print(f"导入 {audio.name}：{len(sents)} 句放进句子池")
 
 
 def frames_up(x):
@@ -348,6 +377,8 @@ def assemble(d, sb, sc, v):
 
 def synth(d, a):
     sb, sc, v = load(d)
+    if a.take:
+        take(d, sb, sc, v, Path(a.take).resolve(), Path(a.subs).resolve() if a.subs else None)
     reqs, have = plan(d, sb, sc, v)
     chars = sum(len(bare("".join(s))) for _, s in reqs)
     if reqs:
@@ -363,10 +394,10 @@ def synth(d, a):
     if reqs and gen.missing("tts"):
         raise Stop(gen.missing("tts"), 2)
     for seg, sents in reqs:
-        if not request(d, v, seg, sents):
+        if not request(d, v, seg, sents, sc.get("show")):
             print(f"！{seg} 的 {len(sents)} 句没有字幕、停顿也对不上句数，改成一句一次请求")
             for s in sents:
-                if not request(d, v, seg, [s]):
+                if not request(d, v, seg, [s], sc.get("show")):
                     raise Stop(f"{seg}「{s[:12]}」切不出来")
     segs, notes = assemble(d, sb, sc, v)
     for n in notes:
@@ -539,6 +570,8 @@ def main(argv=None):
     ap.add_argument("--yes", action="store_true", help="超过预估上限也照样请求")
     ap.add_argument("--max-chars", type=int, default=3000)
     ap.add_argument("--max-requests", type=int, default=20)
+    ap.add_argument("--import", dest="take", metavar="录音", help="已有的整稿录音当成一次覆盖全部段的请求读进缓存，不重配")
+    ap.add_argument("--subs", metavar="字幕.json", help="--import 的录音的字幕：[{t0, t1, text, words 可选}]，写法可以是屏幕上的")
     a = ap.parse_args(argv)
     d = Path(a.dir).resolve()
     try:

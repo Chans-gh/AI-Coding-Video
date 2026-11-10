@@ -1,8 +1,10 @@
-"""整支的声音：旁白（语音合成的公开音色，按 segments/timing.json 摆）+ NASA 原声（发射现场、发布会原话）+ 两首 CC0 配乐。
-render.py 调 score(m, T)：m 是整支的 synth.Mix，T.start(k) 第 k 段在整支里的起点，T.vo() 摆旁白、返回说话的区间。
+"""整支的配乐和音效：NASA 原声（发射现场、发布会原话）+ 两首 CC0 配乐。旁白不在这里：samples/tools/film.py 照 timing.json 摆，说话时把这里的声音整体压低约 9 dB。
+film.py 调 score(m, T)：m 是整支的 synth.Mix，T = {"dur", "segments": [{"seg", "start", "dur", "vo"}]}（见 film.py 开头）。
 配乐分两首：「Insistent」垫在冷开场到发射、返回；「ObservingTheStar」垫在航线、飞掠、和阿波罗比、接下来、结尾；段与段之间交叉淡化 2 秒。
-旁白和原话响的时候配乐压低；发射原声在旁白下面也压低一些。
+发布会原话响的时候配乐另外压低。
 """
+from pathlib import Path
+
 import numpy as np
 from synth import SR, fade, load
 
@@ -24,27 +26,29 @@ def duck(x, at, talk, amount):
 
 
 def score(m, T):
-    d = T.dir / "assets" / "dl"
-    talk = T.vo(m, .95)
-    s7 = T.start(7)
+    S = T["segments"]
+    start = lambda k: S[k - 1]["start"]
+    d = Path(__file__).resolve().parent / "assets" / "dl"
+    talk = []
+    s7 = start(7)
     q = load(d / "quote.mp3")
     for a, b, at in QUOTE:
         clip = fade(q[int(a * SR):int(b * SR)], .05, .15)
         m.put(clip, s7 + at, 1.0)
         talk.append((s7 + at, s7 + at + (b - a)))
-    s3 = T.start(3)
+    s3 = start(3)
     x = load(d / "launch.mp3")
-    end = T.start(4) - s3 - LAUNCH_AT
+    end = start(4) - s3 - LAUNCH_AT
     x = fade(x[: int(end * SR)], .3, 3.0)
-    m.put(duck(x, s3 + LAUNCH_AT, talk, .55), s3 + LAUNCH_AT, .7)
+    m.put(x, s3 + LAUNCH_AT, .7)
     pos = {}
     for name, a, b in PLAN:
-        t0 = max(0.0, T.start(a) - (XF if a > 1 else 0))
-        t1 = min(T.dur, T.segs[b - 1]["end"] + (XF if b < len(T.segs) else 0))
+        t0 = max(0.0, start(a) - (XF if a > 1 else 0))
+        t1 = min(T["dur"], S[b - 1]["start"] + S[b - 1]["dur"] + (XF if b < len(S) else 0))
         src = load(d / f"{name}.mp3")
         k = pos.get(name, 0)                                # 同一首第二次出现时接着上次的位置放
         n = int((t1 - t0) * SR)
         idx = (k + np.arange(n)) % len(src)                 # 不够长就循环
         pos[name] = k + n
-        x = fade(src[idx], XF if a > 1 else 1.0, XF if b < len(T.segs) else 2.5)
+        x = fade(src[idx], XF if a > 1 else 1.0, XF if b < len(S) else 2.5)
         m.put(duck(x, t0, talk, DUCK), t0, MUSIC)

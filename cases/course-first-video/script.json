@@ -1,5 +1,5 @@
 {
- "about": "旁白稿：segments 和 case.json 的段一一对应（按顺序），seg 是策划框架的段号；vo 是念的稿子（一句一项），pace 见 cases/tools/timing.py；整稿一次语音合成。show 是念法 → 字幕写法。facts 是本段旁白和画面上的每个事实：ref 是 plans/course-first-video/content.md 的编号（P1-1），设定写 null，src 是出处，实测的（G1）src 写 null，记录在 content.md。 shorts 是附带短片：以哪一段为主体、目标秒数、画幅（横屏原版切竖屏）。",
+ "about": "旁白稿：segments 和 case.json 的段一一对应（按顺序），seg 是策划框架的段号；vo 是念的稿子（一句一项），pace 同 Skill 的 film.md「逐字稿」；整稿一次语音合成成 assets/vo.mp3，cases/tools/render.py --voice 把它导入 Skill 的 voice.py、按句切开。show 是念法 → 字幕写法。facts 是本段旁白和画面上的每个事实：ref 是 plans/course-first-video/content.md 的编号（P1-1），设定写 null，src 是出处，实测的（G1）src 写 null，记录在 content.md。 shorts 是附带短片：以哪一段为主体、目标秒数、画幅（横屏原版切竖屏）。",
  "plan": "plans/course-first-video/plan.md",
  "voice": {
   "model": "speech-2.8-turbo",
@@ -50,8 +50,9 @@
     }
    ],
    "pace": {
-    "lead": 1.0,
-    "gap": 0.4,
+    "lead": 1.06,
+    "gap": 0.52,
+    "tail": 0.86,
     "min": 28
    }
   },
@@ -79,8 +80,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.3,
+    "lead": 0.66,
+    "gap": 0.42,
+    "tail": 0.86,
     "min": 20
    }
   },
@@ -127,8 +129,9 @@
     }
    ],
    "pace": {
-    "lead": 0.8,
-    "gap": 0.5,
+    "lead": 0.86,
+    "gap": 0.62,
+    "tail": 0.86,
     "min": 40
    }
   },
@@ -156,8 +159,9 @@
     }
    ],
    "pace": {
-    "lead": 0.8,
-    "gap": 0.5,
+    "lead": 0.86,
+    "gap": 0.62,
+    "tail": 0.86,
     "min": 20
    }
   },
@@ -221,8 +225,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.6,
+    "lead": 0.66,
+    "gap": 0.72,
+    "tail": 0.86,
     "min": 30
    }
   },
@@ -287,8 +292,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.7,
+    "lead": 0.66,
+    "gap": 0.82,
+    "tail": 0.86,
     "min": 40
    }
   },
@@ -327,8 +333,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.8,
+    "lead": 0.66,
+    "gap": 0.92,
+    "tail": 0.86,
     "min": 35
    }
   },
@@ -376,8 +383,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.6,
+    "lead": 0.66,
+    "gap": 0.72,
+    "tail": 0.86,
     "min": 25
    }
   },
@@ -401,9 +409,9 @@
     }
    ],
    "pace": {
-    "lead": 0.6,
-    "gap": 0.4,
-    "tail": 3.0,
+    "lead": 0.66,
+    "gap": 0.52,
+    "tail": 3.06,
     "min": 12
    }
   }

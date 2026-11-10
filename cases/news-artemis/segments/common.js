@@ -1,8 +1,11 @@
 // 各段共用：栏目包装（台标、段落标题、出处滚动条、字幕）、镜头表、视频取帧、AI 标识、星历读数。
-// 依赖 samples/lib/lib.js 和风格包 packs/news-brief/pack.js（NB）；播放器给的全局 SEG = {no, title, dur, vo, lines}、TIMING。
+// 依赖 samples/lib/lib.js 和风格包 packs/news-brief/pack.js（NB）；播放器（samples/player.html）给的全局 SEG = timing.json 的本段 {seg, title, dur, vo}、TIMING 整支的 timing.json。
 // 每帧只由本段时间 t 决定；跨段连续的东西（出处滚动条、台标）用整支时间 G = 本段起点 + t。
 const C = (() => {
   const K = NB.theme(), u = K.u;
+  // 本支的段号是数字（segments/03.js → SEG.no 3）；字幕行取 timing.json 每句的 lines（cases/tools/render.py --voice 从整稿字幕补的），没有就一句一行
+  SEG.no = +SEG.seg;
+  SEG.lines = SEG.vo.flatMap((v, s) => (v.lines || [{ t0: v.at, t1: v.at + v.t, text: v.show }]).map(l => ({ ...l, s })));
   const START = TIMING.segments.slice(0, SEG.no - 1).reduce((a, s) => a + s.dur, 0);
   const G = t => START + t;
   const say = i => SEG.vo[i].at;                          // 本段第 i 句旁白开始的时刻

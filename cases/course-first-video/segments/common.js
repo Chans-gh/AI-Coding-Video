@@ -1,5 +1,5 @@
 // 各段共用：课件包装（课名、段名、章节条、字幕）、卡片、类别色标、终端窗口（C-169 光标打字的做法）、代码高亮。
-// 依赖 samples/lib/lib.js；播放器给的全局 SEG = {no, title, dur, vo, lines}、TIMING。
+// 依赖 samples/lib/lib.js；播放器（samples/player.html）给的全局 SEG = timing.json 的本段 {seg, title, dur, vo}、TIMING 整支的 timing.json。
 // 每帧只由本段时间 t 决定；跨段连续的东西（章节条）用整支时间 G = 本段起点 + t。
 const L = (() => {
   const u = SHORT / 1080;
@@ -8,6 +8,9 @@ const L = (() => {
     C: '#2F6BFF', T: '#11A37F', G: '#E8590C', hi: '#FFE066',
     term: '#151A23', termBar: '#232A36', green: '#7EE787', red: '#FF7B72', yellow: '#E3B341', blue: '#79C0FF', gray: '#8B949E',
   };
+  // 本支的段号是数字（segments/03.js → SEG.no 3）；字幕行取 timing.json 每句的 lines（cases/tools/render.py --voice 从整稿字幕补的），没有就一句一行
+  SEG.no = +SEG.seg;
+  SEG.lines = SEG.vo.flatMap((v, s) => (v.lines || [{ t0: v.at, t1: v.at + v.t, text: v.show }]).map(l => ({ ...l, s })));
   const START = TIMING.segments.slice(0, SEG.no - 1).reduce((a, s) => a + s.dur, 0);
   const TOTAL = TIMING.segments.reduce((a, s) => a + s.dur, 0);
   const G = t => START + t;

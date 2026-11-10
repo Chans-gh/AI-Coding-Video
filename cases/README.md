@@ -26,21 +26,23 @@ cases/<名字>/
   script.json      旁白稿：分段，每段对应 case.json 的一段，数字记出处
   assets.json      素材清单，字段和样片的一样（见 samples/tools/assets.py 开头）
   assets/          素材
-  segments/        每段一个场景文件，写法和样片的 scene.js 一样，直接用 samples/lib/lib.js
-  sound.py         整支的混音：旁白、配乐、音效
+  segments/        每段一个场景文件 NN.js，写法同 Skill 完整出片的段（segments/<段号>.js），直接用 samples/lib/lib.js
+  sound.py         整支的配乐和音效，score(m, T) 照 Skill 的 samples/tools/film.py；旁白由 film.py 摆
+  timing.json      每段的段长、每句的时间（Skill 的 voice.py 写，格式见 film.md「时间」）
   log.md           制作记录：每一步用时、生成用量、返工；末尾是汇总表（格式见下）
-  media/、out/、assets/dl/   成片、中间产物、能重新下载的素材（不进仓库）
+  storyboard.json、vo/、media/、out/、assets/dl/   生成的分镜、配音、成片、中间产物、能重新下载的素材（不进仓库）
 cases/tools/
   build.py         生成和检查
   assets.py        照 assets.json 下载、截取、生成素材（长录像按时间段读取，不整个下载）
-  timing.py        旁白驱动的分段时长 → segments/timing.json
-  player.html      分段播放器（浏览器预览、出片共用）
-  render.py        分段渲染、每段检查、接片混音、出原版、中版、封面、附带短片
+  render.py        配音、分段渲染、接片调 Skill 的 samples/tools/voice.py、film.py；另把每段起止写回 case.json，出原版、中版、封面、附带短片
   transcribe.py    长录像转逐词文字稿（faster-whisper），挑金句、切短片用
 ```
 
-一支片的流程：策划交接（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的 `plans/<名字>/plan.md`，交接格式 2、状态「已交接」）→ 照 [storyboard.md](../skills/ai-coding-video/storyboard.md) 接策划、照 [film.md](../skills/ai-coding-video/film.md) 的格式写 `case.json`、`script.json` → `script.json` 定稿 → `timing.py --sync` → `assets.py` 拿素材、配旁白 → `timing.py` 算每段时长 → 写 `segments/NN.js`、`sound.py` →
+`render.py` 每次先从 `case.json`、`script.json` 写出 Skill 认的 `storyboard.json`：第 k 段的段号是 `0k`（对应 `segments/0k.js`），音色取 `script.json` 的 `voice`；正本仍是 `case.json`。
+
+一支片的流程：策划交接（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的 `plans/<名字>/plan.md`，交接格式 2、状态「已交接」）→ 照 [storyboard.md](../skills/ai-coding-video/storyboard.md) 接策划、照 [film.md](../skills/ai-coding-video/film.md) 的格式写 `case.json`、`script.json` → `script.json` 定稿 → `assets.py` 拿素材 → `render.py <名字> --voice` 配音、算每段时长，`--check` 回听 → 写 `segments/NN.js`、`sound.py` →
 `render.py <名字> all --quick` 抽帧看 → `render.py <名字> all` 出各段 → `render.py <名字> --join`、`--shorts` → `scripts/media.py upload`。
+前两支的旁白是整稿一次合成的 `assets/vo.mp3`（字幕在 `assets.json` 那一项的 `lines`）：稿子没改时 `--voice` 把它导入 `voice.py`、按句切开，不重配。
 原版要同时低于 100 MB，`media.py` 经 git 中转分支上传，GitHub 拒收更大的单个文件。
 
 ## log.md 的汇总表
