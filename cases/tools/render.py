@@ -157,11 +157,14 @@ def sizes(d, T, tot):
 
 
 def join(case, d, C, S):
-    code = tool("film.py", d, "--join")
-    if code:
-        return code
-    T, tot = timing(d)
     src = d / "out" / f"{d.name}-{C['ar'].replace(':', 'x')}.mp4"
+    src.unlink(missing_ok=True)
+    code = tool("film.py", d, "--join")
+    if not src.exists():
+        return code or 1
+    if code:                                                                     # 整片自检有 ✗（见 out/report.md）：照样出发布用的文件，人看过再决定，退出码仍是 1
+        print("！整片自检有 ✗，照样出原版、中版、封面，先看 out/report.md 再上传")
+    T, tot = timing(d)
     media = d / "media"
     media.mkdir(exist_ok=True)
     full = media / f"{case}.mp4"
@@ -198,7 +201,7 @@ def join(case, d, C, S):
         bad += mb > lim
         print(f"{'✓' if mb <= lim else '✗'} {f.relative_to(ROOT)} {mb:.1f} MB（上限 {lim}）{probe_dur(f):.1f}s")
     print(f"✓ {jpg.relative_to(ROOT)} {Image.open(jpg).size}")
-    return 1 if bad else 0
+    return 1 if bad or code else 0
 
 
 def dump_case(case):
