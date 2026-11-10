@@ -247,7 +247,7 @@ def encode(p, sid, ar, log):
         tmp.replace(silent)
     vbytes = silent.stat().st_size
     wav, _, _ = make_sound(sid, p.dur, f"-{ar}")
-    audio = ["-i", str(wav), "-c:a", "aac", "-b:a", "128k", "-shortest"] if wav else []
+    audio = ["-i", str(wav), "-c:a", "aac", "-b:a", "128k"] if wav else []   # 不用 -shortest：声音按采样取整，比画面短一点点，-shortest 会剪掉最后几帧
     mp4 = where(sid) / f"{stem(sid)}-{ar}.mp4"
     # 去掉元数据和编码器信息（容器标签、x264 写进码流的参数 SEI），成片里不留软件、设备信息
     subprocess.run([ffmpeg(), "-y", "-loglevel", "error", "-i", str(silent), *audio, "-c:v", "copy",

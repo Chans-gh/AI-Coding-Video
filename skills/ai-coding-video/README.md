@@ -91,19 +91,7 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 
    有样片的 T、G 类条目，`--check` 还会核对 `samples/<编号>/assets.json`：每份素材有出处和许可（生成的有模型和提示词），文件都在，合计不超过 10 MB，「素材」和实际用到的一致。
 
-2. 做了样片的条目，在标题下面加缩略图，并补两行；做了风格包的再补一行「风格包」。这几行由 `samples/tools/mark.py` 写，不用手写：
-
-   ```markdown
-   ![风格名](../images/C-106.jpg)
-
-   - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
-   - 样片代码：[samples/C-106/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-106)
-   - 风格包：[packs/名字/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/名字)
-   ```
-
-   样片和风格包的代码在仓库里 Skill 文件夹之外，所以写成 GitHub 链接，Skill 单独装进别的项目也能点开；仓库地址只在 `scripts/build_index.py` 的 `CODE_BASE` 里改。
-
-   缩略图存成 `images/C-106.jpg`（JPEG，宽 640 以内，100 KB 以内），必须由本仓库的代码渲染。
+2. 做了样片的条目，标题下面的缩略图和「技术（已验证）」「样片代码」两行（做了风格包的再加「风格包」一行）由 `samples/tools/mark.py` 写，不用手写。缩略图存成 `images/<编号>.jpg`（JPEG，宽 640 以内，100 KB 以内），必须由本仓库的代码渲染。样片和风格包的代码在仓库里 Skill 文件夹之外，所以写成 GitHub 链接，Skill 单独装进别的项目也能点开；仓库地址只在 `scripts/build_index.py` 的 `CODE_BASE` 里改。
 
 3. 需要的话，把它补进 [`index.md`](index.md) 的索引表。
 4. 改文件标题里的「（N 种）」，在 [`CHANGELOG.md`](CHANGELOG.md) 记一行。

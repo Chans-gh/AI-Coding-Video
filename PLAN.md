@@ -83,7 +83,7 @@
 
 | 顺序 | 内容 | 说明 |
 |---|---|---|
-| 3 | [电商带货：虚构品牌精华液上新讲解](cases/shop-skincare/README.md) | 等策划仓库的抓原文脚本做完再开工；生成最多，另出 6 条 15 秒投流短片 |
+| 3 | [电商带货：虚构品牌精华液上新讲解](cases/shop-skincare/README.md) | 等策划仓库的抓原文脚本做完再开工；生成最多，另出 6 条 15 秒投流短片；配音经 `AICV_TTS_CMD` 接真实的语音合成服务，顺带验收 `tools/voice.py`（调用前问维护者） |
 | 4 | 介绍页模块 | 已上线，做完的案例按 `site/build.py` 的 `CASE_ORDER` 排；第 3 支做完自动出现；等维护者看效果给改版意见 |
 
 一个对话，先策划、交接，再出片；出片时只照 `plans/` 里的文件写 `case.json`、`script.json`，不靠对话里的记忆补内容（对应关系见 [cases/README.md](cases/README.md) 的「接策划」）。等维护者说开工，开工时再细算用量；做完合并回 `main`、汇报。做法照第 2 支：[cases/course-first-video/](cases/course-first-video/) 的 `plans/`、`log.md`。
