@@ -349,6 +349,463 @@
    },
    "at": 0,
    "gain": 0
+  },
+  {
+   "file": "assets/brand/color/01-black.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：黑色",
+   "source": "plans/shop-handbag/source/brand/color/01-black.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/02-white.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：白色",
+   "source": "plans/shop-handbag/source/brand/color/02-white.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/03-sudan-brown.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：苏丹棕",
+   "source": "plans/shop-handbag/source/brand/color/03-sudan-brown.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/04-maple-red.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：枫叶红",
+   "source": "plans/shop-handbag/source/brand/color/04-maple-red.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/05-sunflower-yellow.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：向日葵黄",
+   "source": "plans/shop-handbag/source/brand/color/05-sunflower-yellow.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/06-mist-blue.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：银雾蓝",
+   "source": "plans/shop-handbag/source/brand/color/06-mist-blue.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/07-croc-brown.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：鳄纹棕",
+   "source": "plans/shop-handbag/source/brand/color/07-croc-brown.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/08-ash-grey.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：灰汁色",
+   "source": "plans/shop-handbag/source/brand/color/08-ash-grey.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/09-ancora-red.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：安可拉红",
+   "source": "plans/shop-handbag/source/brand/color/09-ancora-red.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/10-matcha-green.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：抹茶绿",
+   "source": "plans/shop-handbag/source/brand/color/10-matcha-green.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/color/11-peach-pink.jpg",
+   "kind": "照片",
+   "title": "颜色款式图：蜜桃粉",
+   "source": "plans/shop-handbag/source/brand/color/11-peach-pink.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "裁掉顶上的 BEISHAN 字样（取 0,140 起 800×660）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/gen/1-1.jpg",
+   "kind": "生图",
+   "title": "镜头 1-1 首帧：黑色包立在清晨的草丛里",
+   "model": "gpt-image-2",
+   "prompt": "中景低机位：参考图里这只黑色牛皮水桶包立在清晨的枯黄草丛里，逆光，草尖上挂着露珠闪着光，远处是草原和淡淡的晨雾。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/01-black.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/1-1.mp4",
+   "kind": "生视频",
+   "title": "镜头 1-1：黑色包立在清晨的草丛里",
+   "model": "grok-imagine-video-1.5",
+   "prompt": "草叶被风轻轻吹动，露珠闪光，提绳上的珠子随风微微晃动，镜头缓慢推近，没有人物。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/1-1.jpg",
+   "prep": {
+    "w": 1080
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/1-2.jpg",
+   "kind": "生图",
+   "title": "镜头 1-2 首帧：提绳上的珠子特写",
+   "model": "gpt-image-2",
+   "prompt": "特写：参考图里这只黑色包提绳上的琥珀色圆珠，包放在清晨的草丛里，旁边一片草叶上挂着一颗露珠，浅景深。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/1-2.mp4",
+   "kind": "生视频",
+   "title": "镜头 1-2：提绳上的珠子特写",
+   "model": "grok-imagine-video-1.5",
+   "prompt": "珠子随风轻轻晃动，焦点从珠子慢慢移到旁边草叶上的露珠，没有人物。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/1-2.jpg",
+   "prep": {
+    "w": 1080
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/4-1.jpg",
+   "kind": "生图",
+   "title": "镜头 4-1 首帧：手拎起黑色包",
+   "model": "gpt-image-2",
+   "prompt": "近景：奶白色的桌面和干净的奶白背景，一只手握着参考图里这只黑色牛皮水桶包的提绳，把包从桌上拎起一点，柔和的窗光。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手和手腕，不出脸和身体。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/01-black.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/4-1.mp4",
+   "kind": "生视频",
+   "title": "镜头 4-1：手拎起黑色包",
+   "model": "grok-imagine-video-1.5",
+   "prompt": "手把包慢慢拎起，包在空中轻轻转半圈，珠子轻晃；只出手，没有脸。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/4-1.jpg",
+   "prep": {
+    "w": 1080
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/5-2-1.jpg",
+   "kind": "生图",
+   "title": "镜头 5-2 第 1 张：放进手机",
+   "model": "gpt-image-2",
+   "prompt": "俯拍：奶白色的桌面上，参考图里这只黑色牛皮水桶包打开着，圆形包盖放在一旁；一只手正把一部白色手机放进包口。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手，不出脸和身体；手机、化妆品上没有任何品牌标志。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/5-2-2.jpg",
+   "kind": "生图",
+   "title": "镜头 5-2 第 2 张：放进卡夹",
+   "model": "gpt-image-2",
+   "prompt": "俯拍：奶白色的桌面上，参考图里这只黑色牛皮水桶包打开着，圆形包盖放在一旁；一只手正把一个浅色卡夹放进包口。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手，不出脸和身体；手机、化妆品上没有任何品牌标志。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/5-2-3.jpg",
+   "kind": "生图",
+   "title": "镜头 5-2 第 3 张：放进纸巾",
+   "model": "gpt-image-2",
+   "prompt": "俯拍：奶白色的桌面上，参考图里这只黑色牛皮水桶包打开着，圆形包盖放在一旁；一只手正把一小包纸巾放进包口。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手，不出脸和身体；手机、化妆品上没有任何品牌标志。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/5-2-4.jpg",
+   "kind": "生图",
+   "title": "镜头 5-2 第 4 张：放进两支化妆品",
+   "model": "gpt-image-2",
+   "prompt": "俯拍：奶白色的桌面上，参考图里这只黑色牛皮水桶包打开着，圆形包盖放在一旁；一只手正把两支化妆品（一支口红、一支唇釉，都没有品牌标志）放进包口。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手，不出脸和身体；手机、化妆品上没有任何品牌标志。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/5-3.jpg",
+   "kind": "生图",
+   "title": "镜头 5-3：盖上包盖",
+   "model": "gpt-image-2",
+   "prompt": "俯拍：奶白色的桌面上，一只手正把圆形包盖盖到参考图里这只黑色牛皮水桶包上，包里装好的东西看不见。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；只出手，不出脸和身体。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/08-black-top.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-01.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 1 张：黑色",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只黑色牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），立在清晨的草地上，草尖带着露珠。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/01-black.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-02.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 2 张：白色",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只白色牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在河边一块灰色的大鹅卵石上，背后是缓缓流过的河水。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/02-white.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-03.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 3 张：苏丹棕",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只苏丹棕牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在一段旧木栅栏的横木上，背后是枯黄的草原。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/03-sudan-brown.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-04.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 4 张：枫叶红",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只枫叶红牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），立在枯黄的草坡上，背后是晴朗的蓝天和白云。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/04-maple-red.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-05.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 5 张：向日葵黄",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只向日葵黄牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），立在一片开着小黄花的野花丛中。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/05-sunflower-yellow.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-06.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 6 张：银雾蓝",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只银雾蓝牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在溪边的石头上，背后是清浅的溪水。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/06-mist-blue.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-07.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 7 张：鳄纹棕",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只鳄纹棕牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在一块深色的岩石上，旁边是枯草。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/07-croc-brown.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-08.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 8 张：灰汁色",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只灰汁色牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在芦苇丛边的一只旧木箱上。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/08-ash-grey.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-09.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 9 张：安可拉红",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只安可拉红牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在铺在草地上的一块亚麻布上。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/09-ancora-red.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-10.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 10 张：抹茶绿",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只抹茶绿牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），放在长满青苔的树桩上。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/10-matcha-green.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
+  },
+  {
+   "file": "assets/gen/7-11.jpg",
+   "kind": "生图",
+   "title": "镜头 7-2 第 11 张：蜜桃粉",
+   "model": "gpt-image-2",
+   "prompt": "参考图里这只蜜桃粉牛皮水桶包（上窄下宽的布丁形、圆盖、提绳上串着圆珠），立在傍晚逆光的草地上，草叶边缘泛着金光。包的形状、颜色、珠子和提绳照参考图，不改颜色、不加装饰。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；画面里没有人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "ref": "assets/brand/color/11-peach-pink.jpg",
+   "prep": {
+    "max": 1920
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成"
   }
  ]
 }
