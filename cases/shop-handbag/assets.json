@@ -1,0 +1,270 @@
+{
+ "items": [
+  {
+   "file": "assets/gen/2-1.jpg",
+   "kind": "生图",
+   "title": "镜头 2-1 首帧：晴空下的草原",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "大全景：深秋枯黄的高原草原一望无际，晴朗的蓝天上飘着几朵白云，云影落在草地上，地平线压在画面下三分之一。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-1.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-1：晴空下的草原",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "云影缓缓从草原上掠过，草被微风轻轻吹动，镜头固定，没有人物。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-1.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-2.jpg",
+   "kind": "生图",
+   "title": "镜头 2-2 首帧：乌云压低的草原",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "同一片枯黄草原，同样的构图和地平线，天空被厚重的乌云压低，光线变暗，远处的草被风压倒。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "ref": "assets/gen/2-1.jpg"
+  },
+  {
+   "file": "assets/gen/2-2.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-2：乌云压低的草原",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "乌云缓缓压低、翻涌，一阵大风吹过，草浪一阵阵向一侧倒伏，镜头固定，没有人物。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-2.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-4.jpg",
+   "kind": "生图",
+   "title": "镜头 2-4 首帧：湖边少女的背影",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "远景：灰绿色的湖边，一个穿米白色长裙的少女背对镜头走向水边，人物占画面不到五分之一，长裙被风吹起，湖面泛着细碎的光，远处是低矮的山。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-4.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-4：湖边少女的背影",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "少女背对镜头慢慢走向水边，裙摆被风吹动，湖面微微起波，镜头缓慢推近，始终看不到她的脸。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-4.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-5.jpg",
+   "kind": "生图",
+   "title": "镜头 2-5 首帧：草坡上奔跑的背影",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "远景：起伏的枯黄草坡，一个穿碎花复古长裙的少女背对镜头在草坡上奔跑，人物很小，天空开阔、有厚云。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-5.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-5：草坡上奔跑的背影",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "少女背对镜头向草坡高处奔跑，越跑越远，裙摆飘动，镜头固定，始终看不到她的脸。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-5.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-6.jpg",
+   "kind": "生图",
+   "title": "镜头 2-6 首帧：草叶上的露珠",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "微距：清晨一片细长的草叶上挂着一颗晶莹的露珠，露珠里映着天空，背景是虚化的金色晨光。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-6.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-6：草叶上的露珠",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "露珠在草叶上微微颤动，慢慢顺着叶尖滑落，背景晨光闪烁，微距慢动作，镜头固定。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-6.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-7.jpg",
+   "kind": "生图",
+   "title": "镜头 2-7 首帧：草地上的瓜果",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "近景：草地上铺着一块亚麻布，上面放着一个切开的成熟甜瓜和两个黄梨，阳光柔和。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-7.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-7：草地上的瓜果",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "微风吹起亚麻布的一角，周围的草叶轻轻摇动，镜头缓慢横移。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-7.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/2-8.jpg",
+   "kind": "生图",
+   "title": "镜头 2-8 首帧：远处的牛羊",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "大远景：起伏的山坡上远远散着一群牛羊，前景是被风吹动的枯草。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   }
+  },
+  {
+   "file": "assets/gen/2-8.mp4",
+   "kind": "生视频",
+   "title": "镜头 2-8：远处的牛羊",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "风吹过前景的草，草浪起伏，远处的牛羊慢慢低头吃草，镜头固定。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/2-8.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  },
+  {
+   "file": "assets/gen/6-3.jpg",
+   "kind": "生图",
+   "title": "镜头 6-3 首帧：白色皮面微距",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "微距特写：参考图里这只白色牛皮水桶包的皮面局部，看得见天然的生长纹、细小的斑点和毛孔，柔和的侧光，不出现整只包。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；皮面颜色和纹理照参考图，不改颜色。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "max": 1920
+   },
+   "ref": "assets/brand/detail/09-product-white.jpg"
+  },
+  {
+   "file": "assets/gen/6-3.mp4",
+   "kind": "生视频",
+   "title": "镜头 6-3：白色皮面微距",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "一道柔和的光从左往右慢慢扫过皮面，镜头极缓慢地推近，皮面纹理清晰，没有人物。",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "ref": "assets/gen/6-3.jpg",
+   "license": "AI 生成，本案例使用",
+   "credit": "AI 生成",
+   "prep": {
+    "w": 1080
+   }
+  }
+ ]
+}
