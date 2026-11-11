@@ -1281,6 +1281,21 @@
    "bytes": 80016444,
    "sha256": "7720fa0af99c4c1f2d8c764fb420aa4e1c29780654a4aff18baacc6729a49364"
   },
+  "case-shop-handbag-mid.mp4": {
+   "path": "cases/shop-handbag/media/shop-handbag-mid.mp4",
+   "bytes": 23191959,
+   "sha256": "a3552963e0bc758fb4882718fc1e70ef0994e95f5e89f341ca4f8c56f0a7bd90"
+  },
+  "case-shop-handbag.jpg": {
+   "path": "cases/shop-handbag/media/shop-handbag.jpg",
+   "bytes": 94909,
+   "sha256": "7bb2bff0c2c8afebe682c26e7bd73c5822315f5e476a5ecb43b156854ecbb58c"
+  },
+  "case-shop-handbag.mp4": {
+   "path": "cases/shop-handbag/media/shop-handbag.mp4",
+   "bytes": 62416447,
+   "sha256": "ef0a50953c5318f32b4d2f609e146ead49257343d99f53d28de343ff7f19d883"
+  },
   "pack-dark-keynote-green-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-green-16x9.mp4",
    "bytes": 13896548,
