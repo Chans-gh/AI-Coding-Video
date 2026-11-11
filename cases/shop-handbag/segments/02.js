@@ -44,7 +44,7 @@ scene({
   async draw(ctx, t, s) {
     const { K } = C, q = C.cue, at = s.at;
     const i = await C.shots(ctx, t, s.shots);
-    C.film(ctx, t);
+    C.film(ctx, t, { grain: .04 });   // 生视频本身有噪点，颗粒再淡些，体积才进得了分摊上限
     C.shade(ctx, .35, .35);
     C.aiTag(ctx, s.shots[i].ai ? 1 : 0);
     // 关键词大字：念到哪个词出哪个词

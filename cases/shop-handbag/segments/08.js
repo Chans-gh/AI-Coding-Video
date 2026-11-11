@@ -35,7 +35,7 @@ scene({
       },
     }));
     await C.shots(ctx, t, shots);
-    C.film(ctx, t, { warm: .08, vig: .3, grain: .06 });
+    C.film(ctx, t, { warm: .08, vig: .3, grain: .03 });
     C.shade(ctx, .6, .5);
     C.sub(ctx, t);
 
