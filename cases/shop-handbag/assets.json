@@ -10,6 +10,42 @@
    "edit": "原图上下两个包，裁出上面立着的那个（像素 180,80 起，520×580）；图上没有文字和字母，不用 AI 去字"
   },
   {
+   "file": "assets/brand/11-red-top.jpg",
+   "kind": "照片",
+   "title": "镜头 6-6：枫叶红，白珠子和五金",
+   "source": "plans/shop-handbag/source/brand/detail/11-product-maple-red.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "取上面那张（像素 0,0 起，1000×622）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/10-brown-top.jpg",
+   "kind": "照片",
+   "title": "镜头 6-4：苏丹棕立着",
+   "source": "plans/shop-handbag/source/brand/detail/10-product-sudan-brown.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "取上面那张（像素 0,116 起，1000×548）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/09-white-lying.jpg",
+   "kind": "照片",
+   "title": "镜头 6-5：白色款横躺，看得到内里",
+   "source": "plans/shop-handbag/source/brand/detail/09-product-white.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "取下面那张（像素 0,782 起，1000×500）；只裁切，不改像素"
+  },
+  {
+   "file": "assets/brand/08-black-top.jpg",
+   "kind": "照片",
+   "title": "第 6 段：黑色款立着（外皮、内里、珠子、五金四个点）",
+   "source": "plans/shop-handbag/source/brand/detail/08-product-black.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "取上面那张（像素 0,124 起，750×441），顶上的「产品细节 Product details」字样裁在外面；只裁切，不改像素"
+  },
+  {
    "file": "assets/brand/06-stream.jpg",
    "kind": "照片",
    "title": "镜头 2-3：银雾蓝款，模特坐在溪边",
@@ -72,7 +108,7 @@
    "kind": "生视频",
    "title": "镜头 2-2：乌云压低的草原",
    "model": "grok-imagine-video-1.5",
-   "prompt": "乌云缓缓压低、翻涌，一阵大风吹过，草浪一阵阵向一侧倒伏，镜头固定，没有人物。",
+   "prompt": "乌云缓缓压低、翻涌，一阵大风吹过，草浪一阵阵向一侧倒伏，远处骑马的人背对镜头停在原地，镜头固定，始终看不到人的脸。",
    "params": {
     "aspectRatio": "9:16",
     "duration": 5,

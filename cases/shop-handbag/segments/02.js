@@ -53,9 +53,9 @@ scene({
     C.word(ctx, t, '乌云', q('乌云'), q('逆风'), { size: 150, y: .4 });
     C.word(ctx, t, '逆风', q('逆风'), at.x + .1, { size: 130, y: .36 });
     C.word(ctx, t, '顺风', q('顺风'), at.x + .1, { size: 130, y: .48 });
-    C.word(ctx, t, '草原', q('草原'), at.c, { size: 96, y: .26 });
-    C.word(ctx, t, '丛林', q('丛林'), at.c, { size: 96, y: .34 });
-    C.word(ctx, t, '雪地', q('雪地'), at.c, { size: 96, y: .42 });
+    C.word(ctx, t, '草原', q('草原'), at.c, { size: 84, y: .09 });
+    C.word(ctx, t, '丛林', q('丛林'), at.c, { size: 84, y: .15 });
+    C.word(ctx, t, '雪地', q('雪地'), at.c, { size: 84, y: .21 });
     C.word(ctx, t, '湖边', q('湖边'), at.d, { size: 150, y: .3 });
     C.word(ctx, t, '自由撒欢', q('自由'), q('探险') - .2, { size: 120, y: .3 });
     C.word(ctx, t, '四处探险', q('探险') - .2, at.e, { size: 120, y: .3 });
