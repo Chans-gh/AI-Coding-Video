@@ -25,7 +25,7 @@ const C = (() => {
   async function shots(ctx, t, list) {
     let i = list.length - 1; while (i > 0 && t < list[i].at) i--;
     const d = k => (list[k + 1] ? list[k + 1].at : SEG.dur) - list[k].at;
-    const run = async (k, c) => { const s = list[k], lt = t - s.at; if (s.prep) await s.prep(lt); s.draw(c, lt, d(k)); };
+    const run = async (k, c) => { const s = list[k], lt = t - s.at; if (s.prep) await s.prep(lt); c.save(); s.draw(c, lt, d(k)); c.restore(); };
     const mix = list[i].mix || 0;
     if (i > 0 && mix && t < list[i].at + mix) {
       await run(i - 1, ctx);

@@ -29,7 +29,7 @@ scene({
         C.film(c, t, { warm: .12, vig: .3, grain: .08 }); C.aiTag(c);
       } },
       { at: at.b, mix: .4, draw: (c, lt, d) => {       // 2 正面线稿 + 高、宽、厚
-        bg(c); const B = bagAt(W * .54, H * .66, 30 * u);
+        bg(c); push(c, lt, d); const B = bagAt(W * .54, H * .66, 30 * u);
         drawBag(c, B, 1);
         dim(c, B.x0 - 90 * u, B.top, B.x0 - 90 * u, B.bot, '16.5 cm', inv(cue.h, cue.h + .7, lt), 'left');
         dim(c, B.x0, B.bot + 80 * u, B.x1, B.bot + 80 * u, '14 cm', inv(cue.w, cue.w + .7, lt), 'below');
@@ -38,7 +38,7 @@ scene({
         C.word(c, lt, '高 16.5 · 宽 14 · 厚 14', cue.h, d + 1, { size: 64, y: .14, color: K.ink, weight: 900 });
       } },
       { at: at.c, mix: .4, draw: (c, lt, d) => {       // 3 提手 13.5 cm、不可拆、不可调
-        bg(c); const B = bagAt(W * .46, H * .66, 30 * u);
+        bg(c); push(c, lt, d); const B = bagAt(W * .46, H * .66, 30 * u);
         drawBag(c, B, 1, true);
         dim(c, B.x1 + 70 * u, B.top - B.k * 13.5, B.x1 + 70 * u, B.top, '13.5 cm', inv(cue.hd, cue.hd + .7, lt), 'right');
         badge(c, W * .3, H * .17, '不可拆', inv(cue.nc, cue.nc + .5, lt));
@@ -50,7 +50,7 @@ scene({
         scale(c, lt);
       } },
       { at: at.e, mix: .4, draw: (c, lt, d) => {       // 5 和手机比高
-        bg(c); const k = 34 * u, base = H * .72;
+        bg(c); push(c, lt, d); const k = 34 * u, base = H * .72;
         const B = bagAt(W * .36, base, k); drawBag(c, B, 1);
         const pw = 7.8 * k, ph = 15.9 * k, px = W * .72 - pw / 2, py = base - ph, p = eOutCubic(inv(cue.phone - .2, cue.phone + .6, lt));
         c.save(); c.globalAlpha = p; c.translate(0, (1 - p) * 60 * u);
@@ -72,6 +72,8 @@ scene({
     await C.shots(ctx, t, list);
     C.sub(ctx, t);
 
+    // 线稿镜头慢慢推近一点，免得整段停住（bg 之后调，变换由 shots 收回）
+    function push(c, lt, d) { const k = 1 + .05 * eInOutCubic(clamp(lt / d)); c.translate(W / 2, H * .55); c.scale(k, k); c.translate(-W / 2, -H * .55); }
     // 包的正面尺寸（cm）：包身高 16.5、底宽 14、顶宽约 10.5；提手高 13.5。k 是每厘米多少像素，(cx, bot) 是底边中点
     function bagAt(cx, bot, k) {
       const h = 16.5 * k, wb = 14 * k, wt = 10.5 * k;

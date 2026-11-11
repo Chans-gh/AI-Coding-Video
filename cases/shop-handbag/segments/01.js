@@ -19,7 +19,7 @@ scene({
     const clip = (k, len, o) => V[k] ? C.clip(V[k], len, o) : null;
     // 1-1 前 2 秒提手和包盖之间有一道缝（生视频的毛病），从 2 秒起用；1-2 的包盖画成了掀在一边，只放大取珠子和露珠那一块
     const lb = at.c - at.b;
-    const A = clip('a', at.b, { from: 2 }), B = clip('b', lb, { zoom: lt => 2 + .15 * lt / lb, fx: .22, fy: .42 });
+    const A = clip('a', at.b, { from: 2 }), B = clip('b', lb, { zoom: lt => 2.6 + .2 * lt / lb, fx: .14, fy: .46 });
     // 片名底下垫 1-1 的末帧，虚化（只算一次）
     const blur = mk(W / 4, H / 4), g = blur.getContext('2d');
     if (V.a) { const el = await V.a.at(V.a.dur - .1); drawCover(g, el, 0, 0, W / 4, H / 4); } else drawCover(g, P.a, 0, 0, W / 4, H / 4);
