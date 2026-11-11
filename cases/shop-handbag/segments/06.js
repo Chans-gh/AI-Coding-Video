@@ -19,15 +19,7 @@ scene({
   },
   async draw(ctx, t, s) {
     const { K, u, F } = C, { P, at } = s;
-    const bg = c => { c.fillStyle = K.cream; c.fillRect(0, 0, W, H); };
-    // 照片放进画面上半（白底产品图，四周用奶白接上）；返回照片在画面上的矩形，标注按比例坐标换算
-    const photo = (c, img, lt, d, o = {}) => {
-      bg(c);
-      const z = 1 + (o.push ?? .06) * lt / d, w = W * (o.w || 1) * z, h = w * img.height / img.width;
-      const x = W / 2 - w * (o.fx ?? .5), y = H * (o.y ?? .4) - h * (o.fy ?? .5);
-      c.drawImage(img, x, y, w, h);
-      return (px, py) => [x + px * w, y + py * h];
-    };
+    const { bg, photo, dot, ring, label } = C;
     const list = [
       { at: at.a, draw: (c, lt, d) => {               // 1 黑色款：外皮、内里、珠子、五金四个点依次亮
         const p = photo(c, P.black, lt, d, { w: 1.25, fx: .5 });
@@ -71,39 +63,6 @@ scene({
     C.sub(ctx, t);
 
     // ---- 小部件 ----
-    // 圆点 + 引线 + 名字：p 从 0 开始，side 名字在点的哪边
-    function dot(c, x, y, name, p, side = 'right', v = 'above') {
-      if (p <= 0) return;
-      const e = eOutCubic(p / .5), dx = (side === 'right' ? 1 : -1) * 120 * u, dy = (v === 'above' ? -1 : 1) * 70 * u;
-      c.save();
-      c.strokeStyle = K.ink; c.fillStyle = K.ink; c.lineWidth = 3 * u;
-      c.globalAlpha = e;
-      c.beginPath(); c.arc(x, y, 12 * u * e, 0, TAU); c.fill();
-      c.beginPath(); c.arc(x, y, 24 * u * (1 + .25 * Math.sin(p * 4)), 0, TAU); c.globalAlpha = e * .35; c.stroke(); c.globalAlpha = e;
-      c.beginPath(); c.moveTo(x, y); c.lineTo(x + dx * .6 * e, y + dy * e); c.lineTo(x + dx * e, y + dy * e); c.stroke();
-      c.font = F(700, 40); c.textBaseline = 'middle'; c.textAlign = side === 'right' ? 'left' : 'right';
-      const tx = x + dx + (side === 'right' ? 14 : -14) * u;
-      const tw = c.measureText(name).width;
-      c.fillStyle = 'rgba(244,239,230,.88)'; rr(c, side === 'right' ? tx - 10 * u : tx - tw - 10 * u, y + dy - 30 * u, tw + 20 * u, 60 * u, 10 * u); c.fill();
-      c.fillStyle = K.ink; c.fillText(name, tx, y + dy);
-      c.restore();
-    }
-    // 画圈：p 从 0 开始，沿圆周描出来
-    function ring(c, x, y, r, p) {
-      if (p <= 0) return;
-      c.save(); c.strokeStyle = '#B5462F'; c.lineWidth = 6 * u; c.lineCap = 'round';
-      c.beginPath(); c.arc(x, y, r, -Math.PI / 2, -Math.PI / 2 + TAU * eInOutCubic(p / .6)); c.stroke(); c.restore();
-    }
-    // 名词卡：大字名词 + 一行解释，画在 y
-    function label(c, p, name, note, y) {
-      if (p <= 0) return;
-      const e = eOutCubic(p / .5);
-      c.save(); c.globalAlpha = e; c.textAlign = 'center';
-      c.fillStyle = K.ink; c.font = F(900, 110, C.SERIF); c.fillText(name, W / 2, y + (1 - e) * 20 * u);
-      c.fillStyle = K.river; c.fillRect(W / 2 - 60 * u, y + 40 * u, 120 * u * e, 5 * u);
-      c.fillStyle = K.ink; c.font = F(400, 42); c.fillText(note, W / 2, y + 110 * u);
-      c.restore();
-    }
     // 生成画面上方的三个词：生长纹、斑点、烙印，按旁白念到的时刻出
     function tags(c, lt, words) {
       words.forEach((w, k) => {
