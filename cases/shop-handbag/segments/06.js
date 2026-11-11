@@ -38,7 +38,7 @@ scene({
       { at: at.c, mix: .4, prep: s.vid ? s.vid.prep : null, draw: (c, lt, d) => {   // 3 生成的白色皮面微距
         if (s.vid) s.vid.paint(c, lt);
         else { drawCover(c, s.still, 0, 0, W, H, { zoom: 1.05 + .06 * lt / d }); sweep(c, lt / d); }
-        C.film(c, t, { warm: .12, vig: .3, grain: .16 });
+        C.film(c, t, { warm: .12, vig: .3, grain: .08 });
         C.aiTag(c);
         tags(c, lt, ['生长纹', '斑点', '烙印']);
       } },

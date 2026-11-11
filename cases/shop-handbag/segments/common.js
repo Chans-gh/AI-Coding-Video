@@ -56,7 +56,7 @@ const C = (() => {
     ctx.globalCompositeOperation = 'soft-light'; ctx.fillStyle = `rgba(201,168,106,${o.warm ?? .22})`; ctx.fillRect(0, 0, W, H);
     ctx.restore();
     vignette(ctx, o.vig ?? .42, .45);
-    grain(ctx, Math.floor(t * FPS), o.grain ?? .22);
+    grain(ctx, Math.floor(t * FPS / 3), o.grain ?? .1);     // 颗粒每 3 帧换一张、淡一些：每帧都换的满屏噪点压不下去，32 秒要 130 MB
   }
   // 下方压暗，给大字、字幕垫底
   function shade(ctx, from = .55, a = .55) {

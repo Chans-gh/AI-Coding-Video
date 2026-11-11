@@ -17,3 +17,4 @@ videos/*/vo/
 videos/*/timing.json
 videos/*/typical/
 videos/*/out/
+cases/*/typical/*.mp4
