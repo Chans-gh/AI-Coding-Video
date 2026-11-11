@@ -1,0 +1,384 @@
+{
+ "about": "逐字稿：segments 和 case.json 的段一一对应（按顺序，seg 照抄）；vo 是念的稿子（一句一项），pace 同 Skill 的 film.md「逐字稿」；show 是念法 → 字幕写法。facts 的 ref 是策划 content.md 的编号，src 是来源（品牌方的文字在策划目录的 source/brand/ 下，also 是第二个独立来源）。旁白由 cases/tools/render.py --voice 调 Skill 的 voice.py 逐句合成。",
+ "plan": "plans/shop-handbag/plan.md",
+ "voice": {
+  "model": "speech-2.8-turbo",
+  "voice": "Chinese (Mandarin)_Gentle_Lady",
+  "params": {
+   "speed": 1.0
+  }
+ },
+ "show": {
+  "十六点五厘米": "16.5 cm",
+  "十四厘米": "14 cm",
+  "十三点五厘米": "13.5 cm",
+  "三百六十克": "360 克",
+  "零到三厘米": "0–3 cm",
+  "九百六十元": "960 元",
+  "二十四小时": "24 小时",
+  "七天": "7 天",
+  "二零一四年": "2014 年",
+  "十一个颜色": "11 个颜色"
+ },
+ "segments": [
+  {
+   "seg": "P1",
+   "title": "钩子",
+   "vo": [
+    "这是一只像布丁的包。",
+    "提手上，串着一串圆珠。",
+    "北山制包所，《旷野》系列，布丁包。"
+   ],
+   "facts": [
+    {
+     "what": "上窄下宽的水桶形、圆盖、软皮提绳串着圆珠",
+     "ref": "P1-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "北山制包所《旷野》系列布丁包",
+     "ref": "P1-2",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 1.2,
+    "gap": 0.7,
+    "tail": 1.0,
+    "min": 15
+   }
+  },
+  {
+   "seg": "P2",
+   "title": "旷野里的白日梦",
+   "vo": [
+    "北山说，这个系列的灵感，来自旷野里一场柔和的梦。",
+    "晴空，或者乌云；逆风，或是顺风。",
+    "草原、丛林、雪地，或是湖边。",
+    "梦里的少女，在旷野里自由撒欢，四处探险。",
+    "清晨的露珠，成熟的瓜果，山间的风，还有不远处的牛羊。"
+   ],
+   "facts": [
+    {
+     "what": "灵感是旷野里柔和浪漫的梦：晴空乌云、逆风顺风、草原丛林雪地湖边（品牌说）",
+     "ref": "P2-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "少女在旷野里自由撒欢、探险（品牌说）",
+     "ref": "P2-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "露珠、瓜果、山风、牛羊（品牌说）",
+     "ref": "P2-3",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 1.5,
+    "gap": 1.2,
+    "tail": 1.5,
+    "min": 35
+   }
+  },
+  {
+   "seg": "P3",
+   "title": "露珠和瓜果变成包",
+   "vo": [
+    "这些，后来都变成了包的一部分。",
+    "北山把清晨的露珠提取出来，贯穿整个系列；在这只包上，就是提绳上那一串圆珠。",
+    "包的样子，参考了瓜果：上窄下宽，像一块布丁，顶上盖一块圆盖。",
+    "不同颜色的款，珠子和提绳的配色也不一样：黑色配木色珠，枫叶红配白珠，鳄纹棕配黑珠。"
+   ],
+   "facts": [
+    {
+     "what": "露珠提取成系列元素，就是提绳上的圆珠（品牌说）",
+     "ref": "P3-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "包款参考瓜果：上窄下宽的布丁形、圆盖（品牌说）",
+     "ref": "P3-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "黑色配木色珠、枫叶红配白珠、鳄纹棕配黑珠",
+     "ref": "P3-3",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.6,
+    "tail": 0.8,
+    "min": 35
+   }
+  },
+  {
+   "seg": "P4",
+   "title": "多大、多重",
+   "vo": [
+    "说说它到底多大。",
+    "包身高十六点五厘米，宽十四厘米，厚十四厘米。",
+    "提手高十三点五厘米，不能拆，也不能调。",
+    "整只包重三百六十克。",
+    "尺寸是手工量的，会有零到三厘米的误差；放一部大屏手机在旁边，差不多一样高。"
+   ],
+   "facts": [
+    {
+     "what": "包身高 16.5、宽 14、厚 14 cm；提手高 13.5 cm，不可拆卸、不可调节",
+     "ref": "P4-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "重 360 克",
+     "ref": "P4-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "手工测量，0–3 cm 误差",
+     "ref": "P4-3",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "和尺寸图里的大屏手机（高 15.9 cm）差不多高",
+     "ref": "P4-4",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.5,
+    "tail": 0.8,
+    "min": 30
+   }
+  },
+  {
+   "seg": "P5",
+   "title": "能装什么",
+   "vo": [
+    "能装什么？",
+    "一部手机、一个卡夹、一包纸巾，再加两支化妆品，可以同时放进去。",
+    "包里没有夹层，顶上用包盖闭合。"
+   ],
+   "facts": [
+    {
+     "what": "手机、卡夹、纸巾、两支化妆品可同时装下",
+     "ref": "P5-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "无夹层，包盖式闭合",
+     "ref": "P5-2",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.8,
+    "tail": 1.0,
+    "min": 25
+   }
+  },
+  {
+   "seg": "P6",
+   "title": "皮料和配件",
+   "vo": [
+    "再看用料。",
+    "外皮是头层牛皮，也就是牛皮最外面的那一层，保留着天然的表皮。",
+    "所以牛身上本来的生长纹、斑点和烙印，会留在包面上，颜色越浅，越遮不住。",
+    "内里是超纤，超细纤维合成革的简称，一种人造的仿真皮革。",
+    "珠子是亚克力，也就是有机玻璃；五金是锌合金。"
+   ],
+   "facts": [
+    {
+     "what": "外皮头层牛皮、内里超纤、珠子亚克力、五金锌合金",
+     "ref": "P6-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "头层皮保留生长纹、斑点、烙印，浅色越难覆盖（品牌说）",
+     "ref": "P6-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "头层是牛皮最外层，保留天然表皮",
+     "ref": "P6-3",
+     "src": "https://www.cnpp.cn/focus/3564991.html",
+     "also": "https://m.thepaper.cn/newsDetail_forward_20459644"
+    },
+    {
+     "what": "超纤是超细纤维合成革的简称，人造仿真皮革",
+     "ref": "P6-4",
+     "src": "https://journal.scu.edu.cn/info/1284/17126.htm",
+     "also": "https://search.napstic.cn/literature/periodical/010fzxb202403017"
+    },
+    {
+     "what": "亚克力即 PMMA，俗称有机玻璃",
+     "ref": "P6-5",
+     "src": "https://zh.wikipedia.org/zh-cn/%E8%81%9A%E7%94%B2%E5%9F%BA%E4%B8%99%E7%83%AF%E9%85%B8%E7%94%B2%E9%85%AF",
+     "also": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=201792"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.5,
+    "tail": 0.8,
+    "min": 40
+   }
+  },
+  {
+   "seg": "P7",
+   "title": "11 个颜色",
+   "vo": [
+    "一共十一个颜色。",
+    "黑色、白色、苏丹棕、枫叶红、向日葵黄、银雾蓝，",
+    "鳄纹棕、灰汁色、安可拉红、抹茶绿、蜜桃粉。",
+    "其中鳄纹棕的表面是鳄鱼纹，其余都是平滑的皮面。"
+   ],
+   "facts": [
+    {
+     "what": "11 个颜色及名称",
+     "ref": "P7-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "鳄纹棕表面是鳄鱼纹，其余平滑",
+     "ref": "P7-2",
+     "src": "source/brand/color/"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.6,
+    "tail": 1.0,
+    "min": 30
+   }
+  },
+  {
+   "seg": "P8",
+   "title": "怎么搭",
+   "vo": [
+    "拎在人手里，是这样的。",
+    "黑色，配一件鹅黄外套和手套。",
+    "白色，配一身红色西装。",
+    "苏丹棕、枫叶红、向日葵黄、银雾蓝、鳄纹棕，带去草原和河边，配白衬衫、复古长裙，或者一件针织马甲。"
+   ],
+   "facts": [
+    {
+     "what": "黑色款配鹅黄外套、芥黄手套",
+     "ref": "P8-1",
+     "src": "source/brand/detail/01-model-black.jpg"
+    },
+    {
+     "what": "白色款配红色西装套装",
+     "ref": "P8-2",
+     "src": "source/brand/detail/02-model-white.jpg"
+    },
+    {
+     "what": "苏丹棕配白衬衫、针织马甲、长裙；枫叶红在河边",
+     "ref": "P8-3",
+     "src": "source/brand/detail/03-model-sudan-brown.jpg"
+    },
+    {
+     "what": "向日葵黄、银雾蓝、鳄纹棕配复古长裙、白衬衫，在草原河边",
+     "ref": "P8-4",
+     "src": "source/brand/detail/05-model-sunflower-yellow.jpg"
+    }
+   ],
+   "pace": {
+    "lead": 1.0,
+    "gap": 1.0,
+    "tail": 1.2,
+    "min": 30
+   }
+  },
+  {
+   "seg": "P9",
+   "title": "买前要知道的",
+   "vo": [
+    "买之前，北山提醒几件事。",
+    "头层皮的皮纹、褶皱和小疵点，是正常现象。",
+    "屏幕和光线不同，颜色会有色差。",
+    "浅色包尽量别靠着深色衣服，避免串色。",
+    "亚克力珠子不是天然材质，细看会有小孔、掉漆。"
+   ],
+   "facts": [
+    {
+     "what": "头层皮的皮纹、褶皱、疵点属正常现象（品牌须知）",
+     "ref": "P9-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "显示器、光线不同有色差（品牌须知）",
+     "ref": "P9-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "浅色包别靠深色衣物，避免颜色迁移（品牌须知）",
+     "ref": "P9-3",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "亚克力珠子细看会有小孔、掉漆（品牌须知）",
+     "ref": "P9-5",
+     "src": "source/brand/product-text.md"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.5,
+    "tail": 0.8,
+    "min": 25
+   }
+  },
+  {
+   "seg": "P10",
+   "title": "价格和品牌",
+   "vo": [
+    "布丁包，九百六十元，顺丰包邮，二十四小时内发货，支持七天无理由退货。",
+    "北山制包所，二零一四年创立于北京；北山说，名字取自《山海经》里的《北山经》。",
+    "有追求但又节制，有原则且不圆滑，独立而不无聊。"
+   ],
+   "facts": [
+    {
+     "what": "960 元、顺丰包邮、24 小时内发货、7 天无理由退货",
+     "ref": "P10-1",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "2014 年在北京创立",
+     "ref": "P10-2",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "名字取自《山海经·北山经》（品牌说）",
+     "ref": "P10-3",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "《山海经》确有《北山经》一篇",
+     "ref": "P10-4",
+     "src": "https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93_(%E5%9B%9B%E9%83%A8%E5%8F%A2%E5%88%8A%E6%9C%AC)/%E5%8D%B7%E7%AC%AC%E4%B8%89"
+    },
+    {
+     "what": "品牌的话前三句，原文照录",
+     "ref": "P10-5",
+     "src": "source/brand/product-text.md"
+    },
+    {
+     "what": "片尾「素材由品牌方提供」",
+     "ref": null,
+     "src": "设定（cases/README.md 规矩，维护者声明）"
+    }
+   ],
+   "pace": {
+    "lead": 0.8,
+    "gap": 0.6,
+    "tail": 2.0,
+    "min": 25
+   }
+  }
+ ]
+}
