@@ -3,8 +3,9 @@
 用法（在演示片或你自己项目的 sound.py 里）：
     from sound_kit import bed, title_in, step_in, bars_in, number_in, transition
     bed(m); title_in(m, 0); transition(m, 3.4) ...
+完整演示片按 demo/segments.json 的分段表调用，见 demo/sound.py。
 """
-from synth import impact, whoosh, riser, beep, pad, drone, bell, kick, hz
+from synth import impact, whoosh, riser, beep, pad, drone, bell, kick, hat, tick, thud, hz
 
 ROOT = 45                       # 底音的 MIDI 音高（A2）；换调只改这里
 
@@ -45,3 +46,175 @@ def transition(m, t):
     """转场：光边扫过时一阵带通风声，从左到右"""
     m.put(whoosh(m, .6, 400, 4000), t, .3, pan=-.4)
     m.put(whoosh(m, .5, 900, 7000), t + .1, .12, pan=.4)
+
+
+# ———— 完整演示片用的：按章起伏的铺底，和新部件的入场音（上面几个照旧，15 秒切换片段只用它们）————
+CHORDS = [[0, 7, 12, 16], [-3, 4, 9, 12], [-7, 0, 5, 9], [-5, 2, 7, 11]]   # 同一个调里的 I、vi、IV、V，一章换一个
+
+
+def bed_chapters(m, marks, beat=.375):
+    """按章起伏的铺底。marks = [(开始, 结束, 第几章 0 起 / None 是开场, 是否歇拍)]：
+    低音一直在；和弦长音一章换一个（开场和第一章同一个）；每 2 拍一记轻底鼓、每拍一下踩镲，章节卡和片尾歇拍，只留长音"""
+    m.put(drone(hz(ROOT - 12), m.dur + .5, .2), 0, .11)
+    for a, b, ch, card in marks:
+        c = CHORDS[(ch or 0) % len(CHORDS)]
+        m.put(pad([hz(ROOT + k) for k in c], b - a + 1.0, 900 if card else 1300, a=.3, rel=1.0), a, .2 if card else .15)
+        if card:
+            continue
+        k = 0
+        while a + k * beat < b - .05:
+            t = a + k * beat
+            if k % 2 == 0:
+                m.put(kick(m), t, .16)
+            m.put(hat(m), t + beat / 2, .05, pan=.2 * (-1) ** k)
+            k += 1
+
+
+def chapter_in(m, t):
+    """章节卡：前 1 秒上扬噪声，章号描边时一记重击，章名吸附时一声钟"""
+    m.put(riser(m, 1.0), t - 1.0, .22)
+    m.put(impact(m), t, .6)
+    m.put(bell(hz(ROOT + 24), 1.8, ratio=2.0, index=1.0), t + .5, .1, pan=-.2)
+
+
+def push(m, t):
+    """推移转场：一阵从右到左、偏低的风声"""
+    m.put(whoosh(m, .7, 250, 2500), t, .28, pan=.3)
+
+
+def dissolve(m, t):
+    """叠化转场：很轻的一缕高频风声"""
+    m.put(whoosh(m, .6, 1500, 6000), t, .08)
+
+
+def typing(m, t0, n, cps):
+    """代码演示：逐字打出时一串轻敲击，每 2 个字一下"""
+    for i in range(0, n, 2):
+        m.put(tick(m, 2500 + 400 * (i % 3)), t0 + i / cps, .12, pan=-.3 + .6 * ((i * 7) % 10) / 10)
+
+
+def callout_in(m, t):
+    """标注：框描出时一声上行短音，标签出现时再一声"""
+    m.put(beep(hz(ROOT + 36), .08), t + .1, .16)
+    m.put(beep(hz(ROOT + 43), .1), t + .6, .16, pan=.2)
+
+
+def progress(m, t0, d, n=10):
+    """界面框的渲染进度：胶片格每亮一格一个很轻的提示音，走完一声钟"""
+    for i in range(n):
+        m.put(beep(hz(ROOT + 31 + [0, 2, 4, 7, 9][i % 5]), .05), t0 + d * (i + 1) / n, .09, pan=-.4 + .8 * i / n)
+    m.put(bell(hz(ROOT + 31), 1.4, ratio=2.0, index=1.0), t0 + d, .1)
+
+
+def line_in(m, t0, d, n):
+    """折线：画线时按点一个个上行的短音，画完一声钟"""
+    for i in range(n):
+        m.put(beep(hz(ROOT + 24 + [0, 2, 4, 7, 9, 12, 14, 16][i % 8]), .06), t0 + d * i / (n - 1), .12, pan=-.4 + .8 * i / n)
+    m.put(bell(hz(ROOT + 36), 1.4, ratio=2.0, index=1.0), t0 + d, .09)
+
+
+def ring_in(m, t0, n, gap=.45):
+    """占比环：每一段弧长出时一个短音"""
+    for i in range(n):
+        m.put(beep(hz(ROOT + 31 - 3 * i), .09), t0 + i * gap, .16, pan=-.3 + .3 * i)
+
+
+def card_in(m, t, hot=False):
+    """卡片落定（对比的两边）：一记闷响，突出的那边再加一声钟"""
+    m.put(thud(m), t, .45)
+    if hot:
+        m.put(bell(hz(ROOT + 28), 1.6, ratio=2.0, index=1.2), t + .1, .12, pan=.3)
+
+
+def quote_in(m, t):
+    """引用：一声长钟，留出读字的空"""
+    m.put(bell(hz(ROOT + 19), 2.8, ratio=2.0, index=.8), t, .14)
+
+
+def lower_in(m, t):
+    """信息条：一缕短风声加一个提示音"""
+    m.put(whoosh(m, .4, 1200, 5000), t, .1, pan=-.5)
+    m.put(beep(hz(ROOT + 31), .07), t + .35, .14, pan=-.3)
+
+
+def outro_in(m, t, cta):
+    """片尾：标志落定一记重击，按钮出现时一记重击加和弦钟声"""
+    m.put(impact(m), t + .05, .6)
+    m.put(impact(m), cta, .5)
+    for k, n in enumerate((0, 4, 7)):
+        m.put(bell(hz(ROOT + 24 + n), 2.4, ratio=2.0, index=1.0), cta + .05 + k * .03, .08, pan=-.3 + .3 * k)
+
+
+# ———— 演示片里其余分镜的音：都是短促的一声，跟着画面上的动作走 ————
+def cold_open(m, t):
+    """冷开：粒子收拢时一段上扬的风声，标志落定一记重击，品牌名出来一声钟"""
+    m.put(whoosh(m, .85, 300, 5000), t, .22)
+    m.put(impact(m), t + .85, .7)
+    m.put(bell(hz(ROOT + 31), 1.6, ratio=2.0, index=1.2), t + 1.0, .12, pan=.2)
+
+
+def slam_hit(m, t, i):
+    """砸字：每个字落地一记闷响加底鼓，一个比一个高"""
+    m.put(thud(m, .35), t, .35, pan=-.3 + .3 * i)
+    m.put(kick(m), t, .3)
+
+
+def flash_hit(m, t, i):
+    """快闪：每个词一记底鼓，反白的那拍再加一下拍手似的噪声"""
+    m.put(kick(m), t, .35)
+    if i % 2:
+        m.put(whoosh(m, .12, 2000, 8000), t, .12)
+
+
+def swish(m, t, d=.4, g=.14, pan=0.0):
+    """一缕短风声：翻页、划掉、展开、滑入都用它"""
+    m.put(whoosh(m, d, 800, 6000), t, g, pan=pan)
+
+
+def pop_in(m, t, i=0, g=.14):
+    """弹出：气泡、通知、联想标签、城市点，一个比一个高的短音"""
+    m.put(beep(hz(ROOT + 31 + [0, 4, 7, 12, 16][i % 5]), .06), t, g, pan=-.3 + .15 * (i % 5))
+
+
+def click(m, t):
+    """光标点击：一下很短的高频敲击"""
+    m.put(tick(m, 4200), t, .3)
+
+
+def clack(m, t, i=0):
+    """翻牌：每翻一片一下干脆的敲击"""
+    m.put(tick(m, 1800 + 300 * (i % 3)), t, .1, pan=-.4 + .2 * (i % 5))
+
+
+def stamp_in(m, t):
+    """印章盖下：重击加底鼓"""
+    m.put(impact(m), t, .55)
+    m.put(kick(m), t, .4)
+
+
+def tag_in(m, t):
+    """价格标签落定：重击加一个上行和弦的钟声"""
+    m.put(impact(m), t, .6)
+    for k, n in enumerate((0, 4, 7, 12)):
+        m.put(bell(hz(ROOT + 31 + n), 1.4, ratio=2.0, index=1.0), t + .03 * k, .07, pan=-.3 + .2 * k)
+
+
+def zoom_tr(m, t):
+    """缩放穿越：一阵从低到高扫上去的风声"""
+    m.put(whoosh(m, .4, 200, 8000), t, .26)
+
+
+def wipe_tr(m, t):
+    """遮罩擦除：中频风声"""
+    m.put(whoosh(m, .4, 600, 3500), t, .2)
+
+
+def flash_tr(m, t):
+    """闪白：一记短重击"""
+    m.put(impact(m), t + .09, .35)
+
+
+def flip_tr(m, t):
+    """翻转：两缕左右分开的短风声"""
+    m.put(whoosh(m, .2, 1000, 6000), t, .14, pan=-.5)
+    m.put(whoosh(m, .2, 1000, 6000), t + .18, .14, pan=.5)

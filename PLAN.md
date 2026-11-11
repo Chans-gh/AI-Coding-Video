@@ -9,8 +9,7 @@
 | 阶段 | 内容 | 依赖 | 状态 |
 |---|---|---|---|
 | 4 | 每个技术类型补样片（分批） | 环境或服务 | 批 1、批 2、批 4 做完；挂起的 4 个条目（G-021、G-022、T-021、G-023）等 GPU、世界模型或对口型、动作迁移服务，见下面 |
-| 6 | 介绍页新模块「AI-Coding-Video 真实应用」 | — | 暂停（维护者定）：第 1 支（资讯）、第 2 支（课件）做完，已在介绍页上；第 3 支（护肤）等策划仓库的抓原文脚本做完，拿来验收「有策划 + 完整出片」；开工和模块改版等维护者说，见下面 |
-| 10 | 风格包新规格写进 `making.md`，同时升级 `dark-keynote` | — | 下一个任务，一个对话做完，见下面 |
+| 6 | 介绍页模块「AI-Coding-Video 真实应用」改版 | — | 3 支案例都做完、都在介绍页上；等维护者看效果给改版意见，见下面 |
 
 ### 阶段 4：每个技术类型补样片（分批）
 
@@ -74,47 +73,16 @@
 - 批 3：环境不支持就挂起。
 - 剩下 4 个条目（G-021、G-022、T-021、G-023）都挂起，跳过。
 
-### 阶段 6：介绍页新模块「AI-Coding-Video 真实应用」（页面最底下）
+### 阶段 6：介绍页模块「AI-Coding-Video 真实应用」改版
 
-- 3 支约 5 分钟的完整视频，每支 C、T、G 三类都用、各有一个主角类；场景、分镜、技术清单、用量和案例目录的规矩都在 [cases/](cases/README.md)，用量的总表也在那里（由 `case.json` 生成）。
-- 介绍页模块的设计（播放器 + 跟着进度切段的说明栏）见 [cases/README.md 的「介绍页模块」](cases/README.md#介绍页模块)。
-- 验收：线上模块正常；每段说明里的每项技术都能点到对应的样片或风格包；页面只加载封面，点开才加载中版；`python3 cases/tools/build.py --check` 通过。
-- 第 2 支已做完，第 3 支同时是 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 和本 Skill 连起来的验收：先策划、交接，再照 [storyboard.md](skills/ai-coding-video/storyboard.md) 出片。
-
-| 顺序 | 内容 | 说明 |
-|---|---|---|
-| 3 | [电商带货：北山制包所《旷野》布丁包](cases/shop-handbag/README.md) | 单独一个任务（2026-11-11 开工）：真实品牌、真人出镜，素材由维护者（品牌方）给，规矩的例外见 [cases/README.md](cases/README.md#规矩)；每一段都精心设计、把三类技术用全，同时验收策划 + 出片两个 Skill 连起来用；生成不卡预算；先出 1 条核心片、保留过程文件，投流短片之后再定怎么分化或混剪；配音经 `AICV_TTS_CMD` 接青水（公开女声），顺带验收 `tools/voice.py` |
-| 4 | 介绍页模块 | 已上线，做完的案例按 `site/build.py` 的 `CASE_ORDER` 排；第 3 支做完自动出现；等维护者看效果给改版意见 |
-
-一个对话，先策划、交接，再出片；出片时只照 `plans/` 里的文件写 `case.json`、`script.json`，不靠对话里的记忆补内容（对应关系见 [cases/README.md](cases/README.md) 的「接策划」）。等维护者说开工，开工时再细算用量；做完合并回 `main`、汇报。做法照第 2 支：[cases/course-first-video/](cases/course-first-video/) 的 `plans/`、`log.md`。
-
-**策划怎么做**
-
-- 策划 Skill 用加仓库的方式克隆在本仓库旁边（不走插件安装），照它的 `SKILL.md` 做，`check.py` 从克隆里跑；版本和提交号记进 `log.md`。要改策划仓库先问维护者，再在那边开分支、开 PR。第 3 步的补齐可以照策划 Skill 开子代理 `finder`、`reader`（维护者定，只限策划）。
-- 把案例目录当用户项目的根目录：产物放 `cases/<名字>/plans/<名字>/`（`plan.md`、`content.md`，需要时 `source/`），`storyboard.md` 里的相对路径 `plans/<短名>/plan.md` 原样成立。
-- 交给策划的输入：案例 README 的「场景」「讲法」「规矩」和下面「已定」的几条当详细要求；第 3 支另有维护者给的商品素材（`plans/<名字>/source/brand/`），没有现成分镜，框架由策划从头搭。交接后照 `plan.md` 重写 `case.json` 和 README 的手写部分。
-- 交接条件照策划 Skill：`check.py plans/<名字> --handoff` 通过，状态「已交接」。
-
-**用量分开记**
-
-- `log.md` 汇总表三列不变（介绍页按这个读）：原有各行记整支合计，下面加「其中策划：总用时」「其中策划：等人」「其中策划：助手在做」，另加「token：策划」「token：出片」两行。
-- 分界是 `plan.md` 状态改成「已交接」那一刻。那时用 claude-code-remote 的 `get_session` 读本会话的累计 `usage`（不是 `context_usage`，那只是当前上下文大小）；返回里没有累计字段，就停下请维护者从后台读一次。做完再读一次，差值记出片。第 2 支交接时没读到累计数，策划、出片没分开，见它的 `log.md`。
-
-**策划 Skill 的问题怎么反馈**
-
-- 每支的 `log.md` 加一节「策划 Skill 的问题」：出了什么情况、在策划仓库哪个文件哪一节、怎么绕过的、建议。只记事实。
-- 和 `plan.md` 的回流分开：这支片的内容缺东西照 `storyboard.md` 第 6 节回流；Skill 本身的毛病记在这一节。
-- 每支做完时整理成一段能直接复制的文字给维护者，由维护者转给策划仓库的对话。
-
-已定（需求方定）：三个选题照 [cases/](cases/README.md) 的总表；资讯以 T 为主、课件以 C 为主、带货以 G 为主；`news-brief` 用在资讯，`style-swap` 用在课件和带货；课件保留虚构讲师；画幅资讯、带货竖屏，课件横屏，每支一种（需求方没另说，按这个做）。
-
-### 阶段 10：风格包新规格 + 升级 `dark-keynote`
-
-一个任务、一个对话做完（需求方定）：照 [SPEC.md](SPEC.md) 第 5 节把新规格写进 `making.md` 的 2 级，同时把 `dark-keynote` 升级成新规格（最便宜：C 类，不用素材、不调生成服务），做完按实际回头改规格；验收见 SPEC 第 11 节。看片通过后再排 `news-brief`、`style-swap`。
+- 模块在页面最底下，设计（播放器 + 跟着进度切段的说明栏）见 [cases/README.md 的「介绍页模块」](cases/README.md#介绍页模块)；3 支案例按 `site/build.py` 的 `CASE_ORDER` 排。
+- 等维护者看效果给改版意见；改版时验收：每段说明里的每项技术都能点到对应的样片或风格包；页面只加载封面，点开才加载中版；`python3 cases/tools/build.py --check` 通过。
+- 以后再做案例照 [cases/README.md](cases/README.md) 的流程；带策划的做法、用量分开记、Skill 问题怎么反馈，照第 3 支的 [log.md](cases/shop-handbag/log.md)。
 
 ## 待办：下一轮大优化
 
-- **升级 `news-brief`、`style-swap`** 到 SPEC 第 5 节的新规格（等阶段 10 的 `dark-keynote` 看片通过）。
+- **升级 `news-brief`、`style-swap`** 到 [making.md](skills/ai-coding-video/making.md#2-级风格包) 2 级的新规格：完整演示片做成分镜合集，以 `dark-keynote` 的 45 种分镜为参照，按各自题材（新闻资讯、换画风）发散出同样量级的分镜（维护者定，先不做）。
+- **反过来给 AI-Video-Project 的**（只记下来，同步回原仓库时再看）：本仓库的切点检查（切点首尾高于 −45 dB 就报错）可以补进它的 `chansclaude-voice/scripts/tts.py`；它的 `video-render/README.md` 准备合并两套渲染器时，可以参考 `samples/tools/film.py`（段缓存简单版、整片自检）。
 
 ## 待办：内容类型再补充（维护者自己研发）
 

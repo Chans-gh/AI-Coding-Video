@@ -69,7 +69,7 @@ async function load(src) {
     TIMING = T; SEG = T.segments.find(s => s.seg === seg);
     if (!SEG) throw new Error(`timing.json 里没有 ${seg}：先跑 tools/voice.py`);
     await load(`${DIR}/segments/${seg}.js`);
-  } else await load(`${DIR}/scene.js`);
+  } else await load(`${DIR}/${/^[a-z_]+$/.test(Q.get('scene') || '') ? Q.get('scene') : 'scene'}.js`);   // 风格包的 15 秒切换片段：scene=clip
   SC = S[0]; DUR = SEG ? SEG.dur : SC.dur || 3;
   for (const n of SC.libs || []) {
     if (!LIBS[n]) throw new Error('player.html 的 LIBS 里没有 ' + n);

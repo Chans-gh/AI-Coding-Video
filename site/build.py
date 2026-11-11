@@ -261,7 +261,8 @@ def packs_html(names):
     out = []
     for n in names:
         m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
-        parts = "".join(f"<li>{both(z, e)}</li>" for z, e in m["parts"])
+        parts = "".join(f"<li>{both(z + ('（层）' if k == ['layer'] else ''), e + (' (layer)' if k == ['layer'] else ''))}</li>"
+                        for z, e, *k in m["parts"])     # 第三项 seg 段部件 / layer 层（贯穿全片、不占段），旧包没有这一项
         acc = pack_accents(n)
         sw = m.get("switch")
         lab_z, lab_e = ("换" + sw[0], sw[1]) if sw else ("换品牌色", "Brand color")
