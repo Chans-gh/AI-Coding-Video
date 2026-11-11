@@ -16,8 +16,10 @@ scene({
     };
     const q = C.cue, s = i => SEG.vo[i].at;
     const at = { a: 0, b: s(1) - .25, c: s(2) - .25, d: q('系列') - .3 };
-    const clip = (k, len) => V[k] ? C.clip(V[k], len) : null;
-    const A = clip('a', at.b), B = clip('b', at.c - at.b);
+    const clip = (k, len, o) => V[k] ? C.clip(V[k], len, o) : null;
+    // 1-1 前 2 秒提手和包盖之间有一道缝（生视频的毛病），从 2 秒起用；1-2 的包盖画成了掀在一边，只放大取珠子和露珠那一块
+    const lb = at.c - at.b;
+    const A = clip('a', at.b, { from: 2 }), B = clip('b', lb, { zoom: lt => 2 + .15 * lt / lb, fx: .22, fy: .42 });
     // 片名底下垫 1-1 的末帧，虚化（只算一次）
     const blur = mk(W / 4, H / 4), g = blur.getContext('2d');
     if (V.a) { const el = await V.a.at(V.a.dur - .1); drawCover(g, el, 0, 0, W / 4, H / 4); } else drawCover(g, P.a, 0, 0, W / 4, H / 4);
