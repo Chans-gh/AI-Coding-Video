@@ -61,7 +61,9 @@ def visual(job, out):
     """生图 / 生视频：写 run.js 的任务文件，生成的文件落在 <输出目录>/gen/"""
     jid = job["id"]
     qjob = {"id": jid, "type": job["type"], "prompt": job["prompt"], "options": {"model": job["model"], **job.get("params", {})}}
-    if job.get("refs"):
+    if job.get("refs") and job["type"] == "video" and job["model"].startswith("grok"):
+        qjob["frames"] = {"image": job["refs"][0]}      # grok 的参考图是「保持人物一致」，当首帧要走首尾帧模式
+    elif job.get("refs"):
         qjob["refs"] = job["refs"]
         if job["model"].startswith("Doubao-Seedance"):
             qjob["refField"] = "referenceImage"

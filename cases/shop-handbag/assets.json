@@ -1,6 +1,15 @@
 {
  "items": [
   {
+   "file": "assets/brand/09-white-top.jpg",
+   "kind": "照片",
+   "title": "镜头 6-3 首帧的参考图：白色款",
+   "source": "plans/shop-handbag/source/brand/detail/09-product-white.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "原图上下两个包，裁出上面立着的那个（像素 180,80 起，520×580）；图上没有文字和字母，不用 AI 去字"
+  },
+  {
    "file": "assets/gen/2-1.jpg",
    "kind": "生图",
    "title": "镜头 2-1 首帧：晴空下的草原",
@@ -19,8 +28,8 @@
    "file": "assets/gen/2-1.mp4",
    "kind": "生视频",
    "title": "镜头 2-1：晴空下的草原",
-   "model": "Doubao-Seedance-2.0-mini",
-   "prompt": "云影缓缓从草原上掠过，草被微风轻轻吹动，镜头固定，没有人物。",
+   "model": "grok-imagine-video-1.5",
+   "prompt": "云影缓缓从草原上掠过，草被微风轻轻吹动，远处骑马的人背对镜头慢慢往前走，镜头固定，始终看不到人的脸。",
    "params": {
     "aspectRatio": "9:16",
     "duration": 5,
@@ -53,7 +62,7 @@
    "file": "assets/gen/2-2.mp4",
    "kind": "生视频",
    "title": "镜头 2-2：乌云压低的草原",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "乌云缓缓压低、翻涌，一阵大风吹过，草浪一阵阵向一侧倒伏，镜头固定，没有人物。",
    "params": {
     "aspectRatio": "9:16",
@@ -86,7 +95,7 @@
    "file": "assets/gen/2-4.mp4",
    "kind": "生视频",
    "title": "镜头 2-4：湖边少女的背影",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "少女背对镜头慢慢走向水边，裙摆被风吹动，湖面微微起波，镜头缓慢推近，始终看不到她的脸。",
    "params": {
     "aspectRatio": "9:16",
@@ -119,7 +128,7 @@
    "file": "assets/gen/2-5.mp4",
    "kind": "生视频",
    "title": "镜头 2-5：草坡上奔跑的背影",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "少女背对镜头向草坡高处奔跑，越跑越远，裙摆飘动，镜头固定，始终看不到她的脸。",
    "params": {
     "aspectRatio": "9:16",
@@ -152,7 +161,7 @@
    "file": "assets/gen/2-6.mp4",
    "kind": "生视频",
    "title": "镜头 2-6：草叶上的露珠",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "露珠在草叶上微微颤动，慢慢顺着叶尖滑落，背景晨光闪烁，微距慢动作，镜头固定。",
    "params": {
     "aspectRatio": "9:16",
@@ -185,7 +194,7 @@
    "file": "assets/gen/2-7.mp4",
    "kind": "生视频",
    "title": "镜头 2-7：草地上的瓜果",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "微风吹起亚麻布的一角，周围的草叶轻轻摇动，镜头缓慢横移。",
    "params": {
     "aspectRatio": "9:16",
@@ -218,7 +227,7 @@
    "file": "assets/gen/2-8.mp4",
    "kind": "生视频",
    "title": "镜头 2-8：远处的牛羊",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "风吹过前景的草，草浪起伏，远处的牛羊慢慢低头吃草，镜头固定。",
    "params": {
     "aspectRatio": "9:16",
@@ -246,13 +255,13 @@
    "prep": {
     "max": 1920
    },
-   "ref": "assets/brand/detail/09-product-white.jpg"
+   "ref": "assets/brand/09-white-top.jpg"
   },
   {
    "file": "assets/gen/6-3.mp4",
    "kind": "生视频",
    "title": "镜头 6-3：白色皮面微距",
-   "model": "Doubao-Seedance-2.0-mini",
+   "model": "grok-imagine-video-1.5",
    "prompt": "一道柔和的光从左往右慢慢扫过皮面，镜头极缓慢地推近，皮面纹理清晰，没有人物。",
    "params": {
     "aspectRatio": "9:16",

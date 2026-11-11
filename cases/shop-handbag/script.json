@@ -3,7 +3,7 @@
  "plan": "plans/shop-handbag/plan.md",
  "voice": {
   "model": "speech-2.8-turbo",
-  "voice": "Chinese (Mandarin)_Gentle_Lady",
+  "voice": "Chinese (Mandarin)_Gentle_Senior",
   "params": {
    "speed": 1.0
   }
