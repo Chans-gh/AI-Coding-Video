@@ -142,17 +142,17 @@ def variant_query(pack, key):
 
 
 def demo_files(sid, ar):
-    """风格包演示片这一支用哪个场景和声音：(场景名, 声音文件名)。样片和没写 full 的包都是 scene、sound.py"""
+    """风格包演示片这一支用哪个场景和声音：(场景名, 声音文件名)。写了 full 的包：每种切换在 full 画幅出完整演示片，
+    另一画幅出 15 秒切换片段（clip）。样片和没写 full 的包都是 scene、sound.py"""
     if sid.startswith("pack:"):
-        base, _, key = sid[5:].partition("@")
-        full, default = pack_meta(base).get("full"), variants(base)[0][0]
-        if full and ((key or default) != default or ar != full):
+        full = pack_meta(sid[5:].partition("@")[0]).get("full")
+        if full and ar != full:
             return "clip", "clip_sound.py"
     return "scene", "sound.py"
 
 
 def is_full(sid, ar):
-    """风格包的完整演示片（60–90 秒、每个视频不超过 20 MB）"""
+    """风格包的完整演示片（20–90 秒、每个视频不超过 20 MB）"""
     return sid.startswith("pack:") and bool(pack_meta(sid[5:].split("@")[0]).get("full")) and demo_files(sid, ar)[0] == "scene"
 
 

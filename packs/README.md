@@ -6,7 +6,7 @@
 
 | 包 | 来自 | 切换 | 部件 | 演示片 |
 |---|---|---|---|---|
-| [dark-keynote 暗色科技发布会](dark-keynote/) | [C-044](../skills/ai-coding-video/styles/framework.md#C-044) | 品牌色 | 45 种分镜：开场、章节闪卡、界面（搜索框、聊天、代码、终端等）、数据（柱状、翻牌、仪表盘、排名赛跑、地图、雷达等）、讲述（导图、宫格、对比表、问答翻卡等）、收尾，和光标、圈注、印章等 5 种叠加；层：背景、粒子、镜头、七种转场、节拍、角标、字幕；外加一组声音 | 完整演示片（紫，横屏，71 秒，每种分镜各一次）；15 秒切换片段：橙、绿各有横竖两版，紫有竖版 |
+| [dark-keynote 暗色科技发布会](dark-keynote/) | [C-044](../skills/ai-coding-video/styles/framework.md#C-044) | 品牌色 | 45 种分镜：开场、章节闪卡、界面（搜索框、聊天、代码、终端等）、数据（柱状、翻牌、仪表盘、排名赛跑、地图、雷达等）、讲述（导图、宫格、对比表、问答翻卡等）、收尾，和光标、圈注、印章等 5 种叠加；层：背景、粒子、镜头、七种转场、节拍、角标、字幕；外加一组声音 | 完整演示片（横屏，71 秒，每种分镜各一次）：紫、橙、绿各一支；竖屏是 15 秒切换片段 |
 | [news-brief 新闻资讯解说](news-brief/) | [T-007](../skills/ai-coding-video/styles/footage.md#T-007) | 画面组织 | 栏目条、标题、对比、数据卡、标注、滚动出处、字幕、转场 | 15 秒，单图推拉、2.5D 视差分层、多图拼贴分屏三种，各有横竖两版 |
 | [style-swap 分镜换画风](style-swap/) | [G-016](../skills/ai-coding-video/styles/generated.md#G-016) | 画风 | 提示词公式、镜头、提示词条、画风并排、字幕、转场 | 15 秒，写实摄影、水彩插画、3D 黏土三种，各有横竖两版 |
 
@@ -25,9 +25,9 @@
 ```bash
 cd samples
 python3 batch.py pack:dark-keynote --quick   # 改代码时用：抽帧检查、合成声音、出总览图
-python3 batch.py pack:dark-keynote           # meta.json 里每种切换各出横竖两版视频和静帧，写进 packs/dark-keynote/demo/（写了 full 的包：默认那种在 full 画幅出完整演示片，其余出切换片段）
+python3 batch.py pack:dark-keynote           # meta.json 里每种切换各出横竖两版视频和静帧，写进 packs/dark-keynote/demo/（写了 full 的包：每种切换在 full 画幅出完整演示片，另一画幅出 15 秒切换片段）
 python3 batch.py pack:dark-keynote@orange    # 只出一种（@ 后面是 accents / variants 的键）
-python3 batch.py pack:dark-keynote@purple --ar 16x9   # 只出完整演示片（meta.json 的 full 是它的画幅）
+python3 batch.py pack:dark-keynote@purple --ar 16x9   # 只出紫色的完整演示片（meta.json 的 full 是它的画幅）
 python3 batch.py pack:news-brief@parallax    # T 包只出 2.5D 视差分层那一种
 ```
 

@@ -6,12 +6,12 @@
 
 演示片（虚构产品「帧流 3」的发布短片）：同一份代码只换品牌色。介绍页的「风格包」一节可以点标签切换着看。风格说明见 [STYLE.md](STYLE.md)。
 
-- **完整演示片**（紫，默认，横屏，71 秒）：开场四个镜头 → 五章（怎么用、有多快、谁在用、能做什么、现已开放，每章一张章节闪卡加 6–8 个镜头）→ 片尾。45 种分镜各出现一次（章节闪卡除外），一个镜头 1.5–2.25 秒，切点都在拍上。不带旁白，每章一句字幕。[![紫](https://raw.githubusercontent.com/Chans-gh/AI-Coding-Video/main/packs/dark-keynote/demo/dark-keynote-purple-16x9.jpg)](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4)
-- **15 秒切换片段**：换品牌色对比用，横竖两版。
+- **完整演示片**（横屏，71 秒，紫、橙、绿各一支）：开场四个镜头 → 五章（怎么用、有多快、谁在用、能做什么、现已开放，每章一张章节闪卡加 6–8 个镜头）→ 片尾。45 种分镜各出现一次（章节闪卡除外），一个镜头 1.5–2.25 秒，切点都在拍上。不带旁白，每章一句字幕。[![紫](https://raw.githubusercontent.com/Chans-gh/AI-Coding-Video/main/packs/dark-keynote/demo/dark-keynote-purple-16x9.jpg)](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4)
+- **15 秒切换片段**：竖屏，换品牌色对比用。
 
 | 紫 `#8B7BFF`（默认） | 橙 `#FF7A45` | 绿 `#2BD99F` |
 |---|---|---|
-| [完整演示片](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4) · [竖屏 15 秒](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-9x16.mp4) | [横屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-16x9.mp4) · [竖屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-9x16.mp4) | [横屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-16x9.mp4) · [竖屏](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-9x16.mp4) |
+| [完整演示片](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-16x9.mp4) · [竖屏 15 秒](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-purple-9x16.mp4) | [完整演示片](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-16x9.mp4) · [竖屏 15 秒](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-orange-9x16.mp4) | [完整演示片](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-16x9.mp4) · [竖屏 15 秒](https://github.com/Chans-gh/AI-Coding-Video/releases/download/media/pack-dark-keynote-green-9x16.mp4) |
 
 ## 部件
 
