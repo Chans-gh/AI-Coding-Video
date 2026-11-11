@@ -31,7 +31,7 @@ LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exist
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
 VERSION = "v20 · 2026-11-09"
-CASE_ORDER = ["news-artemis", "course-first-video", "shop-skincare"]  # 「真实应用」卡片的先后：第 1、2、3 支
+CASE_ORDER = ["news-artemis", "course-first-video", "shop-handbag"]  # 「真实应用」卡片的先后：第 1、2、3 支
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
 
