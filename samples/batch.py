@@ -2,7 +2,7 @@
 
     python3 batch.py C-001 C-064            # 出横竖两版视频 + 声音 + 静帧 + 缩略图，并检查
     python3 batch.py C-001 --quick          # 不出视频：只抽几帧低分辨率截图、合成声音、检查（改代码时用）；
-                                            # 风格包的完整演示片另外每 2 秒抽一帧，拼成 out/quick/<名字>-<画幅>.jpg
+                                            # 风格包的完整演示片另外每个镜头抽一帧（按 demo/segments.json），拼成 out/quick/<名字>-<画幅>.jpg
     python3 batch.py all --quick            # 所有已有 scene.js 的样片
     python3 batch.py C-001 --ar 16x9        # 只出一个画幅
     python3 batch.py C-001 --sound          # 只合成声音到 out/C-001.wav，改配乐时试听
@@ -11,15 +11,15 @@
     python3 batch.py C-178 C-179 --sheet    # 不重新出片：从已有的 mp4 抽帧，重画这几个样片的总览图
     python3 batch.py pack:dark-keynote      # 风格包的演示片（packs/dark-keynote/demo/），每种切换（品牌色、画面组织、画风…）一支，时长可到 30 秒
     python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色（切别的维度的包写 variants 的键，如 pack:style-swap@clay）
-    python3 batch.py pack:dark-keynote@purple --ar 16x9   # 只出完整演示片（meta.json 写了 full 的包：默认那一种在 full 画幅，60–90 秒）
+    python3 batch.py pack:dark-keynote@purple --ar 16x9   # 只出完整演示片（meta.json 写了 full 的包：默认那一种在 full 画幅，20–90 秒）
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒，
-完整演示片 60–90 秒、每个视频不超过 20 MB。
+完整演示片 20–90 秒、每个视频不超过 20 MB。
 总览图：out/sheet.jpg（每行一个样片，横竖各 4 帧，最多 6 个样片一张；多的写 sheet-2.jpg …）。
 有 ✗ 时退出码为 1。
 """
-import argparse, io, subprocess, sys, time
+import argparse, io, json, subprocess, sys, time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 import numpy as np
@@ -81,9 +81,9 @@ def task(sid, ar, quick):
                 pairs = [float(np.abs(R.probe(a) - R.probe(b)).mean()) for a, b in shots]
                 res["thumbs"] = [small(a) for a, _ in shots]
                 size = ""
-                if R.is_full(sid, ar):                    # 完整演示片：另外每 2 秒抽一帧，拼成 out/quick/<名字>-<画幅>.jpg
-                    full_sheet([p.frame(k * 2.0 + 1.0, quality=80) for k in range(int((dur - 1.0) // 2) + 1)],
-                               R.OUT / "quick" / f"{R.stem(sid)}-{ar}.jpg")
+                if R.is_full(sid, ar):                    # 完整演示片：另外每个镜头抽一帧，拼成 out/quick/<名字>-<画幅>.jpg
+                    ts = shot_times(sid, dur)
+                    full_sheet([p.frame(t, quality=80) for t in ts], ts, R.OUT / "quick" / f"{R.stem(sid)}-{ar}.jpg")
             else:
                 frames, vbytes = R.encode(p, sid, ar, log)
                 grays = [R.probe(b) for b in frames]
@@ -108,7 +108,7 @@ def task(sid, ar, quick):
             log += p.log
             why += check_frames(grays, pairs)
             log.append(f"帧差（相隔 {GAP}s）：" + " ".join(f"{d:.2f}" for d in pairs[:: max(1, len(pairs) // 12)]))
-            lo, hi = ((60, 90) if R.is_full(sid, ar) else (5, 30) if sid.startswith("pack:")   # 风格包完整演示片、切换片段、带素材的样片更长
+            lo, hi = ((20, 90) if R.is_full(sid, ar) else (5, 30) if sid.startswith("pack:")   # 风格包完整演示片、切换片段、带素材的样片更长
                       else (8, 15) if R.is_asset_class(sid) else (3, 5))
             if not lo <= dur <= hi:
                 why.append(f"时长 {dur}s 不在 {lo}–{hi} 秒")
@@ -132,8 +132,19 @@ def task(sid, ar, quick):
         return finish(res, [f"出片失败：{str(e)[:80]}"], log, t0, "")
 
 
-def full_sheet(jpegs, out, cols=6):
-    """一串抽帧拼成一张总览图，每格左上角标出秒数（第 k 格是 1 + 2k 秒）"""
+def shot_times(sid, dur):
+    """完整演示片每个镜头取哪一刻看：有 demo/segments.json 就取每段的 3/4 处（入场动画已经走完），没有就每 2 秒一帧"""
+    f = R.where(sid) / "segments.json"
+    if not f.exists():
+        return [k * 2.0 + 1.0 for k in range(int((dur - 1.0) // 2) + 1)]
+    at, ts = 0.0, []
+    for g in json.loads(f.read_text(encoding="utf-8"))["segs"]:
+        ts.append(round(at + g["d"] * .75, 3)); at += g["d"]
+    return ts
+
+
+def full_sheet(jpegs, ts, out, cols=8):
+    """一串抽帧拼成一张总览图，每格左上角标出第几个镜头和秒数"""
     ims = [Image.open(io.BytesIO(b)).convert("RGB") for b in jpegs]
     w = 480; h = round(w * ims[0].height / ims[0].width)
     sheet = Image.new("RGB", (cols * w, -(-len(ims) // cols) * h), "black")
@@ -141,7 +152,7 @@ def full_sheet(jpegs, out, cols=6):
     for k, im in enumerate(ims):
         x, y = k % cols * w, k // cols * h
         sheet.paste(im.resize((w, h), Image.LANCZOS), (x, y))
-        d.rectangle([x, y, x + 54, y + 22], fill="black"); d.text((x + 4, y + 3), f"{1 + 2 * k}s", fill="white", font=font(16))
+        d.rectangle([x, y, x + 96, y + 22], fill="black"); d.text((x + 4, y + 3), f"{k + 1} · {ts[k]:.1f}s", fill="white", font=font(16))
     out.parent.mkdir(parents=True, exist_ok=True); sheet.save(out, quality=82)
 
 

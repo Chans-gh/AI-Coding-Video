@@ -6,7 +6,7 @@
 
 | 包 | 来自 | 切换 | 部件 | 演示片 |
 |---|---|---|---|---|
-| [dark-keynote 暗色科技发布会](dark-keynote/) | [C-044](../skills/ai-coding-video/styles/framework.md#C-044) | 品牌色 | 段部件：片头、章节卡、要点讲解、代码演示、标注、界面框、柱状图、折线图、对比、大数字、占比环、引用、信息条、列表、时间线、片尾；层：背景、角标、字幕、三种转场；外加一组声音 | 完整演示片（紫，横屏，60–90 秒）；15 秒切换片段：橙、绿各有横竖两版，紫有竖版 |
+| [dark-keynote 暗色科技发布会](dark-keynote/) | [C-044](../skills/ai-coding-video/styles/framework.md#C-044) | 品牌色 | 45 种分镜：开场、章节闪卡、界面（搜索框、聊天、代码、终端等）、数据（柱状、翻牌、仪表盘、排名赛跑、地图、雷达等）、讲述（导图、宫格、对比表、问答翻卡等）、收尾，和光标、圈注、印章等 5 种叠加；层：背景、粒子、镜头、七种转场、节拍、角标、字幕；外加一组声音 | 完整演示片（紫，横屏，71 秒，每种分镜各一次）；15 秒切换片段：橙、绿各有横竖两版，紫有竖版 |
 | [news-brief 新闻资讯解说](news-brief/) | [T-007](../skills/ai-coding-video/styles/footage.md#T-007) | 画面组织 | 栏目条、标题、对比、数据卡、标注、滚动出处、字幕、转场 | 15 秒，单图推拉、2.5D 视差分层、多图拼贴分屏三种，各有横竖两版 |
 | [style-swap 分镜换画风](style-swap/) | [G-016](../skills/ai-coding-video/styles/generated.md#G-016) | 画风 | 提示词公式、镜头、提示词条、画风并排、字幕、转场 | 15 秒，写实摄影、水彩插画、3D 黏土三种，各有横竖两版 |
 
@@ -18,7 +18,7 @@
 | `sound_kit.py` | 每种部件出现时放什么音，全部由 `samples/lib/synth.py` 合成 |
 | `STYLE.md` | 风格说明：调色板、字体、版式、运动、声音、禁止项，可以整段抄进项目规范 |
 | `meta.json` | 名字、部件清单 `parts`（`[中文, 英文]`；新规格加第三项 `"seg"` 段部件或 `"layer"` 层）、完整演示片的画幅 `full`（新规格才有）、演示用的几种切换，出片工具和介绍页都从这里读。切品牌色写 `accents`：`[键, 中文名, 英文名, 色值]`，播放器参数 `accent`；切别的维度写 `switch`（维度名 `[中文, 英文]`）和 `variants`：`[键, 中文名, 英文名, 值]`，播放器参数 `v`。第一种是默认 |
-| `demo/` | 演示片：`scene.js` 把部件按时间轴排起来，`sound.py` 配声音（新规格的包另有分段表 `segments.json`、15 秒切换片段 `clip.js` 和 `clip_sound.py`，规格见 Skill 的 [making.md](../skills/ai-coding-video/making.md#2-级风格包)），T、G 类的包另有 `assets/` 和 `assets.json`（素材和出处，随 Skill 安装），以及每种切换渲染好的横竖两版视频和静帧（`<包名>-<键>-<画幅>.mp4`；视频不进仓库，放在 Release，见 [samples/README.md](../samples/README.md#视频放在哪)） |
+| `demo/` | 演示片：`scene.js` 把部件按时间轴排起来，`sound.py` 配声音（新规格的包另有分镜表 `segments.json`、15 秒切换片段 `clip.js` 和 `clip_sound.py`，规格见 Skill 的 [making.md](../skills/ai-coding-video/making.md#2-级风格包)），T、G 类的包另有 `assets/` 和 `assets.json`（素材和出处，随 Skill 安装），以及每种切换渲染好的横竖两版视频和静帧（`<包名>-<键>-<画幅>.mp4`；视频不进仓库，放在 Release，见 [samples/README.md](../samples/README.md#视频放在哪)） |
 
 ## 出片
 

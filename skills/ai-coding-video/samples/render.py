@@ -29,7 +29,7 @@ MAX_BYTES = 2_500_000          # C 类视频流体积上限：超过就加大压
 ASSET_CLASSES = "TG"           # 带素材的 T 类、G 类：8–15 秒，每个视频（含声音）不超过 4 MB
 MAX_FILE_TG = 4_000_000
 MAX_BYTES_TG = 3_550_000
-FULL_MAX_FILE = 20_000_000     # 风格包完整演示片（60–90 秒）每个视频不超过 20 MB
+FULL_MAX_FILE = 20_000_000     # 风格包完整演示片（20–90 秒）每个视频不超过 20 MB
 
 
 def is_asset_class(sid):
