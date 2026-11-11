@@ -63,5 +63,6 @@ scene({
     C.word(ctx, t, '瓜果', q('瓜果'), q('山间') - .1, { size: 150, y: .3 });
     C.word(ctx, t, '山风', q('山间'), at.g, { size: 150, y: .3 });
     C.word(ctx, t, '牛羊', q('牛羊'), SEG.dur - 1.6, { size: 150, y: .3 });
+    C.sub(ctx, t);                                      // 逐句字幕（需求方定：前半也出字幕）
   }
 });

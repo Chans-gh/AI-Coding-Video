@@ -120,7 +120,7 @@ scene({
     // 2 牛皮剖面（等距图解）：一块牛皮分成三层，最上面的头层抬起来，表面画出毛孔和纹路
     function hide(c, lt, d) {
       bg(c);
-      const cx = W * .36, cy = H * .42, a = 220 * u, b = 130 * u;           // 等距：x 轴向右下、y 轴向左下
+      const cx = W * .3, cy = H * .42, a = 220 * u, b = 130 * u;           // 等距：x 轴向右下、y 轴向左下
       const iso = (x, y, z) => [cx + (x - y) * a, cy + (x + y) * b * .5 - z];
       const layers = [
         { z0: 0, z1: 70 * u, col: '#B9A58A', name: '下面几层（二层皮等）' },
@@ -143,10 +143,12 @@ scene({
           for (let k = 0; k < 6; k++) { c.beginPath(); for (let j = 0; j <= 20; j++) { const x = j / 20 - .5, y = -.4 + k * .15 + .03 * Math.sin(j * .9 + k); const [px, py] = iso(x, y, z1); j ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); }
         }
         if (L.name) {
-          const [lx, ly] = iso(.5, .5, (z0 + z1) / 2), p = L.top ? smooth(1.6, 2.2, lt) : smooth(2.4, 3, lt);
+          // 引线从右前面中间拉到方块右边外侧，字写在方块外面，不压住方块
+          const [lx, ly] = iso(.5, 0, (z0 + z1) / 2), tx = iso(.5, -.5, 0)[0] + 50 * u, p = L.top ? smooth(1.6, 2.2, lt) : smooth(2.4, 3, lt);
           c.save(); c.globalAlpha = p; c.strokeStyle = K.ink; c.lineWidth = 2 * u;
-          c.beginPath(); c.moveTo(lx, ly); c.lineTo(lx + 60 * u, ly); c.stroke();
-          c.fillStyle = K.ink; c.font = F(L.top ? 700 : 400, L.top ? 40 : 32); c.textBaseline = 'middle'; c.fillText(L.name, lx + 72 * u, ly);
+          c.beginPath(); c.moveTo(lx, ly); c.lineTo(tx - 14 * u, ly); c.stroke();
+          c.fillStyle = K.ink; c.beginPath(); c.arc(lx, ly, 5 * u, 0, TAU); c.fill();
+          c.font = F(L.top ? 700 : 400, L.top ? 40 : 32); c.textBaseline = 'middle'; c.fillText(L.name, tx, ly);
           c.restore();
         }
       }
