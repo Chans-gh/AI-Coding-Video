@@ -4,7 +4,7 @@
 
 由 [T-007 卫星地图简报](../../skills/ai-coding-video/styles/footage.md#T-007) 沉淀：公共领域照片加公开数据，做成电视新闻式的解说短片。红底栏目条、标题、前后对比、数据卡、照片上的标注、底部滚动出处、跟旁白走的字幕，这些都固定不变。**切换的是「画面组织」**，也就是照片怎么上屏，不切换颜色。适合时事解说、灾害和气候新闻、城市和环境变化、数据新闻。
 
-演示片（米德湖水位跌到蓄水以来最低，15 秒）：分段表、文字、数据、旁白、配乐都只有一份，播放器参数 `v` 换了三种画面组织。风格说明见 [STYLE.md](STYLE.md)，素材出处见 [demo/assets.json](demo/assets.json)。
+演示片（米德湖水位跌到蓄水以来最低，15 秒）：分镜表、文字、数据、旁白、配乐都只有一份，播放器参数 `v` 换了三种画面组织。风格说明见 [STYLE.md](STYLE.md)，素材出处见 [demo/assets.json](demo/assets.json)。
 
 | 单图推拉 `kenburns`（默认） | 2.5D 视差分层 `parallax` | 多图拼贴分屏 `collage` |
 |---|---|---|
@@ -39,7 +39,7 @@
 
 1. 拷整个 `packs/news-brief/`，以及它依赖的 `samples/lib/`、`samples/player.html`、`samples/batch.py`、`samples/render.py`。演示素材在 `demo/assets/`，可以先原样跑通：`cd samples && python3 batch.py pack:news-brief --quick`。
 2. 换素材：照片、数据换成你自己的公共领域或有授权的素材，出处、许可逐份记进 `assets.json`；要做视差，用 `python3 samples/T-018/depth.py <照片> <深度图.png>` 给每张照片估深度图。
-3. 照 `demo/scene.js` 写自己的分段表：每段写清用哪几张照片、哪种镜头、配哪个文字部件；段落起点用 `cueTime()` 跟旁白走。
+3. 照 `demo/scene.js` 写自己的分镜表：每个分镜写清用哪几张照片、哪种镜头、配哪个文字部件；每个分镜的起点用 `cueTime()` 跟旁白走。
 4. 选一种画面组织作为项目默认（`v`），把 [STYLE.md](STYLE.md) 抄进项目规范。
 
 依赖 Canvas 2D；出片用本仓库的 `samples/batch.py`（Playwright + ffmpeg），或项目自己的逐帧渲染管线。

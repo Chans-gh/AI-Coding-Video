@@ -1,5 +1,5 @@
 """案例出片：配音、分段渲染、接片都调 Skill 的出片工具（samples/tools/voice.py、film.py），这里只做本仓库发布用的部分：
-把 case.json、script.json 对照成 Skill 认的分镜，接片后把每段起止写回 case.json，出原版、中版、封面、附带短片。
+把 case.json、script.json 对照成 Skill 认的分镜脚本，接片后把每段起止写回 case.json，出原版、中版、封面、附带短片。
 
     python3 cases/tools/render.py news-artemis --voice       # 配音：script.json 和整稿 assets/vo.mp3 一致就导入它（不重配），否则只合成改了的句子
     python3 cases/tools/render.py news-artemis --check       # 回听：逐句识别，和稿子比读音（voice.py --check）
@@ -9,7 +9,7 @@
     python3 cases/tools/render.py news-artemis --shorts      # 从原版按旁白的整句切附带短片（script.json 的 shorts）
     python3 cases/tools/render.py news-artemis --sound       # 只混整支的声音到 out/mix.wav，试听用
 
-对照：case.json 的第 k 段 = Skill 分镜的段 "0k"（场景文件 segments/0k.js），script.json 的段按顺序一一对应；
+对照：case.json 的第 k 段 = Skill 分镜脚本的段 "0k"（场景文件 segments/0k.js），script.json 的段按顺序一一对应；
 每次运行先从 case.json、script.json 写出 storyboard.json（生成的，不进仓库，正本仍是 case.json）。
 voice.py 写 timing.json 和 vo/（vo/ 能从 assets/vo.mp3 重新导入，不进仓库）；film.py 写 out/。
 成品（不进仓库，scripts/media.py 传到 Release media）：media/<名字>.mp4（原版 1080p，≤120 MB，另要低于 PUSH_MB 才推得上去）、

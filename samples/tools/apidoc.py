@@ -37,7 +37,7 @@ def js_items():
             continue
         prev = lines[i - 1] if i else ""
         doc = prev[3:].strip() if prev.startswith("// ") and not prev.startswith("// ---") else ""
-        m = re.match(r"function (\w+)\(([^)]*)\)", ln)
+        m = re.match(r"(?:async )?function (\w+)\(([^)]*)\)", ln)
         if m:
             out.append((f"{m.group(1)}({m.group(2)})", doc))
             continue

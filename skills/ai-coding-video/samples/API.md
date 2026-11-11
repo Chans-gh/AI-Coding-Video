@@ -82,9 +82,11 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 
 - `asset(name)` — 素材文件的网址：asset('earth.jpg') → <样片目录>/assets/earth.jpg
 - `xhr(url, type = 'text')`
+- `loadAssets()` — 读 assets.json（素材清单：出处、许可、旁白的时刻和字幕），init 里 await
 - `loadImage(name)` — 载入图片素材 → HTMLImageElement，init 里 await
 - `loadText(name)` — 读文本素材（CSV、JSON、GeoJSON）
 - `parseCSV(txt)` — CSV → 对象数组：第一行是表头，# 开头的行跳过，像数字的格自动转成数字
+- `loadVideo(name)` — 载入视频素材（出片前已统一成 30 帧/秒、无声），返回 {el, dur, w, h, at(秒)}；await v.at(秒) 跳到素材里那一帧，之后 el 可以直接 drawImage
 - `srcSize(src)` — 素材的原始宽高（图片、视频、画布都行）
 - `drawCover(ctx, src, x, y, w, h, o = {})` — 把图片或视频「铺满」裁切进 (x,y,w,h)：o.zoom 放大倍数（推镜用，默认 1），o.fx、o.fy 取景焦点 0–1（默认 .5），o.alpha
 - `drawContain(ctx, src, x, y, w, h, o = {})` — 把图片或视频完整放进 (x,y,w,h)，按比例缩放、居中；返回实际画的 [x, y, w, h]
@@ -95,12 +97,14 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 
 **完整出片的段（player.html?p=<项目>&seg=<段号>：段长和每句的时间从 timing.json 读进 SEG）**
 
-- `SEG` — 本段的时间 {seg, dur, vo: [{file, at, t, text, show, chars}]}（格式见 Skill 的 film.md「时间」）；样片里是 null
+- `SEG` — 本段的时间 {seg, dur, vo: [{file, at, t, text, show, chars}], shots: [{t0, t1, cut}]}（格式见 Skill 的 film.md「时间」）；样片里是 null
 - `TIMING` — 整片的 timing.json（SEG 是其中一段）：跨段连续的东西（整片时钟、进度条）用它算本段在整片里的起点；样片里是 null
 - `say(i)` — 第 i 句的起止（秒，本段时间）：{t0, t1, text 念的, show 字幕写法}；没有这句返回 null
 - `sayingAt(t, hold = 0)` — t 时刻正在说第几句（没在说返回 -1）；hold 秒内的句间空隙算上一句
 - `sayP(i, t)` — 第 i 句到 t 时刻念到第几个字（按 chars 的逐字时间；没有逐字时间的按句长均分），返回 0–1 的进度
 - `subAt(t, hold = .35)` — t 时刻的字幕（show 写法）：说完后留 hold 秒，下一句开始就换；没有返回 null
+- `shotAt(t)` — t 时刻是本段第几个分镜（分镜脚本的 shots，起止由 voice.py 排进 timing.json）：{i 从 0 数, t0, t1, d 时长, lt 分镜内的时间, p 0–1, cut}；没分镜返回 null
+- `drawShots(ctx, t, fns, mix = .5)` — 按分镜画：fns[i](ctx, lt, d, t) 画第 i 个分镜（分镜内的时间、分镜时长、本段时间），可以是 async；每个分镜前后 save、restore，平移、缩放、透明度不串到下一个；cut 是「溶解」的开头 mix 秒叠在上一个分镜上淡入。返回当前第几个分镜；没分镜时整段画 fns[0]
 - `S` — 场景列表（播放器读 S[0]）
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 

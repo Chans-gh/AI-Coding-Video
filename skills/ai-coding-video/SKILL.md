@@ -1,7 +1,7 @@
 ---
 name: ai-coding-video
-description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及两条线：风格演示（选样式 → 出样片 → 沉淀成风格包）和完整出片（定内容 → 分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 整片）。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。内容策划用 ai-content-planner。
-version: 0.16.0
+description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及两条线：风格演示（选样式 → 出样片 → 沉淀成风格包）和完整出片（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 整片）。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。内容策划用 ai-content-planner。
+version: 0.17.0
 display_name: AI Coding Video 风格库
 display_name_en: AI Coding Video
 description_en: "A style library for videos made frame by frame in code: a hundred-plus styles that pure code can render (class C, tagged by topic and tech: Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more), plus ways to cut real material (class T: footage, screen recordings, photos, data) and AI-generated material (class G: images, video clips, speech) into a film with code, sorted by content type (explainers, talking heads, product ads, brand films, short dramas, music videos, news, documentaries, tutorials, travel, sports, picture books); a copy-ready style prompt for each; lookup indexes; guides to prompts, sourcing and preparing material, music and narration; and two tracks: a style demo (pick a look, make a sample clip, turn it into a reusable style pack) and a full film (content, storyboard and looks, script, user sign-off, a typical segment with narration, the whole film)."
@@ -30,12 +30,23 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 
 ```
 风格演示：0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包
-完整出片：定内容 → 拆分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片
+完整出片：定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片
 ```
 
 每一步都要用户点头才往下；停在哪一步都行。两条线查风格的方法相同（见「怎么查」）。
 
-词的意思：库里的条目叫**风格**（编号 `C-013` 这样）；**样式**是一个分镜或一支片子实际用的东西——一个或几个风格编号（或一个风格包），加技术路线和素材类型；**风格包**是通过的风格做成的可复用代码和风格说明；**样片**是风格演示里 3–5 秒的片段；**典型样片**是完整出片开工前先做的 1–2 个分镜，带配音；**全片统一**是一支片子所有分镜共用的一层：色板、字体、字幕、转场、配乐、旁白音色。
+词的意思：库里的条目叫**风格**（编号 `C-013` 这样）；**样式**是一段或一支片子实际用的东西——一个或几个风格编号（或一个风格包），加技术路线和素材类型；**风格包**是通过的风格做成的可复用代码和风格说明；**样片**是风格演示里 3–5 秒的片段；**典型样片**是完整出片开工前先做的 1–2 段，带配音；**全片统一**是一支片子所有段共用的一层：色板、字体、字幕、转场、配乐、旁白音色。
+
+完整出片里片子分两级，名字不混用：
+
+| 词 | 指什么 | 在哪 |
+|---|---|---|
+| **段** | 按内容分的一块，一般 10–60 秒，讲框架里的一段；一段一个场景文件 | 分镜脚本 `segments` 的一项，段号 `P1` |
+| **分镜**（也叫**镜头**） | 段里的一个画面，从这一刀到下一刀；一段可以有好几个 | 每段 `shots` 的一项，分镜号「段序号-分镜序号」（`2-4` 是第 2 段第 4 个） |
+| **分镜脚本** | `storyboard.json` 整份：需求、全片统一、每段和段里的分镜 | `videos/<短名>/storyboard.json` |
+| **段落表**、**分镜表** | 检查脚本打印给用户确认的两张表：一段一行；一个分镜一行 | `check_storyboard.py --table` |
+
+不说「一段分镜」「分镜 10 段」：说「10 段」「48 个分镜」。风格包的完整演示片没有段，一行就是一个分镜（[making.md「2 级：风格包」](making.md)）。
 
 ### 风格演示
 
@@ -49,7 +60,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 
 ### 完整出片
 
-六步和 `storyboard.json`（分镜，含全片统一 `unify`、每段的样式 `uses`）、`script.json`（逐字稿）的格式、事实的规矩、检查脚本都在 [film.md](film.md)；有策划时第 1 步另读 [storyboard.md](storyboard.md)。
+六步和 `storyboard.json`（分镜脚本，含全片统一 `unify`、每段的样式 `uses` 和可选的分镜 `shots`）、`script.json`（逐字稿）的格式、事实的规矩、检查脚本都在 [film.md](film.md)；有策划时第 1 步另读 [storyboard.md](storyboard.md)。
 
 ## 怎么查（按顺序，不要一上来读全部）
 

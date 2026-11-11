@@ -14,7 +14,7 @@ scene({
     for (const st of Object.keys(P.styles)) for (const s of P.shots) img[`${st}-${s.id}`] = await loadImage(`${st}-${s.id}.jpg`);
     const cue = (kw, f) => cueTime(A, kw, f) - .3;
     const moves = [{ z: [1.02, 1.14], fx: [.5, .5], fy: [.45, .55] }, { z: [1.16, 1.04], fx: [.5, .5], fy: [.5, .5] }, { z: [1.04, 1.16], fx: [.35, .55], fy: [.5, .5] }];
-    // 分段表：片头公式 → 三个镜头 → 片尾三种画风并排
+    // 分镜表：片头公式 → 三个镜头 → 片尾三种画风并排
     const segs = [
       { at: 0, f: (c, t) => SW.formula(c, K, t, { title: '同一段分镜，只换风格段', shot: P.shots[0].prompt, style: P.styles[v], styleName: names[v], rules: P.rules }, img[`${v}-s1`]) },
       ...P.shots.map((s, i) => ({ at: [2.9, cue('烤箱', 5.7), cue('等第一篮', 8.9)][i], f: (c, t, d) => {

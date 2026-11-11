@@ -507,7 +507,7 @@ def case_html(n, c, by):
       <div class="case-main">
         <div class="case-screen"><video data-src="media/case-{n}-mid.mp4" data-poster="media/case-{n}.jpg" controls playsinline preload="none" aria-label="{esc(c["title"])}"></video></div>
         <div class="case-bar" data-dur="{end:.2f}">{bar}<i class="cb-head" aria-hidden="true"></i></div>
-        <p class="case-links"><a href="media/case-{n}.mp4">{both("原版 1080p", "Full 1080p")}</a><a href="{REPO}/tree/{BRANCH}/cases/{n}">{both("分镜和代码", "Storyboard & code")}</a><a href="{REPO}/blob/{BRANCH}/cases/{n}/log.md">{both("制作记录", "Production log")}</a></p>
+        <p class="case-links"><a href="media/case-{n}.mp4">{both("原版 1080p", "Full 1080p")}</a><a href="{REPO}/tree/{BRANCH}/cases/{n}">{both("分镜脚本和代码", "Storyboard & code")}</a><a href="{REPO}/blob/{BRANCH}/cases/{n}/log.md">{both("制作记录", "Production log")}</a></p>
       </div>
       <div class="case-side">
         <ol class="case-toc">{toc}</ol>

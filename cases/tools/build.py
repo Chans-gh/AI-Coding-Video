@@ -1,4 +1,4 @@
-"""从各案例的 case.json 生成 README 里的分镜表、附带成片、用量、降级用法、对比口径和链接，以及 cases/README.md 的总表。
+"""从各案例的 case.json 生成 README 里的段落表、附带成片、用量、降级用法、对比口径和链接，以及 cases/README.md 的总表。
 
     python3 cases/tools/build.py           # 重新生成
     python3 cases/tools/build.py --check   # 只检查：case.json 合规、README 没过期（有问题时退出码 1）
@@ -130,7 +130,7 @@ def check(name, case):
 
 
 def check_plan(d, case):
-    """接了策划（case.json 有 plan）：交给 Skill 的 scripts/check_plan.py——认交接格式 2 和状态；case.json 当分镜、
+    """接了策划（case.json 有 plan）：交给 Skill 的 scripts/check_plan.py——认交接格式 2 和状态；case.json 当分镜脚本、
     script.json 当逐字稿，查 seg 都在框架里且每个段号都用到、facts 的 ref 都是 content.md 里能进成片的编号（设定写 null）"""
     sys.path.insert(0, str(ROOT / "skills" / "ai-coding-video" / "scripts"))
     import check_plan as cp

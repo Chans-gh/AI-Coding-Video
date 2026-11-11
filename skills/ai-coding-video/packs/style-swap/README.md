@@ -45,7 +45,7 @@
 
 1. 拷整个 `packs/style-swap/`，以及它依赖的 `samples/lib/`、`samples/player.html`、`samples/batch.py`、`samples/render.py`、`samples/tools/`。演示的 9 张图在 `demo/assets/`，不配生成服务也能先跑通：`cd samples && python3 batch.py pack:style-swap --quick`。
 2. 改 `prompts.json`：写自己的分镜（镜头段）和约束段，风格段留下想比较的几种。跑 `python3 ../packs/style-swap/demo/compose.py`，再按 Skill 的 `materials.md`「配置生成服务」配好服务，跑 `python3 tools/assets.py pack:style-swap` 生成。
-3. 照 `demo/scene.js` 改分段表和每个镜头的推拉；段落起点用 `cueTime()` 跟旁白走。
+3. 照 `demo/scene.js` 改分镜表和每个镜头的推拉；每个分镜的起点用 `cueTime()` 跟旁白走。
 4. 用户选定一种画风后，把 [STYLE.md](STYLE.md) 和那一行风格段一起写进项目规范，以后新镜头只写镜头段。
 
 依赖 Canvas 2D；出片用本仓库的 `samples/batch.py`（Playwright + ffmpeg）。
