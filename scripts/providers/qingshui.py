@@ -48,12 +48,12 @@ def fetch(url, dest):
 
 
 def logged(out, qjob):
-    """run.js 的记录里有没有同一个任务（同提示词、同参数）已经拿到任务编号、但文件没下下来"""
+    """run.js 的记录里有没有同一个任务（同提示词、同参数）已经拿到任务编号、没失败、但文件没下下来"""
     log = out / "gen" / "log.json"
     if not log.exists():
         return False
     e = next((e for e in reversed(json.loads(log.read_text(encoding="utf-8"))) if e.get("id") == qjob["id"]), None)
-    return bool(e and e.get("task_id") and e.get("prompt") == qjob["prompt"] and e.get("options") == qjob["options"]
+    return bool(e and e.get("task_id") and e.get("status") != "failed" and e.get("prompt") == qjob["prompt"] and e.get("options") == qjob["options"]
                 and not any(g.suffix != ".json" for g in (out / "gen").glob(f"{qjob['id']}.*")))
 
 
