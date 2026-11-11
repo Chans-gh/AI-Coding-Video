@@ -10,6 +10,15 @@
    "edit": "原图上下两个包，裁出上面立着的那个（像素 180,80 起，520×580）；图上没有文字和字母，不用 AI 去字"
   },
   {
+   "file": "assets/brand/06-stream.jpg",
+   "kind": "照片",
+   "title": "镜头 2-3：银雾蓝款，模特坐在溪边",
+   "source": "plans/shop-handbag/source/brand/detail/06-model-mist-blue.jpg",
+   "license": "维护者自有",
+   "credit": "北山制包所",
+   "edit": "原图是上下两张拼成的长图，取下面那张（像素 0,1009 起，721×962）；只裁切，不改像素"
+  },
+  {
    "file": "assets/gen/2-1.jpg",
    "kind": "生图",
    "title": "镜头 2-1 首帧：晴空下的草原",
@@ -46,7 +55,7 @@
    "file": "assets/gen/2-2.jpg",
    "kind": "生图",
    "title": "镜头 2-2 首帧：乌云压低的草原",
-   "model": "gpt-image-2.5-flare",
+   "model": "gpt-image-2",
    "prompt": "同一片枯黄草原，同样的构图和地平线，天空被厚重的乌云压低，光线变暗，远处的草被风压倒。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；色调是枯草黄、灰蓝天空、灰绿河水；人物只出背影或远景，看不到脸，不像任何真人。",
    "params": {
     "aspectRatio": "9:16"
@@ -245,7 +254,7 @@
    "file": "assets/gen/6-3.jpg",
    "kind": "生图",
    "title": "镜头 6-3 首帧：白色皮面微距",
-   "model": "gpt-image-2.5-flare",
+   "model": "gpt-image-2",
    "prompt": "微距特写：参考图里这只白色牛皮水桶包的皮面局部，看得见天然的生长纹、细小的斑点和毛孔，柔和的侧光，不出现整只包。画风：35 毫米胶片写实摄影，柔和的自然光，低饱和、偏暖的复古色调，细腻的胶片颗粒，浅景深。竖构图；画面里没有文字、没有标志；皮面颜色和纹理照参考图，不改颜色。",
    "params": {
     "aspectRatio": "9:16"
@@ -274,6 +283,36 @@
    "prep": {
     "w": 1080
    }
+  },
+  {
+   "file": "assets/dl/sunset-plains.mp3",
+   "kind": "配乐",
+   "title": "配乐 Sunset Plains",
+   "source": "https://opengameart.org/content/sunset-plains",
+   "download": "https://opengameart.org/sites/default/files/sunset_plains.wav",
+   "license": "CC0",
+   "author": "Yoiyami",
+   "credit": "配乐 Sunset Plains（Yoiyami，CC0）",
+   "prep": {
+    "br": "160k"
+   },
+   "at": 0,
+   "gain": 0
+  },
+  {
+   "file": "assets/dl/wind.mp3",
+   "kind": "音效",
+   "title": "环境声 风",
+   "source": "https://opengameart.org/content/icy-heights",
+   "download": "https://opengameart.org/sites/default/files/wind.ogg",
+   "license": "CC0",
+   "author": "Écrivain",
+   "credit": "风声 wind（Écrivain，CC0）",
+   "prep": {
+    "br": "128k"
+   },
+   "at": 0,
+   "gain": 0
   }
  ]
 }
