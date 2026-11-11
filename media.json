@@ -1283,8 +1283,8 @@
   },
   "pack-dark-keynote-green-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-green-16x9.mp4",
-   "bytes": 1591532,
-   "sha256": "6ffb5bf60f08246a534ad8a14af91d6bd52f2da3f4467da8dc33448ce0334063"
+   "bytes": 13896548,
+   "sha256": "919797f579868e3afdc26bbd1ac80b8429a39c5b92873566bf8825791c7fb73f"
   },
   "pack-dark-keynote-green-9x16.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-green-9x16.mp4",
@@ -1293,8 +1293,8 @@
   },
   "pack-dark-keynote-orange-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-orange-16x9.mp4",
-   "bytes": 1581969,
-   "sha256": "4af960cdcdd40fa7a1798585037f6b2c8d28ec594197866c60bc0dc6018d0084"
+   "bytes": 13885638,
+   "sha256": "ba44bd5007a2f466558d8fe357f9aa330fe9f0d79b9cbd6d52cd320d1f59994e"
   },
   "pack-dark-keynote-orange-9x16.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-orange-9x16.mp4",
@@ -1303,8 +1303,8 @@
   },
   "pack-dark-keynote-purple-16x9.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-purple-16x9.mp4",
-   "bytes": 1501715,
-   "sha256": "4ca55a0bdea6fcd886f9448753e86f85743d1d59f94f6f9143bac07d0c1cbb8b"
+   "bytes": 13200748,
+   "sha256": "4df2f14f9728b21f1e408aed9bec6a848d8875e6f976c5d361a106bc5e247a5a"
   },
   "pack-dark-keynote-purple-9x16.mp4": {
    "path": "packs/dark-keynote/demo/dark-keynote-purple-9x16.mp4",
