@@ -1,4 +1,4 @@
-// 暗色科技发布会风格包（由 C-044 沉淀）：一个主题；45 种分镜（40 种整段的段部件 + 5 种叠在别的段上的），
+// 暗色科技发布会风格包（由 C-044 沉淀）：一个主题；45 种分镜（40 种整屏部件 + 5 种叠在别的镜头上的），
 // 7 个层（背景、粒子、镜头、转场七种、节拍、角标、字幕；镜头和节拍在 demo/scene.js 里）。清单和调用方式见 README.md。
 // 依赖 samples/lib/lib.js 的 W H LAND SHORT、inv/lerp/clamp/smooth、缓动、rr()、wrapCJK()。
 // 每个部件都是 (ctx, K, t, o)：K 是 theme() 的结果，t 是这个部件自己的本地时间（秒，从 0 起，可以为负），o 是内容。
@@ -619,7 +619,7 @@ const DK = (() => {
     ctx.restore();
   }
 
-  // ———— 演示片里的其余分镜：每种在演示片里只出现一次，节奏按 1.5–2.25 秒一个镜头写，start、every、secs 都能在分段表里调 ————
+  // ———— 演示片里的其余分镜：每种在演示片里只出现一次，节奏按 1.5–2.25 秒一个镜头写，start、every、secs 都能在分镜表里调 ————
   const rnd = (i, k = 0) => hash1(i * 131 + k * 7919 + 17);
   const center = (ctx, s, x, y) => { ctx.textAlign = 'center'; ctx.fillText(s, x, y); ctx.textAlign = 'left'; };
   const NUMF = K => `${K.num}, ${K.head}`;             // 数字字体里没有的字（¥、中文）回落到正文字体
@@ -1446,7 +1446,7 @@ const DK = (() => {
     ctx.fillStyle = `rgba(0,0,0,${.55 * (1 - sx)})`; ctx.fillRect(0, 0, W, H); ctx.restore();
   }
 
-  // 层：角标。左上标志加品牌名，右上当前第几章；al 由分段表算（片头、片尾、章节卡淡出）
+  // 层：角标。左上标志加品牌名，右上当前第几章；al 由分镜表算（片头、片尾、章节卡淡出）
   // o = { brand, ch: { n, of, title } | null, al }
   function corner(ctx, K, t, o) {
     if (!(o.al > 0)) return;

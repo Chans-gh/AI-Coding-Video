@@ -15,7 +15,7 @@
 | [`materials.md`](materials.md) | 用素材做视频（T 类、G 类）：素材从哪来、许可、生成、统一处理、声音 |
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
-| [`film.md`](film.md) | 完整出片的六步（定内容 → 拆分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜 `storyboard.json` 和逐字稿 `script.json` 的格式、事实的规矩 |
+| [`film.md`](film.md) | 完整出片的六步（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜脚本 `storyboard.json`（段和段里的分镜）和逐字稿 `script.json` 的格式、事实的规矩 |
 | [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 2）：认格式和状态、读什么、`seg` 和 `ref` 怎么填、缺内容怎么回流 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
@@ -25,8 +25,8 @@
 | [`data/styles.json`](data/styles.json) | 所有风格的机器可读索引（生成物，不要手改） |
 | [`data/tags.json`](data/tags.json) | 技术标签、题材、内容类型、素材种类的合法取值 |
 | [`scripts/build_index.py`](scripts/build_index.py) | 生成 `styles.json` 和风格目录，并做完整性自检 |
-| [`scripts/check_storyboard.py`](scripts/check_storyboard.py) | 完整出片的通用检查：分镜和逐字稿对得上、样式、全片统一、事实的出处；`--ready` 查用户确认过了，`--table` 打印分镜表，见 [film.md「检查」](film.md#检查) |
-| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜、逐字稿的段号和事实编号，通用的部分调 `check_storyboard.py`；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
+| [`scripts/check_storyboard.py`](scripts/check_storyboard.py) | 完整出片的通用检查：分镜脚本和逐字稿对得上、样式、分镜、全片统一、事实的出处；`--ready` 查用户确认过了，`--table` 打印段落表和分镜表，见 [film.md「检查」](film.md#检查) |
+| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜脚本、逐字稿的段号和事实编号，通用的部分调 `check_storyboard.py`；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
 
 ## 分类与编号
 
@@ -45,7 +45,7 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 | 线 | 步骤 | 读哪份 |
 |---|---|---|
 | 风格演示 | 0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包 | 下面 1–6、[`making.md`](making.md) |
-| 完整出片 | 定内容 → 拆分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片 | [`film.md`](film.md)；有策划时另读 [`storyboard.md`](storyboard.md) |
+| 完整出片 | 定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片 | [`film.md`](film.md)；有策划时另读 [`storyboard.md`](storyboard.md) |
 
 1. **不知道用哪种**：知道要做哪种视频（口播、带货、MV……）就看 [`index.md`](index.md) 的「按内容类型」表；要纯代码的，在其余索引表里各找对应的一行，几张表里重复出现的风格就是首选。
 2. **已经知道风格名**：在 [`index.md`](index.md) 的「风格目录」里点名字，跳到条目。

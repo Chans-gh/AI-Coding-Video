@@ -1,11 +1,11 @@
-"""完整出片的配音：合成旁白、切句、排段长，回听。输入是用户项目的 videos/<短名>/（分镜、逐字稿），见 Skill 的 sound.md「完整出片的配音流程」。
+"""完整出片的配音：合成旁白、切句、排段长和分镜的起止，回听。输入是用户项目的 videos/<短名>/（分镜脚本、逐字稿），见 Skill 的 sound.md「完整出片的配音流程」。
 
     python3 tools/voice.py ../videos/<短名> --dry-run   # 要请求几次、多少字；不请求
     python3 tools/voice.py ../videos/<短名>             # 合成缺的句子、切句、写 timing.json
     python3 tools/voice.py ../videos/<短名> --check     # 回听：逐句识别，和稿子比读音
     python3 tools/voice.py ../videos/<短名> --import 整稿.mp3 --subs 字幕.json   # 已有的整稿录音读进缓存，不重配
 
-合成只走 AICV_TTS_CMD（约定见 tools/gen.py；本地 Kokoro 用 tools/adapters/kokoro.py）。音色取分镜的 unify.voice {"model", "voice", "speed"}。
+合成只走 AICV_TTS_CMD（约定见 tools/gen.py；本地 Kokoro 用 tools/adapters/kokoro.py）。音色取分镜脚本的 unify.voice {"model", "voice", "speed"}。
 一段里连着缺的句子请求一次，按返回的逐字时间切回每句；改了一句，只合成那一句（句子池 vo/cache/pool/：同音色、同语速、同文字的复用）。
 请求超过 --max-chars（默认 3000 字）或 --max-requests（默认 20 次）的，不加 --yes 就停，退出码 2。
 
@@ -34,6 +34,11 @@ TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import gen  # noqa: E402
 import heavy  # noqa: E402
+for _p in (TOOLS.parent.parent / "scripts", TOOLS.parent.parent / "skills" / "ai-coding-video" / "scripts"):
+    if (_p / "check_storyboard.py").is_file():   # 装好的 Skill 里在 samples/ 旁边；本仓库里在 skills/ai-coding-video/
+        sys.path.insert(0, str(_p))
+        break
+from check_storyboard import layout  # noqa: E402  分镜的起止和检查脚本同一套算法
 
 SR = 24000
 FPS = 30
@@ -43,7 +48,7 @@ PAD = 0.06             # 每句有声部分前后各留几秒（落在停顿里�
 HOP = 0.005
 MIN_PAUSE = 0.06
 PACE = {"lead": 0.6, "gap": 0.3, "tail": 0.8, "min": 0}
-WARN_SEC = 0.2         # 算出的段长和分镜 sec 差这么多（比例）就提醒
+WARN_SEC = 0.2         # 算出的段长和段的 sec 差这么多（比例）就提醒
 PUNCT = re.compile(r"[\s，。！？；：、,.!?;:—…·“”\"'‘’（）()《》【】\-]")
 ASR_URL = ("https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/"
            "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2")
@@ -64,10 +69,10 @@ def load(d):
     except (OSError, ValueError) as e:
         raise Stop(f"读不了 {d} 的 storyboard.json、script.json：{e}", 2)
     if len(sb.get("segments", [])) != len(sc.get("segments", [])):
-        raise Stop("逐字稿和分镜的段数不一样，先跑 check_storyboard.py", 2)
+        raise Stop("逐字稿和分镜脚本的段数不一样，先跑 check_storyboard.py", 2)
     v = (sb.get("unify") or {}).get("voice")
     if isinstance(v, str):
-        raise Stop('unify.voice 要写成对象 {"model": …, "voice": …, "speed": …}（无旁白写 null），见 film.md「分镜」', 2)
+        raise Stop('unify.voice 要写成对象 {"model": …, "voice": …, "speed": …}（无旁白写 null），见 film.md「分镜脚本」', 2)
     if v is not None:
         v = {"model": os.environ.get("AICV_TTS_MODEL") or v.get("model") or "",       # gen.py 认的覆盖，也算进句子池的键
              "voice": os.environ.get("AICV_TTS_VOICE") or v.get("voice") or "", "speed": float(v.get("speed") or 1)}
@@ -75,10 +80,11 @@ def load(d):
 
 
 def segments(sb, sc):
-    """[(段号, 分镜 sec, 句子, pace)]"""
+    """[(段号, 段的 sec, 句子, pace, 分镜 shots 或 None)]"""
     out = []
     for a, b in zip(sb["segments"], sc["segments"]):
-        out.append((a["seg"], a.get("sec"), [s for s in b.get("vo", []) if s.strip()], {**PACE, **(b.get("pace") or {})}))
+        out.append((a["seg"], a.get("sec"), [s for s in b.get("vo", []) if s.strip()], {**PACE, **(b.get("pace") or {})},
+                    a.get("shots")))
     return out
 
 
@@ -255,7 +261,7 @@ def plan(d, sb, sc, v):
     reqs, have = [], 0
     if v is None:
         return reqs, have
-    for seg, _, sents, _ in segments(sb, sc):
+    for seg, _, sents, _, _ in segments(sb, sc):
         run = []
         for s in sents:
             if (pool / f"{key(v, s)}.json").exists():
@@ -314,8 +320,8 @@ def request(d, v, seg, sents, table=None):
 def take(d, sb, sc, v, audio, subs):
     """已有的整稿录音（--import）当成一次覆盖全部段的请求放进缓存，切进句子池；不请求、不花钱"""
     if v is None:
-        raise Stop("分镜的 unify.voice 是 null（无旁白），不能导入录音", 2)
-    sents = [s for _, _, ss, _ in segments(sb, sc) for s in ss]
+        raise Stop("分镜脚本的 unify.voice 是 null（无旁白），不能导入录音", 2)
+    sents = [s for _, _, ss, _, _ in segments(sb, sc) for s in ss]
     rk = hashlib.sha1(json.dumps([v, sents], ensure_ascii=False).encode()).hexdigest()[:12]
     dest = d / "vo" / "cache" / "req" / rk
     dest.mkdir(parents=True, exist_ok=True)
@@ -337,11 +343,11 @@ def frames_up(x):
 
 
 def assemble(d, sb, sc, v):
-    """句子池 → vo/<段号>_<句号>.wav 和 timing.json；切点落在发音上的报错"""
+    """句子池 → vo/<段号>_<句号>.wav 和 timing.json（段长、每句的起止、分镜的起止）；切点落在发音上的报错"""
     pool, vo = d / "vo" / "cache" / "pool", d / "vo"
     table = sc.get("show") or {}
-    segs, bad, keep, notes = [], [], set(), []
-    for seg, sec, sents, p in segments(sb, sc):
+    segs, bad, keep, notes, cramped = [], [], set(), [], []
+    for k, (seg, sec, sents, p, shots) in enumerate(segments(sb, sc), 1):
         items, at = [], None
         for n, s in enumerate(sents, 1):
             k = key(v, s)
@@ -363,8 +369,18 @@ def assemble(d, sb, sc, v):
         end = (at + p["tail"]) if items else (sec or 0)
         dur = frames_up(max(p["min"], end))
         if sec and abs(dur - sec) > WARN_SEC * sec:
-            notes.append(f"{seg} 算出 {dur:.1f} 秒，分镜写 {sec} 秒（差 {(dur - sec) / sec:+.0%}）：照实改分镜的 sec")
-        segs.append({"seg": seg, "dur": round(dur, 3), "vo": items})
+            notes.append(f"{seg} 算出 {dur:.1f} 秒，段的 sec 写 {sec} 秒（差 {(dur - sec) / sec:+.0%}）：照实改 sec")
+        row = {"seg": seg, "dur": round(dur, 3), "vo": items}
+        if shots:
+            spans, e = layout(shots, dur, [it["at"] for it in items], FPS)
+            cramped += [f"第 {k} 段（{seg}）{x}" for x in e]
+            fixed = [x.get("sec") for x in shots]
+            if all(isinstance(x, (int, float)) for x in fixed) and abs(sum(fixed) - dur) > 1 / FPS:
+                notes.append(f"{seg} 分镜秒数合计 {sum(fixed):g}，段长 {dur:.2f}：最后一个分镜排成 "
+                             f"{spans[-1][1] - spans[-1][0]:.2f} 秒；照实改分镜的 sec，或改成随旁白（不写 sec）")
+            row["shots"] = [{"t0": round(a, 3), "t1": round(b, 3), "cut": x.get("cut") or "硬切"}
+                            for (a, b), x in zip(spans, shots)]
+        segs.append(row)
     for f in vo.glob("*_[0-9][0-9].wav"):                    # 稿子删掉、挪走的句子
         if f.name not in keep:
             f.unlink()
@@ -372,6 +388,8 @@ def assemble(d, sb, sc, v):
         raise Stop(f"这些句子的切点落在发音上（首尾 {EDGE * 1000:.0f} 毫秒高于 {QUIET} dB），会听到断句：{'、'.join(bad)}")
     (d / "timing.json").write_text(json.dumps({"fps": FPS, "voice": v, "segments": segs}, ensure_ascii=False, indent=1) + "\n",
                                    encoding="utf-8")
+    if cramped:
+        raise Stop("timing.json 写好了，但这些分镜排不开，改分镜脚本的 sec 或 vo 再跑一次：" + "；".join(cramped))
     return segs, notes
 
 
@@ -529,8 +547,8 @@ def check(d):
         raise Stop("还没有 timing.json：先跑 python3 tools/voice.py <目录>", 2)
     T = json.loads(tf.read_text(encoding="utf-8"))
     done = {s["seg"]: [it["text"] for it in s["vo"]] for s in T["segments"]}   # 回听比的是配好的句子，先核它们还是不是现在的稿子
-    stale = [f"{seg} 没配「{s}」" for seg, _, sents, _ in segments(sb, sc) for s in sents if s not in done.get(seg, [])]
-    stale += [f"{seg} 多了「{s}」" for seg, _, sents, _ in segments(sb, sc) for s in done.get(seg, []) if s not in sents]
+    stale = [f"{seg} 没配「{s}」" for seg, _, sents, _, _ in segments(sb, sc) for s in sents if s not in done.get(seg, [])]
+    stale += [f"{seg} 多了「{s}」" for seg, _, sents, _, _ in segments(sb, sc) for s in done.get(seg, []) if s not in sents]
     if stale:
         raise Stop("稿子改了还没重配，先跑 python3 tools/voice.py <目录>：\n  " + "\n  ".join(stale), 1)
     lang = (sb.get("brief") or {}).get("lang") or "zh"

@@ -1,4 +1,4 @@
-"""check_storyboard.py 的离线测试（无策划的分镜、逐字稿；接策划时 check_plan.py 也调它）：
+"""check_storyboard.py 的离线测试（无策划的分镜脚本、逐字稿；接策划时 check_plan.py 也调它）：
 python3 -m unittest discover -s <本 Skill 目录>/scripts/tests"""
 import contextlib
 import io
@@ -64,7 +64,9 @@ class CheckStoryboard(unittest.TestCase):
             sc['segments'][1]['facts'][1]['confirm'] = '待用户确认'
         code, out = self.run_check(self.project(edit=pending), '--table')
         self.assertEqual(code, 0, out)
-        for x in ('| 段 | 讲什么 | 秒 | 样式 | 主角 |', 'C-036', '（典型样片）', '合计 30 秒，目标 30 秒', '全片统一：',
+        for x in ('| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', 'C-036', '（典型样片）', '合计 30 秒，目标 30 秒',
+                  '2 个分镜，其中生成类（G）0 个', '| 2-1 | 随旁白 | 中景：海边一锅水冒泡', '1「在海边，水一百度才开。」',
+                  '| 溶解 |', '全片统一：',
                   '旁白音色：', '待用户确认的事实：', 'P2：海拔 4000 米'):
             self.assertIn(x, out)
 
@@ -147,7 +149,7 @@ class CheckStoryboard(unittest.TestCase):
         self.assertFails(swap, '按播放顺序编 P1、P2')
 
     def test_script_mismatch(self):
-        self.assertFails(lambda sb, sc: sc['segments'].pop(), '逐字稿有 2 段，分镜有 3 段')
+        self.assertFails(lambda sb, sc: sc['segments'].pop(), '逐字稿有 2 段，分镜脚本有 3 段')
 
     def test_fact_without_source(self):
         def nosrc(sb, sc):
@@ -190,6 +192,59 @@ class CheckStoryboard(unittest.TestCase):
         code, out = self.run_check(self.project(), '--table')
         self.assertIn('旁白音色：zm_010（kokoro-v1.1-zh，语速 0.95）', out)
 
+    # ---------- 分镜（shots） ----------
+    def shots(self, *xs):
+        def edit(sb, sc):
+            sb['segments'][1]['shots'] = list(xs)
+        return edit
+
+    def test_shots_fixed_sum(self):
+        ok = self.shots({'what': 'a', 'class': 'C', 'sec': 5}, {'what': 'b', 'class': 'C', 'sec': 7})
+        code, out = self.run_check(self.project(edit=ok))
+        self.assertEqual(code, 0, out)
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'sec': 5}, {'what': 'b', 'class': 'C', 'sec': 6}),
+                         '分镜秒数合计 11，段的 sec 是 12，要相等')
+
+    def test_shots_partly_sized(self):
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'sec': 12}, {'what': 'b', 'class': 'C', 'vo': 2}),
+                         '没写 sec 的分镜排不下')
+
+    def test_shots_bad_fields(self):
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'vo': 3}), '逐字稿这段只有 2 句')
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'vo': 2}, {'what': 'b', 'class': 'C', 'vo': 1}),
+                         '要按旁白的顺序')
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'cut': '划像'}), 'cut 写「硬切」或「溶解」')
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'ref': 'C-038'}), 'ref、class 只写一个')
+        self.assertFails(self.shots({'class': 'C'}), '缺 what')
+        self.assertFails(self.shots({'what': 'a', 'class': 'C', 'src': 3}), 'src 写素材或参考图的路径')
+        self.assertFails(self.shots(), 'shots 要是非空数组')
+
+    def test_shots_uncovered(self):
+        code, out = self.run_check(self.project(edit=self.shots({'what': 'a', 'class': 'C', 'vo': 1})))
+        self.assertEqual(code, 0, out)
+        self.assertIn('第 2 句旁白没落在哪个分镜上', out)
+
+    def test_layout(self):
+        L = check_storyboard.layout
+        # 都随旁白：切点落在第 2 句开始
+        spans, errs = L([{'vo': 1}, {'vo': 2}], 12, [0.6, 5.0])
+        self.assertEqual((spans, errs), ([(0, 5.0), (5.0, 12)], []))
+        # 写了 sec 的照排，最后一个吃掉差额
+        spans, _ = L([{'sec': 4}, {'sec': 4}], 9)
+        self.assertEqual(spans, [(0, 4), (4, 9)])
+        # 同一句跨两个分镜：定不下的切点均分
+        spans, _ = L([{'vo': [1]}, {'vo': [1, 2]}, {'vo': 3}], 12, [0.5, 4, 8])
+        self.assertEqual(spans, [(0, 4), (4, 8), (8, 12)])
+        spans, _ = L([{'vo': 1}, {'vo': 1}], 6, [0.5])
+        self.assertEqual(spans, [(0, 3), (3, 6)])
+        # 最后一个写了 sec，往回推
+        spans, _ = L([{}, {'sec': 2}], 10)
+        self.assertEqual(spans, [(0, 8), (8, 10)])
+        # 排不开
+        _, errs = L([{'sec': 9.8}, {}], 10)
+        self.assertTrue(errs and '排不开' in errs[0])
+
+
 class CheckPlanCallsCommon(unittest.TestCase):
     """接策划时 check_plan.py 调通用检查"""
     def setUp(self):
@@ -223,7 +278,7 @@ class CheckPlanCallsCommon(unittest.TestCase):
         code, out = self.run_plan(None, '--ready', '--table')
         self.assertEqual(code, 1, out)
         self.assertIn("status 是 '草稿'", out)
-        self.assertIn('| 段 | 讲什么 |', out)
+        self.assertIn('| # | 段 | 讲什么 |', out)
 
 
 if __name__ == '__main__':

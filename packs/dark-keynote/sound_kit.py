@@ -3,7 +3,7 @@
 用法（在演示片或你自己项目的 sound.py 里）：
     from sound_kit import bed, title_in, step_in, bars_in, number_in, transition
     bed(m); title_in(m, 0); transition(m, 3.4) ...
-完整演示片按 demo/segments.json 的分段表调用，见 demo/sound.py。
+完整演示片按 demo/segments.json 的分镜表调用，见 demo/sound.py。
 """
 from synth import impact, whoosh, riser, beep, pad, drone, bell, kick, hat, tick, thud, hz
 

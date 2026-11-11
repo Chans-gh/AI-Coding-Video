@@ -7,7 +7,7 @@
     python3 tools/film.py ../videos/<短名> --sound        # 只混整片的声音到 out/mix.wav，试听
 
 先跑 tools/voice.py 写好 timing.json（段长、每句的时间）。每段的场景是 segments/<段号>.js，写法同样片，段长取 SEG.dur；
-画幅取分镜的 ar。段代码、lib/、player.html、本段的 timing.json 条目、assets.json 都没变的段不重渲（--force 全部重渲）；
+画幅取分镜脚本的 ar。段代码、lib/、player.html、本段的 timing.json 条目、assets.json 都没变的段不重渲（--force 全部重渲）；
 段代码读了整片的 TIMING 的，别的段的段长变了也重渲。
 可选的 sound.py 写 score(m, T)：m 是整片长的 synth.Mix，T = {"fps", "dur" 整片秒数, "segments": [{"seg", "start" 在整片第几秒,
 "dur", "vo": [{"at" 在整片第几秒, "t", "text"}]}]}，配乐跨段连续；旁白由本工具照 timing.json 摆，说话时把配乐压低约 9 dB。
@@ -435,7 +435,7 @@ def mux(video, wav, dest):                    # 不用 -shortest：混音按毫�
 
 def typical(P, force, jobs):
     if not P.typical:
-        raise Stop("分镜里没有段标 typical")
+        raise Stop("分镜脚本里没有段标 typical")
     code = run_segments(P, P.typical, False, force, jobs, None)
     from scipy.io import wavfile
     import synth
@@ -455,7 +455,7 @@ def typical(P, force, jobs):
         shutil.copy(P.out / "sheets" / f"{nm}.jpg", P.d / "typical" / f"{nm}-{P.ar}.jpg")
         lu2, tp2 = probe_loud(dest)
         sec = P.sec.get(nm)
-        print(f"典型样片 {os.path.relpath(dest, Path.cwd())}：{s['dur']:.2f}s（分镜 {sec}s），{lu2:.1f} LUFS，真峰值 {tp2:.1f} dBTP，"
+        print(f"典型样片 {os.path.relpath(dest, Path.cwd())}：{s['dur']:.2f}s（段的 sec {sec}s），{lu2:.1f} LUFS，真峰值 {tp2:.1f} dBTP，"
               f"音色 {(P.T.get('voice') or {}).get('voice', '无旁白')}")
     return code
 
@@ -507,7 +507,7 @@ def join(P):
            f"- 响度：{lu:.1f} LUFS，真峰值 {tp:.1f} dBTP（目标 {LUFS:g} ± 1 LUFS、≤ {TP:g} dBTP）",
            f"- 黑段（0.05 秒以上）：{len(bl)} 处；帧间隔最多偏 {jitter * 1000:.1f} 毫秒；旁白位置最多偏 {worst * 1000:.0f} 毫秒",
            f"- 检查：{'全部通过' if not why else '；'.join(why)}", "",
-           "| 段 | 分镜 sec | 实际秒数 | 起点 | 抽帧 |", "|---|---|---|---|---|", *rows, "",
+           "| 段 | 段的 sec | 实际秒数 | 起点 | 抽帧 |", "|---|---|---|---|---|", *rows, "",
            f"合计 {P.dur:.2f} 秒"]
     (P.out / "report.md").write_text("\n".join(rep) + "\n", encoding="utf-8")
     print("\n".join(rep[2:7]))

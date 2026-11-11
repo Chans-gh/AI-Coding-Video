@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""接策划前后的检查：认 ai-content-planner/2 交接的 plan.md、content.md，查分镜和逐字稿的引用。只用标准库。
+"""接策划前后的检查：认 ai-content-planner/2 交接的 plan.md、content.md，查分镜脚本和逐字稿的引用。只用标准库。
 
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md \\
         --storyboard videos/<短名>/storyboard.json --script videos/<短名>/script.json [--ready] [--table]
 
-接策划的部分在这里查（段号在框架里、事实的编号在 content.md 里能进成片）；分镜、逐字稿通用的部分（uses、unify、
+接策划的部分在这里查（段号在框架里、事实的编号在 content.md 里能进成片）；分镜脚本、逐字稿通用的部分（uses、unify、
 事实的出处、--ready、--table）调 check_storyboard.py。
-退出码：0 能接（可能有提醒）；1 能接，但分镜、逐字稿或框架有问题要改；2 停下，不接（格式、状态、输出形式不对，
-或缺 content.md），照提示请用户先回策划。分镜、逐字稿的 "plan" 相对于 --root（默认当前目录，即项目根目录）。
-规矩见本 Skill 的 storyboard.md，分镜、逐字稿的格式见 film.md；交接格式以策划的 handoff.md 为准。
+退出码：0 能接（可能有提醒）；1 能接，但分镜脚本、逐字稿或框架有问题要改；2 停下，不接（格式、状态、输出形式不对，
+或缺 content.md），照提示请用户先回策划。分镜脚本、逐字稿的 "plan" 相对于 --root（默认当前目录，即项目根目录）。
+规矩见本 Skill 的 storyboard.md，分镜脚本、逐字稿的格式见 film.md；交接格式以策划的 handoff.md 为准。
 """
 import argparse
 import json
@@ -198,32 +198,32 @@ def read_plan(plan_path):
 
 
 def check_storyboard(P, sb, plan_rel=None):
-    """分镜：plan、seg 在框架里且按框架顺序、每个段号都用到、同一段号的秒数贴近篇幅"""
+    """分镜脚本：plan、seg 在框架里且按框架顺序、每个段号都用到、同一段号的秒数贴近篇幅"""
     errs, notes = [], []
     if plan_rel is not None and sb.get('plan') != plan_rel:
-        errs.append(f'分镜的 "plan" 要写 "{plan_rel}"（来自哪份 plan.md），现在是 {sb.get("plan")!r}')
+        errs.append(f'分镜脚本的 "plan" 要写 "{plan_rel}"（来自哪份 plan.md），现在是 {sb.get("plan")!r}')
     order, total = [], {}
     for i, s in enumerate(sb.get('segments', []), 1):
         g = s.get('seg')
         if g not in P['frame']:
-            errs.append(f'分镜第 {i} 段：seg {g!r} 不在框架里（写 "P1" 这样的段号）')
+            errs.append(f'第 {i} 段：seg {g!r} 不在框架里（写 "P1" 这样的段号）')
             continue
         if order and P['segs'].index(g) < P['segs'].index(order[-1]):
-            errs.append(f'分镜第 {i} 段：{g} 排在 {order[-1]} 后面，要按框架的顺序')
+            errs.append(f'第 {i} 段：{g} 排在 {order[-1]} 后面，要按框架的顺序')
         order.append(g)
         total[g] = total.get(g, 0) + (s.get('sec') or 0)
     miss = [p for p in P['segs'] if p not in total]
     if miss:
-        errs.append(f'框架的 {"、".join(miss)} 在分镜里一段都没用到')
+        errs.append(f'框架的 {"、".join(miss)} 在分镜脚本里一段都没用到')
     for p, t in total.items():
         want = P['frame'][p]['sec']
         if want and t and abs(t - want) > want * 0.15:
-            notes.append(f'{p} 分镜合计 {t:g} 秒，框架篇幅是 {P["frame"][p]["篇幅"]}')
+            notes.append(f'{p} 各段合计 {t:g} 秒，框架篇幅是 {P["frame"][p]["篇幅"]}')
     return errs, notes
 
 
 def check_script(P, sc, plan_rel=None, storyboard=None):
-    """逐字稿：seg 和分镜一一对应；facts 的 ref 是 content.md 里能进成片的 P1-1（设定写 null）"""
+    """逐字稿：seg 和分镜脚本一一对应；facts 的 ref 是 content.md 里能进成片的 P1-1（设定写 null）"""
     errs, notes = [], []
     if plan_rel is not None and sc.get('plan') != plan_rel:
         errs.append(f'逐字稿的 "plan" 要写 "{plan_rel}"，现在是 {sc.get("plan")!r}')
@@ -272,13 +272,13 @@ def check_script(P, sc, plan_rel=None, storyboard=None):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description='认 ai-content-planner/2 的交接，查分镜、逐字稿的引用')
+    ap = argparse.ArgumentParser(description='认 ai-content-planner/2 的交接，查分镜脚本、逐字稿的引用')
     ap.add_argument('plan', help='plans/<短名>/plan.md')
     ap.add_argument('--storyboard', help='videos/<短名>/storyboard.json')
     ap.add_argument('--script', help='videos/<短名>/script.json')
-    ap.add_argument('--root', default='.', help='分镜、逐字稿里 "plan" 相对的目录（默认当前目录）')
+    ap.add_argument('--root', default='.', help='分镜脚本、逐字稿里 "plan" 相对的目录（默认当前目录）')
     ap.add_argument('--ready', action='store_true', help='再查用户确认过了（见 check_storyboard.py）')
-    ap.add_argument('--table', action='store_true', help='打印分镜表和全片统一，给用户看')
+    ap.add_argument('--table', action='store_true', help='打印段落表、分镜表和全片统一，给用户看')
     a = ap.parse_args(argv)
     try:
         P = read_plan(a.plan)
@@ -302,7 +302,7 @@ def main(argv=None):
         errs += e
         notes += n
     if sc is not None:
-        e, n = check_script(P, sc, rel)  # 和分镜对不对得上由下面的通用检查查
+        e, n = check_script(P, sc, rel)  # 和分镜脚本对不对得上由下面的通用检查查
         errs += e
         notes += n
     lib = cs.library()
@@ -311,14 +311,14 @@ def main(argv=None):
         errs += e
         notes += n
         if a.table:
-            print(cs.table(sb, sc, lib))
+            print(cs.table(sb, sc, lib, cs.timing_of(a.storyboard)))
             print()
     elif sc is not None:
         e, n = cs.check_facts(sc, True)
         errs += e
         notes += n
     if a.ready and sb is None:
-        errs.append('--ready 要连分镜一起查（写 --storyboard）')
+        errs.append('--ready 要连分镜脚本一起查（写 --storyboard）')
     for x in notes:
         print(f'提醒：{x}')
     for x in errs:

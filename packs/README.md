@@ -17,7 +17,7 @@
 | `pack.js` | 主题和部件。每个部件都是 `(ctx, K, t, o)`：`K` 是主题，`t` 是部件自己的本地时间，`o` 是内容；每帧只由 `t` 决定 |
 | `sound_kit.py` | 每种部件出现时放什么音，全部由 `samples/lib/synth.py` 合成 |
 | `STYLE.md` | 风格说明：调色板、字体、版式、运动、声音、禁止项，可以整段抄进项目规范 |
-| `meta.json` | 名字、部件清单 `parts`（`[中文, 英文]`；新规格加第三项 `"seg"` 段部件或 `"layer"` 层）、完整演示片的画幅 `full`（新规格才有）、演示用的几种切换，出片工具和介绍页都从这里读。切品牌色写 `accents`：`[键, 中文名, 英文名, 色值]`，播放器参数 `accent`；切别的维度写 `switch`（维度名 `[中文, 英文]`）和 `variants`：`[键, 中文名, 英文名, 值]`，播放器参数 `v`。第一种是默认 |
+| `meta.json` | 名字、部件清单 `parts`（`[中文, 英文]`；新规格加第三项 `"seg"` 整屏部件或 `"layer"` 层）、完整演示片的画幅 `full`（新规格才有）、演示用的几种切换，出片工具和介绍页都从这里读。切品牌色写 `accents`：`[键, 中文名, 英文名, 色值]`，播放器参数 `accent`；切别的维度写 `switch`（维度名 `[中文, 英文]`）和 `variants`：`[键, 中文名, 英文名, 值]`，播放器参数 `v`。第一种是默认 |
 | `demo/` | 演示片：`scene.js` 把部件按时间轴排起来，`sound.py` 配声音（新规格的包另有分镜表 `segments.json`、15 秒切换片段 `clip.js` 和 `clip_sound.py`，规格见 Skill 的 [making.md](../skills/ai-coding-video/making.md#2-级风格包)），T、G 类的包另有 `assets/` 和 `assets.json`（素材和出处，随 Skill 安装），以及每种切换渲染好的横竖两版视频和静帧（`<包名>-<键>-<画幅>.mp4`；视频不进仓库，放在 Release，见 [samples/README.md](../samples/README.md#视频放在哪)） |
 
 ## 出片

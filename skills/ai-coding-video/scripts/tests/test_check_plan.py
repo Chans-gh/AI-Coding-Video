@@ -116,7 +116,7 @@ class CheckPlan(unittest.TestCase):
         self.assertEqual(code, 1, out)
         self.assertIn('内容流程', out)
 
-    # ---------- 分镜、逐字稿 ----------
+    # ---------- 分镜脚本、逐字稿 ----------
     def test_u_number_rejected(self):
         d = self.project(edits=[('videos/demo/script.json', '"ref": "P1-1"', '"ref": "U1-1"')])
         code, out = self.run_check(d)
@@ -158,7 +158,7 @@ class CheckPlan(unittest.TestCase):
                                 ('videos/demo/script.json', '"seg": "P2"', '"seg": "P1"')])
         code, out = self.run_check(d)
         self.assertEqual(code, 1, out)
-        self.assertIn('P2 在分镜里一段都没用到', out)
+        self.assertIn('P2 在分镜脚本里一段都没用到', out)
 
     def test_plan_field(self):
         d = self.project(edits=[('videos/demo/storyboard.json', '"plan": "plans/demo/plan.md"', '"plan": "plan.md"')])

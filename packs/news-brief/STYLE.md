@@ -20,7 +20,7 @@
 
 1. 在 `pack.js` 的 `LAYOUTS` 里加一个对象，写 `draw(ctx, K, t, d, shot, P)`：按 `shot.kind`（`headline`、`compare`、`chart`、`note`）画出 `shot.photos` 里的照片，返回 `{ box, pin(i, u, v), panel }`。照片用 `NB.cover()` 画，它会返回 (u, v) → 屏幕坐标的映射，`pin` 直接用它。
 2. 在 `meta.json` 的 `variants` 加一行 `[键, 中文名, 英文名, 键]`。
-3. `cd samples && python3 batch.py pack:news-brief@<键> --quick` 看四种镜头都对，再出正式版。分段表、部件、声音都不用改。
+3. `cd samples && python3 batch.py pack:news-brief@<键> --quick` 看四种镜头都对，再出正式版。分镜表、部件、声音都不用改。
 
 ## 调色板
 

@@ -1,4 +1,4 @@
-"""完整演示片的声音：读和画面同一张分镜表 segments.json，每段按部件放 sound_kit 里对应的音；铺底按章换和弦，节拍贯穿全片，章节卡和片尾歇拍。
+"""完整演示片的声音：读和画面同一张分镜表 segments.json，每个分镜按部件放 sound_kit 里对应的音；铺底按章换和弦，节拍贯穿全片，章节卡和片尾歇拍。
 各个时刻（第几条、第几根柱子、数字砸下）照 pack.js 里部件的默认节奏算，改了 segments.json 的 start、every、secs 这里自动跟着变。"""
 import json, sys
 from pathlib import Path

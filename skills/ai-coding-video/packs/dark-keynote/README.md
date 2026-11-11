@@ -85,11 +85,11 @@
 
 还导出了几个零件，自己拼新部件时用：`DK.glass`（玻璃卡片）、`DK.sweep`（扫光）、`DK.kicker`（小标题）、`DK.head`（段标题）、`DK.logo`（标志）、`DK.mini`（片中片的小画面）、`DK.pop`（吸附缓动）。15 秒片段另用 `DK.title`（片头）、`DK.explain`（要点讲解）。
 
-把分镜排成一支片子，看 [`demo/segments.json`](demo/segments.json) 和 [`demo/scene.js`](demo/scene.js)：分镜表每行一个段部件 `part`、时长 `d`（整拍）、进场转场 `tr`、内容 `o`、本地时间倍速 `speed`、叠在这一段上的部件 `over`（`at` 是段内时刻，`anchor` 取宿主返回值：数字取第几项，`"self"` 取整个）、字幕 `cues`；`scene.js` 照表画，各层叠在上面。15 秒切换片段是 [`demo/clip.js`](demo/clip.js)。
+把分镜排成一支片子，看 [`demo/segments.json`](demo/segments.json) 和 [`demo/scene.js`](demo/scene.js)：分镜表每行一个分镜：整屏部件 `part`、时长 `d`（整拍）、进场转场 `tr`、内容 `o`、本地时间倍速 `speed`、叠在这一段上的部件 `over`（`at` 是段内时刻，`anchor` 取宿主返回值：数字取第几项，`"self"` 取整个）、字幕 `cues`；`scene.js` 照表画，各层叠在上面。15 秒切换片段是 [`demo/clip.js`](demo/clip.js)。
 
 ## 声音
 
-[`sound_kit.py`](sound_kit.py) 里的音全部由 `synth.py` 合成：`bed_chapters` 按章起伏的铺底（一章换一个和弦，正文段有轻节拍，章节卡和片尾歇拍），每种分镜、叠加和转场各有对应的音（`cold_open`、`slam_hit`、`flash_hit`、`swish`、`pop_in`、`click`、`clack`、`stamp_in`、`tag_in`、`typing`、`bars_in`、`number_in` 等，转场 `transition`、`push`、`dissolve`、`zoom_tr`、`wipe_tr`、`flash_tr`、`flip_tr`）。[`demo/sound.py`](demo/sound.py) 读同一张分镜表，按部件放音，时刻照部件的 `start`、`every` 推算；15 秒切换片段用 `bed` 和 [`demo/clip_sound.py`](demo/clip_sound.py)。
+[`sound_kit.py`](sound_kit.py) 里的音全部由 `synth.py` 合成：`bed_chapters` 按章起伏的铺底（一章换一个和弦，正文镜头有轻节拍，章节卡和片尾歇拍），每种分镜、叠加和转场各有对应的音（`cold_open`、`slam_hit`、`flash_hit`、`swish`、`pop_in`、`click`、`clack`、`stamp_in`、`tag_in`、`typing`、`bars_in`、`number_in` 等，转场 `transition`、`push`、`dissolve`、`zoom_tr`、`wipe_tr`、`flash_tr`、`flip_tr`）。[`demo/sound.py`](demo/sound.py) 读同一张分镜表，按部件放音，时刻照部件的 `start`、`every` 推算；15 秒切换片段用 `bed` 和 [`demo/clip_sound.py`](demo/clip_sound.py)。
 
 ## 用到自己的项目里
 

@@ -15,13 +15,13 @@
 | 合计 | | | | | 约 162.5–180.5 | |
 <!-- /gen -->
 
-上表、各案例 README 里的分镜表、用量、降级用法、对比口径，都由 `python3 cases/tools/build.py` 从各自的 `case.json` 生成，不要手改；`--check` 核对两边一致。
+上表、各案例 README 里的段落表、用量、降级用法、对比口径，都由 `python3 cases/tools/build.py` 从各自的 `case.json` 生成，不要手改；`--check` 核对两边一致。
 
 ## 目录结构
 
 ```
 cases/<名字>/
-  README.md        场景、讲法、素材、待核（手写）；分镜、用量、降级、对比由 case.json 生成
+  README.md        场景、讲法、素材、待核（手写）；段落表、用量、降级、对比由 case.json 生成
   case.json        正本：介绍页和 README 读的数据，格式见下
   script.json      旁白稿：分段，每段对应 case.json 的一段，数字记出处
   assets.json      素材清单，字段和样片的一样（见 samples/tools/assets.py 开头）
@@ -30,7 +30,7 @@ cases/<名字>/
   sound.py         整支的配乐和音效，score(m, T) 照 Skill 的 samples/tools/film.py；旁白由 film.py 摆
   timing.json      每段的段长、每句的时间（Skill 的 voice.py 写，格式见 film.md「时间」）
   log.md           制作记录：每一步用时、生成用量、返工；末尾是汇总表（格式见下）
-  storyboard.json、vo/、media/、out/、assets/dl/   生成的分镜、配音、成片、中间产物、能重新下载的素材（不进仓库）
+  storyboard.json、vo/、media/、out/、assets/dl/   生成的分镜脚本、配音、成片、中间产物、能重新下载的素材（不进仓库）
 cases/tools/
   build.py         生成和检查
   assets.py        照 assets.json 下载、截取、生成素材（长录像按时间段读取，不整个下载）
@@ -76,8 +76,8 @@ cases/tools/
 | `compare` | 对比口径：`side`（传统人工 / 过去的 AI 工具 / 本方法）、`text`，对方的数据带链接 |
 
 - **`uses` 的每一条**：`what` 写做什么；有对应样片写 `ref`（样片编号，或 `pack:风格包名`），类别跟着样片走（风格包跟它沉淀自的样片），比如估深度图跟 T-018 走、转文字稿跟 T-016 走，都算 T；没有对应样片的写 `class`。`ref`、`class` 只写一个。
-- **`start`、`end`**：接片时由程序写进来，不手填；写进来之前，分镜表按 `sec` 累加显示预计时间。
-- **接策划**：`case.json` 当 `film.md` 里 `videos/<短名>/storyboard.json` 用，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。分镜后来加的 `unify`、`status`、`typical` 案例不写，`case.json` 不改格式。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
+- **`start`、`end`**：接片时由程序写进来，不手填；写进来之前，段落表按 `sec` 累加显示预计时间。
+- **接策划**：`case.json` 当 `film.md` 里 `videos/<短名>/storyboard.json` 用，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。分镜脚本后来加的 `unify`、`status`、`typical`、`shots` 案例不写（第 3 支的分镜表手写在它的 README），`case.json` 不改格式。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
 - **`note`**：每段做完后照实写，80–150 字：分几层、谁驱动时间、怎么接进整支。不提前写。
 
 ## 规矩
