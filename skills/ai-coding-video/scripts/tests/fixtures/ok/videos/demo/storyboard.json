@@ -7,6 +7,10 @@
    "uses": [{"what": "大字温度计", "ref": "C-038"}], "note": "测试夹具"},
   {"seg": "P1", "title": "气压低了", "content": "气压越低，沸点越低", "sec": 7, "lead": "C",
    "uses": [{"what": "气压表指针", "ref": "C-038"}], "note": "测试夹具"},
-  {"seg": "P2", "title": "高原", "content": "海拔 4000 米约 87 °C；青禾官方称 3 分钟烧开", "sec": 15, "lead": "T",
-   "uses": [{"what": "高原风景照（Q1）", "class": "T", "materials": ["照片"]}], "note": "测试夹具"}
+  {"seg": "P2", "title": "高原", "content": "海拔 4000 米约 87 °C；青禾官方称 3 分钟烧开", "sec": 15, "lead": "G",
+   "uses": [{"what": "高原上一锅水冒泡的生图（Q1）", "class": "G", "materials": ["生图"], "rule": "K1"},
+            {"what": "青禾产品图推镜", "class": "T", "materials": ["照片"], "rule": "K2"}], "note": "测试夹具",
+   "shots": [{"what": "全景：高原湖边一锅水冒泡，温度计停在 87（生图）", "class": "G", "src": "source/plateau/02.jpg",
+              "rule": "K1", "vo": 1},
+             {"what": "近景：青禾电热壶产品图慢推", "class": "T", "src": "source/qinghe/kettle.png", "vo": 2, "cut": "溶解"}]}
  ]}

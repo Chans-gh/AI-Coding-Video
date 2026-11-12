@@ -16,7 +16,7 @@
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
 | [`film.md`](film.md) | 完整出片的六步（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜脚本 `storyboard.json`（段和段里的分镜）和逐字稿 `script.json` 的格式、事实的规矩 |
-| [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 2）：认格式和状态、读什么、`seg` 和 `ref` 怎么填、缺内容怎么回流 |
+| [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 3，也认 2）：认格式和状态、读什么（效果、形式、说法、素材、约束）、`seg`、`ref`、`rule` 怎么填、缺内容和形式要改怎么回流 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
 | [`legacy-ids.md`](legacy-ids.md) | 旧编号对照 |
@@ -26,7 +26,7 @@
 | [`data/tags.json`](data/tags.json) | 技术标签、题材、内容类型、素材种类的合法取值 |
 | [`scripts/build_index.py`](scripts/build_index.py) | 生成 `styles.json` 和风格目录，并做完整性自检 |
 | [`scripts/check_storyboard.py`](scripts/check_storyboard.py) | 完整出片的通用检查：分镜脚本和逐字稿对得上、样式、分镜、全片统一、事实的出处；`--ready` 查用户确认过了，`--table` 打印段落表和分镜表，见 [film.md「检查」](film.md#检查) |
-| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜脚本、逐字稿的段号和事实编号，通用的部分调 `check_storyboard.py`；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
+| [`scripts/check_plan.py`](scripts/check_plan.py) | 接策划时的检查：认交接格式和状态，查分镜脚本、逐字稿的段号和事实编号，格式 3 另查约束 `rule`、素材能不能送生成、说法和形式，通用的部分调 `check_storyboard.py`；离线测试在 `scripts/tests/`（`python3 -m unittest discover -s scripts/tests`），`build_index.py --check` 一并跑 |
 
 ## 分类与编号
 

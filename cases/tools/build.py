@@ -130,7 +130,7 @@ def check(name, case):
 
 
 def check_plan(d, case):
-    """接了策划（case.json 有 plan）：交给 Skill 的 scripts/check_plan.py——认交接格式 2 和状态；case.json 当分镜脚本、
+    """接了策划（case.json 有 plan）：交给 Skill 的 scripts/check_plan.py——认交接格式（3，也认旧的 2）和状态；case.json 当分镜脚本、
     script.json 当逐字稿，查 seg 都在框架里且每个段号都用到、facts 的 ref 都是 content.md 里能进成片的编号（设定写 null）"""
     sys.path.insert(0, str(ROOT / "skills" / "ai-coding-video" / "scripts"))
     import check_plan as cp

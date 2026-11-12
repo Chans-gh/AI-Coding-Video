@@ -1,0 +1,12 @@
+{"plan": "plans/demo/plan.md",
+ "segments": [
+  {"seg": "P1", "vo": ["我是小水滴。", "一个标准大气压下，水在一百度沸腾。"],
+   "facts": [{"what": "讲解员小水滴是虚构的", "ref": null, "src": null},
+             {"what": "一个标准大气压下沸点 100 °C", "ref": "P1-1", "src": "https://example.com/textbook"}]},
+  {"seg": "P1", "vo": ["气压越低，沸点越低。"],
+   "facts": [{"what": "气压越低沸点越低", "ref": "P1-2", "src": "https://example.com/textbook"}]},
+  {"seg": "P2", "vo": ["所以在海拔四千米，水八十七度就开了。", "青禾官方称，它的电热壶三分钟烧开一壶。"],
+   "facts": [{"what": "气压越低沸点越低", "ref": "P1-2", "src": "https://example.com/textbook"},
+             {"what": "海拔 4000 米约 87 °C 沸腾", "ref": "P2-1", "src": null, "calc": "由 P1-2 和气压表推出"},
+             {"what": "青禾官方称 3 分钟烧开", "ref": "P2-2", "src": "https://example.com/qinghe"}]}
+ ]}

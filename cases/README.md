@@ -40,7 +40,7 @@ cases/tools/
 
 `render.py` 每次先从 `case.json`、`script.json` 写出 Skill 认的 `storyboard.json`：第 k 段的段号是 `0k`（对应 `segments/0k.js`），音色取 `script.json` 的 `voice`；正本仍是 `case.json`。
 
-一支片的流程：策划交接（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的 `plans/<名字>/plan.md`，交接格式 2、状态「已交接」）→ 照 [storyboard.md](../skills/ai-coding-video/storyboard.md) 接策划、照 [film.md](../skills/ai-coding-video/film.md) 的格式写 `case.json`、`script.json` → `script.json` 定稿 → `assets.py` 拿素材 → `render.py <名字> --voice` 配音、算每段时长，`--check` 回听 → 写 `segments/NN.js`、`sound.py` →
+一支片的流程：策划交接（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的 `plans/<名字>/plan.md`，交接格式 3（已有的两支是旧的格式 2，照样接）、状态「已交接」）→ 照 [storyboard.md](../skills/ai-coding-video/storyboard.md) 接策划、照 [film.md](../skills/ai-coding-video/film.md) 的格式写 `case.json`、`script.json` → `script.json` 定稿 → `assets.py` 拿素材 → `render.py <名字> --voice` 配音、算每段时长，`--check` 回听 → 写 `segments/NN.js`、`sound.py` →
 `render.py <名字> all --quick` 抽帧看 → `render.py <名字> all` 出各段 → `render.py <名字> --join`、`--shorts` → `scripts/media.py upload`。
 前两支的旁白是整稿一次合成的 `assets/vo.mp3`（字幕在 `assets.json` 那一项的 `lines`）：稿子没改时 `--voice` 把它导入 `voice.py`、按句切开，不重配。
 原版要同时低于 100 MB，`media.py` 经 git 中转分支上传，GitHub 拒收更大的单个文件。
@@ -77,7 +77,7 @@ cases/tools/
 
 - **`uses` 的每一条**：`what` 写做什么；有对应样片写 `ref`（样片编号，或 `pack:风格包名`），类别跟着样片走（风格包跟它沉淀自的样片），比如估深度图跟 T-018 走、转文字稿跟 T-016 走，都算 T；没有对应样片的写 `class`。`ref`、`class` 只写一个。
 - **`start`、`end`**：接片时由程序写进来，不手填；写进来之前，段落表按 `sec` 累加显示预计时间。
-- **接策划**：`case.json` 当 `film.md` 里 `videos/<短名>/storyboard.json` 用，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。分镜脚本后来加的 `unify`、`status`、`typical`、`shots` 案例不写（第 3 支的分镜表手写在它的 README），`case.json` 不改格式。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
+- **接策划**：`case.json` 当 `film.md` 里 `videos/<短名>/storyboard.json` 用，不另建：顶层 `plan` 对应它的 `plan`，`ar` 对应 `ar`，每段的 `seg`、`title`、`content`、`sec`、`lead`、`uses`、`note` 一一对应；风格写在各段 `uses` 的 `ref` 里，不另写 `style`。分镜脚本后来加的 `unify`、`status`、`typical`、`shots` 案例不写（第 3 支的分镜表手写在它的 README），`case.json` 不改格式。`script.json` 对应它的逐字稿：每段加 `seg`（和 `case.json` 同一段的照抄），`facts` 每条加 `ref`（`content.md` 的编号 `P1-1`，设定写 `null`）。一段策划可拆成几段，每个段号至少用一次。`build.py --check` 调 Skill 的 `scripts/check_plan.py` 查：策划稿是交接格式 3 或 2、状态「已交接」，`seg` 都在框架里且每个段号都用到，`ref` 都能在 `content.md` 找到、不是「不用」、状态「已核实」。
 - **`note`**：每段做完后照实写，80–150 字：分几层、谁驱动时间、怎么接进整支。不提前写。
 
 ## 规矩

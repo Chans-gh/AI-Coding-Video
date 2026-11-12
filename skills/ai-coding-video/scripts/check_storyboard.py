@@ -23,11 +23,12 @@ STATUS = ('草稿', '用户确认')
 CONFIRM = ('待用户确认', '用户确认')
 PENDING = '待用户确认'
 BRIEF = ('for', 'gain', 'line', 'sec', 'lang', 'voice', 'must', 'avoid')
+BRIEF_EFFECT = {'from': '起点', 'block': '主要阻力', 'to': '终点'}  # 可选，照策划「效果」的起点、阻力、终点
 UNIFY = ('palette', 'fonts', 'subs', 'trans', 'music', 'voice')
 SEG_ID = re.compile(r'P\d+')
 TOLERANCE = 0.15  # 秒数和目标差多少算偏离
 CUTS = ('硬切', '溶解')  # 分镜的 cut：从上一个分镜怎么接过来
-SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut')
+SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule')  # rule：照策划 content.md 的哪几条约束，check_plan.py 查
 SHOT_MIN = 0.5    # 一个分镜至少几秒
 SEC_EPS = 0.05    # 分镜秒数之和和段的 sec 差这么多以内算相等
 
@@ -79,6 +80,9 @@ def check_head(sb, lib):
             for k in ('must', 'avoid'):
                 if k in b and not isinstance(b[k], list):
                     errs.append(f'brief.{k} 要是数组（可空）')
+            for k, name in BRIEF_EFFECT.items():
+                if k in b and not (isinstance(b[k], str) and b[k].strip()):
+                    errs.append(f'brief.{k}（{name}）要写一句话；不想写就整个去掉，现在是 {b[k]!r}')
     if 'style' in sb:
         errs.append('顶层 "style" 已去掉：每段的样式写在 uses，全片共用的写在 unify')
     ar = sb.get('ar')
@@ -420,6 +424,11 @@ def check(sb, sc=None, ready=False, lib=None):
     e, n = check_shots(sb, sc, lib)
     errs += e
     notes += [x for x in n if x not in notes]
+    if not has_plan:
+        for k, s in enumerate(sb.get('segments') if isinstance(sb.get('segments'), list) else [], 1):
+            items = (s.get('uses') or []) + (s.get('shots') if isinstance(s.get('shots'), list) else [])
+            if isinstance(s, dict) and any(isinstance(x, dict) and 'rule' in x for x in items):
+                notes.append(f'第 {k} 段：rule 引用策划 content.md 的约束（K1…），无策划时不读，画面要守的样子写进 what 或 note')
     if sc is not None:
         if sb.get('plan') != sc.get('plan'):
             errs.append(f'逐字稿的 "plan" 要和分镜脚本一样（{sb.get("plan")!r}），现在是 {sc.get("plan")!r}')
@@ -458,6 +467,9 @@ def shot_rows(k, s, vo, spans=None):
         cls = x.get('class') or (r if r and r.startswith('pack:') else (r or ''))
         src = x.get('src') or ''
         src = '、'.join(src) if isinstance(src, list) else src
+        rule = x.get('rule')
+        if rule:
+            src = (src + ' · ' if src else '') + '照 ' + ('、'.join(map(str, rule)) if isinstance(rule, list) else str(rule))
         ns = shot_vo(x) or []
         said = '；'.join(f'{n}「{vo[n - 1][:16]}{"…" if len(vo[n - 1]) > 16 else ""}」' if n <= len(vo) else str(n) for n in ns)
         cut = '—' if j == 1 else (x.get('cut') or '硬切')
@@ -473,7 +485,12 @@ def table(sb, sc=None, lib=None, timing=None):
     segs = sb.get('segments', [])
     scs = sc.get('segments', []) if isinstance(sc, dict) else []
     tsegs = timing.get('segments', []) if isinstance(timing, dict) else []
-    out = ['段落表：', '', '| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', '|---|---|---|---|---|---|---|']
+    out = []
+    b = sb.get('brief') if isinstance(sb.get('brief'), dict) else {}
+    eff = [f'{name}「{b[k]}」' for k, name in BRIEF_EFFECT.items() if isinstance(b.get(k), str) and b[k].strip()]
+    if eff:
+        out += ['效果：' + '；'.join(eff), '']
+    out += ['段落表：', '', '| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', '|---|---|---|---|---|---|---|']
     total, nshot, gen = 0, 0, 0
     for k, s in enumerate(segs, 1):
         uses = []
@@ -490,7 +507,6 @@ def table(sb, sc=None, lib=None, timing=None):
         out.append(f'| {k} | {cell(s.get("seg", ""))} | {cell(title)} | {cell(s.get("sec", ""))} | {len(shots) or "—"} | '
                    f'{cell("；".join(uses))} | {cell(s.get("lead", ""))} |')
         total += s.get('sec') or 0
-    b = sb.get('brief') if isinstance(sb.get('brief'), dict) else {}
     out.append('')
     out.append(f'合计 {total:g} 秒' + (f'，目标 {b["sec"]:g} 秒' if isinstance(b.get('sec'), (int, float)) else '') +
                (f'；{nshot} 个分镜，其中生成类（G）{gen} 个' if nshot else '') +

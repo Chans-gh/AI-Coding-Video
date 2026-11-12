@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""接策划前后的检查：认 ai-content-planner/2 交接的 plan.md、content.md，查分镜脚本和逐字稿的引用。只用标准库。
+"""接策划前后的检查：认 ai-content-planner/3（也认旧的 /2）交接的 plan.md、content.md，查分镜脚本和逐字稿的引用。只用标准库。
 
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md
     python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>/plan.md \\
         --storyboard videos/<短名>/storyboard.json --script videos/<短名>/script.json [--ready] [--table]
 
-接策划的部分在这里查（段号在框架里、事实的编号在 content.md 里能进成片）；分镜脚本、逐字稿通用的部分（uses、unify、
-事实的出处、--ready、--table）调 check_storyboard.py。
+接策划的部分在这里查（段号在框架里、事实的编号在 content.md 里能进成片；格式 3 另查约束 rule、素材能不能送生成、
+说法点到的段有旁白、形式的声音和画幅、时长）；分镜脚本、逐字稿通用的部分（uses、unify、事实的出处、--ready、--table）
+调 check_storyboard.py。
 退出码：0 能接（可能有提醒）；1 能接，但分镜脚本、逐字稿或框架有问题要改；2 停下，不接（格式、状态、输出形式不对，
 或缺 content.md），照提示请用户先回策划。分镜脚本、逐字稿的 "plan" 相对于 --root（默认当前目录，即项目根目录）。
 规矩见本 Skill 的 storyboard.md，分镜脚本、逐字稿的格式见 film.md；交接格式以策划的 handoff.md 为准。
@@ -20,8 +21,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import check_storyboard as cs  # noqa: E402  通用检查（uses、unify、事实的出处、--ready、--table）
 
-FORMAT = 'ai-content-planner/2'
-FRAME_HEAD = ['段', '作用', '受众收益', '要讲的点', '用到哪些输入', '篇幅']
+FORMATS = {'ai-content-planner/2': 2, 'ai-content-planner/3': 3}  # 格式号 → 版本；2 是旧格式，没有效果、形式、说法、约束、素材
+FORMAT = 'ai-content-planner/3'
+FRAME_HEAD = {2: ['段', '作用', '受众收益', '要讲的点', '用到哪些输入', '篇幅'],
+              3: ['段', '作用', '受众：从 → 到', '要讲的点', '怎么证明', '用到哪些输入', '篇幅']}
+CONFIRM_KINDS = {2: ('需求', '框架'), 3: ('效果', '框架')}
+NEED_HEAD = ['项', '内容', '来源']                      # 格式 2 的需求
+FORM_HEAD = ['项', '内容', '由哪条效果推出', '来源']      # 格式 3 的形式
+SAY_HEAD = ['点', '要的效果', '参考说法', '不能丢的']
+MAT_HEAD = ['#', '文件', '内容', '字、标志、水印、人脸', '能怎么用', '能不能送生成', '用到哪段']
+RULE_HEAD = ['#', '必须守的样子', '依据', '状态']
 DATA_HEAD = ['#', '讲哪一点', '内容', '种类', '来源', '必须写清的', '状态']
 SRC_HEAD = ['资料', '位置', '读到哪', '用途', '能不能公开', '用到哪些编号']
 AUTO = '自动，未问用户'
@@ -32,6 +41,12 @@ POINT = re.compile(r'([a-z])\.\s*(.*)', re.S)
 SEG_ID = re.compile(r'P\d+')
 DATA_ID = re.compile(r'P\d+-\d+')
 OLD_ID = re.compile(r'U\d+(?:-\d+)?')
+RULE_ID = re.compile(r'K\d+')
+MAT_ID = re.compile(r'(?<![A-Za-z0-9])M\d+(?!\d)')
+SAY_POINT = re.compile(r'(P\d+)\s*([a-z](?:\s*[、,，]\s*[a-z])*)?')
+AR = re.compile(r'(\d+)\s*[:：]\s*(\d+)')
+SILENT = re.compile(r'不说话|只上字|无旁白|没有旁白|不配旁白')
+RANGE = re.compile(r'(.*?)(\d+)\s*[–\-~—]\s*(\d+)')
 SECONDS = re.compile(r'(?:约|大约)?\s*(\d+(?:\.\d+)?)\s*(?:[–\-~—至到]\s*(\d+(?:\.\d+)?)\s*)?秒(?:左右)?'
                      r'|(?:约)?\s*(\d+)\s*分钟?\s*(?:(\d+)\s*秒)?(?:左右)?')
 
@@ -110,9 +125,12 @@ def seconds(cell):
 
 
 def read_plan(plan_path):
-    """读 plan.md 和同目录的 content.md。不能接时抛 Stop；能接时返回 dict：
-    segs（框架里的段号，按顺序）、frame（段号 → 框架一行，另有 points、sec）、content（P1-1 → 一行，另有 seg、which、shared）、
-    sources（资料名 → 位置）、notes（提醒）、errors（框架的问题）"""
+    """读 plan.md 和同目录的 content.md，认格式 3 和旧的格式 2（两套表头和取值位置）。不能接时抛 Stop；能接时返回 dict：
+    version（2 或 3）、segs（框架里的段号，按顺序）、frame（段号 → 框架一行，另有 points、sec、rules：「怎么证明」里的 K）、
+    content（P1-1 → 一行，另有 seg、which、shared）、sources（资料名 → 位置）、
+    say（说法点到的段号）、materials（M1 → 素材一行）、rules（K1 → 约束一行），格式 2 这三样是空的；
+    ar、sec（策划定的画幅、目标秒数，读不出是 None）、silent（声音是不说话的，写原文，否则空）、size_where（从哪读的）、
+    notes（提醒）、errors（框架、表头的问题）"""
     plan_path = Path(plan_path)
     if not plan_path.is_file():
         raise Stop(f'找不到 {plan_path}')
@@ -122,32 +140,50 @@ def read_plan(plan_path):
     m = re.fullmatch(r'格式[：:]\s*(\S+)', fmt)
     if not m:
         raise Stop(f'{plan_path} 标题下面一行不是「格式：{FORMAT}」（现在是「{fmt}」）。'
-                   '这不是 ai-content-planner 格式 2 的交接，不接；请用户先用 ai-content-planner（0.4.0 起）出交接，或更新策划')
-    ver = m.group(1)
-    if ver == 'ai-content-planner/1':
-        raise Stop(f'{plan_path} 是交接格式 1（ai-content-planner/1），本 Skill 只接格式 2，不猜着读。'
-                   '请用户先用策划转成格式 2（照策划 handoff.md 第 6 节，CHANGELOG 0.4.0 一行），或更新策划后重新交接')
-    if ver != FORMAT:
-        raise Stop(f'{plan_path} 的格式是「{ver}」，本 Skill 只认 {FORMAT}，不猜着读。请用户更新本 Skill 或策划')
+                   '这不是 ai-content-planner 格式 3（或旧的格式 2）的交接，不接；'
+                   '请用户先用 ai-content-planner（0.6.0 起）出交接，或更新策划')
+    if m.group(1) == 'ai-content-planner/1':
+        raise Stop(f'{plan_path} 是交接格式 1（ai-content-planner/1），本 Skill 只接格式 3（也认旧的格式 2），不猜着读。'
+                   '请用户先用策划（0.6.0 起）转成格式 3（照策划 handoff.md 第 7 节；格式 1 先照 CHANGELOG 0.4.0 一行转成格式 2），'
+                   '或更新策划后重新交接')
+    ver = FORMATS.get(m.group(1))
+    if ver is None:
+        raise Stop(f'{plan_path} 的格式是「{m.group(1)}」，本 Skill 只认 {"、".join(FORMATS)}，不猜着读。请用户更新本 Skill 或策划')
 
     st = re.search(r'^状态[：:]\s*([^（(。\s]+)', text, re.M)
     status = st.group(1) if st else ''
     if status == '回流中':
         raise Stop('状态是「回流中」：策划还在处理下游提的缺口，等策划改回「已交接」再接')
     if status != '已交接':
-        raise Stop(f'状态是「{status or "（没写）"}」，只接「已交接」；请用户先在策划里做完、交接')
+        raise Stop(f'状态是「{status or "（没写）"}」，只接「已交接」；请用户先在策划里做完、交接'
+                   '（效果待确认、框架待确认、补齐中都还没交接）')
 
     title, secs = sections(text)
     notes, errors = [], []
-    need = table(secs.get('需求', []), ['项', '内容', '来源']) or []
-    form = next((r['内容'] for r in need if r['项'] == '输出形式'), '')
+    if ver == 2:
+        notes.append('这是交接格式 2（旧格式）：没有效果、形式、说法、约束、素材，照需求、立意、框架接；'
+                     '要这些，请用户用策划（0.6.0 起）转成格式 3')
+        spec = {r['项']: r['内容'] for r in table(secs.get('需求', []), NEED_HEAD) or []}
+        form = spec.get('输出形式', '')
+        size = extent = voice = spec.get('篇幅与规格', '')
+        form_where, size_where = '需求的「输出形式」', '需求的「篇幅与规格」'
+    else:
+        spec = {r['项']: r['内容'] for r in table(secs.get('形式', []), FORM_HEAD) or []}
+        size = form = spec.get('输出形式和规格', '')
+        extent, voice = spec.get('篇幅和注意力', ''), spec.get('声音', '')
+        form_where = size_where = '形式的「输出形式和规格」'
     if '视频' not in form:
-        raise Stop(f'需求的「输出形式」是「{form or "（没写）"}」，不是视频，交给对应的 Skill')
+        raise Stop(f'{form_where}是「{form or "（没写）"}」，不是视频，交给对应的 Skill')
+    am = AR.search(size)
+    ar = f'{am.group(1)}:{am.group(2)}' if am else None
+    sec = seconds(re.split(r'[；;，,]', extent)[0]) if extent else None
+    silent = voice if SILENT.search(voice) else ''
 
+    kinds = CONFIRM_KINDS[ver]
     for line in secs.get('确认记录', []):
-        for kind in ('需求', '框架'):
+        for kind in kinds:
             if re.search(rf'{kind}(?:[（(][^）)]*[）)])?[：:]', line) and AUTO in line:
-                notes.append(f'确认记录的「{kind}」写着「{AUTO}」：开工前先请用户过一眼需求和框架')
+                notes.append(f'确认记录的「{kind}」写着「{AUTO}」：开工前先请用户过一眼{"和".join(kinds)}')
 
     fl = secs.get('框架')
     if fl is None:
@@ -155,10 +191,11 @@ def read_plan(plan_path):
         fl = []
     if fl and not any(re.match(r'\s*内容流程[：:]', x) for x in fl):
         errors.append('框架缺「内容流程：」一行')
-    rows = table(fl, FRAME_HEAD)
+    rows = table(fl, FRAME_HEAD[ver])
     if rows is None:
         head = first_table_head(fl)
-        errors.append('框架的段落表表头要是「' + ' | '.join(FRAME_HEAD) + '」' + (f'，现在是「{" | ".join(head)}」' if head else ''))
+        errors.append(f'框架的段落表表头（格式 {ver}）要是「' + ' | '.join(FRAME_HEAD[ver]) + '」' +
+                      (f'，现在是「{" | ".join(head)}」' if head else ''))
         rows = []
     frame, segs = {}, []
     for r in rows:
@@ -173,14 +210,27 @@ def read_plan(plan_path):
                     errors.append(f'框架 {p} 的「要讲的点」要按 a. ……<br>b. …… 写：{part.strip()[:20]}')
         r['points'] = pts
         r['sec'] = seconds(r['篇幅'])
+        r['rules'] = sorted(set(RULE_ID.findall(r.get('怎么证明', ''))), key=lambda k: int(k[1:]))
         if r['sec'] is None:
             errors.append(f'框架 {p} 的篇幅「{r["篇幅"]}」不是秒：视频的篇幅单位是秒')
         frame[p] = r
         segs.append(p)
 
+    say = []  # 说法点到的段号，按出现顺序
+    for r in named_table(secs, '说法', SAY_HEAD, errors, 'plan.md') if ver >= 3 else []:
+        for g, letters in SAY_POINT.findall(r['点']):
+            if g not in frame:
+                notes.append(f'说法的「{r["点"]}」：{g} 不在框架里')
+                continue
+            miss = [x for x in re.findall(r'[a-z]', letters) if x not in frame[g]['points']]
+            if miss:
+                notes.append(f'说法的「{r["点"]}」：{g} 没有点 {"、".join(miss)}')
+            if g not in say:
+                say.append(g)
+
     cpath = plan_path.parent / 'content.md'
     if not cpath.is_file():
-        old = '；同目录有 research.md，是格式 1 的文件名，请用户先用策划转成格式 2' if (plan_path.parent / 'research.md').exists() else ''
+        old = '；同目录有 research.md，是格式 1 的文件名，请用户先用策划转成格式 3' if (plan_path.parent / 'research.md').exists() else ''
         raise Stop(f'找不到 {cpath}{old}')
     _, csecs = sections(cpath.read_text(encoding='utf-8'))
     content = {}
@@ -193,12 +243,89 @@ def read_plan(plan_path):
             r.update(seg=sm.group(1), which=which, shared=shared)
             content[r['#']] = r
     src = table(csecs.get('资料清单', []), SRC_HEAD) or []
-    return {'plan': plan_path, 'title': title, 'segs': segs, 'frame': frame, 'content': content,
-            'sources': {r['资料']: r['位置'] for r in src}, 'notes': notes, 'errors': errors}
+    mats = {r['#']: r for r in named_table(csecs, '素材', MAT_HEAD, errors, 'content.md')} if ver >= 3 else {}
+    rules = {r['#']: r for r in named_table(csecs, '约束', RULE_HEAD, errors, 'content.md')} if ver >= 3 else {}
+    for k, r in rules.items():
+        if r['状态'] not in ('已核实', '设定'):
+            notes.append(f'约束 {k} 的状态是「{r["状态"]}」：拿不准的样子先别照着生成，问用户或回流')
+    return {'plan': plan_path, 'title': title, 'version': ver, 'segs': segs, 'frame': frame, 'content': content,
+            'sources': {r['资料']: r['位置'] for r in src}, 'say': say, 'materials': mats, 'rules': rules,
+            'ar': ar, 'sec': sec, 'silent': silent, 'size_where': size_where,
+            'notes': notes, 'errors': errors}
 
 
-def check_storyboard(P, sb, plan_rel=None):
-    """分镜脚本：plan、seg 在框架里且按框架顺序、每个段号都用到、同一段号的秒数贴近篇幅"""
+def named_table(secs, name, head, errors, where):
+    """可选的节：没有这一节、节里没有表（写「无」）返回 []；有表但表头不对记一条问题"""
+    lines = secs.get(name)
+    if lines is None:
+        return []
+    rows = table(lines, head)
+    if rows is None:
+        h = first_table_head(lines)
+        if h:
+            errors.append(f'{where}「{name}」的表头要是「{" | ".join(head)}」，现在是「{" | ".join(h)}」')
+        return []
+    return [r for r in rows if r[head[0]]]
+
+
+def file_pieces(cell):
+    """素材表的「文件」→ 路径片段：反引号里的（没有反引号就是整格去掉括号）；「目录/01–05」拆成 (目录/, 1, 5)"""
+    parts = re.findall(r'`([^`]+)`', cell) or [re.sub(r'[（(][^）)]*[）)]', '', cell).strip()]
+    out = []
+    for p in parts:
+        p = p.strip()
+        m = RANGE.fullmatch(p)
+        out.append((m.group(1), int(m.group(2)), int(m.group(3))) if m else (p, None, None))
+    return [x for x in out if x[0] or x[1] is not None]
+
+
+def materials_in(src, mats):
+    """分镜的 src（字符串或数组）用到素材表里的哪几个：写了编号「M7」的，或路径对得上「文件」的"""
+    srcs = [src] if isinstance(src, str) else [x for x in src if isinstance(x, str)] if isinstance(src, list) else []
+    found, unknown = [], []
+    for s in srcs:
+        for mid in MAT_ID.findall(s):
+            (found if mid in mats else unknown).append(mid)
+        for mid, r in mats.items():
+            for prefix, lo, hi in file_pieces(r['文件']):
+                if lo is None:
+                    hit = prefix in s
+                else:
+                    n = re.search(re.escape(prefix) + r'0*(\d+)', s) if prefix else None
+                    hit = bool(n) and lo <= int(n.group(1)) <= hi
+                if hit:
+                    found.append(mid)
+                    break
+    return list(dict.fromkeys(found)), list(dict.fromkeys(unknown))
+
+
+def can_generate(row):
+    """素材「能不能送生成」：只有「能」（后面可跟「：说明」）才能送；「不能」「〔待核实〕」都按不能"""
+    return re.split(r'[：:]', row['能不能送生成'].strip(), maxsplit=1)[0].strip() == '能'
+
+
+def item_class(x, styles):
+    """uses 一条或一个分镜的类别：class，或 ref 指的风格的类别；风格包算 C；认不出返回 None"""
+    if x.get('class') in cs.CLASSES:
+        return x['class']
+    r = x.get('ref')
+    if isinstance(r, str) and r.startswith('pack:'):
+        return 'C'
+    return styles.get(r, {}).get('class')
+
+
+def rule_list(v):
+    """rule：「K1」或 ["K1", "K2"] → 列表；写错返回 None"""
+    ks = [v] if isinstance(v, str) else v
+    if isinstance(ks, list) and ks and all(isinstance(k, str) and RULE_ID.fullmatch(k) for k in ks):
+        return ks
+    return None
+
+
+def check_storyboard(P, sb, plan_rel=None, lib=None):
+    """分镜脚本：plan、seg 在框架里且按框架顺序、每个段号都用到、同一段号的秒数贴近篇幅、ar 和全片时长贴近策划、
+    不说话的片子 unify.voice 是 null；格式 3 另查 rule 的 K 号在约束表里、框架「怎么证明」写了 K 的段里 G 类分镜写了 rule、
+    分镜 src 用到的素材：不能送生成的不进 G 类分镜，只作参考的不进成片"""
     errs, notes = [], []
     if plan_rel is not None and sb.get('plan') != plan_rel:
         errs.append(f'分镜脚本的 "plan" 要写 "{plan_rel}"（来自哪份 plan.md），现在是 {sb.get("plan")!r}')
@@ -219,6 +346,62 @@ def check_storyboard(P, sb, plan_rel=None):
         want = P['frame'][p]['sec']
         if want and t and abs(t - want) > want * 0.15:
             notes.append(f'{p} 各段合计 {t:g} 秒，框架篇幅是 {P["frame"][p]["篇幅"]}')
+    whole = sum(total.values())
+    if P.get('sec') and whole and abs(whole - P['sec']) > P['sec'] * cs.TOLERANCE:
+        notes.append(f'各段合计 {whole:g} 秒，策划的目标时长是 {P["sec"]:g} 秒')
+    if P.get('ar') and sb.get('ar', '16:9') != P['ar']:
+        notes.append(f'分镜脚本的 ar 是 {sb.get("ar", "16:9")!r}，策划定的是 {P["ar"]}（{P["size_where"]}），按策划的出')
+    u = sb.get('unify')
+    if P.get('silent') and isinstance(u, dict) and u.get('voice'):
+        errs.append(f'策划定的声音是「{P["silent"]}」：不说话，unify.voice 写 null（形式要改先回流）')
+    e, n = check_rules(P, sb, lib)
+    return errs + e, notes + n
+
+
+def check_rules(P, sb, lib=None):
+    """格式 3 的约束 rule 和素材 M（见 check_storyboard）"""
+    errs, notes = [], []
+    styles = (lib or cs.library())[0]
+    for i, s in enumerate(sb.get('segments', []), 1):
+        if not isinstance(s, dict):
+            continue
+        uses = [x for x in s.get('uses') or [] if isinstance(x, dict)]
+        shots = [x for x in s.get('shots') or [] if isinstance(x, dict)] if isinstance(s.get('shots'), list) else []
+        items = [(f'第 {i} 段 uses 第 {j} 条', x) for j, x in enumerate(uses, 1)] + \
+                [(f'分镜 {cs.shot_name(i, j)}', x) for j, x in enumerate(shots, 1)]
+        for w, x in items:
+            if 'rule' not in x:
+                continue
+            ks = rule_list(x['rule'])
+            if ks is None:
+                errs.append(f'{w}：rule 写约束编号 "K1"，几条写数组 ["K1", "K2"]，现在是 {x["rule"]!r}')
+            elif P['version'] < 3:
+                errs.append(f'{w}：交接格式 2 没有约束（K），不写 rule')
+            else:
+                for k in ks:
+                    if k not in P['rules']:
+                        errs.append(f'{w}：rule {k} 在 content.md 的约束表里找不到')
+        if P['version'] < 3:
+            continue
+        g = s.get('seg')
+        need = P['frame'].get(g, {}).get('rules') or []
+        for j, x in enumerate(shots, 1):
+            w = f'分镜 {cs.shot_name(i, j)}'
+            c = item_class(x, styles)
+            if c == 'G' and need and not x.get('rule'):
+                notes.append(f'{w}：G 类，框架 {g} 的「怎么证明」要照 {"、".join(need)}：写 rule，生成后逐条对照，违反算返工')
+            found, unknown = materials_in(x.get('src'), P['materials'])
+            for mid in unknown:
+                notes.append(f'{w}：src 里的 {mid} 在 content.md 的素材表里找不到')
+            for mid in found:
+                r = P['materials'][mid]
+                if c == 'G' and not can_generate(r):
+                    errs.append(f'{w}：{mid}（{r["文件"]}）能不能送生成是「{r["能不能送生成"]}」，'
+                                '不进生成模型：G 类分镜的 src 不能用它')
+                if c != 'G' and r['能怎么用'].strip().startswith('只作参考'):
+                    errs.append(f'{w}：{mid}（{r["文件"]}）只作参考，不进成片：重画，或只当 G 类分镜的参考图（能送生成的才行）')
+                if r['用到哪段'].strip() == NOT_USED:
+                    notes.append(f'{w}：{mid} 在素材表里标「不用」，核对是不是该用它')
     return errs, notes
 
 
@@ -230,6 +413,19 @@ def check_script(P, sc, plan_rel=None, storyboard=None):
     segs = sc.get('segments', [])
     if storyboard is not None:
         errs += cs.check_align(storyboard, sc)
+    spoken = {}  # 段号 → 这个段号的几段里有没有旁白
+    for s in segs:
+        spoken[s.get('seg')] = spoken.get(s.get('seg'), False) or any(
+            isinstance(x, str) and x.strip() for x in (s.get('vo') if isinstance(s.get('vo'), list) else []))
+    if P.get('silent'):
+        talk = [g for g, v in spoken.items() if v]
+        if talk:
+            errs.append(f'策划定的声音是「{P["silent"]}」：不说话，逐字稿 {"、".join(talk)} 的 vo 写空数组，字放到画面上'
+                        '（形式要改先回流）')
+    else:
+        for g in P.get('say', []):
+            if g in spoken and not spoken[g]:
+                notes.append(f'说法写了 {g} 的点，逐字稿 {g} 没有旁白：对着说法写 vo（字和节奏能改，要的效果、不能丢的不能少）')
     for i, s in enumerate(segs, 1):
         g = s.get('seg')
         if g not in P['frame']:
@@ -272,7 +468,7 @@ def check_script(P, sc, plan_rel=None, storyboard=None):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description='认 ai-content-planner/2 的交接，查分镜脚本、逐字稿的引用')
+    ap = argparse.ArgumentParser(description='认 ai-content-planner/3（也认 /2）的交接，查分镜脚本、逐字稿的引用')
     ap.add_argument('plan', help='plans/<短名>/plan.md')
     ap.add_argument('--storyboard', help='videos/<短名>/storyboard.json')
     ap.add_argument('--script', help='videos/<短名>/script.json')
@@ -297,15 +493,15 @@ def main(argv=None):
     except cs.Unreadable as x:
         print(f'读不了：{x}')
         return 2
+    lib = cs.library()
     if sb is not None:
-        e, n = check_storyboard(P, sb, rel)
+        e, n = check_storyboard(P, sb, rel, lib)
         errs += e
         notes += n
     if sc is not None:
         e, n = check_script(P, sc, rel)  # 和分镜脚本对不对得上由下面的通用检查查
         errs += e
         notes += n
-    lib = cs.library()
     if sb is not None:
         e, n = cs.check(sb, sc, a.ready, lib)
         errs += e
@@ -323,7 +519,8 @@ def main(argv=None):
         print(f'提醒：{x}')
     for x in errs:
         print(f'✗ {x}')
-    print(f'{P["plan"]}：格式 2、已交接，{len(P["segs"])} 段，content.md {len(P["content"])} 条' +
+    extra = f'、素材 {len(P["materials"])} 个、约束 {len(P["rules"])} 条' if P['version'] >= 3 else ''
+    print(f'{P["plan"]}：格式 {P["version"]}、已交接，{len(P["segs"])} 段，content.md {len(P["content"])} 条{extra}' +
           (f'；{len(errs)} 个问题' if errs else '；没有问题'))
     return 1 if errs else 0
 

@@ -64,6 +64,7 @@ class CheckStoryboard(unittest.TestCase):
             sc['segments'][1]['facts'][1]['confirm'] = '待用户确认'
         code, out = self.run_check(self.project(edit=pending), '--table')
         self.assertEqual(code, 0, out)
+        self.assertTrue(out.startswith('效果：起点「以为水开了就是 100 度」；主要阻力「气压看不见，没感觉」；终点「'), out)
         for x in ('| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', 'C-036', '（典型样片）', '合计 30 秒，目标 30 秒',
                   '2 个分镜，其中生成类（G）0 个', '| 2-1 | 随旁白 | 中景：海边一锅水冒泡', '1「在海边，水一百度才开。」',
                   '| 溶解 |', '全片统一：',
@@ -109,6 +110,20 @@ class CheckStoryboard(unittest.TestCase):
 
     def test_brief_incomplete(self):
         self.assertFails(lambda sb, sc: sb['brief'].pop('gain'), 'brief 缺 gain')
+
+    def test_brief_effect_optional(self):
+        def drop(sb, sc):
+            for k in ('from', 'block', 'to'):
+                sb['brief'].pop(k)
+        code, out = self.run_check(self.project(edit=drop), '--table')
+        self.assertEqual(code, 0, out)
+        self.assertNotIn('效果：', out)
+
+    def test_brief_effect_empty(self):
+        self.assertFails(lambda sb, sc: sb['brief'].update(block=''), 'brief.block（主要阻力）要写一句话')
+
+    def test_brief_effect_not_text(self):
+        self.assertFails(lambda sb, sc: sb['brief'].update(to=['说得出']), 'brief.to（终点）要写一句话')
 
     def test_old_style_field(self):
         self.assertFails(lambda sb, sc: sb.update(style='C-036'), '顶层 "style" 已去掉')
