@@ -23,6 +23,7 @@ STATUS = ('草稿', '用户确认')
 CONFIRM = ('待用户确认', '用户确认')
 PENDING = '待用户确认'
 BRIEF = ('for', 'gain', 'line', 'sec', 'lang', 'voice', 'must', 'avoid')
+BRIEF_EFFECT = {'from': '起点', 'block': '主要阻力', 'to': '终点'}  # 可选，照策划「效果」的起点、阻力、终点
 UNIFY = ('palette', 'fonts', 'subs', 'trans', 'music', 'voice')
 SEG_ID = re.compile(r'P\d+')
 TOLERANCE = 0.15  # 秒数和目标差多少算偏离
@@ -79,6 +80,9 @@ def check_head(sb, lib):
             for k in ('must', 'avoid'):
                 if k in b and not isinstance(b[k], list):
                     errs.append(f'brief.{k} 要是数组（可空）')
+            for k, name in BRIEF_EFFECT.items():
+                if k in b and not (isinstance(b[k], str) and b[k].strip()):
+                    errs.append(f'brief.{k}（{name}）要写一句话；不想写就整个去掉，现在是 {b[k]!r}')
     if 'style' in sb:
         errs.append('顶层 "style" 已去掉：每段的样式写在 uses，全片共用的写在 unify')
     ar = sb.get('ar')
@@ -481,7 +485,12 @@ def table(sb, sc=None, lib=None, timing=None):
     segs = sb.get('segments', [])
     scs = sc.get('segments', []) if isinstance(sc, dict) else []
     tsegs = timing.get('segments', []) if isinstance(timing, dict) else []
-    out = ['段落表：', '', '| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', '|---|---|---|---|---|---|---|']
+    out = []
+    b = sb.get('brief') if isinstance(sb.get('brief'), dict) else {}
+    eff = [f'{name}「{b[k]}」' for k, name in BRIEF_EFFECT.items() if isinstance(b.get(k), str) and b[k].strip()]
+    if eff:
+        out += ['效果：' + '；'.join(eff), '']
+    out += ['段落表：', '', '| # | 段 | 讲什么 | 秒 | 分镜 | 样式 | 主角 |', '|---|---|---|---|---|---|---|']
     total, nshot, gen = 0, 0, 0
     for k, s in enumerate(segs, 1):
         uses = []
@@ -498,7 +507,6 @@ def table(sb, sc=None, lib=None, timing=None):
         out.append(f'| {k} | {cell(s.get("seg", ""))} | {cell(title)} | {cell(s.get("sec", ""))} | {len(shots) or "—"} | '
                    f'{cell("；".join(uses))} | {cell(s.get("lead", ""))} |')
         total += s.get('sec') or 0
-    b = sb.get('brief') if isinstance(sb.get('brief'), dict) else {}
     out.append('')
     out.append(f'合计 {total:g} 秒' + (f'，目标 {b["sec"]:g} 秒' if isinstance(b.get('sec'), (int, float)) else '') +
                (f'；{nshot} 个分镜，其中生成类（G）{gen} 个' if nshot else '') +
