@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="'PingFang SC','Hiragino Sans GB','Noto Sans CJK SC','Microsoft YaHei','WenQuanYi Zen Hei',sans-serif">
+  <title>策划 Skill 和视频 Skill 的上下游关系</title>
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3a404c"/>
+    </marker>
+    <marker id="a-plan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D9711F"/>
+    </marker>
+    <marker id="a-video" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2F6FEB"/>
+    </marker>
+    <marker id="a-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a909c"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="640" fill="#F7F8FA"/>
+
+  <!-- 标题 -->
+  <text x="40" y="56" font-size="28" font-weight="700" fill="#1f2430">从想法到成片：两个 Skill 一前一后</text>
+  <text x="40" y="86" font-size="15" fill="#5b6270">策划 Skill 想清楚「讲什么」，交给视频 Skill 做成「怎么拍」。每一步都等你点头才往下。</text>
+
+  <!-- 用户 -->
+  <rect x="30" y="190" width="140" height="150" rx="14" fill="#fff" stroke="#c9ced8" stroke-width="1.5"/>
+  <circle cx="100" cy="228" r="16" fill="none" stroke="#3a404c" stroke-width="2"/>
+  <path d="M72,268 q28,-26 56,0" fill="none" stroke="#3a404c" stroke-width="2"/>
+  <text x="100" y="296" font-size="17" font-weight="700" fill="#1f2430" text-anchor="middle">你</text>
+  <text x="100" y="318" font-size="13" fill="#5b6270" text-anchor="middle">题目、材料、要求</text>
+  <line x1="170" y1="265" x2="214" y2="265" stroke="#3a404c" stroke-width="2" marker-end="url(#a-ink)"/>
+
+  <!-- 策划 Skill -->
+  <rect x="220" y="115" width="340" height="335" rx="16" fill="#fff" stroke="#D9711F" stroke-width="2"/>
+  <path d="M220,131 a16,16 0 0 1 16,-16 h308 a16,16 0 0 1 16,16 v49 h-340 z" fill="#FDF0E4"/>
+  <text x="244" y="150" font-size="22" font-weight="700" fill="#B35A12">策划 Skill</text>
+  <text x="362" y="150" font-size="13" fill="#B35A12" font-family="ui-monospace,Menlo,Consolas,monospace">ai-content-planner</text>
+  <text x="244" y="170" font-size="14" fill="#7a4a1e">管：讲什么、要达到什么效果</text>
+
+  <g font-size="15" fill="#1f2430">
+    <rect x="240" y="196" width="300" height="52" rx="10" fill="#FFF8F1" stroke="#F1C9A4"/>
+    <text x="256" y="218" font-weight="700">1  挖效果和形式</text>
+    <text x="256" y="238" font-size="12.5" fill="#5b6270">给谁看、看完到哪、卡在哪；多长、有没有旁白</text>
+    <rect x="240" y="256" width="300" height="52" rx="10" fill="#FFF8F1" stroke="#F1C9A4"/>
+    <text x="256" y="278" font-weight="700">2  打法和框架</text>
+    <text x="256" y="298" font-size="12.5" fill="#5b6270">分几段、每段讲什么、怎么证明</text>
+    <rect x="240" y="316" width="300" height="52" rx="10" fill="#FFF8F1" stroke="#F1C9A4"/>
+    <text x="256" y="338" font-weight="700">3  补齐内容</text>
+    <text x="256" y="358" font-size="12.5" fill="#5b6270">核实事实，整理素材和约束，写说法</text>
+  </g>
+  <rect x="240" y="384" width="300" height="46" rx="8" fill="#FDF0E4"/>
+  <text x="256" y="403" font-size="12" fill="#7a4a1e">交出</text>
+  <text x="256" y="421" font-size="13" fill="#1f2430" font-family="ui-monospace,Menlo,Consolas,monospace">plans/&lt;短名&gt;/plan.md、content.md</text>
+
+  <!-- 交接 → -->
+  <line x1="562" y1="250" x2="674" y2="250" stroke="#D9711F" stroke-width="3" marker-end="url(#a-plan)"/>
+  <text x="618" y="226" font-size="17" font-weight="700" fill="#B35A12" text-anchor="middle">交接</text>
+  <text x="618" y="274" font-size="12" fill="#5b6270" text-anchor="middle">状态「已交接」</text>
+
+  <!-- ← 回流 -->
+  <line x1="678" y1="340" x2="566" y2="340" stroke="#2F6FEB" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a-video)"/>
+  <text x="622" y="324" font-size="15" font-weight="700" fill="#2457C5" text-anchor="middle">回流</text>
+  <text x="622" y="362" font-size="12" fill="#5b6270" text-anchor="middle">缺内容、</text>
+  <text x="622" y="378" font-size="12" fill="#5b6270" text-anchor="middle">形式要改</text>
+
+  <!-- 视频 Skill -->
+  <rect x="680" y="115" width="340" height="335" rx="16" fill="#fff" stroke="#2F6FEB" stroke-width="2"/>
+  <path d="M680,131 a16,16 0 0 1 16,-16 h308 a16,16 0 0 1 16,16 v49 h-340 z" fill="#E8EFFD"/>
+  <text x="704" y="150" font-size="22" font-weight="700" fill="#2457C5">视频 Skill</text>
+  <text x="822" y="150" font-size="13" fill="#2457C5" font-family="ui-monospace,Menlo,Consolas,monospace">ai-coding-video</text>
+  <text x="704" y="170" font-size="14" fill="#2a3f73">管：怎么做成视频，内容不改</text>
+
+  <g font-size="15" fill="#1f2430">
+    <rect x="700" y="196" width="300" height="52" rx="10" fill="#F3F7FF" stroke="#BCD0F7"/>
+    <text x="716" y="218" font-weight="700">1–3  分段、分镜、逐字稿</text>
+    <text x="716" y="238" font-size="12.5" fill="#5b6270">每段选风格，写分镜脚本和每句旁白</text>
+    <rect x="700" y="256" width="300" height="52" rx="10" fill="#F3F7FF" stroke="#BCD0F7"/>
+    <text x="716" y="278" font-weight="700">4–5  确认 + 典型样片</text>
+    <text x="716" y="298" font-size="12.5" fill="#5b6270">先做一两段给你看，满意再往下</text>
+    <rect x="700" y="316" width="300" height="52" rx="10" fill="#F3F7FF" stroke="#BCD0F7"/>
+    <text x="716" y="338" font-weight="700">6  整片</text>
+    <text x="716" y="358" font-size="12.5" fill="#5b6270">配音、分段渲染、接成整片</text>
+  </g>
+  <rect x="700" y="384" width="300" height="46" rx="8" fill="#E8EFFD"/>
+  <text x="716" y="403" font-size="12" fill="#2a3f73">交出</text>
+  <text x="716" y="421" font-size="13" fill="#1f2430" font-family="ui-monospace,Menlo,Consolas,monospace">videos/&lt;短名&gt;/out/</text>
+
+  <!-- 成片 -->
+  <line x1="1020" y1="265" x2="1064" y2="265" stroke="#3a404c" stroke-width="2" marker-end="url(#a-ink)"/>
+  <rect x="1070" y="190" width="100" height="150" rx="14" fill="#1f2430"/>
+  <circle cx="1120" cy="242" r="24" fill="none" stroke="#fff" stroke-width="2"/>
+  <path d="M1112,230 L1134,242 L1112,254 z" fill="#fff"/>
+  <text x="1120" y="300" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">成片</text>
+  <text x="1120" y="321" font-size="12" fill="#c9ced8" text-anchor="middle">MP4</text>
+
+  <!-- 不走策划 -->
+  <path d="M100,340 V512 H850 V458" fill="none" stroke="#8a909c" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round" marker-end="url(#a-grey)"/>
+  <rect x="300" y="497" width="424" height="30" rx="15" fill="#F7F8FA"/>
+  <text x="512" y="517" font-size="14" fill="#3a404c" text-anchor="middle">小题目也可以不走策划：直接找视频 Skill，需求写进分镜脚本</text>
+
+  <!-- 底部 -->
+  <line x1="40" y1="562" x2="1160" y2="562" stroke="#e1e4ea"/>
+  <g font-size="14" fill="#3a404c">
+    <circle cx="48" cy="592" r="5" fill="#D9711F"/>
+    <text x="62" y="597">策划定下的内容和效果，视频 Skill 照着做，不自己改</text>
+    <circle cx="560" cy="592" r="5" fill="#2F6FEB"/>
+    <text x="574" y="597">做的时候发现缺东西、形式要改，退回给策划补，补完再交接</text>
+  </g>
+</svg>
