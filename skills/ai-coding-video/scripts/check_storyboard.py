@@ -27,7 +27,7 @@ UNIFY = ('palette', 'fonts', 'subs', 'trans', 'music', 'voice')
 SEG_ID = re.compile(r'P\d+')
 TOLERANCE = 0.15  # 秒数和目标差多少算偏离
 CUTS = ('硬切', '溶解')  # 分镜的 cut：从上一个分镜怎么接过来
-SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut')
+SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule')  # rule：照策划 content.md 的哪几条约束，check_plan.py 查
 SHOT_MIN = 0.5    # 一个分镜至少几秒
 SEC_EPS = 0.05    # 分镜秒数之和和段的 sec 差这么多以内算相等
 
@@ -420,6 +420,11 @@ def check(sb, sc=None, ready=False, lib=None):
     e, n = check_shots(sb, sc, lib)
     errs += e
     notes += [x for x in n if x not in notes]
+    if not has_plan:
+        for k, s in enumerate(sb.get('segments') if isinstance(sb.get('segments'), list) else [], 1):
+            items = (s.get('uses') or []) + (s.get('shots') if isinstance(s.get('shots'), list) else [])
+            if isinstance(s, dict) and any(isinstance(x, dict) and 'rule' in x for x in items):
+                notes.append(f'第 {k} 段：rule 引用策划 content.md 的约束（K1…），无策划时不读，画面要守的样子写进 what 或 note')
     if sc is not None:
         if sb.get('plan') != sc.get('plan'):
             errs.append(f'逐字稿的 "plan" 要和分镜脚本一样（{sb.get("plan")!r}），现在是 {sc.get("plan")!r}')
@@ -458,6 +463,9 @@ def shot_rows(k, s, vo, spans=None):
         cls = x.get('class') or (r if r and r.startswith('pack:') else (r or ''))
         src = x.get('src') or ''
         src = '、'.join(src) if isinstance(src, list) else src
+        rule = x.get('rule')
+        if rule:
+            src = (src + ' · ' if src else '') + '照 ' + ('、'.join(map(str, rule)) if isinstance(rule, list) else str(rule))
         ns = shot_vo(x) or []
         said = '；'.join(f'{n}「{vo[n - 1][:16]}{"…" if len(vo[n - 1]) > 16 else ""}」' if n <= len(vo) else str(n) for n in ns)
         cut = '—' if j == 1 else (x.get('cut') or '硬切')
