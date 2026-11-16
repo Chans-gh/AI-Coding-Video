@@ -296,12 +296,16 @@ def still_and_thumb(p, sid, ar):
 
 
 def mp4_duration(path):
+    import re
     exe = shutil.which("ffprobe")
-    if not exe:
-        return None
-    r = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
-                       capture_output=True, text=True)
-    try:
-        return float(r.stdout.strip())
-    except ValueError:
-        return None
+    if exe:
+        r = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+                           capture_output=True, text=True)
+        try:
+            return float(r.stdout.strip())
+        except ValueError:
+            return None
+    # 机器上只有 imageio-ffmpeg 的 ffmpeg（不带 ffprobe）：从 ffmpeg -i 的 stderr 里读时长
+    r = subprocess.run([ffmpeg(), "-hide_banner", "-i", str(path)], capture_output=True, text=True)
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr)
+    return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3)) if m else None

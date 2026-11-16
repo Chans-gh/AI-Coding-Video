@@ -32,7 +32,8 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 TOOLS = Path(__file__).resolve().parent
-HERE = TOOLS.parent
+# lib/、player.html 在本仓库的 samples/ 下，拷进项目以后在项目的 tools/ 下——两处都认
+HERE = TOOLS if (TOOLS / "lib").is_dir() else TOOLS.parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE / "lib")); sys.path.insert(0, str(TOOLS))
 import render as R  # noqa: E402
 import heavy  # noqa: E402
@@ -255,7 +256,18 @@ def mixdown(P):
         else:
             merged.append([a, b])
     env = 1 - (1 - 10 ** (-DUCK_DB / 20)) * ramp(n, merged, sr)
-    x = music * env[:, None] + voice
+    music_at = music * env[:, None]
+    # 让位深度只能在配乐那一路量：成品里人声段被旁白自己占着。量的是配乐在人声段和句间空隙的电平差
+    # （＝实际压了多少），和人耳听出来的让位一致；首尾各 0.5 秒的淡入淡出不算。
+    if score and merged:
+        sp = ramp(n, merged, sr) > .5
+        tt = np.arange(n) / sr
+        gap = (~sp) & (tt > .5) & (tt < P.dur - .5)
+
+        def _db(w):
+            return 20 * np.log10(np.sqrt(np.mean(w.astype(np.float64) ** 2)) + 1e-12) if len(w) else -120.0
+        P.mix_stats = {"duck_db": DUCK_DB, "in": _db(music_at[sp]), "out": _db(music_at[gap]) if gap.any() else None}
+    x = music_at + voice
     t = np.arange(n) / sr                            # 整片首尾 20 毫秒、0.5 秒的淡入淡出
     x *= (np.clip(t / .02, 0, 1) * np.clip((P.dur - t) / .5, 0, 1))[:, None]
     return x, sr
@@ -354,7 +366,22 @@ def align(P, mix, sr):
 # ---------- 整片自检 ----------
 
 def ffprobe(*a):
-    return subprocess.run([shutil.which("ffprobe") or "ffprobe", "-v", "error", *a], capture_output=True, text=True).stdout
+    """优先用系统的 ffprobe；没有就退回 ffmpeg 的 stderr（本机常常只装了 imageio-ffmpeg 的 ffmpeg）。
+
+    退路只覆盖本文件用到的两种查询：时长（`ffmpeg -i` 的 Duration）和逐帧 pts（`-vf showinfo`）。
+    没有退路时，整片自检会在成片已经出来之后才抛 FileNotFoundError。
+    """
+    exe = shutil.which("ffprobe")
+    if exe:
+        return subprocess.run([exe, "-v", "error", *a], capture_output=True, text=True).stdout
+    path = a[-1]
+    if "packet=pts_time" in " ".join(a):
+        r = subprocess.run([R.ffmpeg(), "-hide_banner", "-nostats", "-i", str(path), "-vf", "showinfo",
+                            "-an", "-f", "null", "-"], capture_output=True, text=True)
+        return "".join(f"{x}\n" for x in re.findall(r"pts_time:([\d.]+)", r.stderr))
+    r = subprocess.run([R.ffmpeg(), "-hide_banner", "-i", str(path)], capture_output=True, text=True)
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr)
+    return f"{int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3)):.6f}\n" if m else ""
 
 
 def blacks(path):
@@ -496,8 +523,14 @@ def join(P):
     from scipy.io import wavfile
     _, y = wavfile.read(wav)
     worst, off = align(P, y.astype(np.float32) / 32768, sr)
+    # 混音校验对配乐敏感：配乐压住人声时旁白位置会被带偏，报出来像「对不上」。
+    # 让位在 mixdown 里量（配乐那一路，人声段内），成品混音里量不出来——人声段被旁白自己占着。
+    st = getattr(P, "mix_stats", None)
+    duck = (st["out"] - st["in"]) if st and st["out"] is not None else None
     if off:
-        why.append("旁白和 timing.json 对不上：" + "；".join(off[:4]))
+        why.append("旁白和 timing.json 对不上：" + "；".join(off[:4])
+                   + ((f"（先看配乐：人声处只压了 {duck:.1f} dB——压不够、或者收尾的和弦落在最后一句上，"
+                       "都会把旁白位置带偏）") if duck is not None else ""))
     for s in P.segs:
         rows.append(f"| {s['seg']} | {P.sec.get(s['seg'], '')} | {s['dur']:.2f} | {s['start']:.2f} | [抽帧](sheets/{s['seg']}.jpg) |")
     v = P.T.get("voice") or {}
@@ -506,6 +539,8 @@ def join(P):
            f"- 音色：{v.get('voice', '无旁白')}（{v.get('model', '')}，语速 {v.get('speed', '')}）" if v else "- 音色：无旁白",
            f"- 响度：{lu:.1f} LUFS，真峰值 {tp:.1f} dBTP（目标 {LUFS:g} ± 1 LUFS、≤ {TP:g} dBTP）",
            f"- 黑段（0.05 秒以上）：{len(bl)} 处；帧间隔最多偏 {jitter * 1000:.1f} 毫秒；旁白位置最多偏 {worst * 1000:.0f} 毫秒",
+           (f"- 让位：配乐在人声处压低 {duck:.1f} dB（本工具这一层 {st['duck_db']:g} dB；配乐自己也让位的"
+            f"话读数更大；低于 6 dB 就压不住旁白）" if duck is not None else "- 让位：没有旁白或没有配乐"),
            f"- 检查：{'全部通过' if not why else '；'.join(why)}", "",
            "| 段 | 段的 sec | 实际秒数 | 起点 | 抽帧 |", "|---|---|---|---|---|", *rows, "",
            f"合计 {P.dur:.2f} 秒"]

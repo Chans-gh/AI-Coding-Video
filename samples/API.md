@@ -106,6 +106,7 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `shotAt(t)` — t 时刻是本段第几个分镜（分镜脚本的 shots，起止由 voice.py 排进 timing.json）：{i 从 0 数, t0, t1, d 时长, lt 分镜内的时间, p 0–1, cut}；没分镜返回 null
 - `drawShots(ctx, t, fns, mix = .5)` — 按分镜画：fns[i](ctx, lt, d, t) 画第 i 个分镜（分镜内的时间、分镜时长、本段时间），可以是 async；每个分镜前后 save、restore，平移、缩放、透明度不串到下一个；cut 是「溶解」的开头 mix 秒叠在上一个分镜上淡入。返回当前第几个分镜；没分镜时整段画 fns[0]
 - `S` — 场景列表（播放器读 S[0]）
+- **能用哪些全局** — 段文件是独立作用域，只拿得到 `lib.js` 顶层声明的东西（`W`/`H`/`clamp`/`smooth`/`lerp`/`TAU`/`stepT` 等，完整清单见 `lib.js` 末尾的 `__FILM_GLOBALS__`）。**风格包内部和别的段文件里的函数拿不到**（`grow`、`pop` 这类是风格包的局部函数），写了会 `ReferenceError`，而且要到渲染到那一帧才报——写完先 `--quick` 跑一遍。
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 
 ## synth.py（`from synth import …`）

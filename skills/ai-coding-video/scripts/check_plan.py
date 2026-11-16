@@ -475,6 +475,8 @@ def main(argv=None):
     ap.add_argument('--root', default='.', help='分镜脚本、逐字稿里 "plan" 相对的目录（默认当前目录）')
     ap.add_argument('--ready', action='store_true', help='再查用户确认过了（见 check_storyboard.py）')
     ap.add_argument('--table', action='store_true', help='打印段落表、分镜表和全片统一，给用户看')
+    ap.add_argument('--pack-root', action='append', default=[], metavar='目录',
+                    help='项目里沉淀的风格包目录（可多次），透传给通用检查，和 Skill 自带的 packs/ 一起认 ref')
     a = ap.parse_args(argv)
     try:
         P = read_plan(a.plan)
@@ -493,7 +495,7 @@ def main(argv=None):
     except cs.Unreadable as x:
         print(f'读不了：{x}')
         return 2
-    lib = cs.library()
+    lib = cs.library(a.pack_root)
     if sb is not None:
         e, n = check_storyboard(P, sb, rel, lib)
         errs += e

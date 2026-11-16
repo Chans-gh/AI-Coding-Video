@@ -47,10 +47,14 @@ def load(path):
         raise Unreadable(f'{p} 不是合法的 JSON：{x}')
 
 
-def library():
-    """库里能引用的：风格编号 → 条目（data/styles.json），风格包名（packs/ 下有 meta.json 的目录），素材类型"""
+def library(extra_packs=()):
+    """库里能引用的：风格编号 → 条目（data/styles.json），风格包名（packs/ 下有 meta.json 的目录），素材类型
+
+    extra_packs：项目里沉淀的风格包目录（--pack-root 传进来，可以有多个），和 Skill 自带的 packs/ 合起来认。
+    """
     styles = {s['id']: s for s in json.loads((SKILL / 'data' / 'styles.json').read_text(encoding='utf-8'))['styles']}
-    packs = {p.parent.name for p in (SKILL / 'packs').glob('*/meta.json')}
+    roots = [SKILL / 'packs'] + [Path(p) for p in extra_packs]
+    packs = {q.parent.name for r in roots if r.is_dir() for q in r.glob('*/meta.json')}
     tags = json.loads((SKILL / 'data' / 'tags.json').read_text(encoding='utf-8'))
     materials = {c: {m['name'] for m in ms} for c, ms in tags['materials'].items()}
     return styles, packs, materials
@@ -201,7 +205,7 @@ def check_shots(sb, sc, lib):
         nvo = None
         if k <= len(scs) and isinstance(scs[k - 1].get('vo'), list):
             nvo = len([x for x in scs[k - 1]['vo'] if isinstance(x, str) and x.strip()])
-        fixed, unsized, last, covered = 0, 0, 0, set()
+        fixed, unsized, last, covered, ncut = 0, 0, 0, set(), 0
         for j, x in enumerate(shots, 1):
             w = f'分镜 {shot_name(k, j)}'
             if not isinstance(x, dict):
@@ -237,6 +241,10 @@ def check_shots(sb, sc, lib):
                 covered |= set(vo)
             if x.get('cut') is not None and x['cut'] not in CUTS:
                 errs.append(f'{w}：cut 写「硬切」或「溶解」（不写算硬切），现在是 {x["cut"]!r}')
+            elif x.get('cut') is None:
+                ncut += 1
+        if ncut == len(shots) >= 2:
+            notes.append(f'{where}：分镜都没写 cut，接法一律硬切；要叠化就在那一格写「溶解」')
         ssec = s.get('sec')
         if isinstance(ssec, (int, float)) and not isinstance(ssec, bool) and ssec > 0:
             if not unsized and abs(fixed - ssec) > SEC_EPS:
@@ -554,6 +562,8 @@ def main(argv=None):
     ap.add_argument('--script', help='videos/<短名>/script.json（默认分镜脚本同目录的 script.json）')
     ap.add_argument('--ready', action='store_true', help='再查用户确认过了：status 是「用户确认」、没有「待用户确认」')
     ap.add_argument('--table', action='store_true', help='打印段落表、分镜表和全片统一，给用户看')
+    ap.add_argument('--pack-root', action='append', default=[], metavar='目录',
+                    help='项目里沉淀的风格包目录（可多次），和 Skill 自带的 packs/ 一起认 ref')
     a = ap.parse_args(argv)
     sp = Path(a.script) if a.script else Path(a.storyboard).parent / 'script.json'
     try:
@@ -562,7 +572,7 @@ def main(argv=None):
     except Unreadable as x:
         print(f'读不了：{x}')
         return 2
-    lib = library()
+    lib = library(a.pack_root)
     errs, notes = check(sb, sc, a.ready, lib)
     if 'plan' in sb:
         notes.append('分镜脚本接了策划（有 "plan"）：还要跑 check_plan.py 查段号和事实的编号')
