@@ -171,6 +171,16 @@ def ffmpeg():
     return imageio_ffmpeg.get_ffmpeg_exe()
 
 
+def hint(err):
+    """段文件是独立作用域：`xxx is not defined` 补一句去哪儿查能用什么，别让人对着报错猜。"""
+    m = re.search(r"([A-Za-z_$][\w$]*) is not defined", err)
+    if not m:
+        return err
+    return (f"{err}（`{m.group(1)}` 不在段代码能用的全局里：段文件是独立作用域，风格包内部的函数"
+            f"（`grow`/`pop` 这类）和别的段文件里的局部变量都拿不到；能用的看 `lib.js` 末尾的 "
+            f"`__FILM_GLOBALS__`，项目自己的常量要从段文件里再取一次——先 `--quick` 跑一段能提前撞见）")
+
+
 class Page:
     """一个画幅的播放器页面。scale < 1 时截图缩小（场景照常按全尺寸画），快速检查用。"""
 
@@ -191,7 +201,7 @@ class Page:
         self.pg.wait_for_function("READY === true || document.title === 'ERROR'", timeout=600000)
         if self.pg.title() == "ERROR":
             self.close()
-            raise SceneError(self.errors[0] if self.errors else "页面出错")
+            raise SceneError(hint(self.errors[0]) if self.errors else "页面出错")
         self.dur, self.fps = self.pg.evaluate("DUR"), self.pg.evaluate("FPS")
         self.still = self.pg.evaluate("SC.still ?? DUR * 0.7")
 
@@ -296,12 +306,16 @@ def still_and_thumb(p, sid, ar):
 
 
 def mp4_duration(path):
+    import re
     exe = shutil.which("ffprobe")
-    if not exe:
-        return None
-    r = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
-                       capture_output=True, text=True)
-    try:
-        return float(r.stdout.strip())
-    except ValueError:
-        return None
+    if exe:
+        r = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+                           capture_output=True, text=True)
+        try:
+            return float(r.stdout.strip())
+        except ValueError:
+            return None
+    # 机器上只有 imageio-ffmpeg 的 ffmpeg（不带 ffprobe）：从 ffmpeg -i 的 stderr 里读时长
+    r = subprocess.run([ffmpeg(), "-hide_banner", "-i", str(path)], capture_output=True, text=True)
+    m = re.search(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr)
+    return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3)) if m else None
