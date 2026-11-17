@@ -1,0 +1,5 @@
+{
+  "en_name": "Sci-fi sitcom cartoon",
+  "en_how": "The lab, the machine and a three-eyed alien assistant are all polygons with one heavy black outline; every 2 frames a new seed jitters every vertex by a pixel or two so the drawing keeps boiling; the green portal is a few offset ellipses spinning against each other, and each trip through it swaps the whole palette table (walls, floor, machine, character) while only the portal green stays, with deadpan subtitles one line at a time.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
