@@ -1,0 +1,9 @@
+{
+  "en_name": "Detective clue board",
+  "en_how": "A cork texture is built once from fractal noise and speckle; cards are pinned on one at a time with a small drop and bounce, and each red string only pulls from pin to pin once both its cards are up; the camera just pans and pushes in by moving and scaling the whole board with t, a desk-lamp radial gradient crushes the edges, and at 3.8 s a camera flash whites out the frame to reveal the suspect and stamp the case closed.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Rhythm-show flat",
+  "en_how": "A move table on a 150 BPM grid (0.4 s per beat): the teacher bean calls four moves, the player bean copies them, and each pose switches only on the beat with one squash-and-bounce; the sunburst turns a notch and the candy-stripe floor shifts a stripe per beat, all flat fills with 8 px ink outlines and unblurred hard shadows, ending on a pop-up Perfect!.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

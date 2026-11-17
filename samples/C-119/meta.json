@@ -1,0 +1,9 @@
+{
+  "en_name": "TV shopping",
+  "en_how": "Hard cuts every 1.2 s, each preceded by one pure white frame; every screen is a single-colour sunburst (charcoal, gold, alarm red, electric blue), thick-outlined comic lettering with hard shadows slams from oversized to full size, a round sponge mascot goes from squashed and sweating to bouncing with star eyes, and the selling-point ticker at the bottom scrolls with t throughout.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
