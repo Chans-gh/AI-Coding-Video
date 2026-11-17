@@ -1,0 +1,9 @@
+{
+  "en_name": "Split-flap display board",
+  "en_how": "Each cell is two half-flaps with a hinge seam; cells start flipping staggered by column and row and step through a run of characters at a fixed rate (digits for digit cells, a character pool for Chinese cells), the top half squashing toward the hinge and the bottom half unfolding, with both screen changes derived from t; a station header, a ticking clock and one blinking amber status light complete the board.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

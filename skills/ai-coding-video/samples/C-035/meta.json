@@ -1,0 +1,5 @@
+{
+  "en_name": "1970s TV opener",
+  "en_how": "A full frame is drawn offscreen first — slowly turning orange-brown rays, five parallel colour bands grown segment by segment along a Bézier (each band the same curve offset along its normal), and a heavy title whose letters pop in one by one inside four thick coloured outlines used as shadow — then pasted into a rounded CRT with red/cyan offset copies for fringing, scanlines, a rolling bright band and vignette inside a wood-grain set.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

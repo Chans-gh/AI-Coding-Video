@@ -1,0 +1,9 @@
+{
+  "en_name": "Silhouette theatre",
+  "en_how": "The sky is a three-stop gradient whose stops all interpolate with t from sunset orange-red to moonlit deep blue while the sun sinks and the moon and stars rise; hills, a house, branching trees and a walking figure with swinging legs are pure black silhouettes, pleated dark-red curtains frame the stage, and three short lines of verse fade in and out.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

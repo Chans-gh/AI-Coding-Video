@@ -1,0 +1,5 @@
+{
+  "en_name": "Film trailer",
+  "en_how": "Black bars hold a roughly 2.6:1 frame throughout (taller in portrait, bars kept); the ground is a warm brown-black radial gradient with three speeds of drifting dust; each centred card follows a black–bright–black breathing curve in t, the amber eyebrow widens its letter spacing, large serif numerals glow through stacked shadowBlur passes, a bronze hairline opens from the centre, and at the title a horizontal lens flare sweeps across with a small shake.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

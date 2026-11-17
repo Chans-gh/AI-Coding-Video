@@ -1,0 +1,9 @@
+{
+  "en_name": "Children's doodle",
+  "en_how": "The random seed changes every 0.25 s (four drawings a second) and every line is re-jittered from it as if redrawn; crayon lines are the same polyline drawn three times offset and broken, colouring is zigzag scribbles that spill over the edges, felt-pen patches are translucent blobs, and the sun, family, dog and birds only swap between two or three whole poses.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

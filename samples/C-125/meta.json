@@ -1,0 +1,9 @@
+{
+  "en_name": "Classified dossier",
+  "en_how": "A wood desk is generated once from sine-warped stripes and fractal noise; on a kraft folder a cream memo is typed character by character from a timing table, each glyph dropping in with a slight offset; then black redaction bars wipe over sensitive words, a highlighter sweeps the codename, a red pencil circles the time and draws an arrow and a tick, and an old CLASSIFIED stamp slams down, with a flat paper clip, a pinned map card and a desk-lamp pool of light.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

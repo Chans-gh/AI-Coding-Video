@@ -1,0 +1,5 @@
+{
+  "en_name": "Neon sign",
+  "en_how": "A brick wall is pre-rendered; the tubes are glyph outlines and a bowl path, stroked as dark glass when off and, once powered, stroked again on an offscreen layer in additive blend from a 70 px faint halo down to a 5 px white core; the half-second power-up blinks by per-frame hash, radial gradients spill each colour onto the wall, and the wet floor is the sign layer flipped and shifted strip by strip, with rain ripples.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

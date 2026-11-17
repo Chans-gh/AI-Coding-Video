@@ -1,0 +1,5 @@
+{
+  "en_name": "Circuit board",
+  "en_how": "On a 1600×1000 board coordinate system: green solder mask, lighter copper traces (each built from a horizontal–45°–horizontal run), gold pads and vias, white silkscreen and a chip, resistors, capacitors and LEDs; signals are trains of glowing dots advancing by arc length along the polylines, one pan-and-zoom pushes between the whole board and the MCU, and portrait turns the board 90° while turning each silkscreen label back upright.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

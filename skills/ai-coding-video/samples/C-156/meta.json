@@ -1,0 +1,9 @@
+{
+  "en_name": "Shape-morph storytelling",
+  "en_how": "A coffee cup, sunset, phone and map pin, plus the circle and capsule used between them, are closed outlines that start at top centre and run clockwise; resampled by arc length to the same point count, neighbouring shapes are interpolated point by point with an ease-in-out, plus a little squash, stretch and spin mid-morph, while fill and background colours blend and detail lines fade in only on the holds.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

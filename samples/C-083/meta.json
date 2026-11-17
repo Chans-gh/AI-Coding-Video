@@ -1,0 +1,9 @@
+{
+  "en_name": "Glassmorphism aurora",
+  "en_how": "Three drifting cyan, violet and magenta aurora bands and twinkling stars are drawn on a quarter-size canvas and scaled up for soft edges; the panel re-blurs that background with the canvas blur filter inside a rounded rect, adds white haze, a 1px gradient highlight edge and grain, and a breathing orb scales and glows on an inhale-hold-exhale cycle.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

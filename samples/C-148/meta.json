@@ -1,0 +1,5 @@
+{
+  "en_name": "Street pop graffiti",
+  "en_how": "Each figure is four sets of joint coordinates (head, neck, hips, elbows, hands, knees, feet) cut hard every 8 frames; the body is one path stroked first with a very wide black line and then a narrower fluorescent one, giving the even thick outline; everything bounces on the beat and the short black action lines switch direction with the pose; for the transition one figure zooms to fill the screen while its coloured stroke uses the next scene as a pattern, so its body holds the next picture.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Frame-by-frame boil",
+  "en_how": "Every stroke is a polygon built from a centre line offset left and right along its normal, thin at both ends and fat in the middle like hand pressure; vertices are jittered by a hash of drawing version × stroke number, and the version cycles through 3 every 2 frames so even still frames breathe; motion time is floored to 15 drawings per second (on twos) except the 0.2 s dash, which runs on ones and gets exactly one stretched smear frame; splash, smoke, speed lines and sound-effect lettering are drawn the same way.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

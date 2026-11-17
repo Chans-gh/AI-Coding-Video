@@ -1,0 +1,9 @@
+{
+  "en_name": "White catalogue",
+  "en_how": "A desk lamp drawn with gradients and highlights stands in for the product cut-out on a white page with faint grid lines, over a huge light-grey catalogue number; dashed rings are stroked around the shade and base with partial-path drawing, jittery hand-drawn arrows lead to handwritten notes, a yellow highlighter wipes under the keyword, and the title mixes heavy black sans with a handwriting face.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
