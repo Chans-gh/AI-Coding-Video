@@ -91,12 +91,16 @@
 
 ## C-006 儿童涂鸦
 
+![儿童涂鸦](../images/C-006.jpg)
+
 ```text
 用儿童涂鸦风格：像 6 岁孩子画的，线条稚拙、比例不准、颜色涂出界，蜡笔和水彩笔混用，动作是一格一格的简单替换，不要任何专业透视和光影。
 ```
 
 - 题材：手绘与绘画
 - 适合：亲子、MV；可附孩子的原画让它照着动起来
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-006/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-006)
 - 技术（建议）：Canvas 2D · Rough.js
 
 <a id="C-007"></a>
@@ -294,17 +298,23 @@
 
 ## C-030 剪影剧场
 
+![剪影剧场](../images/C-030.jpg)
+
 ```text
 用剪影剧场风格：人物、房屋和树全是纯黑剪影，背景是一整片渐变天空，随剧情从日落的橙红慢慢变到月夜的深蓝，暗色幕布框住画面，只有很少几行诗一样的文字。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：诗意短片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-030/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-030)
 - 技术（建议）：Canvas 2D
 
 <a id="C-035"></a>
 
 ## C-035 70 年代电视片头
+
+![70 年代电视片头](../images/C-035.jpg)
 
 ```text
 用 70 年代电视节目片头风格：橙、褐、芜菇黄的暖色调，放射光线和彩虹条纹，圆润粗衣线字体带多层描边阴影，画面像显像管电视播放（圆角、暗角、轻微扫描线和色散），来一段复古放克配乐。
@@ -312,6 +322,8 @@
 
 - 题材：平面设计与动态排版
 - 适合：怀旧开场、系列片头
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-035/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-035)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/retro-70ler)
 
@@ -387,12 +399,16 @@
 
 ## C-054 16-bit 像素 RPG
 
+![16-bit 像素 RPG](../images/C-054.jpg)
+
 ```text
 用 90 年代主机 RPG 像素风格：内部分辨率 320×180 再整数倍放大，限定调色板，底部蓝色对话框逐字打出并带“哔哔”声，有战斗菜单、HP/MP 数值和存档点，镜头不动、场景靠切换，带回声的芯片音乐。
 ```
 
 - 题材：游戏
 - 适合：冒险故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-054/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-054)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/pixel-rpg/STYLE.md)
 
@@ -649,12 +665,16 @@
 
 ## C-110 电路板
 
+![电路板](../images/C-110.jpg)
+
 ```text
 用电路板风格：正俯视的一块印制电路板，绿色阻焊层下是铜箔，走线只走 0/45/90° 并切斜角，金色焊盘和过孔，白色单线丝印写字，电流、货物或信号化作沿铜线奔跑的光脉冲，镜头在整张板和单个元件之间缩放，配继电器咔哒声和电源嗡鸣。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：供应链、系统架构、能源输送
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-110/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-110)
 - 技术（建议）：Canvas 2D · WebGL · Web Audio
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/circuit-board/STYLE.md)
 
@@ -662,12 +682,16 @@
 
 ## C-114 霓虹灯牌
 
+![霓虹灯牌](../images/C-114.jpg)
+
 ```text
 用霓虹灯牌风格：夜里一面深色砖墙，文字和图标是弯出来的玻璃灯管，未通电时是暗玻璃，通电时先闪烁几下、嗡嗡作响再稳住，管芯白热、外圈是粉、青或黄的光晕，光洒在砖墙上并倒映在湿地面里，一场只挂一块招牌，最多三种灯色。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：品牌口号、夜生活、开业宣传
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-114/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-114)
 - 技术（建议）：Canvas 2D · WebGL · Web Audio
 - 参考：[code-video neon.md](https://github.com/Changroro/code-video/blob/main/references/styles/neon.md)
 
@@ -675,12 +699,16 @@
 
 ## C-121 电影预告片
 
+![电影预告片](../images/C-121.jpg)
+
 ```text
 用电影预告片风格：约 2.6:1 的超宽遮幅，上下黑边贯穿全片，暖棕近黑的暗角夜空里飘着极淡的尘粒，每个意思独占一屏、居中，小号字距拉开的琥珀色眉题、发光的大号衬线数字、一道青铜细线，画面像呼吸一样亮起再经黑场溶出，片名处一道横向镜头光晕加重击。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：新品预告、发布日倒数、品牌大片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-121/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-121)
 - 技术（建议）：Canvas 2D · WebGL · Web Audio
 - 参考：[code-video trailer.md](https://github.com/Changroro/code-video/blob/main/references/styles/trailer.md)
 
@@ -688,12 +716,16 @@
 
 ## C-122 16-bit 街机闯关
 
+![16-bit 街机闯关](../images/C-122.jpg)
+
 ```text
 用16-bit 街机闯关风格：紫色星夜和闪烁的像素星，全屏轻扫描线，故事走一遍游戏流程：投币开场伴随屏幕一震、闪烁的“按下开始”、角色在关卡地图上一格格跳到下一个节点、最高分逐位滚动、对战屏的血条，最后“通关”对话框，像素字只按 8 的倍数放大，配芯片音乐。
 ```
 
 - 题材：游戏
 - 适合：产品功能闯关、竞品对决、年度回顾
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-122/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-122)
 - 技术（建议）：Canvas 2D · Web Audio
 - 参考：[code-video arcade.md](https://github.com/Changroro/code-video/blob/main/references/styles/arcade.md) · [animation-skills pixel-arcade](https://github.com/madhavsomani/animation-skills/blob/main/skills/pixel-arcade/SKILL.md)
 
@@ -965,12 +997,16 @@
 
 ## C-154 逐帧沸腾线
 
+![逐帧沸腾线](../images/C-154.jpg)
+
 ```text
 用逐帧沸腾线风格：米白纸纹底上用粗细随压力变化的手绘线勾出形象，每张线稿准备三四个细微不同的版本、每两帧轮换一次，让静止画面也像在呼吸，动作以一拍二为主、快动作切一拍一，快速位移时只插一帧拉长的拖影，烟雾、水花和速度线逐帧手绘叠在主体上。
 ```
 
 - 题材：卡通与动漫
 - 适合：品牌短片、手作感片头、角色小剧场
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-154/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-154)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[mg-styles-15 05-cel-boil](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/05-cel-boil.md)
 

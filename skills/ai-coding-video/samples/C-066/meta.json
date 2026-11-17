@@ -1,0 +1,9 @@
+{
+  "en_name": "Code-editor story",
+  "en_how": "A dark editor frame with line numbers, tabs and a minimap holds lines of rounded blocks whose lengths and colours come from a hash; a glowing bug runs a fixed route through the gaps between lines while a giant cursor follows the same route 0.45 s behind, clicking and rippling where it misses, lines the bug crosses get red squiggles, and the screen finally goes dark except for the bug's glow.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

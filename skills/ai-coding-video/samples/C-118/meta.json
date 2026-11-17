@@ -1,0 +1,9 @@
+{
+  "en_name": "TV weather forecast",
+  "en_how": "A navy gradient backdrop opens on 300 glowing dots laid along three logarithmic spiral arms that rotate as a storm cloud, then a slanted colour band wipes to rounded forecast cards (thermometer, wind-speed dial, five-day strip) with flat geometric weather icons and soft shadows, while the channel bug, date badge and a ticker scrolling at a constant rate stay on screen.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

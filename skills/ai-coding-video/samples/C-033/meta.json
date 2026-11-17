@@ -1,0 +1,9 @@
+{
+  "en_name": "Swiss International Style typography",
+  "en_how": "A modular grid is computed from the short edge (12 columns landscape, 6 portrait) and every word and block takes grid-line coordinates; each element shoots onto its line on the beat with a 0.2 s exponential ease, in one sans-serif with black, white and a signal red.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

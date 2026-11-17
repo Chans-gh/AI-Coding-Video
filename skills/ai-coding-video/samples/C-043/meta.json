@@ -1,0 +1,9 @@
+{
+  "en_name": "Instruction manual / step diagram",
+  "en_how": "Boards are cuboids in isometric projection, sorted back to front and outlined in thin black on white; three steps (parts list, insert legs, drive screws) slide parts in along arrows with a half-beat pause between steps, and a yellow warning box pops up on the tricky step.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Sports broadcast package",
+  "en_how": "A night stadium of additively blended wedge-gradient searchlight beams sweeping with t, stands made of dot-matrix lights switched by a hash and t, and a corner of striped pitch; at 1.4 s a navy data card with jersey stripes slides in, numbers roll and orange-versus-steel-blue comparison bars fill; at 3.6 s a goal flips the score bug to 2–1 and confetti falls on paths computed only from t.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

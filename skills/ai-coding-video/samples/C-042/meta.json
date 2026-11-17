@@ -1,0 +1,9 @@
+{
+  "en_name": "Minimal diagram / timeline",
+  "en_how": "Thin black boxes and elbow arrows on warm off-white are stroked on with partial-path drawing; the current node fills red while earlier ones fall back to outlines, the big serif year in the corner rolls between dates, and a cursor slides along a ruled year axis at the bottom.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

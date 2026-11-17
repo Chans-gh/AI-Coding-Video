@@ -1,0 +1,9 @@
+{
+  "en_name": "Retro halftone case file",
+  "en_how": "Flat inks overprint with multiply on beige paper grain, and inside each colour shape dots on a rotated grid grow and shrink with tone to make halftone; the bold title sits on a misregistered red copy, a fat thick-outlined mascot 'suspect' is filled with dots, three exhibit cards are shown on the beat, and a rubber stamp slams down at the end.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

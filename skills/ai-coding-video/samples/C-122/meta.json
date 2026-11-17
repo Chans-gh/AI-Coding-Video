@@ -1,0 +1,5 @@
+{
+  "en_name": "16-bit arcade run",
+  "en_how": "A purple starry night, twinkling cross stars, a coin slot, a level map, two fighters and their health bars are drawn pixel by pixel on a 320×180 (portrait 180×320) canvas and scaled 6× with smoothing off; pixel text is written on the big canvas only at multiples of 8 (48, 96 px) snapped to the 6-pixel grid, the coin drop shakes the screen by whole pixels, the high score rolls digit by digit into place, and full-screen scanlines go on top.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

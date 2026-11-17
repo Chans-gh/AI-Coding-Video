@@ -61,12 +61,16 @@
 
 ## C-020 复古半调案卷
 
+![复古半调案卷](../images/C-020.jpg)
+
 ```text
 用复古半调案卷风格：米色档案纸，四种平涂油墨叠印出半调网点，超大粗体标题带错位阴影，橡皮图章重重砸下，一个粗描边的胖吉祥物当“嫌疑人”，内容像调查报告一样按“证物”逐条出示。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：调查式讲解、趣味科普
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-020/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-020)
 - 技术（建议）：SVG · HTML/CSS
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/halftone-dossier/STYLE.md)
 
@@ -142,12 +146,16 @@
 
 ## C-033 瑞士国际主义排版
 
+![瑞士国际主义排版](../images/C-033.jpg)
+
 ```text
 用瑞士国际主义动态排版风格：白底模块化网格，只用一种无衬线字体、黑白加一个信号红，文字和色块严格沿网格对齐、也可竖排，运动像印刷机一样精准卡拍，没有任何装饰和渐变。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：设计、规则类内容
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-033/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-033)
 - 技术（建议）：HTML/CSS · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/swiss-motion/STYLE.md)
 
@@ -189,12 +197,16 @@
 
 ## C-037 象形图运动图形
 
+![象形图运动图形](../images/C-037.jpg)
+
 ```text
 用象形图运动图形风格：纯色平涂底加方格“核心图形”（圆、半圆、小花纹格，各行互相滑动），圆头杆状几何小人做动作，双语粗体字从下往上滑出，每张闪卡卡在节拍上切换，没有描边和纹理。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：赛事、分类介绍
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-037/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-037)
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/pictogram-motion/STYLE.md)
 
@@ -253,12 +265,16 @@
 
 ## C-042 极简图解 / 时间轴
 
+![极简图解 / 时间轴](../images/C-042.jpg)
+
 ```text
 用极简图解时间轴风格：米白底、细黑线方框和箭头组成关系图，只用一个红色强调当前节点，底部是带年份刻度的时间轴并随讲解推进，左上角大号年份标题，边讲边画线连接。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：历史、行业史、技术科普
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-042/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-042)
 - 技术（建议）：SVG
 - 参考：[@akokoi1](https://x.com/akokoi1/status/2102583898865873225) · [@Tz_2022](https://x.com/Tz_2022/status/2102838830285898214)
 
@@ -266,12 +282,16 @@
 
 ## C-043 说明书 / 步骤图
 
+![说明书 / 步骤图](../images/C-043.jpg)
+
 ```text
 用家具说明书风格：白底、细线条线稿和简单立体板件，每步左上角标“Step N / 总步数”，零件带编号标签和数量，箭头指示安装方向，易错处用黄色警告框，每步结束停顿一下再进入下一步。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：教程、菜谱、组装
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-043/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-043)
 - 技术（建议）：SVG
 - 参考：[@Ror_Fly](https://x.com/Ror_Fly/status/2102853258582880547)
 
@@ -296,12 +316,16 @@
 
 ## C-050 科幻情景喜剧卡通
 
+![科幻情景喜剧卡通](../images/C-050.jpg)
+
 ```text
 用成人向科幻情景喜剧卡通风格：粗黑描边每帧轻微抖动、平涂无渐变，实验室里堆满稀奇古怪的装置，一个发光的绿色传送门，每个平行宇宙换一套完全不同的配色，对白驱动的冷幽默。
 ```
 
 - 题材：卡通与动漫
 - 适合：成人向搞笑
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-050/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-050)
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/scifi-toon/STYLE.md)
 
@@ -326,12 +350,16 @@
 
 ## C-057 综艺节奏扁平
 
+![综艺节奏扁平](../images/C-057.jpg)
+
 ```text
 用综艺节奏游戏扁平风格：豆子形吉祥物带 8px 墨色描边和硬投影，糖果色条纹和放射光背景，无渐变无纹理，每个动作卡在 150 BPM 的节拍上，一问一答式表演，每关结尾弹出“Perfect!”。
 ```
 
 - 题材：游戏
 - 适合：节奏综艺、年度回顾
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-057/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-057)
 - 技术（建议）：SVG · GSAP
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/game-show/STYLE.md)
 
@@ -356,12 +384,16 @@
 
 ## C-066 代码编辑器叙事
 
+![代码编辑器叙事](../images/C-066.jpg)
+
 ```text
 用代码编辑器叙事风格：深色编辑器界面就是舞台，代码行用彩色圆角色块抽象表示，一个发光的小 bug 是主角，巨大的鼠标光标是对手，追逐在行与行之间发生，结尾整屏暗下。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：开发者故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-066/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-066)
 - 技术（建议）：HTML/CSS
 - 参考：[@shneural](https://x.com/shneural/status/2103472385563459833)
 
@@ -369,12 +401,16 @@
 
 ## C-083 玻璃拟态极光
 
+![玻璃拟态极光](../images/C-083.jpg)
+
 ```text
 用玻璃拟态极光风格：深午夜蓝背景（#070b1f）上三条缓慢漂移的青、紫、玫红极光带和微弱星点，前景是毛玻璃面板（背景模糊、1px 内高光描边、细颗粒），大号细体无衬线标题，核心元素（如呼吸球）柔和地缩放发光，整体安静高级。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：消费类 App、冥想健康、氛围感首屏
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-083/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-083)
 - 技术（建议）：HTML/CSS · WebGL
 
 <a id="C-085"></a>
@@ -448,12 +484,16 @@
 
 ## C-101 海报色块动态字
 
+![海报色块动态字](../images/C-101.jpg)
+
 ```text
 用海报色块动态字风格：巨大的、被裁掉一半的单词，大面积纯色块跟着拍子砸进画面，字体超粗、颜色高饱和，文字从画面边缘撞入，每次卡点换一块色场。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：音乐节与活动预告、品牌宣言、消费类应用
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-101/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-101)
 - 技术（建议）：HTML/CSS · GSAP
 - 参考：[bang-motion 风格画廊](https://github.com/bangtutorial/bang-motion#style-gallery)
 
@@ -461,12 +501,16 @@
 
 ## C-103 白色目录册
 
+![白色目录册](../images/C-103.jpg)
+
 ```text
 用白色目录册风格：白底浅格线，产品抠图居中，手写体和粗黑无衬线混排，一个大号浅灰数字当背景，虚线圈和手写批注指向产品细节，黄色荧光笔划出关键词。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：产品介绍、品牌故事、电商与新品发布
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-103/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-103)
 - 技术（建议）：HTML/CSS
 - 参考：[bang-motion 风格画廊](https://github.com/bangtutorial/bang-motion#style-gallery)
 
@@ -504,12 +548,16 @@
 
 ## C-113 翻牌显示板
 
+![翻牌显示板](../images/C-113.jpg)
+
 ```text
 用翻牌显示板风格：车站出发信息牌，深色底板上一格格带铰链缝的翻片，文字逐列哗啦翻过字母表后停在新消息上，表格列出时间、目的地、站台和状态，琥珀、绿、红三色状态灯其中一盏在闪，顶部有站名和走动的钟，每次翻片都配密集的咔哒声。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：发布公告、行程安排、版本更新
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-113/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-113)
 - 技术（建议）：HTML/CSS · GSAP · Web Audio
 - 参考：[code-video splitflap.md](https://github.com/Changroro/code-video/blob/main/references/styles/splitflap.md)
 
@@ -517,12 +565,16 @@
 
 ## C-115 热敏小票
 
+![热敏小票](../images/C-115.jpg)
+
 ```text
 用热敏小票风格：青绿色桌面底部摆着一台深色小票打印机，每一场打出一张米白热敏纸，从机口一行行往上长出来，等宽字、虚线分隔、底部条形码、锯齿撕边，步骤是逐个打勾的清单，数字印在“合计”一行，结尾盖红章再撕下，配打印机走纸声。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：清单总结、价格说明、年度账单
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-115/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-115)
 - 技术（建议）：HTML/CSS · SVG · GSAP
 - 参考：[code-video thermal.md](https://github.com/Changroro/code-video/blob/main/references/styles/thermal.md)
 
@@ -530,12 +582,16 @@
 
 ## C-117 侦探线索板
 
+![侦探线索板](../images/C-117.jpg)
+
 ```text
 用侦探线索板风格：台灯照亮的软木板，四周暗角压黑，中央是一张写着问号的嫌疑人剪影卡，带编号的米色索引卡和黄、粉便签一张张钉上，红图钉之间拉紧红线织成网，镜头只做横移和缓推，一次相机闪光白场揭晓答案并盖上“结案”红章。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：问题排查、悬疑揭秘、案例复盘
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-117/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-117)
 - 技术（建议）：HTML/CSS · SVG · GSAP
 - 参考：[code-video detective.md](https://github.com/Changroro/code-video/blob/main/references/styles/detective.md)
 
@@ -543,12 +599,16 @@
 
 ## C-118 电视天气预报
 
+![电视天气预报](../images/C-118.jpg)
+
 ```text
 用电视天气预报风格：上浅下深的藏青渐变底，开场是一团由发光圆点组成的旋转风暴云，随后切到一张张圆角预报卡：温度图、温度计、风速表盘、多日预报条，图标是带软阴影的扁平天气图标，角上有台标和日期徽标，底部滚动快讯条，场景间斜向快速擦除。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：状态报告、季度预测、趣味数据播报
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-118/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-118)
 - 技术（建议）：SVG · HTML/CSS · GSAP
 - 参考：[code-video weather.md](https://github.com/Changroro/code-video/blob/main/references/styles/weather.md)
 
@@ -556,12 +616,16 @@
 
 ## C-119 电视购物
 
+![电视购物](../images/C-119.jpg)
+
 ```text
 用电视购物风格：每一句卖点独占一屏，满屏单色放射光芒背景、颜色随段落从灰黑换到金黄、警报红、电光蓝，粗描边漫画大字砸进画面，底部滚动卖点条一直在跑，圆滚滚的吉祥物从垂头丧气变得神采飞扬，镜头不动、硬切前闪一帧白，配热闹的叫卖音效。
 ```
 
 - 题材：卡通与动漫
 - 适合：促销活动、产品对比、搞笑广告
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-119/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-119)
 - 技术（建议）：SVG · HTML/CSS · GSAP
 - 参考：[code-video infomercial.md](https://github.com/Changroro/code-video/blob/main/references/styles/infomercial.md)
 
@@ -569,12 +633,16 @@
 
 ## C-120 体育直播包装
 
+![体育直播包装](../images/C-120.jpg)
+
 ```text
 用体育直播包装风格：开场是夜场体育馆，交叉的探照光束、点阵灯组成的看台和一角绿茵，之后是带球衣斜纹的深藏青数据卡，左上比分角标、右上红色“直播”徽章、底部来源滚动条始终不动，双方用橙和灰蓝区分，数字滚动、对比条填满，高潮撒彩纸。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：两款产品对比、排行榜、年度成绩
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-120/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-120)
 - 技术（建议）：HTML/CSS · SVG · GSAP
 - 参考：[code-video sports.md](https://github.com/Changroro/code-video/blob/main/references/styles/sports.md)
 
@@ -612,12 +680,16 @@
 
 ## C-125 机密档案袋
 
+![机密档案袋](../images/C-125.jpg)
+
 ```text
 用机密档案袋风格：台灯光圈下的深色木桌，牛皮纸档案夹和米色备忘纸，打字机字随旁白逐词敲出，旧橡皮章在关键词上重重砸下，红铅笔箭头和勾、荧光笔划痕、黑色涂抹条、回形针和地图图钉，配打字机、纸张和盖章音效。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：政策解读、安全事件、历史揭秘
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-125/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-125)
 - 技术（建议）：SVG · Remotion
 - 参考：[animation-skills declassified-dossier](https://github.com/madhavsomani/animation-skills/blob/main/skills/declassified-dossier/SKILL.md)
 
@@ -664,12 +736,16 @@
 
 ## C-148 街头波普涂鸦
 
+![街头波普涂鸦](../images/C-148.jpg)
+
 ```text
 用街头波普涂鸦风格：纯色背景上只有等宽粗黑线画的小人、狗、心形和电视，没有五官细节，身体周围有短短的放射动作线，所有形象每 8 帧硬切一个姿势地跳舞并跟着节拍整体弹跳，配色是荧光红、黄、绿，转场是一个小人放大、身体里装着下一幅画。
 ```
 
 - 题材：手绘与绘画
 - 适合：音乐 MV、公益宣传、派对与节日
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-148/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-148)
 - 技术（建议）：SVG · GSAP
 - 参考：[huashu 风格卡 31_haring](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/31_haring.md)
 
@@ -677,12 +753,16 @@
 
 ## C-156 图形形变叙事
 
+![图形形变叙事](../images/C-156.jpg)
+
 ```text
 用图形形变叙事风格：浅色纯底上的扁平图形一个接一个连续变形来讲故事，咖啡杯变成落日、手机变成地图钉，复杂形状先收拢成圆或胶囊再展开成下一个，变形时带一点挤压拉伸和旋转，速度中段最快、首尾各留几帧缓冲，颜色随形状一起过渡，配柔和的嗖声。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：产品功能串讲、品牌故事、图形化讲解
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-156/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-156)
 - 技术（建议）：SVG · GSAP
 - 参考：[mg-styles-15 08-morph](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/08-morph.md)
 
