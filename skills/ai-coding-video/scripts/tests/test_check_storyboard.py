@@ -89,6 +89,36 @@ class CheckStoryboard(unittest.TestCase):
             sb['segments'][1]['uses'][0]['ref'] = 'C-999'
         self.assertFails(bad, "ref 'C-999' 不在 data/styles.json 里")
 
+    def test_pack_root(self):
+        """项目里沉淀的风格包：不写 --pack-root 认不出，写了就认（可多次）"""
+        def pack_ref(sb, sc):
+            s = next(x for x in sb['segments'] if x.get('shots'))
+            s['shots'][0].pop('class', None)          # ref、class 只写一个
+            s['shots'][0]['ref'] = 'pack:mine'
+        d = self.project(edit=pack_ref)
+        (d / 'packs' / 'mine').mkdir(parents=True)
+        (d / 'packs' / 'mine' / 'meta.json').write_text('{}', encoding='utf-8')
+        code, out = self.run_check(d)
+        self.assertEqual(code, 1, out)
+        self.assertIn("'mine' 不在 packs/ 里", out)
+        code, out = self.run_check(d, '--pack-root', str(d / 'packs'))
+        self.assertEqual(code, 0, out)
+
+    def test_cut_missing_note(self):
+        """分镜都没写 cut：提醒「一律硬切」，不报错"""
+        def drop_cut(sb, sc):
+            for s in sb['segments']:
+                for sh in s.get('shots') or []:
+                    sh.pop('cut', None)
+        code, out = self.run_check(self.project(edit=drop_cut))
+        self.assertEqual(code, 0, out)
+        self.assertIn('分镜都没写 cut，接法一律硬切', out)
+
+    def test_cut_written_no_note(self):
+        code, out = self.run_check(self.project())
+        self.assertEqual(code, 0, out)
+        self.assertNotIn('都没写 cut', out)
+
     def test_plan_and_brief(self):
         self.assertFails(lambda sb, sc: sb.update(plan='plans/demo/plan.md'), '"plan" 和 "brief" 只写一个')
 
