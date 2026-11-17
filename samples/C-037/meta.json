@@ -1,0 +1,9 @@
+{
+  "en_name": "Pictogram motion graphics",
+  "en_how": "Flat colour flash cards hard-cut every four beats; tiled 'core graphic' bands of circles, half and quarter circles slide one tile per beat in alternating rows, a round-capped stick figure is posed from joint angles (run, hurdle, lift), and bold bilingual words slide up out of a mask.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

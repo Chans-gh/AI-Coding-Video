@@ -1,0 +1,9 @@
+{
+  "en_name": "Thermal receipt",
+  "en_how": "A dark receipt printer sits at the bottom of a teal desk and the paper grows upward from its slot: each printed line feeds the paper up one line height and carries the earlier lines with it, with monospaced text, dashed rules and a barcode laid out by line index; then the checklist is ticked item by item, a red stamp lands, and the whole slip is torn away with a zigzag edge.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

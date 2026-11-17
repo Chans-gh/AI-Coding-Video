@@ -1,0 +1,9 @@
+{
+  "en_name": "Poster colour-block kinetic type",
+  "en_how": "On every beat a whole field of saturated flat colour is flung in from one edge with a 0.18 s exponential stop, covering the last; a giant ultra-bold word slams in from the opposite edge half-cropped by the frame, and the frame shakes on impact.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
