@@ -54,11 +54,11 @@ scene({
     const gx0 = fx - 165 * fs, gx1 = fx + 165 * fs;   // 栏杆在人身后断开
     for (const [a, b] of [[0, gx0], [gx1, W]]) { pg.beginPath(); pg.moveTo(a, rail(a) - 62 * u); pg.lineTo(b, rail(b) - 62 * u); pg.stroke(); }
     for (let i = 0; i < 14; i++) { const x = (i + .5) / 14 * W; if (x > gx0 - 10 * u && x < gx1 + 10 * u) continue; pg.beginPath(); pg.moveTo(x, rail(x) - 62 * u); pg.lineTo(x - 10 * u, rail(x) + 10 * u); pg.stroke(); }
-    return { u, paint, S };
+    return { u, paint, S: [...S, ...Sf] };   // 铺笔时脸的小笔排在最后
   },
   draw(ctx, t, s) {
     const { u } = s, p = eOutCubic(inv(.1, 2.2, t));
-    if (p < 1) { ctx.fillStyle = '#2A1A5A'; ctx.fillRect(0, 0, W, H); drawStrokes(ctx, s.S, p, { style: 'dab' }); return; }
+    if (p < 1) { ctx.fillStyle = '#2A1A5A'; ctx.fillRect(0, 0, W, H); drawStrokes(ctx, s.S, p, { style: 'dab' }); ctx.globalAlpha = smooth(1.7, 2.2, t); ctx.drawImage(s.paint, 0, 0); ctx.globalAlpha = 1; return; }   // 最后淡入眼睛、轮廓和栏杆
     // 按行错开：振幅随时间变大，波沿着竖直方向往上爬
     const amp = (6 + 34 * smooth(2.2, 4.6, t)) * u, band = Math.max(2, Math.round(4 * u));
     ctx.fillStyle = '#140E24'; ctx.fillRect(0, 0, W, H);
