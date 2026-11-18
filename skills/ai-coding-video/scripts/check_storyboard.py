@@ -28,7 +28,8 @@ UNIFY = ('palette', 'fonts', 'subs', 'trans', 'music', 'voice')
 SEG_ID = re.compile(r'P\d+')
 TOLERANCE = 0.15  # 秒数和目标差多少算偏离
 CUTS = ('硬切', '溶解')  # 分镜的 cut：从上一个分镜怎么接过来
-SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule')  # rule：照策划 content.md 的哪几条约束，check_plan.py 查
+SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule', 'view')
+# rule：照策划 content.md 的哪几条约束；view：认领策划 plan.md 画面表的哪几行（H1）；都由 check_plan.py 查
 SHOT_MIN = 0.5    # 一个分镜至少几秒
 SEC_EPS = 0.05    # 分镜秒数之和和段的 sec 差这么多以内算相等
 

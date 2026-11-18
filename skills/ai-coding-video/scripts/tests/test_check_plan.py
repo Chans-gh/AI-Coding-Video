@@ -29,8 +29,8 @@ class CheckPlan(unittest.TestCase):
             p.write_text(t.replace(old, new, 1), encoding='utf-8')
         return d
 
-    def run_check(self, d, videos=True):
-        args = ['plans/demo/plan.md']
+    def run_check(self, d, videos=True, extra=()):
+        args = ['plans/demo/plan.md', *extra]
         if videos:
             args += ['--storyboard', 'videos/demo/storyboard.json', '--script', 'videos/demo/script.json']
         out = io.StringIO()
@@ -82,13 +82,13 @@ class CheckPlan(unittest.TestCase):
         code, out = self.run_check(self.project('format1'), videos=False)
         self.assertEqual(code, 2, out)
         self.assertIn('格式 1', out)
-        self.assertIn('转成格式 3', out)
+        self.assertIn('转成格式 4', out)
 
     def test_other_version_stops(self):
-        d = self.project(edits=[('plans/demo/plan.md', 'ai-content-planner/3', 'ai-content-planner/4')])
+        d = self.project(edits=[('plans/demo/plan.md', 'ai-content-planner/3', 'ai-content-planner/5')])
         code, out = self.run_check(d)
         self.assertEqual(code, 2, out)
-        self.assertIn('只认 ai-content-planner/2、ai-content-planner/3', out)
+        self.assertIn('只认 ai-content-planner/2、ai-content-planner/3、ai-content-planner/4', out)
 
     def test_no_format_line_stops(self):
         d = self.project(edits=[('plans/demo/plan.md', '格式：ai-content-planner/3\n', '')])
@@ -301,6 +301,156 @@ class CheckPlan(unittest.TestCase):
         code, out = self.run_check(d)
         self.assertEqual(code, 1, out)
         self.assertIn('来自哪份 plan.md', out)
+
+    # ---------- 格式 4：表达、画面、制作条件、原句 ----------
+    def v4(self, edits=()):
+        return self.project('ok4', edits)
+
+    def bad(self, edits, *want, code=1, videos=True):
+        """改几处，跑检查，退出码是 code，输出里有 want 的每一句；返回输出"""
+        c, out = self.run_check(self.v4(edits), videos)
+        self.assertEqual(c, code, out)
+        for w in want:
+            self.assertIn(w, out)
+        return out
+
+    def test_v4_ok(self):
+        out = self.bad([], '格式 4、已交接', '画面 4 行', '基调 讲透型、张力 1', code=0)
+        self.assertNotIn('✗', out)
+        self.assertNotIn('提醒', out)
+
+    def test_v4_table(self):
+        c, out = self.run_check(self.v4(), extra=['--table'])
+        self.assertEqual(c, 0, out)
+        self.assertIn('| H3 | P2 | 高原湖边一锅水冒泡，温度计停在 87 | 生图 | K1、M2 | 分镜 3-1 |', out)
+        self.assertIn('原句和逐字稿', out)
+        self.assertIn('| 对上 |', out)
+
+    def test_v4_no_expr(self):
+        self.bad([('plans/demo/plan.md', '## 表达', '## 表达方式')], '要有「## 表达」一节')
+
+    def test_v4_expr_head(self):
+        self.bad([('plans/demo/plan.md', '| 项 | 内容 | 由哪条效果推出 | 来源 |\n|---|---|---|---|\n| 基调',
+                   '| 项 | 内容 | 来源 |\n|---|---|---|\n| 基调')], '「表达」的表头')
+
+    def test_v4_expr_item_missing(self):
+        self.bad([('plans/demo/plan.md', '| 情绪曲线 | 不以为然 → P2 高原 87 度到顶 → 收在「原来如此」 | 终点 | 建议 |\n', '')], '表达缺 情绪曲线')
+
+    def test_v4_bad_tone(self):
+        self.bad([('plans/demo/plan.md', '| 基调 | 讲透型', '| 基调 | 轻松活泼')], '基调「轻松活泼')
+
+    def test_v4_custom_tone(self):
+        self.bad([('plans/demo/plan.md', '| 基调 | 讲透型（备选：冷静播报）', '| 基调 | 自定：小水滴人设，平实')], '基调 自定', code=0)
+
+    def test_v4_local_tone_seg(self):
+        self.bad([('plans/demo/plan.md', '讲透型（备选：冷静播报）', '讲透型；P5 换直播间促单')], '提醒：表达的基调写了 P5 的局部档', code=0)
+
+    def test_v4_bad_tension(self):
+        self.bad([('plans/demo/plan.md', '| 张力 | 1：', '| 张力 | 要有张力：')], '张力「要有张力')
+
+    def test_v4_make_unreadable(self):
+        self.bad([('plans/demo/plan.md', '能用：代码画、照片（只用青禾给的产品图）、生图；不能用：录像、生视频', '无真人出镜')], '「制作条件」要写成')
+
+    def test_v4_make_restriction(self):
+        out = self.bad([('plans/demo/plan.md', '生图；不能用：录像、生视频', '生图：只出锅和水；不能用：录像、生视频')], code=0)
+        self.assertNotIn('提醒', out)
+
+    def test_v4_view_head(self):
+        self.bad([('plans/demo/plan.md', '| # | 段 | 要看到什么 | 来源 | 用到 |', '| # | 段 | 画面 | 来源 |')], '「画面」的表头')
+
+    def test_v4_no_view_section(self):
+        self.bad([('plans/demo/plan.md', '## 画面', '## 画面清单')], '要有「## 画面」一节')
+
+    def test_v4_view_dup(self):
+        self.bad([('plans/demo/plan.md', '| H2 | P1 |', '| H1 | P1 |')], '画面 H1：编号重复了', 'view H2 在 plan.md 的画面表里找不到')
+
+    def test_v4_view_seg(self):
+        self.bad([('plans/demo/plan.md', '| H2 | P1 |', '| H2 | P9 |')], '画面 H2：段「P9」不在框架里')
+
+    def test_v4_view_source(self):
+        self.bad([('plans/demo/plan.md', '| 代码画 | P1-2 |', '| 动画 | P1-2 |')], '来源「动画」不是')
+
+    def test_v4_view_refs(self):
+        self.bad([('plans/demo/plan.md', '| 代码画 | P1-2 |', '| 代码画 | P1-9、X1、P1 c |')],
+                 '用到的 P1-9 在 plan.md、content.md 里找不到', '「X1」认不出', '用到的 P1 c')
+
+    def test_v4_view_source_cannot(self):
+        self.bad([('plans/demo/plan.md', '| 照片 | M1、K2 |', '| 录像 | M1、K2 |')], '画面 H4：来源是录像，制作条件写着不能用')
+
+    def test_v4_gap_downstream(self):
+        self.bad([('plans/demo/plan.md', '| M1、K2 |', '| M1、K2、Q1 |')], '用到 Q1，归下游、待补', code=0)
+
+    def test_v4_frame_seg_without_view(self):
+        self.bad([('plans/demo/plan.md', '| H3 | P2 | 高原湖边一锅水冒泡，温度计停在 87 | 生图 | K1、M2 |\n', ''),
+                  ('plans/demo/plan.md', '| H4 | P2 | 青禾电热壶的产品图 | 照片 | M1、K2 |\n', '')],
+                 '提醒：框架 P2 没有画面行', code=0, videos=False)
+
+    def test_v4_unclaimed(self):
+        self.bad([('videos/demo/storyboard.json', ', "view": "H2"', '')], '画面 H2（P1，代码画', '没有分镜认领')
+
+    def test_v4_view_unknown(self):
+        self.bad([('videos/demo/storyboard.json', '"view": "H1"', '"view": "H9"')], 'view H9 在 plan.md 的画面表里找不到')
+
+    def test_v4_view_bad_shape(self):
+        self.bad([('videos/demo/storyboard.json', '"view": "H1"', '"view": "画面 1"')], 'view 写画面编号')
+
+    def test_v4_view_array(self):
+        self.bad([('videos/demo/storyboard.json', '"view": "H1"', '"view": ["H1"]')], code=0)
+
+    def test_v4_view_wrong_seg(self):
+        self.bad([('videos/demo/storyboard.json', '"view": "H3"', '"view": "H1"')], 'view H1 是 P1 的画面，这段是 P2', '画面 H3')
+
+    def test_v4_class_mismatch(self):
+        self.bad([('videos/demo/storyboard.json', '"class": "T", "src": "source/qinghe/kettle.png"', '"class": "C", "src": "source/qinghe/kettle.png"')],
+                 '分镜 3-2：认领 H4，照片要 T 类，这里是 C 类')
+
+    def test_v4_material_not_in_src(self):
+        self.bad([('videos/demo/storyboard.json', '"src": "source/qinghe/kettle.png"', '"src": "assets/other.png"')], '用到 M1，认领它的分镜 src 里没有')
+
+    def test_v4_material_uses_only(self):
+        self.bad([('videos/demo/storyboard.json', ', "view": "H4"', ''),
+                  ('videos/demo/storyboard.json', '"materials": ["照片"], "rule": "K2"}', '"materials": ["照片"], "rule": "K2", "view": "H4"}')],
+                 '只在 uses 认领，拆到分镜', code=0)
+
+    def test_v4_rule_missing(self):
+        self.bad([('videos/demo/storyboard.json', '"rule": "K2", "view": "H4"', '"view": "H4"')], '画面 H4', '要守 K2')
+
+    def test_v4_material_type_cannot(self):
+        self.bad([('videos/demo/storyboard.json', '"materials": ["照片"]', '"materials": ["录像"]')], '用了 录像，制作条件写着不能用')
+
+    def test_v4_no_generation(self):
+        out = self.bad([('plans/demo/plan.md', '能用：代码画、照片（只用青禾给的产品图）、生图；不能用：录像、生视频', '能用：代码画、照片；不能用：生图、生视频')],
+                       '来源是生图，制作条件写着不能用', '分镜 3-1：G 类，制作条件不能用生图、生视频')
+        self.assertNotIn('voice', out)  # 语音合成不是画面来源，旁白照常合成
+
+    def test_v3_no_view(self):
+        d = self.project(edits=[('videos/demo/storyboard.json', '"ref": "C-038"}], "note": "测试夹具"},', '"ref": "C-038", "view": "H1"}], "note": "测试夹具"},')])
+        code, out = self.run_check(d)
+        self.assertEqual(code, 1, out)
+        self.assertIn('交接格式 3 没有画面（H），不写 view', out)
+
+    def test_v4_orig_changed(self):
+        self.bad([('videos/demo/script.json', '水约八十七度就开了', '水约八十七度就沸腾了')], '说法 P2 a 是原句，逐字稿没照着念')
+
+    def test_v4_orig_numbers(self):
+        self.bad([('videos/demo/script.json', '海拔四千米', '海拔 4000 米')], '提醒：说法 P2 a 是原句，去掉数字才对得上', code=0)
+
+    def test_v4_orig_show(self):
+        out = self.bad([('plans/demo/plan.md', '「在海拔四千米，', '「在海拔 4000 米，'),
+                        ('videos/demo/script.json', '{"plan": "plans/demo/plan.md",', '{"plan": "plans/demo/plan.md", "show": {"四千米": "4000 米"},')],
+                       code=0)
+        self.assertNotIn('提醒', out)
+
+    def test_v4_orig_split(self):
+        out = self.bad([('videos/demo/script.json', '"所以在海拔四千米，水约八十七度就开了。"', '"所以在海拔四千米", "水约八十七度就开了。"')], code=0)
+        self.assertNotIn('原句', out)
+
+    def test_v4_tension1_exclaim(self):
+        self.bad([('videos/demo/script.json', '气压越低，沸点越低。', '气压越低，沸点越低！')], '提醒：表达的张力是 1', 'P1 第 1 句', code=0)
+
+    def test_v4_tension2_exclaim_ok(self):
+        out = self.bad([('plans/demo/plan.md', '| 张力 | 1：', '| 张力 | 2：'), ('videos/demo/script.json', '气压越低，沸点越低。', '气压越低，沸点越低！')], code=0)
+        self.assertNotIn('张力是 1', out)
 
 
 if __name__ == '__main__':
