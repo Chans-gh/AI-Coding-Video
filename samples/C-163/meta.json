@@ -1,0 +1,10 @@
+{
+  "en_name": "Night flat-colour poster",
+  "en_how": "The same street corner — building, streetlamp, hard geometric shadows, outline-only figures — is drawn in three panels with arc seams at 19:00, 23:00 and 03:00; at the end each panel's boundary points are interpolated to a window on one building, so the three panels fold into three lit windows under an amber glow.",
+  "tech": [
+    "Canvas 2D",
+    "GSAP",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

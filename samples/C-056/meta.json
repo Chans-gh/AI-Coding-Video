@@ -1,0 +1,9 @@
+{
+  "en_name": "Micro-game rush",
+  "en_how": "Four 1-second mini games, each in its own look (crayon, blueprint, low-res pixel canvas, neon), run back to back with a shrinking timer bar, a success or fail stamp and a stage label, then a score card; every motion is a function of the time inside its stage.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
