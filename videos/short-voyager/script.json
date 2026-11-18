@@ -1,0 +1,131 @@
+{
+ "plan": "plans/short-voyager/plan.md",
+ "show": {
+  "旅行者一号": "旅行者 1 号",
+  "今晚六点十六分": "今晚 6 点 16 分",
+  "二百五十九亿公里": "259 亿公里",
+  "一点三秒": "1.3 秒",
+  "八分二十秒": "8 分 20 秒",
+  "二十四小时": "24 小时",
+  "一九七七年九月五日": "1977 年 9 月 5 日",
+  "四十九年多": "49 年多",
+  "一九九零年二月十四日": "1990 年 2 月 14 日",
+  "六十亿公里": "60 亿公里",
+  "二零一二年": "2012 年"
+ },
+ "segments": [
+  {
+   "seg": "P1",
+   "vo": [
+    "就在今天，人类造过最远的东西，飞到了一光日！",
+    "北京时间今晚六点十六分，旅行者一号离地球二百五十九亿公里。",
+    "光，都要飞整整一天。"
+   ],
+   "facts": [
+    {
+     "what": "旅行者 1 号是离地球最远的人造物体（the most distant human-made object）",
+     "ref": "P1-1",
+     "src": "https://www.jpl.nasa.gov/news/nasa-invites-media-public-to-join-voyager-1-one-light-day-activities/"
+    },
+    {
+     "what": "2026-11-18 美东 5:16:07 离地球一光日：25,902,068,356 公里，约 259 亿公里",
+     "ref": "P1-2",
+     "src": "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day/"
+    },
+    {
+     "what": "北京时间 2026-11-18 18:16",
+     "ref": "P1-3",
+     "src": null,
+     "calc": "美东（UTC−5）5:16:07 加 13 小时，用 P1-2"
+    }
+   ],
+   "pace": {
+    "lead": 0.4,
+    "gap": 0.15,
+    "tail": 0.45
+   }
+  },
+  {
+   "seg": "P2",
+   "vo": [
+    "光，是宇宙里最快的东西。",
+    "从地球到月球，一点三秒。",
+    "从太阳到地球，八分二十秒。",
+    "到旅行者一号呢？",
+    "整整二十四小时！",
+    "项目经理说：给它发一句消息，得回家等上两天，才能收到回音。"
+   ],
+   "facts": [
+    {
+     "what": "宇宙里没有比光更快的；光走完地月平均距离约 1.3 秒；太阳光到地球约 8 分 20 秒",
+     "ref": "P2-1",
+     "src": "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day/"
+    },
+    {
+     "what": "地球上发出的光要 24 小时才到旅行者 1 号",
+     "ref": "P2-2",
+     "src": "https://www.jpl.nasa.gov/news/nasa-invites-media-public-to-join-voyager-1-one-light-day-activities/"
+    },
+    {
+     "what": "项目经理 Suzanne Dodd：发一句 hello，要回家等两天才有回音（转述）；画面上来回各 24 小时、共 48 小时",
+     "ref": "P2-3",
+     "src": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"
+    }
+   ],
+   "pace": {
+    "lead": 0.3,
+    "gap": 0.15,
+    "tail": 0.45
+   }
+  },
+  {
+   "seg": "P3",
+   "vo": [
+    "它是一九七七年九月五日出发的，到今天，飞了四十九年多。",
+    "一九九零年二月十四日，它在离太阳约六十亿公里的地方回过头，",
+    "给地球拍了一张照片。",
+    "照片里的我们，只是一个淡蓝色的小点。",
+    "二零一二年，它第一个飞出日球层，进入了星际空间。",
+    "光要走一整天的地方，我们造的东西，已经到了。"
+   ],
+   "facts": [
+    {
+     "what": "1977-09-05 12:56:01 UT 从肯尼迪航天中心发射",
+     "ref": "P3-1",
+     "src": "https://science.nasa.gov/mission/voyager/voyager-1/"
+    },
+    {
+     "what": "到一光日那一刻飞了 49 年多",
+     "ref": "P3-2",
+     "src": null,
+     "calc": "1977-09-05 12:56:01 UT 到 2026-11-18 10:16:07 UT，49 年 2 个月 12 天 21 小时，只说「49 年多」；用 P3-1、P1-2"
+    },
+    {
+     "what": "1990-02-14 回头拍下地球（淡蓝色小点），离太阳约 60 亿公里",
+     "ref": "P3-3",
+     "src": "https://science.nasa.gov/resource/voyager-pale-blue-dot-download/"
+    },
+    {
+     "what": "2012 年第一个飞出日球层、进入星际空间",
+     "ref": "P3-4",
+     "src": "https://science.nasa.gov/mission/voyager/voyager-1/"
+    },
+    {
+     "what": "画面线头「今天：1 光日」",
+     "ref": "P1-2",
+     "src": "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day/"
+    }
+   ],
+   "pace": {
+    "lead": 0.3,
+    "gap": 0.15,
+    "tail": 1.2
+   }
+  }
+ ],
+ "heard": {
+  "回音": [
+   "回应"
+  ]
+ }
+}

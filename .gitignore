@@ -18,3 +18,6 @@ videos/*/timing.json
 videos/*/typical/
 videos/*/out/
 cases/*/typical/*.mp4
+
+# 策划交来的计划只放在本地，正本在策划仓库
+plans/
