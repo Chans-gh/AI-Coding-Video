@@ -1,0 +1,9 @@
+{
+  "en_name": "Screen-printed travel poster",
+  "en_how": "Each ink is an opaque full-page off-screen layer (banded sky instead of gradients, title knocked out of the darkest layer) with 1–3 px misregistration and pinholes; the layers are squeegeed on left to right one per beat over fibrous cream paper, then the camera pushes in slowly.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
