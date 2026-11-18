@@ -1,0 +1,9 @@
+{
+  "en_name": "Neo-Impressionist pointillism",
+  "en_how": "A lakeside park is blocked in as a colour map, then covered with same-size dots, each snapped to one of the two nearest pure palette colours with a tenth turned complementary and an extra layer of cool dots in the shadows; dots crystallise top to bottom and some breathe in place.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

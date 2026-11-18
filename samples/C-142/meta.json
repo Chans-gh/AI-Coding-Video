@@ -1,0 +1,9 @@
+{
+  "en_name": "Analytic Cubism",
+  "en_how": "A café still life (cup, bottle, newspaper) is painted in ochre and grey-green strokes, then fragmented into translucent tilted planes that each show the scene from a slightly shifted viewpoint; broken contours, stencil letters and a newspaper scrap appear, and the planes slowly slide out of register.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

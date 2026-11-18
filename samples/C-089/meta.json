@@ -1,0 +1,9 @@
+{
+  "en_name": "Broken-colour Impressionism",
+  "en_how": "A river-bend landscape is blocked in as a colour map; shared stroke helpers lay thousands of opaque short dabs along a zoned direction field (horizontal water, slanting sky, vertical trees) on linen, with a third swapped for complementary colours; water glints flicker.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

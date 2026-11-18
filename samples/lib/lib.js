@@ -342,6 +342,90 @@ function toneRibbon(ctx, pts, T, w0, w1, p = 1, color = '#111') {
   ctx.closePath(); ctx.fill(); ctx.restore();
 }
 
+// ---------- 底图、方向场、油画笔触 ----------
+// 底图：fn(g) 用 W×H 的坐标画出要画的东西（色块、渐变就够，不用细节），缩到 1/res 存成颜色表。o：{res 缩小倍数（默认 4）, blur 模糊半径（W×H 的像素）}。返回 {w, h, res, canvas, at(x, y) → [r,g,b]（双线性）, lum(x, y) → 0 暗–1 亮}，init 里做一次
+function paintMap(fn, o = {}) {
+  const res = o.res || 4, w = Math.ceil(W / res), h = Math.ceil(H / res);
+  let c = mk(w, h), g = c.getContext('2d', { willReadFrequently: true });
+  g.save(); g.scale(w / W, h / H); fn(g); g.restore();
+  if (o.blur) { const c2 = mk(w, h), g2 = c2.getContext('2d', { willReadFrequently: true }); g2.filter = `blur(${o.blur / res}px)`; g2.drawImage(c, 0, 0); c = c2; g = g2; }
+  const d = g.getImageData(0, 0, w, h).data, L = new Float32Array(w * h);
+  for (let i = 0; i < w * h; i++) L[i] = (d[i * 4] * .299 + d[i * 4 + 1] * .587 + d[i * 4 + 2] * .114) / 255;
+  const cell = (x, y) => { const fx = clamp(x / res - .5, 0, w - 1.001), fy = clamp(y / res - .5, 0, h - 1.001), x0 = fx | 0, y0 = fy | 0; return [y0 * w + x0, fx - x0, fy - y0]; };
+  const at = (x, y) => {
+    const [i, ax, ay] = cell(x, y), o4 = [i, i + 1, i + w, i + w + 1].map(j => j * 4), wt = [(1 - ax) * (1 - ay), ax * (1 - ay), (1 - ax) * ay, ax * ay];
+    return [0, 1, 2].map(ch => wt[0] * d[o4[0] + ch] + wt[1] * d[o4[1] + ch] + wt[2] * d[o4[2] + ch] + wt[3] * d[o4[3] + ch]);
+  };
+  const lum = (x, y) => { const [i, ax, ay] = cell(x, y); return (L[i] * (1 - ax) + L[i + 1] * ax) * (1 - ay) + (L[i + w] * (1 - ax) + L[i + w + 1] * ax) * ay; };
+  return { w, h, res, canvas: c, at, lum };
+}
+// 方向场：每一点笔触朝哪。o：{angle 基本方向（弧度）, map 底图 + contour 0–1（顺着明暗的边走，像沿形体转的笔）, noise 噪声扰动（弧度）, scale 噪声尺度, swirl [[x, y, 半径, 方向 ±1], …] 漩涡, fn(x, y, a) → 改写方向, res 网格（默认 12）}。返回 {at(x, y) → 弧度}，init 里做一次
+function flowField(o = {}) {
+  const res = o.res || 12, gw = Math.ceil(W / res) + 2, gh = Math.ceil(H / res) + 2, C = new Float32Array(gw * gh), S = new Float32Array(gw * gh), sc = o.scale || .002;
+  for (let gy = 0; gy < gh; gy++) for (let gx = 0; gx < gw; gx++) {
+    const x = gx * res, y = gy * res; let a = o.angle ?? 0, vx = Math.cos(a), vy = Math.sin(a);
+    if (o.map && o.contour) {
+      const e = o.map.res * 2, dx = o.map.lum(x + e, y) - o.map.lum(x - e, y), dy = o.map.lum(x, y + e) - o.map.lum(x, y - e), m = Math.hypot(dx, dy);
+      if (m > 1e-4) { let tx = -dy / m, ty = dx / m; if (tx * vx + ty * vy < 0) { tx = -tx; ty = -ty; } const wt = clamp(m * 8) * o.contour; vx = lerp(vx, tx, wt); vy = lerp(vy, ty, wt); }
+    }
+    for (const [sx, sy, r, dir] of o.swirl || []) {
+      const d = Math.hypot(x - sx, y - sy), wt = Math.exp(-(d / r) * (d / r)), ta = Math.atan2(y - sy, x - sx) + Math.PI / 2 * (dir || 1);
+      vx = lerp(vx, Math.cos(ta), wt); vy = lerp(vy, Math.sin(ta), wt);
+    }
+    a = Math.atan2(vy, vx);
+    if (o.noise) a += (fbm(x * sc, y * sc, 3) - .5) * 2 * o.noise;
+    if (o.fn) a = o.fn(x, y, a);
+    C[gy * gw + gx] = Math.cos(a); S[gy * gw + gx] = Math.sin(a);
+  }
+  const at = (x, y) => {
+    const fx = clamp(x / res, 0, gw - 1.001), fy = clamp(y / res, 0, gh - 1.001), x0 = fx | 0, y0 = fy | 0, ax = fx - x0, ay = fy - y0, i = y0 * gw + x0;
+    const bl = A => (A[i] * (1 - ax) + A[i + 1] * ax) * (1 - ay) + (A[i + gw] * (1 - ax) + A[i + gw + 1] * ax) * ay;
+    return Math.atan2(bl(S), bl(C));
+  };
+  return { at };
+}
+// 铺笔触：按底图 M 取色、方向场 F 定朝向，在抖动网格上排笔；layers 层从粗到细，第 2 层起只补在明暗变化大的地方。o：{gap 间距, len [短, 长], width [细, 粗], jitter 颜色抖动 0–1, spread 朝向抖动（弧度）, follow 沿方向场弯几段（0 是直笔）, layers, detail 细节阈值, mask(x, y), tint(x, y, rgb, R) → 改色（并置补色用）, order(x, y, layer) → 先后（默认按层、层内随机）, seed}。返回按先后排好的笔触 [{x, y, a, w, pts, c 颜色串, dark, light, rgb, k}]
+function strokePlan(M, F, o = {}) {
+  const gap0 = o.gap || 14, R = mulberry32((o.seed || 1) * 7717 + 3), out = [], jit = o.jitter ?? .1, spread = o.spread ?? .2, nf = o.follow || 0;
+  const len = o.len || [gap0 * 1.4, gap0 * 2.6], wid = o.width || [gap0 * .55, gap0 * .9], css = c => `rgb(${c.map(v => clamp(Math.round(v), 0, 255)).join(',')})`;
+  for (let L = 0; L < (o.layers || 1); L++) {
+    const g = gap0 / Math.pow(1.8, L), s = g / gap0;
+    for (let y = -g; y < H + g; y += g) for (let x = -g; x < W + g; x += g) {
+      const px = x + R() * g, py = y + R() * g;
+      if (o.mask && !o.mask(px, py)) { R(); R(); R(); continue; }
+      if (L > 0) { const e = g * .6, dm = Math.abs(M.lum(px + e, py) - M.lum(px - e, py)) + Math.abs(M.lum(px, py + e) - M.lum(px, py - e)); if (dm < (o.detail ?? .08)) { R(); R(); R(); continue; } }
+      const a = F.at(px, py) + (R() - .5) * spread, l = lerp(len[0], len[1], R()) * s, w = lerp(wid[0], wid[1], R()) * s;
+      const b = 1 + (R() - .5) * 2 * jit, base = M.at(px, py); let rgb = base.map(v => v * b + (R() - .5) * jit * 70); if (o.tint) rgb = o.tint(px, py, rgb, R);
+      let pts;
+      if (!nf) pts = [[px - Math.cos(a) * l / 2, py - Math.sin(a) * l / 2], [px + Math.cos(a) * l / 2, py + Math.sin(a) * l / 2]];
+      else {                                                                                  // 顺着方向场往两头各走 nf 步
+        const st = l / 2 / nf, fw = [[px, py]], bw = [];
+        let qx = px, qy = py, qa = a; for (let i = 0; i < nf; i++) { qx += Math.cos(qa) * st; qy += Math.sin(qa) * st; const na = F.at(qx, qy); qa = Math.cos(na - qa) < 0 ? na + Math.PI : na; fw.push([qx, qy]); }
+        qx = px; qy = py; qa = a + Math.PI; for (let i = 0; i < nf; i++) { qx += Math.cos(qa) * st; qy += Math.sin(qa) * st; const na = F.at(qx, qy); qa = Math.cos(na - qa) < 0 ? na + Math.PI : na; bw.push([qx, qy]); }
+        pts = [...bw.reverse(), ...fw];
+      }
+      const ord = o.order ? o.order(px, py, L) : L + R();
+      out.push({ x: px, y: py, a, w, pts, rgb, c: css(rgb), dark: css(rgb.map(v => v * .62)), light: css(rgb.map(v => v * 1.3 + 30)), k: ord + R() * 1e-4 });
+    }
+  }
+  out.sort((p, q) => p.k - q.k); out.forEach((q, i) => q.k = i / Math.max(1, out.length - 1));
+  return out;
+}
+// 画笔触：S 是 strokePlan 的结果，画出前 p（0–1）。o：{style: 'dab' 圆头短笔 | 'impasto' 带暗边和高光的厚涂 | 'dot' 圆点, alpha, scale 笔宽倍数, light 高光朝向（弧度，默认左上）}
+function drawStrokes(ctx, S, p = 1, o = {}) {
+  const n = Math.floor(clamp(p) * S.length), st = o.style || 'dab', sc = o.scale || 1, la = o.light ?? -2.4, lx = Math.cos(la), ly = Math.sin(la);
+  ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalAlpha = o.alpha ?? 1;
+  const path = (q, dx = 0, dy = 0) => { ctx.beginPath(); q.pts.forEach(([x, y], i) => i ? ctx.lineTo(x + dx, y + dy) : ctx.moveTo(x + dx, y + dy)); };
+  for (let i = 0; i < n; i++) {
+    const q = S[i], w = q.w * sc;
+    if (st === 'dot') { ctx.fillStyle = q.c; ctx.beginPath(); ctx.arc(q.x, q.y, w / 2, 0, TAU); ctx.fill(); continue; }
+    if (st === 'impasto') { ctx.strokeStyle = q.dark; ctx.lineWidth = w; path(q, -lx * w * .16, -ly * w * .16); ctx.stroke(); }
+    ctx.strokeStyle = q.c; ctx.lineWidth = w * (st === 'impasto' ? .86 : 1); path(q); ctx.stroke();
+    if (st === 'impasto') { ctx.strokeStyle = q.light; ctx.lineWidth = w * .2; ctx.globalAlpha = (o.alpha ?? 1) * .7; path(q, lx * w * .22, ly * w * .22); ctx.stroke(); ctx.globalAlpha = o.alpha ?? 1; }
+  }
+  ctx.restore();
+}
+
 // ---------- WebGL 全屏着色器 ----------
 const GL = { canvas: null, gl: null, progs: {} };
 // 准备 WebGL2 离屏画布（init 里调一次）
@@ -635,4 +719,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

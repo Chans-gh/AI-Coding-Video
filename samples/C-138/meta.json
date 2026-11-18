@@ -1,0 +1,9 @@
+{
+  "en_name": "Post-Impressionist impasto",
+  "en_how": "A hillside house, street lamp and starry sky are blocked in, then a zoned direction field (vertical walls, sloping roof, road toward the door, swirling sky) guides thick impasto strokes with dark edges and highlights; dark-blue outlines jitter every few frames and halos ripple out from the lights.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
