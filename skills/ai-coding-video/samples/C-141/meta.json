@@ -1,0 +1,9 @@
+{
+  "en_name": "Expressionism",
+  "en_how": "An original mask-faced figure on a slanted bridge under a churning blood-orange and violet sky is painted with long curving strokes; the finished painting is redrawn each frame as thin rows shifted by sine waves, so the whole picture warps like a heat haze.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

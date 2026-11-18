@@ -559,12 +559,16 @@
 
 ## C-089 碎色印象派
 
+![碎色印象派](../images/C-089.jpg)
+
 ```text
 用印象派碎色笔触风格：亚麻底布上一小块一小块不混色的不透明色点，每一笔落下就不再修改，互补色并排放着让眼睛自己去混（橙玫瑰进蓝影、紫进金），水面用长而平的笔触、天空顺着云势排，全程没有轮廓线，形体就是色点停下来的地方。
 ```
 
 - 题材：手绘与绘画
 - 适合：风景、日出日落、旅行、艺术感广告
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-089/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-089)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/brokenColour.md)
 
@@ -863,12 +867,16 @@
 
 ## C-134 盛期文艺复兴晕涂
 
+![盛期文艺复兴晕涂](../images/C-134.jpg)
+
 ```text
 用盛期文艺复兴晕涂风格：暖褐基调的油画，形体边缘没有线，全靠烟雾般的明暗慢慢晕开，远山按空气透视一层比一层更蓝更淡，人物用稳定的三角形构图，画面带细密龟裂纹和发黄的光油，动作缓慢庄重，转场是窗口射进一束光照亮下一幕。
 ```
 
 - 题材：手绘与绘画
 - 适合：人物传记、艺术史讲解、庄重的品牌片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-134/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-134)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[huashu 风格卡 06_renaissance](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/06_renaissance.md) · [huashu 风格卡 40_raphael](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/40_raphael.md) · [huashu 风格卡 41_michelangelo](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/41_michelangelo.md)
 
@@ -876,12 +884,16 @@
 
 ## C-135 巴洛克明暗对照
 
+![巴洛克明暗对照](../images/C-135.jpg)
+
 ```text
 用巴洛克明暗对照风格：画面八成沉在近乎全黑的暖褐阴影里，一束左上方的斜光或一支烛火只照亮脸、手和金属器物，亮部厚涂暖黄白，暗部薄而透，光照范围随烛焰轻轻呼吸，光柱里有浮尘飘动，镜头极慢地推进，转场是光圈收拢再打开。
 ```
 
 - 题材：手绘与绘画
 - 适合：悬疑与心理戏、人物肖像、宗教与历史场景
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-135/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-135)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[huashu 风格卡 32_rembrandt](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/32_rembrandt.md) · [huashu 风格卡 44_cortona](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/44_cortona.md)
 
@@ -889,12 +901,16 @@
 
 ## C-136 威尼斯风景画
 
+![威尼斯风景画](../images/C-136.jpg)
+
 ```text
 用威尼斯风景画风格：低低的地平线上压着占画面三分之二的银灰色天空，水面和建筑用干而快的小笔触点出碎光，边缘松动不收紧，人物小到只剩一点黑加一点白或红，细长的小船慢慢划过，色调是银灰、淡绿和暖赭，镜头沿运河缓缓横移。
 ```
 
 - 题材：手绘与绘画
 - 适合：城市风光、旅行纪录、怀旧短片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-136/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-136)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[huashu 风格卡 42_guardi](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/42_guardi.md)
 
@@ -902,12 +918,16 @@
 
 ## C-138 后印象派厚涂
 
+![后印象派厚涂](../images/C-138.jpg)
+
 ```text
 用后印象派厚涂风格：画面由一根根方向明确的短粗油彩笔触铺满，墙面竖排、地面顺着透视、天空绕着漩涡打转，同一区域里混用十几种相近色相，钴蓝和铬黄互补对撞，轮廓用深蓝粗线勾出并每隔几帧轻轻抖动，灯和星星外有一圈圈光晕向外扩，转场是漩涡把画面卷走。
 ```
 
 - 题材：手绘与绘画
 - 适合：情绪 MV、艺术史讲解、夜景与乡村
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-138/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-138)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 09_postimp](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/09_postimp.md)
 
@@ -915,12 +935,16 @@
 
 ## C-139 新印象派点彩
 
+![新印象派点彩](../images/C-139.jpg)
+
 ```text
 用新印象派点彩风格：画面全部由同样大小的纯色圆点并排组成，不在调色盘上混色，橙点旁放蓝点、绿点旁放红点让眼睛自己去混，阴影处的点更冷更密、亮处更暖更稀，点在原位轻轻明灭像在呼吸，人物轮廓安静而几何，转场是旧画面结晶成圆点再重新组合。
 ```
 
 - 题材：手绘与绘画
 - 适合：公园与假日、科学色彩讲解、安静的风景
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-139/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-139)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 29_seurat](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/29_seurat.md)
 
@@ -945,12 +969,16 @@
 
 ## C-141 表现主义
 
+![表现主义](../images/C-141.jpg)
+
 ```text
 用表现主义风格：整个世界用长而弯的流线笔触画出，天空、水面和人物都沿同一股力场扭曲波动，血橙、硫黄和深蓝紫强烈对撞，人物的脸简化成惊惧的面具，画面每一行都在缓慢地正弦扭动，转场是一条彩色天空带从上往下压满屏幕，配低沉弦乐。
 ```
 
 - 题材：手绘与绘画
 - 适合：焦虑与心理题材、恐怖短片、情绪化 MV
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-141/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-141)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[huashu 风格卡 19_munch](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/19_munch.md) · [huashu 风格卡 36_picasso_blue](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/36_picasso_blue.md)
 
@@ -958,12 +986,16 @@
 
 ## C-142 分析立体主义
 
+![分析立体主义](../images/C-142.jpg)
+
 ```text
 用分析立体主义风格：物体被拆成许多半透明的小几何切面，同一画面里同时露出正面和侧面，色彩压到赭褐、灰绿、暗金几种，切面互相穿插分不清前后，零散的印刷字母和报纸碎片夹在中间，切面缓慢滑动错位，转场是碎片打散后重新拼成新的物体。
 ```
 
 - 题材：手绘与绘画
 - 适合：艺术史讲解、多视角分析、咖啡馆与城市生活
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-142/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-142)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 11_cubism](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/11_cubism.md)
 

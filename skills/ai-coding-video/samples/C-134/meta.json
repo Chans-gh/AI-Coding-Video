@@ -1,0 +1,9 @@
+{
+  "en_name": "High Renaissance sfumato",
+  "en_how": "An original half-length sitter in a soft cap holding a book is built from blurred layers with no hard outlines, set against mountains that turn bluer and paler with distance; the picture appears as underdrawing, then monochrome, then colour glazes, then yellowed varnish and craquelure, with a slow push-in.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

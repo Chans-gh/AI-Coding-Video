@@ -1,0 +1,9 @@
+{
+  "en_name": "Baroque chiaroscuro",
+  "en_how": "An original old scholar reading a letter by candlelight is painted fully lit, then revealed each frame through a radial mask centred on the flame whose radius breathes with the flicker, over near-black warm shadow; dust drifts in the light and the brass jug catches a glint as the camera pushes in.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

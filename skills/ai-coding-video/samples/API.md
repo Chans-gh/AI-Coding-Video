@@ -68,6 +68,13 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `drawDots(ctx, D, p = 1, r = 1.5, color = '#111')` — 画点：D 是 stipple 的结果，画出前 p（0–1）部分，点半径 r，一次填完；点只出现、不渐入
 - `toneRibbon(ctx, pts, T, w0, w1, p = 1, color = '#111')` — 随明暗变粗细的一根线：沿折线 pts（[[x,y],…]）画实心带，宽度在 w0（亮处）和 w1（暗处）之间按 T.at 取，只画前 p（0–1）；单线雕版、铜版轮廓线用
 
+**底图、方向场、油画笔触**
+
+- `paintMap(fn, o = {})` — 底图：fn(g) 用 W×H 的坐标画出要画的东西（色块、渐变就够，不用细节），缩到 1/res 存成颜色表。o：{res 缩小倍数（默认 4）, blur 模糊半径（W×H 的像素）}。返回 {w, h, res, canvas, at(x, y) → [r,g,b]（双线性）, lum(x, y) → 0 暗–1 亮}，init 里做一次
+- `flowField(o = {})` — 方向场：每一点笔触朝哪。o：{angle 基本方向（弧度）, map 底图 + contour 0–1（顺着明暗的边走，像沿形体转的笔）, noise 噪声扰动（弧度）, scale 噪声尺度, swirl [[x, y, 半径, 方向 ±1], …] 漩涡, fn(x, y, a) → 改写方向, res 网格（默认 12）}。返回 {at(x, y) → 弧度}，init 里做一次
+- `strokePlan(M, F, o = {})` — 铺笔触：按底图 M 取色、方向场 F 定朝向，在抖动网格上排笔；layers 层从粗到细，第 2 层起只补在明暗变化大的地方。o：{gap 间距, len [短, 长], width [细, 粗], jitter 颜色抖动 0–1, spread 朝向抖动（弧度）, follow 沿方向场弯几段（0 是直笔）, layers, detail 细节阈值, mask(x, y), tint(x, y, rgb, R) → 改色（并置补色用）, order(x, y, layer) → 先后（默认按层、层内随机）, seed}。返回按先后排好的笔触 [{x, y, a, w, pts, c 颜色串, dark, light, rgb, k}]
+- `drawStrokes(ctx, S, p = 1, o = {})` — 画笔触：S 是 strokePlan 的结果，画出前 p（0–1）。o：{style: 'dab' 圆头短笔 | 'impasto' 带暗边和高光的厚涂 | 'dot' 圆点, alpha, scale 笔宽倍数, light 高光朝向（弧度，默认左上）}
+
 **WebGL 全屏着色器**
 
 - `glInit(w, h)` — 准备 WebGL2 离屏画布（init 里调一次）

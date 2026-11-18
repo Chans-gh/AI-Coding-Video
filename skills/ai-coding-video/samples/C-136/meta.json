@@ -1,0 +1,9 @@
+{
+  "en_name": "Venetian veduta",
+  "en_how": "Canal-side façades are computed in one-point perspective under a silver sky taking two thirds of the frame, dabbed in dry quick strokes, then ruled with crisp windows, cornices, chimneys and mooring poles; a gondola glides past with its reflection and wake while the camera pans along the canal.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
