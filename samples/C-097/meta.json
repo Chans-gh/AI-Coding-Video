@@ -1,0 +1,9 @@
+{
+  "en_name": "Single-line engraving",
+  "en_how": "The whole moon is one Archimedean spiral whose width follows brightness, thin in light and thick in shadow; the albedo map is precomputed and the lighting is computed per frame, so the phase shifts after the line is drawn.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

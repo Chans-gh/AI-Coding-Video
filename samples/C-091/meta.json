@@ -1,0 +1,10 @@
+{
+  "en_name": "Coloured pencil",
+  "en_how": "Each colour has its own coverage map turned into short, slightly curved hatches in one diagonal direction; layers stack purple over dusk blue, blue over cyan, paper tooth leaves specks, and a dark pencil adds a few broken outlines last.",
+  "tech": [
+    "Canvas 2D",
+    "p5.brush",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

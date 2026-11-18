@@ -1,0 +1,9 @@
+{
+  "en_name": "Pencil sketch",
+  "en_how": "A still life is shaded as a tone map; shared hatching helpers lay three layers of short graphite hatches at different angles, after faint construction lines and outlines, then smudge and an eraser lifts highlights; paper tooth breaks up the graphite.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

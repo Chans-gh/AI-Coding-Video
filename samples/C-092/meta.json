@@ -1,0 +1,9 @@
+{
+  "en_name": "Scratchboard",
+  "en_how": "Starting from solid black, white scratches appear only where light falls on an owl and the moon; feathers are short hatch groups, the facial disc radiates from the eyes, and every scratch appears whole.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

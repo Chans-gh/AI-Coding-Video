@@ -1,0 +1,10 @@
+{
+  "en_name": "Ballpoint sketch",
+  "en_how": "A vintage alarm clock drawn in one blue ballpoint: outline first, then four layers of constant-width hatching whose density follows a tone map, with small ink blobs where strokes stop.",
+  "tech": [
+    "Canvas 2D",
+    "Rough.js",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Stippling",
+  "en_how": "A nautilus shell built from a logarithmic spiral is shaded as a tone map; equal-sized dots are placed on a jittered grid with density from darkness, darkest first, each dot simply appearing.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
