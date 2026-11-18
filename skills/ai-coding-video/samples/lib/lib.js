@@ -210,6 +210,138 @@ function textReveal(ctx, txt, x, y, p, align = 'left') {
   ctx.textAlign = align; ctx.fillText(txt, x, y); ctx.restore(); return x0 + w * clamp(p);
 }
 
+// ---------- 明暗图、排线、点 ----------
+// 明暗图：fn(g) 用 W×H 的坐标画出主体的明暗（白亮黑暗，渐变、阴影都行），缩到 1/res 取灰度。o：{res 缩小倍数（默认 4）, blur 模糊半径（W×H 的像素）, bg 底色, pixel(x, y, v) → 逐点改写亮度}。返回 {w, h, res, d, canvas, at(x, y) → 0 暗–1 亮（双线性）}，init 里做一次
+function toneMap(fn, o = {}) {
+  const res = o.res || 4, w = Math.ceil(W / res), h = Math.ceil(H / res);
+  let c = mk(w, h), g = c.getContext('2d', { willReadFrequently: true });
+  g.fillStyle = o.bg || '#fff'; g.fillRect(0, 0, w, h);
+  g.save(); g.scale(w / W, h / H); if (fn) fn(g); g.restore();
+  if (o.blur) {
+    const c2 = mk(w, h), g2 = c2.getContext('2d', { willReadFrequently: true });
+    g2.fillStyle = o.bg || '#fff'; g2.fillRect(0, 0, w, h); g2.filter = `blur(${o.blur / res}px)`; g2.drawImage(c, 0, 0); c = c2; g = g2;
+  }
+  const im = g.getImageData(0, 0, w, h).data, d = new Float32Array(w * h);
+  for (let y = 0, i = 0; y < h; y++) for (let x = 0; x < w; x++, i++) {
+    let v = (im[i * 4] * .299 + im[i * 4 + 1] * .587 + im[i * 4 + 2] * .114) / 255;
+    if (o.pixel) v = o.pixel((x + .5) * res, (y + .5) * res, v);
+    d[i] = clamp(v);
+  }
+  if (o.pixel) { const out = g.createImageData(w, h); for (let i = 0; i < w * h; i++) { const b = d[i] * 255; out.data[i * 4] = out.data[i * 4 + 1] = out.data[i * 4 + 2] = b; out.data[i * 4 + 3] = 255; } g.putImageData(out, 0, 0); }
+  const at = (x, y) => {
+    const fx = clamp(x / res - .5, 0, w - 1.001), fy = clamp(y / res - .5, 0, h - 1.001), x0 = fx | 0, y0 = fy | 0, ax = fx - x0, ay = fy - y0, i = y0 * w + x0;
+    return (d[i] * (1 - ax) + d[i + 1] * ax) * (1 - ay) + (d[i + w] * (1 - ax) + d[i + w + 1] * ax) * ay;
+  };
+  return { w, h, res, d, canvas: c, at };
+}
+// 排线：按明暗图 T 在角度 angle 方向铺一层间距 gap 的平行线，只留亮度 < thr 的段（light: true 时留 > thr 的段，刮画、白线用）；交叉排线就换角度、降 thr 再叫一次。o：{angle, gap, thr, light, step 取样步长, minLen, maxLen 断成短笔, jitter 线距抖动 0–1, order(x, y, v) → 先后（默认先暗后亮）, seed, swell 存下沿线亮度给 drawHatch 变粗细, box [x0,y0,x1,y1] 只铺这块, mask(x, y) → false 的地方不铺}。返回按先后排好的笔画 [{x0,y0,x1,y1,v 平均亮度,k 0–1 出场顺序,vs}]
+function hatchLines(T, o = {}) {
+  const a = o.angle ?? -Math.PI / 4, gap = o.gap || 8, thr = o.thr ?? .5, step = o.step || Math.max(2, gap * .5), seed = o.seed || 1;
+  const minLen = o.minLen ?? gap, maxLen = o.maxLen || 1e9, jit = o.jitter ?? .3, light = !!o.light;
+  const [bx0, by0, bx1, by1] = o.box || [0, 0, W, H];
+  const dx = Math.cos(a), dy = Math.sin(a), nx = -dy, ny = dx, cs = [[bx0, by0], [bx1, by0], [bx0, by1], [bx1, by1]];
+  const pn = cs.map(([x, y]) => x * nx + y * ny), pd = cs.map(([x, y]) => x * dx + y * dy);
+  const n0 = Math.min(...pn), n1 = Math.max(...pn), d0 = Math.min(...pd), d1 = Math.max(...pd);
+  const R = mulberry32(seed * 7919 + 13), out = [];
+  const push = (run, vs) => {
+    const [s0, s1] = run, L = s1 - s0; if (L < minLen) return;
+    let s = s0;
+    while (s1 - s > minLen * .5) {
+      const len = Math.min(s1 - s, maxLen < 1e8 ? maxLen * (.6 + R() * .8) : 1e9);
+      const i0 = Math.round((s - s0) / step), i1 = Math.round((s + len - s0) / step), sub = vs.slice(i0, Math.max(i0 + 1, i1 + 1));
+      const v = sub.reduce((p, q) => p + q, 0) / sub.length;
+      const sh = maxLen < 1e8 ? (R() - .5) * gap * .8 : 0, sx = nx * sh, sy = ny * sh, a0 = maxLen < 1e8 ? (R() - .5) * len * .3 : 0;   // 断成短笔时每笔错开一点，不连成长线
+      out.push({ x0: run.ox + sx + dx * (s + a0), y0: run.oy + sy + dy * (s + a0), x1: run.ox + sx + dx * (s + a0 + len), y1: run.oy + sy + dy * (s + a0 + len), v, vs: o.swell ? sub : null });
+      s += len + (maxLen < 1e8 ? gap * (.3 + R() * .9) : 0);
+    }
+  };
+  for (let off = n0 + gap * R(); off < n1; off += gap) {
+    const oo = off + (R() - .5) * gap * jit, ox = nx * oo, oy = ny * oo;
+    let run = null, vs = [];
+    for (let s = d0; s <= d1; s += step) {
+      const x = ox + dx * s, y = oy + dy * s;
+      const inside = x >= bx0 && x <= bx1 && y >= by0 && y <= by1 && (!o.mask || o.mask(x, y));
+      const v = inside ? T.at(x, y) : 1, ok = inside && (light ? v > thr : v < thr);
+      if (ok) { if (!run) { run = [s, s]; run.ox = ox; run.oy = oy; vs = []; } run[1] = s; vs.push(v); }
+      else if (run) { push(run, vs); run = null; }
+    }
+    if (run) push(run, vs);
+  }
+  const ord = o.order || ((x, y, v) => light ? 1 - v : v);
+  for (const q of out) q.k = ord((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, q.v) + R() * 1e-3;
+  out.sort((p, q) => p.k - q.k); out.forEach((q, i) => q.k = i / Math.max(1, out.length - 1));
+  return out;
+}
+// 画排线：L 是 hatchLines 的结果，按 k 依次画出到进度 p（0–1，每笔用 dur 的进度画完）。o：{color, width, alpha（可传 v → 值的函数，按亮度分 9 档批量画）, bend 弯度（笔长的比例）, wob 手抖（像素）, taper 两头收尖（画成实心）, swell [亮处宽, 暗处宽] 沿线变粗细（hatchLines 要开 swell）, blob 笔停处的小墨点半径（约三成的笔有）, dur, cap, seed}
+function drawHatch(ctx, L, p = 1, o = {}) {
+  const dur = o.dur ?? .04, seed = o.seed || 1, bend = o.bend || 0, wob = o.wob || 0, fill = !!(o.taper || o.swell);
+  const fw = typeof o.width === 'function' ? o.width : () => o.width || 1.5, fa = typeof o.alpha === 'function' ? o.alpha : () => o.alpha ?? 1;
+  const B = Array.from({ length: 9 }, () => new Path2D()), used = new Array(9).fill(false), D = new Path2D();
+  for (let i = 0; i < L.length; i++) {
+    const q = L[i], qp = clamp((p - q.k * (1 - dur)) / dur); if (qp <= 0) break;
+    const b = Math.round(clamp(q.v) * 8), P = B[b]; used[b] = true;
+    const h = hash1(i * 31 + seed * 977), ex = q.x0 + (q.x1 - q.x0) * qp, ey = q.y0 + (q.y1 - q.y0) * qp;
+    const len = Math.hypot(q.x1 - q.x0, q.y1 - q.y0) || 1, ux = (q.x1 - q.x0) / len, uy = (q.y1 - q.y0) / len;
+    const bo = bend * len * (h - .35), w1 = wob * (hash1(i * 7 + 3) - .5), w2 = wob * (hash1(i * 13 + 5) - .5);
+    if (!fill) {
+      P.moveTo(q.x0 - uy * w1, q.y0 + ux * w1);
+      if (bend) P.quadraticCurveTo((q.x0 + ex) / 2 - uy * bo * qp, (q.y0 + ey) / 2 + ux * bo * qp, ex - uy * w2, ey + ux * w2);
+      else P.lineTo(ex - uy * w2, ey + ux * w2);
+      if (o.blob && qp >= 1 && h < .3) { D.moveTo(ex - uy * w2 + o.blob, ey + ux * w2); D.arc(ex - uy * w2, ey + ux * w2, o.blob, 0, TAU); }
+    } else {
+      const m = Math.max(3, Math.min(24, Math.round(len * qp / 6))), top = [], bot = [], wv = fw(q.v);
+      for (let j = 0; j <= m; j++) {
+        const s = j / m, ss = s * qp, x = q.x0 + (q.x1 - q.x0) * ss - uy * (bo * 4 * ss * (1 - ss) + lerp(w1, w2, ss)), y = q.y0 + (q.y1 - q.y0) * ss + ux * (bo * 4 * ss * (1 - ss) + lerp(w1, w2, ss));
+        let hw = wv / 2;
+        if (o.swell && q.vs) { const vv = q.vs[Math.min(q.vs.length - 1, Math.round(ss * (q.vs.length - 1)))]; hw = lerp(o.swell[1], o.swell[0], vv) / 2; }
+        if (o.taper) hw *= Math.pow(Math.sin(Math.PI * clamp(ss, .02, .98)), .6);
+        top.push([x - uy * hw, y + ux * hw]); bot.push([x + uy * hw, y - ux * hw]);
+      }
+      P.moveTo(...top[0]); for (const pt of top) P.lineTo(...pt); for (let j = bot.length - 1; j >= 0; j--) P.lineTo(...bot[j]); P.closePath();
+    }
+  }
+  ctx.save(); ctx.lineCap = o.cap || 'round'; ctx.lineJoin = 'round';
+  ctx.strokeStyle = ctx.fillStyle = o.color || '#1a1a1a';
+  for (let b = 0; b < 9; b++) {
+    if (!used[b]) continue; const v = b / 8;
+    ctx.globalAlpha = clamp(fa(v));
+    if (fill) ctx.fill(B[b]); else { ctx.lineWidth = fw(v); ctx.stroke(B[b]); }
+  }
+  if (o.blob) { ctx.globalAlpha = 1; ctx.fill(D); }
+  ctx.restore();
+}
+// 点刻：按明暗图 T 在边长 cell 的抖动网格里取点，暗处密、亮处疏（取点概率 (1-v)^gamma，亮度 ≥ thr 的不取）。o：{cell, gamma, thr, seed, order(x, y, v) → 先后（默认先暗后亮）}。返回按先后排好的 Float32Array [x, y, v, …]
+function stipple(T, o = {}) {
+  const c = o.cell || 5, gm = o.gamma ?? 1, thr = o.thr ?? .97, seed = o.seed || 1, pts = [];
+  const ord = o.order || ((x, y, v) => v);
+  for (let gy = 0; gy * c < H; gy++) for (let gx = 0; gx * c < W; gx++) {
+    const x = (gx + hash2(gx * 3 + seed, gy * 5 + 1)) * c, y = (gy + hash2(gx * 7 + 2, gy * 11 + seed)) * c, v = T.at(x, y);
+    if (v >= thr || hash2(gx + seed * 131, gy * 3 + 7) > Math.pow(1 - v, gm)) continue;
+    pts.push([x, y, v, ord(x, y, v) + hash2(gx, gy + seed) * .08]);
+  }
+  pts.sort((p, q) => p[3] - q[3]);
+  const out = new Float32Array(pts.length * 3); pts.forEach((q, i) => { out[i * 3] = q[0]; out[i * 3 + 1] = q[1]; out[i * 3 + 2] = q[2]; });
+  return out;
+}
+// 画点：D 是 stipple 的结果，画出前 p（0–1）部分，点半径 r，一次填完；点只出现、不渐入
+function drawDots(ctx, D, p = 1, r = 1.5, color = '#111') {
+  const n = Math.floor(clamp(p) * D.length / 3), P = new Path2D();
+  for (let i = 0; i < n; i++) { const x = D[i * 3], y = D[i * 3 + 1]; P.moveTo(x + r, y); P.arc(x, y, r, 0, TAU); }
+  ctx.save(); ctx.fillStyle = color; ctx.fill(P); ctx.restore();
+}
+// 随明暗变粗细的一根线：沿折线 pts（[[x,y],…]）画实心带，宽度在 w0（亮处）和 w1（暗处）之间按 T.at 取，只画前 p（0–1）；单线雕版、铜版轮廓线用
+function toneRibbon(ctx, pts, T, w0, w1, p = 1, color = '#111') {
+  const n = Math.max(1, Math.round(clamp(p) * (pts.length - 1))), top = [], bot = [];
+  for (let i = 0; i <= n; i++) {
+    const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)], dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+    const [x, y] = pts[i], hw = lerp(w1, w0, T.at(x, y)) / 2;
+    top.push([x - dy / l * hw, y + dx / l * hw]); bot.push([x + dy / l * hw, y - dx / l * hw]);
+  }
+  ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.moveTo(...top[0]);
+  for (const q of top) ctx.lineTo(...q); for (let i = bot.length - 1; i >= 0; i--) ctx.lineTo(...bot[i]);
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+
 // ---------- WebGL 全屏着色器 ----------
 const GL = { canvas: null, gl: null, progs: {} };
 // 准备 WebGL2 离屏画布（init 里调一次）
@@ -503,4 +635,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

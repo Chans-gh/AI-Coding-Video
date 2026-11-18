@@ -1,0 +1,9 @@
+{
+  "en_name": "Copperplate engraving (natural history plate)",
+  "en_how": "A fly agaric plate: parallel, cross and third-layer engraved lines that swell and taper follow the tone map, outlines vary with shade, then a hand-coloured watercolour wash spills over the lines, with plate mark and Roman and italic titles.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -59,6 +59,15 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `wrapCJK(ctx, text, maxW)` — 中文折行：按 maxW 宽度断行，标点不放行首，返回行数组
 - `textReveal(ctx, txt, x, y, p, align = 'left')` — 文字从左到右按 p 显出（裁剪），返回显出边缘的 x
 
+**明暗图、排线、点**
+
+- `toneMap(fn, o = {})` — 明暗图：fn(g) 用 W×H 的坐标画出主体的明暗（白亮黑暗，渐变、阴影都行），缩到 1/res 取灰度。o：{res 缩小倍数（默认 4）, blur 模糊半径（W×H 的像素）, bg 底色, pixel(x, y, v) → 逐点改写亮度}。返回 {w, h, res, d, canvas, at(x, y) → 0 暗–1 亮（双线性）}，init 里做一次
+- `hatchLines(T, o = {})` — 排线：按明暗图 T 在角度 angle 方向铺一层间距 gap 的平行线，只留亮度 < thr 的段（light: true 时留 > thr 的段，刮画、白线用）；交叉排线就换角度、降 thr 再叫一次。o：{angle, gap, thr, light, step 取样步长, minLen, maxLen 断成短笔, jitter 线距抖动 0–1, order(x, y, v) → 先后（默认先暗后亮）, seed, swell 存下沿线亮度给 drawHatch 变粗细, box [x0,y0,x1,y1] 只铺这块, mask(x, y) → false 的地方不铺}。返回按先后排好的笔画 [{x0,y0,x1,y1,v 平均亮度,k 0–1 出场顺序,vs}]
+- `drawHatch(ctx, L, p = 1, o = {})` — 画排线：L 是 hatchLines 的结果，按 k 依次画出到进度 p（0–1，每笔用 dur 的进度画完）。o：{color, width, alpha（可传 v → 值的函数，按亮度分 9 档批量画）, bend 弯度（笔长的比例）, wob 手抖（像素）, taper 两头收尖（画成实心）, swell [亮处宽, 暗处宽] 沿线变粗细（hatchLines 要开 swell）, blob 笔停处的小墨点半径（约三成的笔有）, dur, cap, seed}
+- `stipple(T, o = {})` — 点刻：按明暗图 T 在边长 cell 的抖动网格里取点，暗处密、亮处疏（取点概率 (1-v)^gamma，亮度 ≥ thr 的不取）。o：{cell, gamma, thr, seed, order(x, y, v) → 先后（默认先暗后亮）}。返回按先后排好的 Float32Array [x, y, v, …]
+- `drawDots(ctx, D, p = 1, r = 1.5, color = '#111')` — 画点：D 是 stipple 的结果，画出前 p（0–1）部分，点半径 r，一次填完；点只出现、不渐入
+- `toneRibbon(ctx, pts, T, w0, w1, p = 1, color = '#111')` — 随明暗变粗细的一根线：沿折线 pts（[[x,y],…]）画实心带，宽度在 w0（亮处）和 w1（暗处）之间按 T.at 取，只画前 p（0–1）；单线雕版、铜版轮廓线用
+
 **WebGL 全屏着色器**
 
 - `glInit(w, h)` — 准备 WebGL2 离屏画布（init 里调一次）
@@ -106,7 +115,6 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `shotAt(t)` — t 时刻是本段第几个分镜（分镜脚本的 shots，起止由 voice.py 排进 timing.json）：{i 从 0 数, t0, t1, d 时长, lt 分镜内的时间, p 0–1, cut}；没分镜返回 null
 - `drawShots(ctx, t, fns, mix = .5)` — 按分镜画：fns[i](ctx, lt, d, t) 画第 i 个分镜（分镜内的时间、分镜时长、本段时间），可以是 async；每个分镜前后 save、restore，平移、缩放、透明度不串到下一个；cut 是「溶解」的开头 mix 秒叠在上一个分镜上淡入。返回当前第几个分镜；没分镜时整段画 fns[0]
 - `S` — 场景列表（播放器读 S[0]）
-- **能用哪些全局** — 段文件是独立作用域，只拿得到 `lib.js` 顶层声明的东西（`W`/`H`/`clamp`/`smooth`/`lerp`/`TAU`/`stepT` 等，完整清单见 `lib.js` 末尾的 `__FILM_GLOBALS__`）。**风格包内部和别的段文件里的函数拿不到**（`grow`、`pop` 这类是风格包的局部函数），写了会 `ReferenceError`，而且要到渲染到那一帧才报——写完先 `--quick` 跑一遍。
 - `scene(def)` — 注册场景：{id, name, dur, still, fonts, text, libs, dom, init() → 状态 s, draw(ctx, t, s, f)}；init、draw 可以是 async
 
 ## synth.py（`from synth import …`）

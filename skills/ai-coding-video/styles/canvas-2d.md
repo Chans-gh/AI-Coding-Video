@@ -107,12 +107,16 @@
 
 ## C-007 铅笔素描
 
+![铅笔素描](../images/C-007.jpg)
+
 ```text
 用铅笔素描风格：速写本纸纹上的石墨灰阶，先出淡淡的构图辅助线再逐笔加深，阴影用排线和擦抹表现，保留擦痕和未完成的线，只用黑白灰。
 ```
 
 - 题材：手绘与绘画
 - 适合：创意过程、设计思考
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-007/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-007)
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/karakalem)
 
@@ -238,12 +242,16 @@
 
 ## C-018 木刻
 
+![木刻](../images/C-018.jpg)
+
 ```text
 用木刻版画风格：每一帧都是一块涂黑的木板，光只存在于被刀刻掉的地方，用密集的平行刀痕表现明暗和质感，画面是随着刻刀一道道刻出来的，最多加一种颜色，只给火、炉、灯这类“燃烧的东西”。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：严肃寓言、历史
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-018/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-018)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/woodcut/STYLE.md)
 
@@ -534,12 +542,16 @@
 
 ## C-088 圆珠笔速写
 
+![圆珠笔速写](../images/C-088.jpg)
+
 ```text
 用圆珠笔速写风格：奶油色卡纸上只有一支蓝色圆珠笔，线条粗细几乎不变，明暗全靠排线的疏密来表现，笔画停住的地方留一个小墨点，先画轮廓再一层层加排线，整段像把一张速写慢放出来。
 ```
 
 - 题材：手绘与绘画
 - 适合：产品与物件特写、手账感讲解、复古钟表机械
+- 技术（已验证）：Canvas 2D · Rough.js · Playwright · ffmpeg
+- 样片代码：[samples/C-088/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-088)
 - 技术（建议）：Canvas 2D · Rough.js
 - 参考：[anidoodle 风格索引](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md)
 
@@ -573,12 +585,16 @@
 
 ## C-091 彩色铅笔
 
+![彩色铅笔](../images/C-091.jpg)
+
 ```text
 用彩色铅笔风格：奶油色卡纸的纸纹让每片颜色里都带着细小的留白，笔触是短而略弯的排线，几乎全部朝同一个斜向，颜色靠力度和一层层叠色出来（紫叠暮蓝、蓝叠青），没有轮廓线，最后才用深色铅笔补几根断续的外形线。
 ```
 
 - 题材：手绘与绘画
 - 适合：儿童内容、生活场景插画、温和的讲解
+- 技术（已验证）：Canvas 2D · p5.brush · Playwright · ffmpeg
+- 样片代码：[samples/C-091/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-091)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/colouredPencil.md)
 
@@ -586,12 +602,16 @@
 
 ## C-092 刮画板
 
+![刮画板](../images/C-092.jpg)
+
 ```text
 用刮画板风格：白色瓷土上盖一层黑墨，所有笔触都是用刀尖把墨刮掉，画面从全黑开始，在光照到的地方一道道刮出白色的毛发和轮廓，没有灰色，灰度只来自白线排得有多密，刮痕从不渐入，都是整条整条刻出来的。
 ```
 
 - 题材：手绘与绘画
 - 适合：动物、夜景、悬疑、版画质感的片头
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-092/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-092)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/scratchboard.md)
 
@@ -599,12 +619,16 @@
 
 ## C-093 点刻
 
+![点刻](../images/C-093.jpg)
+
 ```text
 用点刻风格：一支 0.25 mm 针管笔在光滑白卡纸上一个点一个点地点出来，所有点一样大，明暗只由点的疏密决定，没有线、没有排线、没有轮廓，边缘就是点密度变化的地方，先点最暗的部分再向亮处扩散，点只出现、不渐入、不移动。
 ```
 
 - 题材：手绘与绘画
 - 适合：博物与自然标本、科普、慢节奏纪录片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-093/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-093)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/stipple.md)
 
@@ -625,12 +649,16 @@
 
 ## C-096 铜版雕刻（博物图版）
 
+![铜版雕刻（博物图版）](../images/C-096.jpg)
+
 ```text
 用 19 世纪铜版雕刻博物图版风格：刻刀在铜板上刻出由细变粗再收尖的线，明暗全靠排线（一层平行线、二层交叉、最暗处第三层），不用任何灰色填充，奶油色版画纸上有压痕和边框，罗马体大写标题配意大利体学名，印好之后再手工罩一层透明水彩，颜色可以溢出线条。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：自然博物、历史、科普、美术馆展览
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-096/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-096)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/engraving/STYLE.md)
 
@@ -638,12 +666,16 @@
 
 ## C-097 单线雕版
 
+![单线雕版](../images/C-097.jpg)
+
 ```text
 用单线雕版风格：整幅画只用一根不断的雕刻线，像螺旋一样绕出整个形体，线的粗细随明暗变化，亮处细、暗处粗，没有任何填充和别的笔画，整幅图就是一笔。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：品牌标志、月亮与星球等圆形主体、艺术短片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-097/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-097)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 风格索引](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md)
 

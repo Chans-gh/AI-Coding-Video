@@ -1,0 +1,9 @@
+{
+  "en_name": "Woodcut",
+  "en_how": "The block starts solid black; tapered white gouges are cut only where the tone map is bright, widening into clear wood near the lamp, cut stroke by stroke at 12 fps; the only colour is the lamp’s orange showing through the cuts.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
