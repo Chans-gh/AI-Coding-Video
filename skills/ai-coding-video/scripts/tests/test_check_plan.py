@@ -224,10 +224,14 @@ class CheckPlan(unittest.TestCase):
         self.assertIn('vo 写空数组', out)
 
     def test_say_needs_vo(self):
-        d = self.project(edits=[('videos/demo/script.json', '"vo": ["我是小水滴。", "一个标准大气压下，水在一百度沸腾。"]', '"vo": []'),
-                                ('videos/demo/script.json', '"vo": ["气压越低，沸点越低。"]', '"vo": []')])
+        d = self.project(edits=[('videos/demo/script.json', '"vo": ["我是小水滴。", "一个标准大气压下，水在一百度沸腾。", "气压越低，沸点越低。"]', '"vo": []')])
         code, out = self.run_check(d)
         self.assertIn('说法写了 P1 的点', out)
+
+    def test_seg_repeated(self):
+        # 有策划也一段一个段号：配音（vo/<段号>_<句号>.wav）、出片（segments/<段号>.js）都按段号认
+        self.bad([('videos/demo/storyboard.json', '"seg": "P2", "title": "高原"', '"seg": "P1", "title": "高原"')],
+                 '第 2 段：seg P1 重复了', '写成这段的 shots')
 
     def test_say_point_not_in_frame(self):
         d = self.project(edits=[('plans/demo/plan.md', '| P2 b | 顺带一句产品 |', '| P2 c | 顺带一句产品 |')])
@@ -256,13 +260,13 @@ class CheckPlan(unittest.TestCase):
         d = self.project(edits=[('videos/demo/storyboard.json', '"rule": "K1", "vo": 1', '"vo": 1')])
         code, out = self.run_check(d)
         self.assertEqual(code, 0, out)
-        self.assertIn('分镜 3-1：G 类，框架 P2 的「怎么证明」要照 K1、K2', out)
+        self.assertIn('分镜 2-1：G 类，框架 P2 的「怎么证明」要照 K1、K2', out)
 
     def test_no_generate_material_in_g_shot(self):
         d = self.project(edits=[('videos/demo/storyboard.json', '"src": "source/plateau/02.jpg"', '"src": ["source/qinghe/kettle.png"]')])
         code, out = self.run_check(d)
         self.assertEqual(code, 1, out)
-        self.assertIn('分镜 3-1：M1', out)
+        self.assertIn('分镜 2-1：M1', out)
         self.assertIn('不进生成模型', out)
 
     def test_pending_material_counts_as_no(self):
@@ -322,7 +326,7 @@ class CheckPlan(unittest.TestCase):
     def test_v4_table(self):
         c, out = self.run_check(self.v4(), extra=['--table'])
         self.assertEqual(c, 0, out)
-        self.assertIn('| H3 | P2 | 高原湖边一锅水冒泡，温度计停在 87 | 生图 | K1、M2 | 分镜 3-1 |', out)
+        self.assertIn('| H3 | P2 | 高原湖边一锅水冒泡，温度计停在 87 | 生图 | K1、M2 | 分镜 2-1 |', out)
         self.assertIn('原句和逐字稿', out)
         self.assertIn('| 对上 |', out)
 
@@ -402,7 +406,7 @@ class CheckPlan(unittest.TestCase):
 
     def test_v4_class_mismatch(self):
         self.bad([('videos/demo/storyboard.json', '"class": "T", "src": "source/qinghe/kettle.png"', '"class": "C", "src": "source/qinghe/kettle.png"')],
-                 '分镜 3-2：认领 H4，照片要 T 类，这里是 C 类')
+                 '分镜 2-2：认领 H4，照片要 T 类，这里是 C 类')
 
     def test_v4_material_not_in_src(self):
         self.bad([('videos/demo/storyboard.json', '"src": "source/qinghe/kettle.png"', '"src": "assets/other.png"')], '用到 M1，认领它的分镜 src 里没有')
@@ -420,7 +424,7 @@ class CheckPlan(unittest.TestCase):
 
     def test_v4_no_generation(self):
         out = self.bad([('plans/demo/plan.md', '能用：代码画、照片（只用青禾给的产品图）、生图；不能用：录像、生视频', '能用：代码画、照片；不能用：生图、生视频')],
-                       '来源是生图，制作条件写着不能用', '分镜 3-1：G 类，制作条件不能用生图、生视频')
+                       '来源是生图，制作条件写着不能用', '分镜 2-1：G 类，制作条件不能用生图、生视频')
         self.assertNotIn('voice', out)  # 语音合成不是画面来源，旁白照常合成
 
     def test_v3_no_view(self):
@@ -446,7 +450,7 @@ class CheckPlan(unittest.TestCase):
         self.assertNotIn('原句', out)
 
     def test_v4_tension1_exclaim(self):
-        self.bad([('videos/demo/script.json', '气压越低，沸点越低。', '气压越低，沸点越低！')], '提醒：表达的张力是 1', 'P1 第 1 句', code=0)
+        self.bad([('videos/demo/script.json', '气压越低，沸点越低。', '气压越低，沸点越低！')], '提醒：表达的张力是 1', 'P1 第 3 句', code=0)
 
     def test_v4_tension2_exclaim_ok(self):
         out = self.bad([('plans/demo/plan.md', '| 张力 | 1：', '| 张力 | 2：'), ('videos/demo/script.json', '气压越低，沸点越低。', '气压越低，沸点越低！')], code=0)

@@ -84,6 +84,11 @@ class CheckStoryboard(unittest.TestCase):
     def test_unify_incomplete(self):
         self.assertFails(lambda sb, sc: sb['unify'].pop('trans'), 'unify 缺 trans')
 
+    def test_seg_repeated(self):
+        def bad(sb, sc):
+            sb['segments'][1]['seg'] = sb['segments'][0]['seg']
+        self.assertFails(bad, '重复了；一段一个段号')
+
     def test_ref_not_found(self):
         def bad(sb, sc):
             sb['segments'][1]['uses'][0]['ref'] = 'C-999'
