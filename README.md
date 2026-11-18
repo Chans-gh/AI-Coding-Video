@@ -46,6 +46,8 @@ codex plugin add ai-coding-video@ai-coding-video
 codex plugin add ai-content-planner@ai-coding-video   # 可选：内容策划
 ```
 
+**不用 git 的**：从 [最新 Release](https://github.com/Chans-gh/AI-Coding-Video/releases/latest/download/ai-coding-video.zip) 下载 `ai-coding-video.zip`，解压出的 `ai-coding-video` 文件夹就是 Skill，放进助手的 skills 目录，或整个 zip 上传给 WorkBuddy 等助手。
+
 **其他助手**（拷贝 Skill 文件夹）：先 `git clone` 本仓库，再运行：
 
 ```bash
@@ -108,7 +110,7 @@ Node.js 18 以上、Python 3（Playwright 并装好 Chromium、Pillow、numpy、
 
 ### WorkBuddy 等上传技能包的助手
 
-- `scripts/install.sh zip` 打成 `dist/ai-coding-video.zip` 上传。zip 里也带样片代码。
+- 从 [最新 Release](https://github.com/Chans-gh/AI-Coding-Video/releases/latest/download/ai-coding-video.zip) 下载 `ai-coding-video.zip` 直接上传，或自己 `scripts/install.sh zip` 打成 `dist/ai-coding-video.zip`。zip 里也带样片代码。
 - 能不能真的跑出片工具，取决于那个助手的运行环境（有没有 Node、Python、浏览器、ffmpeg），没有实测；跑不了时，它仍然可以选风格、写提示词和渲染代码，由你在本机出片。
 
 ## 仓库结构

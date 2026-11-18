@@ -105,3 +105,5 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 ## 维护：版本号
 
 版本号以 `SKILL.md` 开头的 `version` 为准（WorkBuddy 上传时要求有这一项）。改版本时，同步改 `skills/.claude-plugin/plugin.json` 和 `skills/.codex-plugin/plugin.json` 里的 `version`，`--check` 会核对三处是否一致。
+
+发版：版本号加一档、在 [`CHANGELOG.md`](CHANGELOG.md) 那一行开头写上「<版本>：」，推到 `main` 后，仓库的 `.github/workflows/skill-release.yml` 自动打 Release「v<版本>」，挂上 `scripts/install.sh zip` 打的 `ai-coding-video.zip`，说明取 CHANGELOG 的那一行；这个版本发过就跳过，所以只加样片、不升版本的推送不发包。下载地址固定是 `releases/latest/download/ai-coding-video.zip`。

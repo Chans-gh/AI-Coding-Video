@@ -4,6 +4,7 @@
 #   scripts/release.sh --live "<提交说明>"   推送后再用无头浏览器打开线上介绍页，打一行结果
 #   scripts/release.sh --live                只检查线上介绍页，不提交
 # 推到 main 会自动重新发布介绍页（.github/workflows/pages.yml），线上要等一两分钟才更新。
+# SKILL.md 的版本号变了，推到 main 后还会自动发 Skill 包（.github/workflows/skill-release.yml，见 skills/ai-coding-video/README.md「维护：版本号」）。
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$HERE"

@@ -1,0 +1,42 @@
+# 发 Skill 包：SKILL.md 的 version 变了推到 main 后，打 Release「v<版本>」，挂上 scripts/install.sh zip 打的 ai-coding-video.zip，说明取 CHANGELOG 里这个版本的那一行。
+# 这个版本的 Release 已经有了就跳过（只改样片、不升版本的推送不发）。规矩见 skills/ai-coding-video/README.md「维护：版本号」。
+name: skill-release
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skills/ai-coding-video/SKILL.md"
+      - ".github/workflows/skill-release.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: skill-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 读版本号
+        id: ver
+        run: |
+          ver="$(sed -n 's/^version: *//p' skills/ai-coding-video/SKILL.md | head -1)"
+          [[ -n "$ver" ]] || { echo "SKILL.md 里没有 version"; exit 1; }
+          python3 skills/ai-coding-video/scripts/build_index.py --check
+          echo "tag=v$ver" >> "$GITHUB_OUTPUT"
+          if gh release view "v$ver" >/dev/null 2>&1; then echo "v$ver 已经发过，跳过"; echo "skip=1" >> "$GITHUB_OUTPUT"; fi
+      - name: 打包并发布
+        if: steps.ver.outputs.skip != '1'
+        run: |
+          tag="${{ steps.ver.outputs.tag }}"; ver="${tag#v}"
+          scripts/install.sh zip
+          { grep -F "| ${ver}：" skills/ai-coding-video/CHANGELOG.md | head -1 | sed 's/^| *//; s/ *|$//; s/ *| */ · /' || true
+            echo
+            echo "下载 \`ai-coding-video.zip\`，解压出的 \`ai-coding-video\` 文件夹就是 Skill，放进助手的 skills 目录，或直接上传给 WorkBuddy 等助手。插件市场的装法见仓库 README。"
+          } > notes.md
+          gh release create "$tag" dist/ai-coding-video.zip --target "$GITHUB_SHA" --latest \
+            --title "ai-coding-video $ver" --notes-file notes.md
