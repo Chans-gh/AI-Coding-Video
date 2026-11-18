@@ -1,0 +1,9 @@
+{
+  "en_name": "1950s mid-century cartoon",
+  "en_how": "Every shape is drawn twice: the colour fill offset by a few pixels and the ink line dashed into broken strokes, both re-jittered at 12 fps; the egg-headed presenter's body stays still while only arms, eyes and mouth move, in a one-colour room with a floor line, and the step card flips at 2 s.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

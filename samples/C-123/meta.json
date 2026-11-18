@@ -1,0 +1,9 @@
+{
+  "en_name": "Journal scrapbook",
+  "en_how": "A tilted lined notebook page on a kraft desk, with everything placed in page coordinates and tilted 2–8°: a Polaroid of a sunset camp held by patterned washi tape, a torn keyword strip, a die-cut star sticker, handwriting revealed left to right, red and blue marker strokes and a stamp; a new page slides across at the end.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "en_name": "Fauvist paper cut-outs",
+  "en_how": "Each sheet is first brushed with gouache (hundreds of translucent strokes via source-atop) and then cut out: lobed seaweed, notched stars and leaves, a dancer assembled from round-capped limbs; pieces are pinned and skewed slightly as if fluttering, and a large cobalt sheet sweeps in from the left to change the scene.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

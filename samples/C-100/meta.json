@@ -1,0 +1,9 @@
+{
+  "en_name": "Old archive scrapbook",
+  "en_how": "A yellowed album page with fractal-noise rust stains; a hatched engraving of a lighthouse with hand tint on a torn card, yellowed tape, a pegged card on twine, typewriter text typed char by char, ransom-note letters slapped on, a red-pen circle drawn with drawPartial and a rubber stamp.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

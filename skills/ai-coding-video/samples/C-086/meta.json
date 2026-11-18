@@ -1,0 +1,9 @@
+{
+  "en_name": "Seamless-loop science illustration",
+  "en_how": "Flat layered mountains, sea, forest and clouds; every motion is a periodic function of t/duration (vapour, rain and river dashes use the fractional part of phase + i/n, waves shift by exactly one wavelength), and four bilingual stage labels light up by phase, so the last frame equals the first.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

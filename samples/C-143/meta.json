@@ -1,0 +1,9 @@
+{
+  "en_name": "Russian Constructivism",
+  "en_how": "A greyscale 'photo' of smokestacks and a gear is drawn small and turned into halftone dots, cut out with a white border; a red wedge stabs into a black circle, bold block characters slam down one by one along the diagonal, and the whole board pushes in and pulls out with expo easing.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
