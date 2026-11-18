@@ -1,0 +1,9 @@
+{
+  "en_name": "Chinese paper-cut collage",
+  "en_how": "Rice-paper ground and ink-line mountains are drawn once; moon, clouds, crane, boat and reeds are each an off-screen line-drawn paper piece with a jittered torn outline, sliding in from below with an overshoot and a hard drop shadow, then breathing by weight before a vermilion seal stamps down.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

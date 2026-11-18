@@ -433,17 +433,23 @@
 
 ## C-086 无缝循环科普插画
 
+![无缝循环科普插画](../images/C-086.jpg)
+
 ```text
 用扁平分层插画的无缝循环风格：柔和低饱和配色的风景（海、雪山、森林、河流），云和雨是分层平涂而非写实体积，过程按阶段出现中英小标签，所有运动都是周期函数，最后一帧与第一帧完全一致可无限循环。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：科普素材、网站背景、展厅屏幕
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-086/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-086)
 - 技术（建议）：SVG
 
 <a id="C-095"></a>
 
 ## C-095 国风纸片拼贴
+
+![国风纸片拼贴](../images/C-095.jpg)
 
 ```text
 用国风纸片拼贴动画风格：画面主体（人、动物、器物、山、云）拆成一张张白描纸片，叠在墨线山水底图上，纸片边缘撕出毛边并带硬纸投影，每张纸片从侧下方带回弹滑入、之后缓慢呼吸浮动，主角动得多、远景几乎不动，全片只有一个高饱和色：朱红印章；中文由代码渲染，不让模型把字画进图里。
@@ -451,6 +457,8 @@
 
 - 题材：东方传统
 - 适合：成语、古诗、国学与传统文化科普
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-095/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-095)
 - 技术（建议）：SVG
 - 参考：[国风视觉 DNA](https://github.com/AllenAI2014/remotion-guofeng-starter/blob/main/style/design.md) · [remotion-guofeng-starter](https://github.com/AllenAI2014/remotion-guofeng-starter)
 
@@ -458,12 +466,16 @@
 
 ## C-098 丝网印刷旅行海报
 
+![丝网印刷旅行海报](../images/C-098.jpg)
+
 ```text
 用丝网印刷旅行海报风格：4–6 种不透明的平涂油墨一色一色印出来，用分层色带代替渐变，各层套印错位 1–3 px、留下一丝纸白缝，米色纸张带纤维和针孔，底部一条深色信息带放地名和数字，信息像印刷一样一层一拍地出现；参考上世纪国家公园丝网海报的做法，不照搬任何真实海报。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：旅行指南、活动海报、景点与路线系列
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-098/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-098)
 - 技术（建议）：SVG · Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/silkscreen-poster/STYLE.md)
 
@@ -471,12 +483,16 @@
 
 ## C-100 旧档案剪贴簿
 
+![旧档案剪贴簿](../images/C-100.jpg)
+
 ```text
 用旧档案剪贴簿风格：泛黄、带锈斑的老相册页，撕边卡片用发黄的胶带粘住或用木夹子夹在麻绳上，卡片上是手工上过淡彩的铜版插画，配打字机字、勒索信式剪字和红笔批注，最后盖一个橡皮章。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：调查与历史故事、田野笔记、悬疑纪录片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-100/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-100)
 - 技术（建议）：HTML/CSS
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/scrapbook.md)
 
@@ -518,12 +534,16 @@
 
 ## C-104 1950 年代中世纪卡通
 
+![1950 年代中世纪卡通](../images/C-104.jpg)
+
 ```text
 用 1950 年代中世纪（Mid-century）卡通风格：颜色印得和断开的墨线错开几个像素、按两帧一拍抖动，人物是蛋形头和豆形头的几何造型，讲解人的身体不动、只有手臂、手、眼睛和嘴在动，房间只有一块色面加一条地板线，用温暖的原子时代互补色，配冷爵士小乐队。
 ```
 
 - 题材：卡通与动漫
 - 适合：操作指南、产品使用步骤、食谱卡、安全提示
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-104/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-104)
 - 技术（建议）：SVG
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/midcentury-toon/STYLE.md) · [同风格静帧：anidoodle](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/INDEX.md)
 
@@ -650,12 +670,16 @@
 
 ## C-123 手账剪贴本
 
+![手账剪贴本](../images/C-123.jpg)
+
 ```text
 用手账剪贴本风格：牛皮纸桌面上斜放着横线笔记本页，拍立得照片用米色和薄荷色和纸胶带贴住、下面写手写说明，撕边纸条标关键词，模切贴纸和橡皮章标记里程碑，红蓝马克笔画箭头、星星和圈，元素都歪 2–8°，换场时一页新纸滑过桌面。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：项目幕后、成长记录、旅行日志
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-123/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-123)
 - 技术（建议）：HTML/CSS · SVG · GSAP
 - 参考：[code-video scrapbook.md](https://github.com/Changroro/code-video/blob/main/references/styles/scrapbook.md)
 
@@ -697,12 +721,16 @@
 
 ## C-137 新艺术运动
 
+![新艺术运动](../images/C-137.jpg)
+
 ```text
 用新艺术运动风格：画面被一圈鞭子般弯曲的有机线框住，线条外粗内细，主角身后衬一个圆形光环，长发和衣褶卷成 S 形波浪，配色是橄榄绿、芥末黄、蜜桃粉和金，边框上的花藤从四角长出来，转场是金边曲线生长并包住整个新画面。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：海报式开场、美妆与香氛、文学与诗歌
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-137/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-137)
 - 技术（建议）：SVG · GSAP
 - 参考：[huashu 风格卡 10_nouveau](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/10_nouveau.md) · [huashu 风格卡 18_klimt](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/18_klimt.md)
 
@@ -710,12 +738,16 @@
 
 ## C-143 俄国构成主义
 
+![俄国构成主义](../images/C-143.jpg)
+
 ```text
 用俄国构成主义风格：灰卡纸底上只有黑和红两色大平面与斜放的粗体方块字，代码画出的灰度“照片”经网点化后剪下、带白边贴上去，红色楔形直刺黑色圆形，构图沿对角线冲出画框，标语逐字像盖章一样砸下，镜头在拼贴板上快速推拉。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：宣言与观点片、工业与工程史、论证型讲解
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-143/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-143)
 - 技术（建议）：SVG · Canvas 2D · GSAP
 - 参考：[huashu 风格卡 22_constructivism](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/22_constructivism.md) · [opus-5.5-mv photomontage](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/photomontage)
 
@@ -723,12 +755,16 @@
 
 ## C-146 野兽派彩纸剪贴
 
+![野兽派彩纸剪贴](../images/C-146.jpg)
+
 ```text
 用野兽派彩纸剪贴风格：先刷满浓烈水粉的彩纸再直接用剪刀剪出形状，海藻、叶片、星形和舞动人形的边缘带不规则剪口，钴蓝、柠檬黄、品红和翠绿平涂并排，纸片用图钉钉在白墙上留下细小投影，纸角随风轻轻翘动，转场是一大张蓝纸从侧边扫过换场。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：音乐与舞蹈、儿童艺术启蒙、轻快的品牌片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-146/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-146)
 - 技术（建议）：SVG · GSAP
 - 参考：[huashu 风格卡 30_matisse](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/30_matisse.md)
 
@@ -770,12 +806,16 @@
 
 ## C-157 粗描边贴纸科普
 
+![粗描边贴纸科普](../images/C-157.jpg)
+
 ```text
 用粗描边贴纸科普风格：米白或蓝灰底的超大画布上铺满带粗白边和小投影的“贴纸”，物件全部用代码画成扁平插画再加白边，旁边是精确的柱状图、滚动数字和细线标注，镜头用长缓动在画布上平移缩放、串起一个个信息点，每句解说都有新元素弹出，只用两三种克制的配色。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：硬核科普、财经知识、企业介绍
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-157/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-157)
 - 技术（建议）：HTML/CSS · D3.js · GSAP
 - 参考：[mg-styles-15 19-paperclip](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/19-paperclip.md)
 

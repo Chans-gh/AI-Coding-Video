@@ -1,0 +1,9 @@
+{
+  "en_name": "Bold-outline sticker explainer",
+  "en_how": "Info points sit on a world canvas several times larger than the frame; flat vector objects get a thick white stroke and small shadow as the sticker border, the camera eases between points with long pans and zooms, stickers pop in, bars grow and numbers roll, with thin leader lines.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

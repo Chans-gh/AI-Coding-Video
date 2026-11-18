@@ -1,0 +1,9 @@
+{
+  "en_name": "Art Nouveau",
+  "en_how": "Every line is a filled band that swells and thins along its arc length; the profile, S-curved hair locks (sine curves with phase shifting in t) and the halo are outlined this way, corner vines grow with leaves popping along them, and a gold whiplash line draws the frame while the picture opens inside a circular mask.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

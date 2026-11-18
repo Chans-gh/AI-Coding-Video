@@ -2796,18 +2796,25 @@
    "name": "无缝循环科普插画",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-086.jpg",
    "prompt": "用扁平分层插画的无缝循环风格：柔和低饱和配色的风景（海、雪山、森林、河流），云和雨是分层平涂而非写实体积，过程按阶段出现中英小标签，所有运动都是周期函数，最后一帧与第一帧完全一致可无限循环。",
    "theme": "信息讲解与产品发布",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "科普素材、网站背景、展厅屏幕",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-086/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-086"
+   },
    "pack": null,
    "refs": []
   },
@@ -3029,18 +3036,25 @@
    "name": "国风纸片拼贴",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-095.jpg",
    "prompt": "用国风纸片拼贴动画风格：画面主体（人、动物、器物、山、云）拆成一张张白描纸片，叠在墨线山水底图上，纸片边缘撕出毛边并带硬纸投影，每张纸片从侧下方带回弹滑入、之后缓慢呼吸浮动，主角动得多、远景几乎不动，全片只有一个高饱和色：朱红印章；中文由代码渲染，不让模型把字画进图里。",
    "theme": "东方传统",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "成语、古诗、国学与传统文化科普",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-095/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-095"
+   },
    "pack": null,
    "refs": [
     {
@@ -3111,19 +3125,26 @@
    "name": "丝网印刷旅行海报",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-098.jpg",
    "prompt": "用丝网印刷旅行海报风格：4–6 种不透明的平涂油墨一色一色印出来，用分层色带代替渐变，各层套印错位 1–3 px、留下一丝纸白缝，米色纸张带纤维和针孔，底部一条深色信息带放地名和数字，信息像印刷一样一层一拍地出现；参考上世纪国家公园丝网海报的做法，不照搬任何真实海报。",
    "theme": "印刷、版画与装饰",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "旅行指南、活动海报、景点与路线系列",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-098/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-098"
+   },
    "pack": null,
    "refs": [
     {
@@ -3164,18 +3185,25 @@
    "name": "旧档案剪贴簿",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-100.jpg",
    "prompt": "用旧档案剪贴簿风格：泛黄、带锈斑的老相册页，撕边卡片用发黄的胶带粘住或用木夹子夹在麻绳上，卡片上是手工上过淡彩的铜版插画，配打字机字、勒索信式剪字和红笔批注，最后盖一个橡皮章。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "调查与历史故事、田野笔记、悬疑纪录片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-100/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-100"
+   },
    "pack": null,
    "refs": [
     {
@@ -3284,18 +3312,25 @@
    "name": "1950 年代中世纪卡通",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-104.jpg",
    "prompt": "用 1950 年代中世纪（Mid-century）卡通风格：颜色印得和断开的墨线错开几个像素、按两帧一拍抖动，人物是蛋形头和豆形头的几何造型，讲解人的身体不动、只有手臂、手、眼睛和嘴在动，房间只有一块色面加一条地板线，用温暖的原子时代互补色，配冷爵士小乐队。",
    "theme": "卡通与动漫",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "操作指南、产品使用步骤、食谱卡、安全提示",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-104/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-104"
+   },
    "pack": null,
    "refs": [
     {
@@ -3899,20 +3934,27 @@
    "name": "手账剪贴本",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-123.jpg",
    "prompt": "用手账剪贴本风格：牛皮纸桌面上斜放着横线笔记本页，拍立得照片用米色和薄荷色和纸胶带贴住、下面写手写说明，撕边纸条标关键词，模切贴纸和橡皮章标记里程碑，红蓝马克笔画箭头、星星和圈，元素都歪 2–8°，换场时一页新纸滑过桌面。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "项目幕后、成长记录、旅行日志",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS",
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-123/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-123"
+   },
    "pack": null,
    "refs": [
     {
@@ -4327,19 +4369,26 @@
    "name": "新艺术运动",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-137.jpg",
    "prompt": "用新艺术运动风格：画面被一圈鞭子般弯曲的有机线框住，线条外粗内细，主角身后衬一个圆形光环，长发和衣褶卷成 S 形波浪，配色是橄榄绿、芥末黄、蜜桃粉和金，边框上的花藤从四角长出来，转场是金边曲线生长并包住整个新画面。",
    "theme": "印刷、版画与装饰",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "海报式开场、美妆与香氛、文学与诗歌",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-137/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-137"
+   },
    "pack": null,
    "refs": [
     {
@@ -4497,20 +4546,27 @@
    "name": "俄国构成主义",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-143.jpg",
    "prompt": "用俄国构成主义风格：灰卡纸底上只有黑和红两色大平面与斜放的粗体方块字，代码画出的灰度“照片”经网点化后剪下、带白边贴上去，红色楔形直刺黑色圆形，构图沿对角线冲出画框，标语逐字像盖章一样砸下，镜头在拼贴板上快速推拉。",
    "theme": "平面设计与动态排版",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "宣言与观点片、工业与工程史、论证型讲解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-143/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-143"
+   },
    "pack": null,
    "refs": [
     {
@@ -4583,19 +4639,26 @@
    "name": "野兽派彩纸剪贴",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-146.jpg",
    "prompt": "用野兽派彩纸剪贴风格：先刷满浓烈水粉的彩纸再直接用剪刀剪出形状，海藻、叶片、星形和舞动人形的边缘带不规则剪口，钴蓝、柠檬黄、品红和翠绿平涂并排，纸片用图钉钉在白墙上留下细小投影，纸角随风轻轻翘动，转场是一大张蓝纸从侧边扫过换场。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "音乐与舞蹈、儿童艺术启蒙、轻快的品牌片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "SVG",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-146/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-146"
+   },
    "pack": null,
    "refs": [
     {
@@ -4910,20 +4973,27 @@
    "name": "粗描边贴纸科普",
    "file": "styles/svg-html.md",
    "layer": "svg-html",
-   "image": null,
+   "image": "images/C-157.jpg",
    "prompt": "用粗描边贴纸科普风格：米白或蓝灰底的超大画布上铺满带粗白边和小投影的“贴纸”，物件全部用代码画成扁平插画再加白边，旁边是精确的柱状图、滚动数字和细线标注，镜头用长缓动在画布上平移缩放、串起一个个信息点，每句解说都有新元素弹出，只用两三种克制的配色。",
    "theme": "信息讲解与产品发布",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "硬核科普、财经知识、企业介绍",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "HTML/CSS",
     "D3.js",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-157/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-157"
+   },
    "pack": null,
    "refs": [
     {
