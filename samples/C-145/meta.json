@@ -1,0 +1,10 @@
+{
+  "en_name": "American urban realism",
+  "en_how": "The room, the brick building outside, the chair and the seated woman are drawn twice, in shadow tones and in lit warm tones; the lit pass is clipped to a hard-edged parallelogram made by shifting and shearing the window frame, which drifts right so the morning light crosses the wall, the floor and finally her face, with a fixed camera.",
+  "tech": [
+    "Canvas 2D",
+    "GSAP",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

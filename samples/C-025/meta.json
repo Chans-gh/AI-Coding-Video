@@ -1,0 +1,9 @@
+{
+  "en_name": "Layered paper-card cutout",
+  "en_how": "Each layer (far hills, forest, cottage, foreground grass) is cut once into an off-screen card wider than the frame, with a jittered scissor edge, a pale fibre line and paper grain; cards slide at different speeds with drop shadows for parallax, the moon and stars swing on threads like pendulums, and a jointed paper girl rotates each limb around its rivet.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

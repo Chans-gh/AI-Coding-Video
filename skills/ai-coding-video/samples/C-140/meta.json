@@ -1,0 +1,10 @@
+{
+  "en_name": "Synthetist flat colour",
+  "en_how": "Sky, hills, orange-red field, purple tree shadow, blue trunk, green crown and a seated figure are flat colour areas, each outlined with the same thick dark-blue line like cloisonné; only the crown and grass sway and the figure breathes, then a dark-blue outlined block slides in and carries the title.",
+  "tech": [
+    "Canvas 2D",
+    "SVG",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

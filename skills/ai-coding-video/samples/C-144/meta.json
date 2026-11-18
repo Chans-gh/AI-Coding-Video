@@ -1,0 +1,10 @@
+{
+  "en_name": "Surrealism",
+  "en_how": "A cyan-to-apricot sky over a low-horizon plain; every point of a clock face, ticks and hands passes through one warp that folds the part beyond a stone's edge downward and stretches it over time, so the clock melts; a long-legged animal walks slowly, shadows are sheared long, and the next scene flows down through a row of drip-shaped edges.",
+  "tech": [
+    "Canvas 2D",
+    "WebGL",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

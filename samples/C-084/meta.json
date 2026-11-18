@@ -1,0 +1,9 @@
+{
+  "en_name": "1950s science textbook",
+  "en_how": "A yellowed page with subject, chapter and page number; figures are shaded only with halftone dots (dot area follows a density function, clipped to each shape) plus blue and orange spot colours, a 'Figure 1' caption and a black 'Did you know' box; the page then folds over the spine to reveal the prism page.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

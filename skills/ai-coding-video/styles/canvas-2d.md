@@ -268,12 +268,16 @@
 
 ## C-025 分层卡纸剪纸
 
+![分层卡纸剪纸](../images/C-025.jpg)
+
 ```text
 用分层卡纸剪纸风格：场景由多层彩色卡纸前后叠成，每层边缘是剪刀剪出的不规则线并露出纸纤维，层与层之间有真实投影，镜头移动时各层形成视差，星星和月亮像用线吊着，角色是关节式剪纸。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：童话、情感开场
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-025/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-025)
 - 技术（建议）：Canvas 2D
 - 参考：[源码](https://github.com/yasinozmeen/animasyon-stil-katalogu/tree/main/stiller/kagit-kesik) · [Papermotion](https://github.com/francozanardi/papermotion)
 
@@ -416,12 +420,16 @@
 
 ## C-056 微游戏快闪
 
+![微游戏快闪](../images/C-056.jpg)
+
 ```text
 用微游戏快闪风格：每关只有几秒、屏幕上一个大写指令词（如“吃！”）、只做一个动作，每一关换一种完全不同的画风（蜡笔、蓝图、像素…），关与关之间有倒计时和成败判定，节奏越来越快。
 ```
 
 - 题材：游戏
 - 适合：趣味、短视频
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-056/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-056)
 - 技术（建议）：Canvas 2D
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/microgame/STYLE.md)
 
@@ -497,12 +505,16 @@
 
 ## C-084 1950 年代科学教科书
 
+![1950 年代科学教科书](../images/C-084.jpg)
+
 ```text
 用 1950 年代科学教科书插图风格：泛黄米色纸页，页眉有科目、章节名和页码，插图用单色网点加有限的蓝、橙专色，图注写“Fig. 1”，粗衣线大标题，旁边有黑底白字的“知识补充”小方框，像翻书一样一页一页讲解。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：科普、复古教学栏目
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-084/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-084)
 - 技术（建议）：Canvas 2D
 
 <a id="C-087"></a>
@@ -652,12 +664,16 @@
 
 ## C-108 等距绘本
 
+![等距绘本](../images/C-108.jpg)
+
 ```text
 用等距绘本风格：30° 真等距、满出画框的一处真实场所（站台、闸机、路口），只用三色阶平涂、无描边无阴影，背对镜头的无脸小人按规则依次走动，屋顶像纸翻页一样掀开，衬线大字一个字一个字落在地面上，配柔和的立式钢琴和颤音琴。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：公共礼仪、排队规则、生活常识
+- 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-108/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-108)
 - 技术（建议）：Canvas 2D · GSAP · Web Audio
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/isometric-picture-book/STYLE.md)
 
@@ -880,12 +896,16 @@
 
 ## C-140 综合主义平涂
 
+![综合主义平涂](../images/C-140.jpg)
+
 ```text
 用综合主义平涂风格：大块不讲透视的平涂色面，每块用深蓝或深褐粗轮廓圈住，像掐丝珐琅一样，颜色按情绪而不按自然，草地可以是橙红、树影可以是紫，人物造型简化、姿态静止，背景常是一整片单色，只有风和呼吸在动，转场是一块色面滑入覆盖画面。
 ```
 
 - 题材：手绘与绘画
 - 适合：神话与民俗、热带风情、心理与象征叙事
+- 技术（已验证）：Canvas 2D · SVG · Playwright · ffmpeg
+- 样片代码：[samples/C-140/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-140)
 - 技术（建议）：Canvas 2D · SVG
 - 参考：[huashu 风格卡 48_gauguin](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/48_gauguin.md)
 
@@ -919,12 +939,16 @@
 
 ## C-144 超现实主义
 
+![超现实主义](../images/C-144.jpg)
+
 ```text
 用超现实主义风格：无限延伸的平坦荒原和低地平线，傍晚斜光拉出极长的影子，日常物体以不合理的方式出现，钟表像软蜡一样往下流淌，长腿动物缓慢走过，形体画得写实、处境却荒谬，天空是澄澈的青到杏黄渐变，转场是新画面像液滴一样从上往下流下来盖住旧画面。
 ```
 
 - 题材：手绘与绘画
 - 适合：梦境与记忆、时间主题、哲学短片
+- 技术（已验证）：Canvas 2D · WebGL · Playwright · ffmpeg
+- 样片代码：[samples/C-144/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-144)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[huashu 风格卡 23_dali](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/23_dali.md)
 
@@ -932,12 +956,16 @@
 
 ## C-145 美国都市写实主义
 
+![美国都市写实主义](../images/C-145.jpg)
+
 ```text
 用美国都市写实主义风格：空荡的餐馆、加油站和公寓窗边，清晨或深夜的光以锋利的硬边斜块落在墙和地板上，色面平整几乎看不到笔触，人物孤零零地坐着不动，只有光斑缓慢移动扫过脸，配色是暖黄、青绿和砖红，镜头固定不动，声音只有远处的车声。
 ```
 
 - 题材：手绘与绘画
 - 适合：孤独与城市题材、短篇小说改编、安静的情绪片
+- 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-145/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-145)
 - 技术（建议）：Canvas 2D · GSAP
 - 参考：[huashu 风格卡 24_hopper](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/24_hopper.md)
 
@@ -945,12 +973,16 @@
 
 ## C-147 波普艺术
 
+![波普艺术](../images/C-147.jpg)
+
 ```text
 用波普艺术风格：粗黑描边的漫画式人物，皮肤和背景是规则的大号网点，只用纯黄、纯红、纯蓝和黑白，思考泡和拟声字放大到占半个画面，同一张头像在四宫格里不断换配色，换场时一道闪电劈开画面并整体网点化，节奏跟着鼓点硬切。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：消费与流行文化、广告片、喜剧短片
+- 技术（已验证）：Canvas 2D · p5.js · Playwright · ffmpeg
+- 样片代码：[samples/C-147/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-147)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 13_pop](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/13_pop.md)
 
@@ -1053,12 +1085,16 @@
 
 ## C-163 夜色平涂海报
 
+![夜色平涂海报](../images/C-163.jpg)
+
 ```text
 用夜色平涂海报风格：靛蓝夜色里只有窗口和路灯的琥珀色光，阴影是硬边几何色块，人物只用轮廓线勾出，画面被弧形接缝分成几格，同一个街角在不同时刻各占一格，结尾所有格子收拢成一栋楼，每格变成一扇亮灯的窗。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：城市日常、多线并行故事、温情 MV
+- 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-163/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-163)
 - 技术（建议）：Canvas 2D · GSAP
 - 参考：[opus-5.5-mv night-poster](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/night-poster)
 

@@ -1,0 +1,10 @@
+{
+  "en_name": "Isometric picture book",
+  "en_how": "A hand-written 30° isometric projection builds the platform, train and gates from boxes with three flat tones and no outlines; the roof flips back like a page, the doors slide open, two people get off and then the faceless queue walks in along a polyline, while four serif characters drop onto the floor through an affine transform.",
+  "tech": [
+    "Canvas 2D",
+    "GSAP",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

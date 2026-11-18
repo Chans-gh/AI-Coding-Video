@@ -1,0 +1,10 @@
+{
+  "en_name": "Pop art",
+  "en_how": "An original comic head with thick black outlines and large regular dots, using only pure yellow, red, blue, black and white; hard cuts on the beat go from a thought bubble to a half-screen onomatopoeia, a lightning bolt that turns the whole frame into dots (the previous shot used as a pattern fill), and a four-panel grid recoloured every beat.",
+  "tech": [
+    "Canvas 2D",
+    "p5.js",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
