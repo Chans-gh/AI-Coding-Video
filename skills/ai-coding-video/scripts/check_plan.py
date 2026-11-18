@@ -457,7 +457,7 @@ def rule_list(v):
 
 
 def check_storyboard(P, sb, plan_rel=None, lib=None):
-    """分镜脚本：plan、seg 在框架里且按框架顺序、每个段号都用到、同一段号的秒数贴近篇幅、ar 和全片时长贴近策划、
+    """分镜脚本：plan、seg 在框架里且按框架顺序、每个段号都用到、每段的秒数贴近篇幅、ar 和全片时长贴近策划、
     不说话的片子 unify.voice 是 null；格式 3 另查 rule 的 K 号在约束表里、框架「怎么证明」写了 K 的段里 G 类分镜写了 rule、
     分镜 src 用到的素材：不能送生成的不进 G 类分镜，只作参考的不进成片"""
     errs, notes = [], []
@@ -479,7 +479,7 @@ def check_storyboard(P, sb, plan_rel=None, lib=None):
     for p, t in total.items():
         want = P['frame'][p]['sec']
         if want and t and abs(t - want) > want * 0.15:
-            notes.append(f'{p} 各段合计 {t:g} 秒，框架篇幅是 {P["frame"][p]["篇幅"]}')
+            notes.append(f'{p} 写了 {t:g} 秒，框架篇幅是 {P["frame"][p]["篇幅"]}')
     whole = sum(total.values())
     if P.get('sec') and whole and abs(whole - P['sec']) > P['sec'] * cs.TOLERANCE:
         notes.append(f'各段合计 {whole:g} 秒，策划的目标时长是 {P["sec"]:g} 秒')

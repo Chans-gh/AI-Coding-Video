@@ -319,10 +319,11 @@ def check_segments(sb, lib, has_plan):
         g = s.get('seg')
         if not isinstance(g, str) or not SEG_ID.fullmatch(g):
             errs.append(f'{where}：seg {g!r} 要写 "P1" 这样的段号')
-        elif not has_plan:
-            if g in seen:
-                errs.append(f'{where}：seg {g} 重复了；无策划时一段一个段号')
-            elif seen and SEG_ID.fullmatch(seen[-1]) and int(g[1:]) <= int(seen[-1][1:]):
+        elif g in seen:
+            errs.append(f'{where}：seg {g} 重复了；一段一个段号（配音、出片按段号认文件），'
+                        '要切几个画面写成这段的 shots')
+        else:
+            if not has_plan and seen and SEG_ID.fullmatch(seen[-1]) and int(g[1:]) <= int(seen[-1][1:]):
                 errs.append(f'{where}：seg {g} 排在 {seen[-1]} 后面，按播放顺序编 P1、P2…')
             seen.append(g)
         for k in ('title', 'content'):
