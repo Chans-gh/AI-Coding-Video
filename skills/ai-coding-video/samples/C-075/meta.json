@@ -1,0 +1,5 @@
+{
+  "en_name": "Abstract brand film",
+  "en_how": "A WebGL shader draws red, blue and white rings on a dark navy ground and switches on every beat between concentric rings, diagonal bars and rotating squares; the oversized wordmark is written onto a small canvas, alpha-thresholded and scaled up into hard pixels, sliced into horizontally offset strips with split red and blue copies, its pixels getting finer beat by beat until it freezes as a crisp logo with a tagline.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

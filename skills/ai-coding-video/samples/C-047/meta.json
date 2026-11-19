@@ -1,0 +1,5 @@
+{
+  "en_name": "Launch-film particle tunnel",
+  "en_how": "A full-screen WebGL shader turns each pixel into an (angle, depth) coordinate on the tunnel wall, scatters gold particles by hash in that grid and draws ring and longitudinal lines, fading with depth and stretching into streaks up close, with depth advanced by time for a high-speed fly-through; oversized number title cards are drawn on top in Canvas and hard-cut every two beats, then the tunnel slows and dims under a freeze-frame brand wordmark.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

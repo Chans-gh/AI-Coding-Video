@@ -80,6 +80,7 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 **WebGL 全屏着色器**
 
 - `glInit(w, h)` — 准备 WebGL2 离屏画布（init 里调一次）
+- `GLSL_LIB` — GLSL 常用函数（字符串，拼在 glProgram 的 frag 最前面）：hash21 哈希、vnoise 值噪声（0–1）、fbm 五层分形噪声、rot 二维旋转、pal 余弦调色板、sdBox 方框距离
 - `glProgram(name, frag)` — 编译全屏片元着色器；frag 里可用 uniform T（秒）、R（分辨率），输出写 O
 - `glDraw(ctx, name, t, w, h, x = 0, y = 0, dw = W, dh = H, extra = {})` — 用 w×h 分辨率跑着色器 name，再画到 ctx 的 (x,y,dw,dh)；分辨率可低于 W×H 省时。extra 传额外 uniform：数字 → float，2–4 个数 → vec，更长的数组 → float[]，画布 → sampler2D 贴图
 
