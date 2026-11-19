@@ -1,0 +1,11 @@
+{
+  "en_name": "Voxel world",
+  "en_how": "A heightmap is computed from fractal noise and Three.js instanced meshes place uniform cubes column by column (only the top few layers): grass on top, earth on the sides, sand near the waterline; each cube is darkened by how many neighbours surround it as a cheap ambient occlusion, trees, flowers and a little house with glowing windows are built from the same cubes, and a translucent water plane sits at a fixed level; three shots re-light the same world with different environment maps, fog and lights (morning, blue hour, rain), with the rain shot adding a grey overlay and code-drawn rain streaks.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
