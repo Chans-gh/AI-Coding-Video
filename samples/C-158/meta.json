@@ -1,0 +1,5 @@
+{
+  "en_name": "Marbled paper",
+  "en_how": "Every ink drop and every comb pass is an exactly invertible plane deformation (a drop pushes points outside it radially outward, preserving area; a comb shifts points along the tine direction by an amount that falls off with distance to the nearest tine); each frame traces every pixel backwards from the last step to the first and takes the colour of the earliest drop it lands in, darkening a thin vein near that drop's edge and adding a few pigment grains; all amounts depend only on time, so pulling the comb amounts back at the end combs the pattern back to exactly where it was.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -108,6 +108,15 @@ function weathering({ w = W / 2, h = H / 2, flake = .12, flakeColor = '#D8C4A0',
   }
   return c;
 }
+// 纸齿遮罩：只有纸面凸起处挂得住颜料（蜡笔、炭笔、粉笔、岩面上的颜料）。返回 w×h 的透明度遮罩，在笔触层上用 destination-in 叠一次即可；cut 越大露白越多，scale 是齿的粗细（像素）
+function toothMask(w, h, { cut = .45, soft = .1, scale = 3, seed = 1 } = {}) {
+  const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data, o = seed * 37.7;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const n = .5 * vnoise(x / scale + o, y / scale * 1.3) + .3 * vnoise(x / (scale * 5) - o, y / (scale * 5)) + .2 * hash2(x + seed * 131, y);
+    const i = (y * w + x) * 4; d[i] = d[i + 1] = d[i + 2] = 255; d[i + 3] = 255 * clamp((n - cut + soft) / (2 * soft));
+  }
+  g.putImageData(id, 0, 0); return c;
+}
 // 透明颗粒层（明暗噪点），一般不直接用，见 grain()
 function makeGrain(w, h, amt, seed) {
   const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data, R = mulberry32(seed);
@@ -740,4 +749,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, toothMask, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

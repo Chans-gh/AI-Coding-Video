@@ -1,0 +1,5 @@
+{
+  "en_name": "Prehistoric cave painting",
+  "en_how": "The rock wall is a half-resolution fractal-noise height map from which normals and cracks are computed and baked into a base colour; the bison and deer are each pre-painted in three poses (ochre-red and yellow-earth masses with charcoal contours, slightly blurred, then masked with a tooth texture so pigment sinks into the rock grain), and the hand stencils are rings of red spray dots with the hand left bare; each frame cycles the poses by time, then computes a per-pixel light map from the torch position (normal dot light direction, distance falloff, flicker) and multiplies it over everything, so whatever the torch does not reach stays dark.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Folk-tale picture book",
+  "en_how": "Every shape is first laid down as a complete grey pencil underdrawing, each line traced twice slightly offset; the midground fields and cottage are transparent watercolour, polygons repeatedly subdivided into ragged edges and stacked dozens of times at low opacity, multiplied over the pencil; the foreground child, goose, tree and grassy bank are thick gouache, short strokes with a light edge placed at points scattered inside each shape and laid one by one; the distant mountains and tower stay pencil only, so the picture empties out with distance.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
