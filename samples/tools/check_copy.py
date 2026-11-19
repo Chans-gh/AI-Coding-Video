@@ -19,7 +19,7 @@
      "big_num":  {"bigNumber.to": 3.3},
      "shrink":   {"openTape.title": 12},
      "small_limit": 34, "hand_limit": 24,
-     "forbidden": [["保证收益", "收益承诺"], ["返本", "收益承诺"]],
+     "forbidden": [["永远是", "说绝对了"], ["一定能", "承诺效果"]],
      "extreme": ["最", "顶级", "绝对", "全网"],
      "narration_max": 40}
 
@@ -307,7 +307,7 @@ def check_episode(ep: Path, quiet: bool, plan: Path | None = None) -> int:
                     text = text.replace(t, "")    # 「；除外：题目」：题目本身不查
             m = re.search(re.escape(word), text)
             if m is None or any(n in text[max(0, m.start() - 12):m.start()] for n in NEG):
-                continue                          # 「不写「不是收益承诺」」这种说明不算出现
+                continue                          # 「不写「永远是」」这种说明不算出现
             hit.setdefault(word, []).append(text)
         if word in hit:
             if ex["odd"]:
