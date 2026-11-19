@@ -1,0 +1,11 @@
+{
+  "en_name": "",
+  "en_how": "",
+  "tech": [
+    "WebGL",
+    "Three.js",
+    "Remotion",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
