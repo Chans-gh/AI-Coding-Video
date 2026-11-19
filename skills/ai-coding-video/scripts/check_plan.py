@@ -795,8 +795,9 @@ def c4_say(row, said, where, r):
     """C4（某方自己说的）怎么讲照「必须写清的」（策划 0.8.1）：写了讲成观点的（用户、作者、品牌方自己的观点）不加「官方称」；
     写了「讲成「X」」的查 X；都没写的照旧要「官方称」「按计划」"""
     must = row.get('必须写清的', '')
-    if '观点' in must:
-        return [], []
+    for m in re.finditer(r'(不要|不能|不该|别|不)?讲成[^，。；「」]{0,12}观点', must):
+        if not m.group(1):
+            return [], []
     want = re.findall(r'讲成「([^」]+)」', must)
     if want:
         if any(w in said for w in want):

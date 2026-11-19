@@ -165,16 +165,19 @@ def title_texts(title):
     return sorted((x for x in out if x), key=len, reverse=True)
 
 
+REQ = re.compile(r'(不写|不用|不放|不要|不出现|不上屏|不标|不画|别写|别用|别放|别标|无需|不需要|不必)')
+
+
 def screen_items(cell):
     """看什么「上屏的字」→ 要上屏的字的条目。有「」的只认「」里的（别的是说明）；没有的按 、；<br> 拆，
-    「无」和写要求的（「不写比例数字」这类以不、无、别开头的）不算"""
+    「无」和写要求的（「不写比例数字」「别写单位」这类 REQ 句式开头的）不算；「无风」「不倒翁」照样是字"""
     c = cell.strip()
     if not c or c == '无':
         return []
     q = [x.strip() for x in re.findall(r'「([^」]+)」', c) if x.strip()]
     if q:
         return q
-    return [x.strip() for x in re.split(r'<br\s*/?>|[、；;]', c) if x.strip() and not re.match(r'[不无别]', x.strip())]
+    return [x.strip() for x in re.split(r'<br\s*/?>|[、；;]', c) if x.strip() and not REQ.match(x.strip())]
 
 
 def read(cpath, text):
@@ -918,7 +921,7 @@ def check_timing(P, sb, sc, timing, claims, looks):
         if abs(rate - P['cps']) > P['cps'] * 0.1 and isinstance(sp, (int, float)) and not isinstance(sp, bool):
             want = sp * P['cps'] / rate
             msg += (f'；差了 {abs(rate - P["cps"]) / P["cps"]:.0%}，' +
-                    (f'unify.voice.speed 可以从 {sp:g} 按比例调到约 {want:.2f}（本地合成音比真实配音约慢 13%，见 sound.md）'
+                    (f'unify.voice.speed 可以从 {sp:g} 按比例调到约 {want:.2f}（不同配音、音色快慢不一，以实测为准，见 sound.md）'
                      if 0.5 <= want <= 2 else '倍速调不回来，先查逐字稿 pace 的停顿和段长'))
         notes.append(msg)
     return errs, notes

@@ -294,9 +294,9 @@ class CheckPlan5(unittest.TestCase):
     def test_j2_onscreen_text(self):
         """F4：「上屏的字」逐项和分镜上屏的字比，对不上的列出来；有「偏离」回报的放过"""
         d = self.v5([(C, '| 「一个标准大气压下」 |', '| 「一个标准大气压下」「海平面」 |'),
-                     (C, '| 气压越低，沸点越低 | 无 |', '| 气压越低，沸点越低 | 「已交保费」「现金价值」「第 12 年」 |')])
+                     (C, '| 气压越低，沸点越低 | 无 |', '| 气压越低，沸点越低 | 「高压锅」「气压计」「海拔 8848 米」 |')])
         out = self.assertErr(d, 'H1「上屏的字」的「海平面」')
-        self.assertIn('H2「上屏的字」的「已交保费」「现金价值」「第 12 年」', out)
+        self.assertIn('H2「上屏的字」的「高压锅」「气压计」「海拔 8848 米」', out)
         self.assertNotIn('「一个标准大气压下」在', out)
         d = self.v5([(C, '| 「一个标准大气压下」 |', '| 「一个标准大气压下」「海平面」 |'),
                      (C, '| X2 | P1 | 压缩 | S3 | 压成「气压越低，沸点越低」 | 下游 | 已知悉 |  |',
@@ -308,6 +308,10 @@ class CheckPlan5(unittest.TestCase):
         d = self.v5([(C, '| 气压越低，沸点越低 | 无 |', '| 气压越低，沸点越低 | 不写比例数字 |')])
         code, out = self.run5(d)
         self.assertEqual(code, 0, out)
+        # 只跳过写要求的句式；「无风」「不倒翁」这种以不、无开头的字照样要上屏
+        d = self.v5([(C, '| 气压越低，沸点越低 | 无 |', '| 气压越低，沸点越低 | 无风、不倒翁、别写单位 |')])
+        out = self.assertErr(d, 'H2「上屏的字」的「无风」「不倒翁」在')
+        self.assertNotIn('「别写单位」', out)
 
     def test_j2_show_back_to_original(self):
         """F5：vo 按 show 换回字幕写法要等于原文：漏了 show 报错；show 的键在 vo 里找不到也报错"""
@@ -362,6 +366,13 @@ class CheckPlan5(unittest.TestCase):
         code, out = self.run5(d, extra=['--table'])
         self.assertEqual(code, 0, out)
         self.assertIn('实测语速：每秒 2.4 字（按念法数，含停顿', out)
+        # 建议倍速只按实测算，不带某次测出来的固定比例
+        d = self.v5([(SB, '"speed": 1.08', '"speed": 0.9')])
+        self.timing(d)
+        code, out = self.run5(d, extra=['--table'])
+        self.assertIn('unify.voice.speed 可以从 0.9 按比例调到约 1.71', out)
+        self.assertIn('以实测为准', out)
+        self.assertNotIn('13%', out)
 
     def test_j2_c4_opinion(self):
         """N14：C4 写了讲成观点的，不再要求「官方称」"""
@@ -377,19 +388,34 @@ class CheckPlan5(unittest.TestCase):
                      (SC, '"calc": "由 P1-2 和气压表推出"}', '"calc": "由 P1-2 和气压表推出"}, {"what": "厂家的数", "ref": "P2-2", "src": null}')])
         code, out = self.run5(d)
         self.assertIn('官方称', out)
+        # 写的是「不要讲成观点」：照旧要「官方称」
+        d = self.v5([(C, '| P2-1 | a | 海拔 4000 米处，水约 87 °C 沸腾 | B6 | 用 P1-2 和教材的气压表 | 公式、用到的编号 | 已核实 | 念 S5 |',
+                      '| P2-1 | a | 海拔 4000 米处，水约 87 °C 沸腾 | B6 | 用 P1-2 和教材的气压表 | 公式、用到的编号 | 已核实 | 念 S5 |\n'
+                      '| P2-2 | a | 厂家称高压锅 3 分钟煮好 | C4 | 厂家官网 · 2026-11-09 | 是厂家的数，不要讲成观点 | 已核实 | 念 S6 |'),
+                     (SC, '"calc": "由 P1-2 和气压表推出"}', '"calc": "由 P1-2 和气压表推出"}, {"what": "厂家的数", "ref": "P2-2", "src": null}')])
+        code, out = self.run5(d)
+        self.assertIn('官方称', out)
+
+    def test_docs_no_past_cases(self):
+        """规则写成通用的：语速和示例不写某次的题目、配音服务和测出来的数"""
+        root = HERE.parent.parent
+        for name in ('sound.md', 'storyboard.md', 'film.md'):
+            text = (root / name).read_text(encoding='utf-8')
+            for bad in ('ep05', 'J2', 'speech-2.8', '约慢 13%', '扣 50%', '保费'):
+                self.assertNotIn(bad, text, f'{name} 里有「{bad}」')
 
     def test_j2_part_values(self):
-        """F6：上屏不写数时，部件的数值要取信息里的（ring 按 0.8 / 0.2 画，信息是扣 50%）"""
+        """F6：上屏不写数时，部件的数值要取信息里的（按 0.8 / 0.2 画，信息写的是 50%）"""
         d = self.v5([(C, '| 折线：海拔升高，沸点往下走 | 代码画 | 走势 | 气压越低，沸点越低 | 无 |',
                       '| 折线：海拔升高，沸点往下走 | 代码画 | 走势 | 气压越低，沸点越低 | 不写比例数字 |'),
-                     (C, '| 气压越低，水的沸点越低 | E2 |', '| 气压越低，水的沸点越低；第 1 年扣 50% | E2 |'),
+                     (C, '| 气压越低，水的沸点越低 | E2 |', '| 气压越低，水的沸点越低；山顶的气压约为海平面的 50% | E2 |'),
                      (SB, '"values": [100, 97, 93, 90, 87]', '"values": [0.8, 0.2]')])
         code, out = self.run5(d)
         self.assertEqual(code, 0, out)
         self.assertIn('分镜 1-2 的 o 里 0.8、0.2 在 H2 用到的信息里找不到', out)
         d = self.v5([(C, '| 折线：海拔升高，沸点往下走 | 代码画 | 走势 | 气压越低，沸点越低 | 无 |',
                       '| 折线：海拔升高，沸点往下走 | 代码画 | 走势 | 气压越低，沸点越低 | 不写比例数字 |'),
-                     (C, '| 气压越低，水的沸点越低 | E2 |', '| 气压越低，水的沸点越低；第 1 年扣 50% | E2 |'),
+                     (C, '| 气压越低，水的沸点越低 | E2 |', '| 气压越低，水的沸点越低；山顶的气压约为海平面的 50% | E2 |'),
                      (SB, '"values": [100, 97, 93, 90, 87]', '"values": [0.5, 0.5]')])
         code, out = self.run5(d)
         self.assertNotIn('在 H2 用到的信息里找不到', out)
