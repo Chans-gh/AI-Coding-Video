@@ -413,6 +413,8 @@ class CheckPlan5(unittest.TestCase):
             self.assertNotIn(bad, sound + board)
         self.assertIn('按自己用的配音引擎实测换算', sound)
         self.assertIn('测的引擎：Kokoro v1.1-zh', sound)
+        # 基调不定语速：基调表没有语速一列
+        self.assertIn('| 基调 | 音色（按用途的哪一行） | 停顿 | 配乐 |', sound)
 
     def test_speed_tier_from_general_only(self):
         """语速档只认总则「语速」一行的 慢、中、快；「快一点」不是档，材料里说的快慢不改档"""
