@@ -43,6 +43,7 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `rgba(c, a)` — [r,g,b] + 透明度 → CSS 颜色串
 - `hex2rgb(h)` — '#rrggbb' → [r,g,b]
 - `makePaper(base, { w = W / 2, h = H / 2, grain = 18, fiber = 0.5, blot = 12, seed = 1 } = {})` — 纸纹：底色 + 纤维 + 颗粒，返回半尺寸离屏画布，在 init() 里做一次，draw 时铺满
+- `weathering({ w = W / 2, h = H / 2, flake = .12, flakeColor = '#D8C4A0', stain = .3, stainColor = '#4A3220', cracks = 10, crackColor = 'rgba(50,34,20,.55)` — 风化层：透明底上叠污渍（大块暗斑）、剥落（按噪声阈值露出底色的斑块，边缘一圈暗线）、裂纹（随机折线），返回半尺寸离屏画布，在 init() 里做一次，铺在画面上就像旧墙、旧漆。o：{w, h, flake 剥落占比 0–1, flakeColor 露出的底色, stain 污渍深浅 0–1, stainColor, cracks 裂纹条数, crackColor, scale 斑块尺度, seed}
 - `makeGrain(w, h, amt, seed)` — 透明颗粒层（明暗噪点），一般不直接用，见 grain()
 - `grain(ctx, frame, alpha = .5, scale = 2)` — 叠一层逐帧跳动的胶片颗粒，frame 传 draw 的第 4 个参数 f
 - `vignette(ctx, a = .5, inner = .35, color = '0,0,0')` — 暗角：从画面中心 inner 处到边缘渐暗到透明度 a

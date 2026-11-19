@@ -1,0 +1,5 @@
+{
+  "en_name": "Ancient Egyptian tomb painting",
+  "en_how": "A sand-coloured plaster wall is built from fractal noise and divided into horizontal registers; figures with profile heads, frontal eyes and shoulders (sized by rank) are flat-filled in earth red, malachite green and lapis blue with fine black outlines, then flaked and cracked by a weathering layer; a column of hieroglyphs is rewritten stroke by stroke, and the wall slides down like a stone slab to reveal the next register.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

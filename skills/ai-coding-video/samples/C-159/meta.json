@@ -1,0 +1,5 @@
+{
+  "en_name": "Magic lantern slides",
+  "en_how": "Each glass slide is a toneMap drawing engraved with three layers of hatchLines and hand-tinted with blurred transparent washes; every frame shows it inside a circular light spot in a pitch-dark hall, flickering with noise like an oil lamp with a dark edge, the second slide slides in sideways, then it dissolves into a chromatrope of two counter-rotating colour discs while the camera pulls back to reveal the screen, red curtains, the projector beam and audience silhouettes.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

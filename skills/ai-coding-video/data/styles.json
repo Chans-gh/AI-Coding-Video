@@ -4215,19 +4215,26 @@
    "name": "古埃及墓室壁画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-129.jpg",
    "prompt": "用古埃及墓室壁画风格：沙黄灰泥墙按横向带状分栏，人物头和腿画侧面、眼睛和肩膀画正面，土红、孔雀绿、青金蓝平涂后勾细黑线，旁边竖排的象形符号一笔一笔重新写出，人物按身份定大小，转场是上一栏像石板一样下滑露出下一栏。",
    "theme": "手绘与绘画",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "古文明科普、历史叙事、仪式与流程讲解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-129/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-129"
+   },
    "pack": null,
    "refs": [
     {
@@ -4242,19 +4249,26 @@
    "name": "古希腊黑绘陶瓶",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-130.jpg",
    "prompt": "用古希腊黑绘陶瓶风格：橙红陶土底上人物和动物都是光亮的黑色剪影，细节用刻线刮出、露出底下的陶色，偶尔点一点紫红和白，画面绕着弧形瓶身展开，回纹和棕榈叶饰带在上下沿反向滚动，镜头像转动陶瓶一样横移换场，配里拉琴拨弦。",
    "theme": "手绘与绘画",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "神话故事、体育竞技、古典文学",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-130/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-130"
+   },
    "pack": null,
    "refs": [
     {
@@ -4300,19 +4314,26 @@
    "name": "哥特泥金手抄本",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-132.jpg",
    "prompt": "用哥特泥金手抄本风格：泛黄羊皮纸上是双栏黑体拉丁字和一个巨大的彩绘首字母，背景铺着压花金箔，一道斜向高光随时间扫过所有金色处并闪出四角星，群青和朱红平涂的人物站在尖拱框里，页边的藤蔓和小兽慢慢爬动，转场是翻过一页羊皮纸。",
    "theme": "印刷、版画与装饰",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "中世纪传说、奇幻故事、典籍与历史讲解",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-132/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-132"
+   },
    "pack": null,
    "refs": [
     {
@@ -4936,19 +4957,26 @@
    "name": "敦煌壁画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-150.jpg",
    "prompt": "用敦煌壁画风格：土红色干泥壁作底，矿物色只有石青、石绿、白和赭，颜色褪淡、背景有剥落斑块，人物和走兽用流畅的长线勾出，飞天横向飞过、长飘带在身后起伏，锯齿形小山和被风吹弯的叶片点缀画面，转场是旧画面剥落掉下露出新画，配琵琶。",
    "theme": "东方传统",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "佛教与丝路故事、文博科普、东方奇幻",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-150/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-150"
+   },
    "pack": null,
    "refs": [
     {
@@ -4994,19 +5022,26 @@
    "name": "波斯细密画",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-152.jpg",
    "prompt": "用波斯细密画风格：画面不用透视，花园、建筑和人物从下往上层层堆叠，每一层都布满精细的花草纹样，群青、翠绿、朱红和金色平涂，边框外有书法栏和泥金花边，人物小而多、同时在做不同的事，镜头像读书页一样从下往上缓慢摇，配乌德琴。",
    "theme": "手绘与绘画",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "中东与丝路故事、宫廷与诗歌、群像叙事",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-152/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-152"
+   },
    "pack": null,
    "refs": [
     {
@@ -5210,19 +5245,26 @@
    "name": "魔灯幻灯片",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-159.jpg",
    "prompt": "用魔灯幻灯片风格：漆黑讲堂里一盏油灯把手工上色的雕版玻璃片投在圆形光斑里，四周暗角，光随油灯不停闪烁，换片时玻璃片横向滑入或两张叠化，偶尔插进一片旋转的彩色万花筒片，镜头不时拉远露出幕布和观众剪影，旁白像一场旅行讲座。",
    "theme": "电影年代与屏幕科技",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "历史与游记、讲故事式 MV、维多利亚时代题材",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-159/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-159"
+   },
    "pack": null,
    "refs": [
     {
@@ -5237,19 +5279,26 @@
    "name": "玻璃版长曝光",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-160.jpg",
    "prompt": "用玻璃版长曝光风格：像 19 世纪的玻璃底片曝光几分钟甚至几个月，静止的建筑和树清晰锐利，走过的人只留下半透明的幽灵拖影，太阳在天上画出一道道弧线，银灰色调带光晕、灰尘、划痕和边缘药膜剥落，画面一角的纸套上用手写数字计着曝光时长。",
    "theme": "电影年代与屏幕科技",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "时间流逝、静与动的对比、怀旧与记忆",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-160/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-160"
+   },
    "pack": null,
    "refs": [
     {
@@ -5354,19 +5403,26 @@
    "name": "车厢珐琅彩绘",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-164.jpg",
    "prompt": "用车厢珐琅彩绘风格：画面就是一节旅行篷车的木侧板，用光亮珐琅漆画成，每一笔都是双色鬃刷笔触加一记白色高光挑笔，玫瑰、卷叶和金箔饰框围住中间的风景，表面有清漆细裂，夜景里的灯跟着节拍一盏盏亮起，边框上的彩带打结又解开。",
    "theme": "印刷、版画与装饰",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "公路与旅人、民间集市、节庆夜晚",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "p5.brush"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-164/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-164"
+   },
    "pack": null,
    "refs": [
     {
@@ -5381,19 +5437,26 @@
    "name": "剧院彩绘布景",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-165.jpg",
    "prompt": "用剧院彩绘布景风格：从观众席后排望向一座小剧场，台上的山、树和云都是手绘平板和吊幕，靠铰链和吊线由看不见的工人拉动，鼓风机吹得纸叶乱颤，脚灯从下往上照亮演员，歌词写在台边画架的卡片上，镜头从后排一路推近到舞台。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "戏剧化叙事、喜剧歌曲、舞台感品牌片",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "GSAP"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-165/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-165"
+   },
    "pack": null,
    "refs": [
     {

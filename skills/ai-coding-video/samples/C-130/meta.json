@@ -1,0 +1,5 @@
+{
+  "en_name": "Greek black-figure vase",
+  "en_how": "A frieze of runners, shielded warriors, riders and a lyre player is drawn as glossy black silhouettes with clay-coloured incised details and touches of purple and white, alongside palmette, meander and ray bands, each as a seamless strip; every frame slices them into columns and wraps them onto the vase like a cylinder, rotating the frieze while the upper and lower bands scroll the opposite way, then adds cylindrical shading and a glaze highlight.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
