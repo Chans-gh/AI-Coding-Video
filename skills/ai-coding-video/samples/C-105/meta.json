@@ -1,0 +1,11 @@
+{
+  "en_name": "Sci-fi hologram wireframe",
+  "en_how": "Three.js draws an original small drone (hull, four arms, rotors, battery, gimbal camera) entirely as glowing wireframe (EdgesGeometry with additive blending) floating above a circular projector ringed with tick marks; at the start a scan plane sweeps upward, using a clipping plane to reveal the model; then four parts are locked one by one on a timetable: Canvas 2D targeting brackets shrink and straighten around each part, the part pops out along its own direction, a leader line runs to a side label, and the digits roll from noise into the real value one place at a time; the value that has just locked becomes the only warm orange in the frame.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "en_name": "Iridescent glass bubble",
+  "en_how": "A Three.js MeshPhysicalMaterial sphere uses transmission and thin-film iridescence, with a second additive shader shell on top that flows cyan, magenta and gold by fresnel angle and a slowly drifting noise; window-shaped bars in the studio environment map give the fresnel rim and highlights, and the deep navy backdrop sits inside the scene so the transmission pass can see it; inside is a glowing little city (box towers with emissive window textures and a warm point light); gold coins drop in one by one on a timetable and pile up in the city; then a crack grows along a random walk on the sphere surface (a TubeGeometry revealed with drawRange) and a gold seam traces the same path to seal it, while the camera slowly orbits.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

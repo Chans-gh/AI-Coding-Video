@@ -205,12 +205,16 @@
 
 ## C-068 低多边形等距岛
 
+![低多边形等距岛](../images/C-068.jpg)
+
 ```text
 用低多边形等距小岛风格：正交等距镜头俯看一座漂在海上的小岛，所有物体都是平面着色的几何块、没有贴图，地块颜色有轻微明暗随机，每个新出现的东西带弹性落地并响一个音符，岛屿随时间长大。
 ```
 
 - 题材：3D 与实时图形
 - 适合：成长、建造
+- 技术（已验证）：Three.js · WebGL · Playwright · ffmpeg
+- 样片代码：[samples/C-068/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-068)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/lowpoly-island/STYLE.md)
 
@@ -251,12 +255,16 @@
 
 ## C-072 爆炸图 / 剖面
 
+![爆炸图 / 剖面](../images/C-072.jpg)
+
 ```text
 用 3D 爆炸图风格：白底干净工作室光，物体先完整展示，再沿垂直方向一层一层爆开、每层旁边出现材料标注引线，镜头慢慢环绕，最后按原路合拢；需要看内部时改成剖面切开并叠加气流或热力颜色。
 ```
 
 - 题材：3D 与实时图形
 - 适合：建筑、硬件、数据中心
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-072/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-072)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@RyanSael](https://x.com/RyanSael/status/2102740041621762166)
 
@@ -322,12 +330,16 @@
 
 ## C-078 体素世界
 
+![体素世界](../images/C-078.jpg)
+
 ```text
 用体素（Voxel）风格：地形、建筑、树木全部由统一尺寸的小立方体搭成，方块表面平涂、带轻微环境光遮蔽和柔和阴影，花和树叶是彩色方块簇，水面半透明并反射天空，镜头在多个机位间缓慢切换，可切换清晨、蓝调时刻、雨天等时段氛围。
 ```
 
 - 题材：3D 与实时图形
 - 适合：文旅、游戏官网、儿童科普
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-078/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-078)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-079"></a>
@@ -347,12 +359,16 @@
 
 ## C-080 3D 动画电影式卡通
 
+![3D 动画电影式卡通](../images/C-080.jpg)
+
 ```text
 用 3D 动画电影式卡通风格（Three.js 实时渲染）：圆润夸张的角色造型、大而有高光的眼睛、柔软的材质，三点布光加暖色轮廓光，浅景深，角色动作有挤压拉伸、预备和跟随，表情靠眼睛和眉毛表演，场景是温暖的小世界。
 ```
 
 - 题材：3D 与实时图形
 - 适合：品牌吉祥物、儿童内容、产品拟人化
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-080/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-080)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@scheemunai](https://x.com/scheemunai/status/2102788223835463902)
 
@@ -402,12 +418,16 @@
 
 ## C-105 科幻全息线框
 
+![科幻全息线框](../images/C-105.jpg)
+
 ```text
 用科幻全息线框风格：物体被扫描成发光的线框，悬在圆形投影台上，瞄准框一个个锁定部件并局部爆炸展开，引线拉出，数字从乱码滚动成真实数值，数值锁定的那一帧变成唯一的暖色强调，整体只用一种冷色加一种暖色。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：产品参数讲解、硬件拆解、循环展示屏
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-105/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-105)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/hologram-hud/STYLE.md)
 
@@ -415,12 +435,16 @@
 
 ## C-106 孟菲斯微缩景
 
+![孟菲斯微缩景](../images/C-106.jpg)
+
 ```text
 用孟菲斯微缩景风格：暖白纸面上一个带颗粒边缘的圆角画框从中心张开，框里是一座俯视的桌面模型小镇，糖果原色加粉彩平涂、深靛蓝描边，硬边紫色投影里铺满半调圆点，水波、鸟群、灯火这些小动静处处在动，镜头缓慢环绕一镜到底，配钢琴与马林巴。
 ```
 
 - 题材：3D 与实时图形
 - 适合：城市介绍、季节变化、地方风物
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-106/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-106)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/memphis-diorama/STYLE.md)
 
@@ -428,12 +452,16 @@
 
 ## C-107 地铁线路图生长
 
+![地铁线路图生长](../images/C-107.jpg)
+
 ```text
 用地铁线路图生长风格：线路只走横竖和 45° 八个方向、转角统一圆角，白色站点和黑框换乘胶囊，水面是一条平涂蓝带，发光的笔尖沿线路把网络一段段画出来，镜头是真实透视，贴着纸面掠过、浅景深，站点点亮配钢片琴拨音，换乘处落一记低音。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：交通规划、网络扩张、流程分支
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-107/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-107)
 - 技术（建议）：WebGL · Three.js · Web Audio
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/transit-map/STYLE.md)
 
@@ -467,12 +495,16 @@
 
 ## C-116 夜间博物馆特展
 
+![夜间博物馆特展](../images/C-116.jpg)
+
 ```text
 用夜间博物馆特展风格：近乎全黑的暖炭色展厅，每个镜头只有一束从顶上垂下的琥珀色聚光，光柱里浮着细尘，照亮基座上缓缓自转的低多边形宝石，旁边是米色展签和底部逐字打出的讲解字条，数字做成吊牌和高低不一的展柱，光束暗下再“寻找”下一件展品。
 ```
 
 - 题材：3D 与实时图形
 - 适合：产品回顾、历史沿革、成果展示
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-116/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-116)
 - 技术（建议）：WebGL · Three.js · GSAP
 - 参考：[code-video museum.md](https://github.com/Changroro/code-video/blob/main/references/styles/museum.md)
 
@@ -480,12 +512,16 @@
 
 ## C-126 虹彩玻璃泡
 
+![虹彩玻璃泡](../images/C-126.jpg)
+
 ```text
 用虹彩玻璃泡风格：深藏青影棚里悬着一个肥皂泡般的玻璃球，薄膜干涉让表面流动着青、品红、金三色虹彩，边缘有菲涅尔亮边和窗形高光，球里是一座发光的小城，金币倾泻进来，一道细裂纹出现后被金线封合，镜头缓慢环绕。
 ```
 
 - 题材：3D 与实时图形
 - 适合：AI 经济、市场泡沫、行业趋势
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-126/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-126)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[animation-skills glass-bubble-3d](https://github.com/madhavsomani/animation-skills/blob/main/skills/glass-bubble-3d/SKILL.md)
 
@@ -561,12 +597,16 @@
 
 ## C-161 蜡染
 
+![蜡染](../images/C-161.jpg)
+
 ```text
 用蜡染风格：棉布上只有靛蓝、姜黄和米白蜡三种颜色，场景先在 3D 里被一盏金灯和一盏蓝灯照亮，再换算成染色区：只照到金灯处染黄、只照到蓝灯处染蓝、两盏都照到处留蜡白，蜡面布满细冰裂纹，换色时一道染液前沿扫过布面，四周是几何花边。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：民族与手工艺题材、双人对唱、旅途与田野
+- 技术（已验证）：Three.js · WebGL · GLSL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-161/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-161)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[opus-5.5-mv batik](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/batik)
 

@@ -1,0 +1,11 @@
+{
+  "en_name": "Memphis miniature",
+  "en_how": "Three.js lays out a top-down tabletop town in code (blocks, houses, trees, a canal and bridge, cars, a flock of birds) with flat Lambert materials in candy primaries and pastels, each object traced with a deep indigo edge outline; shadows are rendered in a second pass that keeps only the shadow-receiving ground (a hard-edged shadow map), and Canvas 2D fills that mask with purple halftone dots; the scene sits in a rounded frame with a grainy edge on warm white paper, the frame opens from the centre, the camera orbits slowly in one take, and water ripples, traffic, birds and window lights keep moving.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

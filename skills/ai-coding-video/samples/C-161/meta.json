@@ -1,0 +1,12 @@
+{
+  "en_name": "Batik",
+  "en_how": "Three.js first builds two figures singing to each other with a flower between them, lit only by two lights: the gold light outputs pure red and the blue light pure green (tone mapping and colour-space conversion are off, so the red and green channels are each light's illuminance); a GLSL pass then converts that image into dye zones: lit only by gold dyes turmeric, only by blue dyes indigo, by both stays wax white, by neither is deep indigo, with noise-perturbed thresholds for bleeding edges, Voronoi cell edges drawn as crackle only in the wax areas, and a cotton weave over everything; midway a ragged dye front sweeps left to right and swaps the two dye colours behind it, and the geometric border is drawn in Canvas 2D.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
