@@ -82,13 +82,19 @@ class CheckPlan(unittest.TestCase):
         code, out = self.run_check(self.project('format1'), videos=False)
         self.assertEqual(code, 2, out)
         self.assertIn('格式 1', out)
-        self.assertIn('转成格式 4', out)
+        self.assertIn('转成格式 5', out)
 
     def test_other_version_stops(self):
+        d = self.project(edits=[('plans/demo/plan.md', 'ai-content-planner/3', 'ai-content-planner/6')])
+        code, out = self.run_check(d)
+        self.assertEqual(code, 2, out)
+        self.assertIn('只认 ai-content-planner/2、ai-content-planner/3、ai-content-planner/4、ai-content-planner/5', out)
+
+    def test_v5_in_plan_md_stops(self):
         d = self.project(edits=[('plans/demo/plan.md', 'ai-content-planner/3', 'ai-content-planner/5')])
         code, out = self.run_check(d)
         self.assertEqual(code, 2, out)
-        self.assertIn('只认 ai-content-planner/2、ai-content-planner/3、ai-content-planner/4', out)
+        self.assertIn('格式 5 只读 content.md', out)
 
     def test_no_format_line_stops(self):
         d = self.project(edits=[('plans/demo/plan.md', '格式：ai-content-planner/3\n', '')])

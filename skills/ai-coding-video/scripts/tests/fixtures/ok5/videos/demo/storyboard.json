@@ -1,0 +1,14 @@
+{"plan": "plans/demo/content.md", "ar": "9:16", "status": "草稿",
+ "unify": {"pack": "pack:dark-keynote", "voice": {"model": "kokoro-v1.1-zh", "voice": "zf_083", "speed": 1.08}},
+ "segments": [
+  {"seg": "P1", "title": "100 度", "content": "一个标准大气压下，水在 100 °C 沸腾；气压越低，沸点越低", "sec": 15, "lead": "C", "typical": true,
+   "uses": [{"what": "大数字和折线", "ref": "pack:dark-keynote"}], "note": "测试夹具",
+   "shots": [{"what": "大数字 100 °C 数上来", "ref": "pack:dark-keynote", "part": "bigNumber",
+              "o": {"to": 100, "suffix": " °C", "label": "一个标准大气压下"}, "view": "H1", "vo": [1, 2]},
+             {"what": "折线：海拔升高，沸点往下走", "ref": "pack:dark-keynote", "part": "line",
+              "o": {"title": "气压越低，沸点越低", "labels": ["0", "1000", "2000", "3000", "4000"], "values": [100, 97, 93, 90, 87], "unit": "°C"},
+              "view": "H2", "vo": [3, 4], "cut": "溶解"}]},
+  {"seg": "P2", "title": "高原", "content": "海拔 4000 米约 87 °C 就开", "sec": 15, "lead": "G",
+   "uses": [{"what": "高原上一锅水冒泡的生图", "class": "G", "materials": ["生图"], "rule": "K1"}], "note": "测试夹具",
+   "shots": [{"what": "全景：高原湖边一锅水冒泡，温度计停在 87（生图）", "class": "G", "rule": "K1", "view": "H3", "vo": [1, 2]}]}
+ ]}

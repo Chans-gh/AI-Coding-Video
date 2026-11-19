@@ -8,6 +8,7 @@
     python3 tools/check_copy.py videos/<短名>            # 查一期
     python3 tools/check_copy.py videos/<短名> --quiet    # 没问题时不输出
     python3 tools/check_copy.py videos/<短名> --config copy.json
+    python3 tools/check_copy.py videos/<短名> --plan plans/<短名>/content.md   # 接策划格式 5：并进红线「词：」的词
 
 表放在项目里：期目录下的 `copy.json`（也可以 `--config` 指定别处）。
 **没有配置文件就只查通用的**（极限词、口播长句）——容量表和禁用词是这个项目的说法，每个项目不同。
@@ -113,8 +114,31 @@ def load_config(path: Path | None) -> dict:
     return cfg
 
 
-def check_episode(ep: Path, quiet: bool) -> int:
+def redline_words(content: Path) -> list[tuple[str, str]]:
+    """策划格式 5 的 content.md「## 红线」里「怎么查」写「词：「…」「…」」的词 → [(词, 为什么)]。
+    「；」后面是例外说明（如引述原话），不读；例外由人看。"""
+    out, sec = [], None
+    for line in content.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            sec = line[3:].strip()
+            continue
+        if sec != "红线" or not line.lstrip().startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or not re.fullmatch(r"B\d+", cells[0]):
+            continue
+        m = re.match(r"词[：:](.*)", cells[2])
+        if m:
+            for w in re.findall(r"「([^」]+)」", re.split(r"[；;]", m.group(1))[0]):
+                out.append((w, f"红线 {cells[0]}：{cells[1]}"))
+    return out
+
+
+def check_episode(ep: Path, quiet: bool, plan: Path | None = None) -> int:
     cfg = load_config(ep / "copy.json")
+    if plan is not None:
+        have = {w for w, _ in cfg["forbidden"]}
+        cfg["forbidden"] += [x for x in redline_words(plan) if x[0] not in have]
     seg_dir = ep / "segments"
     errs: list[str] = []
     warns: list[str] = []
@@ -220,12 +244,13 @@ def check_episode(ep: Path, quiet: bool) -> int:
     return 1 if errs else 0
 
 
-def main() -> int:
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="画面文案检查：部件容量 + 禁用词 + 口播拆句")
     ap.add_argument("episode", help="期目录，例如 videos/ep02")
     ap.add_argument("--config", help="表放在哪（默认期目录下的 copy.json）")
     ap.add_argument("--quiet", action="store_true", help="没问题时不输出")
-    a = ap.parse_args()
+    ap.add_argument("--plan", help="策划格式 5 的 content.md：红线「词：」里的词并进禁用词，和 copy.json 合并")
+    a = ap.parse_args(argv)
     ep = Path(a.episode)
     if not (ep / "storyboard.json").is_file() and not (ep / "script.json").is_file():
         print(f"停下：{ep} 里没有 storyboard.json，也没有 script.json")
@@ -233,7 +258,11 @@ def main() -> int:
     if a.config:
         cfg_path = Path(a.config)
         (ep / "copy.json").write_text(cfg_path.read_text(encoding="utf-8"), encoding="utf-8")
-    return check_episode(ep, a.quiet)
+    plan = Path(a.plan) if a.plan else None
+    if plan is not None and not plan.is_file():
+        print(f"停下：找不到 {plan}")
+        return 2
+    return check_episode(ep, a.quiet, plan)
 
 
 if __name__ == "__main__":

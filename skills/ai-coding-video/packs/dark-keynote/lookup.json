@@ -1,0 +1,348 @@
+{
+ "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）：看什么的主角 → 部件，最大的字放顶档。顶档是部件里最大的一档字（约 64 px 以上，竖版 1080 宽为准；带段标题的部件，标题是 64–72 px），中档 30–54 px，小字档 28 px 以下；不自己挑字号。motion 的秒数是每格时长，乘节奏的倍数。",
+ "lead": {
+  "一个数": {
+   "part": [
+    "bigNumber"
+   ]
+  },
+  "两数对比": {
+   "part": [
+    "compare"
+   ]
+  },
+  "走势": {
+   "part": [
+    "line"
+   ]
+  },
+  "构成": {
+   "part": [
+    "ring"
+   ]
+  },
+  "排名": {
+   "part": [
+    "race",
+    "data"
+   ]
+  },
+  "表格": {
+   "part": [
+    "table"
+   ]
+  },
+  "流程": {
+   "part": [
+    "flow",
+    "timeline"
+   ]
+  },
+  "清单": {
+   "part": [
+    "grid"
+   ]
+  },
+  "一句话": {
+   "part": [
+    "quote",
+    "slam"
+   ]
+  },
+  "问答": {
+   "part": [
+    "qa"
+   ]
+  },
+  "地图": {
+   "part": [
+    "dotmap"
+   ]
+  },
+  "界面": {
+   "part": [
+    "chat",
+    "search",
+    "code",
+    "terminal"
+   ]
+  },
+  "实物": {
+   "instead": [
+    "reveal"
+   ],
+   "note": "包里没有画实物的部件：大字揭示写物件的名字"
+  },
+  "人": {
+   "instead": [
+    "quote"
+   ],
+   "note": "包里没有画人的部件：引用写他说的话，over 叠信息条 lower 写名字"
+  },
+  "场景": {
+   "instead": [
+    "reveal"
+   ],
+   "note": "包里没有画场景的部件：大字揭示写地点或事件"
+  }
+ },
+ "sizes": {
+  "bigNumber": {
+   "top": [
+    "prefix",
+    "to",
+    "suffix"
+   ],
+   "mid": [
+    "label",
+    "kicker"
+   ],
+   "small": [
+    "sub"
+   ]
+  },
+  "compare": {
+   "top": [
+    "a.value",
+    "a.unit",
+    "b.value",
+    "b.unit"
+   ],
+   "mid": [
+    "title",
+    "a.name",
+    "b.name"
+   ],
+   "small": [
+    "kicker",
+    "a.tag",
+    "b.tag",
+    "a.note",
+    "b.note"
+   ]
+  },
+  "line": {
+   "top": [
+    "title",
+    "values"
+   ],
+   "mid": [
+    "labels"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "ring": {
+   "top": [
+    "title",
+    "items.v"
+   ],
+   "mid": [
+    "items.label"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "race": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items.label",
+    "items.to"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "data": {
+   "top": [
+    "bars.v"
+   ],
+   "mid": [
+    "title",
+    "bars.label"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "table": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "cols",
+    "rows.label",
+    "rows.cells"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "flow": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "nodes.label"
+   ],
+   "small": [
+    "kicker",
+    "nodes.sub"
+   ]
+  },
+  "timeline": {
+   "top": [
+    "title",
+    "steps.when"
+   ],
+   "mid": [
+    "steps.text"
+   ],
+   "small": [
+    "kicker",
+    "nowLabel"
+   ]
+  },
+  "grid": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items.label"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "quote": {
+   "top": [
+    "text"
+   ],
+   "mid": [],
+   "small": [
+    "source"
+   ]
+  },
+  "slam": {
+   "top": [
+    "text"
+   ],
+   "mid": [],
+   "small": [
+    "sub"
+   ]
+  },
+  "qa": {
+   "top": [
+    "q",
+    "a"
+   ],
+   "mid": [],
+   "small": []
+  },
+  "dotmap": {
+   "top": [
+    "title"
+   ],
+   "mid": [],
+   "small": [
+    "kicker",
+    "cities.label"
+   ]
+  },
+  "chat": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "msgs.text"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "search": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "query"
+   ],
+   "small": [
+    "kicker",
+    "chips",
+    "button"
+   ]
+  },
+  "code": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "lines"
+   ],
+   "small": [
+    "kicker",
+    "sub",
+    "label"
+   ]
+  },
+  "terminal": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "lines"
+   ],
+   "small": [
+    "kicker",
+    "label"
+   ]
+  },
+  "reveal": {
+   "top": [
+    "word"
+   ],
+   "mid": [
+    "sub"
+   ],
+   "small": []
+  }
+ },
+ "motion": {
+  "tension": {
+   "1": {
+    "min": 5,
+    "max": 9,
+    "pop": false
+   },
+   "2": {
+    "min": 3,
+    "max": 6,
+    "pop": true
+   },
+   "3": {
+    "min": 2,
+    "max": 3.5,
+    "pop": true
+   }
+  },
+  "pace": {
+   "快": 0.8,
+   "中": 1,
+   "慢": 1.25
+  },
+  "mood": {
+   "紧": "最大的字用强调色，入场紧凑（pop），转场 flashCut、push",
+   "松": "可以用 slam、flash 这类踩拍的部件，转场 push",
+   "稳": "少动效：部件只淡入，转场 dissolve，不用 slam、flash",
+   "扬": "强调色加扫光（大数字、大字揭示），转场 zoom、wipe"
+  }
+ }
+}

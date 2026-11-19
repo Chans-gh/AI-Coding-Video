@@ -1,0 +1,162 @@
+{
+ "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）。这个包只有四种镜头（标题、对比、数据卡、标注），别的主角都用代替，用了就是偏离、回报一行。顶档约 76 px 以上（标题、数据卡的大数字），中档 32–58 px，小字档 30 px 以下（眉题、出处、刻度）。",
+ "lead": {
+  "一个数": {
+   "part": [
+    "chart"
+   ]
+  },
+  "走势": {
+   "part": [
+    "chart"
+   ]
+  },
+  "两数对比": {
+   "part": [
+    "compare"
+   ]
+  },
+  "一句话": {
+   "part": [
+    "headline"
+   ]
+  },
+  "场景": {
+   "part": [
+    "headline"
+   ]
+  },
+  "实物": {
+   "part": [
+    "headline"
+   ]
+  },
+  "人": {
+   "part": [
+    "headline"
+   ]
+  },
+  "地图": {
+   "instead": [
+    "note"
+   ],
+   "note": "没有地图部件：照片上用标注框出地点"
+  },
+  "构成": {
+   "instead": [
+    "chart"
+   ],
+   "note": "数据卡只有折线：写成大数字加一行说明"
+  },
+  "排名": {
+   "instead": [
+    "chart"
+   ],
+   "note": "数据卡只有折线：大数字写第一名"
+  },
+  "表格": {
+   "instead": [
+    "chart"
+   ],
+   "note": "没有表格部件：挑一个最要紧的数上数据卡"
+  },
+  "流程": {
+   "instead": [
+    "headline"
+   ],
+   "note": "没有流程部件：一步一个标题镜头"
+  },
+  "清单": {
+   "instead": [
+    "headline"
+   ],
+   "note": "没有清单部件：一条一个标题镜头"
+  },
+  "问答": {
+   "instead": [
+    "headline"
+   ],
+   "note": "没有问答部件：问题做眉题、答案做标题"
+  },
+  "界面": {
+   "instead": [
+    "headline"
+   ],
+   "note": "没有界面部件：录屏当照片，标题写要点"
+  }
+ },
+ "sizes": {
+  "headline": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "sub"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "chart": {
+   "top": [
+    "big.value",
+    "big.unit"
+   ],
+   "mid": [
+    "title",
+    "big.label"
+   ],
+   "small": [
+    "rows.x",
+    "xticks",
+    "yticks"
+   ]
+  },
+  "note": {
+   "top": [
+    "title"
+   ],
+   "mid": [],
+   "small": [
+    "kicker"
+   ]
+  },
+  "compare": {
+   "top": [
+    "labels"
+   ],
+   "mid": [],
+   "small": []
+  }
+ },
+ "motion": {
+  "tension": {
+   "1": {
+    "min": 5,
+    "max": 9,
+    "pop": false
+   },
+   "2": {
+    "min": 3,
+    "max": 6,
+    "pop": true
+   },
+   "3": {
+    "min": 2,
+    "max": 3.5,
+    "pop": true
+   }
+  },
+  "pace": {
+   "快": 0.8,
+   "中": 1,
+   "慢": 1.25
+  },
+  "mood": {
+   "紧": "红条转场，标题约 1 秒到位，画面组织用多图拼贴 collage",
+   "松": "单图推拉 kenburns，镜头多停半拍",
+   "稳": "单图推拉 kenburns，少用标注，转场照旧一道红条",
+   "扬": "2.5D 视差 parallax，数据卡的大数字数到位时停一拍"
+  }
+ }
+}

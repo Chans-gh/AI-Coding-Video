@@ -1,0 +1,9 @@
+{"plan": "plans/demo/content.md",
+ "segments": [
+  {"seg": "P1", "vo": ["一百度？要看气压。", "一个标准大气压下，水在一百度沸腾。", "气压越低，沸点越低。", "所以一百度，其实是有条件的。"],
+   "say": ["S1", "S2", "S3", "S4"],
+   "facts": [{"what": "一个标准大气压下沸点 100 °C", "ref": "P1-1", "src": "https://example.com/textbook"},
+             {"what": "气压越低沸点越低", "ref": "P1-2", "src": "https://example.com/textbook"}]},
+  {"seg": "P2", "vo": ["在海拔四千米，水约八十七度就开了。", "所以在高原上煮面，要多煮一会儿。"], "say": ["S5", "S6"],
+   "facts": [{"what": "海拔 4000 米约 87 °C 沸腾", "ref": "P2-1", "src": null, "calc": "由 P1-2 和气压表推出"}]}
+ ]}

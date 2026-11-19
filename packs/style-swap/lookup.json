@@ -1,0 +1,163 @@
+{
+ "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）。这个包讲生成画面的画风切换，只有镜头、提示词公式、提示词条、画风并排四种；数据、流程类的主角都用代替，用了就是偏离、回报一行。顶档约 60 px 以上（公式和并排的标题），中档 28–54 px，小字档 28 px 以下；镜头 shot 是整张图，没有顶档的字，最大的字写「无」的格才用它。",
+ "lead": {
+  "场景": {
+   "part": [
+    "shot"
+   ]
+  },
+  "实物": {
+   "part": [
+    "shot"
+   ]
+  },
+  "人": {
+   "part": [
+    "shot"
+   ]
+  },
+  "一句话": {
+   "instead": [
+    "formula"
+   ],
+   "note": "标题写这句话"
+  },
+  "清单": {
+   "instead": [
+    "lineup"
+   ],
+   "note": "画风并排，一项一张图"
+  },
+  "两数对比": {
+   "instead": [
+    "lineup"
+   ],
+   "note": "两张图并排，名字写数"
+  },
+  "一个数": {
+   "instead": [
+    "formula"
+   ],
+   "note": "没有数据部件：标题写这个数"
+  },
+  "走势": {
+   "instead": [
+    "formula"
+   ],
+   "note": "没有图表部件：标题写结论"
+  },
+  "构成": {
+   "instead": [
+    "formula"
+   ],
+   "note": "没有图表部件：标题写结论"
+  },
+  "排名": {
+   "instead": [
+    "lineup"
+   ],
+   "note": "按名次排图，当前一项亮起"
+  },
+  "表格": {
+   "instead": [
+    "formula"
+   ],
+   "note": "没有表格部件：三段公式各写一列"
+  },
+  "流程": {
+   "instead": [
+    "strip"
+   ],
+   "note": "提示词条按步骤写"
+  },
+  "问答": {
+   "instead": [
+    "formula"
+   ],
+   "note": "标题写问题、风格段写答案"
+  },
+  "地图": {
+   "instead": [
+    "shot"
+   ],
+   "note": "生成一张地图风格的图"
+  },
+  "界面": {
+   "instead": [
+    "shot"
+   ],
+   "note": "生成或截一张界面图"
+  }
+ },
+ "sizes": {
+  "shot": {
+   "top": [],
+   "mid": [],
+   "small": []
+  },
+  "formula": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "shot",
+    "style",
+    "styleName"
+   ],
+   "small": [
+    "rules"
+   ]
+  },
+  "strip": {
+   "top": [],
+   "mid": [
+    "shotName",
+    "styleName"
+   ],
+   "small": [
+    "styleText"
+   ]
+  },
+  "lineup": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items.name"
+   ],
+   "small": [
+    "sub"
+   ]
+  }
+ },
+ "motion": {
+  "tension": {
+   "1": {
+    "min": 5,
+    "max": 9,
+    "pop": false
+   },
+   "2": {
+    "min": 3,
+    "max": 6,
+    "pop": true
+   },
+   "3": {
+    "min": 2,
+    "max": 3.5,
+    "pop": true
+   }
+  },
+  "pace": {
+   "快": 0.8,
+   "中": 1,
+   "慢": 1.25
+  },
+  "mood": {
+   "紧": "镜头推得快（move 的 z 拉大），转场照旧叠化",
+   "松": "镜头慢推，画风并排多停一拍",
+   "稳": "镜头几乎不动，只有叠化",
+   "扬": "风格段亮起时停半拍，片尾画风并排逐个放大"
+  }
+ }
+}

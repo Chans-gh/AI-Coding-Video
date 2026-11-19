@@ -394,6 +394,56 @@ def check_versions(errors):
                 errors.append(f'skills/{d}/plugin.json: version {v} 和 SKILL.md 的 {m.group(1)} 不一致')
 
 
+def check_lookups(errors):
+    """风格包的 lookup.json（格式 5 定样式的查表）：15 个主角都有一行，部件在 sizes 里、在 pack.js 里，张力 1–3、节奏快中慢齐"""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from plan5 import LEADS, MOODS, PACES
+    base = os.path.join(REPO_ROOT, 'packs') if os.path.isdir(os.path.join(REPO_ROOT, 'packs')) else os.path.join(ROOT, 'packs')
+    for name in sorted(os.listdir(base)) if os.path.isdir(base) else []:
+        d = os.path.join(base, name)
+        if not os.path.exists(os.path.join(d, 'meta.json')):
+            continue
+        w = f'packs/{name}/lookup.json'
+        f = os.path.join(d, 'lookup.json')
+        if not os.path.exists(f):
+            errors.append(f'{w}: 缺这个文件（格式 5 定样式的查表，规格见 making.md「样式查表」）')
+            continue
+        try:
+            lk = json.load(open(f, encoding='utf-8'))
+        except ValueError as x:
+            errors.append(f'{w}: 不是合法的 JSON：{x}')
+            continue
+        src = open(os.path.join(d, 'pack.js'), encoding='utf-8').read() if os.path.exists(os.path.join(d, 'pack.js')) else ''
+        sizes = lk.get('sizes') if isinstance(lk.get('sizes'), dict) else {}
+        for part, row in sizes.items():
+            if not re.search(r'\b' + re.escape(part) + r'\b', src):
+                errors.append(f'{w}: sizes 的部件 {part} 在 pack.js 里找不到')
+            if not isinstance(row, dict) or any(not isinstance(row.get(k), list) for k in ('top', 'mid', 'small')):
+                errors.append(f'{w}: sizes.{part} 要有 top、mid、small 三个数组（o 的键）')
+        lead = lk.get('lead') if isinstance(lk.get('lead'), dict) else {}
+        miss = [x for x in LEADS if x not in lead]
+        if miss:
+            errors.append(f'{w}: lead 缺这几个主角：{"、".join(miss)}')
+        for x, row in lead.items():
+            parts = (row.get('part') or []) + (row.get('instead') or []) if isinstance(row, dict) else []
+            if not parts:
+                errors.append(f'{w}: lead「{x}」要写 part（包里有的部件）或 instead（代替的部件）')
+            for p in parts:
+                if p not in sizes:
+                    errors.append(f'{w}: lead「{x}」的部件 {p} 不在 sizes 里')
+        mo = lk.get('motion') if isinstance(lk.get('motion'), dict) else {}
+        ten = mo.get('tension') if isinstance(mo.get('tension'), dict) else {}
+        for k in ('1', '2', '3'):
+            b = ten.get(k)
+            if not (isinstance(b, dict) and isinstance(b.get('min'), (int, float)) and isinstance(b.get('max'), (int, float))
+                    and b['min'] <= b['max']):
+                errors.append(f'{w}: motion.tension.{k} 要写 min、max（每格秒数，min ≤ max）')
+        if sorted((mo.get('pace') or {}).keys()) != sorted(PACES):
+            errors.append(f'{w}: motion.pace 要写快、中、慢三档的倍数')
+        if sorted((mo.get('mood') or {}).keys()) != sorted(MOODS):
+            errors.append(f'{w}: motion.mood 要写紧、松、稳、扬四种')
+
+
 def run_tests(errors):
     """scripts/tests/ 下的离线测试（check_plan.py 等），只用标准库"""
     import io
@@ -440,6 +490,7 @@ def main():
     bundled = sync_bundle(check, errors)
     check_links(errors)
     check_versions(errors)
+    check_lookups(errors)
     run_tests(errors)
     if errors:
         print(f'发现 {len(errors)} 个问题：')

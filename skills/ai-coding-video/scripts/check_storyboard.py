@@ -28,7 +28,7 @@ UNIFY = ('palette', 'fonts', 'subs', 'trans', 'music', 'voice')
 SEG_ID = re.compile(r'P\d+')
 TOLERANCE = 0.15  # 秒数和目标差多少算偏离
 CUTS = ('硬切', '溶解')  # 分镜的 cut：从上一个分镜怎么接过来
-SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule', 'view')
+SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule', 'view', 'part', 'o', 'over', 'note')
 # rule：照策划 content.md 的哪几条约束；view：认领策划 plan.md 画面表的哪几行（H1）；都由 check_plan.py 查
 SHOT_MIN = 0.5    # 一个分镜至少几秒
 SEC_EPS = 0.05    # 分镜秒数之和和段的 sec 差这么多以内算相等
@@ -240,6 +240,16 @@ def check_shots(sb, sc, lib):
                     errs.append(f'{w}：vo 写到第 {vo[-1]} 句，逐字稿这段只有 {nvo} 句')
                 last = max(last, vo[-1])
                 covered |= set(vo)
+            if 'part' in x and not (isinstance(x['part'], str) and x['part']):
+                errs.append(f'{w}：part 写风格包里的部件名（如 "bigNumber"），现在是 {x["part"]!r}')
+            if 'o' in x and not isinstance(x['o'], dict):
+                errs.append(f'{w}：o 写传给部件的内容（对象，键随部件而定）')
+            if 'o' in x and 'part' not in x:
+                errs.append(f'{w}：写了 o 没写 part')
+            ov = x.get('over')
+            if ov is not None and not all(isinstance(y, str) and y or isinstance(y, dict) and isinstance(y.get('part'), str)
+                                          for y in (ov if isinstance(ov, list) else [ov])):
+                errs.append(f'{w}：over 写叠加部件名，或 {{"part": …, "o": …}}，几个写数组')
             if x.get('cut') is not None and x['cut'] not in CUTS:
                 errs.append(f'{w}：cut 写「硬切」或「溶解」（不写算硬切），现在是 {x["cut"]!r}')
             elif x.get('cut') is None:
@@ -463,10 +473,27 @@ def style_tag(x, styles):
     return r if r else f'{x.get("class")} 类，库里没有'
 
 
+def over_names(v):
+    xs = v if isinstance(v, list) else [v] if v else []
+    return [x if isinstance(x, str) else str(x.get('part', '?')) for x in xs if isinstance(x, (str, dict))]
+
+
+def layout_of(x):
+    """分镜的版式：部件、内容的键、叠加"""
+    if not x.get('part'):
+        return '—'
+    o = x.get('o') if isinstance(x.get('o'), dict) else {}
+    keys = '、'.join(f'{k}={json.dumps(v, ensure_ascii=False)[:14]}' for k, v in list(o.items())[:4])
+    over = '、'.join(over_names(x.get('over')))
+    return f'{x["part"]}' + (f'（{keys}）' if keys else '') + (f' + {over}' if over else '')
+
+
 def shot_rows(k, s, vo, spans=None):
-    """一段的分镜表：分镜号、秒、画面、类别、素材或参考图、旁白、接法"""
+    """一段的分镜表：分镜号、秒、画面、类别、素材或参考图、旁白、接法；写了 part 的另加一列版式"""
+    lay = any(isinstance(x, dict) and x.get('part') for x in s['shots'])
     out = [f'**第 {k} 段 {s.get("seg", "")} {s.get("title", "")}**（{s.get("sec", "")} 秒，{len(s["shots"])} 个分镜）', '',
-           '| 分镜 | 秒 | 画面（景别、主体、动作） | 类别 | 素材或参考图 | 旁白 | 接法 |', '|---|---|---|---|---|---|---|']
+           '| 分镜 | 秒 | 画面（景别、主体、动作） | 类别 | 素材或参考图 | 旁白 | 接法 |' + (' 版式 |' if lay else ''),
+           '|---|---|---|---|---|---|---|' + ('---|' if lay else '')]
     for j, x in enumerate(s['shots'], 1):
         if spans:
             t0, t1 = spans[j - 1]
@@ -484,7 +511,7 @@ def shot_rows(k, s, vo, spans=None):
         said = '；'.join(f'{n}「{vo[n - 1][:16]}{"…" if len(vo[n - 1]) > 16 else ""}」' if n <= len(vo) else str(n) for n in ns)
         cut = '—' if j == 1 else (x.get('cut') or '硬切')
         out.append(f'| {shot_name(k, j)} | {sec} | {cell(x.get("what", ""))} | {cell(cls)} | {cell(src) or "—"} | '
-                   f'{cell(said) or "—"} | {cut} |')
+                   f'{cell(said) or "—"} | {cut} |' + (f' {cell(layout_of(x))} |' if lay else ''))
     return out
 
 

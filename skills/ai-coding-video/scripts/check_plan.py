@@ -20,11 +20,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+if __name__ == '__main__':
+    sys.modules.setdefault('check_plan', sys.modules['__main__'])  # plan5.py 回头 import 本文件时用同一份
 import check_storyboard as cs  # noqa: E402  通用检查（uses、unify、事实的出处、--ready、--table）
 
-FORMATS = {'ai-content-planner/2': 2, 'ai-content-planner/3': 3, 'ai-content-planner/4': 4}
-# 格式号 → 版本；2 是旧格式，没有效果、形式、说法、约束、素材；3 没有表达、画面
-FORMAT = 'ai-content-planner/4'
+FORMATS = {'ai-content-planner/2': 2, 'ai-content-planner/3': 3, 'ai-content-planner/4': 4, 'ai-content-planner/5': 5}
+# 格式号 → 版本；2 是旧格式，没有效果、形式、说法、约束、素材；3 没有表达、画面；5 只读 content.md（见 plan5.py）
+FORMAT = 'ai-content-planner/5'
 FRAME_HEAD = {2: ['段', '作用', '受众收益', '要讲的点', '用到哪些输入', '篇幅'],
               3: ['段', '作用', '受众：从 → 到', '要讲的点', '怎么证明', '用到哪些输入', '篇幅']}
 FRAME_HEAD[4] = FRAME_HEAD[3]
@@ -139,6 +141,30 @@ def seconds(cell):
     return int(m.group(3)) * 60 + int(m.group(4) or 0)
 
 
+def entry(path):
+    """命令行给的路径 → 要读的文件：目录里先看 content.md 是不是格式 5，不是再读 plan.md；
+    给了 plan.md、它第二行写「格式和状态见 content.md」的，改读同目录的 content.md"""
+    p = Path(path)
+    if p.is_dir():
+        c = p / 'content.md'
+        if c.is_file() and first_lines(c)[1:2] and re.match(r'格式[：:]\s*ai-content-planner/5\s*$', first_lines(c)[1]):
+            return c
+        p = p / 'plan.md'
+    if not p.is_file():
+        raise Stop(f'找不到 {p}')
+    head = first_lines(p)
+    if p.name == 'plan.md' and len(head) > 1 and '见 content.md' in head[1]:
+        c = p.parent / 'content.md'
+        if not c.is_file():
+            raise Stop(f'{p} 说格式和状态见 content.md，找不到 {c}')
+        return c
+    return p
+
+
+def first_lines(p):
+    return [x.strip() for x in Path(p).read_text(encoding='utf-8').splitlines() if x.strip()][:3]
+
+
 def read_plan(plan_path):
     """读 plan.md 和同目录的 content.md，认格式 4、3 和旧的格式 2（格式 2 的表头和取值位置不同；格式 4 另读 read_v4）。
     不能接时抛 Stop；能接时返回 dict：
@@ -148,22 +174,22 @@ def read_plan(plan_path):
     ar、sec（策划定的画幅、目标秒数，读不出是 None）、silent（声音是不说话的，写原文，否则空）、size_where（从哪读的）、
     origs（格式 4 说法里写了「原句」的行）、expr、tone、tension、views、can、cannot（格式 4，见 read_v4）、
     notes（提醒）、errors（框架、表头的问题）"""
-    plan_path = Path(plan_path)
-    if not plan_path.is_file():
-        raise Stop(f'找不到 {plan_path}')
+    plan_path = entry(plan_path)
     text = plan_path.read_text(encoding='utf-8')
     lines = [x for x in text.splitlines() if x.strip()]
     fmt = lines[1].strip() if len(lines) > 1 else ''
     m = re.fullmatch(r'格式[：:]\s*(\S+)', fmt)
     if not m:
         raise Stop(f'{plan_path} 标题下面一行不是「格式：{FORMAT}」（现在是「{fmt}」）。'
-                   '这不是 ai-content-planner 格式 4（或格式 3、旧的格式 2）的交接，不接；'
-                   '请用户先用 ai-content-planner（0.7.0 起）出交接，或更新策划')
+                   '这不是 ai-content-planner 格式 5（或格式 4、3、旧的格式 2）的交接，不接；'
+                   '请用户先用 ai-content-planner（0.8.0 起）出交接，或更新策划')
     if m.group(1) == 'ai-content-planner/1':
-        raise Stop(f'{plan_path} 是交接格式 1（ai-content-planner/1），本 Skill 只接格式 4（也认格式 3、旧的格式 2），不猜着读。'
-                   '请用户先用策划（0.7.0 起）转成格式 4（照策划 handoff.md 第 7 节；格式 1 先照 CHANGELOG 0.4.0 一行转成格式 2），'
+        raise Stop(f'{plan_path} 是交接格式 1（ai-content-planner/1），本 Skill 接格式 5（也认格式 4、3、旧的格式 2），不猜着读。'
+                   '请用户先用策划（0.8.0 起）转成格式 5（照策划 handoff.md 第 7 节；格式 1 先照 CHANGELOG 0.4.0 一行转成格式 2），'
                    '或更新策划后重新交接')
     ver = FORMATS.get(m.group(1))
+    if m.group(1) == 'ai-content-planner/5' and plan_path.name != 'content.md':
+        raise Stop(f'{plan_path} 写着格式 5：格式 5 只读 content.md，给目录或 content.md 的路径')
     if ver is None:
         raise Stop(f'{plan_path} 的格式是「{m.group(1)}」，本 Skill 只认 {"、".join(FORMATS)}，不猜着读。请用户更新本 Skill 或策划')
 
@@ -175,6 +201,9 @@ def read_plan(plan_path):
         raise Stop(f'状态是「{status or "（没写）"}」，只接「已交接」；请用户先在策划里做完、交接'
                    '（效果待确认、框架待确认、补齐中都还没交接）')
 
+    if ver == 5:
+        import plan5
+        return plan5.read(plan_path, text)
     title, secs = sections(text)
     notes, errors = [], []
     if ver == 2:
@@ -297,37 +326,8 @@ def read_v4(P, secs, spec):
         miss = [k for k in EXPR_ITEMS if not expr.get(k, '').strip()]
         if miss:
             errors.append(f'表达缺 {"、".join(miss)}（六项：{"、".join(EXPR_ITEMS)}）')
-    tone = expr.get('基调', '').strip()
-    if tone:
-        P['tone'] = next((x for x in TONES if tone.startswith(x)), '自定' if re.match(r'自定[：:]', tone) else None)
-        if P['tone'] is None:
-            errors.append(f'表达的基调「{tone[:20]}」要以一档开头（{"、".join(TONES)}），或写「自定：……」')
-        for g in SEG_ID.findall(PAREN.sub('', tone)):
-            if g not in frame:
-                notes.append(f'表达的基调写了 {g} 的局部档，{g} 不在框架里')
-    tension = expr.get('张力', '').strip()
-    if tension:
-        m = re.match(r'[123](?!\d)', tension)
-        if m:
-            P['tension'] = int(m.group())
-        else:
-            errors.append(f'表达的张力「{tension[:20]}」要以 1、2、3 开头（1 克制、2 有起伏、3 强刺激）')
-    P['expr'] = expr
-
-    mk = spec.get('制作条件', '').strip()
-    m = MAKE.fullmatch(mk)
-    if not m:
-        errors.append(f'形式的「制作条件」要写成「能用：……；不能用：……」，现在是「{mk or "（没写）"}」')
-    else:
-        for key, cell in (('can', m.group(1)), ('cannot', m.group(2))):
-            for name in re.split(r'[、，,]', PAREN.sub('', cell)):
-                name = re.split(r'[：:]', name, maxsplit=1)[0].strip().rstrip('。')  # 「生视频：只拍手」：冒号后是限制
-                if not name or name == '无':
-                    continue
-                if name in SOURCES:
-                    P[key].add(name)
-                else:
-                    notes.append(f'制作条件里的「{name}」不是画面来源（{"、".join(SOURCES)}），不读')
+    read_tone(P, expr, '表达')
+    read_make(P, spec.get('制作条件', ''), '形式')
 
     lines = secs.get('画面')
     rows = table(lines or [], VIEW_HEAD)
@@ -386,6 +386,45 @@ def read_v4(P, secs, spec):
         for g in P['segs']:
             if not any(v['段'] == g for v in views.values()):
                 notes.append(f'框架 {g} 没有画面行：这段的画面本 Skill 自己定')
+
+
+def read_tone(P, expr, where):
+    """基调（主档）、张力（1–3）写进 P；where 是这两项所在的节（格式 4 的表达、格式 5 的总则）"""
+    errors, notes, frame = P['errors'], P['notes'], P['frame']
+    tone = expr.get('基调', '').strip()
+    if tone:
+        P['tone'] = next((x for x in TONES if tone.startswith(x)), '自定' if re.match(r'自定[：:]', tone) else None)
+        if P['tone'] is None:
+            errors.append(f'{where}的基调「{tone[:20]}」要以一档开头（{"、".join(TONES)}），或写「自定：……」')
+        for g in SEG_ID.findall(PAREN.sub('', tone)):
+            if frame and g not in frame:
+                notes.append(f'{where}的基调写了 {g} 的局部档，{g} 不在框架里')
+    tension = expr.get('张力', '').strip()
+    if tension:
+        m = re.match(r'[123](?!\d)', tension)
+        if m:
+            P['tension'] = int(m.group())
+        else:
+            errors.append(f'{where}的张力「{tension[:20]}」要以 1、2、3 开头（1 克制、2 有起伏、3 强刺激）')
+    P['expr'] = expr
+
+
+def read_make(P, cell, where):
+    """制作条件「能用：……；不能用：……」→ P 的 can、cannot（画面来源）"""
+    mk = cell.strip()
+    m = MAKE.fullmatch(mk)
+    if not m:
+        P['errors'].append(f'{where}的「制作条件」要写成「能用：……；不能用：……」，现在是「{mk or "（没写）"}」')
+        return
+    for key, c in (('can', m.group(1)), ('cannot', m.group(2))):
+        for name in re.split(r'[、，,]', PAREN.sub('', c)):
+            name = re.split(r'[：:]', name, maxsplit=1)[0].strip().rstrip('。')  # 「生视频：只拍手」：冒号后是限制
+            if not name or name == '无':
+                continue
+            if name in SOURCES:
+                P[key].add(name)
+            else:
+                P['notes'].append(f'制作条件里的「{name}」不是画面来源（{"、".join(SOURCES)}），不读')
 
 
 def named_table(secs, name, head, errors, where):
@@ -462,7 +501,8 @@ def check_storyboard(P, sb, plan_rel=None, lib=None):
     分镜 src 用到的素材：不能送生成的不进 G 类分镜，只作参考的不进成片"""
     errs, notes = [], []
     if plan_rel is not None and sb.get('plan') != plan_rel:
-        errs.append(f'分镜脚本的 "plan" 要写 "{plan_rel}"（来自哪份 plan.md），现在是 {sb.get("plan")!r}')
+        errs.append(f'分镜脚本的 "plan" 要写 "{plan_rel}"（来自哪份 {"content.md" if P["version"] >= 5 else "plan.md"}），'
+                    f'现在是 {sb.get("plan")!r}')
     order, total = [], {}
     for i, s in enumerate(sb.get('segments', []), 1):
         g = s.get('seg')
@@ -580,7 +620,7 @@ def view_claims(P, sb):
         g = segs[i - 1].get('seg')
         for h in hs:
             if h not in P['views']:
-                errs.append(f'{w}：view {h} 在 plan.md 的画面表里找不到')
+                errs.append(f'{w}：view {h} 在 {P.get("where_views", "plan.md 的画面表")}里找不到')
             elif P['views'][h]['段'] != g:
                 errs.append(f'{w}：view {h} 是 {P["views"][h]["段"]} 的画面，这段是 {g}')
             else:
@@ -599,6 +639,13 @@ def check_views(P, sb, lib=None):
     for h, v in P['views'].items():
         got = claims.get(h, [])
         w = f'画面 {h}（{v["段"]}，{v["来源"]}：{v["要看到什么"][:20]}）'
+        if not got and P['version'] >= 5:
+            import plan5
+            if plan5.reported(P, h, ('偏离', '缺素材', '冲突')):
+                continue
+            errs.append(f'{w}：没有分镜认领：在用它的分镜写 "view": "{h}"；每格都要在成片里出现，做不出来的保住主角、'
+                        '最大的字、配哪句换一种做法（回报「偏离」），连主角都保不住的回流')
+            continue
         if not got:
             errs.append(f'{w}：没有分镜认领：在用它的 uses 一条或分镜写 "view": "{h}"；每行画面都要在成片里出现，'
                         '要换来源先回流')
@@ -760,13 +807,14 @@ def plan_tables(P, sb, sc):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description='认 ai-content-planner/4（也认 /3、/2）的交接，查分镜脚本、逐字稿的引用')
-    ap.add_argument('plan', help='plans/<短名>/plan.md')
+    ap = argparse.ArgumentParser(description='认 ai-content-planner/5（也认 /4、/3、/2）的交接，查分镜脚本、逐字稿的引用')
+    ap.add_argument('plan', help='plans/<短名>（目录）、plans/<短名>/content.md（格式 5）或 plans/<短名>/plan.md（格式 4、3、2）')
     ap.add_argument('--storyboard', help='videos/<短名>/storyboard.json')
     ap.add_argument('--script', help='videos/<短名>/script.json')
     ap.add_argument('--root', default='.', help='分镜脚本、逐字稿里 "plan" 相对的目录（默认当前目录）')
     ap.add_argument('--ready', action='store_true', help='再查用户确认过了（见 check_storyboard.py）')
     ap.add_argument('--table', action='store_true', help='打印段落表、分镜表和全片统一，给用户看')
+    ap.add_argument('--timing', help='配音后的 timing.json（默认分镜脚本同目录的；格式 5 拿它查配哪句和时长）')
     ap.add_argument('--pack-root', action='append', default=[], metavar='目录',
                     help='项目里沉淀的风格包目录（可多次），透传给通用检查，和 Skill 自带的 packs/ 一起认 ref')
     a = ap.parse_args(argv)
@@ -777,7 +825,7 @@ def main(argv=None):
         return 2
     root = Path(a.root).resolve()
     try:
-        rel = Path(a.plan).resolve().relative_to(root).as_posix()
+        rel = Path(P['plan']).resolve().relative_to(root).as_posix()
     except ValueError:
         rel = None
     errs, notes = list(P['errors']), list(P['notes'])
@@ -796,14 +844,31 @@ def main(argv=None):
         e, n = check_script(P, sc, rel)  # 和分镜脚本对不对得上由下面的通用检查查
         errs += e
         notes += n
+    timing = None
+    if a.timing:
+        try:
+            timing = cs.load(a.timing)
+        except cs.Unreadable as x:
+            print(f'读不了：{x}')
+            return 2
+    elif a.storyboard:
+        timing = cs.timing_of(a.storyboard)
+    if P['version'] >= 5:
+        import plan5
+        e, n = plan5.check(P, sb, sc, lib, timing, a.pack_root)
+        errs += e
+        notes += n
     if sb is not None:
         e, n = cs.check(sb, sc, a.ready, lib)
         errs += e
         notes += n
         if a.table:
-            print(cs.table(sb, sc, lib, cs.timing_of(a.storyboard)))
+            print(cs.table(sb, sc, lib, timing))
             print()
-            if P['version'] >= 4:
+            if P['version'] >= 5:
+                print(plan5.tables(P, sb, sc, timing, a.pack_root))
+                print()
+            elif P['version'] >= 4:
                 print(plan_tables(P, sb, sc))
                 print()
     elif sc is not None:
@@ -817,9 +882,14 @@ def main(argv=None):
     for x in errs:
         print(f'✗ {x}')
     extra = f'、素材 {len(P["materials"])} 个、约束 {len(P["rules"])} 条' if P['version'] >= 3 else ''
-    if P['version'] >= 4:
+    if P['version'] >= 5:
+        extra = (f'、念什么 {len(P["sents"])} 句、看什么 {len(P["views"])} 格、红线 {len(P["redlines"])} 条、'
+                 f'约束 {len(P["rules"])} 条、下游回报 {len(P["reports"])} 行；基调 {P["tone"] or "？"}、张力 {P["tension"] or "？"}、'
+                 f'语速 {P["speed"] or "无"}')
+    elif P['version'] >= 4:
         extra += f'、画面 {len(P["views"])} 行；基调 {P["tone"] or "？"}、张力 {P["tension"] or "？"}'
-    print(f'{P["plan"]}：格式 {P["version"]}、已交接，{len(P["segs"])} 段，content.md {len(P["content"])} 条{extra}' +
+    print(f'{P["plan"]}：格式 {P["version"]}、已交接，{len(P["segs"])} 段，{"信息" if P["version"] >= 5 else "content.md"} '
+          f'{len(P["content"])} 条{extra}' +
           (f'；{len(errs)} 个问题' if errs else '；没有问题'))
     return 1 if errs else 0
 
