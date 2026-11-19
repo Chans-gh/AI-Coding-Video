@@ -1,0 +1,5 @@
+{
+  "en_name": "Hand embroidery",
+  "en_how": "Each stitch is a round-capped line segment drawn in four passes (cast shadow, thread colour, a dashed twist, a highlight offset toward the top left) so the light falls from the upper left; the stem is overlapping stem stitch along a curve, the petals are slanted satin stitch following each petal, the leaves are fishbone stitch alternating sides across the midrib, and the flower centre is rings of small highlighted dots for French knots; all stitches are ordered as they would be sewn and drawn up to the current time, with a needle and a length of thread following the latest one.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

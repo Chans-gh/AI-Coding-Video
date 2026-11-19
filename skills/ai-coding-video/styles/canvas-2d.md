@@ -78,12 +78,16 @@
 
 ## C-005 蜡笔绘本
 
+![蜡笔绘本](../images/C-005.jpg)
+
 ```text
 用儿童蜡笔绘本风格：米白色粗纹纸，蜡笔只附着在纸纹凸起处、露出细小白点，靛蓝色抖动描边，排线会越出轮廓，全片只用一次透明水彩晕染来揭示蜡笔藏起来的东西，睡前故事般的温柔节奏。
 ```
 
 - 题材：手绘与绘画
 - 适合：儿童故事
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-005/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-005)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/crayon-book/STYLE.md)
 
@@ -576,12 +580,16 @@
 
 ## C-090 炭笔擦除重绘
 
+![炭笔擦除重绘](../images/C-090.jpg)
+
 ```text
 用炭笔擦除重绘风格：厚棉纸上先用柳枝炭条轻轻起形、最后才用压缩炭条提黑，侧锋铺大调子、纸擦笔揉成雾气，每次修改都用可塑橡皮擦掉一部分再画在残影上，什么都不会被擦干净，只用一种暖黑和奶油白。
 ```
 
 - 题材：手绘与绘画
 - 适合：回忆与思考、艺术创作过程、静物与树木
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-090/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-090)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/charcoalErasure.md)
 
@@ -640,12 +648,16 @@
 
 ## C-094 民间故事绘本
 
+![民间故事绘本](../images/C-094.jpg)
+
 ```text
 用民间故事绘本风格：奶油色纸上先有一幅完整的铅笔底稿，再上水粉和水彩，近处厚涂、饱和、笔触可见，中景变成透明的薄水彩，远处干脆只留铅笔线，画面越远越空，深度就靠这种画法本身。
 ```
 
 - 题材：手绘与绘画
 - 适合：童话与民间故事、亲子内容、乡村题材
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-094/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-094)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/folkTale.md)
 
@@ -687,12 +699,16 @@
 
 ## C-099 手工刺绣
 
+![手工刺绣](../images/C-099.jpg)
+
 ```text
 用手工刺绣风格：棉线穿过绷在木绣绷里的亚麻布，每个形状的边缘就是针脚的线头，茎用轮廓绣、花瓣用缎面绣顺着形状排、叶子用鱼骨绣、花心用法式结粒绣，光从左上来，针脚按绣的顺序一针一针缝出来。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：手工艺与家居、母婴、节日祝福、非遗
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-099/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-099)
 - 技术（建议）：Canvas 2D
 - 参考：[anidoodle 配方](https://github.com/alexgreensh/anidoodle/blob/main/skills/anidoodle/references/styles/embroidery.md)
 
@@ -785,12 +801,16 @@
 
 ## C-128 史前洞穴岩画
 
+![史前洞穴岩画](../images/C-128.jpg)
+
 ```text
 用史前洞穴岩画风格：凹凸不平的石灰岩壁由噪声生成浮雕和裂缝，形象只用赭红、土黄和木炭黑，炭笔边缘起毛并渗进岩面颗粒，手印用喷吹法留下负形，野牛和鹿在两三个姿态之间交替奔跑，一支摇曳的火把照到哪里哪里才看得见，配低沉的鼓声。
 ```
 
 - 题材：手绘与绘画
 - 适合：人类起源、狩猎故事、远古历史
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-128/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-128)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 01_cave](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/01_cave.md)
 
@@ -832,12 +852,16 @@
 
 ## C-131 古罗马石子马赛克
 
+![古罗马石子马赛克](../images/C-131.jpg)
+
 ```text
 用古罗马石子马赛克风格：形象由几毫米见方的小石块沿轮廓一圈圈排出，石色是大理石白、赭黄、砖红、灰绿这些天然土色，块与块之间露出暗灰灰泥缝，石面有细微凹凸和高光，新画面跟着鼓点从一点开始一块块翻面铺开，镜头像俯看庭院地面一样缓慢移动。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：古代城市、考古科普、庄重的纪念片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-131/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-131)
 - 技术（建议）：Canvas 2D · p5.js
 - 参考：[huashu 风格卡 04_roman](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/04_roman.md) · [opus-5.5-mv mosaic-and-sand](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/mosaic-and-sand)
 
@@ -1083,12 +1107,16 @@
 
 ## C-151 南宋院体山水
 
+![南宋院体山水](../images/C-151.jpg)
+
 ```text
 用南宋院体山水风格：淡黄绢本上主景全压在一角，山石用方硬的侧锋斧劈皴扫出，其余大半画面是雾和水的留白，一棵拖枝老松斜伸出画外，小小的高士在崖边远望，淡墨加一点赭石和花青，镜头从留白处缓缓移向那一角，配洞箫。
 ```
 
 - 题材：东方传统
 - 适合：诗词意境、哲理独白、东方品牌片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-151/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-151)
 - 技术（建议）：Canvas 2D · p5.brush
 - 参考：[huashu 风格卡 50_ma_yuan](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/50_ma_yuan.md)
 
@@ -1130,12 +1158,16 @@
 
 ## C-158 大理石纹染纸
 
+![大理石纹染纸](../images/C-158.jpg)
+
 ```text
 用大理石纹染纸风格：颜料浮在水槽表面，被一滴滴落下的颜色推开成同心圈，再被梳子拉成羽毛纹和孔雀纹，色与色交界处有细细的深色纹脉和颜料颗粒，每次变形都能精确倒放、让图案被梳回原样，配色是靛蓝、赭红、芥末黄和象牙白。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：记忆与时间、水与风、抽象音乐 MV
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-158/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-158)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[opus-5.5-mv marbling](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/marbling)
 

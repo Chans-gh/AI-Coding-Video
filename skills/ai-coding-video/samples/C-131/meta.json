@@ -1,0 +1,5 @@
+{
+  "en_name": "Roman pebble mosaic",
+  "en_how": "The design (border, round medallion, dolphin, waves, ivy leaves) is first painted into a low-resolution region map; a distance transform is run inside each region and tiles are placed greedily from nearest to farthest from the contour with one edge along its tangent, so they line up in rings that follow the outlines; each tile is a slightly skewed quad in the region's earth colour with jittered brightness, a light edge on the upper left and a dark edge on the lower right; a flip front starts at one point in the medallion and pushes out one ring per beat, turning each tile over on its own axis as it passes.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
