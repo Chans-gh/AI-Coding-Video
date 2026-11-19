@@ -1,0 +1,11 @@
+{
+  "en_name": "3D animated-film cartoon",
+  "en_how": "Three.js renders an original round mascot in real time: an orange body with a soft sheen physical material, big eyes made of a white sphere, a dark pupil and a tiny highlight bead, with the pupils offset towards the falling star every frame, and two capsule eyebrows; three-point lighting uses a warm shadow-casting key, a cool fill and strong warm rim lights from behind; every action is computed from time: it raises its brows at the star, squashes down in anticipation, stretches on take-off, catches the star mid-air, squashes on landing and springs back with a decaying cosine, then blushes as the star sparkles on its head; the background hills and trees are rendered as a separate layer and blurred to fake shallow depth of field.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

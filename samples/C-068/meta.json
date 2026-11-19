@@ -1,0 +1,5 @@
+{
+  "en_name": "Low-poly isometric island",
+  "en_how": "A Three.js orthographic camera looks down at an isometric angle on an island built from rings of hexagonal-prism tiles, each tile's colour nudged lighter or darker from its base; trees (stacked cones), rocks (icosahedra), a cottage and a lighthouse all use flat shading and no textures; everything drops in from the air on a timetable with a decaying-cosine elastic landing and squash, the sea is a low-subdivision plane whose vertices are recomputed from two sets of sine waves each frame before recomputing normals, and the island grows ring by ring.",
+  "tech": ["Three.js", "WebGL", "Playwright", "ffmpeg"]
+}

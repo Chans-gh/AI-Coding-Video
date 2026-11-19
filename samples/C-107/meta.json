@@ -1,0 +1,11 @@
+{
+  "en_name": "Metro map growth",
+  "en_how": "Four metro lines are polylines restricted to horizontal, vertical and 45° segments, with every corner rounded by the same quadratic curve and resampled by arc length; each frame a Canvas 2D paper texture draws each line's prefix for the current time, a glowing pen tip sits at the end, and stations (white dots) and interchanges (black-outlined white capsules) pop in as the pen passes, while the river is a flat blue band; the texture lies on a Three.js plane, a perspective camera skims low across the paper, and the top and bottom of the frame are blurred by distance to fake shallow depth of field.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

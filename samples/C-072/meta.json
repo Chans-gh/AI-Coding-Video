@@ -1,0 +1,5 @@
+{
+  "en_name": "Exploded view / cutaway",
+  "en_how": "Three.js builds the six parts of a cylindrical smart speaker in code (a lathed speaker cone, a circuit board with chips, a battery, an aluminium cap with a light ring), lights them with a studio environment map for the metal and catches only the shadow on a white floor; the layers spring apart vertically on staggered timings and later close back the same way, a 3D point on each layer's right edge is projected to the screen so Canvas can draw leader lines and material labels, and the camera keeps orbiting slowly.",
+  "tech": ["Three.js", "WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

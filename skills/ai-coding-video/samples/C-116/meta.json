@@ -1,0 +1,11 @@
+{
+  "en_name": "Night museum exhibit",
+  "en_how": "Three.js builds an almost pitch-black warm charcoal gallery with three plinths of different heights (the heights are the data), each topped by a slowly turning low-poly gem, with a year tag hanging above and a beige label card beside it; the only light is one amber SpotLight with shadows, its visible beam an open cone with a vertically fading alpha map and dust motes that drift with time; the spotlight moves between exhibits on a timetable, dimming first and wavering side to side as if searching before it settles, the camera pans along, and the caption at the bottom types out letter by letter in Canvas 2D.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
