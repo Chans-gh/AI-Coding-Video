@@ -1,0 +1,5 @@
+{
+  "en_name": "Dunhuang mural",
+  "en_how": "On a mottled earth-red wall, sawtooth hills, wind-bent trees and scrolling clouds are painted in azurite, malachite, white and ochre, then faded and flaked with a weathering layer; flying apsaras cross the wall each frame with long ribbons drawn as widening sine-wave bands and fluent dark outlines, and from 2.5 s the mural breaks into irregular fragments that crack, peel and tumble away from the centre to reveal a new painting.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

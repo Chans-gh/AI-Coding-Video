@@ -1,0 +1,5 @@
+{
+  "en_name": "Persian miniature",
+  "en_how": "A whole page taller than the frame is drawn in init without perspective: a flowering garden with a silver stream, an eight-point-star tiled terrace, an arched pavilion with a gold dome, pastel sponge-like rocks and a gold sky stacked from bottom to top, filled with small figures each busy with something, inside a gold-flecked margin, an illuminated vine border and faux-calligraphy panels; each frame pans slowly up the page while the stream flows, birds pass, the oud player strums, a servant pours and flags flutter.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -87,6 +87,27 @@ function makePaper(base, { w = W / 2, h = H / 2, grain = 18, fiber = 0.5, blot =
   g.putImageData(id, 0, 0);
   return c;
 }
+// 风化层：透明底上叠污渍（大块暗斑）、剥落（按噪声阈值露出底色的斑块，边缘一圈暗线）、裂纹（随机折线），返回半尺寸离屏画布，在 init() 里做一次，铺在画面上就像旧墙、旧漆。o：{w, h, flake 剥落占比 0–1, flakeColor 露出的底色, stain 污渍深浅 0–1, stainColor, cracks 裂纹条数, crackColor, scale 斑块尺度, seed}
+function weathering({ w = W / 2, h = H / 2, flake = .12, flakeColor = '#D8C4A0', stain = .3, stainColor = '#4A3220', cracks = 10, crackColor = 'rgba(50,34,20,.55)', scale = 1, seed = 1 } = {}) {
+  const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data;
+  const [fr, fg, fb] = hex2rgb(flakeColor), [sr, sg, sb] = hex2rgb(stainColor), k = .012 / scale * (960 / Math.max(w, h)), th = 1 - flake * .5 - .25;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4, n = fbm(x * k * 2.2 + seed * 7, y * k * 2.2 + seed, 5), sN = fbm(x * k * .6 + seed * 3, y * k * .6 - seed, 4);
+    if (flake > 0 && n > th) { const e = n < th + .012; d[i] = e ? fr * .55 : fr; d[i + 1] = e ? fg * .55 : fg; d[i + 2] = e ? fb * .55 : fb; d[i + 3] = e ? 200 : 235; continue; }
+    const a = clamp((sN - .45) * 2.4) * stain * 255;
+    d[i] = sr; d[i + 1] = sg; d[i + 2] = sb; d[i + 3] = a;
+  }
+  g.putImageData(id, 0, 0);
+  const R = mulberry32(seed * 13 + 5); g.strokeStyle = crackColor; g.lineCap = 'round';
+  for (let j = 0; j < cracks; j++) {
+    let x = R() * w, y = R() * h, a = R() * TAU; g.lineWidth = .6 + R() * .8; g.beginPath(); g.moveTo(x, y);
+    const n = 12 + R() * 30;
+    for (let q = 0; q < n; q++) { a += (R() - .5) * 1.1; const l = 3 + R() * 7; x += Math.cos(a) * l; y += Math.sin(a) * l; g.lineTo(x, y);
+      if (R() < .12) { const b = a + (R() < .5 ? 1 : -1) * (.6 + R()); g.moveTo(x, y); g.lineTo(x + Math.cos(b) * l * 2, y + Math.sin(b) * l * 2); g.moveTo(x, y); } }
+    g.stroke();
+  }
+  return c;
+}
 // 透明颗粒层（明暗噪点），一般不直接用，见 grain()
 function makeGrain(w, h, amt, seed) {
   const c = mk(w, h), g = c.getContext('2d'), id = g.createImageData(w, h), d = id.data, R = mulberry32(seed);
@@ -719,4 +740,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

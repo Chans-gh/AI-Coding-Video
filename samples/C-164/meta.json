@@ -1,0 +1,5 @@
+{
+  "en_name": "Caravan enamel painting",
+  "en_how": "A dark-green lacquered panel holds a gold-leaf cartouche around a night village, framed by roses, leaves and C-scrolls painted with a double-loaded brush: each stroke is a tapered curve filled across its width with a gradient between two colours plus a flick of white highlight, then fine varnish craquelure and a glaze reflection are laid over; each frame the lamps and windows light up one per beat, and a ribbon on the top rail morphs point by point into a bow and back.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

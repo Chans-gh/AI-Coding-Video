@@ -1,0 +1,5 @@
+{
+  "en_name": "Glass-plate long exposure",
+  "en_how": "A silver-grey street of facades, shop windows, a gas lamp and a wind-blurred tree is drawn in init along with the plate's dust, scratches and peeling emulsion; each frame maps t to elapsed exposure time w and redraws every passer-by at fixed steps between 0 and w with opacity Δ/w, so walkers fade into translucent ghosts and vanish while a shoeshine customer standing still stays sharp, the sun traces successive arcs across the sky, bright areas get halation and a handwritten paper sleeve counts the exposure.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

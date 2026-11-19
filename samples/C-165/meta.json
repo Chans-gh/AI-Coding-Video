@@ -1,0 +1,5 @@
+{
+  "en_name": "Painted theatre scenery",
+  "en_how": "Backdrop, clouds, mountains, trees and a ground row are painted once into flats with a plywood edge (gradient base plus hundreds of translucent short brush strokes); each frame places them by time: mountains slide in from the wings, trees swing up on a bottom hinge, clouds bob on fly lines, paper leaves tremble and blow across once the blower starts, the actors are filled with a gradient that is bright at the feet and dark at the head while their enlarged shadows fall on the backdrop, and a lyric card on the easel flips on the beat; the camera dollies from the back row to the proscenium with log-scaled zoom while the nearer audience rows scale faster and slide out of frame.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

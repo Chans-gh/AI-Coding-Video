@@ -1,0 +1,5 @@
+{
+  "en_name": "Gothic illuminated manuscript",
+  "en_how": "Two columns of faux textura are built from minim strokes with lozenge heads and feet on a parchment texture, with red rubrics, a huge initial on tooled gold and an ultramarine-and-vermilion figure in a pointed arch; gold areas are kept as a mask so a diagonal glint sweeps only across them and flashes four-pointed stars, marginal vines grow along a path with a snail and bird creeping on them, and the page turns over at the spine to reveal the next.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
