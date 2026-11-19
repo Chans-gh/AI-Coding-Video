@@ -1,0 +1,5 @@
+{
+  "en_name": "Grainy gradient opener",
+  "en_how": "A WebGL shader stacks a dozen arches and halo rings at different depths, scaling each by 1/depth and painting far to near: outside each arch opening is a saturated wall that glows at the rim and darkens outward; camera depth advances with time, layers fade as the camera passes through, and every pixel gets per-frame hash grain; a small glowing orb leads the way in Canvas and a single short line closes the film.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

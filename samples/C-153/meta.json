@@ -1,0 +1,5 @@
+{
+  "en_name": "Synthwave",
+  "en_how": "The whole picture is first painted on an offscreen Canvas: a deep purple gradient sky with stars, an orange-to-pink sun with horizontal slits cut by destination-out that widen downward, wireframe mountains, and a magenta perspective grid whose horizontal lines sit at 1/depth and scroll with time, every bright line drawn as a wide faint glow then a thin bright core; the chrome title uses a multi-stop gradient, is sheared and swept by a highlight; the finished frame is then handed as a texture to a WebGL post shader that adds VHS scanlines, red/blue channel offset, horizontal jitter bands and noise.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

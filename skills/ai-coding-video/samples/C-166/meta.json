@@ -1,0 +1,5 @@
+{
+  "en_name": "1960s liquid light show",
+  "en_how": "A WebGL shader domain-warps three nested layers of fractal noise to squeeze magenta, orange, green and purple into constantly turning swirl bands; oil bubbles scattered on a grid drift with the flow, each with a shifted colour inside, a dark ring at the edge and a small highlight; every two beats a ripple spreads from the centre and distorts the sample coordinates; a hand-drawn black-ink transparency is drawn once in Canvas with varying line widths and drifts slowly as a texture, its ink multiplying out the light; the lamp is a projected circle that darkens at the edge and occasionally goes out and comes back.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

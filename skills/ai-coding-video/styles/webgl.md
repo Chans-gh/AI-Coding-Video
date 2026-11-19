@@ -108,12 +108,16 @@
 
 ## C-047 发布片式粒子隧道
 
+![发布片式粒子隧道](../images/C-047.jpg)
+
 ```text
 用模型发布片式粒子风格：黑色空间里金色粒子和光线构成隧道与网格，镜头高速穿行，超大数值标题卡在节拍上切换，整片只用黑、金、白，以品牌字标定格收尾。
 ```
 
 - 题材：信息讲解与产品发布
 - 适合：模型/产品发布
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-047/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-047)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[claude-horizon-animation](https://github.com/misbahsy/claude-horizon-animation)
 
@@ -230,12 +234,16 @@
 
 ## C-070 实时 WebGL 自然
 
+![实时 WebGL 自然](../images/C-070.jpg)
+
 ```text
 用实时 WebGL 自然场景风格：单个 HTML 里用着色器模拟浅水波浪、涟漪和水底焦散光纹，水下是程序生成的鹅卵石，镜头缓慢漂移并会被点击激起水波，写实光照。
 ```
 
 - 题材：3D 与实时图形
 - 适合：环境、壁纸
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-070/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-070)
 - 技术（建议）：WebGL · GLSL
 - 参考：[@hayashimon1](https://x.com/hayashimon1/status/2102576886182453454)
 
@@ -281,12 +289,16 @@
 
 ## C-075 抽象品牌片
 
+![抽象品牌片](../images/C-075.jpg)
+
 ```text
 用抽象品牌形象片风格：整片只用品牌的红、蓝、白三色，深色背景上抽象光环扩散，超大字标以像素化和故障效果撞入画面，快节奏卡点切换，以 Logo 定格收尾。
 ```
 
 - 题材：3D 与实时图形
 - 适合：品牌形象片
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-075/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-075)
 - 技术（建议）：WebGL · GLSL
 
 <a id="C-076"></a>
@@ -373,12 +385,16 @@
 
 ## C-102 颗粒渐变开场
 
+![颗粒渐变开场](../images/C-102.jpg)
+
 ```text
 用颗粒渐变开场风格：深色底上一层层发光的饱和色形状（同心拱门、光环），带细小颗粒，镜头一路穿过这些层，一个小光球在前面带路，字体小而干净，一句话收尾。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：科技与 AI、音乐、创意产品发布的开场
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-102/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-102)
 - 技术（建议）：WebGL · GLSL
 - 参考：[bang-motion 风格画廊](https://github.com/bangtutorial/bang-motion#style-gallery)
 
@@ -477,12 +493,16 @@
 
 ## C-127 发光宇宙
 
+![发光宇宙](../images/C-127.jpg)
+
 ```text
 用发光宇宙风格：深靛紫的太空雾里，无数叠加发光的点和光晕组成星系与网络，青色代表数据、紫色代表结构、琥珀色只给最关键的结论，半透明玻璃卡片悬在空中写字，一个反复出现的主角物体贯穿全片，镜头按关键帧在几处布景间飞越。
 ```
 
 - 题材：3D 与实时图形
 - 适合：AI 原理、复杂系统、抽象概念讲解
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-127/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-127)
 - 技术（建议）：WebGL · Three.js · Remotion
 - 参考：[animation-skills luminous-cosmos-3d](https://github.com/madhavsomani/animation-skills/blob/main/skills/luminous-cosmos-3d/SKILL.md)
 
@@ -490,12 +510,16 @@
 
 ## C-149 早期光线追踪 CGI
 
+![早期光线追踪 CGI](../images/C-149.jpg)
+
 ```text
 用早期光线追踪 CGI风格：90 年代初电脑图形的样子，所有物体都是同一种光滑塑料，带一颗硬边白色高光，地面是无限延伸的红白棋盘格并映出倒影，铬球反射出扭曲的环境，背景是紫到青的渐变天空，开场先显示绿色线框再逐行扫描渲染出来，镜头沿轨道慢慢绕转。
 ```
 
 - 题材：3D 与实时图形
 - 适合：计算机图形学史、复古科技片、怀旧片头
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-149/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-149)
 - 技术（建议）：WebGL · GLSL
 - 参考：[huashu 风格卡 15_raytrace](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/15_raytrace.md)
 
@@ -503,12 +527,16 @@
 
 ## C-153 合成波（Synthwave）
 
+![合成波（Synthwave）](../images/C-153.jpg)
+
 ```text
 用合成波风格：深紫夜空下一轮切成横条的橙粉渐变落日，品红霓虹透视网格向地平线无限滚动，远处是线框山脉，镀铬金属大字带一道高光扫过，所有亮线都有一紧一散两层辉光，最后叠上 VHS 扫描线、红蓝通道错位和偶尔的磁带卡顿，配模拟合成器琶音。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：复古音乐 MV、游戏与潮牌宣传、80 年代怀旧片头
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-153/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-153)
 - 技术（建议）：WebGL · GLSL · Web Audio
 - 参考：[mg-styles-15 10-synthwave](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/10-synthwave.md) · [huashu 风格卡 26_vaporwave](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/26_vaporwave.md)
 
@@ -516,12 +544,16 @@
 
 ## C-155 液态融合
 
+![液态融合](../images/C-155.jpg)
+
 ```text
 用液态融合风格：纯色背景上的高光泽液体图形，两团靠近就自动粘连融合，分开时拉出细颈再断裂回弹，小液滴晚两三帧跟着主体被甩出去，转场是一道带几个凸起的波浪前沿泼过整屏，结尾一滴液体聚合成标志，表面用场的梯度假装出立体高光，配水滴和吸管声。
 ```
 
 - 题材：平面设计与动态排版
 - 适合：饮料与食品广告、标志演绎、音乐转场包装
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-155/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-155)
 - 技术（建议）：WebGL2 · GLSL
 - 参考：[mg-styles-15 07-liquid](https://github.com/Vincentwei1021/mg-styles-15/blob/main/prompts/07-liquid.md)
 
@@ -555,12 +587,16 @@
 
 ## C-166 60 年代液体灯光秀
 
+![60 年代液体灯光秀](../images/C-166.jpg)
+
 ```text
 用60 年代液体灯光秀风格：投影仪下一只玻璃皿里油、水和染料不停旋转交融，品红、橙、绿、紫被挤成气泡和漩涡，上面叠着手绘透明片，黑墨处真的挡住灯光，每个重拍都在液面荡开一圈，灯偶尔熄灭又亮起，配迷幻摇滚。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：迷幻音乐 MV、间奏与转场、梦境段落
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-166/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-166)
 - 技术（建议）：WebGL · GLSL
 - 参考：[opus-5.5-mv liquid-light](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/liquid-light)
 
@@ -568,12 +604,16 @@
 
 ## C-167 热成像
 
+![热成像](../images/C-167.jpg)
+
 ```text
 用热成像风格：画面是热像仪看到的寒夜，人和动物的身体、呼出的气、刚踩过的脚印先发亮再慢慢冷却消失，烟囱的烟被风压平，伪彩调色板从黑紫到橙黄再到白，起风时整片调色板跟着扫换，所有轮廓上叠一条细白边线，角落有温度读数。
 ```
 
 - 题材：电影年代与屏幕科技
 - 适合：夜晚与寒冷、监视与追踪、身体与触碰
+- 技术（已验证）：WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-167/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-167)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[opus-5.5-mv thermal](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/thermal)
 

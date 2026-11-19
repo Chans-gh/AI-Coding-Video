@@ -1,0 +1,5 @@
+{
+  "en_name": "Real-time WebGL nature",
+  "en_how": "In a full-screen fragment shader the water height is a few slow waves plus a decaying ring ripple for each tap; its gradient is used as the normal to offset the lookup into the bed (refraction), the bed is Voronoi pebbles each shaded as a dome by distance to its edge, multiplied by a caustic pattern from an iterated sine and cosine field, and a sky highlight is added on top; a pointer drawn in Canvas taps the water at several spots, and the tap times and positions are passed to the shader as a uniform array.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}
