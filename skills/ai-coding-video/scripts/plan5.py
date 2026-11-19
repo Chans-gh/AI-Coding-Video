@@ -123,11 +123,58 @@ def quoted(cell):
 
 
 def redline_words(cell):
-    """「词：「收益」「回报」；题目里引述原话除外」→ ['收益', '回报']（「；」后面是例外说明，只打印）"""
+    """「词：「收益」「回报」；除外：S1、题目」→ ['收益', '回报']"""
+    return redline_rule(cell)['words']
+
+
+def redline_rule(cell):
+    """红线「词：」一格 → {words, except_s: [S], except_title, odd: [读不出的例外说明]}。
+    例外只认「；除外：」后面的 S 编号（S5–S7 也行）和「题目」（策划 0.8.1）；别的写法读不出，放进 odd：按没有例外查，交人工看"""
+    out = {'words': [], 'except_s': [], 'except_title': False, 'odd': []}
     m = re.match(r'\s*词[：:](.*)', cell)
     if not m:
+        return out
+    parts = re.split(r'[；;]', m.group(1))
+    out['words'] = [w for w in re.findall(r'「([^」]+)」', parts[0]) if w.strip()]
+    for part in parts[1:]:
+        part = part.strip()
+        if not part:
+            continue
+        e = re.fullmatch(r'除外[：:](.*)', part)
+        if not e:
+            out['odd'].append(part)
+            continue
+        for item in re.split(r'[、，,\s]+', e.group(1).strip().rstrip('。')):
+            if not item:
+                continue
+            if item == '题目':
+                out['except_title'] = True
+            elif re.fullmatch(r'S\d+(?:\s*[–\-~—]\s*S?\d+)?', item):
+                out['except_s'] += expand(item, 'S')
+            else:
+                out['odd'].append(f'除外：{item}')
+    return out
+
+
+def title_texts(title):
+    """content.md 的标题 → 题目的几种写法（整行、「内容表：」后面的）"""
+    t = title.strip().lstrip('#').strip()
+    out = {t}
+    if re.search(r'[：:]', t):
+        out.add(re.split(r'[：:]', t, maxsplit=1)[1].strip())
+    return sorted((x for x in out if x), key=len, reverse=True)
+
+
+def screen_items(cell):
+    """看什么「上屏的字」→ 要上屏的字的条目。有「」的只认「」里的（别的是说明）；没有的按 、；<br> 拆，
+    「无」和写要求的（「不写比例数字」这类以不、无、别开头的）不算"""
+    c = cell.strip()
+    if not c or c == '无':
         return []
-    return [w for w in re.findall(r'「([^」]+)」', re.split(r'[；;]', m.group(1))[0]) if w.strip()]
+    q = [x.strip() for x in re.findall(r'「([^」]+)」', c) if x.strip()]
+    if q:
+        return q
+    return [x.strip() for x in re.split(r'<br\s*/?>|[、；;]', c) if x.strip() and not re.match(r'[不无别]', x.strip())]
 
 
 def read(cpath, text):
@@ -207,7 +254,7 @@ def read(cpath, text):
         if not m:
             errors.append(f'{w}：「怎么查」要以「词：」「条件：」「人工：」之一开头，现在是「{r["怎么查"][:20]}」')
         r['kind'] = m.group(1) if m else None
-        r['words'] = redline_words(r['怎么查'])
+        r.update(redline_rule(r['怎么查']))
         if r['kind'] == '词' and not r['words']:
             errors.append(f'{w}：「词：」后面要有「」引起来的词')
         P['redlines'][b] = r
@@ -301,7 +348,11 @@ def read_segment(P, name, lines):
         r['段'] = g
         r['refs'] = [x.strip() for x in re.split(r'[、，,]', r['用到']) if x.strip()]
         r['big'] = '' if r['最大的字'].strip() == '无' else quoted(r['最大的字'])
-        r['with'] = r['配哪句'].strip()
+        r['with_raw'] = r['配哪句'].strip()
+        r['with'] = expand(r['with_raw'], 'S')  # 一格可以配几句：S3、S4 或 S5–S7（策划 0.8.1）
+        if r['with_raw'] not in ('', '无') and not r['with']:
+            errors.append(f'{w}：配哪句「{r["with_raw"]}」读不出：写 S 编号（几句写 S3、S4 或 S5–S7），没有写「无」')
+        r['screen'] = screen_items(r['上屏的字'])
         P['views'][h] = r
 
     for r in need_table(bl.get('信息'), DATA_HEAD, errors, f'{where}「信息」') if '信息' in bl else []:
@@ -318,13 +369,17 @@ def read_segment(P, name, lines):
 def check_refs(P):
     """念什么的依据、看什么的用到和配哪句、信息的去向，编号都要存在"""
     errors = P['errors']
+    for b, r in P['redlines'].items():
+        for s in r.get('except_s', []):
+            if s not in P['sents']:
+                errors.append(f'红线 {b}：除外的 {s} 在念什么里找不到')
     for h, v in P['views'].items():
-        if v['with'] and v['with'] != '无':
-            s = P['sents'].get(v['with'])
+        for x in v['with']:
+            s = P['sents'].get(x)
             if s is None:
-                errors.append(f'看什么 {h}：配哪句 {v["with"]} 在念什么里找不到（写 S 编号或「无」）')
+                errors.append(f'看什么 {h}：配哪句的 {x} 在念什么里找不到（写 S 编号或「无」）')
             elif s['seg'] != v['段']:
-                errors.append(f'看什么 {h}：配哪句 {v["with"]} 是 {s["seg"]} 的句子，这格在 {v["段"]}')
+                errors.append(f'看什么 {h}：配哪句 {x} 是 {s["seg"]} 的句子，这格在 {v["段"]}')
         for x in v['refs']:
             if not known(P, x):
                 errors.append(f'看什么 {h}：用到的「{x}」在 content.md 里找不到（写 P1-1、P1 a、M1、K1、B1）')
@@ -380,6 +435,9 @@ def read_reports(P, lines):
         for o in objs:
             if not known(P, o):
                 errors.append(f'{w}：对象 {o} 在 content.md 里找不到')
+        if r['类型'] == '偏离' and any(not cp.VIEW_ID.fullmatch(o) for o in objs):
+            errors.append(f'{w}：「偏离」只用于画面做法和策划写的不一样，对象写 H 编号；时长超了不算偏离：先按「可删①→②」删，'
+                          '删完还超的回报「压缩」或「删减」、归「策划」、回流（storyboard.md 第 4 节）')
         r['objs'] = objs
         P['reports'].append(r)
     if any(r['归谁'] == '策划' and r['状态'] == '待补' for r in P['reports']) and P['status'] != '回流中':
@@ -501,10 +559,19 @@ def check_say(P, sc):
             if lv == ORIG and res == '字改了':
                 errs.append(f'念什么 {s} 是原句，逐字稿没照着念：「{r["text"][:30]}」只许改念法、断句，字不改'
                             '（字幕写法和念法不同的写进 show；撞了红线回报「冲突」、回流）')
-            elif lv == ORIG and res == '数字写法不同':
-                notes.append(f'念什么 {s} 是原句，去掉数字才对得上：核对数字的念法，或把字幕写法写进 show')
+            elif res == '数字写法不同':
+                errs.append(f'念什么 {s} 的字幕对不上原文：vo 按 show 换回字幕写法是「{shown(sc, "".join(vos))[:30]}」，'
+                            f'原文「{r["text"][:30]}」，只差数字写法：把念法和字幕写法写进 show（{{"第三年": "第 3 年"}}），'
+                            '字幕要和原文一样')
             elif lv == MUST and res == '压缩' and not rep:
                 notes.append(f'念什么 {s}（必讲）和 vo 不一样，压了措辞的话下游回报加一行「压缩」（归下游、已知悉）')
+    show = sc.get('show') if isinstance(sc.get('show'), dict) else {}
+    said = ''.join(v for s in sc.get('segments') or [] for v in (s.get('vo') if isinstance(s.get('vo'), list) else [])
+                   if isinstance(v, str))
+    for k in show:
+        if isinstance(k, str) and k and k not in said:
+            errs.append(f'show 的键「{k}」在哪句 vo 里都没有：键是 vo 里的念法（「一点四倍」），vo 要写成念法，'
+                        f'字幕才换回「{show[k]}」')
     for g, xs in cut.items():
         gone = [rank for rank, _, d in xs if d]
         kept = [(rank, s) for rank, s, d in xs if not d]
@@ -548,9 +615,11 @@ def pick(o, key):
 
 
 def check_redlines(P, sb, sc):
-    """红线「词：」的词不出现在 vo 和分镜的 o 里；原句撞上了、回报有「冲突」行的只提醒"""
+    """红线「词：」的词不出现在 vo 和分镜的 o 里；原句撞上了、回报有「冲突」行的只提醒。
+    「；除外：」写到的 S 和题目不查；例外读不出的照查，撞上了只提醒、交人工看，不判回流"""
     errs, notes = [], []
     words = [(b, w) for b, r in P['redlines'].items() for w in r['words']]
+    titles = title_texts(P.get('title') or '')
     if not words:
         return errs, notes
     texts = []
@@ -565,6 +634,16 @@ def check_redlines(P, sb, sc):
             texts.append((f'{w} 的 o', ' '.join(strings(x['o'])), []))
     for where, text, ids in texts:
         for b, word in words:
+            rl = P['redlines'][b]
+            if any(s in rl['except_s'] for s in ids):
+                continue
+            if rl['except_title']:
+                for x in titles:
+                    text = text.replace(x, '')
+            if word in text and rl['odd']:
+                notes.append(f'{where}：出现红线 {b} 的词「{word}」；这条的例外读不出（「{"；".join(rl["odd"])[:30]}」，'
+                             '能读的写法是「；除外：S1、题目」），按没有例外查，交人工看是不是例外，不直接回流')
+                continue
             if word in text:
                 conflict = [x for s in ids for x in reported(P, s, ('冲突',))] + reported(P, b, ('冲突',))
                 origs = [s for s in ids if P['sents'].get(s, {}).get('level') == ORIG]
@@ -603,6 +682,74 @@ def check_info(P, sb, sc, view_claims):
             errs.append(f'信息 {k}（{r["seg"]}）去向是「{r["去向"]}」，成片里一处都没用到：念的句子都没有 vo 认领、'
                         '上屏的格都没有分镜认领')
     return errs, notes
+
+
+def screen_strings(x):
+    """一个分镜实际上屏的字：o 和 over 里的参数"""
+    out = strings(x.get('o')) if isinstance(x.get('o'), dict) else []
+    for y in x.get('over') if isinstance(x.get('over'), list) else [x.get('over')]:
+        if isinstance(y, dict):
+            out += strings({k: v for k, v in y.items() if k != 'part'})
+    return out
+
+
+def check_onscreen(P, claims):
+    """看什么「上屏的字」的每一条都要在认领它的分镜上屏（o、over）；对不上的列出来：补上，或下游回报「偏离」"""
+    errs, notes = [], []
+    for h, v in P['views'].items():
+        if not v['screen']:
+            continue
+        shots = [(n, x) for n, is_shot, x in claims.get(h, []) if is_shot]
+        if not shots:
+            if claims.get(h):
+                notes.append(f'{h} 只有段的 uses 认领，「上屏的字」没法逐项核：拆成分镜写 o，或自己核')
+            continue
+        have = cp.norm(''.join(s for _, x in shots for s in screen_strings(x)))
+        miss = [s for s in v['screen'] if cp.norm(s) not in have]
+        if miss and not reported(P, h, ('偏离', '冲突')):
+            errs.append(f'{h}「上屏的字」的{"".join(f"「{s}」" for s in miss)}在认领它的{"、".join(n for n, _ in shots)}'
+                        ' 里没上屏（o、over 里找不到）：补进部件，或下游回报加一行「偏离」（归下游、已知悉）')
+    return errs, notes
+
+
+NUMS = re.compile(r'\d+(?:\.\d+)?')
+
+
+def numbers(x):
+    """o 里的数值（不算字符串里的数）"""
+    if isinstance(x, bool) or x is None:
+        return []
+    if isinstance(x, (int, float)):
+        return [float(x)]
+    if isinstance(x, list):
+        return [n for y in x for n in numbers(y)]
+    if isinstance(x, dict):
+        return [n for y in x.values() for n in numbers(y)]
+    return []
+
+
+def check_values(P, claims):
+    """上屏不写数（最大的字、上屏的字里没有数字）的格：部件的数值要取它用到的信息里的数（50% 也认 0.5、剩下的 0.5）。只提醒"""
+    notes = []
+    for h, v in P['views'].items():
+        if re.search(r'\d', v['上屏的字'] + v['big']):
+            continue
+        ids = [x for x in v['refs'] if x in P['content']] + [k for k, r in P['content'].items() if h in r['dest']['show']]
+        ids = list(dict.fromkeys(ids))
+        base = [float(n) for k in ids for n in NUMS.findall(P['content'][k]['内容'])]
+        if not base:
+            continue
+        ok = set()
+        for n in base:
+            ok |= {n, n / 100, 1 - n / 100}
+        for name, is_shot, x in claims.get(h, []):
+            vals = numbers(x.get('o')) if is_shot else []
+            off = [n for n in dict.fromkeys(vals) if not any(abs(n - a) < 1e-6 for a in ok)]
+            if off:
+                notes.append(f'{name} 的 o 里 {"、".join(f"{n:g}" for n in off)} 在 {h} 用到的信息里找不到'
+                             f'（{"、".join(ids)}：{P["content"][ids[0]]["内容"][:30]}）：上屏不写数时，部件的数值也取信息里的，'
+                             '形状才和原文一致')
+    return notes
 
 
 def pack_of(x, sb):
@@ -691,15 +838,16 @@ def vo_spans(tseg):
 
 
 def check_timing(P, sb, sc, timing, claims, looks):
-    """配音后：配哪句的 S 和认领 H 的分镜在时间上重叠；每段时长和篇幅差 15% 以内（提醒），全片不超出总则区间的 15%（错）；
-    每格秒数在查表 motion 的张力区间里（提醒）"""
+    """配音后：配哪句的 S 和认领 H 的分镜在时间上重叠；每格秒数在查表 motion 的张力区间里（提醒）；报实测语速（提醒）。
+    超时（全片超出总则区间上限的 115%，或一段超出段篇幅的 115%）照 handoff.md 第 5 节：还留着可删的，先按圈号从小到大删（错）；
+    可删删完还超的，要有归「策划」的「压缩」或「删减」回报、回流（错）。「偏离」不算"""
     errs, notes = [], []
     if not isinstance(timing, dict):
         return errs, notes
     tsegs = {t.get('seg'): t for t in timing.get('segments') or [] if isinstance(t, dict)}
     segs = sb.get('segments') or []
     scs = sc.get('segments') or [] if sc is not None else []
-    total = 0
+    total, durs, spoken_chars, when_all = 0, {}, 0, {}
     for i, s in enumerate(segs, 1):
         g = s.get('seg')
         t = tsegs.get(g)
@@ -707,19 +855,18 @@ def check_timing(P, sb, sc, timing, claims, looks):
             continue
         dur = t.get('dur') or 0
         total += dur
-        want = P['frame'].get(g, {}).get('sec')
-        if want and dur and abs(dur - want) > want * SLACK:
-            notes.append(f'{g} 配音后 {dur:.1f} 秒，篇幅 {want:g} 秒，差 {abs(dur - want) / want:.0%}（超过 15%）：'
-                         '长了先删可删（按圈号），再压必讲；短了回报给用户')
+        durs[g] = dur
         say = scs[i - 1].get('say') if i <= len(scs) and isinstance(scs[i - 1].get('say'), list) else []
         vo = scs[i - 1].get('vo') if i <= len(scs) and isinstance(scs[i - 1].get('vo'), list) else []
         spoken = [k for k, v in enumerate(vo) if isinstance(v, str) and v.strip()]
+        spoken_chars += sum(chars(vo[k]) for k in spoken)
         spans = vo_spans(t)
         when = {}  # S → [(开始, 结束)]
         for n, k in enumerate(spoken):
             if n < len(spans) and k < len(say):
                 for x in say_list(say[k]) or []:
                     when.setdefault(x, []).append(spans[n])
+        when_all.update(when)
         tshots = t.get('shots') or []
         shots = s.get('shots') if isinstance(s.get('shots'), list) else []
         for j, x in enumerate(shots):
@@ -728,13 +875,14 @@ def check_timing(P, sb, sc, timing, claims, looks):
             t0, t1 = tshots[j].get('t0', 0), tshots[j].get('t1', 0)
             for h in cp.view_list(x.get('view')) or []:
                 v = P['views'].get(h)
-                if not v or v['with'] in ('', '无') or v['with'] not in P['sents']:
+                ws_ = [x2 for x2 in (v['with'] if v else []) if x2 in P['sents']]
+                if not ws_:
                     continue
-                ws = when.get(v['with'])
+                ws = [w for x2 in ws_ for w in when.get(x2, [])]
                 if not ws:
-                    notes.append(f'分镜 {cs.shot_name(i, j + 1)}：{h} 配 {v["with"]}，这句没有配音（删了的话 {h} 换一句配）')
+                    notes.append(f'分镜 {cs.shot_name(i, j + 1)}：{h} 配 {v["with_raw"]}，这几句都没有配音（删了的话 {h} 换一句配）')
                 elif not any(a < t1 and b > t0 for a, b in ws):
-                    errs.append(f'分镜 {cs.shot_name(i, j + 1)}（{t0:.1f}–{t1:.1f} 秒）认领 {h}，配的 {v["with"]} 在 '
+                    errs.append(f'分镜 {cs.shot_name(i, j + 1)}（{t0:.1f}–{t1:.1f} 秒）认领 {h}，配的 {v["with_raw"]} 在 '
                                 f'{ws[0][0]:.1f}–{ws[0][1]:.1f} 秒念，时间上不重叠：调分镜的 vo 或 sec')
             lk = looks.get(pack_of(x, sb) or '')
             band = ((lk or {}).get('motion') or {}).get('tension', {}).get(str(P.get('tension'))) if isinstance(lk, dict) else None
@@ -744,12 +892,57 @@ def check_timing(P, sb, sc, timing, claims, looks):
                 if not lo - 0.05 <= t1 - t0 <= hi + 0.05:
                     notes.append(f'分镜 {cs.shot_name(i, j + 1)} {t1 - t0:.1f} 秒，查表（张力 {P["tension"]}、节奏 '
                                  f'{P["frame"].get(g, {}).get("pace") or "中"}）是 {lo:.1f}–{hi:.1f} 秒')
+    claimed = say_claims(P, sc)[1] if sc is not None else {}
+    for g, dur in durs.items():
+        want = P['frame'].get(g, {}).get('sec')
+        if not (want and dur):
+            continue
+        if dur > want * (1 + SLACK) + 0.05:
+            over_steps(P, [g], f'{g} 配音后 {dur:.1f} 秒，篇幅 {want:g} 秒，超了 {(dur - want) / want:.0%}（段篇幅的 115% 是 '
+                       f'{want * (1 + SLACK):.1f} 秒）', claimed, when_all, errs)
+        elif dur < want * (1 - SLACK):
+            notes.append(f'{g} 配音后 {dur:.1f} 秒，篇幅 {want:g} 秒，短了 {(want - dur) / want:.0%}（超过 15%）：回报给用户')
     lo, hi = P.get('range') or ((P['sec'], P['sec']) if P.get('sec') else (None, None))
     if total and lo:
-        if total < lo * (1 - SLACK) - 0.05 or total > hi * (1 + SLACK) + 0.05:
-            errs.append(f'配音后全片 {total:.1f} 秒，总则的篇幅是「{P["expr"].get("篇幅", "")}」，超出区间的 15% 了：'
-                        '长了先删可删、再压必讲；还不行回流')
+        if total > hi * (1 + SLACK) + 0.05:
+            over_steps(P, list(durs), f'配音后全片 {total:.1f} 秒，总则的篇幅是「{P["expr"].get("篇幅", "")}」，超出区间上限的 15%'
+                       f'（{hi * (1 + SLACK):.1f} 秒）了', claimed, when_all, errs)
+        elif total < lo * (1 - SLACK) - 0.05:
+            errs.append(f'配音后全片 {total:.1f} 秒，总则的篇幅是「{P["expr"].get("篇幅", "")}」，比区间下限短了 15% 以上：回报给用户')
+    if total and spoken_chars and P.get('cps'):
+        rate = spoken_chars / total
+        u = sb.get('unify') if isinstance(sb.get('unify'), dict) else {}
+        sp = (u.get('voice') or {}).get('speed') if isinstance(u.get('voice'), dict) else None
+        msg = (f'实测语速：每秒 {rate:.1f} 字（按念法数，含停顿；全片 {spoken_chars} 字 ÷ {total:.1f} 秒），语速档「{P["speed"]}」'
+               f'是每秒 {P["cps"]:g} 字：这一句写进下游回报的说明或交付说明')
+        if abs(rate - P['cps']) > P['cps'] * 0.1 and isinstance(sp, (int, float)) and not isinstance(sp, bool):
+            want = sp * P['cps'] / rate
+            msg += (f'；差了 {abs(rate - P["cps"]) / P["cps"]:.0%}，' +
+                    (f'unify.voice.speed 可以从 {sp:g} 按比例调到约 {want:.2f}（本地合成音比真实配音约慢 13%，见 sound.md）'
+                     if 0.5 <= want <= 2 else '倍速调不回来，先查逐字稿 pace 的停顿和段长'))
+        notes.append(msg)
     return errs, notes
+
+
+def over_steps(P, scope, what, claimed, when, errs):
+    """超时的必经一步（handoff.md 第 5 节）：scope 这几段里还念着的可删，按圈号从小到大列出来要删；
+    都删完了，要有归「策划」的「压缩」或「删减」回报（段是 scope 里的或「全部」）"""
+    kept = sorted((r['rank'], int(s[1:]), s) for s, r in P['sents'].items()
+                  if r['seg'] in scope and r['level'] == CUT and claimed.get(s))
+    if kept:
+        items = []
+        for rank, _, s in kept:
+            sec = sum(b - a for a, b in when.get(s, []))
+            items.append(f'可删{CIRCLED[rank - 1]} {s}' + (f'（约 {sec:.1f} 秒）' if sec else ''))
+        errs.append(f'{what}：先按圈号从小到大删可删：{"、".join(items)}；删一句在下游回报加一行「删减」（归下游、已知悉），'
+                    '重配后再查。不能只在下游回报写一行「偏离」')
+        return
+    if any(r['类型'] in ('压缩', '删减') and r['归谁'] == '策划' and (r['段'] in scope or r['段'] == '全部')
+           for r in P['reports']):
+        return
+    errs.append(f'{what}：可删已经删完，还超：下游回报加一行，类型写「压缩」或「删减」、归「策划」、状态「待补」，'
+                '对象写要压的必讲（或要删的原句），说明写超了多少；状态行改成「回流中」，请用户转给策划。'
+                '「偏离」只用于画面做法和策划写的不一样')
 
 
 def check(P, sb, sc, lib, timing=None, pack_roots=()):
@@ -768,10 +961,17 @@ def check(P, sb, sc, lib, timing=None, pack_roots=()):
         e, n = check_layout(P, sb, claims, looks)
         errs += e
         notes += n
+        e, n = check_onscreen(P, claims)
+        errs += e
+        notes += n
+        notes += check_values(P, claims)
         e, n = check_timing(P, sb, sc, timing, claims, looks)
         errs += e
         notes += n
     for b, r in P['redlines'].items():
+        if r.get('odd'):
+            notes.append(f'红线 {b} 的例外读不出（「{"；".join(r["odd"])[:30]}」）：按没有例外查，撞上的交人工看；'
+                         '能读的写法是「词：「收益」；除外：S1、题目」（策划 0.8.1）')
         if r.get('kind') in ('条件', '人工'):
             notes.append(f'红线 {b}（{r["kind"]}）机器查不了，--table 列出来给用户确认：{r["不许"][:30]}')
     return errs, notes
@@ -803,7 +1003,7 @@ def tables(P, sb, sc, timing=None, pack_roots=()):
             who = '、'.join(n for n, _, _ in got) or '✗ 没有'
             lay = '；'.join(layout_cell(x, sb, looks) for _, is_shot, x in got if is_shot) or '—'
             rep = reported(P, h, KINDS)
-            out.append(f'| {h} | {v["段"]} | {cs.cell(v["主角"])} | {cs.cell(v["最大的字"])} | {v["with"] or "—"} | {who} | '
+            out.append(f'| {h} | {v["段"]} | {cs.cell(v["主角"])} | {cs.cell(v["最大的字"])} | {v["with_raw"] or "—"} | {who} | '
                        f'{cs.cell(lay)} | {"、".join(rep) or "—"} |')
     if sc is not None and P.get('cps'):
         tsegs = {t.get('seg'): t for t in (timing or {}).get('segments') or [] if isinstance(t, dict)} \

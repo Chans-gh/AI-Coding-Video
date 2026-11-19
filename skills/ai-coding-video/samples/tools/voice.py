@@ -540,6 +540,43 @@ def compare(want_text, heard_text, heard_map):
     return None
 
 
+def subseq(short, long):
+    """short 是不是 long 去掉几项后的样子；是的话返回去掉的那几项"""
+    out, i = [], 0
+    for x in long:
+        if i < len(short) and short[i] == x:
+            i += 1
+        else:
+            out.append(x)
+    return out if i == len(short) else None
+
+
+def anomaly(want, heard):
+    """稿子和听到的拼音对不上时，看是不是多字、吞字、尾音这类（要人听一下才知道是真念了还是识别器多出来的）；
+    别的对不上返回 None。差的字超过两个不算这类"""
+    if any(x.startswith("*") for x in want) or not want or want == heard:
+        return None
+    n, m = len(want), len(heard)
+    if 0 < m - n <= 2:
+        if heard[:n] == want:
+            return f"尾音多了「{' '.join(heard[n:])}」"
+        if heard[-n:] == want:
+            return f"句首多了「{' '.join(heard[:m - n])}」"
+        extra = subseq(want, heard)
+        if extra:
+            return f"多字：多了「{' '.join(extra)}」"
+    if 0 < n - m <= 2:
+        gone = subseq(heard, want)
+        if gone:
+            return f"吞字：少了「{' '.join(gone)}」"
+    return None
+
+
+def confirmed(heard_ok, text, heard_text):
+    """script.json 的 heard_ok 记着人听过、确认没问题的：{"稿子的句子": "当时听到的"}；听到的变了要重新确认"""
+    return isinstance(heard_ok, dict) and heard_ok.get(text) == heard_text
+
+
 def check(d):
     sb, sc, v = load(d)
     tf = d / "timing.json"
@@ -563,11 +600,21 @@ def check(d):
         if res[k][0] == res[k + 1][0] and (ok[k] is None or ok[k + 1] is None):
             if compare(res[k][1]["text"] + res[k + 1][1]["text"], res[k][2] + res[k + 1][2], heard_map) is not None:
                 moved |= {k, k + 1}
-    bad, ask = 0, []
+    bad, ask, odd = 0, [], 0
+    heard_ok = sc.get("heard_ok") or {}
     for k, ((seg, it, h), got) in enumerate(zip(res, ok)):
         name = Path(it["file"]).name
+        kind = anomaly(tokens(min(readings(it["text"])), True), tokens(min(readings(h)))) if got is None else None
         if k in moved and got is None:
             print(f"✗ {name} 跨句挪字（切句问题，不是读音）\n    稿子 {it['text']}\n    听到 {h}")
+        elif kind and confirmed(heard_ok, it["text"], h):
+            print(f"  {name} {kind}：heard_ok 记着人听过、没问题")
+        elif kind:
+            bad += 1
+            odd += 1
+            print(f"✗ {name} {kind}，请人听一下\n    稿子 {it['text']}\n    听到 {h}\n"
+                  f"    真念出来了就重配这一句；人听过没有（识别器多出来的），把听到的记进 script.json 的 heard_ok："
+                  f"{json.dumps({it['text']: h}, ensure_ascii=False)}")
         elif got is None:
             bad += 1
             print(f"✗ {name} 读音对不上\n    稿子 {it['text']}\n    听到 {h}")
@@ -581,6 +628,8 @@ def check(d):
     if nm:
         print(f"{nm} 句跨句挪字：重切那一段（删掉 vo/cache/pool/ 里那几句再跑 voice.py），不用改稿子")
     print(f"回听 {len(res)} 句（{'SenseVoice' if lang == 'zh' else 'faster-whisper'}）")
+    if odd:
+        print(f"{odd} 句多字、吞字或尾音：要人听过确认，不能当识别器听错放过")
     print(f"{bad} 句不一致")
     return 1 if bad or nm else 0
 

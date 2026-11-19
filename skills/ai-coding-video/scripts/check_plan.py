@@ -783,11 +783,28 @@ def check_script(P, sc, plan_rel=None, storyboard=None):
             if g in P['frame'] and row['seg'] != g and g not in {p for p, _ in row['shared']}:
                 notes.append(f'{where}：{r} 记在 {row["seg"]}，没写「（{g} … 也用）」，核对是不是这段该讲的')
             kind = row['种类']
-            if kind == 'C4' and not re.search(r'官方|按计划|计划', said or f.get('what', '')):
-                notes.append(f'{where}：{r} 是 C4（某方自己说的），旁白要讲成「官方称」「按计划」')
+            if kind == 'C4':
+                e, n = c4_say(row, said or f.get('what', ''), where, r)
+                notes += n
             if re.fullmatch(r'F[1-3]', kind):
                 notes.append(f'{where}：{r} 是素材 {kind}，用「来源」里的链接或 source/ 路径，按「必须写清的」处理授权：{row["必须写清的"]}')
     return errs, notes
+
+
+def c4_say(row, said, where, r):
+    """C4（某方自己说的）怎么讲照「必须写清的」（策划 0.8.1）：写了讲成观点的（用户、作者、品牌方自己的观点）不加「官方称」；
+    写了「讲成「X」」的查 X；都没写的照旧要「官方称」「按计划」"""
+    must = row.get('必须写清的', '')
+    if '观点' in must:
+        return [], []
+    want = re.findall(r'讲成「([^」]+)」', must)
+    if want:
+        if any(w in said for w in want):
+            return [], []
+        return [], [f'{where}：{r} 是 C4（某方自己说的），「必须写清的」写着讲成{"".join(f"「{w}」" for w in want)}，旁白里没有']
+    if re.search(r'官方|按计划|计划', said):
+        return [], []
+    return [], [f'{where}：{r} 是 C4（某方自己说的），旁白要讲成「官方称」「按计划」（「必须写清的」写了讲成观点的除外）']
 
 
 def plan_tables(P, sb, sc):

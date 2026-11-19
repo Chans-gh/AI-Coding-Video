@@ -21,3 +21,5 @@ cases/*/typical/*.mp4
 
 # 策划交来的计划只放在本地，正本在策划仓库
 plans/
+# 测试夹具里的 plans/ 要进仓库（漏过一次：ok5 的 content.md 没提交，测试全挂）
+!skills/ai-coding-video/scripts/tests/fixtures/*/plans/
