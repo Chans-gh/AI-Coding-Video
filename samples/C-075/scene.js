@@ -38,7 +38,7 @@ void main(){
     // 字标：小画布上写字，放大成马赛克
     const word = ['N', 'NO', 'NOV', 'NOVA', 'NOVA', 'NOVA', 'NOVA', 'NOVA', 'NOVA', 'NOVA'][Math.min(9, bi)];
     const fs = (LAND ? 520 : 400) * u * (fin ? .78 : 1.12 - .12 * eOutCubic(Math.min(1, bt * 2.5)));
-    const px = fin ? 1 : Math.max(2, Math.round(u * [44, 36, 30, 24, 20, 16, 12, 9, 6, 4][Math.min(9, bi)] * (1 + 1.5 * KICK)));
+    const px = fin ? 1 : Math.max(2, Math.round(u * [26, 22, 18, 15, 12, 10, 8, 6, 4, 3][Math.min(9, bi)] * (1 + 1.5 * KICK)));
     const cy = fin ? H * (LAND ? .44 : .45) : H / 2;
     const { sm, sx } = s, sw = Math.ceil(W / px), sh = Math.ceil(H / px);
     if (sm.width !== sw || sm.height !== sh) { sm.width = sw; sm.height = sh; }
@@ -46,6 +46,7 @@ void main(){
     sx.font = `${Math.round(fs / px)}px 'Bebas Neue'`; sx.textAlign = 'center'; sx.textBaseline = 'middle';
     sx.fillStyle = '#fff'; if (sx.letterSpacing !== undefined) sx.letterSpacing = `${(fin ? 30 : 6) * u / px}px`;
     sx.fillText(word, sw / 2, cy / px);
+    if (px > 1) { const id = sx.getImageData(0, 0, sw, sh), d = id.data; for (let i = 3; i < d.length; i += 4) d[i] = d[i] > 110 ? 255 : 0; sx.putImageData(id, 0, 0); }
     ctx.imageSmoothingEnabled = false;
     const gl = fin ? Math.max(0, 1 - (t - end) * 5) : Math.max(KICK, .25);
     const shift = 34 * u * gl;

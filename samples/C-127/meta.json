@@ -1,11 +1,5 @@
 {
-  "en_name": "",
-  "en_how": "",
-  "tech": [
-    "WebGL",
-    "Three.js",
-    "Remotion",
-    "Playwright",
-    "ffmpeg"
-  ]
+  "en_name": "Luminous cosmos",
+  "en_how": "A WebGL shader paints deep indigo-violet space fog with domain-warped fractal noise that pans with the camera; on top, Canvas does its own perspective projection of more than a thousand points scattered along three spiral arms, cyan for data and violet nodes and links for structure, all added with pre-drawn glow sprites; an amber octahedron at the centre is the recurring hero, the camera flies between keyframes, and three translucent glass cards (the frame behind blurred, then a tint) write the lines in turn.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
 }

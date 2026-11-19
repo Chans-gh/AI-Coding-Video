@@ -1,10 +1,5 @@
 {
-  "en_name": "",
-  "en_how": "",
-  "tech": [
-    "WebGL",
-    "GLSL",
-    "Playwright",
-    "ffmpeg"
-  ]
+  "en_name": "Early ray-traced CGI",
+  "en_how": "A WebGL shader casts one ray per pixel and intersects four spheres and a ground plane analytically, computing hard shadows, a single plastic material with a hard-edged white highlight, a red-and-white checkerboard floor and up to three mirror bounces (the chrome sphere reflects a warped world) under a purple-to-cyan gradient sky; the opening shows green wireframes projected in Canvas from the same camera, then a scanline reveals the rendered frame row by row from top to bottom while the camera slowly orbits.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
 }
