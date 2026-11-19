@@ -1,0 +1,5 @@
+{
+  "en_name": "Crayon picture book",
+  "en_how": "Indigo outlines draw on in order and re-jitter every eighth of a second; the colour fills are single zigzag polylines that fold back and forth across each shape with their ends overshooting the outline, and the whole crayon layer is masked by a paper-tooth texture so pigment only sits on the raised grain; white-crayon stars, moon and lettering are almost invisible until one translucent indigo watercolour wash sweeps left to right, cut out wherever the wax is, revealing what was hidden.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

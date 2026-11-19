@@ -1,0 +1,5 @@
+{
+  "en_name": "Charcoal erase and redraw",
+  "en_how": "The pear, cast shadow, table and background are first laid in as greyscale values with canvas gradients and broad strokes, then compared pixel by pixel with a directional paper-tooth noise so charcoal only sticks where the value is darker than the grain; each frame stacks, by time, faint willow-charcoal guide lines, the first version of the tone, a blending-stump pass (a blurred copy cross-faded in), a kneaded eraser that cuts most of it away with destination-out but leaves a ghost, the shifted second version, compressed-charcoal darks, and a few lifted highlights.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

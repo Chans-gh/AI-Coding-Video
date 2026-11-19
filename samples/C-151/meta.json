@@ -1,0 +1,5 @@
+{
+  "en_name": "Southern Song academy landscape",
+  "en_how": "The whole painting is drawn once onto an offscreen canvas 1.35 times the frame: a silk ground; the cliff in the lower-left corner gets a pale ochre-ink wash, then points scattered inside it each receive one wedge-shaped side-brush stroke that fades from dark to light across its width (axe-cut texture), darker near the contour; the old pine's trunk and long trailing branch are dry-brush strokes (brushStroke) with needles as fans of short radiating lines; a tiny scholar stands on the ledge, the far mountains are two very faint ink layers, and the rest is bare silk; each frame only moves the camera slowly from the empty right side toward that corner while a few bands of white mist drift across.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
