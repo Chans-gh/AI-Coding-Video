@@ -226,10 +226,11 @@ def read(cpath, text):
     if extent and sec is None:
         errors.append(f'总则的篇幅「{extent}」读不出秒数（写「90 秒，80–105」）')
     voice = gen.get('声音', '')
-    speed = gen.get('语速', '').strip()[:1]
+    m = re.fullmatch(r'(慢|中|快|无)(?:[（(，,；;\s].*)?', gen.get('语速', '').strip())
+    speed = m.group(1) if m else gen.get('语速', '').strip()[:1]
     if gen.get('语速', '').strip().startswith('无'):
         speed = '无'
-    elif gen.get('语速') and speed not in CPS:
+    elif gen.get('语速') and (speed not in CPS or not m):
         errors.append(f'总则的语速「{gen["语速"]}」要是 慢、中、快 之一，没有旁白写「无」')
         speed = '中'
     silent = voice if cp.SILENT.search(voice) else ('没有旁白（语速写「无」）' if speed == '无' else '')

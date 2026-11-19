@@ -404,6 +404,25 @@ class CheckPlan5(unittest.TestCase):
             for bad in ('ep05', 'J2', 'speech-2.8', '约慢 13%', '扣 50%', '保费'):
                 self.assertNotIn(bad, text, f'{name} 里有「{bad}」')
 
+    def test_speed_table_is_downstream(self):
+        """上游 0.8.2 只定三档的字数；倍速对照是下游按自己的引擎测的，写明引擎，不写成上游规定的"""
+        root = HERE.parent.parent
+        sound = (root / 'sound.md').read_text(encoding='utf-8')
+        board = (root / 'storyboard.md').read_text(encoding='utf-8')
+        for bad in ('0.95 / 1.08 / 1.2', '0.95、1.08、1.2', '| 中 | 4.5 | 1.08 |'):
+            self.assertNotIn(bad, sound + board)
+        self.assertIn('按自己用的配音引擎实测换算', sound)
+        self.assertIn('测的引擎：Kokoro v1.1-zh', sound)
+
+    def test_speed_tier_from_general_only(self):
+        """语速档只认总则「语速」一行的 慢、中、快；「快一点」不是档，材料里说的快慢不改档"""
+        d = self.v5([(C, '| 语速 | 中 | 测试 |', '| 语速 | 快一点 | 测试 |')])
+        self.assertErr(d, '总则的语速「快一点」要是 慢、中、快 之一')
+        d = self.v5([(C, '| P1-2 | b | 气压越低，水的沸点越低 |', '| P1-2 | b | 气压越低，水的沸点越低；用户说节奏快一点 |')])
+        self.timing(d)
+        code, out = self.run5(d, extra=['--table'])
+        self.assertIn('语速档「中」是每秒 4.5 字', out)
+
     def test_j2_part_values(self):
         """F6：上屏不写数时，部件的数值要取信息里的（按 0.8 / 0.2 画，信息写的是 50%）"""
         d = self.v5([(C, '| 折线：海拔升高，沸点往下走 | 代码画 | 走势 | 气压越低，沸点越低 | 无 |',

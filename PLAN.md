@@ -31,7 +31,7 @@
 - **字号检查**：本 Skill 没有 `check_layout.py`（那是某个出片项目自己的）。改成在 `check_plan.py` 里静态查：认领 H 的分镜，H 的「最大的字」要出现在查表给的顶档 `o` 键里。不改 `pack.js` 的画法。
 - **时间重叠**：`check_plan.py --timing videos/<短名>/timing.json`，配音后跑，查「配哪句」和认领它的分镜在时间上重叠，并打印每段实际字数、秒数和篇幅的差。
 - **红线的词**：`tools/check_copy.py` 加 `--plan <content.md>`，读红线「词：」并进禁用词，和 `copy.json` 合并（`check_copy.py` 装进项目的 `tools/`，找不到 `check_plan.py`，所以自带一小段读红线表的代码；`vo` 和分镜 `o` 里的词由 `check_plan.py` 查）。「；」后面的例外说明只打印、不解析。
-- **语速**：`sound.md` 加一行换算：慢、中、快 → 本 Skill 默认配音档的 `speed`（倍速只是起点，出片时按实测校正）；写稿前上限 = 段篇幅 × 档的字/秒。
+- **语速**：`sound.md` 加一行换算：慢、中、快 → 本地 Kokoro 实测的 `speed` 对照（别的引擎下游自己测）；写稿前上限 = 段篇幅 × 档的字/秒。
 
 **改哪些文件**
 
