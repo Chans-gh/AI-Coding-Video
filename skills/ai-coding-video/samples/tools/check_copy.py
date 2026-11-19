@@ -19,7 +19,7 @@
      "big_num":  {"bigNumber.to": 3.3},
      "shrink":   {"openTape.title": 12},
      "small_limit": 34, "hand_limit": 24,
-     "forbidden": [["保证收益", "收益承诺"], ["返本", "收益承诺"]],
+     "forbidden": [["永远是", "说绝对了"], ["一定能", "承诺效果"]],
      "extreme": ["最", "顶级", "绝对", "全网"],
      "narration_max": 40}
 
@@ -27,6 +27,8 @@
 这样算出来和画面上看到的宽度对得上。
 
 判定：✗（超容量、禁用词）→ 退出码 1；提醒（极限词、长句、自动缩字号）不影响退出码。
+禁用词、极限词只查**上屏的字**：段代码里部件的字（`o: {…}` 里的字符串）、页边小字和手写条、分镜脚本里分镜的 `o`、
+字幕（逐字稿的 `vo` 按 `show` 换成字幕写法）。分镜的 `what` 是给人看的描述，不上屏，不查。
 """
 from __future__ import annotations
 
@@ -115,8 +117,23 @@ def load_config(path: Path | None) -> dict:
 
 
 def redline_words(content: Path) -> list[tuple[str, str]]:
-    """策划格式 5 的 content.md「## 红线」里「怎么查」写「词：「…」「…」」的词 → [(词, 为什么)]。
-    「；」后面是例外说明（如引述原话），不读；例外由人看。"""
+    """策划格式 5 的 content.md「## 红线」里「怎么查」写「词：「…」「…」」的词 → [(词, 为什么)]"""
+    return [(w, why) for w, why, _ in redline_rules(content)]
+
+
+def content_title(content: Path) -> list[str]:
+    """content.md 的题目（标题行，和「内容表：」后面的部分）"""
+    for line in content.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# "):
+            t = line[2:].strip()
+            out = {t} | ({re.split(r"[：:]", t, maxsplit=1)[1].strip()} if re.search(r"[：:]", t) else set())
+            return sorted((x for x in out if x), key=len, reverse=True)
+    return []
+
+
+def redline_rules(content: Path) -> list[tuple[str, str, dict]]:
+    """[(词, 为什么, 例外)]。例外只认「；除外：」后面的 S 编号和「题目」（策划 0.8.1）：
+    {"s": {"S1"}, "title": True, "odd": [读不出的例外说明]}；读不出的按没有例外查，撞上了只提醒、交人工看"""
     out, sec = [], None
     for line in content.read_text(encoding="utf-8").splitlines():
         if line.startswith("## "):
@@ -128,21 +145,64 @@ def redline_words(content: Path) -> list[tuple[str, str]]:
         if len(cells) < 3 or not re.fullmatch(r"B\d+", cells[0]):
             continue
         m = re.match(r"词[：:](.*)", cells[2])
-        if m:
-            for w in re.findall(r"「([^」]+)」", re.split(r"[；;]", m.group(1))[0]):
-                out.append((w, f"红线 {cells[0]}：{cells[1]}"))
+        if not m:
+            continue
+        parts = re.split(r"[；;]", m.group(1))
+        ex = {"s": set(), "title": False, "odd": []}
+        for part in (p.strip() for p in parts[1:]):
+            e = re.fullmatch(r"除外[：:](.*)", part)
+            if not part:
+                continue
+            if not e:
+                ex["odd"].append(part)
+                continue
+            for item in re.split(r"[、，,\s]+", e.group(1).strip().rstrip("。")):
+                r = re.fullmatch(r"S(\d+)(?:\s*[–\-~—]\s*S?(\d+))?", item)
+                if item == "题目":
+                    ex["title"] = True
+                elif r:
+                    ex["s"] |= {f"S{n}" for n in range(int(r.group(1)), int(r.group(2) or r.group(1)) + 1)}
+                elif item:
+                    ex["odd"].append(f"除外：{item}")
+        for w in re.findall(r"「([^」]+)」", parts[0]):
+            out.append((w, f"红线 {cells[0]}：{cells[1]}", ex))
     return out
+
+
+def say_ids(item) -> set[str]:
+    """逐字稿 say 的一项 → S 编号"""
+    if isinstance(item, str):
+        return {item}
+    return {x for x in item if isinstance(x, str)} if isinstance(item, list) else set()
+
+
+def leaf_strings(x) -> list[str]:
+    if isinstance(x, str):
+        return [x]
+    if isinstance(x, list):
+        return [s for y in x for s in leaf_strings(y)]
+    if isinstance(x, dict):
+        return [s for k, y in x.items() if k != "part" for s in leaf_strings(y)]
+    return []
 
 
 def check_episode(ep: Path, quiet: bool, plan: Path | None = None) -> int:
     cfg = load_config(ep / "copy.json")
+    rules = {}                                    # 词 → 例外（只有红线来的词有）
+    titles = []
     if plan is not None:
         have = {w for w, _ in cfg["forbidden"]}
-        cfg["forbidden"] += [x for x in redline_words(plan) if x[0] not in have]
+        for w, why, ex in redline_rules(plan):
+            if w not in have:
+                cfg["forbidden"].append((w, why))
+                rules[w] = ex
+                have.add(w)
+        titles = content_title(plan)
     seg_dir = ep / "segments"
     errs: list[str] = []
     warns: list[str] = []
     seen: list[str] = []
+    screen: list[tuple[str, set]] = []            # 上屏的字：(字, 这句字幕念的是哪几句 S)
 
     # 1) 段代码里的部件文案
     for js in sorted(seg_dir.glob("*.js")) if seg_dir.is_dir() else []:
@@ -150,6 +210,7 @@ def check_episode(ep: Path, quiet: bool, plan: Path | None = None) -> int:
             continue
         src = js.read_text(encoding="utf-8")
         for part, block in part_blocks(src):
+            screen += [(s, set()) for s in strings_in(block) if s.strip()]
             for (p, key), limit in cfg["limits"].items():
                 if p != part:
                     continue
@@ -205,36 +266,69 @@ def check_episode(ep: Path, quiet: bool, plan: Path | None = None) -> int:
                     if width(s) > cfg["hand_limit"] and not re.search(r"[\u4e00-\u9fff]", s[:1]):
                         warns.append(f"{js.name}  手写串「{s}」{width(s):.1f} 字，注意部件宽度")
 
-    # 2) 分镜的 what（会被人照着写文案，也算文案面）
+    for js in sorted(seg_dir.glob("*.js")) if seg_dir.is_dir() else []:   # 页边小字、手写条也上屏
+        if not js.name.startswith("_"):
+            src = js.read_text(encoding="utf-8")
+            screen += [(s, set()) for s in strings_in(" ".join(re.findall(r"(?:FILM\.small|JR\.hand)\([^;]*?\)", src, re.S)))
+                       if s.strip()]
+
+    # 2) 分镜脚本里分镜的 o（上屏的字）；what 是给人看的描述，不上屏，不查
     sb_path = ep / "storyboard.json"
     if sb_path.is_file():
         for seg in json.loads(sb_path.read_text(encoding="utf-8"))["segments"]:
             for sh in seg.get("shots") or []:
-                seen.append(sh.get("what", ""))
+                screen += [(s, set()) for s in leaf_strings(sh.get("o")) if s.strip()]
+                for y in sh.get("over") if isinstance(sh.get("over"), list) else [sh.get("over")]:
+                    if isinstance(y, dict):
+                        screen += [(s, set()) for s in leaf_strings(y) if s.strip()]
 
-    # 3) 禁用词 + 极限词
-    hay = "\n".join(seen)
+    # 3) 字幕：逐字稿的 vo 按 show 换成字幕写法，记下念的是哪几句 S
+    sc_path = ep / "script.json"
+    sc = json.loads(sc_path.read_text(encoding="utf-8")) if sc_path.is_file() else {}
+    show = sc.get("show") if isinstance(sc.get("show"), dict) else {}
+    for seg in sc.get("segments") or []:
+        say = seg.get("say") if isinstance(seg.get("say"), list) else []
+        for k, v in enumerate(seg.get("vo") or []):
+            if not isinstance(v, str):
+                continue
+            for a in sorted((a for a in show if isinstance(a, str) and isinstance(show[a], str)), key=len, reverse=True):
+                v = v.replace(a, show[a])
+            screen.append((v, say_ids(say[k]) if k < len(say) else set()))
+
+    # 4) 禁用词 + 极限词（只查上屏的字）
+    hit: dict[str, list[str]] = {}
     for word, why in cfg["forbidden"]:
-        for m in re.finditer(re.escape(word), hay):
-            if any(n in hay[max(0, m.start() - 12):m.start()] for n in NEG):
-                continue                          # 「不写「不是收益承诺」」这种描述不算出现
-            errs.append(f"禁用词「{word}」（{why}）")
-            break
+        ex = rules.get(word) or {"s": set(), "title": False, "odd": []}
+        for text, ids in screen:
+            if ids & ex["s"]:
+                continue                          # 红线「；除外：S…」写到的句子不查
+            if ex["title"]:
+                for t in titles:
+                    text = text.replace(t, "")    # 「；除外：题目」：题目本身不查
+            m = re.search(re.escape(word), text)
+            if m is None or any(n in text[max(0, m.start() - 12):m.start()] for n in NEG):
+                continue                          # 「不写「永远是」」这种说明不算出现
+            hit.setdefault(word, []).append(text)
+        if word in hit:
+            if ex["odd"]:
+                warns.append(f"禁用词「{word}」（{why}）出现在「{hit[word][0][:20]}」；这条红线的例外读不出"
+                             f"（「{'；'.join(ex['odd'])[:24]}」），交人工看是不是例外")
+            else:
+                errs.append(f"禁用词「{word}」（{why}）")
     for word in cfg["extreme"]:
-        if word in hay:
+        if any(word in text for text, _ in screen):
             warns.append(f"极限词「{word}」出现：确认分镜 note 里有用户已知悉的留痕（广告法第九条）")
 
-    # 4) 口播拆句
-    sc_path = ep / "script.json"
-    if sc_path.is_file():
-        for seg in json.loads(sc_path.read_text(encoding="utf-8"))["segments"]:
+    # 5) 口播拆句
+    if sc:
+        for seg in sc["segments"]:
             for i, v in enumerate(seg.get("vo") or [], 1):
                 if len(v) > cfg["narration_max"]:
                     warns.append(f"{seg['seg']}-{i} 口播 {len(v)} 字：建议拆句（一句 ≤ {cfg['narration_max']} 字更好念）")
 
     # 输出
     if errs or not quiet:
-        print(f"画面文案检查：{ep}（部件文案 {len(seen)} 条）")
+        print(f"画面文案检查：{ep}（上屏的字 {len(screen)} 条）")
     for e in errs:
         print(f"✗ {e}")
     for w in warns:

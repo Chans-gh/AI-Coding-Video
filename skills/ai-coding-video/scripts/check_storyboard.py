@@ -146,6 +146,16 @@ def check_heard(sc):
     return []
 
 
+def check_heard_ok(sc):
+    """script.json 顶层的 heard_ok：{"稿子的句子": "人听过、确认没问题时识别器听到的"}，只影响回听（多字、吞字、尾音）"""
+    h = sc.get('heard_ok')
+    if h is None:
+        return []
+    if not isinstance(h, dict) or not all(isinstance(k, str) and k and isinstance(x, str) for k, x in h.items()):
+        return ['逐字稿的 heard_ok 写 {"稿子的句子": "听到的"}（人听过、确认没问题的才记）']
+    return []
+
+
 def style_class(x, w, lib, errs, unverified):
     """uses 一条或一个分镜的 ref / class：只写一个，ref 在库里；返回类别 C、T、G，不对返回 None（问题记进 errs）"""
     styles, packs, _ = lib
@@ -454,6 +464,7 @@ def check(sb, sc=None, ready=False, lib=None):
             errs.append(f'逐字稿的 "plan" 要和分镜脚本一样（{sb.get("plan")!r}），现在是 {sc.get("plan")!r}')
         errs += check_align(sb, sc)
         errs += check_heard(sc)
+        errs += check_heard_ok(sc)
         e, n = check_facts(sc, has_plan)
         errs += e
         notes += n
