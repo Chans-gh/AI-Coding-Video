@@ -1,11 +1,5 @@
 {
-  "en_name": "",
-  "en_how": "",
-  "tech": [
-    "WebGL",
-    "Three.js",
-    "GLSL",
-    "Playwright",
-    "ffmpeg"
-  ]
+  "en_name": "Thermal imaging",
+  "en_how": "A greyscale temperature map (whiter is hotter) is first drawn in Canvas: a house and trees on a cold night, a walking person and dog, footprints that darken according to when they were planted, breath puffs that spread and cool, chimney smoke flattened by the wind, all slightly blurred; a WebGL shader reads this map, looks each temperature up in a false-colour palette (black-purple through orange-yellow to white), sweeps a front across to swap in a second palette when the wind rises, and uses a Sobel operator to lay a thin white edge on every temperature jump; Canvas adds the crosshair and temperature readouts.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
 }

@@ -1,10 +1,5 @@
 {
-  "en_name": "",
-  "en_how": "",
-  "tech": [
-    "WebGL2",
-    "GLSL",
-    "Playwright",
-    "ffmpeg"
-  ]
+  "en_name": "Liquid merge",
+  "en_how": "A WebGL shader sums the fields of a dozen circles (radius² / distance²) and takes the field = 1 contour as the liquid boundary, so blobs stick together as they approach and stretch a thin neck before snapping apart; the surface height is 1 − 1/field and its gradient serves as the normal for a hard-edged highlight and a darker rim; circle centres are computed in JS from time, small droplets use the main blob's position from a few frames earlier, a wave front with Gaussian bumps sweeps across as the transition and swaps background and liquid colours on either side, and finally the droplets gather into a two-circle logo.",
+  "tech": ["WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
 }
