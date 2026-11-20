@@ -415,6 +415,10 @@ class CheckPlan5(unittest.TestCase):
         self.assertIn('测的引擎：Kokoro v1.1-zh', sound)
         # 基调不定语速：基调表没有语速一列
         self.assertIn('| 基调 | 音色（按用途的哪一行） | 停顿 | 配乐 |', sound)
+        # 按用途、按风格类别、多角色三张表也不带倍速
+        for head in ('| 用途 | 女声候选 | 男声候选 | 为什么 |', '| 风格类别 | 要不要旁白 | 推荐音色 | 后期处理 |', '| 角色 | 音色 | 实测特点 |'):
+            self.assertIn(head, sound)
+        self.assertNotIn('语速【0.', sound)
 
     def test_speed_tier_from_general_only(self):
         """语速档只认总则「语速」一行的 慢、中、快；「快一点」不是档，材料里说的快慢不改档"""
