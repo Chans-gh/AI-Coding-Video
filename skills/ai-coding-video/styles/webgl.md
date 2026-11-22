@@ -44,12 +44,16 @@
 
 ## C-026 纸片立体书
 
+![纸片立体书](../images/C-026.jpg)
+
 ```text
 用纸片立体书风格：一本书在真实木桌上打开变成舞台，布景随翻页从书页弹起，角色是带白边的扁平剪纸片、转身时像纸片一样翻面，微距浅景深，结尾主角从书里跳到真实桌面上。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：儿童、品牌故事
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-026/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-026)
 - 技术（建议）：WebGL · Three.js
 - 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/paper-popup/STYLE.md)
 
@@ -272,12 +276,16 @@
 
 ## C-073 3D 战役 / 地图俯瞰
 
+![3D 战役 / 地图俯瞰](../images/C-073.jpg)
+
 ```text
 用电视特别节目式 3D 战役复盘风格：俯视真实地形和海湾，双方舰队用红白两色区分并按阵形移动，箭雨、潮流反转和雾气可视化，角落有兵力和潮汐仪表盘，多个机位切换并配字幕解说。
 ```
 
 - 题材：3D 与实时图形
 - 适合：历史战役
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-073/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-073)
 - 技术（建议）：WebGL · Three.js
 
 <a id="C-074"></a>
@@ -346,12 +354,16 @@
 
 ## C-079 赛博朋克霓虹都市
 
+![赛博朋克霓虹都市](../images/C-079.jpg)
+
 ```text
 用赛博朋克霓虹都市风格：夜雨中的超高层巨型城市，湿滑地面反射粉紫和青色霓虹招牌（招牌文字全部原创、不用真实品牌），高架轨道和列车穿过楼宇，雾气和体积光，冷暗基调里只有霓虹是亮的，镜头慢速推进或跟车。
 ```
 
 - 题材：3D 与实时图形
 - 适合：科幻、游戏、电子音乐
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-079/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-079)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@Gorden_Sun](https://x.com/Gorden_Sun/status/2103079013615034692) · [@trymirage](https://x.com/trymirage/status/2103542300844474452)
 
@@ -376,12 +388,16 @@
 
 ## C-081 三渲二 3D 动漫
 
+![三渲二 3D 动漫](../images/C-081.jpg)
+
 ```text
 用三渲二（卡通着色 3D）动漫风格：3D 场景和角色用 toon shading，明暗只有两三个色阶加黑色描边，天空通透、云朵有体积感，街道有樱花、电线杆、小店等生活细节，画面叠加日文标题和游戏 UI 式信息，镜头可自由漫游。
 ```
 
 - 题材：3D 与实时图形
 - 适合：二次元、游戏宣发、文旅
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-081/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-081)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@every](https://x.com/every/status/2103144530157687114)
 
@@ -469,12 +485,16 @@
 
 ## C-109 刻线印刷长镜头
 
+![刻线印刷长镜头](../images/C-109.jpg)
+
 ```text
 用刻线印刷长镜头风格：一个 3D 山水世界全部画成黑墨与纸白，灰度只靠刀刻平行线的粗细和疏密，只留一点红给一个小主角，山、林、水、前景枝条至少分三层彼此滑过，镜头一镜到底穿行其中，转场时响起刻刀划纸和压印的声音。
 ```
 
 - 题材：印刷、版画与装饰
 - 适合：自然纪录、旅途、季节变换
+- 技术（已验证）：Three.js · WebGL · GLSL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-109/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-109)
 - 技术（建议）：WebGL · Three.js · GLSL
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/printed-long-take/STYLE.md)
 
@@ -614,12 +634,16 @@
 
 ## C-162 木雕彩绘微缩景
 
+![木雕彩绘微缩景](../images/C-162.jpg)
+
 ```text
 用木雕彩绘微缩景风格：一张地形浮雕桌上摆着手刻、上过彩漆的小木人、房子和树，表面留着刻刀痕和木纹，只有一盏台灯从上方照亮，浅景深让远处和近处都微微虚化，木偶按一拍二的节奏顿挫移动，镜头像无人机一样低空掠过整片小世界。
 ```
 
 - 题材：纸艺、材质与定格
 - 适合：俯瞰一个完整小世界、童话与寓言、旅行路线
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-162/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-162)
 - 技术（建议）：WebGL · Three.js
 - 参考：[opus-5.5-mv diorama](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles/tree/main/styles/diorama)
 

@@ -251,6 +251,16 @@
    "bytes": 687474,
    "sha256": "b5d4f49eb28e74dd6a2b86cce6e8802ce883648b80782599104435fd08ffdd27"
   },
+  "C-026-16x9.mp4": {
+   "path": "samples/C-026/C-026-16x9.mp4",
+   "bytes": 1457426,
+   "sha256": "3dfb327bdd4930a7ab4a4f1cdcf422fce2f06f7fb9820669a9b76d31a1fb5042"
+  },
+  "C-026-9x16.mp4": {
+   "path": "samples/C-026/C-026-9x16.mp4",
+   "bytes": 1203365,
+   "sha256": "4a31e1b3341f2f8c83e8d77046184907da9cbd36c5021b78b929003c54fa6be4"
+  },
   "C-027-16x9.mp4": {
    "path": "samples/C-027/C-027-16x9.mp4",
    "bytes": 545963,
@@ -691,6 +701,16 @@
    "bytes": 454117,
    "sha256": "2ecf472930ae1a6326515945d8296500252ea0a1d132aa40665c7150f386036d"
   },
+  "C-073-16x9.mp4": {
+   "path": "samples/C-073/C-073-16x9.mp4",
+   "bytes": 1861988,
+   "sha256": "dde4f2f640948ad61d1f76c7f8497a7bdd0beba255ae750582fec8b9e11bf84b"
+  },
+  "C-073-9x16.mp4": {
+   "path": "samples/C-073/C-073-9x16.mp4",
+   "bytes": 1556283,
+   "sha256": "ac046a2b08f19e853d1e519e7768a3993848d6347a21266bb0439e8a035d0ef2"
+  },
   "C-075-16x9.mp4": {
    "path": "samples/C-075/C-075-16x9.mp4",
    "bytes": 1833552,
@@ -731,6 +751,16 @@
    "bytes": 1077661,
    "sha256": "0941901fc1128dab720bb277146b637f5ecc4aaffa54f27c543499d01fcfed2d"
   },
+  "C-079-16x9.mp4": {
+   "path": "samples/C-079/C-079-16x9.mp4",
+   "bytes": 2239751,
+   "sha256": "9f2e570f7159cd927c29d00c604af8550f5cbfe294a9eebae6b5930349b69380"
+  },
+  "C-079-9x16.mp4": {
+   "path": "samples/C-079/C-079-9x16.mp4",
+   "bytes": 2086605,
+   "sha256": "9cbea516de76ed7dfaa260f47596a59a14b4a43005fe941c1a4f4142fa745b2e"
+  },
   "C-080-16x9.mp4": {
    "path": "samples/C-080/C-080-16x9.mp4",
    "bytes": 708953,
@@ -740,6 +770,16 @@
    "path": "samples/C-080/C-080-9x16.mp4",
    "bytes": 654156,
    "sha256": "ad5294f22fc94142844509f2f2cf85d04cb069a2a599b65d902482cc7a4a00af"
+  },
+  "C-081-16x9.mp4": {
+   "path": "samples/C-081/C-081-16x9.mp4",
+   "bytes": 2080475,
+   "sha256": "061048fae9f2f5f2ecd20a1b0bc3da2ad2d15b8e499387859583e3907d0a2530"
+  },
+  "C-081-9x16.mp4": {
+   "path": "samples/C-081/C-081-9x16.mp4",
+   "bytes": 1935401,
+   "sha256": "d6ba392d67051ead4f12bf724bc9eb9b3b11344f3df0ae92c0324fdd8e91cd4c"
   },
   "C-083-16x9.mp4": {
    "path": "samples/C-083/C-083-16x9.mp4",
@@ -990,6 +1030,16 @@
    "path": "samples/C-108/C-108-9x16.mp4",
    "bytes": 240522,
    "sha256": "fec724fd8796c03a61cb45f62466bb7273ac36ff05006ef390ecab0e9976e2bd"
+  },
+  "C-109-16x9.mp4": {
+   "path": "samples/C-109/C-109-16x9.mp4",
+   "bytes": 2537631,
+   "sha256": "30694e6413d2f300f6b4e73815db4a8797a32ea02c01678e7ca9e45f90d54a09"
+  },
+  "C-109-9x16.mp4": {
+   "path": "samples/C-109/C-109-9x16.mp4",
+   "bytes": 2524906,
+   "sha256": "5e7150377f4ddc51269a4b02b4f6dc5beddc3044575d7985864d044f57de0e3c"
   },
   "C-110-16x9.mp4": {
    "path": "samples/C-110/C-110-16x9.mp4",
@@ -1500,6 +1550,16 @@
    "path": "samples/C-161/C-161-9x16.mp4",
    "bytes": 1196436,
    "sha256": "d13c4aed0dfecf0db08f96b6ecda4fbc9ee56514048664df9e5dba0ee08d5e16"
+  },
+  "C-162-16x9.mp4": {
+   "path": "samples/C-162/C-162-16x9.mp4",
+   "bytes": 2273417,
+   "sha256": "99d64ea688ec85a3a4a52f89e36331a56f5f57e9ecd07df1721dfdabf0193de9"
+  },
+  "C-162-9x16.mp4": {
+   "path": "samples/C-162/C-162-9x16.mp4",
+   "bytes": 2008310,
+   "sha256": "196fab334d2a35193e3378d7e08bf9ad0ff893564682b64ae2df058d70edc4ab"
   },
   "C-163-16x9.mp4": {
    "path": "samples/C-163/C-163-16x9.mp4",

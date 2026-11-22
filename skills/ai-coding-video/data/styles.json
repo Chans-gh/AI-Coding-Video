@@ -885,19 +885,28 @@
    "name": "纸片立体书",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-026.jpg",
    "prompt": "用纸片立体书风格：一本书在真实木桌上打开变成舞台，布景随翻页从书页弹起，角色是带白边的扁平剪纸片、转身时像纸片一样翻面，微距浅景深，结尾主角从书里跳到真实桌面上。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "儿童、品牌故事",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-026/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-026"
+   },
    "pack": null,
    "refs": [
     {
@@ -2514,19 +2523,28 @@
    "name": "3D 战役 / 地图俯瞰",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-073.jpg",
    "prompt": "用电视特别节目式 3D 战役复盘风格：俯视真实地形和海湾，双方舰队用红白两色区分并按阵形移动，箭雨、潮流反转和雾气可视化，角落有兵力和潮汐仪表盘，多个机位切换并配字幕解说。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "历史战役",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-073/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-073"
+   },
    "pack": null,
    "refs": []
   },
@@ -2694,19 +2712,28 @@
    "name": "赛博朋克霓虹都市",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-079.jpg",
    "prompt": "用赛博朋克霓虹都市风格：夜雨中的超高层巨型城市，湿滑地面反射粉紫和青色霓虹招牌（招牌文字全部原创、不用真实品牌），高架轨道和列车穿过楼宇，雾气和体积光，冷暗基调里只有霓虹是亮的，镜头慢速推进或跟车。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "科幻、游戏、电子音乐",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-079/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-079"
+   },
    "pack": null,
    "refs": [
     {
@@ -2761,19 +2788,28 @@
    "name": "三渲二 3D 动漫",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-081.jpg",
    "prompt": "用三渲二（卡通着色 3D）动漫风格：3D 场景和角色用 toon shading，明暗只有两三个色阶加黑色描边，天空通透、云朵有体积感，街道有樱花、电线杆、小店等生活细节，画面叠加日文标题和游戏 UI 式信息，镜头可自由漫游。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "二次元、游戏宣发、文旅",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-081/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-081"
+   },
    "pack": null,
    "refs": [
     {
@@ -3676,20 +3712,30 @@
    "name": "刻线印刷长镜头",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-109.jpg",
    "prompt": "用刻线印刷长镜头风格：一个 3D 山水世界全部画成黑墨与纸白，灰度只靠刀刻平行线的粗细和疏密，只留一点红给一个小主角，山、林、水、前景枝条至少分三层彼此滑过，镜头一镜到底穿行其中，转场时响起刻刀划纸和压印的声音。",
    "theme": "印刷、版画与装饰",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "自然纪录、旅途、季节变换",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-109/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-109"
+   },
    "pack": null,
    "refs": [
     {
@@ -5551,19 +5597,28 @@
    "name": "木雕彩绘微缩景",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-162.jpg",
    "prompt": "用木雕彩绘微缩景风格：一张地形浮雕桌上摆着手刻、上过彩漆的小木人、房子和树，表面留着刻刀痕和木纹，只有一盏台灯从上方照亮，浅景深让远处和近处都微微虚化，木偶按一拍二的节奏顿挫移动，镜头像无人机一样低空掠过整片小世界。",
    "theme": "纸艺、材质与定格",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "俯瞰一个完整小世界、童话与寓言、旅行路线",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-162/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-162"
+   },
    "pack": null,
    "refs": [
     {

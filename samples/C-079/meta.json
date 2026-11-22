@@ -1,0 +1,11 @@
+{
+  "en_name": "Cyberpunk neon megacity",
+  "en_how": "Three.js lays out a canyon street of procedurally sized towers whose window textures are drawn from a seed and re-mapped so windows never stretch, with original glowing signs painted as textures; a train crosses on an elevated rail; the whole city is duplicated upside-down below a translucent wet-asphalt ground (more transparent where puddles are), so signs reflect on the street; exponential fog and additive light-beam sprites give volume, the camera pushes slowly down the street, and Canvas adds a downsampled blurred bloom and slanting rain.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
