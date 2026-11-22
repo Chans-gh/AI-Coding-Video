@@ -1,4 +1,4 @@
-"""把 prompts.json 拼成 assets.json 里的生图项：每种画风 × 每个镜头一张，提示词 = 镜头段 + 风格段 + 约束段。
+"""把 prompts.json 拼成 assets.json 里的生图项：每种画风 × 每个镜头一张，提示词 = 镜头段 + 风格段 + 约束段；另有每种画风一张底纹（textures）。
 
     python3 ../packs/style-swap/demo/compose.py        # 改了 prompts.json 之后跑一次（在 samples/ 下或任何目录都行）
     python3 tools/assets.py pack:style-swap            # 再补齐缺的图（已有的不动；提示词变了的用 --only … --force 重做）
@@ -28,12 +28,19 @@ def main():
             it = old.get(f, {"file": f, "kind": "生图"})
             it.update(model=P["model"], prompt=prompt(P, shot, style), params=P["params"],
                       license="AI 生成，随本仓库按 MIT 发布", credit="画面 AI 生成")
-            it.setdefault("prep", P["prep"])
+            it["prep"] = {**P["prep"], **{k: v for k, v in it.get("prep", {}).items() if k == "q"}}   # q 是逐张定的：压到 120 KB 以内
             gen.append(it)
+    for style, text in P.get("textures", {}).items():       # 每种画风一张底纹：提示词只有底纹这一段（不拼镜头段和约束段）
+        f = f"assets/{style}-tex.jpg"
+        it = old.get(f, {"file": f, "kind": "生图"})
+        it.update(model=P["model"], prompt=text + "画风：" + P["styles"][style], params=P["params"],
+                  license="AI 生成，随本仓库按 MIT 发布", credit="画面 AI 生成")
+        it["prep"] = {**P["prep"], **{k: v for k, v in it.get("prep", {}).items() if k == "q"}}
+        gen.append(it)
     rest = [it for it in A["items"] if it.get("kind") != "生图"]
     A["items"] = gen + rest
     af.write_text(json.dumps(A, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"assets.json：{len(gen)} 张生图（{len(P['styles'])} 种画风 × {len(P['shots'])} 个镜头）+ {len(rest)} 项声音")
+    print(f"assets.json：{len(gen)} 张生图（{len(P['styles'])} 种画风 × {len(P['shots'])} 个镜头 + 底纹）+ {len(rest)} 项声音")
 
 
 if __name__ == "__main__":

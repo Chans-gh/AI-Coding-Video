@@ -27,7 +27,7 @@
   - `lead`：15 个主角 → `part`（可带 `over`）和哪个 `o` 键放「最大的字」；包里没有的写 `instead`（用哪个代替，用了算偏离）。
   - `sizes`：顶档、中档、小字档各对应哪些 `o` 键（每个部件写一次）。
   - `motion`：张力 1/2/3 → 每格秒数下限、上限、能不能弹出；情绪紧/松/稳/扬 → 强调色、动效多少；节奏快/中/慢 → 每格秒数的倍数。
-  - 三个包都写：`dark-keynote` 15 个主角大多能落；`news-brief`、`style-swap` 部件少，大多是 `instead`。规格见 `making.md`「样式查表」，`build_index.py` 查。
+  - 三个包都写，15 个主角大多能落，包里没有的写 `instead`。规格见 `making.md`「样式查表」，`build_index.py` 查。
 - **字号检查**：本 Skill 没有 `check_layout.py`（那是某个出片项目自己的）。改成在 `check_plan.py` 里静态查：认领 H 的分镜，H 的「最大的字」要出现在查表给的顶档 `o` 键里。不改 `pack.js` 的画法。
 - **时间重叠**：`check_plan.py --timing videos/<短名>/timing.json`，配音后跑，查「配哪句」和认领它的分镜在时间上重叠，并打印每段实际字数、秒数和篇幅的差。
 - **红线的词**：`tools/check_copy.py` 加 `--plan <content.md>`，读红线「词：」并进禁用词，和 `copy.json` 合并（`check_copy.py` 装进项目的 `tools/`，找不到 `check_plan.py`，所以自带一小段读红线表的代码；`vo` 和分镜 `o` 里的词由 `check_plan.py` 查）。「；」后面的例外说明只打印、不解析。
@@ -165,7 +165,6 @@
 
 ## 待办：下一轮大优化
 
-- **升级 `news-brief`、`style-swap`** 到 [making.md](skills/ai-coding-video/making.md#2-级风格包) 2 级的新规格：完整演示片做成分镜合集，以 `dark-keynote` 的 45 种分镜为参照，按各自题材（新闻资讯、换画风）发散出同样量级的分镜（维护者定，先不做）。
 - **反过来给 AI-Video-Project 的**（只记下来，同步回原仓库时再看）：本仓库的切点检查（切点首尾高于 −45 dB 就报错）可以补进它的 `chansclaude-voice/scripts/tts.py`；它的 `video-render/README.md` 准备合并两套渲染器时，可以参考 `samples/tools/film.py`（段缓存简单版、整片自检）。
 
 ## 待办：内容类型再补充（维护者自己研发）
