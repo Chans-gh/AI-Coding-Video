@@ -1,5 +1,5 @@
 {
- "count": 235,
+ "count": 239,
  "styles": [
   {
    "id": "C-001",
@@ -7454,6 +7454,157 @@
    "render_code": {
     "path": "samples/G-020/",
     "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-020"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-021",
+   "class": "G",
+   "name": "伪监控录像",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-021.jpg",
+   "prompt": "用「伪监控录像」：生成一张后院监控探头视角的夜景图（高机位俯拍、广角、低清、没有人），再以它为首帧图生视频，让动物做一件一看就不可能的事（浣熊站在烧烤架前用锅铲给肉饼翻面）；代码把它包装成家用监控的样子：红外夜视的黑白偏绿、鱼眼桶形畸变、暗角、跳动的噪点和横向扫描线，左上角走动的时间戳和摄像头编号，偶尔卡住几帧、跳一下画面，动作发生时右上角弹出「检测到移动」的框；画面角落一直挂着「AI 生成 · 虚构」的标识。题材要荒诞到一眼看出是编的，不写真实地址、人名，不做成新闻的样子。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "图生视频与首尾帧",
+    "生图加代码动画"
+   ],
+   "fit": "搞笑短片、虚构的「监控拍到」系列、品牌创意彩蛋",
+   "verified": [
+    "Canvas 2D",
+    "WebGL",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "WebGL",
+    "GLSL",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-021/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-021"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-022",
+   "class": "G",
+   "name": "玻璃水果 ASMR 切割",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-022.jpg",
+   "prompt": "用「玻璃水果 ASMR 切割」：先生成几张微距特写图，案板上放着现实里不存在的材质——玻璃做的猕猴桃、晶体做的苹果，透光、带折射；再以它们为首帧图生视频，一刀慢慢切下去、切面裂开，让视频模型连声音一起生成（刀刃划过玻璃的细响、切开时清脆的碎裂声）；代码负责慢放切开的那一下、在切口上开一个放大的特写框，每段首尾做淡入淡出接成可以循环的一组，角落写「AI 生成」。声音就用生成的原声，不另配乐。",
+   "theme": "",
+   "content_type": "美食",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "音画同生视频",
+    "图生视频与首尾帧"
+   ],
+   "fit": "ASMR 切割短视频、解压类循环片、美食账号的创意片",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-022/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-022"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-023",
+   "class": "G",
+   "name": "水果拟人小剧场",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-023.jpg",
+   "prompt": "用「水果拟人小剧场」：先生成一张两三个拟人水果角色的定妆图（大眼睛、小手小脚、各自一个鲜明的特征），之后每个镜头都拿它当参考图生成，保证角色长得一样；按一张三四个镜头的分镜表排一段温和的小剧情（比如雨天里一个角色把叶子借给另一个挡雨），挑一两个镜头图生视频让它动起来，其余静帧做推拉；台词不对口型，用字幕条加角色名，旁白用一个公开音色讲故事，镜头的切点和字幕都按旁白的逐字时间排。不要暴力、狗血和低俗的情节。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图",
+    "生视频",
+    "语音合成"
+   ],
+   "techniques": [
+    "角色一致性",
+    "语音合成驱动",
+    "分镜到成片编排"
+   ],
+   "fit": "拟人短剧、儿童故事、品牌吉祥物小剧场",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-023/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-023"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-024",
+   "class": "G",
+   "name": "首尾帧变装卡点",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-024.jpg",
+   "prompt": "用「首尾帧变装卡点」：生成一个虚构的卡通角色（不是真人，也不像任何真人）穿日常衣服的全身图当「变装前」，再以它为参考图生成同一个角色、同一个姿势和背景、换上一套新衣服的「变装后」；两张图分别当首帧和尾帧，用首尾帧生视频生成中间转一圈换装的过程；代码按配乐的节拍剪：前几拍是变装前的定格和小幅推拉，抬手的一拍接上变装视频、转身的瞬间闪白，落拍定格在变装后，弹出这套衣服的单品标签和价格牌。",
+   "theme": "",
+   "content_type": "产品广告和带货",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "图生视频与首尾帧",
+    "节拍对齐剪辑",
+    "角色一致性"
+   ],
+   "fit": "服装带货、换装挑战、穿搭推荐",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-024/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-024"
    },
    "pack": null,
    "refs": []

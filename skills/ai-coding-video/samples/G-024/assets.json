@@ -1,0 +1,65 @@
+{
+ "items": [
+  {
+   "file": "assets/before.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "原创 3D 卡通角色，皮克斯式渲染，卡通形象，不像任何真人：一位虚构的年轻女孩，齐肩的栗色短发、圆圆的大眼睛，正面全身站姿，双脚并拢，双手自然垂在身体两侧，面带微笑；背景是干净的浅粉色摄影棚，地面有柔和的影子，正面柔光；画面里没有文字和标志。她穿着宽松的灰色连帽卫衣、浅蓝色牛仔裤和白色帆布鞋。",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280
+   }
+  },
+  {
+   "file": "assets/after.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "参考图里的同一个角色（脸、发型、身材、姿势、背景、光线都和参考图完全一样，镜头位置不变），只把衣服换成：一件燕麦色的长款羊毛大衣，里面是黑色高领毛衣和黑色直筒长裤，脚上是棕色短靴，肩上挎一个小号酒红色皮包。原创 3D 卡通角色，皮克斯式渲染，没有文字和标志",
+   "params": {
+    "aspectRatio": "9:16"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/before.jpg",
+   "prep": {
+    "max": 1280
+   }
+  },
+  {
+   "file": "assets/change.mp4",
+   "kind": "生视频",
+   "model": "grok-imagine-video-1.5",
+   "prompt": "同一个卡通女孩站在浅粉色摄影棚里，镜头固定：她抬起右手打了个响指，原地轻快地转了一圈，转身的瞬间身上的灰色卫衣和牛仔裤变成了燕麦色长大衣、黑色高领毛衣和棕色短靴，转回正面时停住，自信地微笑。3D 卡通动画，角色的脸和发型保持不变",
+   "params": {
+    "aspectRatio": "9:16",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/before.jpg",
+   "last": "assets/after.jpg",
+   "prep": {
+    "w": 720
+   }
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Winning the Race",
+   "source": "https://opengameart.org/content/winning-the-race",
+   "download": "https://opengameart.org/sites/default/files/S31-Winning%20the%20Race.ogg",
+   "license": "CC0 1.0",
+   "author": "section31",
+   "credit": "配乐 section31（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

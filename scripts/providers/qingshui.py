@@ -47,14 +47,21 @@ def fetch(url, dest):
             time.sleep(2 * 2 ** i)
 
 
+def files(out, jid):
+    """已经下下来的文件（空文件不算：下载断了会留下 0 字节的文件）"""
+    return [g for g in sorted((out / "gen").glob(f"{jid}.*")) + sorted((out / "gen").glob(f"{jid}_*.*"))
+            if g.suffix != ".json" and g.stat().st_size > 0]
+
+
 def logged(out, qjob):
-    """run.js 的记录里有没有同一个任务（同提示词、同参数）已经拿到任务编号、没失败、但文件没下下来"""
+    """run.js 的记录里同一个任务（同提示词、同参数）的状态：'done' 已生成且文件在，'fetch' 拿到任务编号、没失败、但文件没下下来，None 没有"""
     log = out / "gen" / "log.json"
     if not log.exists():
-        return False
+        return None
     e = next((e for e in reversed(json.loads(log.read_text(encoding="utf-8"))) if e.get("id") == qjob["id"]), None)
-    return bool(e and e.get("task_id") and e.get("status") != "failed" and e.get("prompt") == qjob["prompt"] and e.get("options") == qjob["options"]
-                and not any(g.suffix != ".json" for g in (out / "gen").glob(f"{qjob['id']}.*")))
+    if not (e and e.get("task_id") and e.get("status") != "failed" and e.get("prompt") == qjob["prompt"] and e.get("options") == qjob["options"]):
+        return None
+    return "done" if files(out, qjob["id"]) else "fetch"
 
 
 def visual(job, out):
@@ -63,6 +70,8 @@ def visual(job, out):
     qjob = {"id": jid, "type": job["type"], "prompt": job["prompt"], "options": {"model": job["model"], **job.get("params", {})}}
     if job.get("refs") and job["type"] == "video" and job["model"].startswith("grok"):
         qjob["frames"] = {"image": job["refs"][0]}      # grok 的参考图是「保持人物一致」，当首帧要走首尾帧模式
+        if len(job["refs"]) > 1:
+            qjob["frames"]["lastFrame"] = job["refs"][1]
     elif job.get("refs"):
         qjob["refs"] = job["refs"]
         if job["model"].startswith("Doubao-Seedance"):
@@ -70,11 +79,20 @@ def visual(job, out):
     jf = out / f"{jid}.qs.json"
     jf.write_text(json.dumps(qjob, ensure_ascii=False, indent=1), encoding="utf-8")
     subprocess.run(["node", str(QS / "scripts" / "run.js"), "check", str(jf)], check=True, stdout=sys.stderr)
-    if logged(out, qjob):       # 上次已经生成、只是下载失败：接着下载，不再扣一次算力
+    for g in (out / "gen").glob(f"{jid}*"):
+        if g.suffix != ".json" and g.stat().st_size == 0:
+            g.unlink()
+    state = logged(out, qjob)
+    if state == "fetch":        # 上次已经生成、只是下载失败：接着下载，不再扣一次算力
         subprocess.run(["node", str(QS / "scripts" / "run.js"), "fetch", str(out), jid], check=True, stdout=sys.stderr)
-    else:
+    elif state is None:
         subprocess.run(["node", str(QS / "scripts" / "run.js"), str(jf)], check=True, stdout=sys.stderr)
-    got = [g for g in sorted((out / "gen").glob(f"{jid}.*")) + sorted((out / "gen").glob(f"{jid}_*.*")) if g.suffix != ".json"]
+    if not files(out, jid):     # 下载到空文件：再取一次
+        for g in (out / "gen").glob(f"{jid}*"):
+            if g.suffix != ".json" and g.stat().st_size == 0:
+                g.unlink()
+        subprocess.run(["node", str(QS / "scripts" / "run.js"), "fetch", str(out), jid], check=True, stdout=sys.stderr)
+    got = files(out, jid)
     if not got:
         sys.exit("青水没有返回文件")
     return {"file": str(got[0])}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Fruit-character mini drama",
+  "en_how": "One generated model sheet of two fruit characters is the reference image for every shot, so they look the same throughout; the middle shot is animated with image-to-video. Code edits from a three-shot storyboard: cut points come from the moments the narrator says the banana's name and 'the rain stopped', stills get a slow push, rain streaks are drawn in code, name tags pop on at each shot, the one spoken line appears as a speech bubble over the banana instead of lip sync, narration is captioned line by line, a storyboard strip highlights the current shot, and a title card closes.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

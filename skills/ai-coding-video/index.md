@@ -15,7 +15,7 @@
 ## 风格目录
 
 <!-- catalog:start -->
-共 235 种（纯代码 195 种，公共领域素材 20 种，AI 生成素材 20 种），其中 234 种已有样片。点名字跳到条目。
+共 239 种（纯代码 195 种，公共领域素材 20 种，AI 生成素材 24 种），其中 238 种已有样片。点名字跳到条目。
 
 | 题材 | 风格 |
 |---|---|
@@ -36,9 +36,9 @@ T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，�
 |---|---|---|
 | 知识科普讲解 | [T-001 数据实体化](styles/footage.md#T-001)（照片、数据） | [G-001 编辑部纸拼贴讲解](styles/generated.md#G-001)（生图、语音合成） |
 | 口播 / 数字人 | [T-002 口播剪辑 + 花字](styles/footage.md#T-002)（录像） | [G-002 虚拟主播口播](styles/generated.md#G-002)（生图、生视频、语音合成） |
-| 产品广告和带货 | [T-003 复古产品广告](styles/footage.md#T-003)（照片、录像） | [G-003 电影感产品广告](styles/generated.md#G-003)（生图、生视频） · [G-015 三维产品展台](styles/generated.md#G-015)（生图、三维模型） |
+| 产品广告和带货 | [T-003 复古产品广告](styles/footage.md#T-003)（照片、录像） | [G-003 电影感产品广告](styles/generated.md#G-003)（生图、生视频） · [G-015 三维产品展台](styles/generated.md#G-015)（生图、三维模型） · [G-024 首尾帧变装卡点](styles/generated.md#G-024)（生图、生视频） |
 | 品牌宣传片 | [T-004 倒计时分屏](styles/footage.md#T-004)（录像、照片、数据） · [T-018 照片深景推镜](styles/footage.md#T-018)（照片、数据） | [G-004 大字品牌片](styles/generated.md#G-004)（生视频） |
-| 短剧 / 动漫剧 / 故事 | [T-005 默片字幕卡重剪](styles/footage.md#T-005)（录像） | [G-005 动漫短剧分镜](styles/generated.md#G-005)（生图、生视频、语音合成） · [G-016 分镜表短片](styles/generated.md#G-016)（生图、生视频、语音合成） |
+| 短剧 / 动漫剧 / 故事 | [T-005 默片字幕卡重剪](styles/footage.md#T-005)（录像） | [G-005 动漫短剧分镜](styles/generated.md#G-005)（生图、生视频、语音合成） · [G-016 分镜表短片](styles/generated.md#G-016)（生图、生视频、语音合成） · [G-021 伪监控录像](styles/generated.md#G-021)（生图、生视频） · [G-023 水果拟人小剧场](styles/generated.md#G-023)（生图、生视频、语音合成） |
 | 音乐 MV | [T-006 轨道 MV](styles/footage.md#T-006)（录像、照片） | [G-006 无限放大拼贴](styles/generated.md#G-006)（生图） |
 | 新闻资讯解说 | [T-007 卫星地图简报](styles/footage.md#T-007)（照片、数据） | [G-007 插画新闻解说](styles/generated.md#G-007)（生图、语音合成） |
 | 纪录片和纪实 | [T-008 档案灯箱](styles/footage.md#T-008)（照片） · [T-013 发射多机位同步](styles/footage.md#T-013)（录像、数据） | [G-008 伪纪录片](styles/generated.md#G-008)（生图、生视频、语音合成） |
@@ -50,10 +50,10 @@ T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，�
 | 游戏和电竞 | [T-020 对局复盘](styles/footage.md#T-020)（三维模型、数据） | [G-014 虚构电竞集锦](styles/generated.md#G-014)（生视频） |
 | 播客和访谈可视化 | [T-016 访谈金句竖屏](styles/footage.md#T-016)（录像、数据） | [G-018 双人播客声波](styles/generated.md#G-018)（生图、语音合成） |
 | 年度回顾和数据总结 | [T-015 年度数据回顾](styles/footage.md#T-015)（数据、照片） | [G-019 十二月插画回顾](styles/generated.md#G-019)（生图、语音合成） |
-| 美食 | [T-019 营养成分对比](styles/footage.md#T-019)（照片、数据） | [G-013 食谱动效卡](styles/generated.md#G-013)（生图、语音合成） |
+| 美食 | [T-019 营养成分对比](styles/footage.md#T-019)（照片、数据） | [G-013 食谱动效卡](styles/generated.md#G-013)（生图、语音合成） · [G-022 玻璃水果 ASMR 切割](styles/generated.md#G-022)（生图、生视频） |
 | 健康和运动指导 | [T-017 体操骨骼示范](styles/footage.md#T-017)（录像、数据） | [G-020 拉伸跟练](styles/generated.md#G-020)（生图、生视频、语音合成） |
 
-按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（20） · [G 类：AI 生成素材](styles/generated.md)（20）
+按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（20） · [G 类：AI 生成素材](styles/generated.md)（24）
 <!-- catalog:end -->
 
 ## 按题材选风格

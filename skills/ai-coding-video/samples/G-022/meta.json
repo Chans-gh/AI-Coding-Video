@@ -1,0 +1,5 @@
+{
+  "en_name": "Glass-fruit ASMR cut",
+  "en_how": "Two generated macro stills, a glass kiwi and an amethyst apple, become first frames for image-to-video clips whose cutting sounds are generated together with the picture. Code edits them from one timetable: normal speed up to the knife, 0.35x slow motion for the second the blade cracks through, then normal speed on the cut faces; during the slow part a 2.4x close-up box opens on the cut, tied back to the frame with thin lines. Cross-fades join the two fruits and bring the end back to the first frame, so the clip loops seamlessly. The only sound is the generated audio, stretched with the same timetable.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}
