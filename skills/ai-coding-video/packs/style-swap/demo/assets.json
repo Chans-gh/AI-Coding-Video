@@ -3,136 +3,766 @@
   {
    "file": "assets/photo-s1.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/photo-s4.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 4，特写：面包店木门上挂着一只黄铜铃铛，门上的小玻璃窗蒙着一层薄薄的水汽，窗后透出暖黄的灯光。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 72
+   }
+  },
+  {
+   "file": "assets/photo-s5.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 5，远景：从街角望向老城高低错落的屋顶和烟囱，天边从深蓝慢慢泛出一线橙色，几只鸽子停在屋檐上。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 72
+   }
+  },
+  {
+   "file": "assets/photo-s6.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 6，特写：撒满面粉的木质案板上，一双手正把一大团面团向前推揉，面粉在灯光里扬起细细的粉尘，只拍到手和小臂。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/photo-s7.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 7，中景：一排藤编发酵篮里放着圆圆的面团，表面盖着亚麻布，旁边的窗户透进清晨的冷蓝光。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/photo-s8.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 8，俯拍：工作台上整齐摆着面粉袋、一碗鸡蛋、一块黄油、木勺和一小罐酵母，像一张食材的平铺图。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 72
    }
   },
   {
    "file": "assets/photo-s2.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/photo-s9.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 9，中景：一把长柄木铲把一个长条面包送进砖砌的老烤炉，炉膛里红橙色的火光映在砖墙上。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 64
+   }
+  },
+  {
+   "file": "assets/photo-s10.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 10，微距：烤炉里面包表皮的裂口正在张开，边缘慢慢烤成焦糖色，细小的气泡在表面闪着光。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
    }
   },
   {
    "file": "assets/photo-s3.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 68
+   }
+  },
+  {
+   "file": "assets/photo-s11.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 11，中景：不锈钢冷却架上整齐排着一排刚出炉的可颂，层层酥皮泛着油光，背后的墙上挂着几把木铲。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/photo-s12.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 12，微距：一只刚切开的乡村面包的截面，蓬松的孔洞清晰可见，切面还冒着一缕热气，面包刀放在一旁。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/photo-s13.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 13，全景：面包店的木门被推开，清晨的阳光斜斜照进店里，木架上摆满各式面包，地上投下长长的窗格影子。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 60
+   }
+  },
+  {
+   "file": "assets/photo-s14.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 14，中景：那只橘猫在面包店门口的石阶上伸了个懒腰，身后是半开的木门和门边一盆薰衣草。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 64
+   }
+  },
+  {
+   "file": "assets/photo-s15.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 15，中景：一辆前筐装着纸袋面包的旧自行车靠在面包店门口的路灯杆旁，石板路被阳光晒干了一半。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 68
+   }
+  },
+  {
+   "file": "assets/photo-s16.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 16，大远景：高处俯瞰整条老街，阳光铺满屋顶，面包店的遮阳篷是街上最亮的一抹颜色，远处有一条河。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
    }
   },
   {
    "file": "assets/watercolor-s1.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/watercolor-s4.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 4，特写：面包店木门上挂着一只黄铜铃铛，门上的小玻璃窗蒙着一层薄薄的水汽，窗后透出暖黄的灯光。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
+   }
+  },
+  {
+   "file": "assets/watercolor-s5.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 5，远景：从街角望向老城高低错落的屋顶和烟囱，天边从深蓝慢慢泛出一线橙色，几只鸽子停在屋檐上。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/watercolor-s6.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 6，特写：撒满面粉的木质案板上，一双手正把一大团面团向前推揉，面粉在灯光里扬起细细的粉尘，只拍到手和小臂。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
+   }
+  },
+  {
+   "file": "assets/watercolor-s7.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 7，中景：一排藤编发酵篮里放着圆圆的面团，表面盖着亚麻布，旁边的窗户透进清晨的冷蓝光。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 64
+   }
+  },
+  {
+   "file": "assets/watercolor-s8.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 8，俯拍：工作台上整齐摆着面粉袋、一碗鸡蛋、一块黄油、木勺和一小罐酵母，像一张食材的平铺图。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 64
    }
   },
   {
    "file": "assets/watercolor-s2.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 64
+   }
+  },
+  {
+   "file": "assets/watercolor-s9.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 9，中景：一把长柄木铲把一个长条面包送进砖砌的老烤炉，炉膛里红橙色的火光映在砖墙上。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
+   }
+  },
+  {
+   "file": "assets/watercolor-s10.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 10，微距：烤炉里面包表皮的裂口正在张开，边缘慢慢烤成焦糖色，细小的气泡在表面闪着光。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
    }
   },
   {
    "file": "assets/watercolor-s3.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 52
+   }
+  },
+  {
+   "file": "assets/watercolor-s11.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 11，中景：不锈钢冷却架上整齐排着一排刚出炉的可颂，层层酥皮泛着油光，背后的墙上挂着几把木铲。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
+   }
+  },
+  {
+   "file": "assets/watercolor-s12.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 12，微距：一只刚切开的乡村面包的截面，蓬松的孔洞清晰可见，切面还冒着一缕热气，面包刀放在一旁。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 60
+   }
+  },
+  {
+   "file": "assets/watercolor-s13.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 13，全景：面包店的木门被推开，清晨的阳光斜斜照进店里，木架上摆满各式面包，地上投下长长的窗格影子。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/watercolor-s14.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 14，中景：那只橘猫在面包店门口的石阶上伸了个懒腰，身后是半开的木门和门边一盆薰衣草。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 56
+   }
+  },
+  {
+   "file": "assets/watercolor-s15.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 15，中景：一辆前筐装着纸袋面包的旧自行车靠在面包店门口的路灯杆旁，石板路被阳光晒干了一半。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/watercolor-s16.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 16，大远景：高处俯瞰整条老街，阳光铺满屋顶，面包店的遮阳篷是街上最亮的一抹颜色，远处有一条河。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
    }
   },
   {
    "file": "assets/clay-s1.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 1，远景：天刚蒙蒙亮的老城街角，一家小面包店的橱窗先亮起暖黄的灯，门口的石板路还湿着，二楼窗台摆着几盆绿植，街上空无一人。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 64
+   }
+  },
+  {
+   "file": "assets/clay-s4.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 4，特写：面包店木门上挂着一只黄铜铃铛，门上的小玻璃窗蒙着一层薄薄的水汽，窗后透出暖黄的灯光。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s5.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 5，远景：从街角望向老城高低错落的屋顶和烟囱，天边从深蓝慢慢泛出一线橙色，几只鸽子停在屋檐上。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/clay-s6.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 6，特写：撒满面粉的木质案板上，一双手正把一大团面团向前推揉，面粉在灯光里扬起细细的粉尘，只拍到手和小臂。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/clay-s7.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 7，中景：一排藤编发酵篮里放着圆圆的面团，表面盖着亚麻布，旁边的窗户透进清晨的冷蓝光。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s8.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 8，俯拍：工作台上整齐摆着面粉袋、一碗鸡蛋、一块黄油、木勺和一小罐酵母，像一张食材的平铺图。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
    }
   },
   {
    "file": "assets/clay-s2.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 2，特写：面包店烤箱的玻璃门里，一排圆面包正在慢慢鼓起，表皮开始变成金黄色，烤箱里橙色的灯照亮面团。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s9.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 9，中景：一把长柄木铲把一个长条面包送进砖砌的老烤炉，炉膛里红橙色的火光映在砖墙上。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s10.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 10，微距：烤炉里面包表皮的裂口正在张开，边缘慢慢烤成焦糖色，细小的气泡在表面闪着光。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
    }
   },
   {
    "file": "assets/clay-s3.jpg",
    "kind": "生图",
-   "model": "gemini-3.1-flash-image-preview",
-   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里没有人物、没有文字、没有标志和商标。",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 3，中景：面包店的窗台上放着一只装满刚出炉面包的藤编篮子，热气缓缓升起，一只橘猫趴在篮子旁边望着窗外晨光里的街道。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
    "params": {
     "aspectRatio": "16:9"
    },
    "license": "AI 生成，随本仓库按 MIT 发布",
    "credit": "画面 AI 生成",
    "prep": {
-    "max": 1600,
-    "q": 86
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/clay-s11.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 11，中景：不锈钢冷却架上整齐排着一排刚出炉的可颂，层层酥皮泛着油光，背后的墙上挂着几把木铲。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s12.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 12，微距：一只刚切开的乡村面包的截面，蓬松的孔洞清晰可见，切面还冒着一缕热气，面包刀放在一旁。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/clay-s13.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 13，全景：面包店的木门被推开，清晨的阳光斜斜照进店里，木架上摆满各式面包，地上投下长长的窗格影子。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 68
+   }
+  },
+  {
+   "file": "assets/clay-s14.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 14，中景：那只橘猫在面包店门口的石阶上伸了个懒腰，身后是半开的木门和门边一盆薰衣草。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/clay-s15.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 15，中景：一辆前筐装着纸袋面包的旧自行车靠在面包店门口的路灯杆旁，石板路被阳光晒干了一半。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 72
+   }
+  },
+  {
+   "file": "assets/clay-s16.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "镜头 16，大远景：高处俯瞰整条老街，阳光铺满屋顶，面包店的遮阳篷是街上最亮的一抹颜色，远处有一条河。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。色调统一为清晨的冷蓝配暖黄灯光；主体放在画面上方三分之二，下方留出安静的区域；画面里不出现人脸（可以只拍到手）、没有文字、没有标志和商标。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/photo-tex.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "一张没有主体的底纹：微距拍摄的撒了面粉的深色木质案板表面，柔和的侧光，细腻的颗粒和木纹，大面积暗部，适合当背景。画风：写实摄影，35 毫米镜头，浅景深，清晨的自然光，真实的材质和细节，像一张纪实摄影作品。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 48
+   }
+  },
+  {
+   "file": "assets/watercolor-tex.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "一张没有主体的底纹：水彩纸上大片清透的冷蓝和暖黄晕染，水痕和留白，看得见纸张纹理，适合当背景。画风：手绘水彩插画，水彩的晕染和留白，细铅笔线勾边，看得见纸张纹理，颜色清透柔和。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
+   }
+  },
+  {
+   "file": "assets/clay-tex.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "一张没有主体的底纹：一大片压平的软黏土表面，冷蓝和暖黄两色黏土揉在一起，有指纹和压痕，柔和的棚拍光，适合当背景。画风：3D 黏土定格动画，所有物体都是手捏的软黏土模型，表面有指纹和压痕，造型圆润，柔和的棚拍灯光。",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1280,
+    "q": 76
    }
   },
   {
@@ -169,7 +799,8 @@
      "t1": 10.112,
      "text": "这条街就醒了"
     }
-   ]
+   ],
+   "use": "clip"
   },
   {
    "file": "assets/music.mp3",
@@ -183,7 +814,892 @@
    "prep": {
     "t": 15
    },
-   "at": 0
+   "at": 0,
+   "use": "clip"
+  },
+  {
+   "file": "assets/music_full.mp3",
+   "kind": "配乐",
+   "title": "Apple Cider（完整演示片用，从第一拍起截 80 秒）",
+   "source": "https://opengameart.org/content/apple-cider",
+   "download": "https://opengameart.org/sites/default/files/apple_cider.ogg",
+   "license": "CC0 1.0",
+   "author": "Zane Little Music",
+   "credit": "配乐 Zane Little Music（CC0）",
+   "prep": {
+    "ss": 0.581,
+    "t": 80,
+    "br": "112k"
+   },
+   "beats": "python3 samples/tools/beats.py → 100 BPM，一拍 0.6 秒，第一拍 0.581 秒（截掉之后第 0 秒落在拍上）",
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/coldOpen.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glitch_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glitch_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/slam.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/flash.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：tick_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/tick_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/marquee.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/chapter.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：bong_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/bong_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/shot.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：open_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/open_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/shotCard.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/split.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：toggle_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/toggle_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/filmstrip.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/grid.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/loupe.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/reveal.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scratch_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scratch_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/stack.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/lineup.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/swap.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：switch_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/switch_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/crop.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/bigNumber.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/flip.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：tick_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/tick_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/bars.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：pluck_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/pluck_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/progress.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/ring.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glass_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glass_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/rank.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_006.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_006.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/heat.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glass_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glass_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/gauge.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/versus.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：switch_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/switch_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/scatter.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glass_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glass_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/palColors.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：pluck_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/pluck_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/formula.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：open_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/open_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/quote.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：open_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/open_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/typing.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/glossary.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_007.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_007.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/qa.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：question_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/question_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/styleTable.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/checklist.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tree.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_008.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_008.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/character.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/timeline.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/credits.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/outro.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tag.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：toggle_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/toggle_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/corners.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：minimize_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/minimize_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/circle.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scratch_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scratch_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/stamp.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/cursor.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_dissolve.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-12.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-12.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_push.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-3.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-3.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_iris.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-7.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-7.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_flash.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-9.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-9.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_slice.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-10.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-10.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_dip.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-2.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-2.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_diag.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-5.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-5.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
   }
  ]
 }

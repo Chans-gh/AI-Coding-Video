@@ -1,133 +1,484 @@
 {
- "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）。这个包讲生成画面的画风切换，只有镜头、提示词公式、提示词条、画风并排四种；数据、流程类的主角都用代替，用了就是偏离、回报一行。顶档约 60 px 以上（公式和并排的标题），中档 28–54 px，小字档 28 px 以下；镜头 shot 是整张图，没有顶档的字，最大的字写「无」的格才用它。",
+ "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）：看什么的主角 → 部件，最大的字放顶档。顶档约 76 px 以上（砸字、章号、大数字、翻牌、名词、片尾标题），中档 30–60 px（镜头抬头的标题、问答、表格、引用），小字档 30 px 以下（眉题、刻度、提示词条、出处）；横竖版按 1080 短边算，不自己挑字号。这个包的主角是生成的图：一个镜头的画面用素材组的部件，数据组的部件只画生成记录（genlog.json）和图的像素，别的数据要换成自己的记录。画风由播放器参数 v 决定，不在这里选。motion 的秒数是每格时长，乘节奏的倍数。",
  "lead": {
   "场景": {
    "part": [
-    "shot"
+    "shot",
+    "reveal"
    ]
   },
   "实物": {
    "part": [
-    "shot"
+    "shotCard",
+    "loupe"
    ]
   },
   "人": {
    "part": [
-    "shot"
-   ]
+    "character"
+   ],
+   "note": "不生成真实人物的脸：主角做成动物、手或背影，裁成圆框写设定"
   },
   "一句话": {
-   "instead": [
-    "formula"
-   ],
-   "note": "标题写这句话"
+   "part": [
+    "quote",
+    "slam"
+   ]
   },
   "清单": {
-   "instead": [
-    "lineup"
-   ],
-   "note": "画风并排，一项一张图"
+   "part": [
+    "checklist",
+    "grid"
+   ]
   },
   "两数对比": {
-   "instead": [
-    "lineup"
-   ],
-   "note": "两张图并排，名字写数"
+   "part": [
+    "versus",
+    "split"
+   ]
   },
   "一个数": {
-   "instead": [
-    "formula"
-   ],
-   "note": "没有数据部件：标题写这个数"
+   "part": [
+    "bigNumber",
+    "flip"
+   ]
   },
   "走势": {
-   "instead": [
-    "formula"
-   ],
-   "note": "没有图表部件：标题写结论"
+   "part": [
+    "progress",
+    "scatter"
+   ]
   },
   "构成": {
-   "instead": [
-    "formula"
-   ],
-   "note": "没有图表部件：标题写结论"
+   "part": [
+    "ring",
+    "palColors"
+   ]
   },
   "排名": {
-   "instead": [
-    "lineup"
-   ],
-   "note": "按名次排图，当前一项亮起"
+   "part": [
+    "rank",
+    "bars"
+   ]
   },
   "表格": {
-   "instead": [
-    "formula"
-   ],
-   "note": "没有表格部件：三段公式各写一列"
+   "part": [
+    "styleTable",
+    "heat"
+   ]
   },
   "流程": {
-   "instead": [
-    "strip"
-   ],
-   "note": "提示词条按步骤写"
+   "part": [
+    "timeline",
+    "tree"
+   ]
   },
   "问答": {
-   "instead": [
-    "formula"
-   ],
-   "note": "标题写问题、风格段写答案"
+   "part": [
+    "qa",
+    "glossary"
+   ]
   },
   "地图": {
    "instead": [
     "shot"
    ],
-   "note": "生成一张地图风格的图"
+   "note": "没有地图部件：生成一张俯瞰街区的图当镜头，tag 写地名"
   },
   "界面": {
    "instead": [
-    "shot"
+    "typing"
    ],
-   "note": "生成或截一张界面图"
+   "note": "没有画界面的部件：提示词打字 typing 就是生成界面，录屏或截图当镜头放进 shot"
   }
  },
  "sizes": {
-  "shot": {
-   "top": [],
-   "mid": [],
-   "small": []
-  },
-  "formula": {
-   "top": [
-    "title"
-   ],
-   "mid": [
-    "shot",
-    "style",
-    "styleName"
-   ],
-   "small": [
-    "rules"
-   ]
-  },
-  "strip": {
+  "coldOpen": {
    "top": [],
    "mid": [
-    "shotName",
-    "styleName"
-   ],
-   "small": [
-    "styleText"
-   ]
-  },
-  "lineup": {
-   "top": [
     "title"
-   ],
-   "mid": [
-    "items.name"
    ],
    "small": [
     "sub"
    ]
+  },
+  "slam": {
+   "top": [
+    "words"
+   ],
+   "mid": [],
+   "small": [
+    "sub"
+   ]
+  },
+  "flash": {
+   "top": [
+    "words"
+   ],
+   "mid": [],
+   "small": []
+  },
+  "marquee": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "shots"
+   ]
+  },
+  "chapter": {
+   "top": [
+    "n",
+    "title"
+   ],
+   "mid": [],
+   "small": [
+    "en"
+   ]
+  },
+  "shot": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "n",
+    "size"
+   ]
+  },
+  "shotCard": {
+   "top": [],
+   "mid": [
+    "n"
+   ],
+   "small": [
+    "size",
+    "dur"
+   ]
+  },
+  "split": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "labels"
+   ]
+  },
+  "filmstrip": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "labels"
+   ]
+  },
+  "grid": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "loupe": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "label"
+   ]
+  },
+  "reveal": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "label"
+   ]
+  },
+  "stack": {
+   "top": [],
+   "mid": [],
+   "small": []
+  },
+  "lineup": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "sub"
+   ]
+  },
+  "swap": {
+   "top": [],
+   "mid": [],
+   "small": []
+  },
+  "crop": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "label"
+   ]
+  },
+  "bigNumber": {
+   "top": [
+    "number"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "label"
+   ]
+  },
+  "flip": {
+   "top": [
+    "number"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "unit",
+    "label"
+   ]
+  },
+  "bars": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "progress": {
+   "top": [
+    "total"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "ring": {
+   "top": [
+    "total"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "rank": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "heat": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "gauge": {
+   "top": [
+    "value"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "label"
+   ]
+  },
+  "versus": {
+   "top": [
+    "a.v",
+    "b.v"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "a.label",
+    "b.label"
+   ]
+  },
+  "scatter": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "palColors": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "formula": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "segments"
+   ]
+  },
+  "quote": {
+   "top": [],
+   "mid": [
+    "styleText"
+   ],
+   "small": [
+    "who"
+   ]
+  },
+  "typing": {
+   "top": [],
+   "mid": [
+    "prompt"
+   ],
+   "small": []
+  },
+  "glossary": {
+   "top": [
+    "term"
+   ],
+   "mid": [
+    "def"
+   ],
+   "small": [
+    "en",
+    "line"
+   ]
+  },
+  "qa": {
+   "top": [
+    "q"
+   ],
+   "mid": [
+    "a"
+   ],
+   "small": []
+  },
+  "styleTable": {
+   "top": [],
+   "mid": [
+    "title",
+    "rows"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "checklist": {
+   "top": [],
+   "mid": [
+    "title",
+    "items"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "tree": {
+   "top": [],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "character": {
+   "top": [],
+   "mid": [
+    "name"
+   ],
+   "small": [
+    "traits"
+   ]
+  },
+  "timeline": {
+   "top": [],
+   "mid": [
+    "title",
+    "items.time"
+   ],
+   "small": [
+    "kicker",
+    "items.text"
+   ]
+  },
+  "credits": {
+   "top": [],
+   "mid": [
+    "title",
+    "items"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "outro": {
+   "top": [
+    "title"
+   ],
+   "mid": [],
+   "small": [
+    "sub"
+   ]
+  },
+  "tag": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "text"
+   ]
+  },
+  "corners": {
+   "top": [],
+   "mid": [],
+   "small": []
+  },
+  "circle": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "text"
+   ]
+  },
+  "stamp": {
+   "top": [],
+   "mid": [
+    "text"
+   ],
+   "small": []
+  },
+  "cursor": {
+   "top": [],
+   "mid": [],
+   "small": []
   }
  },
  "motion": {
@@ -154,10 +505,10 @@
    "慢": 1.25
   },
   "mood": {
-   "紧": "镜头推得快（move 的 z 拉大），转场照旧叠化",
-   "松": "镜头慢推，画风并排多停一拍",
-   "稳": "镜头几乎不动，只有叠化",
-   "扬": "风格段亮起时停半拍，片尾画风并排逐个放大"
+   "紧": "转场用 flash、slice、diag，开场用 slam、flash 一拍一张，素材镜头多用 grid、stack",
+   "松": "整屏镜头 shot 慢推，转场 dissolve、dip，一个镜头多停一拍",
+   "稳": "少用叠加，转场 dissolve、push，不用 slam、flash",
+   "扬": "转场 iris、diag，大数字、翻牌、仪表到位时停一拍，片尾 lineup 当前画风放大"
   }
  }
 }
