@@ -1,0 +1,9 @@
+{
+  "en_name": "Neon fluid",
+  "en_how": "A CPU stable-fluids solver (advection, pressure projection, vorticity confinement) is re-run from time 0 for every frame, so each frame depends only on t; four Lissajous emitters inject orange, red, magenta and cyan dye and push extra bursts on the beat; the dye field is upscaled, mapped through 1 - exp for glowing colour, blurred into an additive bloom layer, and overlaid with a small parameter panel.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

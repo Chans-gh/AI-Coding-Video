@@ -1,0 +1,11 @@
+{
+  "en_name": "Split screen: runner game + explainer",
+  "en_how": "Landscape splits left/right and portrait splits top/bottom: one half is an original Three.js street runner (three lanes, side buildings, barriers and spinning coins all built from primitives, a voxel runner swinging arms and legs on a sine, lane changes and jumps keyed), followed by a chase camera with a Canvas score and coin counter; the other half is a dark explainer board that writes out the jump formula, draws the height-time curve and moves a dot along it using the very same jump function as the game, so every jump replays the parabola, ending on the max-height result.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
