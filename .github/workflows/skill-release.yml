@@ -21,6 +21,12 @@ jobs:
       GH_REPO: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 装测试要的依赖
+        # build_index.py --check 会跑 scripts/tests，其中配音工具 samples/tools/voice.py 的测试要 numpy、scipy
+        run: pip install -q numpy scipy
       - name: 读版本号
         id: ver
         run: |
