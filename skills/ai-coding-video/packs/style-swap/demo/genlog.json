@@ -1,0 +1,518 @@
+{
+"about": "生成记录：2026-11-22 用 gpt-image-2.5-flare 生成本演示片的 51 张图，6 张并行。sec 是一次调用从提交到文件落地的秒数（含排队），end 是这张从开始批量生成算起第几秒落地，tries 调用次数，fails 其中失败的次数，kb 压缩后进仓库的体积。只记数字，不记任务编号和链接。",
+"model": "gpt-image-2.5-flare",
+"parallel": 6,
+"items": [
+{
+"file": "photo-s4.jpg",
+"style": "photo",
+"shot": "s4",
+"tries": 1,
+"fails": 0,
+"sec": 285.3,
+"end": 0.8,
+"note": "单独先试的一张，用时取那一次",
+"kb": 113.4
+},
+{
+"file": "photo-s7.jpg",
+"style": "photo",
+"shot": "s7",
+"tries": 1,
+"fails": 0,
+"sec": 33.0,
+"end": 33.1,
+"kb": 109.9
+},
+{
+"file": "photo-s1.jpg",
+"style": "photo",
+"shot": "s1",
+"tries": 1,
+"fails": 0,
+"sec": 57.8,
+"end": 57.8,
+"kb": 127.5
+},
+{
+"file": "photo-s9.jpg",
+"style": "photo",
+"shot": "s9",
+"tries": 1,
+"fails": 0,
+"sec": 45.8,
+"end": 78.9,
+"kb": 111.2
+},
+{
+"file": "photo-s10.jpg",
+"style": "photo",
+"shot": "s10",
+"tries": 1,
+"fails": 0,
+"sec": 36.0,
+"end": 93.9,
+"kb": 114.6
+},
+{
+"file": "photo-s6.jpg",
+"style": "photo",
+"shot": "s6",
+"tries": 1,
+"fails": 0,
+"sec": 140.9,
+"end": 141.0,
+"kb": 117.0
+},
+{
+"file": "photo-s2.jpg",
+"style": "photo",
+"shot": "s2",
+"tries": 1,
+"fails": 0,
+"sec": 235.5,
+"end": 236.4,
+"kb": 84.0
+},
+{
+"file": "photo-s12.jpg",
+"style": "photo",
+"shot": "s12",
+"tries": 1,
+"fails": 0,
+"sec": 104.6,
+"end": 245.6,
+"kb": 107.7
+},
+{
+"file": "photo-s13.jpg",
+"style": "photo",
+"shot": "s13",
+"tries": 1,
+"fails": 0,
+"sec": 30.7,
+"end": 267.0,
+"kb": 112.2
+},
+{
+"file": "photo-s5.jpg",
+"style": "photo",
+"shot": "s5",
+"tries": 1,
+"fails": 0,
+"sec": 280.4,
+"end": 280.4,
+"kb": 114.0
+},
+{
+"file": "photo-s3.jpg",
+"style": "photo",
+"shot": "s3",
+"tries": 1,
+"fails": 0,
+"sec": 211.7,
+"end": 290.5,
+"kb": 112.5
+},
+{
+"file": "photo-s8.jpg",
+"style": "photo",
+"shot": "s8",
+"tries": 1,
+"fails": 0,
+"sec": 292.8,
+"end": 292.9,
+"kb": 106.3
+},
+{
+"file": "photo-s15.jpg",
+"style": "photo",
+"shot": "s15",
+"tries": 1,
+"fails": 0,
+"sec": 50.5,
+"end": 317.5,
+"kb": 113.4
+},
+{
+"file": "photo-s16.jpg",
+"style": "photo",
+"shot": "s16",
+"tries": 1,
+"fails": 0,
+"sec": 43.4,
+"end": 323.9,
+"kb": 124.3
+},
+{
+"file": "photo-s11.jpg",
+"style": "photo",
+"shot": "s11",
+"tries": 1,
+"fails": 0,
+"sec": 262.0,
+"end": 355.8,
+"kb": 113.4
+},
+{
+"file": "watercolor-s5.jpg",
+"style": "watercolor",
+"shot": "s5",
+"tries": 1,
+"fails": 0,
+"sec": 63.0,
+"end": 380.6,
+"kb": 111.1
+},
+{
+"file": "watercolor-s6.jpg",
+"style": "watercolor",
+"shot": "s6",
+"tries": 1,
+"fails": 0,
+"sec": 62.1,
+"end": 385.9,
+"kb": 112.6
+},
+{
+"file": "watercolor-s1.jpg",
+"style": "watercolor",
+"shot": "s1",
+"tries": 1,
+"fails": 0,
+"sec": 96.3,
+"end": 386.8,
+"kb": 134.0
+},
+{
+"file": "watercolor-s7.jpg",
+"style": "watercolor",
+"shot": "s7",
+"tries": 1,
+"fails": 0,
+"sec": 32.5,
+"end": 388.3,
+"kb": 115.6
+},
+{
+"file": "watercolor-s9.jpg",
+"style": "watercolor",
+"shot": "s9",
+"tries": 1,
+"fails": 0,
+"sec": 36.4,
+"end": 423.2,
+"kb": 113.6
+},
+{
+"file": "watercolor-s2.jpg",
+"style": "watercolor",
+"shot": "s2",
+"tries": 1,
+"fails": 0,
+"sec": 68.4,
+"end": 454.3,
+"kb": 114.6
+},
+{
+"file": "watercolor-s3.jpg",
+"style": "watercolor",
+"shot": "s3",
+"tries": 1,
+"fails": 0,
+"sec": 31.3,
+"end": 454.5,
+"kb": 111.9
+},
+{
+"file": "photo-s14.jpg",
+"style": "photo",
+"shot": "s14",
+"tries": 1,
+"fails": 0,
+"sec": 229.9,
+"end": 475.5,
+"kb": 112.7
+},
+{
+"file": "watercolor-s4.jpg",
+"style": "watercolor",
+"shot": "s4",
+"tries": 2,
+"fails": 1,
+"sec": 36.9,
+"end": 632.5,
+"kb": 114.2
+},
+{
+"file": "watercolor-s11.jpg",
+"style": "watercolor",
+"shot": "s11",
+"tries": 1,
+"fails": 0,
+"sec": 152.2,
+"end": 606.5,
+"kb": 115.1
+},
+{
+"file": "watercolor-s14.jpg",
+"style": "watercolor",
+"shot": "s14",
+"tries": 1,
+"fails": 0,
+"sec": 32.9,
+"end": 639.4,
+"kb": 116.5
+},
+{
+"file": "watercolor-s8.jpg",
+"style": "watercolor",
+"shot": "s8",
+"tries": 1,
+"fails": 0,
+"sec": 303.5,
+"end": 684.0,
+"kb": 110.2
+},
+{
+"file": "watercolor-s10.jpg",
+"style": "watercolor",
+"shot": "s10",
+"tries": 2,
+"fails": 1,
+"sec": 272.9,
+"end": 963.3,
+"kb": 116.9
+},
+{
+"file": "clay-s1.jpg",
+"style": "clay",
+"shot": "s1",
+"tries": 1,
+"fails": 0,
+"sec": 47.3,
+"end": 731.4,
+"kb": 110.7
+},
+{
+"file": "watercolor-s13.jpg",
+"style": "watercolor",
+"shot": "s13",
+"tries": 1,
+"fails": 0,
+"sec": 302.0,
+"end": 777.5,
+"kb": 149.1
+},
+{
+"file": "watercolor-s16.jpg",
+"style": "watercolor",
+"shot": "s16",
+"tries": 1,
+"fails": 0,
+"sec": 139.2,
+"end": 778.6,
+"kb": 157.5
+},
+{
+"file": "watercolor-s12.jpg",
+"style": "watercolor",
+"shot": "s12",
+"tries": 1,
+"fails": 0,
+"sec": 332.1,
+"end": 786.6,
+"kb": 115.3
+},
+{
+"file": "clay-s5.jpg",
+"style": "clay",
+"shot": "s5",
+"tries": 1,
+"fails": 0,
+"sec": 58.1,
+"end": 835.6,
+"kb": 104.5
+},
+{
+"file": "clay-s6.jpg",
+"style": "clay",
+"shot": "s6",
+"tries": 1,
+"fails": 0,
+"sec": 89.7,
+"end": 868.3,
+"kb": 115.6
+},
+{
+"file": "clay-s8.jpg",
+"style": "clay",
+"shot": "s8",
+"tries": 1,
+"fails": 0,
+"sec": 46.9,
+"end": 882.5,
+"kb": 109.3
+},
+{
+"file": "clay-s2.jpg",
+"style": "clay",
+"shot": "s2",
+"tries": 1,
+"fails": 0,
+"sec": 40.0,
+"end": 908.3,
+"kb": 94.8
+},
+{
+"file": "watercolor-s15.jpg",
+"style": "watercolor",
+"shot": "s15",
+"tries": 2,
+"fails": 1,
+"sec": 33.0,
+"end": 967.6,
+"kb": 119.7
+},
+{
+"file": "clay-s9.jpg",
+"style": "clay",
+"shot": "s9",
+"tries": 1,
+"fails": 0,
+"sec": 73.7,
+"end": 956.3,
+"kb": 101.2
+},
+{
+"file": "clay-s10.jpg",
+"style": "clay",
+"shot": "s10",
+"tries": 1,
+"fails": 0,
+"sec": 57.7,
+"end": 965.9,
+"kb": 98.2
+},
+{
+"file": "clay-s4.jpg",
+"style": "clay",
+"shot": "s4",
+"tries": 1,
+"fails": 0,
+"sec": 241.7,
+"end": 973.0,
+"kb": 113.9
+},
+{
+"file": "clay-s7.jpg",
+"style": "clay",
+"shot": "s7",
+"tries": 1,
+"fails": 0,
+"sec": 204.2,
+"end": 990.9,
+"kb": 108.9
+},
+{
+"file": "clay-s12.jpg",
+"style": "clay",
+"shot": "s12",
+"tries": 1,
+"fails": 0,
+"sec": 35.2,
+"end": 1001.1,
+"kb": 111.5
+},
+{
+"file": "clay-s13.jpg",
+"style": "clay",
+"shot": "s13",
+"tries": 1,
+"fails": 0,
+"sec": 41.2,
+"end": 1008.8,
+"kb": 117.0
+},
+{
+"file": "clay-s11.jpg",
+"style": "clay",
+"shot": "s11",
+"tries": 1,
+"fails": 0,
+"sec": 50.2,
+"end": 1013.4,
+"kb": 116.4
+},
+{
+"file": "clay-s15.jpg",
+"style": "clay",
+"shot": "s15",
+"tries": 1,
+"fails": 0,
+"sec": 102.6,
+"end": 1093.5,
+"kb": 116.5
+},
+{
+"file": "clay-s3.jpg",
+"style": "clay",
+"shot": "s3",
+"tries": 1,
+"fails": 0,
+"sec": 175.7,
+"end": 1132.0,
+"kb": 114.5
+},
+{
+"file": "watercolor-tex.jpg",
+"style": "watercolor",
+"shot": "tex",
+"tries": 1,
+"fails": 0,
+"sec": 132.0,
+"end": 1145.4,
+"kb": 110.9
+},
+{
+"file": "clay-s14.jpg",
+"style": "clay",
+"shot": "s14",
+"tries": 1,
+"fails": 0,
+"sec": 209.3,
+"end": 1182.3,
+"kb": 114.4
+},
+{
+"file": "clay-tex.jpg",
+"style": "clay",
+"shot": "tex",
+"tries": 1,
+"fails": 0,
+"sec": 113.6,
+"end": 1207.0,
+"kb": 108.7
+},
+{
+"file": "clay-s16.jpg",
+"style": "clay",
+"shot": "s16",
+"tries": 1,
+"fails": 0,
+"sec": 235.2,
+"end": 1236.3,
+"kb": 120.8
+},
+{
+"file": "photo-tex.jpg",
+"style": "photo",
+"shot": "tex",
+"tries": 1,
+"fails": 0,
+"sec": 253.8,
+"end": 1262.6,
+"kb": 125.9
+}
+]
+}

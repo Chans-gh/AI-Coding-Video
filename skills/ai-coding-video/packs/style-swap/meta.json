@@ -2,9 +2,289 @@
   "from": "G-016",
   "name": "分镜换画风",
   "en_name": "Storyboard style swap",
-  "how": "提示词写成「镜头段 + 风格段 + 约束段」：分镜、镜头段、约束段和剪辑代码只有一份，切换的是「画风」——只换风格段那一行，写实摄影、水彩插画、3D 黏土各生成一套图，片子跟着换。",
-  "en_how": "Prompts are written as shot + style + constraints. The storyboard, the shot and constraint segments, and the editing code exist once; what switches is the art style: change only the style line and a new set of images (photo, watercolour, clay) is generated, and the film follows.",
-  "switch": ["画风", "Art style"],
-  "parts": [["提示词公式", "Prompt formula"], ["镜头", "Shot"], ["提示词条", "Prompt strip"], ["画风并排", "Style lineup"], ["字幕", "Subtitles"], ["转场", "Transition"]],
-  "variants": [["photo", "写实摄影", "Photo", "photo"], ["watercolor", "水彩插画", "Watercolour", "watercolor"], ["clay", "3D 黏土", "3D clay", "clay"]]
+  "how": "提示词写成「镜头段 + 风格段 + 约束段」：44 种分镜（39 种整屏段部件、5 种叠在段上的部件）按分镜表排成一支面包店早晨的分镜合集，每个镜头 1.8 秒、切在拍上；数据镜头用的是这套图真实的生成记录；背景、粒子、镜头、转场、节拍、角标、字幕是贯穿全片的层。切换的是「画风」——写实摄影、水彩插画、3D 黏土，只换风格段那一行，每个镜头的图和底纹都跟着换。",
+  "en_how": "Prompts are written as shot + style + constraints. 44 shot forms (39 full-frame segment parts and 5 overlays) are laid out on a shot table as a storyboard of one bakery morning, each shot 1.8 s and cut on the beat; the data shots use the real generation log of these images; backdrop, grain, camera, transitions, beat, corner bug and captions are layers across it. What switches is the art style (photo, watercolour, 3D clay): change only the style line and every shot's images and backdrop texture follow.",
+  "switch": [
+    "画风",
+    "Art style"
+  ],
+  "full": "16x9",
+  "clip": "16x9",
+  "parts": [
+    [
+      "生图冷开场",
+      "Denoise cold open",
+      "seg"
+    ],
+    [
+      "砸字",
+      "Word slam",
+      "seg"
+    ],
+    [
+      "快闪图",
+      "Flash cuts",
+      "seg"
+    ],
+    [
+      "提示词字带",
+      "Prompt marquee",
+      "seg"
+    ],
+    [
+      "章节闪卡",
+      "Chapter card",
+      "seg"
+    ],
+    [
+      "整屏镜头加提示词条",
+      "Full shot with prompt strip",
+      "seg"
+    ],
+    [
+      "镜头卡",
+      "Shot card",
+      "seg"
+    ],
+    [
+      "分屏",
+      "Split screen",
+      "seg"
+    ],
+    [
+      "胶片条",
+      "Film strip",
+      "seg"
+    ],
+    [
+      "联系表宫格",
+      "Contact sheet",
+      "seg"
+    ],
+    [
+      "放大镜",
+      "Loupe",
+      "seg"
+    ],
+    [
+      "笔刷显影",
+      "Brush reveal",
+      "seg"
+    ],
+    [
+      "照片堆",
+      "Print stack",
+      "seg"
+    ],
+    [
+      "画风并排",
+      "Style lineup",
+      "seg"
+    ],
+    [
+      "画风滑杆",
+      "Style slider",
+      "seg"
+    ],
+    [
+      "构图取景",
+      "Composition guide",
+      "seg"
+    ],
+    [
+      "大数字",
+      "Big number",
+      "seg"
+    ],
+    [
+      "翻牌",
+      "Flip counter",
+      "seg"
+    ],
+    [
+      "柱状图",
+      "Bar chart",
+      "seg"
+    ],
+    [
+      "落地进度线",
+      "Progress line",
+      "seg"
+    ],
+    [
+      "占比环",
+      "Share ring",
+      "seg"
+    ],
+    [
+      "排名",
+      "Ranking",
+      "seg"
+    ],
+    [
+      "热力格",
+      "Heat grid",
+      "seg"
+    ],
+    [
+      "仪表盘",
+      "Gauge",
+      "seg"
+    ],
+    [
+      "对比",
+      "Versus",
+      "seg"
+    ],
+    [
+      "散点",
+      "Scatter",
+      "seg"
+    ],
+    [
+      "色板",
+      "Palette",
+      "seg"
+    ],
+    [
+      "提示词公式",
+      "Prompt formula",
+      "seg"
+    ],
+    [
+      "风格段引用",
+      "Style quote",
+      "seg"
+    ],
+    [
+      "提示词打字",
+      "Prompt typing",
+      "seg"
+    ],
+    [
+      "名词解释",
+      "Glossary",
+      "seg"
+    ],
+    [
+      "问答翻卡",
+      "Q&A flip card",
+      "seg"
+    ],
+    [
+      "画风对比表",
+      "Style table",
+      "seg"
+    ],
+    [
+      "约束清单",
+      "Checklist",
+      "seg"
+    ],
+    [
+      "提示词结构树",
+      "Prompt tree",
+      "seg"
+    ],
+    [
+      "角色卡",
+      "Character card",
+      "seg"
+    ],
+    [
+      "时间线",
+      "Timeline",
+      "seg"
+    ],
+    [
+      "生成信息",
+      "Credits",
+      "seg"
+    ],
+    [
+      "片尾",
+      "Outro",
+      "seg"
+    ],
+    [
+      "镜头号标签（叠加）",
+      "Shot tag (overlay)",
+      "seg"
+    ],
+    [
+      "取景角（叠加）",
+      "Viewfinder corners (overlay)",
+      "seg"
+    ],
+    [
+      "手绘圈注（叠加）",
+      "Hand-drawn circle (overlay)",
+      "seg"
+    ],
+    [
+      "印章（叠加）",
+      "Stamp (overlay)",
+      "seg"
+    ],
+    [
+      "光标点击（叠加）",
+      "Cursor click (overlay)",
+      "seg"
+    ],
+    [
+      "背景",
+      "Backdrop",
+      "layer"
+    ],
+    [
+      "粒子",
+      "Grain",
+      "layer"
+    ],
+    [
+      "镜头",
+      "Camera",
+      "layer"
+    ],
+    [
+      "转场",
+      "Transitions",
+      "layer"
+    ],
+    [
+      "节拍",
+      "Beat",
+      "layer"
+    ],
+    [
+      "角标",
+      "Corner bug",
+      "layer"
+    ],
+    [
+      "字幕",
+      "Captions",
+      "layer"
+    ]
+  ],
+  "variants": [
+    [
+      "photo",
+      "写实摄影",
+      "Photo",
+      "photo"
+    ],
+    [
+      "watercolor",
+      "水彩插画",
+      "Watercolour",
+      "watercolor"
+    ],
+    [
+      "clay",
+      "3D 黏土",
+      "3D clay",
+      "clay"
+    ]
+  ]
 }
