@@ -233,13 +233,15 @@ def cue_time(a, kw, fallback=None):
     return fallback
 
 
-def assets(m, here, music=0.32, duck=0.45, voice=0.9):
+def assets(m, here, music=0.32, duck=0.45, voice=0.9, use=None):
     """照 <样片目录>/assets.json 把声音摆上混音台：旁白、原声（G 类的旁白记作 语音合成）按 at（秒）放；配乐从 at 起铺到片尾，旁白、原声响的时候压低 duck；音效按 at 放。返回 assets.json 的内容。
-    每份素材可写 gain（音量倍数）、ss（从素材的第几秒起）、at；配乐可写 fade（淡入秒数）"""
+    每份素材可写 gain（音量倍数）、ss（从素材的第几秒起）、at；配乐可写 fade（淡入秒数）。
+    风格包里一份 assets.json 给两支片用时，素材写 use（如 "clip" 切换片段、"full" 完整演示片），这里传 use 就只摆没写 use 的和 use 相同的"""
     here = Path(here)
     a = json.loads((here / "assets.json").read_text(encoding="utf-8"))
     talk = []
-    for it in a["items"]:
+    items = [it for it in a["items"] if not it.get("use") or it["use"] == use]
+    for it in items:
         kind, f = it.get("kind"), here / it["file"]
         at, g = float(it.get("at", 0)), float(it.get("gain", 1))
         if kind in ("旁白", "原声", "语音合成"):
@@ -248,7 +250,7 @@ def assets(m, here, music=0.32, duck=0.45, voice=0.9):
             talk.append((at, at + len(x) / SR))
         elif kind == "音效":
             m.put(load(f, it.get("ss", 0), it.get("len")), at, g)
-    for it in a["items"]:
+    for it in items:
         if it.get("kind") != "配乐":
             continue
         at = float(it.get("at", 0))

@@ -1,92 +1,144 @@
 {
- "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）。这个包只有四种镜头（标题、对比、数据卡、标注），别的主角都用代替，用了就是偏离、回报一行。顶档约 76 px 以上（标题、数据卡的大数字），中档 32–58 px，小字档 30 px 以下（眉题、出处、刻度）。",
+ "note": "格式 5 交接用的样式查表（storyboard.md「定样式」）：看什么的主角 → 部件，最大的字放顶档。顶档约 76 px 以上（标题镜头、大数字、翻牌），中档 32–60 px，小字档 30 px 以下（眉题、出处、刻度、单位）；横竖版按 1080 短边算，不自己挑字号。照片怎么上屏由画面组织 v 决定，不在这里选。motion 的秒数是每格时长，乘节奏的倍数。",
  "lead": {
   "一个数": {
    "part": [
-    "chart"
-   ]
-  },
-  "走势": {
-   "part": [
-    "chart"
+    "bigNumber",
+    "flip"
    ]
   },
   "两数对比": {
    "part": [
+    "versus",
     "compare"
+   ]
+  },
+  "走势": {
+   "part": [
+    "line",
+    "delta"
+   ]
+  },
+  "构成": {
+   "part": [
+    "ring",
+    "heatMap"
+   ]
+  },
+  "排名": {
+   "part": [
+    "rank",
+    "bars"
+   ]
+  },
+  "表格": {
+   "part": [
+    "table"
+   ]
+  },
+  "流程": {
+   "part": [
+    "timeline"
+   ]
+  },
+  "清单": {
+   "part": [
+    "checklist",
+    "points"
    ]
   },
   "一句话": {
    "part": [
-    "headline"
+    "quote",
+    "slam"
    ]
   },
-  "场景": {
+  "问答": {
    "part": [
-    "headline"
+    "qa",
+    "factCheck"
+   ]
+  },
+  "地图": {
+   "part": [
+    "mapPin",
+    "heatMap",
+    "satZoom"
    ]
   },
   "实物": {
    "part": [
-    "headline"
+    "story",
+    "strip"
+   ]
+  },
+  "场景": {
+   "part": [
+    "story",
+    "split"
    ]
   },
   "人": {
    "part": [
-    "headline"
-   ]
-  },
-  "地图": {
-   "instead": [
-    "note"
+    "sourceFrame"
    ],
-   "note": "没有地图部件：照片上用标注框出地点"
-  },
-  "构成": {
-   "instead": [
-    "chart"
-   ],
-   "note": "数据卡只有折线：写成大数字加一行说明"
-  },
-  "排名": {
-   "instead": [
-    "chart"
-   ],
-   "note": "数据卡只有折线：大数字写第一名"
-  },
-  "表格": {
-   "instead": [
-    "chart"
-   ],
-   "note": "没有表格部件：挑一个最要紧的数上数据卡"
-  },
-  "流程": {
-   "instead": [
-    "headline"
-   ],
-   "note": "没有流程部件：一步一个标题镜头"
-  },
-  "清单": {
-   "instead": [
-    "headline"
-   ],
-   "note": "没有清单部件：一条一个标题镜头"
-  },
-  "问答": {
-   "instead": [
-    "headline"
-   ],
-   "note": "没有问答部件：问题做眉题、答案做标题"
+   "note": "照片放进带出处的素材框，over 叠人名条 nameplate 写名字和身份"
   },
   "界面": {
    "instead": [
-    "headline"
+    "sourceFrame"
    ],
-   "note": "没有界面部件：录屏当照片，标题写要点"
+   "note": "没有画界面的部件：录屏或截图当照片放进素材框，tag 写「资料」"
   }
  },
  "sizes": {
-  "headline": {
+  "coldOpen": {
+   "top": [
+    "flag"
+   ],
+   "mid": [
+    "line"
+   ],
+   "small": [
+    "en",
+    "sub"
+   ]
+  },
+  "slam": {
+   "top": [
+    "words"
+   ],
+   "mid": [
+    "sub"
+   ],
+   "small": []
+  },
+  "points": {
+   "top": [
+    "items"
+   ],
+   "mid": [],
+   "small": [
+    "kicker"
+   ]
+  },
+  "crawl": {
+   "top": [
+    "rows"
+   ],
+   "mid": [],
+   "small": []
+  },
+  "chapter": {
+   "top": [
+    "title"
+   ],
+   "mid": [],
+   "small": [
+    "en"
+   ]
+  },
+  "story": {
    "top": [
     "title"
    ],
@@ -97,7 +149,107 @@
     "kicker"
    ]
   },
-  "chart": {
+  "compare": {
+   "top": [
+    "labels"
+   ],
+   "mid": [],
+   "small": []
+  },
+  "satZoom": {
+   "top": [
+    "zoom"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "info"
+   ]
+  },
+  "archive": {
+   "top": [
+    "date"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "mapPin": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "pins.label"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "sourceFrame": {
+   "top": [
+    "caption"
+   ],
+   "mid": [],
+   "small": [
+    "src",
+    "place",
+    "tag"
+   ]
+  },
+  "split": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "labels"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "strip": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "labels"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "bigNumber": {
+   "top": [
+    "to",
+    "unit"
+   ],
+   "mid": [
+    "title",
+    "label"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "bars": {
+   "top": [
+    "bars.v"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "bars.label",
+    "unit"
+   ]
+  },
+  "line": {
    "top": [
     "big.value",
     "big.unit"
@@ -107,26 +259,284 @@
     "big.label"
    ],
    "small": [
-    "rows.x",
     "xticks",
-    "yticks"
+    "yticks",
+    "marks.label"
    ]
   },
-  "note": {
+  "ring": {
+   "top": [
+    "items.v"
+   ],
+   "mid": [
+    "title",
+    "items.label"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "rank": {
    "top": [
     "title"
    ],
-   "mid": [],
+   "mid": [
+    "items.label",
+    "items.v"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "heatMap": {
+   "top": [
+    "values"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "flip": {
+   "top": [
+    "value"
+   ],
+   "mid": [
+    "title",
+    "unit",
+    "label"
+   ],
    "small": [
     "kicker"
    ]
   },
-  "compare": {
+  "table": {
    "top": [
-    "labels"
+    "title"
    ],
-   "mid": [],
+   "mid": [
+    "rows"
+   ],
+   "small": [
+    "kicker",
+    "cols"
+   ]
+  },
+  "delta": {
+   "top": [
+    "items.v"
+   ],
+   "mid": [
+    "title"
+   ],
+   "small": [
+    "kicker",
+    "items.label",
+    "items.note",
+    "unit"
+   ]
+  },
+  "versus": {
+   "top": [
+    "a.v",
+    "b.v"
+   ],
+   "mid": [
+    "title",
+    "a.label",
+    "b.label",
+    "diff"
+   ],
+   "small": [
+    "kicker",
+    "a.note",
+    "b.note",
+    "unit"
+   ]
+  },
+  "thresholds": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "levels.v",
+    "levels.label"
+   ],
+   "small": [
+    "kicker",
+    "unit"
+   ]
+  },
+  "quote": {
+   "top": [
+    "text"
+   ],
+   "mid": [
+    "who"
+   ],
+   "small": [
+    "en"
+   ]
+  },
+  "timeline": {
+   "top": [
+    "items.y"
+   ],
+   "mid": [
+    "title",
+    "items.text"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "checklist": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "qa": {
+   "top": [
+    "q"
+   ],
+   "mid": [
+    "a"
+   ],
    "small": []
+  },
+  "relation": {
+   "top": [
+    "title",
+    "center"
+   ],
+   "mid": [
+    "nodes.label"
+   ],
+   "small": [
+    "kicker",
+    "sub",
+    "nodes.sub"
+   ]
+  },
+  "glossary": {
+   "top": [
+    "term"
+   ],
+   "mid": [
+    "def"
+   ],
+   "small": [
+    "kicker",
+    "en",
+    "line"
+   ]
+  },
+  "factCheck": {
+   "top": [
+    "claim",
+    "verdict"
+   ],
+   "mid": [
+    "fact"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "proCon": {
+   "top": [],
+   "mid": [
+    "left.title",
+    "right.title",
+    "left.items",
+    "right.items"
+   ],
+   "small": []
+  },
+  "sources": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items"
+   ],
+   "small": [
+    "kicker"
+   ]
+  },
+  "reading": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "items.title"
+   ],
+   "small": [
+    "kicker",
+    "items.k",
+    "items.url"
+   ]
+  },
+  "outro": {
+   "top": [
+    "show"
+   ],
+   "mid": [
+    "bye",
+    "recap"
+   ],
+   "small": [
+    "en",
+    "sub"
+   ]
+  },
+  "bracket": {
+   "top": [],
+   "mid": [
+    "label"
+   ],
+   "small": []
+  },
+  "circle": {
+   "top": [],
+   "mid": [
+    "label"
+   ],
+   "small": []
+  },
+  "nameplate": {
+   "top": [],
+   "mid": [
+    "name"
+   ],
+   "small": [
+    "role"
+   ]
+  },
+  "label": {
+   "top": [],
+   "mid": [
+    "text"
+   ],
+   "small": []
+  },
+  "credit": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "text"
+   ]
   }
  },
  "motion": {
@@ -153,10 +563,10 @@
    "慢": 1.25
   },
   "mood": {
-   "紧": "红条转场，标题约 1 秒到位，画面组织用多图拼贴 collage",
-   "松": "单图推拉 kenburns，镜头多停半拍",
-   "稳": "单图推拉 kenburns，少用标注，转场照旧一道红条",
-   "扬": "2.5D 视差 parallax，数据卡的大数字数到位时停一拍"
+   "紧": "多图拼贴 collage，转场 bar、flash、tiles，开场用 slam、points 踩拍",
+   "松": "单图推拉 kenburns，转场 fade、push，镜头多停半拍",
+   "稳": "单图推拉 kenburns，少用叠加，转场 fade、bar，不用 slam、crawl",
+   "扬": "2.5D 视差 parallax，转场 zoom、doors，大数字、翻牌数到位时停一拍"
   }
  }
 }

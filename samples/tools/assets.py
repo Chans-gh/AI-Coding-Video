@@ -18,7 +18,9 @@ assets.json 是 {"items": [...]}，每份素材一项：
             音频 {ss, t, mono}，统一响度后存 mp3；数据默认原样保存，另有 {drop_comments}（CSV 去掉 # 注释行）、
             {hurdat: 风暴编号}（NOAA 最佳路径取一场）、{horizons: true}（JPL Horizons 的状态向量 → CSV）、
             {month_table: true}（网页里「年份 + 12 个月」的表 → year,month,value 的 CSV，如美国垦务局的水库月末水位）、
-            {cols: [列名], skip: 开头跳过几行}（CSV 只留这几列、去掉缺值的行）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox}（GeoJSON 线面裁到框里）
+            {cols: [列名], skip: 开头跳过几行}（CSV 只留这几列、去掉缺值的行）、{points: [属性], sort, top}（GeoJSON 点 → CSV）、{bbox, round}（GeoJSON 线面裁到框里）、
+            {shapes: 属性, round}（GeoJSON 面 → 每个属性值一组外圈），GeoJSON 三种都可加 {where: {属性: [值]}} 只留这些要素；
+            下载的是压缩包时加 {member: 包里的路径}，先解出这一个文件再照它的类型处理
   of        生视频自带的声音：写那段视频的 file，从生成的原始视频里取出音轨另存（视频本身进仓库时不带声音）；
             model、prompt 照抄那段视频的
   record    录屏（本仓库自己的页面）：见 record() 的说明；录完写回鼠标轨迹 cursor
@@ -146,9 +148,30 @@ def pdf_words(src, dest, page):
     dest.write_text(json.dumps(rows, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
 
 
+def unzip(src, member):
+    """压缩包里的一个文件（音效包、素材包）解到 out/unzip/ 下，返回路径"""
+    import zipfile
+    out = OUT / "unzip" / Path(src).stem / member
+    if not out.exists():
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with zipfile.ZipFile(src) as z:
+            out.write_bytes(z.read(member))
+    return out
+
+
+def features(src, o):
+    """GeoJSON 的要素；o.where = {属性: [值, …]} 时只留属性取这些值的"""
+    fs = json.loads(Path(src).read_text(encoding="utf-8"))["features"]
+    for k, vals in (o.get("where") or {}).items():
+        fs = [f for f in fs if f["properties"].get(k) in vals]
+    return fs
+
+
 def prep(src, dest, o):
     dest.parent.mkdir(parents=True, exist_ok=True)
     ext = dest.suffix.lower()
+    if o.get("member"):                                 # 压缩包里的一个文件（如音效包里的一个音）
+        src = unzip(src, o["member"])
     if o.get("page") and Path(src).suffix.lower() == ".pdf":
         if ext == ".json":                              # 文字层
             return pdf_words(src, dest, o["page"])
@@ -197,9 +220,8 @@ def prep(src, dest, o):
             out += [f"{m.group(1)},{k + 1},{v}" for k, v in enumerate(m.group(2).split()) if v != "---"]
         dest.write_text("\n".join(out) + "\n", encoding="utf-8")
     elif o.get("points"):                               # GeoJSON 点 → CSV（只留要的属性，可按 sort 排序取前 top 个）
-        js = json.loads(Path(src).read_text(encoding="utf-8"))
         rows = [{**{k: f["properties"].get(k) for k in o["points"]}, "lon": f["geometry"]["coordinates"][0], "lat": f["geometry"]["coordinates"][1]}
-                for f in js["features"]]
+                for f in features(src, o)]
         if o.get("sort"):
             rows.sort(key=lambda r: -(r.get(o["sort"]) or 0))
         rows = rows[:o.get("top", len(rows))]
@@ -207,21 +229,27 @@ def prep(src, dest, o):
         dest.write_text(",".join(keys) + "\n" + "\n".join(",".join(str(r[k]).replace(",", " ") for k in keys) for r in rows) + "\n", encoding="utf-8")
     elif o.get("bbox"):                                 # GeoJSON 线、面 → 只留框里的折线 [[lon, lat], …]，坐标保留 3 位小数
         x0, y0, x1, y1 = o["bbox"]
-        js = json.loads(Path(src).read_text(encoding="utf-8"))
-        lines = []
-        for f in js["features"]:
+        lines, nd = [], o.get("round", 3)
+        for f in features(src, o):
             g = f["geometry"]
             parts = [g["coordinates"]] if g["type"] == "LineString" else g["coordinates"] if g["type"] in ("MultiLineString", "Polygon") else [r for poly in g["coordinates"] for r in poly]
             for part in parts:
                 cur = []
                 for lon, lat in part:
                     if x0 <= lon <= x1 and y0 <= lat <= y1:
-                        cur.append([round(lon, 3), round(lat, 3)])
+                        cur.append([round(lon, nd), round(lat, nd)])
                     elif cur:
                         lines.append(cur); cur = []
                 if len(cur) > 1:
                     lines.append(cur)
         dest.write_text(json.dumps({"bbox": o["bbox"], "lines": lines}, separators=(",", ":")) + "\n", encoding="utf-8")
+    elif o.get("shapes"):                               # GeoJSON 面 → {属性值: [外圈, …]}（如州名 → 轮廓），坐标保留 round 位小数（默认 2）
+        nd, out = o.get("round", 2), {}
+        for f in features(src, o):
+            g = f["geometry"]
+            polys = [g["coordinates"]] if g["type"] == "Polygon" else g["coordinates"]
+            out.setdefault(f["properties"][o["shapes"]], []).extend([[round(x, nd), round(y, nd)] for x, y in poly[0]] for poly in polys)
+        dest.write_text(json.dumps({"shapes": out}, separators=(",", ":")) + "\n", encoding="utf-8")
     elif ext == ".csv" and o.get("cols"):              # 跳过开头 skip 行标题，只留 cols 这几列，缺值（*** 或空）的行不要
         import csv
         lines = Path(src).read_text(encoding="utf-8").splitlines()[o.get("skip", 0):]
