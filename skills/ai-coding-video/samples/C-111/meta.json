@@ -1,0 +1,11 @@
+{
+  "en_name": "Desktop journey",
+  "en_how": "Three.js builds a desk top with a dot-grid mat, a pen, a sticky note, a cup and floating UI cards (calendar, chat, music, map, to-do) painted onto CanvasTextures; a small original voxel figure carrying an envelope hops card to card along a keyed path every half second while the camera follows, then the camera pulls back to reveal the whole desk under a low warm sun with soft shadows.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

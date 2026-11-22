@@ -146,12 +146,16 @@
 
 ## C-059 分屏“跑酷 + 讲解”
 
+![分屏“跑酷 + 讲解”](../images/C-059.jpg)
+
 ```text
 用左右分屏格式：左半屏是一个原创的 3D 街道跑酷游戏一直在跑、带分数和金币，右半屏是深色背景上的公式和图表跟着旁白逐项讲解，两边同时进行。
 ```
 
 - 题材：游戏
 - 适合：短视频留存
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-059/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-059)
 - 技术（建议）：WebGL · Three.js · SVG
 
 <a id="C-062"></a>
@@ -292,12 +296,16 @@
 
 ## C-074 风格化 3D 打斗
 
+![风格化 3D 打斗](../images/C-074.jpg)
+
 ```text
 用风格化 3D 动作片风格：低细节模型加平滑明暗的卡通渲染，绿色和红色火柴人角色在沙漠、神殿等不同场景追逐对打，暖色氛围光、击中时亮色粒子过闪和短暂定格，镜头跟随动作快切。
 ```
 
 - 题材：3D 与实时图形
 - 适合：动作、对战
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-074/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-074)
 - 技术（建议）：WebGL · Three.js
 - 参考：[@akokoi1](https://x.com/akokoi1/status/2103149275945517546)
 
@@ -405,12 +413,16 @@
 
 ## C-082 霓虹流体
 
+![霓虹流体](../images/C-082.jpg)
+
 ```text
 用霓虹流体模拟风格：纯黑背景上 GPU 实时模拟的流体，染料是高饱和的橙、红、品红、青，边缘发光并卷成涡旋，随鼠标轨迹或音乐节拍被搅动，画面只有流体和一个极简半透明参数面板。
 ```
 
 - 题材：3D 与实时图形
 - 适合：科技品牌背景、音乐可视化、互动装置
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-082/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-082)
 - 技术（建议）：WebGL · GLSL
 
 <a id="C-102"></a>
@@ -502,12 +514,16 @@
 
 ## C-111 桌面穿梭
 
+![桌面穿梭](../images/C-111.jpg)
+
 ```text
 用桌面穿梭风格：阳光斜照的木桌上铺着点阵纸垫，各个应用界面是印在厚纸卡上的小场地，像素小人被挤成一格一格的体素玩具，在卡片间跳跃搬运，笔、便签、杯子投下长长软影，镜头不剪一刀地追随、甩镜，最后拉远看全桌，每个动作都踩在马林巴节拍上。
 ```
 
 - 题材：3D 与实时图形
 - 适合：软件功能导览、工作流演示、产品发布
+- 技术（已验证）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-111/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-111)
 - 技术（建议）：WebGL · Three.js · Web Audio
 - 参考：[Lemo STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/desktop-flythrough/STYLE.md)
 

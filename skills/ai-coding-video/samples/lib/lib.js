@@ -613,6 +613,125 @@ function p5Sketch(setup, draw, o = {}) {
   });
 }
 
+// ---------- 关键帧、骨骼、流体 ----------
+
+// 关键帧插值：keys 是按时间排好的 [[秒, 值], …]，值可以是数字、数字数组或 {名字: 数字} 对象（同一组键里写法一致），返回 t 时刻的值；两帧之间按 ease（默认 eInOutCubic）过渡，第一帧之前、最后一帧之后停在两端
+function keyAt(keys, t, ease = eInOutCubic) {
+  if (t <= keys[0][0]) return keys[0][1];
+  let i = 1; while (i < keys.length - 1 && keys[i][0] < t) i++;
+  const [t0, a] = keys[i - 1], [t1, b] = keys[i];
+  if (t >= t1) return b;
+  const q = ease((t - t0) / (t1 - t0 || 1));
+  if (typeof a === 'number') return lerp(a, b, q);
+  if (Array.isArray(a)) return a.map((x, k) => lerp(x, b[k], q));
+  const o = {}; for (const k in a) o[k] = lerp(a[k], b[k] ?? a[k], q); return o;
+}
+
+// 二维骨骼：bones 是 [{name, parent 父骨名（根骨不写）, len 长度, a 静止角（弧度，相对父骨）}]，pose 是 {骨名: 加的角度} 和 root {x, y, a}；按父子顺序算出每根骨头的起点、终点和世界角度，返回 {名字: {x0, y0, x1, y1, a}}；配 keyAt 做关键帧动画（姿势按关键帧插值，每帧只由 t 决定）
+function skeleton2d(bones, pose = {}, root = { x: 0, y: 0, a: 0 }) {
+  const out = {};
+  for (const b of bones) {
+    const p = b.parent ? out[b.parent] : null;
+    const x0 = p ? p.x1 : root.x, y0 = p ? p.y1 : root.y;
+    const a = (p ? p.a : root.a) + (b.a || 0) + (pose[b.name] || 0);
+    out[b.name] = { x0, y0, x1: x0 + Math.cos(a) * b.len, y1: y0 + Math.sin(a) * b.len, a };
+  }
+  return out;
+}
+
+// 二维流体（Stam 的稳定流体：半拉格朗日平流 + 高斯-赛德尔投影 + 涡度增强），在 CPU 上算。o：{w, h 速度网格（默认 128×72）, dye 染料网格是速度网格的几倍（默认 3）, iters 投影迭代次数, vort 涡度增强, fade 染料每秒衰减, velFade 速度每秒衰减}。返回状态 F，用 fluidAt 推到 t
+function fluid2d(o = {}) {
+  const w = o.w || 128, h = o.h || 72, k = o.dye || 3, N = (w + 2) * (h + 2), dw = w * k, dh = h * k, DN = dw * dh;
+  const A = n => new Float32Array(n);
+  const F = { w, h, k, dw, dh, iters: o.iters || 20, vort: o.vort ?? 3, fade: o.fade ?? .35, velFade: o.velFade ?? .2,
+    u: A(N), v: A(N), u0: A(N), v0: A(N), p: A(N), div: A(N), curl: A(N), dye: [A(DN), A(DN), A(DN)], dye0: [A(DN), A(DN), A(DN)], t: 0 };
+  F.reset = () => { for (const a of [F.u, F.v, F.u0, F.v0, F.p, F.div, F.curl, ...F.dye, ...F.dye0]) a.fill(0); F.t = 0; };
+  return F;
+}
+
+// 往流体里加一团推力和染料：x, y 是 0–1 的位置，fx, fy 是速度（每秒多少个速度网格），r 是半径（占速度网格宽的比例），rgb 是染料量 [r, g, b]（可大于 1，画的时候会压到 0–1）
+function fluidSplat(F, x, y, fx, fy, r, rgb) {
+  const { w, h, k, dw, dh } = F, W2 = w + 2, rc = r * w, cx = x * w + .5, cy = y * h + .5;
+  const i0 = Math.max(1, Math.floor(cx - rc * 3)), i1 = Math.min(w, Math.ceil(cx + rc * 3)), j0 = Math.max(1, Math.floor(cy - rc * 3)), j1 = Math.min(h, Math.ceil(cy + rc * 3));
+  for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) { const g = Math.exp(-((i - cx) ** 2 + (j - cy) ** 2) / (rc * rc)); F.u[i + W2 * j] += fx * g; F.v[i + W2 * j] += fy * g; }
+  if (!rgb) return;
+  const dx = x * dw, dy = y * dh, rd = rc * k;
+  const a0 = Math.max(0, Math.floor(dx - rd * 3)), a1 = Math.min(dw - 1, Math.ceil(dx + rd * 3)), b0 = Math.max(0, Math.floor(dy - rd * 3)), b1 = Math.min(dh - 1, Math.ceil(dy + rd * 3));
+  for (let b = b0; b <= b1; b++) for (let a = a0; a <= a1; a++) {
+    const g = Math.exp(-((a + .5 - dx) ** 2 + (b + .5 - dy) ** 2) / (rd * rd)), q = a + dw * b;
+    F.dye[0][q] += rgb[0] * g; F.dye[1][q] += rgb[1] * g; F.dye[2][q] += rgb[2] * g;
+  }
+}
+
+// 流体走一步 dt 秒（一般不直接用，见 fluidAt）
+function fluidStep(F, dt) {
+  const { w, h, k, dw, dh, u, v, u0, v0, p, div, curl } = F, W2 = w + 2, I = (i, j) => i + W2 * j;
+  const bnd = (b, x) => {
+    for (let i = 1; i <= w; i++) { x[I(i, 0)] = b === 2 ? -x[I(i, 1)] : x[I(i, 1)]; x[I(i, h + 1)] = b === 2 ? -x[I(i, h)] : x[I(i, h)]; }
+    for (let j = 1; j <= h; j++) { x[I(0, j)] = b === 1 ? -x[I(1, j)] : x[I(1, j)]; x[I(w + 1, j)] = b === 1 ? -x[I(w, j)] : x[I(w, j)]; }
+    x[I(0, 0)] = .5 * (x[I(1, 0)] + x[I(0, 1)]); x[I(w + 1, 0)] = .5 * (x[I(w, 0)] + x[I(w + 1, 1)]);
+    x[I(0, h + 1)] = .5 * (x[I(1, h + 1)] + x[I(0, h)]); x[I(w + 1, h + 1)] = .5 * (x[I(w, h + 1)] + x[I(w + 1, h)]);
+  };
+  const project = () => {
+    for (let j = 1; j <= h; j++) for (let i = 1; i <= w; i++) div[I(i, j)] = -.5 * (u[I(i + 1, j)] - u[I(i - 1, j)] + v[I(i, j + 1)] - v[I(i, j - 1)]);
+    bnd(0, div); bnd(0, p);
+    for (let n = 0; n < F.iters; n++) {
+      for (let j = 1; j <= h; j++) for (let i = 1; i <= w; i++) { const q = I(i, j); p[q] = (div[q] + p[q - 1] + p[q + 1] + p[q - W2] + p[q + W2]) / 4; }
+      bnd(0, p);
+    }
+    for (let j = 1; j <= h; j++) for (let i = 1; i <= w; i++) { const q = I(i, j); u[q] -= .5 * (p[q + 1] - p[q - 1]); v[q] -= .5 * (p[q + W2] - p[q - W2]); }
+    bnd(1, u); bnd(2, v);
+  };
+  const samp = (a, x, y) => {
+    x = clamp(x, .5, w + .5); y = clamp(y, .5, h + .5);
+    const i = Math.floor(x), j = Math.floor(y), s = x - i, t = y - j, q = I(i, j);
+    return (1 - t) * ((1 - s) * a[q] + s * a[q + 1]) + t * ((1 - s) * a[q + W2] + s * a[q + W2 + 1]);
+  };
+  // 涡度增强：把被数值耗散掉的小涡旋补回来
+  if (F.vort) {
+    for (let j = 1; j <= h; j++) for (let i = 1; i <= w; i++) { const q = I(i, j); curl[q] = .5 * (v[q + 1] - v[q - 1] - u[q + W2] + u[q - W2]); }
+    for (let j = 2; j < h; j++) for (let i = 2; i < w; i++) {
+      const q = I(i, j), nx = .5 * (Math.abs(curl[q + 1]) - Math.abs(curl[q - 1])), ny = .5 * (Math.abs(curl[q + W2]) - Math.abs(curl[q - W2])), l = Math.hypot(nx, ny) + 1e-5;
+      u[q] += dt * F.vort * (ny / l) * curl[q]; v[q] -= dt * F.vort * (nx / l) * curl[q];
+    }
+  }
+  project();
+  u0.set(u); v0.set(v);
+  for (let j = 1; j <= h; j++) for (let i = 1; i <= w; i++) { const q = I(i, j), x = i - dt * u0[q], y = j - dt * v0[q]; u[q] = samp(u0, x, y); v[q] = samp(v0, x, y); }
+  const vf = 1 / (1 + F.velFade * dt); for (let q = 0; q < u.length; q++) { u[q] *= vf; v[q] *= vf; }
+  bnd(1, u); bnd(2, v); project();
+  // 染料：在细网格上平流，速度按双线性取
+  const df = 1 / (1 + F.fade * dt);
+  for (let c = 0; c < 3; c++) F.dye0[c].set(F.dye[c]);
+  for (let b = 0; b < dh; b++) for (let a = 0; a < dw; a++) {
+    const x = .5 + (a + .5) / k, y = .5 + (b + .5) / k;
+    const sx = clamp((x - dt * samp(u, x, y) - .5) * k - .5, 0, dw - 1.001), sy = clamp((y - dt * samp(v, x, y) - .5) * k - .5, 0, dh - 1.001);
+    const i = Math.floor(sx), j = Math.floor(sy), s = sx - i, t = sy - j, q = i + dw * j, o = a + dw * b;
+    for (let c = 0; c < 3; c++) { const d = F.dye0[c]; F.dye[c][o] = df * ((1 - t) * ((1 - s) * d[q] + s * d[q + 1]) + t * ((1 - s) * d[q + dw] + s * d[q + dw + 1])); }
+  }
+  F.t += dt;
+}
+
+// 流体推到 t 秒：每帧都从 0 重算（固定步长 dt，默认 1/60 秒），所以每帧只由 t 决定，结果可重复；forces(F, 时刻, dt) 每步调用一次，在里面用 fluidSplat 加推力和染料
+function fluidAt(F, t, forces, dt = 1 / 60) {
+  F.reset();
+  const n = Math.round(t / dt);
+  for (let s = 0; s < n; s++) { forces(F, s * dt, dt); fluidStep(F, dt); }
+  return F;
+}
+
+// 把流体的染料画成一张 dw×dh 的画布：每个通道按 1 - e^(-gain·量) 压到 0–1，浓处饱和发亮、淡处透明（黑底上用 'lighter' 叠就是发光的染料）
+function fluidImage(F, gain = 1.4) {
+  const { dw, dh, dye } = F;
+  if (!F.cv) { F.cv = mk(dw, dh); F.im = F.cv.getContext('2d').createImageData(dw, dh); }
+  const d = F.im.data;
+  for (let q = 0; q < dw * dh; q++) {
+    d[q * 4] = 255 * (1 - Math.exp(-gain * dye[0][q])); d[q * 4 + 1] = 255 * (1 - Math.exp(-gain * dye[1][q])); d[q * 4 + 2] = 255 * (1 - Math.exp(-gain * dye[2][q])); d[q * 4 + 3] = 255;
+  }
+  F.cv.getContext('2d').putImageData(F.im, 0, 0);
+  return F.cv;
+}
+
 // ---------- 素材（T 类、G 类样片：读 assets/ 里的照片、视频、数据，出处记在 assets.json） ----------
 // 素材文件的网址：asset('earth.jpg') → <样片目录>/assets/earth.jpg
 function asset(name) { return `${DIR}/assets/${name.replace(/^assets\//, '')}`; }
@@ -758,4 +877,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, toothMask, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, GLSL_LIB, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, toothMask, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, GLSL_LIB, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, keyAt, skeleton2d, fluid2d, fluidSplat, fluidStep, fluidAt, fluidImage, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

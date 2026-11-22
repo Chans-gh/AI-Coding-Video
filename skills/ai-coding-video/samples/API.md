@@ -97,6 +97,16 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `physicsAt(world, t, step = 1 / 120)` — cannon-es：固定步长把物理推到 t 秒（每帧都从 0 重推，所以每帧只由 t 决定，结果可重复）。world 是 CANNON.World，step 是步长（默认 1/120 秒），bodies 推完就是 t 时刻的位置
 - `p5Sketch(setup, draw, o = {})` — p5（instance 模式 + noLoop）：在看不见的容器里建 W×H 画布，返回 Promise → {p, canvas, render(t, f)}，坐标原点都在左上角；render 设好 p.t、p.f，按 seed 重设 randomSeed / noiseSeed 后 redraw 一次；draw 里 await render(t) 后把 canvas 画到 ctx 上；draw 传 null 表示只在 setup 里画一次（静止的底图）。o：{w, h 画布尺寸（默认 W×H）, webgl 用 WEBGL 画布（p5.brush 要）, brush 接上 p5.brush, seed(t, f) → 每帧的种子（默认固定 1）}
 
+**关键帧、骨骼、流体**
+
+- `keyAt(keys, t, ease = eInOutCubic)` — 关键帧插值：keys 是按时间排好的 [[秒, 值], …]，值可以是数字、数字数组或 {名字: 数字} 对象（同一组键里写法一致），返回 t 时刻的值；两帧之间按 ease（默认 eInOutCubic）过渡，第一帧之前、最后一帧之后停在两端
+- `skeleton2d(bones, pose = {}, root = { x: 0, y: 0, a: 0 })` — 二维骨骼：bones 是 [{name, parent 父骨名（根骨不写）, len 长度, a 静止角（弧度，相对父骨）}]，pose 是 {骨名: 加的角度} 和 root {x, y, a}；按父子顺序算出每根骨头的起点、终点和世界角度，返回 {名字: {x0, y0, x1, y1, a}}；配 keyAt 做关键帧动画（姿势按关键帧插值，每帧只由 t 决定）
+- `fluid2d(o = {})` — 二维流体（Stam 的稳定流体：半拉格朗日平流 + 高斯-赛德尔投影 + 涡度增强），在 CPU 上算。o：{w, h 速度网格（默认 128×72）, dye 染料网格是速度网格的几倍（默认 3）, iters 投影迭代次数, vort 涡度增强, fade 染料每秒衰减, velFade 速度每秒衰减}。返回状态 F，用 fluidAt 推到 t
+- `fluidSplat(F, x, y, fx, fy, r, rgb)` — 往流体里加一团推力和染料：x, y 是 0–1 的位置，fx, fy 是速度（每秒多少个速度网格），r 是半径（占速度网格宽的比例），rgb 是染料量 [r, g, b]（可大于 1，画的时候会压到 0–1）
+- `fluidStep(F, dt)` — 流体走一步 dt 秒（一般不直接用，见 fluidAt）
+- `fluidAt(F, t, forces, dt = 1 / 60)` — 流体推到 t 秒：每帧都从 0 重算（固定步长 dt，默认 1/60 秒），所以每帧只由 t 决定，结果可重复；forces(F, 时刻, dt) 每步调用一次，在里面用 fluidSplat 加推力和染料
+- `fluidImage(F, gain = 1.4)` — 把流体的染料画成一张 dw×dh 的画布：每个通道按 1 - e^(-gain·量) 压到 0–1，浓处饱和发亮、淡处透明（黑底上用 'lighter' 叠就是发光的染料）
+
 **素材（T 类、G 类样片：读 assets/ 里的照片、视频、数据，出处记在 assets.json）**
 
 - `asset(name)` — 素材文件的网址：asset('earth.jpg') → <样片目录>/assets/earth.jpg
