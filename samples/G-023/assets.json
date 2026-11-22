@@ -1,0 +1,135 @@
+{
+ "items": [
+  {
+   "file": "assets/cast.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "角色定妆图：两个原创的拟人水果角色并排站在纯白背景上，正面全身。左边是「小莓」，一颗红色的草莓，头顶一圈绿色叶子像小帽子，大圆眼睛，粉色腮红，细细的小手小脚，穿一双黄色小雨靴；右边是「阿蕉」，一根弯弯的黄色香蕉，个子比小莓高一倍，头顶有一小截棕色的蒂，大圆眼睛，憨厚地笑，细细的小手小脚，脖子上围一条蓝色格子小围巾。圆润的 3D 黏土绘本风格，柔和的散射光，浅景深，色彩明快温暖，画面里没有文字",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1080
+   }
+  },
+  {
+   "file": "assets/rain.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "参考图里的草莓角色「小莓」（红色草莓、头顶绿叶、黄色小雨靴，外形和参考图完全一致）独自站在一朵大蘑菇下面躲雨，望着外面哗哗的雨发愁，地上有小水洼，背景是雨中的小花园。方形构图，角色在画面中间偏左。圆润的 3D 黏土绘本风格，柔和的散射光，浅景深，色彩明快温暖，画面里没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1080
+   },
+   "ref": "assets/cast.jpg"
+  },
+  {
+   "file": "assets/leaf.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "参考图里的两个角色（外形和参考图完全一致）：香蕉角色「阿蕉」（黄色香蕉、蓝色格子围巾）举着一片很大的绿色荷叶当伞，从右边走到草莓角色「小莓」（红色草莓、黄色小雨靴）身边，把荷叶举到两个人头顶，雨点打在荷叶上，背景是雨中的小花园。方形构图，两人都在画面里。圆润的 3D 黏土绘本风格，柔和的散射光，浅景深，色彩明快温暖，画面里没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1080
+   },
+   "ref": "assets/cast.jpg"
+  },
+  {
+   "file": "assets/rainbow.jpg",
+   "kind": "生图",
+   "model": "gpt-image-2.5-flare",
+   "prompt": "参考图里的两个角色（外形和参考图完全一致）：草莓「小莓」和香蕉「阿蕉」并排坐在一片大荷叶下面，雨已经停了，天空放晴，远处出现一道彩虹，两人抬头看彩虹，开心地笑，草叶上挂着水珠。方形构图。圆润的 3D 黏土绘本风格，柔和的散射光，浅景深，色彩明快温暖，画面里没有文字",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "prep": {
+    "max": 1080
+   },
+   "ref": "assets/cast.jpg"
+  },
+  {
+   "file": "assets/leaf.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0-mini",
+   "prompt": "雨中的小花园，镜头固定：香蕉角色举着大荷叶，一步一步走到草莓角色身边，把荷叶举高罩住两个人，草莓角色抬头看荷叶，开心地拍拍小手，雨点不停地打在荷叶上弹开。3D 黏土动画，角色外形保持不变，没有文字。声音不需要",
+   "params": {
+    "aspectRatio": "1:1",
+    "duration": 5,
+    "resolution": "720p"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/leaf.jpg",
+   "prep": {
+    "w": 720
+   }
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "speech-2.8-turbo",
+   "voice": "Chinese (Mandarin)_Warm_Girl",
+   "text": "下雨啦，小莓没有带伞，只好躲在蘑菇下面。阿蕉举着一片大荷叶走过来：一起走吧！雨停的时候，荷叶外面挂起了一道彩虹。",
+   "params": {
+    "speed": 1.05
+   },
+   "at": 0.6,
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（公开音色）",
+   "dur": 11.337,
+   "lines": [
+    {
+     "t0": 0.041,
+     "t1": 1.91,
+     "text": "下雨啦，小莓没有带伞"
+    },
+    {
+     "t0": 1.91,
+     "t1": 3.535,
+     "text": "只好躲在蘑菇下面"
+    },
+    {
+     "t0": 3.535,
+     "t1": 5.973,
+     "text": "阿蕉举着一片大荷叶走过来"
+    },
+    {
+     "t0": 5.973,
+     "t1": 7.03,
+     "text": "一起走吧！"
+    },
+    {
+     "t0": 7.03,
+     "t1": 10.931,
+     "text": "雨停的时候，荷叶外面挂起了一道彩虹"
+    }
+   ]
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Happy Lullaby (song17)",
+   "source": "https://opengameart.org/content/happy-lullaby-song17",
+   "download": "https://opengameart.org/sites/default/files/song17.mp3",
+   "license": "CC0 1.0",
+   "author": "cynicmusic",
+   "credit": "配乐 cynicmusic（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

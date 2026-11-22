@@ -1,0 +1,5 @@
+{
+  "en_name": "Fake security-cam clip",
+  "en_how": "A generated night still of a backyard seen from a security camera becomes the first frame of an image-to-video clip in which a raccoon flips a burger patty on the grill. Code turns it into home-camera footage: 12 fps stepping with the odd freeze and tear, a WebGL shader for barrel distortion, infrared green, flickering noise, scan lines and vignette, a running timestamp and camera ID, a pop-up motion box, then a rewind, a 2.4x zoomed half-speed replay of the flip, and a final snapshot of the raccoon looking at the lens. An 'AI-generated · fiction' badge stays in the corner throughout.",
+  "tech": ["Canvas 2D", "WebGL", "GLSL", "Playwright", "ffmpeg"]
+}

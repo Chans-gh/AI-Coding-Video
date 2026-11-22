@@ -1,0 +1,5 @@
+{
+  "en_name": "First/last-frame outfit swap",
+  "en_how": "A fictional cartoon character is generated in an everyday outfit, then again from that image as a reference in a commuter outfit; the two images are the first and last frames of a generated turn-and-change clip. Code cuts to beats computed from the music (72.8 BPM): four beats of the 'before' still with a push on every beat and item tags, the change clip entering on beat 4 with its back-facing moment landing on beat 6 under a white flash, the clip's last frame meeting the sharp 'after' image on beat 8, a price tag per item on each following beat, and the full-look price on beat 14.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

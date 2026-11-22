@@ -11,7 +11,7 @@ assets.json 是 {"items": [...]}，每份素材一项：
   file      放在哪（相对样片目录，assets/ 下）
   kind      素材种类：T 类 录像 / 录屏 / 照片 / 数据，G 类 生图（含语言模型写的 SVG）/ 生视频 / 语音合成（G 类的旁白记这个）；声音另记 旁白 / 原声 / 配乐 / 音效
   下载的（T 类素材、公开曲库的配乐音效）：source 出处页面、download 文件地址、license 许可、author 作者、credit 署名
-  生成的（G 类素材、旁白）：model 模型名、prompt 提示词（语音写 text、voice 公开音色）、params 参数、ref 首帧图（相对样片目录）
+  生成的（G 类素材、旁白）：model 模型名、prompt 提示词（语音写 text、voice 公开音色）、params 参数、ref 首帧图（相对样片目录）、last 尾帧图（首尾帧生视频，和 ref 一起写）
   拿到后又改过的（裁切、局部模糊等）：edit 写改了什么、为什么
   prep      怎么处理：图片 {max 长边, crop [x, y, w, h]（0–1）, q 质量}；PDF 的一页 {page 页码, dpi}（存成图片），
             存成 .json 时是这一页的文字层（每个词和它的位置）；视频 {ss 起点, t 长度, w 宽, crop}，统一成 30 帧/秒、无声 H.264；
@@ -276,6 +276,8 @@ def gen_visual(sid, d, item):
     job = {"model": item["model"], "prompt": item["prompt"], "params": item.get("params", {})}
     if item.get("ref"):
         job["refs"] = [str((d / item["ref"]).resolve())]
+        if item.get("last"):                                             # 首尾帧：refs 第 2 张是尾帧
+            job["refs"].append(str((d / item["last"]).resolve()))
     res = gen.generate(kind, sid, job_id(item), job)
     if res is None:
         raise Skipped(gen.missing(kind))
@@ -286,7 +288,7 @@ def raw_video(sid, raws, of):
     """生视频的原始文件（带声音）：这次刚生成的，或 out/gen/<编号>/<文件名>/ 里上次留下的"""
     if of in raws:
         return raws[of]
-    got = sorted(f for f in (gen.GEN_OUT / sid / job_id({"file": of})).glob("*") if f.suffix.lower() in VID)
+    got = sorted(f for f in (gen.GEN_OUT / sid / job_id({"file": of})).rglob("*") if f.suffix.lower() in VID)
     if not got:
         raise RuntimeError(f"找不到 {of} 生成时的原始视频（在 out/gen/{sid}/ 下），先重做 {of}")
     return got[-1]
