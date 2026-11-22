@@ -1,0 +1,9 @@
+{
+  "en_name": "Multi-style journey",
+  "en_how": "One original child walks through four worlds drawn by four renderers on the same pose: an impasto oil painting from a flow field of brush strokes (pre-rendered once), clean anime cel shading with hard shadows, clay with soft gradient blobs, thick same-colour outlines and a fingerprint texture, and a pixel world drawn on a 1/12 canvas and upscaled without smoothing; diagonal clip-path wipes switch styles at fixed times.",
+  "tech": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

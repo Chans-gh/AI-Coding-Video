@@ -533,12 +533,16 @@
 
 ## C-087 多画风穿越
 
+![多画风穿越](../images/C-087.jpg)
+
 ```text
 让同一个角色依次穿越多种画风世界（如暖色写实城市→动漫东京→黏土村庄→像素世界）：角色的外形、配色和剪影在每个世界保持不变，只改变线条、填色、纹理和着色方式，镜头贴近角色视线高度，每次画风切换本身就是转场。
 ```
 
 - 题材：卡通与动漫
 - 适合：品牌 IP 角色、年度回顾、炫技短片；需要先给角色设定图
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-087/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-087)
 - 技术（建议）：Canvas 2D · WebGL
 - 参考：[@ianstig](https://x.com/ianstig/status/2103169675928764486)
 

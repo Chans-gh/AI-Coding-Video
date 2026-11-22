@@ -2055,20 +2055,29 @@
    "name": "分屏“跑酷 + 讲解”",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-059.jpg",
    "prompt": "用左右分屏格式：左半屏是一个原创的 3D 街道跑酷游戏一直在跑、带分数和金币，右半屏是深色背景上的公式和图表跟着旁白逐项讲解，两边同时进行。",
    "theme": "游戏",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "短视频留存",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js",
     "SVG"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-059/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-059"
+   },
    "pack": null,
    "refs": []
   },
@@ -2554,19 +2563,28 @@
    "name": "风格化 3D 打斗",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-074.jpg",
    "prompt": "用风格化 3D 动作片风格：低细节模型加平滑明暗的卡通渲染，绿色和红色火柴人角色在沙漠、神殿等不同场景追逐对打，暖色氛围光、击中时亮色粒子过闪和短暂定格，镜头跟随动作快切。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "动作、对战",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-074/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-074"
+   },
    "pack": null,
    "refs": [
     {
@@ -2824,19 +2842,26 @@
    "name": "霓虹流体",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-082.jpg",
    "prompt": "用霓虹流体模拟风格：纯黑背景上 GPU 实时模拟的流体，染料是高饱和的橙、红、品红、青，边缘发光并卷成涡旋，随鼠标轨迹或音乐节拍被搅动，画面只有流体和一个极简半透明参数面板。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "科技品牌背景、音乐可视化、互动装置",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "GLSL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-082/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-082"
+   },
    "pack": null,
    "refs": []
   },
@@ -2961,19 +2986,26 @@
    "name": "多画风穿越",
    "file": "styles/canvas-2d.md",
    "layer": "canvas-2d",
-   "image": null,
+   "image": "images/C-087.jpg",
    "prompt": "让同一个角色依次穿越多种画风世界（如暖色写实城市→动漫东京→黏土村庄→像素世界）：角色的外形、配色和剪影在每个世界保持不变，只改变线条、填色、纹理和着色方式，镜头贴近角色视线高度，每次画风切换本身就是转场。",
    "theme": "卡通与动漫",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "品牌 IP 角色、年度回顾、炫技短片；需要先给角色设定图",
-   "verified": [],
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "Canvas 2D",
     "WebGL"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-087/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-087"
+   },
    "pack": null,
    "refs": [
     {
@@ -3785,20 +3817,29 @@
    "name": "桌面穿梭",
    "file": "styles/webgl.md",
    "layer": "webgl",
-   "image": null,
+   "image": "images/C-111.jpg",
    "prompt": "用桌面穿梭风格：阳光斜照的木桌上铺着点阵纸垫，各个应用界面是印在厚纸卡上的小场地，像素小人被挤成一格一格的体素玩具，在卡片间跳跃搬运，笔、便签、杯子投下长长软影，镜头不剪一刀地追随、甩镜，最后拉远看全桌，每个动作都踩在马林巴节拍上。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "软件功能导览、工作流演示、产品发布",
-   "verified": [],
+   "verified": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
    "suggested": [
     "WebGL",
     "Three.js",
     "Web Audio"
    ],
-   "render_code": null,
+   "render_code": {
+    "path": "samples/C-111/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-111"
+   },
    "pack": null,
    "refs": [
     {

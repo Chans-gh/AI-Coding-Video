@@ -1,0 +1,11 @@
+{
+  "en_name": "Stylized 3D fight",
+  "en_how": "Two original toon-shaded fighters built from boxes and capsules on a joint hierarchy are posed by keyframes (a shared keyAt helper) with an anticipation, strike and recovery for each move; every hit freezes time for a few frames (hit-stop), shakes the camera and throws a burst of particles and a white flash; MeshToon gradients plus back-face outlines give the cel look, the camera cuts between shots, and the fight moves from a desert to a temple.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
