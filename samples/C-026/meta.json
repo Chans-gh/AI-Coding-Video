@@ -1,0 +1,11 @@
+{
+  "en_name": "Pop-up paper book",
+  "en_how": "Three.js builds a wooden table (grain texture drawn from stretched fractal noise) and a hardbound book whose cover and left page swing open around the spine; layers of paper cut-out scenery stand at the gutter (mountains, pines, a cottage, a cloud), each a Canvas-drawn card texture with a white border that rotates from lying flat to upright with the opening, overshooting slightly; the heroine is a two-sided paper figure whose back is blank card, flipping a full turn like paper, before jumping out of the book onto the table; a soft-shadowed directional light and blurred bands at top and bottom fake macro shallow depth of field.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

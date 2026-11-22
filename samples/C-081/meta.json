@@ -1,0 +1,11 @@
+{
+  "en_name": "Cel-shaded 3D anime",
+  "en_how": "Three.js toon materials with a three-step gradient map give only light, mid and shadow tones, and every object wears an enlarged back-face black shell as its outline; shops with awnings and signs, cherry trees made of icosahedron clusters, utility poles and sagging wires are laid out in code, the sky is a gradient-shaded dome and clouds are outlined sphere clusters; an original girl built from capsules and spheres walks uphill with sine-driven limbs while the camera roams around her, and Canvas adds falling petals, a Japanese title, a quest box, stamina bar and minimap.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
