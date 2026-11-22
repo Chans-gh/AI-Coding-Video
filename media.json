@@ -2533,33 +2533,48 @@
   },
   "pack-style-swap-clay-16x9.mp4": {
    "path": "packs/style-swap/demo/style-swap-clay-16x9.mp4",
-   "bytes": 3185288,
-   "sha256": "ef18a825e8998bcbcf0b605d1ad651787c0327be93ae2f7c25bd3b746e55f304"
+   "bytes": 17702282,
+   "sha256": "c4d08331021059858a7ce5dcf75d67cb8088441b9e173b7bc83d95574a2a74ff"
   },
   "pack-style-swap-clay-9x16.mp4": {
    "path": "packs/style-swap/demo/style-swap-clay-9x16.mp4",
    "bytes": 2921881,
    "sha256": "4524a1acf82b2ac33f897626af83b17aa765e186b128940d054dce705a22b473"
   },
+  "pack-style-swap-clay-clip-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-clay-clip-16x9.mp4",
+   "bytes": 3005059,
+   "sha256": "a0ced4d13d3dfdc7b4d96388d0e2fed5e5ba9bf872e10a39c2f701c9808d823c"
+  },
   "pack-style-swap-photo-16x9.mp4": {
    "path": "packs/style-swap/demo/style-swap-photo-16x9.mp4",
-   "bytes": 3783623,
-   "sha256": "ccbf419a0afb059801161d2c1299326612fcd63d4b354c3c4ad111116130b0f2"
+   "bytes": 16838723,
+   "sha256": "c1dbeb02b7831a344eec965d21833104ef64bdbf8e8846eb9c6f46a4360886fa"
   },
   "pack-style-swap-photo-9x16.mp4": {
    "path": "packs/style-swap/demo/style-swap-photo-9x16.mp4",
    "bytes": 3404688,
    "sha256": "f139628f0eac1ae692e13dcf9ea757bd0b816331ed039ea7e1b73951519d236f"
   },
+  "pack-style-swap-photo-clip-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-photo-clip-16x9.mp4",
+   "bytes": 3315886,
+   "sha256": "c4848dae37bdd78ca8bd3e032bf0e526906b9b5cfadab8a37dc78637ef9b3bbc"
+  },
   "pack-style-swap-watercolor-16x9.mp4": {
    "path": "packs/style-swap/demo/style-swap-watercolor-16x9.mp4",
-   "bytes": 3250302,
-   "sha256": "d432c1e3d0fc0038ca9d89e61765776996134f2bb0c431ffa9c31e09222d3406"
+   "bytes": 14604330,
+   "sha256": "5084aa820dc85b9c3a1b68c8141ce9afd050dee393c355ace0c6a78e81a422f9"
   },
   "pack-style-swap-watercolor-9x16.mp4": {
    "path": "packs/style-swap/demo/style-swap-watercolor-9x16.mp4",
    "bytes": 2793357,
    "sha256": "667d58938f0303b2abe962dcd2b08d16ab7a53a8cd55b0b8726bdb91b10119a3"
+  },
+  "pack-style-swap-watercolor-clip-16x9.mp4": {
+   "path": "packs/style-swap/demo/style-swap-watercolor-clip-16x9.mp4",
+   "bytes": 2864200,
+   "sha256": "175fac95815f8e8e56d3c4f2a88dc457282323bc869530fc07ced5da0e67524f"
   }
  }
 }
