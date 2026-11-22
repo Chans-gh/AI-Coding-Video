@@ -1,0 +1,11 @@
+{
+  "en_name": "Painted wood-carved miniature",
+  "en_how": "Three.js quantises fractal-noise heights into terraces like a carved relief and paints them by height (river, fields, grass, rock); every object is low-poly with flat shading so faces meet at knife-cut edges, plus a Canvas-drawn bump map of short gouge marks and a wood-grain texture; houses, trees and wooden figures are assembled from boxes, pyramids and cylinders, the figures step on twos at 12 fps, a single desk-lamp spotlight with soft shadows lights the table from above, and the camera skims low like a drone with blurred bands for shallow focus.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

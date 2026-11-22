@@ -1,0 +1,12 @@
+{
+  "en_name": "Engraved long take",
+  "en_how": "Three.js builds a river valley from fractal noise and shades mountains, trees, water and sky with a custom hatching shader: parallel lines laid in world space (contours by height on the hills, ripples across the water, sparse bands in the sky) whose width follows the lighting, with a crossing diagonal layer in the shadows and lines fading to paper with distance; trees and the boat wear an inverted-hull ink outline, only the little boat and boatman are red, foreground branches slide past the lens, and one continuous camera move descends to follow the boat before the image is multiplied onto a generated paper texture.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "GLSL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}

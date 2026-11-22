@@ -1,0 +1,11 @@
+{
+  "en_name": "3D battle / map overview",
+  "en_how": "Three.js displaces a terrain with fractal noise and carves a south-facing bay, coloured by height under a translucent sea; two invented fleets of twenty ships each, red and white, sail in formation along scripted paths; arrow volleys are short segments flying on parabolas, projected and drawn on Canvas; the tide is rows of moving arrows on the water that turn around and shift from cyan to orange at 2.6 s; drifting soft sprites make fog; three hard-cut camera set-ups (high oblique, low tracking, top-down map) carry TV-special subtitles, a strength bar and a tide gauge.",
+  "tech": [
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+  ]
+}
