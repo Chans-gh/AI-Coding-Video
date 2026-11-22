@@ -24,7 +24,7 @@ scene({
     }
     // 路障和金币（世界坐标固定，人往 -z 跑）
     const LANE = [-3, 0, 3], speed = 14;
-    const obstacles = [[0, -speed * (JUMPS[0] + .35)], [1, -speed * (JUMPS[1] + .35)], [2, -speed * 1.5], [0, -speed * 4.4], [2, -speed * 3.6]];
+    const obstacles = [[1, -speed * (JUMPS[0] + .35)], [0, -speed * (JUMPS[1] + .35)], [2, -speed * 1.5], [0, -speed * 4.4], [2, -speed * 3.6]];
     for (const [l, z] of obstacles) {
       const g = new T.Group();
       const bar = new T.Mesh(new T.BoxGeometry(2.4, .5, .3), S('#e84a3a')); bar.position.y = 1.0; g.add(bar);
@@ -36,7 +36,7 @@ scene({
     const laneAt = t => keyAt([[0, 1], [2.25, 1], [2.5, 0], [3.0, 0], [3.95, 0], [4.2, 1]], t);
     for (let k = 0; k < 40; k++) {
       const tt = .4 + k * .12, z = -speed * tt, l = laneAt(tt), y = 1 + jumpH(tt) * .9;
-      const c = new T.Mesh(coinG, coinM); c.position.set(lerp(-3, 3, l / 2), y, z); sc.add(c); coins.push({ c, tt });
+      const c = new T.Mesh(coinG, coinM); c.position.set(lerp(-3, 3, l / 2), 1 + jumpH(tt) * 2.2, z); sc.add(c); coins.push({ c, tt });
     }
     // 小人
     const man = new T.Group(), J = {};
@@ -52,12 +52,12 @@ scene({
     const { D, man, J, coins, speed, laneAt, pw, ph } = s, u = SHORT / 1080;
     // ---- 跑酷 ----
     const z = -speed * t, l = laneAt(t), x = lerp(-3, 3, l / 2), y = jumpH(t);
-    man.position.set(x, y, z); man.rotation.z = (laneAt(t + .05) - l) * -2;
-    const air = y > 0, cyc = air ? 0 : Math.sin(t * 16);
+    man.position.set(x, y * 2.2, z); man.rotation.z = (laneAt(t + .05) - l) * -2;
+    const air = y > 0.02, cyc = air ? 0 : Math.sin(t * 16);
     J.lA.rotation.x = air ? -2.6 : cyc * 1.1; J.rA.rotation.x = air ? -2.6 : -cyc * 1.1; J.lL.rotation.x = air ? -1 : -cyc; J.rL.rotation.x = air ? .6 : cyc;
     let got = 0;
     for (const c of coins) { const g = c.tt < t - .02; c.c.visible = !g; got += g; c.c.rotation.y = t * 5 + c.tt; }
-    D.camera.position.set(x * .6, 4.2 + y * .4, z + 7); D.camera.lookAt(x * .8, 1.6 + y * .3, z - 6);
+    D.camera.position.set(x * .6, 4.2 + y * .8, z + 7); D.camera.lookAt(x * .8, 1.6 + y * .7, z - 6);
     D.render();
     const [ox, oy] = LAND ? [0, 0] : [0, 0];
     ctx.drawImage(D.canvas, ox, oy, pw, ph);
@@ -83,7 +83,7 @@ scene({
     ctx.fillText('h(t) = v₀t − ½gt²', px + (1 - k2) * 30 * u, yy + 40 * u);
     ctx.font = `700 ${Math.round(24 * u)}px 'JetBrains Mono'`; ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fillText(`v₀ = ${V0}  g = ${GR}`, px, yy + 82 * u);
     // 图：高度–时间
-    const gx0 = px, gw = bw - 120 * u, gy1 = yy + (LAND ? 130 : 110) * u, gh = LAND ? 360 * u : 280 * u, gy0 = gy1 + gh;
+    const gx0 = px, gw = bw - 120 * u, gy1 = yy + (LAND ? 130 : 110) * u, gh = LAND ? 480 * u : 380 * u, gy0 = gy1 + gh;
     const hmax = V0 * V0 / (2 * GR), X = q => gx0 + q / JD * gw, Y = h => gy0 - h / (hmax * 1.25) * gh;
     ctx.globalAlpha = k3; ctx.strokeStyle = 'rgba(255,255,255,.6)'; ctx.lineWidth = 2 * u;
     ctx.beginPath(); ctx.moveTo(gx0, gy1); ctx.lineTo(gx0, gy0); ctx.lineTo(gx0 + gw, gy0); ctx.stroke();
