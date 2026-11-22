@@ -38,8 +38,8 @@
    "author": "NASA Earth Observatory / Lauren Dauphin，USGS Landsat 数据",
    "credit": "卫星图 NASA 地球观测站（Landsat，公共领域）",
    "prep": {
-    "max": 1800,
-    "q": 86
+    "max": 1600,
+    "q": 80
    }
   },
   {
@@ -52,8 +52,8 @@
    "author": "NASA Earth Observatory / Lauren Dauphin，USGS Landsat 数据",
    "credit": "卫星图 NASA 地球观测站（Landsat，公共领域）",
    "prep": {
-    "max": 1800,
-    "q": 86
+    "max": 1600,
+    "q": 80
    }
   },
   {
@@ -132,7 +132,8 @@
      "t1": 13.134,
      "text": "就是从前的水位线"
     }
-   ]
+   ],
+   "use": "clip"
   },
   {
    "file": "assets/music.mp3",
@@ -146,7 +147,1115 @@
    "prep": {
     "t": 15
    },
-   "at": 0
+   "at": 0,
+   "use": "clip"
+  },
+  {
+   "file": "assets/mead_aerial.jpg",
+   "kind": "照片",
+   "title": "Aerial view, Lake Mead near Las Vegas, Nevada and the Grand Canyon（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2010630571/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:04500:04587/full/pct:25/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/vegas_day.jpg",
+   "kind": "照片",
+   "title": "Daytime aerial view of the Strip, Las Vegas, Nevada（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2010630596/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:04600:04612/full/pct:50/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/mead_lake.jpg",
+   "kind": "照片",
+   "title": "Lake Mead, Nevada（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2011630280/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:12000:12084/full/pct:50/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/hoover.jpg",
+   "kind": "照片",
+   "title": "Aerial view of Hoover Dam, Nevada（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2011636036/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:17800:17842/full/pct:25/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/headwaters.jpg",
+   "kind": "照片",
+   "title": "Headwaters of the Colorado River, near Parshall, Colorado（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2017685504/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:35000:35021/full/pct:25/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/glen_dam.jpg",
+   "kind": "照片",
+   "title": "View from a bend in the Colorado River of Glen Canyon Dam, outside Page, Arizona（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2018702694/",
+   "download": "https://tile.loc.gov/storage-services/service/pnp/highsm/54700/54706v.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/powell.jpg",
+   "kind": "照片",
+   "title": "Aerial view of Lake Powell, near Page, Arizona（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2018702768/",
+   "download": "https://tile.loc.gov/storage-services/service/pnp/highsm/54700/54780v.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/vegas_dusk.jpg",
+   "kind": "照片",
+   "title": "Aerial view showing the Las Vegas Strip at dusk, Las Vegas, Nevada（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2011634444/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:16200:16251/full/pct:50/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/mead_nra.jpg",
+   "kind": "照片",
+   "title": "Lake Mead National Recreation Area, formed by the creation of Hoover Dam, near Boulder City, Nevada（Carol M. Highsmith，美国国会图书馆）",
+   "source": "https://www.loc.gov/item/2011631872/",
+   "download": "https://tile.loc.gov/image-services/iiif/service:pnp:highsm:13600:13678/full/pct:25/0/default.jpg",
+   "license": "公共领域（Carol M. Highsmith 把作品捐给国会图书馆并放弃版权；目录标为 No known restrictions on publication）",
+   "author": "Carol M. Highsmith / Library of Congress",
+   "credit": "照片 Carol M. Highsmith（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1600,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/paper1922.jpg",
+   "kind": "照片",
+   "title": "The Graham Guardian（亚利桑那州 Safford），1922 年 11 月 28 日头版：Arizona wins fight for more water from Colorado River（美国国会图书馆 Chronicling America 数字化）",
+   "source": "https://www.loc.gov/resource/sn95060914/1922-11-28/ed-1/?sp=1",
+   "download": "https://tile.loc.gov/image-services/iiif/service:ndnp:az:batch_az_agave_ver01:data:sn95060914:00211105094:1922112801:0169/full/pct:25/0/default.jpg",
+   "license": "公共领域（1922 年在美国出版，版权已过期）",
+   "author": "The Graham Guardian / Library of Congress, Chronicling America",
+   "credit": "报纸 The Graham Guardian 1922（美国国会图书馆，公共领域）",
+   "prep": {
+    "max": 1500,
+    "q": 80
+   }
+  },
+  {
+   "file": "assets/mead_aerial_depth.png",
+   "kind": "数据",
+   "title": "mead_aerial.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2010630571/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/mead_aerial.jpg packs/news-brief/demo/assets/mead_aerial_depth.png"
+  },
+  {
+   "file": "assets/vegas_day_depth.png",
+   "kind": "数据",
+   "title": "vegas_day.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2010630596/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/vegas_day.jpg packs/news-brief/demo/assets/vegas_day_depth.png"
+  },
+  {
+   "file": "assets/mead_lake_depth.png",
+   "kind": "数据",
+   "title": "mead_lake.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2011630280/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/mead_lake.jpg packs/news-brief/demo/assets/mead_lake_depth.png"
+  },
+  {
+   "file": "assets/hoover_depth.png",
+   "kind": "数据",
+   "title": "hoover.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2011636036/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/hoover.jpg packs/news-brief/demo/assets/hoover_depth.png"
+  },
+  {
+   "file": "assets/headwaters_depth.png",
+   "kind": "数据",
+   "title": "headwaters.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2017685504/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/headwaters.jpg packs/news-brief/demo/assets/headwaters_depth.png"
+  },
+  {
+   "file": "assets/glen_dam_depth.png",
+   "kind": "数据",
+   "title": "glen_dam.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2018702694/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/glen_dam.jpg packs/news-brief/demo/assets/glen_dam_depth.png"
+  },
+  {
+   "file": "assets/powell_depth.png",
+   "kind": "数据",
+   "title": "powell.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2018702768/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/powell.jpg packs/news-brief/demo/assets/powell_depth.png"
+  },
+  {
+   "file": "assets/vegas_dusk_depth.png",
+   "kind": "数据",
+   "title": "vegas_dusk.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2011634444/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/vegas_dusk.jpg packs/news-brief/demo/assets/vegas_dusk_depth.png"
+  },
+  {
+   "file": "assets/mead_nra_depth.png",
+   "kind": "数据",
+   "title": "mead_nra.jpg 的深度图（白色近、黑色远），视差分层用",
+   "source": "https://www.loc.gov/item/2011631872/",
+   "license": "公共领域（原照片）；深度图由本仓库代码算出",
+   "author": "本仓库 samples/T-018/depth.py 计算",
+   "credit": "深度 本仓库计算（Depth Anything V2）",
+   "edit": "python3 samples/T-018/depth.py packs/news-brief/demo/assets/mead_nra.jpg packs/news-brief/demo/assets/mead_nra_depth.png"
+  },
+  {
+   "file": "assets/states.json",
+   "kind": "数据",
+   "title": "Natural Earth 1:110m 一级行政区（美国西部 15 个州的轮廓）",
+   "source": "https://www.naturalearthdata.com/downloads/110m-cultural-vectors/",
+   "download": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_1_states_provinces.geojson",
+   "license": "公共领域（Natural Earth）",
+   "author": "Natural Earth",
+   "credit": "地图 Natural Earth（公共领域）",
+   "prep": {
+    "shapes": "postal",
+    "round": 2,
+    "where": {
+     "admin": [
+      "United States of America"
+     ],
+     "postal": [
+      "AZ",
+      "CA",
+      "NV",
+      "UT",
+      "CO",
+      "NM",
+      "WY",
+      "ID",
+      "OR",
+      "TX",
+      "MT",
+      "NE",
+      "KS",
+      "OK",
+      "SD"
+     ]
+    }
+   }
+  },
+  {
+   "file": "assets/rivers.json",
+   "kind": "数据",
+   "title": "Natural Earth 1:50m 河流中心线（科罗拉多河、吉拉河）",
+   "source": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/",
+   "download": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_rivers_lake_centerlines.geojson",
+   "license": "公共领域（Natural Earth）",
+   "author": "Natural Earth",
+   "credit": "地图 Natural Earth（公共领域）",
+   "prep": {
+    "bbox": [
+     -118,
+     31,
+     -104,
+     42
+    ],
+    "round": 2,
+    "where": {
+     "name": [
+      "Colorado",
+      "Gila"
+     ]
+    }
+   }
+  },
+  {
+   "file": "assets/music_full.mp3",
+   "kind": "配乐",
+   "title": "Insistent: background loop（完整演示片用，从第一拍起截 80 秒）",
+   "source": "https://opengameart.org/content/insistent-background-loop",
+   "download": "https://opengameart.org/sites/default/files/Insistent.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "ss": 0.171,
+    "t": 80,
+    "br": "112k"
+   },
+   "beats": "python3 samples/tools/beats.py → 149.93 BPM，一拍 0.4 秒，第一拍 0.171 秒（截掉之后第 0 秒落在拍上）",
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/cold.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glitch_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glitch_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/slam.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/flash.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：tick_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/tick_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/crawl.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/chapter.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：bong_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/bong_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/story.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：open_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/open_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/compare.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：switch_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/switch_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/zoom.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/archive.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scratch_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scratch_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/pin.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/frame.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/split.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：toggle_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/toggle_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/strip.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/number.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/bars.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：pluck_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/pluck_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/line.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/ring.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glass_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glass_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/rank.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_006.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_006.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/heat.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：glass_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/glass_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/flip.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：tick_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/tick_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/table.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/delta.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/versus.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：switch_006.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/switch_006.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/threshold.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：error_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/error_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/quote.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：open_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/open_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/timeline.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/check.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/qa.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：question_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/question_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/relation.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：pluck_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/pluck_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/glossary.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：select_007.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/select_007.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/stamp.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：drop_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/drop_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/procon.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：toggle_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/toggle_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/sources.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scroll_005.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scroll_005.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/reading.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：back_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/back_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/outro.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：confirmation_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/confirmation_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/bracket.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：minimize_003.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/minimize_003.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/circle.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：scratch_004.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/scratch_004.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/nameplate.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：maximize_006.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/maximize_006.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tagin.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：toggle_001.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/toggle_001.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/credit.mp3",
+   "kind": "音效",
+   "title": "Interface Sounds：click_002.ogg",
+   "source": "https://opengameart.org/content/interface-sounds",
+   "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+   "license": "CC0 1.0",
+   "author": "Kenney (www.kenney.nl)",
+   "credit": "音效 Kenney（CC0）",
+   "prep": {
+    "member": "Audio/click_002.ogg",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_bar.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-1.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-1.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_push.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-3.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-3.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_fade.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-12.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-12.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_zoom.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-7.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-7.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_flash.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-9.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-9.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_doors.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-5.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-5.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
+  },
+  {
+   "file": "assets/sfx/tr_tiles.mp3",
+   "kind": "音效",
+   "title": "Swishes Sound Pack：swish-10.wav",
+   "source": "https://opengameart.org/content/swishes-sound-pack",
+   "download": "https://opengameart.org/sites/default/files/swishes.zip",
+   "license": "CC0 1.0",
+   "author": "artisticdude",
+   "credit": "转场音 artisticdude（CC0）",
+   "prep": {
+    "member": "swishes/swish-10.wav",
+    "mono": true,
+    "norm": false,
+    "br": "64k"
+   },
+   "use": "full"
   }
  ]
 }

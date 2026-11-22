@@ -117,8 +117,8 @@ def where(sid):
 
 
 def stem(sid):
-    """产出文件名的前缀：样片用编号，风格包用「包名-颜色」"""
-    return sid[5:].replace("@", "-") if sid.startswith("pack:") else sid
+    """产出文件名的前缀：样片用编号，风格包用「包名-颜色」，同画幅的切换片段（pack:<名字>@<键>.clip）是「包名-键-clip」"""
+    return sid[5:].replace("@", "-").replace(".clip", "-clip") if sid.startswith("pack:") else sid
 
 
 def pack_meta(pack):
@@ -145,10 +145,21 @@ def demo_files(sid, ar):
     """风格包演示片这一支用哪个场景和声音：(场景名, 声音文件名)。写了 full 的包：每种切换在 full 画幅出完整演示片，
     另一画幅出 15 秒切换片段（clip）。样片和没写 full 的包都是 scene、sound.py"""
     if sid.startswith("pack:"):
-        full = pack_meta(sid[5:].partition("@")[0]).get("full")
-        if full and ar != full:
+        if sid.endswith(".clip"):                 # meta.json 的 clip 和 full 同画幅：切换片段写成 pack:<名字>@<键>.clip
+            return "clip", "clip_sound.py"
+        m = pack_meta(sid[5:].partition("@")[0])
+        if m.get("full") and ar != m["full"] and "clip" not in m:
             return "clip", "clip_sound.py"
     return "scene", "sound.py"
+
+
+def allowed(sid, ar):
+    """这一支要不要出这个画幅：meta.json 写了 clip（切换片段的画幅，和 full 相同）的包只出 full 画幅，
+    完整演示片和切换片段都是这一种；其余照常横竖都出"""
+    if not sid.startswith("pack:"):
+        return True
+    m = pack_meta(sid[5:].split("@")[0])
+    return "clip" not in m or ar == m["full"]
 
 
 def is_full(sid, ar):
@@ -160,7 +171,8 @@ def expand(sid):
     """pack:<名字> 展开成每种切换一支（pack:<名字>@<键>）；样片编号和已带键的原样返回"""
     if not sid.startswith("pack:") or "@" in sid:
         return [sid]
-    return [f"{sid}@{a[0]}" for a in variants(sid[5:])]
+    same = "clip" in pack_meta(sid[5:])                # 同画幅的切换片段：每种切换另加一支 @<键>.clip
+    return [x for a in variants(sid[5:]) for x in ([f"{sid}@{a[0]}"] + ([f"{sid}@{a[0]}.clip"] if same else []))]
 
 
 def ffmpeg():
@@ -193,6 +205,7 @@ class Page:
         self.pg.on("console", self._console)
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
         base, _, col = sid.partition("@")
+        col = col.removesuffix(".clip")
         if col:                                   # 风格包的某一种切换（品牌色、画面组织、画风…）：从 meta.json 取参数传给播放器
             query += variant_query(base[5:], col)
         if demo_files(sid, ar)[0] != "scene":     # 风格包的 15 秒切换片段

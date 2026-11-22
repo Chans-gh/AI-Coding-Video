@@ -2,9 +2,269 @@
   "from": "T-007",
   "name": "新闻资讯解说",
   "en_name": "News brief",
-  "how": "公共领域照片加公开数据做成电视新闻式解说：栏目条、标题、数据卡、标注、滚动出处和字幕固定，切换的是「画面组织」——单图推拉、2.5D 视差分层、多图拼贴分屏，只改一个参数。",
-  "en_how": "Public-domain photos plus open data become a TV-style news explainer. The show bug, headline, data card, annotations, source ticker and subtitles stay fixed; what switches is how the pictures are organized (single-image Ken Burns, 2.5D depth-layer parallax, or a multi-image split-screen collage), with one parameter.",
-  "switch": ["画面组织", "Layout"],
-  "parts": [["栏目条", "Show bug"], ["标题", "Headline"], ["对比", "Before / after"], ["数据卡", "Data card"], ["标注", "Annotation"], ["滚动出处", "Source ticker"], ["字幕", "Subtitles"], ["转场", "Transition"]],
-  "variants": [["kenburns", "单图推拉", "Ken Burns", "kenburns"], ["parallax", "2.5D 视差分层", "2.5D parallax", "parallax"], ["collage", "多图拼贴分屏", "Split-screen collage", "collage"]]
+  "how": "公共领域照片加公开数据做成电视新闻式解说：40 种分镜（35 种整屏段部件、5 种叠在段上的部件）按分镜表排成一期完整的资讯解说，每个镜头 1.6–2 秒、切在拍上；背景、粒子、镜头、转场、节拍、角标、字幕是贯穿全片的层。切换的是「画面组织」——单图推拉、2.5D 视差分层、多图拼贴分屏，只改一个参数，每个镜头都跟着变。",
+  "en_how": "Public-domain photos plus open data become a TV-style news explainer: 40 shot forms (35 full-frame segment parts and 5 overlays) are laid out on a shot table as a full episode, each shot 1.6–2 s and cut on the beat; backdrop, dust, camera, transitions, beat grid, corner bug and captions are layers across it. What switches is how the pictures are organized (single-image Ken Burns, 2.5D depth-layer parallax, or a multi-image split-screen collage), one parameter that changes every shot.",
+  "switch": [
+    "画面组织",
+    "Layout"
+  ],
+  "full": "16x9",
+  "clip": "16x9",
+  "parts": [
+    [
+      "快讯冷开场",
+      "Breaking cold open",
+      "seg"
+    ],
+    [
+      "头条砸字",
+      "Headline slam",
+      "seg"
+    ],
+    [
+      "今日要点快闪",
+      "Today's points",
+      "seg"
+    ],
+    [
+      "滚动快讯带",
+      "News crawl",
+      "seg"
+    ],
+    [
+      "栏目闪卡",
+      "Chapter card",
+      "seg"
+    ],
+    [
+      "单图加标题",
+      "Photo headline",
+      "seg"
+    ],
+    [
+      "前后对比",
+      "Before / after",
+      "seg"
+    ],
+    [
+      "卫星图放大",
+      "Satellite zoom",
+      "seg"
+    ],
+    [
+      "档案扫描页",
+      "Archive page",
+      "seg"
+    ],
+    [
+      "地图定位",
+      "Map pins",
+      "seg"
+    ],
+    [
+      "带出处的素材框",
+      "Sourced frame",
+      "seg"
+    ],
+    [
+      "分屏",
+      "Split screen",
+      "seg"
+    ],
+    [
+      "图集条",
+      "Photo strip",
+      "seg"
+    ],
+    [
+      "大数字",
+      "Big number",
+      "seg"
+    ],
+    [
+      "柱状图",
+      "Bar chart",
+      "seg"
+    ],
+    [
+      "折线图",
+      "Line chart",
+      "seg"
+    ],
+    [
+      "占比环",
+      "Share ring",
+      "seg"
+    ],
+    [
+      "排名",
+      "Ranking",
+      "seg"
+    ],
+    [
+      "地图热区",
+      "Choropleth",
+      "seg"
+    ],
+    [
+      "翻牌",
+      "Flip board",
+      "seg"
+    ],
+    [
+      "统计表",
+      "Data table",
+      "seg"
+    ],
+    [
+      "增减箭头",
+      "Up / down",
+      "seg"
+    ],
+    [
+      "时间对比",
+      "Then vs now",
+      "seg"
+    ],
+    [
+      "门槛线",
+      "Threshold gauge",
+      "seg"
+    ],
+    [
+      "原句引用",
+      "Quote",
+      "seg"
+    ],
+    [
+      "事件时间线",
+      "Timeline",
+      "seg"
+    ],
+    [
+      "要点清单",
+      "Checklist",
+      "seg"
+    ],
+    [
+      "问答",
+      "Q&A",
+      "seg"
+    ],
+    [
+      "关系图",
+      "Relation map",
+      "seg"
+    ],
+    [
+      "名词解释",
+      "Glossary",
+      "seg"
+    ],
+    [
+      "事实核查",
+      "Fact check",
+      "seg"
+    ],
+    [
+      "两面看",
+      "Pros and cons",
+      "seg"
+    ],
+    [
+      "出处汇总",
+      "Sources",
+      "seg"
+    ],
+    [
+      "延伸阅读",
+      "Further reading",
+      "seg"
+    ],
+    [
+      "片尾",
+      "Closer",
+      "seg"
+    ],
+    [
+      "标注（叠加）",
+      "Bracket note (overlay)",
+      "seg"
+    ],
+    [
+      "圈注（叠加）",
+      "Circle note (overlay)",
+      "seg"
+    ],
+    [
+      "人名条（叠加）",
+      "Name strap (overlay)",
+      "seg"
+    ],
+    [
+      "资料 / 现场标签（叠加）",
+      "File / live tag (overlay)",
+      "seg"
+    ],
+    [
+      "出处角标（叠加）",
+      "Credit (overlay)",
+      "seg"
+    ],
+    [
+      "背景",
+      "Backdrop",
+      "layer"
+    ],
+    [
+      "粒子",
+      "Dust",
+      "layer"
+    ],
+    [
+      "镜头",
+      "Camera",
+      "layer"
+    ],
+    [
+      "转场",
+      "Transitions",
+      "layer"
+    ],
+    [
+      "节拍",
+      "Beat grid",
+      "layer"
+    ],
+    [
+      "角标",
+      "Corner bug",
+      "layer"
+    ],
+    [
+      "字幕",
+      "Captions",
+      "layer"
+    ]
+  ],
+  "variants": [
+    [
+      "kenburns",
+      "单图推拉",
+      "Ken Burns",
+      "kenburns"
+    ],
+    [
+      "parallax",
+      "2.5D 视差分层",
+      "2.5D parallax",
+      "parallax"
+    ],
+    [
+      "collage",
+      "多图拼贴分屏",
+      "Split-screen collage",
+      "collage"
+    ]
+  ]
 }

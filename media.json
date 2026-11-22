@@ -2488,33 +2488,48 @@
   },
   "pack-news-brief-collage-16x9.mp4": {
    "path": "packs/news-brief/demo/news-brief-collage-16x9.mp4",
-   "bytes": 3018728,
-   "sha256": "0d6057e78b4bbb0b546a57489f56946881e2ee3d65eb1ed3ddb656571758e6ed"
+   "bytes": 16899036,
+   "sha256": "1fe9b48f688ec95741a9b7964ddf4945cf4c6cadec0a8802ef54fd8db48b4ce5"
   },
   "pack-news-brief-collage-9x16.mp4": {
    "path": "packs/news-brief/demo/news-brief-collage-9x16.mp4",
    "bytes": 3157695,
    "sha256": "3cbc5779666872cda287a6a02710a8ceea3bd9226ce97e87b6f9e9e9d4b5c978"
   },
+  "pack-news-brief-collage-clip-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-collage-clip-16x9.mp4",
+   "bytes": 3808210,
+   "sha256": "5480072e2dcc68ccd8916dcbd01fbba4683e08be71614dfa3d1a3b03404fe66f"
+  },
   "pack-news-brief-kenburns-16x9.mp4": {
    "path": "packs/news-brief/demo/news-brief-kenburns-16x9.mp4",
-   "bytes": 3017667,
-   "sha256": "efc529f278100f14d944cdcf9ccb21f8acf3ba6102fac5a985efa35622e5549a"
+   "bytes": 16344994,
+   "sha256": "757306e5691ef8d125fbe6c37d69d80505e8b871b76ee618be8a66b10eadce99"
   },
   "pack-news-brief-kenburns-9x16.mp4": {
    "path": "packs/news-brief/demo/news-brief-kenburns-9x16.mp4",
    "bytes": 3295153,
    "sha256": "4dcc1e14a3cb6dc6913048f37cc77767ddbe0c1898d89566d7381e20e0b15c5f"
   },
+  "pack-news-brief-kenburns-clip-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-kenburns-clip-16x9.mp4",
+   "bytes": 3688584,
+   "sha256": "23f520bb599cba6a7719464643afc943b7bd75250164a2edec04fa78a4768e26"
+  },
   "pack-news-brief-parallax-16x9.mp4": {
    "path": "packs/news-brief/demo/news-brief-parallax-16x9.mp4",
-   "bytes": 3160317,
-   "sha256": "f4e35c3f091b2ee7a8c79ce07231b8d9e5b75ed95d45657af9892131bbe85ddb"
+   "bytes": 13631184,
+   "sha256": "a6d55fba6ec45cc560ffa213c7caf64701d3fd56e8aa0065b043d866b32f4b27"
   },
   "pack-news-brief-parallax-9x16.mp4": {
    "path": "packs/news-brief/demo/news-brief-parallax-9x16.mp4",
    "bytes": 3754190,
    "sha256": "0ee048474ff13e8dc26237948298815e5d1fceacae8171d15df41a5ad3122aed"
+  },
+  "pack-news-brief-parallax-clip-16x9.mp4": {
+   "path": "packs/news-brief/demo/news-brief-parallax-clip-16x9.mp4",
+   "bytes": 3065063,
+   "sha256": "063ac13f0ff920698d9ea6e0b46c1594d527adb869a2c6834601c93fd4868a27"
   },
   "pack-style-swap-clay-16x9.mp4": {
    "path": "packs/style-swap/demo/style-swap-clay-16x9.mp4",

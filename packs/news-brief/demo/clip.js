@@ -1,4 +1,5 @@
-// 新闻资讯解说风格包演示：米德湖水位跌到蓄水以来最低（2022 年 7 月），15 秒。分镜表、栏目包装、数据图、旁白三种都一样，
+// 新闻资讯解说风格包的 15 秒切换片段（只出 16:9；完整演示片是 scene.js）：米德湖水位跌到蓄水以来最低（2022 年 7 月）。播放器参数 scene=clip 载入本文件。
+// 分镜表、栏目包装、数据图、旁白三种都一样，
 // 只有「画面组织」从播放器参数 v 读：kenburns 单图推拉（默认）/ parallax 2.5D 视差分层 / collage 多图拼贴分屏。
 // 素材：照片（美国国会图书馆 Carol M. Highsmith 的两张、NASA 地球观测站的两张 Landsat 图）、数据（美国垦务局月末水位、本仓库算的深度图）；
 // 旁白用语音合成的公开音色；配乐 CC0。段落的起点跟旁白走（cueTime），不写死秒数。
@@ -37,7 +38,8 @@ scene({
           r.pin(0, .85, .495), r.pin(0, .85, .59), r.panel) },
     ];
     segs.forEach((s, i) => s.d = (segs[i + 1] ? segs[i + 1].at : 15) - s.at);
-    return { K, A, L, P, segs, TR: .5, src: credits(A) };
+    const mine = ['tower', 'shore', 'sat2000', 'sat2022', 'mead.csv', 'music.mp3'];     // 只列这支片用到的素材
+    return { K, A, L, P, segs, TR: .5, src: credits({ items: A.items.filter(i => mine.some(k => i.file === `assets/${k.includes('.') ? k : k + '.jpg'}`) || i.file.startsWith('assets/tower_depth')) }) };
   },
   draw(ctx, t, s) {
     const { K, L, P, segs, TR } = s;
