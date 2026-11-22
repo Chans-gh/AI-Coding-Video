@@ -77,11 +77,11 @@
 
 照片上屏全交给画面组织：`K.L.draw` 画整屏照片镜头，`K.L.frame(ctx, K, t, A, r, v)` 把一张照片放进框 `r`，`K.L.backdrop` 画纯代码镜头的底。三种画面组织各写一套，部件只调这三个函数，所以换 `v` 每个镜头都跟着变。还导出几个零件：`NB.cover`（按焦点铺满并返回 (u, v) → 屏幕坐标）、`NB.tag`、`NB.pop`、`NB.area`（正文区）。15 秒片段另用 `NB.headline`、`NB.chart`、`NB.note`、`NB.ticker`、`NB.subtitle`、`NB.transition`。
 
-把分镜排成一支片子，看 [`demo/segments.json`](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/news-brief/demo/segments.json) 和 [`demo/scene.js`](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/news-brief/demo/scene.js)：分镜表每行一个分镜：整屏部件 `part`、时长 `d`（整拍）、进场转场 `tr`、内容 `o`、本地时间倍速 `speed`、叠加 `over`、字幕 `cues`；栏目闪卡的 `o.src` 是这一章的出处，章内角标照它写。15 秒片段是 [`demo/clip.js`](demo/clip.js)。
+把分镜排成一支片子，看 [`demo/segments.json`](demo/segments.json) 和 [`demo/scene.js`](demo/scene.js)：分镜表每行一个分镜：整屏部件 `part`、时长 `d`（整拍）、进场转场 `tr`、内容 `o`、本地时间倍速 `speed`、叠加 `over`、字幕 `cues`；栏目闪卡的 `o.src` 是这一章的出处，章内角标照它写。15 秒片段是 [`demo/clip.js`](demo/clip.js)。
 
 ## 声音
 
-全部是公开曲库里 CC0 的录音，出处逐份记在 [`demo/assets.json`](demo/assets.json)，不用 1 级的电子音。配乐 `music_full.mp3` 是一段 CC0 节奏循环，拍长用 [`samples/tools/beats.py`](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/beats.py) 量出来（0.4 秒），`music_ss` 让第 0 秒落在拍上。[`demo/sound.py`](https://github.com/Chans-gh/AI-Coding-Video/tree/main/packs/news-brief/demo/sound.py) 读同一张分镜表：每种分镜进场一个音（`demo/assets/sfx/` 里按部件命名），有逐项出现的（砸字、要点、图集、清单、地图钉）每项一下，事实核查在盖章时刻一下；每种转场一个不同的音（`tr_<名字>`）；叠加各有一个音。15 秒片段用旁白加配乐，见 [`demo/clip_sound.py`](demo/clip_sound.py)。
+全部是公开曲库里 CC0 的录音，出处逐份记在 [`demo/assets.json`](demo/assets.json)，不用 1 级的电子音。配乐 `music_full.mp3` 是一段 CC0 节奏循环，拍长用 [`samples/tools/beats.py`](../../samples/tools/beats.py) 量出来（0.4 秒），`music_ss` 让第 0 秒落在拍上。[`demo/sound.py`](demo/sound.py) 读同一张分镜表：每种分镜进场一个音（`demo/assets/sfx/` 里按部件命名），有逐项出现的（砸字、要点、图集、清单、地图钉）每项一下，事实核查在盖章时刻一下；每种转场一个不同的音（`tr_<名字>`）；叠加各有一个音。15 秒片段用旁白加配乐，见 [`demo/clip_sound.py`](demo/clip_sound.py)。
 
 ## 用到自己的项目里
 
