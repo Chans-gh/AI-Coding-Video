@@ -336,9 +336,7 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
 @media (max-width: 860px) { .pack-nav.next { right: 0; } .pack-nav.prev { left: 0; } }
 @media (prefers-reduced-motion: reduce) { .pack-nav.next span { animation: none; } }
 .pack { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 28px 36px; align-items: start; }
-html[data-ar="9x16"] .pack { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); }
 .pack-screen { background: var(--screen); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; aspect-ratio: 16 / 9; }
-html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
 .pack-screen video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pack .card-meta { margin-top: 0; }
 .pack-parts { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
@@ -349,7 +347,14 @@ html[data-ar="9x16"] .pack-screen { aspect-ratio: 9 / 16; }
 .pack-tabs button { display: inline-flex; align-items: center; gap: 7px; font: 400 13px/1 var(--body); padding: 8px 13px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
 .pack-tabs button i { width: 11px; height: 11px; border-radius: 50%; background: var(--acc); }
 .pack-tabs button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
-@media (max-width: 860px) { .pack, html[data-ar="9x16"] .pack { grid-template-columns: minmax(0, 1fr); } html[data-ar="9x16"] .pack-left { max-width: 360px; } }
+@media (max-width: 860px) { .pack { grid-template-columns: minmax(0, 1fr); } }
+/* 底部悬浮的「…」：一个包一个点，粘在视口底部，直到这一栏滚过去 */
+.pack-dots { position: sticky; bottom: 18px; z-index: 3; display: flex; justify-content: center; gap: 10px; width: max-content; margin: 36px auto 0; padding: 10px 16px; border: 1px solid var(--rule); border-radius: 999px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(6px); box-shadow: var(--shadow); }
+.pack-dots[hidden] { display: none; }
+.pack-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: var(--muted); opacity: .45; cursor: pointer; transition: width .25s, opacity .25s, background .25s; }
+.pack-dots button:hover { opacity: .8; }
+.pack-dots button[aria-current="true"] { width: 28px; background: var(--ink); opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .pack-dots button { transition: none; } }
 
 /* pager */
 .pager { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 36px; }

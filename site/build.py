@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v20 · 2026-11-09"
+VERSION = "v21 · 2026-11-23"
 CASE_ORDER = ["news-artemis", "course-first-video", "shop-handbag"]  # 「真实应用」卡片的先后：第 1、2、3 支
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
@@ -251,13 +251,13 @@ def pack_accents(n):
 
 
 def pack_names():
-    """每种切换的演示片都出好了的风格包（packs/<名字>/demo/<名字>-<键>-<画幅>.mp4）"""
+    """每种切换的横屏演示片都出好了的风格包（packs/<名字>/demo/<名字>-<键>-16x9.mp4）；风格包只给横屏的完整演示片，不跟样片区的画幅开关"""
     return sorted(d.name for d in PACKS.glob("*") if (d / "meta.json").exists() and all(
-        has_video(d / "demo" / f"{d.name}-{a[0]}-{ar}.mp4", f"pack-{d.name}-{a[0]}-{ar}.mp4") for a in pack_accents(d.name) for ar in ("16x9", "9x16")))
+        has_video(d / "demo" / f"{d.name}-{a[0]}-16x9.mp4", f"pack-{d.name}-{a[0]}-16x9.mp4") for a in pack_accents(d.name)))
 
 
 def packs_html(names):
-    """「风格包」一节：每个包一块，左边演示片（跟着样片区的画幅切换，下面一排标签切换视频：品牌色，或 meta.json 的 switch 写的维度），右边部件和链接"""
+    """「风格包」一节：每个包一块，左边横屏演示片（下面一排标签切换视频：品牌色，或 meta.json 的 switch 写的维度），右边部件和链接"""
     out = []
     for n in names:
         m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
@@ -604,7 +604,7 @@ def copy_media(ids, packs):
     missing = 0   # 本地没下载的视频不拷，本地预览就只有静帧；线上发布时从 Release 下载
     for src, dst in [(SAMPLES / sid / f"{sid}-{ar}.{ext}", f"{sid}-{ar}.{ext}") for sid in ids for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")] + \
             [(PACKS / n / "demo" / f"{n}-{a[0]}-{ar}.{ext}", f"pack-{n}-{a[0]}-{ar}.{ext}")
-             for n in packs for a in pack_accents(n) for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")]:
+             for n in packs for a in pack_accents(n) for ar in ("16x9",) for ext in ("mp4", "jpg")]:
         if src.exists():
             shutil.copy2(src, media / dst)
         else:
