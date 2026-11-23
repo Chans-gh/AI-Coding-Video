@@ -4,8 +4,11 @@
 卡片和风格包演示片用小版（显示只有几百像素宽），放大播放（lightbox）仍用原版。
 首页大视频（HERO 里的几支，只出横版）另出一份 1280 宽的放进 site/media/m/。
 发布时由 .github/workflows/pages.yml 在下载完视频后调用；本地由 site/build.py 拷完媒体后调用。
-原版没变就不重出（按修改时间比）。需要 ffmpeg（找不到就用 imageio-ffmpeg 自带的）。
+原版没变就不重出：按内容比（每个输出目录的 .src.json 记着出这份小版时原版的 sha256 和压缩参数），
+线上每次重新下载、修改时间都是新的也认得出；没有记录的才退回按修改时间比。需要 ffmpeg（找不到就用 imageio-ffmpeg 自带的）。
 """
+import hashlib
+import json
 import os
 import shutil
 import subprocess
@@ -39,20 +42,31 @@ def scale(name, long=None):
     return f"scale={w}:{h}:flags=lanczos"
 
 
-def job(src, out=OUT, long=None):
+def sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for b in iter(lambda: f.read(1 << 20), b""):
+            h.update(b)
+    return h.hexdigest()
+
+
+def job(src, out=OUT, long=None, seen=None):
+    """出一份小版；返回 (文件名, 这次新出了没有, 记录)。记录 = 原版 sha256 + 压缩参数，和 seen 里的一样就不重出"""
     dst = out / src.name
-    if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
-        return src.name, False
-    tmp = dst.with_name(f".tmp-{dst.name}")
     if src.suffix == ".mp4":
         args = ["-vf", scale(src.name, long), "-c:v", "libx264", "-preset", "slow", "-crf", str(CRF), "-pix_fmt", "yuv420p",
                 "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", "-threads", "2"]
     else:
         args = ["-vf", scale(src.name, long), "-q:v", "4", "-update", "1", "-frames:v", "1"]
+    rec = sha256(src) + " " + " ".join(args)
+    if dst.exists() and (rec == (seen or {}).get(src.name) or
+                         (src.name not in (seen or {}) and dst.stat().st_mtime >= src.stat().st_mtime)):
+        return src.name, False, rec
+    tmp = dst.with_name(f".tmp-{dst.name}")
     subprocess.run([ffmpeg(), "-y", "-loglevel", "error", "-i", str(src), *args, "-map_metadata", "-1", "-f",
                     "mp4" if src.suffix == ".mp4" else "image2", str(tmp)], check=True)
     tmp.replace(dst)
-    return src.name, True
+    return src.name, True, rec
 
 
 def main():
@@ -64,11 +78,21 @@ def main():
     for out, keep in ((OUT, srcs), (OUT.parent / "m", hero)):
         out.mkdir(exist_ok=True)
         names = {p.name for p in keep}
-        for p in out.glob("*"):   # 原版已不在的小版删掉
-            if p.name not in names:
+        for p in out.glob("*"):   # 原版已不在的小版删掉（记录文件 .src.json 留着）
+            if p.name not in names and p.name != ".src.json":
                 p.unlink()
+    seen = {}
+    for out in (OUT, OUT.parent / "m"):
+        try:
+            seen[out] = json.loads((out / ".src.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            seen[out] = {}
     with ThreadPoolExecutor(max(1, (os.cpu_count() or 2) // 2)) as ex:
-        done = sum(made for _, made in ex.map(lambda j: job(*j), jobs))
+        res = list(ex.map(lambda j: (j[1], *job(*j, seen=seen[j[1]])), jobs))
+    done = sum(made for _, _, made, _ in res)
+    for out in seen:   # 只记这次还在的
+        recs = {name: rec for o, name, _, rec in res if o == out}
+        (out / ".src.json").write_text(json.dumps(recs, ensure_ascii=False, indent=0, sort_keys=True), encoding="utf-8")
     big = sum(p.stat().st_size for p in srcs)
     small = sum((OUT / p.name).stat().st_size for p in srcs)
     print(f"小版 {len(jobs)} 个（新出 {done} 个）：{big / 1e6:.0f} MB → {small / 1e6:.0f} MB")
