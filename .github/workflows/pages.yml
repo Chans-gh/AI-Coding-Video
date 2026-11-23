@@ -53,7 +53,8 @@ jobs:
           for f in packs/*/demo/*.jpg; do
             [ -f "$f" ] && cp "$f" "site/media/pack-$(basename "$f")"
           done
-      # 卡片用的小视频、小静帧（site/small.py → site/media/s/）；原版和小版脚本都没变就直接用缓存
+      # 卡片用的小视频、小静帧（site/small.py → site/media/s/）。原版和小版脚本都没变就直接用缓存；
+      # 变了就接着上一次的缓存（restore-keys），small.py 按内容比（记录在 .src.json，跟着缓存走），只重出新增或改过的那几个
       - id: small-cache
         uses: actions/cache@v4
         with:
@@ -61,6 +62,7 @@ jobs:
             site/media/s
             site/media/m
           key: small-${{ hashFiles('media.json', 'site/small.py', 'samples/*/*-16x9.jpg', 'samples/*/*-9x16.jpg', 'packs/*/demo/*.jpg') }}
+          restore-keys: small-
       - name: 出小版
         if: steps.small-cache.outputs.cache-hit != 'true'
         run: |
