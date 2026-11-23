@@ -44,12 +44,13 @@
   if (pio) vids.forEach(v => pio.observe(v)); else vids.forEach(v => near.add(v));
   window.addEventListener('scroll', poke, { passive: true });
 
-  // 画幅
+  // 画幅：只管样片卡片；风格包只有横屏演示片，不跟着切
   const segs = document.querySelectorAll('.seg button');
   function setAr(ar) {
     root.dataset.ar = ar;
     segs.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ar === ar)));
     vids.forEach(v => {
+      if (v.classList.contains('pack-video')) return;
       const id = v.dataset.id, had = !!v.getAttribute('src');
       v.dataset.src = `media/s/${id}-${ar}.mp4`;
       v.dataset.poster = `media/s/${id}-${ar}.jpg`;
@@ -61,28 +62,41 @@
   }
   segs.forEach(b => b.addEventListener('click', () => setAr(b.dataset.ar)));
 
-  // 风格包换品牌色：点标签换成同一支演示片的另一种颜色，接着原来的时间播（画幅仍跟着上面的开关）
+  // 风格包换品牌色：点标签换成同一支演示片的另一种颜色，接着原来的时间播（只有横屏）
   document.querySelectorAll('.pack').forEach(pk => {
     const v = pk.querySelector('.pack-video'), tabs = pk.querySelectorAll('.pack-tabs button');
     tabs.forEach(b => b.addEventListener('click', () => {
       tabs.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
       const t = v.currentTime, had = !!v.getAttribute('src');
       v.dataset.id = `pack-${v.dataset.pack}-${b.dataset.acc}`;
-      v.dataset.src = `media/s/${v.dataset.id}-${root.dataset.ar}.mp4`;
-      v.dataset.poster = `media/s/${v.dataset.id}-${root.dataset.ar}.jpg`;
+      v.dataset.src = `media/s/${v.dataset.id}-16x9.mp4`;
+      v.dataset.poster = `media/s/${v.dataset.id}-16x9.jpg`;
       showPoster(v);
       if (had) { v.src = v.dataset.src; v.addEventListener('loadedmetadata', () => { v.currentTime = t; }, { once: true }); }
       start(v);
     }));
   });
-  // 风格包横向滑动：» 翻到下一个，« 翻回上一个；到头的那一侧按钮藏起来。按钮的高度对准演示片的中线
+  // 风格包横向滑动：» 翻到下一个，« 翻回上一个；到头的那一侧按钮藏起来。按钮的高度对准演示片的中线。
+  // 底部悬浮一排圆点「…」，一个包一个点，亮的是当前这个，点哪个翻到哪个
   const track = document.querySelector('.pack-track');
   if (track) {
     const rail = track.parentElement, prev = rail.querySelector('.pack-nav.prev'), next = rail.querySelector('.pack-nav.next');
+    const packs = track.querySelectorAll('.pack'), dots = rail.querySelector('.pack-dots');
     const step = () => track.clientWidth + parseFloat(getComputedStyle(track).columnGap || 0);
+    const dotBtns = Array.from(packs, (pk, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `${i + 1} / ${packs.length} ${pk.querySelector('code').textContent}`);
+      b.addEventListener('click', () => track.scrollTo({ left: i * step(), behavior: reduce ? 'auto' : 'smooth' }));
+      dots.appendChild(b);
+      return b;
+    });
+    dots.hidden = packs.length < 2;
     const sync = () => {
       const x = track.scrollLeft, max = track.scrollWidth - track.clientWidth - 2;
       prev.hidden = x <= 2; next.hidden = x >= max;
+      const cur = Math.round(x / step());
+      dotBtns.forEach((b, i) => b.setAttribute('aria-current', String(i === cur)));
       const sc = track.querySelector('.pack-screen');
       if (sc) rail.style.setProperty('--nav-y', (sc.getBoundingClientRect().top - rail.getBoundingClientRect().top + sc.offsetHeight / 2) + 'px');
     };
@@ -93,7 +107,6 @@
     track.addEventListener('scroll', () => { sync(); poke(); }, { passive: true });
     window.addEventListener('resize', sync);
     sync();
-    segs.forEach(b => b.addEventListener('click', () => requestAnimationFrame(sync)));   // 换画幅后演示片高度变了
   }
   setAr(store.get('acv-ar') || (window.matchMedia('(max-width: 560px)').matches ? '9x16' : '16x9'));
 
