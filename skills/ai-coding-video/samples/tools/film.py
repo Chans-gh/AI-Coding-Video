@@ -24,6 +24,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -276,12 +277,10 @@ def mixdown(P):
 def measure(x, sr):
     """ffmpeg ebur128：(整体响度 LUFS, 真峰值 dBTP)"""
     from scipy.io import wavfile
-    tmp = R.OUT / f"measure-{os.getpid()}.wav"
-    R.OUT.mkdir(exist_ok=True)
-    wavfile.write(tmp, sr, x.astype(np.float32))
-    r = probe_loud(tmp)
-    tmp.unlink()
-    return r
+    with tempfile.TemporaryDirectory(prefix="aicv-loudness-") as folder:
+        tmp = Path(folder) / "measure.wav"
+        wavfile.write(tmp, sr, x.astype(np.float32))
+        return probe_loud(tmp)
 
 
 def probe_loud(path):

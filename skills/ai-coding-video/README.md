@@ -16,6 +16,7 @@
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
 | [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
 | [`film.md`](film.md) | 完整出片的六步（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜脚本 `storyboard.json`（段和段里的分镜）和逐字稿 `script.json` 的格式、事实的规矩 |
+| [`reference.md`](reference.md) | 参考片八维拆解、模板验收、默认模板和一句主题出片 |
 | [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 5，也认 4、3、2）：认格式和状态、读 `content.md`（总则、红线、约束、每段的念什么、看什么、信息）、按风格包的查表定样式、`seg`、`say`、`view`、`part`、`ref`、`rule` 怎么填、冲突时的六级和字数、怎么写下游回报 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |
 | [`sources.md`](sources.md) | 风格条目的来源，以及可以直接安装的其他风格库 |
@@ -46,6 +47,7 @@ T 类、G 类按内容类型分（用户要做哪种视频），两类共用 `da
 |---|---|---|
 | 风格演示 | 0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包 | 下面 1–6、[`making.md`](making.md) |
 | 完整出片 | 定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片 | [`film.md`](film.md)；有策划时另读 [`storyboard.md`](storyboard.md) |
+| 参考片拆解与换题 | 给片段建八维模板，验收并启用后，用一句新主题直出视频 | [`reference.md`](reference.md) |
 
 1. **不知道用哪种**：知道要做哪种视频（口播、带货、MV……）就看 [`index.md`](index.md) 的「按内容类型」表；要纯代码的，在其余索引表里各找对应的一行，几张表里重复出现的风格就是首选。
 2. **已经知道风格名**：在 [`index.md`](index.md) 的「风格目录」里点名字，跳到条目。
