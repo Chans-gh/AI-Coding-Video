@@ -1,0 +1,5 @@
+{
+  "en_name": "Skia headless vector motion",
+  "en_how": "skia-python renders anti-aliased vector dashboard cards, drop shadows, linear-gradient progress rings, and a glowing cubic spline chart directly on an off-screen Skia Surface in memory and pipes raw RGBA frames to ffmpeg without a browser.",
+  "tech": ["Skia", "ffmpeg"]
+}

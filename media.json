@@ -1991,6 +1991,36 @@
    "bytes": 211743,
    "sha256": "a31b7c54299c44c465634b6e71c8dcf53957d6e99d1d142fbb016d53e596bb6d"
   },
+  "C-200-16x9.mp4": {
+   "path": "samples/C-200/C-200-16x9.mp4",
+   "bytes": 1424404,
+   "sha256": "d53a8ad67e5cc385748308131ba45310c93b6acdde44eece478e30339700b626"
+  },
+  "C-200-9x16.mp4": {
+   "path": "samples/C-200/C-200-9x16.mp4",
+   "bytes": 1212947,
+   "sha256": "db07c63b2898f0af8ece74575b6909eaac56b7e93880cb9d0dad182a35ee3f23"
+  },
+  "C-201-16x9.mp4": {
+   "path": "samples/C-201/C-201-16x9.mp4",
+   "bytes": 386297,
+   "sha256": "fd2c700d53affe76f2ec55a1e90ff33c44dd82c9c4c29dff5a0f899e8890a6c1"
+  },
+  "C-201-9x16.mp4": {
+   "path": "samples/C-201/C-201-9x16.mp4",
+   "bytes": 333345,
+   "sha256": "3007b11f932791bf6382262a29b24e0aa5a5c7588733f3580e8a640d0f162a43"
+  },
+  "C-202-16x9.mp4": {
+   "path": "samples/C-202/C-202-16x9.mp4",
+   "bytes": 324299,
+   "sha256": "509e1a407bc16c6e01326cc75429ef6d2d89bdd0ed21d4365d0d948aa8d514f8"
+  },
+  "C-202-9x16.mp4": {
+   "path": "samples/C-202/C-202-9x16.mp4",
+   "bytes": 304134,
+   "sha256": "77d4cc595ed0996b8e345fadf4afad5f8bf011cda4fc040a95759679739803ba"
+  },
   "G-001-16x9.mp4": {
    "path": "samples/G-001/G-001-16x9.mp4",
    "bytes": 3658548,

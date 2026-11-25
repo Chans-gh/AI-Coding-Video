@@ -1,0 +1,5 @@
+{
+  "en_name": "NumPy wave-interference pixel field",
+  "en_how": "Vectorized NumPy computes a 3-source optical wave-interference pixel buffer directly in memory with a cosine iridescent palette, Pillow composites crisp Chinese typography, source reticles, and a live cross-section waveform, piped straight to ffmpeg with zero browser overhead.",
+  "tech": ["NumPy", "Pillow", "ffmpeg"]
+}
