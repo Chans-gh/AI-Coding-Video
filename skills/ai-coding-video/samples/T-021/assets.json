@@ -1,0 +1,73 @@
+{
+ "items": [
+  {
+   "file": "assets/orbit.mp4",
+   "kind": "录像",
+   "title": "CC0 大理石半身像（Marble Bust 01）的 Blender 环绕渲染镜头（1280×720，30fps，无声）",
+   "source": "https://polyhaven.com/a/marble_bust_01",
+   "download": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/marble_bust_01/marble_bust_01_1k.gltf",
+   "license": "CC0 1.0",
+   "author": "Rico Cilliers / Poly Haven（由本仓库 reconstruct.py 渲染）",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/view_01.jpg",
+   "kind": "照片",
+   "title": "多视角重建训练帧 #000（Blender 环绕渲染）",
+   "source": "https://polyhaven.com/a/marble_bust_01",
+   "license": "CC0 1.0",
+   "author": "Rico Cilliers / Poly Haven（由 reconstruct.py 渲染）",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/view_02.jpg",
+   "kind": "照片",
+   "title": "多视角重建训练帧 #012（Blender 环绕渲染）",
+   "source": "https://polyhaven.com/a/marble_bust_01",
+   "license": "CC0 1.0",
+   "author": "Rico Cilliers / Poly Haven（由 reconstruct.py 渲染）",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/view_03.jpg",
+   "kind": "照片",
+   "title": "多视角重建训练帧 #028（Blender 环绕渲染）",
+   "source": "https://polyhaven.com/a/marble_bust_01",
+   "license": "CC0 1.0",
+   "author": "Rico Cilliers / Poly Haven（由 reconstruct.py 渲染）",
+   "credit": "三维模型 Poly Haven（CC0）"
+  },
+  {
+   "file": "assets/cameras.json",
+   "kind": "数据",
+   "title": "36 个训练相机位姿、240 帧环绕轨迹与 AR 空间锚点（由 reconstruct.py 导出）",
+   "source": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-021",
+   "license": "MIT（本仓库由 reconstruct.py 生成）",
+   "author": "AI-Coding-Video",
+   "credit": "相机位姿与高斯点云由 Blender + Brush 生成"
+  },
+  {
+   "file": "assets/splats.bin",
+   "kind": "数据",
+   "title": "Brush v0.3.0 训练导出的 3D 高斯点云数据（由 36 张环绕视角重建）",
+   "source": "https://github.com/ArthurBrussee/brush",
+   "license": "CC0 1.0（基于 CC0 模型由 reconstruct.py 重建）",
+   "author": "AI-Coding-Video / Brush",
+   "credit": "3DGS 重建 Brush（Apache-2.0）"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Progress",
+   "source": "https://opengameart.org/content/progress",
+   "download": "https://opengameart.org/sites/default/files/Progress.mp3",
+   "license": "CC0 1.0",
+   "author": "josepharaoh99",
+   "credit": "配乐 josepharaoh99（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}
