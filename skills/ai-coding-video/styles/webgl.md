@@ -1,4 +1,4 @@
-# WebGL / 着色器 / Three.js（49 种）
+# WebGL / 着色器 / Three.js（50 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -825,3 +825,20 @@
 - 技术（已验证）：Canvas 2D · WebGL2 · GLSL · Playwright · ffmpeg
 - 样片代码：[samples/C-195/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-195)
 - 技术（建议）：WebGL · GLSL
+
+<a id="C-196"></a>
+
+## C-196 Hydra 视觉反馈合成
+
+![Hydra 视觉反馈合成](../images/C-196.jpg)
+
+```text
+用「Hydra 视觉反馈合成」风格：基于真实 hydra-synth 实时视频合成器，把双振荡器干涉、Voronoi 扭曲、万花筒对称与色彩调制按确定时间 t 串联输出；画面叠加细微扫描线、左上角实时显示 Hydra 链式代码，底部铺模块化节点信号链与实时示波器波形，配电子合成器节拍与琶音。
+```
+
+- 题材：3D 与实时图形
+- 适合：音乐可视化、VJ 视觉背景、创意编程演示、赛博科技片头
+- 技术（已验证）：Hydra · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/C-196/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-196)
+- 技术（建议）：Hydra · WebGL · Canvas 2D · Playwright · ffmpeg
+- 参考：[Hydra Video Synth](https://hydra.ojack.xyz/)

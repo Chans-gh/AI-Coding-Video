@@ -1,4 +1,4 @@
-# SVG 与 HTML/CSS（54 种）
+# SVG 与 HTML/CSS（55 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -916,3 +916,20 @@
 - 样片代码：[samples/C-193/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-193)
 - 技术（建议）：SVG · HTML/CSS
 - 参考：[huashu 风格卡 52_south_park](https://github.com/alchaincyf/huashu-art-motion/blob/main/references/%E9%A3%8E%E6%A0%BC%E9%85%8D%E6%96%B9/52_south_park.md)
+
+<a id="C-197"></a>
+
+## C-197 Motion 弹簧卡片动效
+
+![Motion 弹簧卡片动效](../images/C-197.jpg)
+
+```text
+用「Motion 弹簧卡片动效」风格：深色网格背景配柔和流动光晕，使用真实 Motion 库的物理弹簧时间轴驱动 HTML/CSS 磨砂玻璃卡片错峰入场、顶部胶囊导航滑块弹性切换与焦点卡片高亮抬升，底部用 SVG 实时描出阻尼弹簧响应曲线与时间读数，配清脆 UI 点击与弹性嗖声。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：产品功能演示、UI 交互展示、SaaS 发布片、组件动效说明
+- 技术（已验证）：Motion · HTML/CSS · SVG · Playwright · ffmpeg
+- 样片代码：[samples/C-197/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-197)
+- 技术（建议）：Motion · HTML/CSS · SVG · Playwright · ffmpeg
+- 参考：[Motion](https://motion.dev/)

@@ -104,9 +104,20 @@ def sample_ids(styles):
 
 
 def zh_how(sid):
-    src = next(f for f in (SAMPLES / sid / "scene.js", SAMPLES / sid / "scene.jsx") if f.exists())   # Remotion 样片是 scene.jsx
+    candidates = (
+        SAMPLES / sid / "scene.js",
+        SAMPLES / sid / "scene.jsx",
+        SAMPLES / sid / "blender_scene.py",
+        SAMPLES / sid / "render_hyperframes.py",
+        SAMPLES / sid / "manim_scene.py",
+    )
+    src = next(f for f in candidates if f.exists())
     first = src.read_text(encoding="utf-8").splitlines()[0]
-    m = re.match(r"//\s*\S+\s*[^：]*：(.*)", first)
+    if first.startswith("#!"):
+        lines = src.read_text(encoding="utf-8").splitlines()
+        first = lines[1] if len(lines) > 1 else first
+    first = first.strip().strip('"').strip("'")
+    m = re.match(r"(?://\s*)?\S+\s*[^：]*：(.*)", first)
     return (m.group(1) if m else first.lstrip("/ ")).rstrip("，,。—") + "。"
 
 

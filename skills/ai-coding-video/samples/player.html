@@ -48,6 +48,8 @@ const LIBS = {
   'd3': ['node_modules/d3/dist/d3.min.js'],
   'three': [{ m: 'node_modules/three/build/three.module.js', as: 'THREE' }],
   'cannon-es': [{ m: 'node_modules/cannon-es/dist/cannon-es.js', as: 'CANNON' }],
+  'hydra': ['node_modules/hydra-synth/dist/hydra-synth.js'],
+  'motion': ['node_modules/motion/dist/motion.js'],
 };
 const Q = new URLSearchParams(location.search), SID = Q.get('s') || '', PROJ = Q.get('p');
 const DIR = PROJ ? PROJ.replace(/\/$/, '') : SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;

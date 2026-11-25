@@ -10,10 +10,14 @@
 
 ## C-071 Blender 程序化场景
 
+![Blender 程序化场景](../images/C-071.jpg)
+
 ```text
 用 Blender 程序化建模风格：用 Python 脚本从零搭建场景、不用任何预制资产，夜景湖面倒影、远山和烟花，先出灰模和镜头预览再上材质和灯光，另外录一段从灰模到成片的建造延时。
 ```
 
 - 题材：3D 与实时图形
 - 适合：建筑、城堡、机械
-- 技术（建议）：Blender
+- 技术（已验证）：Blender · ffmpeg
+- 样片代码：[samples/C-071/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-071)
+- 技术（建议）：Blender · ffmpeg

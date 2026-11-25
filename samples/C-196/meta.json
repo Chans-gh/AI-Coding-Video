@@ -1,0 +1,5 @@
+{
+  "en_name": "Hydra live-coded video synth",
+  "en_how": "Real hydra-synth WebGL oscillators, kaleidoscopic symmetry, voronoi modulation, and color rotation driven deterministically by time t, framed with a modular video-synth patch bay and live waveform readout.",
+  "tech": ["Hydra", "WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

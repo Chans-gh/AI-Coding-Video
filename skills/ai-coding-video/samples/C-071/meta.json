@@ -1,0 +1,5 @@
+{
+  "en_name": "Blender procedural night lake & fireworks",
+  "en_how": "Pure Python Blender script builds a distant mountain range, reflective lake, lakeside pavilion, and animated fireworks with zero external assets, transitioning from a clay-model build timelapse into the fully lit night scene with water reflections.",
+  "tech": ["Blender", "ffmpeg"]
+}
