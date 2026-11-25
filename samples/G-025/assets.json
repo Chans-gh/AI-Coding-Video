@@ -1,0 +1,43 @@
+{
+ "items": [
+  {
+   "file": "assets/raw.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Luxury brushed titanium mechanical chronograph wristwatch standing upright on a clean neutral light-gray studio tabletop, crisp studio softbox lighting, minimalist commercial product photography, centered composition, sharp dial details, 8k",
+   "params": {"aspectRatio": "16:9"},
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/relight_ice.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Keep the exact same titanium wristwatch unchanged; replace background with Icelandic black ice glacier under cyan-emerald northern lights aurora with realistic metallic reflections",
+   "params": {"aspectRatio": "16:9"},
+   "ref": "assets/raw.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/relight_neon.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Keep the exact same titanium wristwatch unchanged; replace background with rainy cyberpunk Tokyo rooftop at night with amber-magenta neon reflections",
+   "params": {"aspectRatio": "16:9"},
+   "ref": "assets/raw.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/relight.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0",
+   "prompt": "Smooth luxury commercial lighting transition from arctic cyan aurora ice into rainy amber-magenta neon night while keeping wristwatch centered",
+   "params": {"aspectRatio": "16:9", "duration": 5, "resolution": "720p"},
+   "ref": "assets/relight_ice.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  }
+ ]
+}

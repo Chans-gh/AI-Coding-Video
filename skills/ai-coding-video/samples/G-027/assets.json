@@ -1,0 +1,32 @@
+{
+ "items": [
+  {
+   "file": "assets/start.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Extreme macro top-down close-up of a steaming ceramic cup of golden latte coffee on a dark walnut cafe table, swirling creamy rosetta latte art in the center",
+   "params": {"aspectRatio": "16:9"},
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/end.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Magical microscopic fantasy miniature city floating inside a glowing golden-amber and deep sapphire cosmic nebula beneath a liquid surface",
+   "params": {"aspectRatio": "16:9"},
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/fpv.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0",
+   "prompt": "Continuous single-take FPV micro camera dive through the latte coffee surface into the miniature floating nebula city",
+   "params": {"aspectRatio": "16:9", "duration": 6, "resolution": "720p"},
+   "ref": "assets/start.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  }
+ ]
+}

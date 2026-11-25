@@ -1,5 +1,5 @@
 {
- "count": 260,
+ "count": 264,
  "styles": [
   {
    "id": "C-001",
@@ -8226,6 +8226,150 @@
    "render_code": {
     "path": "samples/G-024/",
     "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-024"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-025",
+   "class": "G",
+   "name": "实拍产品 AI 换景重打光",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-025.jpg",
+   "prompt": "用「实拍产品 AI 换景重打光」：保留棚拍产品原图的本体结构与细节不变，以它为参考图通过 AI 换景重打光生成极光冰川与赛博雨夜两套环境版本，使金属机身真实反射新环境的冷暖光影；再用首尾帧生视频衔接两套场景的动态流光迁移；代码先展示棚拍原图，随后一道青色发光扫光线横向擦除切换进重打光画面，并叠加实时环境色温 HUD 与「AI 生成 · 虚构」标注。",
+   "theme": "",
+   "content_type": "产品广告和带货",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "图生视频与首尾帧",
+    "扩图与局部重绘"
+   ],
+   "fit": "高溢价电商广告、3C 与腕表新品宣发、零外景成本商业换景大片",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-025/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-025"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-026",
+   "class": "G",
+   "name": "历史人物第一视角自拍 Vlog",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-026.jpg",
+   "prompt": "用「历史人物第一视角自拍 Vlog」：先生成一位原创虚构历史人物（非真人）举手机自拍的定妆照，再以参考图模式生成第一视角手持自拍边走边展示古代夜市灯火的动态视频；代码在画面上叠加拟真手机前置 REC 闪烁红点与计时器、古代地标定位角标、横向飘过的观众互动弹幕以及底部大号口播字幕，营造高网感跨时空沉浸体验。",
+   "theme": "",
+   "content_type": "旅行和城市",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "角色一致性",
+    "图生视频与首尾帧"
+   ],
+   "fit": "文旅创意宣传、历史趣味科普、品牌玩梗与原生 AI IP 连载",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-026/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-026"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-027",
+   "class": "G",
+   "name": "穿物一镜到底微距穿越",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-027.jpg",
+   "prompt": "用「穿物一镜到底微距穿越」：分别生成微距拿铁咖啡液面首帧与液面之下的奇幻微观星云城市尾帧，由首尾帧视频模型生成无剪辑感的 FPV 俯冲穿入一镜到底画面；代码按钟形曲线对穿入液面瞬间施加 3.0x 俯冲变速、多帧快门运动模糊与微缩放冲击，上下加电影宽银幕黑边与实时微距深度读数。",
+   "theme": "",
+   "content_type": "品牌宣传片",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "图生视频与首尾帧",
+    "节拍对齐剪辑"
+   ],
+   "fit": "品牌高概念创意大片、饮品与科技新品视觉钩子、文旅奇幻转场",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-027/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-027"
+   },
+   "pack": null,
+   "refs": []
+  },
+  {
+   "id": "G-028",
+   "class": "G",
+   "name": "实景转粘土定格微缩重绘",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-028.jpg",
+   "prompt": "用「实景转粘土定格微缩重绘」：先准备海滨铁道街角写实画面，再以它为参考图保持构图与主体位置不变、整幅重绘为手工粘土微缩模型风格，随后驱动粘土场景生成小电车与行人活动的动态画面；代码先做写实到粘土的琥珀扫光擦除对比，再对粘土动态段施加 12fps 抽帧定格质感（Posterize Time），还原手工逐帧定格动画的触感。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图",
+    "生视频"
+   ],
+   "techniques": [
+    "视频转视频与风格重绘",
+    "图生视频与首尾帧"
+   ],
+   "fit": "风格化短片、城市微缩宣传、治愈系社交媒体短视频与前后对比玩法",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-028/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-028"
    },
    "pack": null,
    "refs": []
