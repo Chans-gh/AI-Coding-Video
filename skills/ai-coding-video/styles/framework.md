@@ -1,4 +1,4 @@
-# 整套视频框架（11 种）
+# 整套视频框架（13 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -193,3 +193,37 @@
 - 样片代码：[samples/C-206/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-206)
 - 技术（建议）：MoviePy · Pillow · NumPy · ffmpeg
 - 参考：[MoviePy](https://zulko.github.io/moviepy/) · [Pillow](https://pillow.readthedocs.io/)
+
+<a id="C-210"></a>
+
+## C-210 财报与经营 KPI 拆解盘
+
+![财报与经营 KPI 拆解盘](../images/C-210.jpg)
+
+```text
+用「财报与经营 KPI 拆解盘」风格：NumPy 计算季度经营指标与利润桥梁数据，Skia 离屏绘制暗色商讯网格面板——上方三张核心 KPI 翻牌滚动计数卡片（总营收、毛利率、经营现金流），下方配营收至净利润的五柱拆解瀑布图与四级增长转化漏斗，零浏览器直接渲染 MP4。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：上市公司财报速览、商业财经解读、季度经营复盘与运营周报视频化
+- 技术（已验证）：Skia · NumPy · ffmpeg
+- 样片代码：[samples/C-210/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-210)
+- 技术（建议）：Skia · NumPy · ffmpeg
+- 参考：[Skia](https://skia.org/) · [skia-python](https://kyamagu.github.io/skia-python/)
+
+<a id="C-211"></a>
+
+## C-211 产品多维横评对比卡
+
+![产品多维横评对比卡](../images/C-211.jpg)
+
+```text
+用「产品多维横评对比卡」风格：NumPy 计算六维雷达图几何顶点与综合得分，Skia 离屏绘制双机半透明雷达多边形叠加展开、五项核心规格参数逐行亮起并标出胜出项高亮与矢量对勾，结尾弹出综合推荐结论条并重重盖下倾斜「编辑推荐」印章，配低音重击音效。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：数码与消费品横评测评、好物导购对比、竞品方案多维打分短视频
+- 技术（已验证）：Skia · NumPy · ffmpeg
+- 样片代码：[samples/C-211/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-211)
+- 技术（建议）：Skia · NumPy · ffmpeg
+- 参考：[Skia](https://skia.org/) · [skia-python](https://kyamagu.github.io/skia-python/)
