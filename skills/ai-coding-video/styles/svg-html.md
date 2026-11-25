@@ -1,4 +1,4 @@
-# SVG 与 HTML/CSS（55 种）
+# SVG 与 HTML/CSS（58 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -933,3 +933,54 @@
 - 样片代码：[samples/C-197/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-197)
 - 技术（建议）：Motion · HTML/CSS · SVG · Playwright · ffmpeg
 - 参考：[Motion](https://motion.dev/)
+
+<a id="C-207"></a>
+
+## C-207 聊天气泡与 AI 对话剧场
+
+![聊天气泡与 AI 对话剧场](../images/C-207.jpg)
+
+```text
+用「聊天气泡与 AI 对话剧场」风格：深色点阵背景上居中呈现高质感手机聊天界面（横屏左侧配主题导语与核心指标卡，竖屏满屏沉浸），使用 Motion 弹簧物理驱动用户蓝色气泡与 AI 助手回复依次弹入，包含工具调用脉冲状态胶囊、结构化数据卡片回复与底部模拟输入动效，配清脆消息弹出音与打字声。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：AI Agent 对话演示、客服与产品场景剧场、职场情感对话短视频、知识科普问答
+- 技术（已验证）：HTML/CSS · Motion · Playwright · ffmpeg
+- 样片代码：[samples/C-207/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-207)
+- 技术（建议）：HTML/CSS · Motion · Playwright · ffmpeg
+- 参考：[Motion](https://motion.dev/)
+
+<a id="C-208"></a>
+
+## C-208 SaaS 功能发布与光标聚焦演示
+
+![SaaS 功能发布与光标聚焦演示](../images/C-208.jpg)
+
+```text
+用「SaaS 功能发布与光标聚焦演示」风格：纯 HTML/CSS 构建现代深色产品工作台界面，无需真机录屏即可由 Motion 驱动模拟光标平滑移动至核心按钮并触发点击涟漪，镜头同步推近放大聚焦，三项性能指标实时跳变刷新、部署流水线进度条依次走满，右下角弹出绿色发布成功 Toast 通知。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：SaaS 与 App 新功能发布、版本更新日志（Changelog）、独立开发者产品宣发
+- 技术（已验证）：HTML/CSS · SVG · Motion · Playwright · ffmpeg
+- 样片代码：[samples/C-208/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-208)
+- 技术（建议）：HTML/CSS · SVG · Motion · Playwright · ffmpeg
+- 参考：[Motion](https://motion.dev/)
+
+<a id="C-209"></a>
+
+## C-209 系统架构与工作流脉冲图
+
+![系统架构与工作流脉冲图](../images/C-209.jpg)
+
+```text
+用「系统架构与工作流脉冲图」风格：深色蓝图网格底上用 SVG 贝塞尔连线与玻璃节点卡片构建请求拓扑，GSAP 编排节点逐级点亮并显示实时毫秒延迟，发光数据包沿连线持续脉冲流动，完整演示主节点超时变红熔断、自动切换降级缓存并绿色恢复的全链路，底部配实时日志追踪条。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：技术架构科普、AI Agent 工作流拆解、系统高可用与商业链路讲解
+- 技术（已验证）：SVG · HTML/CSS · GSAP · Playwright · ffmpeg
+- 样片代码：[samples/C-209/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-209)
+- 技术（建议）：SVG · HTML/CSS · GSAP · Playwright · ffmpeg
+- 参考：[GSAP](https://gsap.com/)
