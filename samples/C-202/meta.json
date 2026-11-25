@@ -1,0 +1,5 @@
+{
+  "en_name": "MoviePy beat-synced kinetic cards",
+  "en_how": "Pillow paints bold typographic title cards while MoviePy v2 orchestrates beat-synced cuts, zoom-in motion, crossfade transitions, and audio-locked timeline export straight to MP4.",
+  "tech": ["MoviePy", "Pillow", "NumPy", "ffmpeg"]
+}

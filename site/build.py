@@ -110,6 +110,9 @@ def zh_how(sid):
         SAMPLES / sid / "blender_scene.py",
         SAMPLES / sid / "render_hyperframes.py",
         SAMPLES / sid / "manim_scene.py",
+        SAMPLES / sid / "render_numpy.py",
+        SAMPLES / sid / "render_skia.py",
+        SAMPLES / sid / "render_moviepy.py",
     )
     src = next(f for f in candidates if f.exists())
     first = src.read_text(encoding="utf-8").splitlines()[0]

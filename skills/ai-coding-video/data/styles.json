@@ -1,5 +1,5 @@
 {
- "count": 244,
+ "count": 247,
  "styles": [
   {
    "id": "C-001",
@@ -6849,6 +6849,119 @@
     {
      "label": "Manim Community",
      "url": "https://www.manim.community/"
+    }
+   ]
+  },
+  {
+   "id": "C-200",
+   "class": "C",
+   "name": "NumPy 干涉像素场",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": "images/C-200.jpg",
+   "prompt": "用「NumPy 干涉像素场」风格：纯 Python 无浏览器管线，用 NumPy 向量化逐帧计算三个移动相干波源的光学干涉像素矩阵并映射为霓虹青紫渐变色板，再用 Pillow 在画面上叠加波源准星、中文标题面板和底部中心线实时波形切片，直接通过管道交给 ffmpeg 编码成片，配电子合成音。",
+   "theme": "3D 与实时图形",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "科学计算与波动可视化、服务器无浏览器批量出片、创意算法背景",
+   "verified": [
+    "NumPy",
+    "Pillow",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Pillow",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-200/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-200"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "NumPy",
+     "url": "https://numpy.org/"
+    },
+    {
+     "label": "Pillow",
+     "url": "https://pillow.readthedocs.io/"
+    }
+   ]
+  },
+  {
+   "id": "C-201",
+   "class": "C",
+   "name": "Skia 离屏矢量动效",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": "images/C-201.jpg",
+   "prompt": "用「Skia 离屏矢量动效」风格：使用 skia-python 在内存离屏画布（skia.Surface）直接以 C++ 2D 引擎绘制深色径向渐变背景、带柔和阴影的圆角数据卡片、线性渐变抗锯齿环形进度条与底部实时发光曲线图，不启动浏览器直接管道输出 MP4，配清爽科技电子音。",
+   "theme": "信息讲解与产品发布",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "服务端千人千面年度报告、数据仪表盘短视频、高并发自动化品牌动效",
+   "verified": [
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-201/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-201"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Skia",
+     "url": "https://skia.org/"
+    },
+    {
+     "label": "skia-python",
+     "url": "https://kyamagu.github.io/skia-python/"
+    }
+   ]
+  },
+  {
+   "id": "C-202",
+   "class": "C",
+   "name": "MoviePy 卡点字卡片头",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": "images/C-202.jpg",
+   "prompt": "用「MoviePy 卡点字卡片头」风格：用 Pillow 批量绘制四张高对比度大字报卡点字卡与几何色块斜边，交由 MoviePy v2 编排按节拍切镜、缓动弹入、轻微推镜与底部全局进度条，并锁定合成电子鼓点时间轴直接导出 MP4。",
+   "theme": "平面设计与动态排版",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "自动化短视频矩阵、社媒卡点片头、电商/营销批量模板出片",
+   "verified": [
+    "MoviePy",
+    "Pillow",
+    "NumPy",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "MoviePy",
+    "Pillow",
+    "NumPy",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-202/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-202"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "MoviePy",
+     "url": "https://zulko.github.io/moviepy/"
     }
    ]
   },

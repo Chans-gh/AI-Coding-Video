@@ -1,4 +1,4 @@
-# 整套视频框架（4 种）
+# 整套视频框架（7 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -74,3 +74,54 @@
 - 样片代码：[samples/C-199/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-199)
 - 技术（建议）：Manim · Manim CE · ffmpeg
 - 参考：[Manim Community](https://www.manim.community/)
+
+<a id="C-200"></a>
+
+## C-200 NumPy 干涉像素场
+
+![NumPy 干涉像素场](../images/C-200.jpg)
+
+```text
+用「NumPy 干涉像素场」风格：纯 Python 无浏览器管线，用 NumPy 向量化逐帧计算三个移动相干波源的光学干涉像素矩阵并映射为霓虹青紫渐变色板，再用 Pillow 在画面上叠加波源准星、中文标题面板和底部中心线实时波形切片，直接通过管道交给 ffmpeg 编码成片，配电子合成音。
+```
+
+- 题材：3D 与实时图形
+- 适合：科学计算与波动可视化、服务器无浏览器批量出片、创意算法背景
+- 技术（已验证）：NumPy · Pillow · ffmpeg
+- 样片代码：[samples/C-200/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-200)
+- 技术（建议）：NumPy · Pillow · ffmpeg
+- 参考：[NumPy](https://numpy.org/) · [Pillow](https://pillow.readthedocs.io/)
+
+<a id="C-201"></a>
+
+## C-201 Skia 离屏矢量动效
+
+![Skia 离屏矢量动效](../images/C-201.jpg)
+
+```text
+用「Skia 离屏矢量动效」风格：使用 skia-python 在内存离屏画布（skia.Surface）直接以 C++ 2D 引擎绘制深色径向渐变背景、带柔和阴影的圆角数据卡片、线性渐变抗锯齿环形进度条与底部实时发光曲线图，不启动浏览器直接管道输出 MP4，配清爽科技电子音。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：服务端千人千面年度报告、数据仪表盘短视频、高并发自动化品牌动效
+- 技术（已验证）：Skia · ffmpeg
+- 样片代码：[samples/C-201/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-201)
+- 技术（建议）：Skia · ffmpeg
+- 参考：[Skia](https://skia.org/) · [skia-python](https://kyamagu.github.io/skia-python/)
+
+<a id="C-202"></a>
+
+## C-202 MoviePy 卡点字卡片头
+
+![MoviePy 卡点字卡片头](../images/C-202.jpg)
+
+```text
+用「MoviePy 卡点字卡片头」风格：用 Pillow 批量绘制四张高对比度大字报卡点字卡与几何色块斜边，交由 MoviePy v2 编排按节拍切镜、缓动弹入、轻微推镜与底部全局进度条，并锁定合成电子鼓点时间轴直接导出 MP4。
+```
+
+- 题材：平面设计与动态排版
+- 适合：自动化短视频矩阵、社媒卡点片头、电商/营销批量模板出片
+- 技术（已验证）：MoviePy · Pillow · NumPy · ffmpeg
+- 样片代码：[samples/C-202/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-202)
+- 技术（建议）：MoviePy · Pillow · NumPy · ffmpeg
+- 参考：[MoviePy](https://zulko.github.io/moviepy/)
