@@ -1,0 +1,5 @@
+{
+  "en_name": "Orbit 3D reconstruction",
+  "en_how": "A CC0 marble bust from Poly Haven is rendered in Blender along an orbital camera path with exact camera poses exported; Brush trains a 3D Gaussian Splatting point cloud from the 36 orbit views; Three.js projects metric AR rings, callouts, and solved camera frustums onto the footage, wipes into the live Gaussian splat scene, then breaks away into a free-camera crane arc.",
+  "tech": ["Blender", "Three.js", "WebGL", "Canvas 2D", "Playwright", "ffmpeg"]
+}

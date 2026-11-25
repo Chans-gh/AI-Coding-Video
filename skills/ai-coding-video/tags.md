@@ -73,8 +73,8 @@
 | 传感器与轨迹叠加 | 轻 | [T-013](styles/footage.md#T-013) | 是（1） |
 | 批注与前后对比 | 轻 | [T-008](styles/footage.md#T-008) · [T-011](styles/footage.md#T-011) · [T-020](styles/footage.md#T-020) | 是（3） |
 | 文稿转片 | 轻 | [T-014](styles/footage.md#T-014) | 是（1） |
-| 实景三维重建 | 重 | — | 否 |
-| 相机反求与 AR 叠加 | 重 | — | 否 |
+| 实景三维重建 | 重 | [T-021](styles/footage.md#T-021) | 是（1） |
+| 相机反求与 AR 叠加 | 重 | [T-021](styles/footage.md#T-021) | 是（1） |
 | **AI 生成素材** | | | |
 | 生图加代码动画 | 轻 | [G-001](styles/generated.md#G-001) · [G-007](styles/generated.md#G-007) · [G-009](styles/generated.md#G-009) · [G-012](styles/generated.md#G-012) · [G-017](styles/generated.md#G-017) · [G-018](styles/generated.md#G-018) · [G-019](styles/generated.md#G-019) · [G-021](styles/generated.md#G-021) | 是（8） |
 | 图生视频与首尾帧 | 轻 | [G-002](styles/generated.md#G-002) · [G-003](styles/generated.md#G-003) · [G-004](styles/generated.md#G-004) · [G-005](styles/generated.md#G-005) · [G-008](styles/generated.md#G-008) · [G-010](styles/generated.md#G-010) · [G-011](styles/generated.md#G-011) · [G-016](styles/generated.md#G-016) · [G-020](styles/generated.md#G-020) · [G-021](styles/generated.md#G-021) · [G-022](styles/generated.md#G-022) · [G-024](styles/generated.md#G-024) | 是（12） |
@@ -93,7 +93,7 @@
 | 分镜到成片编排 | 中 | [G-016](styles/generated.md#G-016) · [G-023](styles/generated.md#G-023) | 是（2） |
 | 模板化批量生成 | 轻 | [G-019](styles/generated.md#G-019) · [T-015](styles/footage.md#T-015) | 是（2） |
 
-33 个类型中，6 个还没有条目。
+33 个类型中，4 个还没有条目。
 <!-- techniques:end -->
 
 ### 来源

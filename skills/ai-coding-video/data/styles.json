@@ -1,5 +1,5 @@
 {
- "count": 239,
+ "count": 240,
  "styles": [
   {
    "id": "C-001",
@@ -8430,6 +8430,58 @@
     {
      "label": "Poly Haven",
      "url": "https://polyhaven.com"
+    }
+   ]
+  },
+  {
+   "id": "T-021",
+   "class": "T",
+   "name": "环绕实景重建",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-021.jpg",
+   "prompt": "用「环绕实景重建」：把 CC0 大理石半身像放在庭院基座上，用 Blender 沿环绕轨道渲染 36 张多视角照片和一段 30fps 环绕镜头并导出精确相机位姿；同一套位姿先在原片上投影地面标定圆环、基座轮廓和 3D 空间 AR 标注卡片，再用 Brush 从 36 视角训练出 3D 高斯点云；中段一道青金色竖向扫光把实景录像切进 Three.js 实时渲染的 3D 高斯点云和 36 机位视锥环；后段脱离原拍摄轨道，自由拉升俯拍漫游全场景，最后压暗落版并保留出处署名。",
+   "theme": "",
+   "content_type": "旅行和城市",
+   "materials": [
+    "录像",
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "实景三维重建",
+    "相机反求与 AR 叠加"
+   ],
+   "fit": "城市地标与博物馆文物展示、文旅空间巡礼、建筑与展陈 AR 导览、3DGS 技术演示",
+   "verified": [
+    "Blender",
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Blender",
+    "Three.js",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-021/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-021"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Poly Haven：Marble Bust 01",
+     "url": "https://polyhaven.com/a/marble_bust_01"
+    },
+    {
+     "label": "Brush (3D Gaussian Splatting)",
+     "url": "https://github.com/ArthurBrussee/brush"
     }
    ]
   }
