@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "file": "assets/p16.jpg",
+   "kind": "照片",
+   "title": "NASA Systems Engineering Handbook Rev 2 第 16 页（第 2.0 节正文）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "license": "公共领域（NASA 技术报告 NTRS）",
+   "author": "NASA",
+   "credit": "文献 NASA"
+  },
+  {
+   "file": "assets/p19.jpg",
+   "kind": "照片",
+   "title": "NASA Systems Engineering Handbook Rev 2 第 19 页（背景衬页）",
+   "source": "https://ntrs.nasa.gov/citations/20170001761",
+   "license": "公共领域（NASA 技术报告 NTRS）",
+   "author": "NASA",
+   "credit": "文献 NASA"
+  }
+ ]
+}

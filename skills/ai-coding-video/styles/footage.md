@@ -1,4 +1,4 @@
-# T 类：公共领域素材（21 种）
+# T 类：公共领域素材（25 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -405,3 +405,79 @@
 - 样片代码：[samples/T-021/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-021)
 - 技术（建议）：Blender · Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
 - 参考：[Poly Haven：Marble Bust 01](https://polyhaven.com/a/marble_bust_01) · [Brush (3D Gaussian Splatting)](https://github.com/ArthurBrussee/brush)
+
+<a id="T-022"></a>
+
+## T-022 文字穿插主体景深
+
+![文字穿插主体景深](../images/T-022.jpg)
+
+```text
+用「文字穿插主体景深」：保留真实动态实拍底片，按逐帧人物前景遮罩做羽化处理，在「原实拍背景 → 巨型动态粗体排版大字 → 真实前景主体」之间进行三层夹心合成；巨型英文字与中文大标题从主体背后缓缓升起并伴随柔和微光，运动员起落动作实时干净地遮挡背后文字，营造电影感景深开场。
+```
+
+- 内容类型：健康和运动指导
+- 素材：录像 · 数据
+- 技术类型：抠像合成 · 剪辑与字幕
+- 适合：电影感开场、运动与健身大片、人物纪录片片头、短视频爆款钩子
+- 技术（已验证）：NumPy · Skia · ffmpeg
+- 样片代码：[samples/T-022/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-022)
+- 技术（建议）：NumPy · Skia · ffmpeg
+- 参考：[FedFlix 公共领域体能训练片（Internet Archive）](https://archive.org/details/gov.dod.dimoc.302559)
+
+<a id="T-023"></a>
+
+## T-023 实拍物体追踪呼出标注
+
+![实拍物体追踪呼出标注](../images/T-023.jpg)
+
+```text
+用「实拍物体追踪呼出标注」：对 NASA 火箭夜间升空实拍录像逐帧做像素级高亮核心追踪与平滑滤波，导出精确坐标轨迹 `track.json`；代码在移动目标上实时绘制旋转锁定靶框，拉出一条自动避让画面边缘的锐利折线指引线，末端弹出半透明暗色玻璃参数呼出卡，同步刷新像素坐标、估算高度与运动速度。
+```
+
+- 内容类型：知识科普讲解
+- 素材：录像 · 数据
+- 技术类型：追踪与姿态叠加 · 数据可视化
+- 适合：汽车与硬件拆解测评、航天与工业科普、建筑与探店实拍 AR 标注
+- 技术（已验证）：NumPy · Skia · ffmpeg
+- 样片代码：[samples/T-023/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-023)
+- 技术（建议）：NumPy · Skia · ffmpeg
+- 参考：[NASA Artemis I 影像库](https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595)
+
+<a id="T-024"></a>
+
+## T-024 文献与财报 3D 荧光笔扫读
+
+![文献与财报 3D 荧光笔扫读](../images/T-024.jpg)
+
+```text
+用「文献与财报 3D 荧光笔扫读」：把真实公共领域文献扫描页在 CSS 3D 透视景深桌面上斜向错落铺开，虚拟镜头平滑做 3D 俯仰推近与段落摇移；亮黄色半透明正片叠底荧光笔笔触实时从左到右划过原文核心条款，画面左下角同步浮起 Vox 调查风炭黑亮黄边框中文批注卡与出处页码。
+```
+
+- 内容类型：新闻资讯解说
+- 素材：照片
+- 技术类型：文稿转片 · 照片运镜
+- 适合：深度调查与新闻解说、上市公司财报与研报精读、历史档案与论文拆解
+- 技术（已验证）：HTML/CSS · Motion · Playwright · ffmpeg
+- 样片代码：[samples/T-024/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-024)
+- 技术（建议）：HTML/CSS · Motion · Playwright · ffmpeg
+- 参考：[NASA Systems Engineering Handbook Rev 2（NTRS）](https://ntrs.nasa.gov/citations/20170001761)
+
+<a id="T-025"></a>
+
+## T-025 曲线变速卡点混剪
+
+![曲线变速卡点混剪](../images/T-025.jpg)
+
+```text
+用「曲线变速卡点混剪」：对 NASA 国际空间站地球轨道实拍视频按平滑非线性速度曲线做时间重映射——在 0.35x 极慢镜头蓄力与 4.2x 极速冲刺之间丝滑切换，加速峰值自动叠加多帧快门运动模糊、踩拍微缩放与轻微闪白，画面底部叠加专业剪辑器风格的实时 Speed Ramp 速度曲线与瞬时倍速读数 HUD。
+```
+
+- 内容类型：旅行和城市
+- 素材：录像
+- 技术类型：节拍对齐剪辑 · 剪辑与字幕
+- 适合：旅行航拍混剪、汽车与极限运动卡点片、品牌情绪大片与节奏感转场
+- 技术（已验证）：NumPy · Skia · ffmpeg
+- 样片代码：[samples/T-025/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-025)
+- 技术（建议）：NumPy · Skia · ffmpeg
+- 参考：[NASA ISS 地球轨道实拍影像](https://eol.jsc.nasa.gov/)

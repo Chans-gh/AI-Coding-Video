@@ -1,5 +1,5 @@
 {
- "count": 256,
+ "count": 260,
  "styles": [
   {
    "id": "C-001",
@@ -9103,6 +9103,170 @@
     {
      "label": "Brush (3D Gaussian Splatting)",
      "url": "https://github.com/ArthurBrussee/brush"
+    }
+   ]
+  },
+  {
+   "id": "T-022",
+   "class": "T",
+   "name": "文字穿插主体景深",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-022.jpg",
+   "prompt": "用「文字穿插主体景深」：保留真实动态实拍底片，按逐帧人物前景遮罩做羽化处理，在「原实拍背景 → 巨型动态粗体排版大字 → 真实前景主体」之间进行三层夹心合成；巨型英文字与中文大标题从主体背后缓缓升起并伴随柔和微光，运动员起落动作实时干净地遮挡背后文字，营造电影感景深开场。",
+   "theme": "",
+   "content_type": "健康和运动指导",
+   "materials": [
+    "录像",
+    "数据"
+   ],
+   "techniques": [
+    "抠像合成",
+    "剪辑与字幕"
+   ],
+   "fit": "电影感开场、运动与健身大片、人物纪录片片头、短视频爆款钩子",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-022/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-022"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "FedFlix 公共领域体能训练片（Internet Archive）",
+     "url": "https://archive.org/details/gov.dod.dimoc.302559"
+    }
+   ]
+  },
+  {
+   "id": "T-023",
+   "class": "T",
+   "name": "实拍物体追踪呼出标注",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-023.jpg",
+   "prompt": "用「实拍物体追踪呼出标注」：对 NASA 火箭夜间升空实拍录像逐帧做像素级高亮核心追踪与平滑滤波，导出精确坐标轨迹 `track.json`；代码在移动目标上实时绘制旋转锁定靶框，拉出一条自动避让画面边缘的锐利折线指引线，末端弹出半透明暗色玻璃参数呼出卡，同步刷新像素坐标、估算高度与运动速度。",
+   "theme": "",
+   "content_type": "知识科普讲解",
+   "materials": [
+    "录像",
+    "数据"
+   ],
+   "techniques": [
+    "追踪与姿态叠加",
+    "数据可视化"
+   ],
+   "fit": "汽车与硬件拆解测评、航天与工业科普、建筑与探店实拍 AR 标注",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-023/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-023"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "NASA Artemis I 影像库",
+     "url": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595"
+    }
+   ]
+  },
+  {
+   "id": "T-024",
+   "class": "T",
+   "name": "文献与财报 3D 荧光笔扫读",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-024.jpg",
+   "prompt": "用「文献与财报 3D 荧光笔扫读」：把真实公共领域文献扫描页在 CSS 3D 透视景深桌面上斜向错落铺开，虚拟镜头平滑做 3D 俯仰推近与段落摇移；亮黄色半透明正片叠底荧光笔笔触实时从左到右划过原文核心条款，画面左下角同步浮起 Vox 调查风炭黑亮黄边框中文批注卡与出处页码。",
+   "theme": "",
+   "content_type": "新闻资讯解说",
+   "materials": [
+    "照片"
+   ],
+   "techniques": [
+    "文稿转片",
+    "照片运镜"
+   ],
+   "fit": "深度调查与新闻解说、上市公司财报与研报精读、历史档案与论文拆解",
+   "verified": [
+    "HTML/CSS",
+    "Motion",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "HTML/CSS",
+    "Motion",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-024/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-024"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "NASA Systems Engineering Handbook Rev 2（NTRS）",
+     "url": "https://ntrs.nasa.gov/citations/20170001761"
+    }
+   ]
+  },
+  {
+   "id": "T-025",
+   "class": "T",
+   "name": "曲线变速卡点混剪",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-025.jpg",
+   "prompt": "用「曲线变速卡点混剪」：对 NASA 国际空间站地球轨道实拍视频按平滑非线性速度曲线做时间重映射——在 0.35x 极慢镜头蓄力与 4.2x 极速冲刺之间丝滑切换，加速峰值自动叠加多帧快门运动模糊、踩拍微缩放与轻微闪白，画面底部叠加专业剪辑器风格的实时 Speed Ramp 速度曲线与瞬时倍速读数 HUD。",
+   "theme": "",
+   "content_type": "旅行和城市",
+   "materials": [
+    "录像"
+   ],
+   "techniques": [
+    "节拍对齐剪辑",
+    "剪辑与字幕"
+   ],
+   "fit": "旅行航拍混剪、汽车与极限运动卡点片、品牌情绪大片与节奏感转场",
+   "verified": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "NumPy",
+    "Skia",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-025/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-025"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "NASA ISS 地球轨道实拍影像",
+     "url": "https://eol.jsc.nasa.gov/"
     }
    ]
   }

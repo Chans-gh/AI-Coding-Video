@@ -58,21 +58,21 @@
 | 类型 | 难度 | 条目 | 有样片 |
 |---|---|---|---|
 | **公共领域素材** | | | |
-| 剪辑与字幕 | 轻 | [T-002](styles/footage.md#T-002) · [T-003](styles/footage.md#T-003) · [T-004](styles/footage.md#T-004) · [T-005](styles/footage.md#T-005) · [T-006](styles/footage.md#T-006) · [T-010](styles/footage.md#T-010) | 是（6） |
-| 节拍对齐剪辑 | 轻 | [G-024](styles/generated.md#G-024) · [T-006](styles/footage.md#T-006) | 是（2） |
+| 剪辑与字幕 | 轻 | [T-002](styles/footage.md#T-002) · [T-003](styles/footage.md#T-003) · [T-004](styles/footage.md#T-004) · [T-005](styles/footage.md#T-005) · [T-006](styles/footage.md#T-006) · [T-010](styles/footage.md#T-010) · [T-022](styles/footage.md#T-022) · [T-025](styles/footage.md#T-025) | 是（8） |
+| 节拍对齐剪辑 | 轻 | [G-024](styles/generated.md#G-024) · [T-006](styles/footage.md#T-006) · [T-025](styles/footage.md#T-025) | 是（3） |
 | 多机位同步 | 轻 | [T-013](styles/footage.md#T-013) | 是（1） |
 | 文字稿剪辑 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
 | 高光切片 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
 | 自动改画幅 | 中 | [T-016](styles/footage.md#T-016) | 是（1） |
-| 照片运镜 | 轻 | [T-001](styles/footage.md#T-001) · [T-003](styles/footage.md#T-003) · [T-008](styles/footage.md#T-008) · [T-012](styles/footage.md#T-012) · [T-019](styles/footage.md#T-019) | 是（5） |
+| 照片运镜 | 轻 | [T-001](styles/footage.md#T-001) · [T-003](styles/footage.md#T-003) · [T-008](styles/footage.md#T-008) · [T-012](styles/footage.md#T-012) · [T-019](styles/footage.md#T-019) · [T-024](styles/footage.md#T-024) | 是（6） |
 | 分层视差与投影 | 中 | [T-018](styles/footage.md#T-018) | 是（1） |
-| 抠像合成 | 中 | [T-017](styles/footage.md#T-017) | 是（1） |
-| 追踪与姿态叠加 | 中 | [T-017](styles/footage.md#T-017) | 是（1） |
+| 抠像合成 | 中 | [T-017](styles/footage.md#T-017) · [T-022](styles/footage.md#T-022) | 是（2） |
+| 追踪与姿态叠加 | 中 | [T-017](styles/footage.md#T-017) · [T-023](styles/footage.md#T-023) | 是（2） |
 | 录屏增强 | 轻 | [T-009](styles/footage.md#T-009) | 是（1） |
-| 数据可视化 | 轻 | [T-001](styles/footage.md#T-001) · [T-004](styles/footage.md#T-004) · [T-007](styles/footage.md#T-007) · [T-010](styles/footage.md#T-010) · [T-015](styles/footage.md#T-015) · [T-019](styles/footage.md#T-019) · [T-020](styles/footage.md#T-020) | 是（7） |
+| 数据可视化 | 轻 | [T-001](styles/footage.md#T-001) · [T-004](styles/footage.md#T-004) · [T-007](styles/footage.md#T-007) · [T-010](styles/footage.md#T-010) · [T-015](styles/footage.md#T-015) · [T-019](styles/footage.md#T-019) · [T-020](styles/footage.md#T-020) · [T-023](styles/footage.md#T-023) | 是（8） |
 | 传感器与轨迹叠加 | 轻 | [T-013](styles/footage.md#T-013) | 是（1） |
 | 批注与前后对比 | 轻 | [T-008](styles/footage.md#T-008) · [T-011](styles/footage.md#T-011) · [T-020](styles/footage.md#T-020) | 是（3） |
-| 文稿转片 | 轻 | [T-014](styles/footage.md#T-014) | 是（1） |
+| 文稿转片 | 轻 | [T-014](styles/footage.md#T-014) · [T-024](styles/footage.md#T-024) | 是（2） |
 | 实景三维重建 | 重 | [T-021](styles/footage.md#T-021) | 是（1） |
 | 相机反求与 AR 叠加 | 重 | [T-021](styles/footage.md#T-021) | 是（1） |
 | **AI 生成素材** | | | |
