@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "file": "assets/track.mp4",
+   "kind": "录像",
+   "title": "NASA Artemis I 夜间火箭升空追踪实拍",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "license": "公共领域（NASA 影像）",
+   "author": "NASA / Kennedy Space Center",
+   "credit": "录像 NASA"
+  },
+  {
+   "file": "assets/track.json",
+   "kind": "数据",
+   "title": "逐帧火箭喷口高亮核心追踪坐标（由 render_skia.py 使用 NumPy 实时检测并平滑）",
+   "source": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+   "license": "公共领域（衍生追踪数据）",
+   "author": "本仓库 render_skia.py 计算",
+   "credit": "追踪 本仓库计算（NumPy）"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "items": [
+  {
+   "file": "assets/drill.mp4",
+   "kind": "录像",
+   "title": "Air Force Fitness Assessment Program（2010，俯卧撑侧面示范）",
+   "source": "https://archive.org/details/gov.dod.dimoc.614892",
+   "license": "CC0 1.0（美国国防部影像，美国政府作品；Internet Archive FedFlix 标为 CC0）",
+   "author": "U.S. Department of Defense / U.S. Air Force（DIMOC PIN 614892）",
+   "credit": "录像 美国国防部"
+  },
+  {
+   "file": "assets/mask.mp4",
+   "kind": "数据",
+   "title": "逐帧前景人物抠像遮罩（白色为主体，用于三层文字穿插合成）",
+   "source": "https://archive.org/details/gov.dod.dimoc.614892",
+   "license": "CC0 1.0（美国国防部影像，衍生遮罩）",
+   "author": "本仓库 T-017/pose.py 计算",
+   "credit": "遮罩 本仓库计算（MediaPipe）"
+  }
+ ]
+}
