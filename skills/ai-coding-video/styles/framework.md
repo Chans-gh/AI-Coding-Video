@@ -1,4 +1,4 @@
-# 整套视频框架（7 种）
+# 整套视频框架（11 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [技术标签](../tags.md)
 
@@ -77,16 +77,16 @@
 
 <a id="C-200"></a>
 
-## C-200 NumPy 干涉像素场
+## C-200 播客金句与频谱卡
 
-![NumPy 干涉像素场](../images/C-200.jpg)
+![播客金句与频谱卡](../images/C-200.jpg)
 
 ```text
-用「NumPy 干涉像素场」风格：纯 Python 无浏览器管线，用 NumPy 向量化逐帧计算三个移动相干波源的光学干涉像素矩阵并映射为霓虹青紫渐变色板，再用 Pillow 在画面上叠加波源准星、中文标题面板和底部中心线实时波形切片，直接通过管道交给 ffmpeg 编码成片，配电子合成音。
+用「播客金句与频谱卡」风格：纯 Python 无浏览器管线，NumPy 对真实音频逐帧做 FFT 频谱分析驱动底部渐变声波柱状图，Pillow 绘制暗色播客节目卡片、讲者角标、逐字高亮金句字幕与播放进度条，直接通过管道交给 ffmpeg 编码成片。
 ```
 
-- 题材：3D 与实时图形
-- 适合：科学计算与波动可视化、服务器无浏览器批量出片、创意算法背景
+- 题材：信息讲解与产品发布
+- 适合：播客切片、有声书与金句短视频、口播观点提炼、批量音频可视化
 - 技术（已验证）：NumPy · Pillow · ffmpeg
 - 样片代码：[samples/C-200/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-200)
 - 技术（建议）：NumPy · Pillow · ffmpeg
@@ -125,3 +125,71 @@
 - 样片代码：[samples/C-202/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-202)
 - 技术（建议）：MoviePy · Pillow · NumPy · ffmpeg
 - 参考：[MoviePy](https://zulko.github.io/moviepy/)
+
+<a id="C-203"></a>
+
+## C-203 动态数据排行竞速
+
+![动态数据排行竞速](../images/C-203.jpg)
+
+```text
+用「动态数据排行竞速」风格：NumPy 对历年数据表做平滑插值与指数阻尼排名换位，Skia 离屏绘制圆角线性渐变条形图、平滑反超动画、动态跳动数值与右下角大号年份水印，零浏览器直接管道输出 MP4。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：财经与宏观数据科普、行业份额演变、年度榜单与数据排行短视频
+- 技术（已验证）：NumPy · Skia · ffmpeg
+- 样片代码：[samples/C-203/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-203)
+- 技术（建议）：NumPy · Skia · ffmpeg
+- 参考：[Skia](https://skia.org/) · [NumPy](https://numpy.org/)
+
+<a id="C-204"></a>
+
+## C-204 金融 K 线行情复盘
+
+![金融 K 线行情复盘](../images/C-204.jpg)
+
+```text
+用「金融 K 线行情复盘」风格：NumPy 计算 OHLC 行情与 MA5/MA12 均线序列，Skia 离屏绘制暗色交易终端界面、逐根生长的红绿 K 线与成交量柱、双色均线走势、顶部实时涨跌幅条与关键突破买点标注气泡，零浏览器自动出片。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：每日大盘与个股复盘、财报与量化策略回测展示、财经资讯短视频
+- 技术（已验证）：NumPy · Skia · ffmpeg
+- 样片代码：[samples/C-204/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-204)
+- 技术（建议）：NumPy · Skia · ffmpeg
+- 参考：[Skia](https://skia.org/) · [NumPy](https://numpy.org/)
+
+<a id="C-205"></a>
+
+## C-205 千人千面年度报告
+
+![千人千面年度报告](../images/C-205.jpg)
+
+```text
+用「千人千面年度报告」风格：Skia 离屏绘制极光径向渐变底色、三张核心指标滚动计数卡片、52 周打卡热力图按周波浪点亮以及底部年度勋章汇总，一套脚本对接用户数据即可在服务端批量生成 Wrapped 风格专属视频。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：App 与 SaaS 年度账单、学习与运动打卡年报、B2B 客户季度复盘
+- 技术（已验证）：Skia · ffmpeg
+- 样片代码：[samples/C-205/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-205)
+- 技术（建议）：Skia · ffmpeg
+- 参考：[Skia](https://skia.org/) · [skia-python](https://kyamagu.github.io/skia-python/)
+
+<a id="C-206"></a>
+
+## C-206 电商卖点与价签参数卡
+
+![电商卖点与价签参数卡](../images/C-206.jpg)
+
+```text
+用「电商卖点与价签参数卡」风格：Pillow 按统一品牌视觉规范绘制新品卖点三连卡、新旧款参数对比表与划线原价直降爆炸价签，由 MoviePy v2 编排三段明快带货切镜并锁定鼓点时间轴直接导出 MP4。
+```
+
+- 题材：信息讲解与产品发布
+- 适合：电商主图视频、SKU 批量上新、矩阵带货短视频与参数对比测评
+- 技术（已验证）：MoviePy · Pillow · NumPy · ffmpeg
+- 样片代码：[samples/C-206/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-206)
+- 技术（建议）：MoviePy · Pillow · NumPy · ffmpeg
+- 参考：[MoviePy](https://zulko.github.io/moviepy/) · [Pillow](https://pillow.readthedocs.io/)

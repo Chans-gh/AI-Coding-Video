@@ -6,6 +6,7 @@
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-11-25 | 0.27.0：纯 Python 无浏览器路线升级为 5 套高实用商业/内容模板（全库达成 251/251 样片覆盖）：原 **C-200** 升级为**播客金句与频谱卡**（NumPy 对真实音频算 FFT 频谱驱动声波柱 + Pillow 逐字高亮金句）；新增 **C-203 动态数据排行竞速**（NumPy 平滑排名插值 + Skia Bar Chart Race）、**C-204 金融 K 线行情复盘**（NumPy OHLC/均线 + Skia 交易终端 K 线与买点标注）、**C-205 千人千面年度报告**（Skia 52 周热力图与 Wrapped 个人年度总结）、**C-206 电商卖点与价签参数卡**（Pillow 卖点/对比表/划线直降价签 + MoviePy v2 带货三段快切）。 |
 | 2026-11-25 | 0.26.0：C 类新增纯 Python 无浏览器画帧技术路线（`tags.json` 新增 `NumPy`、`Pillow`、`Skia`、`MoviePy` 四个标签），并新增 3 个实跑条目与横竖两版样片（全库达成 247/247 样片覆盖）：**C-200 NumPy 干涉像素场**（NumPy 向量化波源干涉 + Pillow 叠字与波形切片）、**C-201 Skia 离屏矢量动效**（`skia-python` 内存离屏 C++ 2D 引擎绘制渐变数据环与曲线）、**C-202 MoviePy 卡点字卡片头**（Pillow 制卡 + MoviePy v2 节拍时间轴合成出片）；`site/build.py` 同步支持读取这三类脚本说明。 |
 | 2026-11-25 | 0.25.0：C 类补齐五大未验证技术并达成全库样片 100% 覆盖（244/244）：补齐阶段 14 批 14 的 **C-071 Blender 程序化场景**（Blender 5.3 纯 Python 零资产搭建夜景湖面、远山、凉亭与烟花，含灰模搭建延时到夜景成片过渡），并新增 4 个 C 类条目与实跑样片——**C-196 Hydra 视觉反馈合成**（`hydra-synth` 实时 WebGL 视频合成器）、**C-197 Motion 弹簧卡片动效**（`motion` 物理弹簧时间轴 + HTML/SVG）、**C-198 HyperFrames 编排发布片**（HeyGen HyperFrames CLI 声明式 HTML/GSAP 渲染）、**C-199 Manim 数学几何证明**（Manim CE 单位圆与正弦波联动）；`samples/player.html` 的 `LIBS` 新增 `hydra` 与 `motion`，横竖两版成片均已验收并同步进 Skill。 |
 | 2026-11-25 | 0.24.0：T 类补样片（PLAN 阶段 4 批 3）：新增 T-021 环绕实景重建（补齐「实景三维重建」「相机反求与 AR 叠加」两项重技术类型），使用本地 Blender 5.3 渲染 CC0 大理石半身像（Poly Haven `marble_bust_01`）环绕镜头并导出 36 机位与 240 帧精确相机位姿，用 Brush v0.3.0 在 Apple Silicon Metal 上训练真实 3D 高斯点云，在 Three.js + Canvas 2D 中完成实景 AR 叠加、扫光切入 3DGS 与自由运镜，横竖两版均已出片验收并随 Skill 同步发布。 |

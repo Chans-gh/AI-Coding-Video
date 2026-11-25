@@ -1,0 +1,5 @@
+{
+  "en_name": "Financial candlestick & MA recap",
+  "en_how": "NumPy computes deterministic OHLC candlesticks, volume bars, and MA5/MA12 moving averages while skia-python renders a dark-mode trading chart with progressive reveal, golden-cross buy callout pill, and live ticker header directly to ffmpeg.",
+  "tech": ["NumPy", "Skia", "ffmpeg"]
+}
