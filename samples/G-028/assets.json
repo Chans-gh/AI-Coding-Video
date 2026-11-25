@@ -1,0 +1,33 @@
+{
+ "items": [
+  {
+   "file": "assets/real_street.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Elevated isometric street photography of a cozy coastal railway crossing corner at golden hour dusk with a vintage mint-green commuter tram and warm corner cafe",
+   "params": {"aspectRatio": "16:9"},
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/clay_street.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "Keep the exact same composition and objects; transform the entire scene into a handcrafted stop-motion claymation miniature diorama",
+   "params": {"aspectRatio": "16:9"},
+   "ref": "assets/real_street.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/clay_anim.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0",
+   "prompt": "Handcrafted stop-motion claymation miniature diorama animation: the cute clay mint-green tram chugs along the railway track while miniature clay pedestrians wave",
+   "params": {"aspectRatio": "16:9", "duration": 5, "resolution": "720p"},
+   "ref": "assets/clay_street.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  }
+ ]
+}

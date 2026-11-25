@@ -1,0 +1,23 @@
+{
+ "items": [
+  {
+   "file": "assets/hero.jpg",
+   "kind": "生图",
+   "model": "gemini-3.1-flash-image-preview",
+   "prompt": "First-person arm-length smartphone selfie perspective of a fictional cheerful young Tang Dynasty artisan apprentice at dusk on an ancient Chang'an lantern-lit wooden market street",
+   "params": {"aspectRatio": "16:9"},
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/vlog.mp4",
+   "kind": "生视频",
+   "model": "Doubao-Seedance-2.0",
+   "prompt": "Keep the young Tang Dynasty artisan character consistent; handheld first-person selfie vlog walking through glowing ancient Chang'an lantern night market",
+   "params": {"aspectRatio": "16:9", "duration": 6, "resolution": "720p"},
+   "ref": "assets/hero.jpg",
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  }
+ ]
+}
