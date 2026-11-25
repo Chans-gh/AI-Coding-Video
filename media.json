@@ -2381,6 +2381,16 @@
    "bytes": 1243618,
    "sha256": "1eecdb400b7e2bbc0bf1d1a75986d6f37bf59feae9c963edd560127ec6b8bc7a"
   },
+  "T-021-16x9.mp4": {
+   "path": "samples/T-021/T-021-16x9.mp4",
+   "bytes": 3358355,
+   "sha256": "fb4319ecc9ce40d583847e6bc03831b522bd44135f61403074ad13d910bcff8a"
+  },
+  "T-021-9x16.mp4": {
+   "path": "samples/T-021/T-021-9x16.mp4",
+   "bytes": 3343913,
+   "sha256": "0182c995a093ee018a3c944e81d626e41019f75001025d3c1b8aac45df71b7ee"
+  },
   "case-course-first-video-mid.mp4": {
    "path": "cases/course-first-video/media/course-first-video-mid.mp4",
    "bytes": 23365589,

@@ -15,7 +15,7 @@
 ## 风格目录
 
 <!-- catalog:start -->
-共 239 种（纯代码 195 种，公共领域素材 20 种，AI 生成素材 24 种），其中 238 种已有样片。点名字跳到条目。
+共 240 种（纯代码 195 种，公共领域素材 21 种，AI 生成素材 24 种），其中 239 种已有样片。点名字跳到条目。
 
 | 题材 | 风格 |
 |---|---|
@@ -43,7 +43,7 @@ T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，�
 | 新闻资讯解说 | [T-007 卫星地图简报](styles/footage.md#T-007)（照片、数据） | [G-007 插画新闻解说](styles/generated.md#G-007)（生图、语音合成） |
 | 纪录片和纪实 | [T-008 档案灯箱](styles/footage.md#T-008)（照片） · [T-013 发射多机位同步](styles/footage.md#T-013)（录像、数据） | [G-008 伪纪录片](styles/generated.md#G-008)（生图、生视频、语音合成） |
 | 教程和录屏演示 | [T-009 活体录屏](styles/footage.md#T-009)（录屏） | [G-009 俯拍步骤教程](styles/generated.md#G-009)（生图） |
-| 旅行和城市 | [T-010 延时城市交响](styles/footage.md#T-010)（录像、照片、数据） | [G-010 旅行手账 vlog](styles/generated.md#G-010)（生视频、语音合成） |
+| 旅行和城市 | [T-010 延时城市交响](styles/footage.md#T-010)（录像、照片、数据） · [T-021 环绕实景重建](styles/footage.md#T-021)（录像、照片、数据） | [G-010 旅行手账 vlog](styles/generated.md#G-010)（生视频、语音合成） |
 | 体育赛事 | [T-011 体育战术板](styles/footage.md#T-011)（照片） | [G-011 高光慢放集锦](styles/generated.md#G-011)（生视频） |
 | 儿童绘本动画 | [T-012 绘本翻页](styles/footage.md#T-012)（照片） | [G-012 水彩绘本朗读](styles/generated.md#G-012)（生图、语音合成） |
 | 企业培训和课件 | [T-014 讲义转片](styles/footage.md#T-014)（照片、数据） | [G-017 情景安全演练](styles/generated.md#G-017)（生图、语音合成） |
@@ -53,7 +53,7 @@ T 类（公共领域素材）、G 类（AI 生成素材）按内容类型分，�
 | 美食 | [T-019 营养成分对比](styles/footage.md#T-019)（照片、数据） | [G-013 食谱动效卡](styles/generated.md#G-013)（生图、语音合成） · [G-022 玻璃水果 ASMR 切割](styles/generated.md#G-022)（生图、生视频） |
 | 健康和运动指导 | [T-017 体操骨骼示范](styles/footage.md#T-017)（录像、数据） | [G-020 拉伸跟练](styles/generated.md#G-020)（生图、生视频、语音合成） |
 
-按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（20） · [G 类：AI 生成素材](styles/generated.md)（24）
+按技术分的文件：[Canvas 2D](styles/canvas-2d.md)（88） · [WebGL / 着色器 / Three.js](styles/webgl.md)（49） · [SVG 与 HTML/CSS](styles/svg-html.md)（54） · [终端字符](styles/terminal.md)（1） · [代码驱动的外部程序](styles/external.md)（1） · [整套视频框架](styles/framework.md)（2） · [T 类：公共领域素材](styles/footage.md)（21） · [G 类：AI 生成素材](styles/generated.md)（24）
 <!-- catalog:end -->
 
 ## 按题材选风格

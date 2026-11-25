@@ -1,4 +1,4 @@
-# T 类：公共领域素材（20 种）
+# T 类：公共领域素材（21 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -386,3 +386,22 @@
 - 样片代码：[samples/T-020/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-020)
 - 技术（建议）：Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
 - 参考：[Poly Haven](https://polyhaven.com)
+
+<a id="T-021"></a>
+
+## T-021 环绕实景重建
+
+![环绕实景重建](../images/T-021.jpg)
+
+```text
+用「环绕实景重建」：把 CC0 大理石半身像放在庭院基座上，用 Blender 沿环绕轨道渲染 36 张多视角照片和一段 30fps 环绕镜头并导出精确相机位姿；同一套位姿先在原片上投影地面标定圆环、基座轮廓和 3D 空间 AR 标注卡片，再用 Brush 从 36 视角训练出 3D 高斯点云；中段一道青金色竖向扫光把实景录像切进 Three.js 实时渲染的 3D 高斯点云和 36 机位视锥环；后段脱离原拍摄轨道，自由拉升俯拍漫游全场景，最后压暗落版并保留出处署名。
+```
+
+- 内容类型：旅行和城市
+- 素材：录像 · 照片 · 数据
+- 技术类型：实景三维重建 · 相机反求与 AR 叠加
+- 适合：城市地标与博物馆文物展示、文旅空间巡礼、建筑与展陈 AR 导览、3DGS 技术演示
+- 技术（已验证）：Blender · Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-021/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-021)
+- 技术（建议）：Blender · Three.js · WebGL · Canvas 2D · Playwright · ffmpeg
+- 参考：[Poly Haven：Marble Bust 01](https://polyhaven.com/a/marble_bust_01) · [Brush (3D Gaussian Splatting)](https://github.com/ArthurBrussee/brush)
