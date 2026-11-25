@@ -182,4 +182,4 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `load(path, ss=0.0, dur=None)` — 读音频文件（mp3、wav、ogg、mp4 的音轨…）→ (采样数, 2) 的立体声，44.1 kHz；ss 起点秒，dur 长度秒。用 ffmpeg 解码
 - `fade(x, a=0.0, b=0.0)` — 淡入 a 秒、淡出 b 秒（单声道或立体声都行）
 - `cue_time(a, kw, fallback=None)` — 旁白说到关键词 kw 的时刻（秒）：a 是 assets() 返回的 assets.json 内容，和 lib.js 的 cueTime 算法相同；找不到返回 fallback
-- `assets(m, here, music=0.32, duck=0.45, voice=0.9)` — 照 <样片目录>/assets.json 把声音摆上混音台：旁白、原声（G 类的旁白记作 语音合成）按 at（秒）放；配乐从 at 起铺到片尾，旁白、原声响的时候压低 duck；音效按 at 放。返回 assets.json 的内容。
+- `assets(m, here, music=0.32, duck=0.45, voice=0.9, use=None)` — 照 <样片目录>/assets.json 把声音摆上混音台：旁白、原声（G 类的旁白记作 语音合成）按 at（秒）放；配乐从 at 起铺到片尾，旁白、原声响的时候压低 duck；音效按 at 放。返回 assets.json 的内容。
