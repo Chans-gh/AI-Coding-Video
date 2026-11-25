@@ -1,5 +1,5 @@
 {
- "count": 240,
+ "count": 244,
  "styles": [
   {
    "id": "C-001",
@@ -2475,18 +2475,25 @@
    "name": "Blender 程序化场景",
    "file": "styles/external.md",
    "layer": "external",
-   "image": null,
+   "image": "images/C-071.jpg",
    "prompt": "用 Blender 程序化建模风格：用 Python 脚本从零搭建场景、不用任何预制资产，夜景湖面倒影、远山和烟花，先出灰模和镜头预览再上材质和灯光，另外录一段从灰模到成片的建造延时。",
    "theme": "3D 与实时图形",
    "content_type": "",
    "materials": [],
    "techniques": [],
    "fit": "建筑、城堡、机械",
-   "verified": [],
-   "suggested": [
-    "Blender"
+   "verified": [
+    "Blender",
+    "ffmpeg"
    ],
-   "render_code": null,
+   "suggested": [
+    "Blender",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-071/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-071"
+   },
    "pack": null,
    "refs": []
   },
@@ -6692,6 +6699,158 @@
    },
    "pack": null,
    "refs": []
+  },
+  {
+   "id": "C-196",
+   "class": "C",
+   "name": "Hydra 视觉反馈合成",
+   "file": "styles/webgl.md",
+   "layer": "webgl",
+   "image": "images/C-196.jpg",
+   "prompt": "用「Hydra 视觉反馈合成」风格：基于真实 hydra-synth 实时视频合成器，把双振荡器干涉、Voronoi 扭曲、万花筒对称与色彩调制按确定时间 t 串联输出；画面叠加细微扫描线、左上角实时显示 Hydra 链式代码，底部铺模块化节点信号链与实时示波器波形，配电子合成器节拍与琶音。",
+   "theme": "3D 与实时图形",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "音乐可视化、VJ 视觉背景、创意编程演示、赛博科技片头",
+   "verified": [
+    "Hydra",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Hydra",
+    "WebGL",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-196/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-196"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Hydra Video Synth",
+     "url": "https://hydra.ojack.xyz/"
+    }
+   ]
+  },
+  {
+   "id": "C-197",
+   "class": "C",
+   "name": "Motion 弹簧卡片动效",
+   "file": "styles/svg-html.md",
+   "layer": "svg-html",
+   "image": "images/C-197.jpg",
+   "prompt": "用「Motion 弹簧卡片动效」风格：深色网格背景配柔和流动光晕，使用真实 Motion 库的物理弹簧时间轴驱动 HTML/CSS 磨砂玻璃卡片错峰入场、顶部胶囊导航滑块弹性切换与焦点卡片高亮抬升，底部用 SVG 实时描出阻尼弹簧响应曲线与时间读数，配清脆 UI 点击与弹性嗖声。",
+   "theme": "信息讲解与产品发布",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "产品功能演示、UI 交互展示、SaaS 发布片、组件动效说明",
+   "verified": [
+    "Motion",
+    "HTML/CSS",
+    "SVG",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Motion",
+    "HTML/CSS",
+    "SVG",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-197/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-197"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Motion",
+     "url": "https://motion.dev/"
+    }
+   ]
+  },
+  {
+   "id": "C-198",
+   "class": "C",
+   "name": "HyperFrames 编排发布片",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": "images/C-198.jpg",
+   "prompt": "用「HyperFrames 编排发布片」风格：直接写声明式 HTML/CSS/SVG 合成页并用 HyperFrames CLI 渲染成 MP4，暗色渐变与细网格底上由 GSAP 时间轴编排大标题入场、斜向扫光掠过、三张关键指标卡片依次弹入，最后拉出巨型核心数字收尾，横竖屏自适应排版，配科技发布会节奏电子音。",
+   "theme": "信息讲解与产品发布",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "软件与 AI 产品发布、特性速览、数据亮点宣发、自动化模板视频",
+   "verified": [
+    "HyperFrames",
+    "HTML/CSS",
+    "SVG",
+    "GSAP",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "HyperFrames",
+    "HTML/CSS",
+    "SVG",
+    "GSAP",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-198/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-198"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "HyperFrames",
+     "url": "https://github.com/heygen-com/hyperframes"
+    }
+   ]
+  },
+  {
+   "id": "C-199",
+   "class": "C",
+   "name": "Manim 数学几何证明",
+   "file": "styles/framework.md",
+   "layer": "framework",
+   "image": "images/C-199.jpg",
+   "prompt": "用「Manim 数学几何证明」风格：使用 Manim Community Edition 在深蓝黑底上精确绘制单位圆与坐标系，金色半径向量匀速旋转，青色垂线与水平虚线实时把圆周动点投影到右侧正弦曲线上同步描出完整周期，底部实时刷新角度与正弦值读数，横竖屏独立构图，配清澈电子琶音与铃声。",
+   "theme": "信息讲解与产品发布",
+   "content_type": "",
+   "materials": [],
+   "techniques": [],
+   "fit": "数学与物理教学、算法原理可视化、科普动画、学术演示",
+   "verified": [
+    "Manim",
+    "Manim CE",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Manim",
+    "Manim CE",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/C-199/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-199"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Manim Community",
+     "url": "https://www.manim.community/"
+    }
+   ]
   },
   {
    "id": "G-001",

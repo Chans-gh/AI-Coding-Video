@@ -1,0 +1,5 @@
+{
+  "en_name": "Manim mathematical geometry proof",
+  "en_how": "Manim Community Edition renders a deterministic unit-circle to sine-wave projection animation with rotating radius vector, angle arc, live horizontal projection connector, and dynamic waveform trace in both 16:9 and 9:16.",
+  "tech": ["Manim", "Manim CE", "ffmpeg"]
+}

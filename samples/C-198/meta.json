@@ -1,0 +1,5 @@
+{
+  "en_name": "HyperFrames HTML composition launch",
+  "en_how": "HeyGen HyperFrames renders declarative HTML/CSS/SVG compositions with GSAP timeline choreography directly to MP4, showcasing a dark-mode product launch sequence with kinetic headline reveal, live metric bento cards, and sweeping light accent.",
+  "tech": ["HyperFrames", "HTML/CSS", "SVG", "GSAP", "ffmpeg"]
+}

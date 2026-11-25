@@ -1,0 +1,5 @@
+{
+  "en_name": "Motion spring UI cards",
+  "en_how": "Real Motion library spring physics driving HTML/CSS glass cards and SVG icon paths on a paused deterministic timeline, with staggered entrance, active tab morphing, and live spring-curve telemetry.",
+  "tech": ["Motion", "HTML/CSS", "SVG", "Playwright", "ffmpeg"]
+}

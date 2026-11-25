@@ -701,6 +701,16 @@
    "bytes": 2265867,
    "sha256": "588d5f7c4f9b70576344a691963629a5e379e9f6374f68b1424af715110c5786"
   },
+  "C-071-16x9.mp4": {
+   "path": "samples/C-071/C-071-16x9.mp4",
+   "bytes": 533446,
+   "sha256": "cf5442bff137f8e7cba5ef8557d5925e07eb5e3a87169a5f4b13acd21c43afa9"
+  },
+  "C-071-9x16.mp4": {
+   "path": "samples/C-071/C-071-9x16.mp4",
+   "bytes": 459036,
+   "sha256": "31a4dc484b5746768c19479faa3422a3270170f644d346a5d2f81e45b4fee2ee"
+  },
   "C-072-16x9.mp4": {
    "path": "samples/C-072/C-072-16x9.mp4",
    "bytes": 350464,
@@ -1940,6 +1950,46 @@
    "path": "samples/C-195/C-195-9x16.mp4",
    "bytes": 1282300,
    "sha256": "927c5b75b85872d7a315c0d9f4ed52d99652dc104f7f2575244f297264412f16"
+  },
+  "C-196-16x9.mp4": {
+   "path": "samples/C-196/C-196-16x9.mp4",
+   "bytes": 2407759,
+   "sha256": "756d8b6f6906e67022e4b51a75071d7aed0e665c46219e5ef5728f04a4b5e52a"
+  },
+  "C-196-9x16.mp4": {
+   "path": "samples/C-196/C-196-9x16.mp4",
+   "bytes": 2484370,
+   "sha256": "36855d6673edafed7eb648de65487559113485e4c3064ce206ddd0498d77597d"
+  },
+  "C-197-16x9.mp4": {
+   "path": "samples/C-197/C-197-16x9.mp4",
+   "bytes": 408237,
+   "sha256": "e760898e70f024808fbc90bb352db05485e102cc91a892a09e7bcf049c4ccf0c"
+  },
+  "C-197-9x16.mp4": {
+   "path": "samples/C-197/C-197-9x16.mp4",
+   "bytes": 367839,
+   "sha256": "37a0d9d83a149a9ab6f61d05f257a8e369d94f90106a91b3703af625295a558d"
+  },
+  "C-198-16x9.mp4": {
+   "path": "samples/C-198/C-198-16x9.mp4",
+   "bytes": 528474,
+   "sha256": "41dff7aa32f2cf35302b6e70d9ea3cbaab0388aef9549c7a8fffe51f1d0eebc0"
+  },
+  "C-198-9x16.mp4": {
+   "path": "samples/C-198/C-198-9x16.mp4",
+   "bytes": 567982,
+   "sha256": "cd2336e4aa6fc7b607ae7b4a1ab1657d25d4695b1938d2d5cc80ec8a48766aa7"
+  },
+  "C-199-16x9.mp4": {
+   "path": "samples/C-199/C-199-16x9.mp4",
+   "bytes": 322544,
+   "sha256": "dbdb6b1e9042ff167bf17e7a773c23f8a5b34ab9ac6a1d8275728a234edb530d"
+  },
+  "C-199-9x16.mp4": {
+   "path": "samples/C-199/C-199-9x16.mp4",
+   "bytes": 211743,
+   "sha256": "a31b7c54299c44c465634b6e71c8dcf53957d6e99d1d142fbb016d53e596bb6d"
   },
   "G-001-16x9.mp4": {
    "path": "samples/G-001/G-001-16x9.mp4",
