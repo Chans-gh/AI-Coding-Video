@@ -1,0 +1,5 @@
+{
+  "en_name": "E-commerce SKU specs & price-drop card",
+  "en_how": "Pillow paints brand-consistent product selling points, a side-by-side spec comparison table, and a bold strikethrough price-drop CTA card while MoviePy v2 orchestrates the beat-synced 3-scene promo timeline straight to MP4.",
+  "tech": ["MoviePy", "Pillow", "NumPy", "ffmpeg"]
+}

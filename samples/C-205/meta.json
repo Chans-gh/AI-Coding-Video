@@ -1,0 +1,5 @@
+{
+  "en_name": "Personalized annual Wrapped recap",
+  "en_how": "skia-python renders a personalized annual summary card featuring an animated 52-week contribution heatmap grid, rolling headline counters, and top achievement badges on a rich aurora gradient background directly to ffmpeg.",
+  "tech": ["Skia", "ffmpeg"]
+}

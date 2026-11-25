@@ -1,0 +1,5 @@
+{
+  "en_name": "Bar chart race data ranking",
+  "en_how": "NumPy smoothly interpolates annual ranking positions and values across 2021-2026 while skia-python draws anti-aliased rounded gradient bars, overtaking animations, live numeric counters, and a giant year watermark directly to ffmpeg.",
+  "tech": ["NumPy", "Skia", "ffmpeg"]
+}
