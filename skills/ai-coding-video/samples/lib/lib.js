@@ -816,10 +816,16 @@ async function loadMediaSafe(name, kind) {
   try { return k === 'video' ? await loadVideo(name) : await loadImage(name); }
   catch (_) { return null; }
 }
-// 在 (x,y,w,h) 绘制符合当前主题 K 的媒体虚线占位框：标出 [T 真实素材] / [G AI 素材]、目标尺寸与 o.label，缺素材时不黑屏不白屏
+// 在 (x,y,w,h) 绘制符合当前主题 K 的媒体虚线占位框：标出 [T 真实素材] / [G AI 素材]（支持 mediaType: 'image' | 'video' 区分图片/视频图标）、目标尺寸与 o.label，缺素材时不黑屏不白屏
 function drawPlaceholder(ctx, x, y, w, h, o = {}) {
   const K = o.K || {}, u = K.u || (SHORT / 1080), rad = o.radius ?? 18 * u;
-  const isG = o.kind === 'G', tag = isG ? '[G AI 素材]' : '[T 真实素材]';
+  const isG = o.kind === 'G', mtype = o.mediaType;
+  const defaultTag = mtype === 'video'
+    ? (isG ? '[G AI 视频]' : '[T 实拍视频]')
+    : mtype === 'image'
+      ? (isG ? '[G AI 生图]' : '[T 真实图片]')
+      : (isG ? '[G AI 素材]' : '[T 真实素材]');
+  const tag = o.tag || defaultTag;
   const accent = K.a ? K.a(.65) : (isG ? 'rgba(176,132,255,.72)' : 'rgba(72,216,172,.72)');
   const accentSoft = K.a ? K.a(.14) : (isG ? 'rgba(176,132,255,.14)' : 'rgba(72,216,172,.14)');
   const ink = K.ink || '#F2F5FA', muted = K.muted || 'rgba(242,245,250,.66)';
@@ -852,23 +858,54 @@ function drawPlaceholder(ctx, x, y, w, h, o = {}) {
   ctx.font = `700 ${tagPx}px ${mono}`;
   const tw = Math.min(w - 24 * u, ctx.measureText(tag).width + 28 * u), th = tagPx * 1.75;
   const hasLabel = Boolean(o.label) && !compact;
-  const badgeY = cy - (hasLabel ? 42 * u : 16 * u) - th / 2;
+  const hasIcon = !compact && (mtype === 'video' || mtype === 'image');
+  const badgeY = cy - (hasLabel ? (hasIcon ? 24 : 42) * u : 16 * u) - th / 2;
+  if (hasIcon) {
+    const iw = (mtype === 'video' ? 48 : 44) * u, ih = 32 * u;
+    const ix = cx - iw / 2, iy = badgeY - ih - 14 * u;
+    ctx.save();
+    rr(ctx, ix, iy, iw, ih, 7 * u);
+    ctx.fillStyle = accentSoft; ctx.fill();
+    ctx.strokeStyle = accent; ctx.lineWidth = Math.max(1.5, 2 * u); ctx.stroke();
+    ctx.fillStyle = accent;
+    if (mtype === 'video') {
+      ctx.beginPath();
+      ctx.moveTo(cx - 5 * u, iy + 8 * u);
+      ctx.lineTo(cx + 8 * u, iy + ih / 2);
+      ctx.lineTo(cx - 5 * u, iy + ih - 8 * u);
+      ctx.closePath();
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.arc(ix + iw * .3, iy + ih * .34, 3.5 * u, 0, TAU);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(ix + 7 * u, iy + ih - 6 * u);
+      ctx.lineTo(ix + iw * .46, iy + ih * .46);
+      ctx.lineTo(ix + iw * .66, iy + ih * .68);
+      ctx.lineTo(ix + iw * .8, iy + ih * .52);
+      ctx.lineTo(ix + iw - 7 * u, iy + ih - 6 * u);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
   rr(ctx, cx - tw / 2, badgeY, tw, th, th / 2);
   ctx.fillStyle = accentSoft; ctx.fill();
   ctx.strokeStyle = accent; ctx.lineWidth = Math.max(1, 1.4 * u); ctx.stroke();
-  ctx.fillStyle = K.hi || ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.fillText(tag, cx, badgeY + th / 2);
   if (hasLabel) {
     const lblPx = Math.round(clamp(Math.min(w, h) * .048, 20 * u, 32 * u));
     ctx.font = `700 ${lblPx}px ${head}`;
     ctx.fillStyle = ink;
     const lines = wrapCJK(ctx, String(o.label), w * .84).slice(0, 2);
-    lines.forEach((ln, i) => ctx.fillText(ln, cx, cy + (12 + i * (lblPx / u * 1.35)) * u));
+    lines.forEach((ln, i) => ctx.fillText(ln, cx, cy + ((hasIcon ? 24 : 12) + i * (lblPx / u * 1.35)) * u));
   }
   const dimTxt = `${Math.round(w)} × ${Math.round(h)}`;
   ctx.font = `600 ${Math.round((compact ? 14 : 18) * u)}px ${mono}`;
   ctx.fillStyle = muted;
-  ctx.fillText(dimTxt, cx, hasLabel ? cy + Math.min(h * .32, 92 * u) : cy + 24 * u);
+  ctx.fillText(dimTxt, cx, hasLabel ? cy + Math.min(h * .36, (hasIcon ? 104 : 92) * u) : cy + 24 * u);
   ctx.restore();
   rr(ctx, x, y, w, h, rad);
   ctx.setLineDash([10 * u, 8 * u]);

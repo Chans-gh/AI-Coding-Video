@@ -30,7 +30,7 @@ _MEDIA = REPO_DIR / "media.json"
 LISTED = json.loads(_MEDIA.read_text(encoding="utf-8"))["files"] if _MEDIA.exists() else {}
 FONTSRC = Path(os.environ.get("FONTSRC") or SAMPLES / "node_modules" / "@fontsource")
 
-VERSION = "v21 · 2026-11-23"
+VERSION = "v22 · 2026-11-27"
 CASE_ORDER = ["news-artemis", "course-first-video", "shop-handbag"]  # 「真实应用」卡片的先后：第 1、2、3 支
 REPO = "https://github.com/Chans-gh/AI-Coding-Video"
 BRANCH = "main"
@@ -270,25 +270,82 @@ def pack_names():
         has_video(d / "demo" / f"{d.name}-{a[0]}-16x9.mp4", f"pack-{d.name}-{a[0]}-16x9.mp4") for a in pack_accents(d.name)))
 
 
+def pack_has_media(n):
+    """风格包启用了媒体插槽且各切换色的有素材版演示片（<包>-<键>-media-16x9.mp4）已就位"""
+    m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
+    if not (isinstance(m.get("media"), dict) and m["media"].get("enabled")):
+        return False
+    return all(has_video(PACKS / n / "demo" / f"{n}-{a[0]}-media-16x9.mp4", f"pack-{n}-{a[0]}-media-16x9.mp4") for a in pack_accents(n))
+
+
+ICON_PURE = '<svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 6L3 10l4 4M13 6l4 4-4 4M11 4l-2 12"/></svg>'
+ICON_MEDIA = '<svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2.2"/><path d="M8.5 7.5l4.5 2.5-4.5 2.5V7.5z" fill="currentColor" stroke="none"/></svg>'
+
+
+def _pack_parts_html(parts_list, max_show=9):
+    """风格包右侧默认只露精选部件（有媒体插槽时全部保留，再均分抽样纯段部件），其余折叠进展开按钮"""
+    media_idxs = [i for i, p in enumerate(parts_list) if "（媒体" in p[0] or p[1].startswith("Media ")]
+    if len(parts_list) <= max_show:
+        featured = set(range(len(parts_list)))
+    else:
+        seg_idxs = [i for i, p in enumerate(parts_list)
+                    if i not in media_idxs and len(p) > 2 and p[2] == "seg" and "（叠加）" not in p[0]]
+        target = max_show if media_idxs else 8
+        need = max(1, target - len(media_idxs))
+        if len(seg_idxs) <= need:
+            picked = list(seg_idxs)
+        elif need == 1:
+            picked = [seg_idxs[0]]
+        else:
+            picked = [seg_idxs[round(j * (len(seg_idxs) - 1) / (need - 1))] for j in range(need)]
+        featured = set(media_idxs) | set(picked)
+    items = []
+    for i, (z, e, *k) in enumerate(parts_list):
+        is_media = i in media_idxs
+        classes = []
+        if is_media:
+            classes.append("is-media")
+        if i not in featured:
+            classes.append("pack-part-extra")
+        cls_attr = f' class="{" ".join(classes)}"' if classes else ""
+        hid_attr = " hidden" if i not in featured else ""
+        label = both(z + ("（层）" if k == ["layer"] else ""), e + (" (layer)" if k == ["layer"] else ""))
+        items.append(f"<li{cls_attr}{hid_attr}>{label}</li>")
+    hidden_count = len(parts_list) - len(featured)
+    if hidden_count > 0:
+        items.append(
+            f'<li class="pack-more"><button type="button" class="pack-parts-toggle" aria-expanded="false">'
+            f'<span class="t-open">{both(f"+ 其余 {hidden_count} 项", f"+ {hidden_count} more")}</span>'
+            f'<span class="t-close" hidden>{both("收起", "Less")}</span>'
+            f'</button></li>'
+        )
+    return "".join(items)
+
+
 def packs_html(names):
-    """「风格包」一节：每个包一块，左边横屏演示片（下面一排标签切换视频：品牌色，或 meta.json 的 switch 写的维度），右边部件和链接"""
+    """「风格包」一节：每个包一块，左边横屏演示片（下面一排标签切换视频：品牌色，或 meta.json 的 switch 写的维度；支持有素材版的另加无/有素材两版切换），右边部件和链接"""
     out = []
     for n in names:
         m = json.loads((PACKS / n / "meta.json").read_text(encoding="utf-8"))
-        parts = "".join(f"<li>{both(z + ('（层）' if k == ['layer'] else ''), e + (' (layer)' if k == ['layer'] else ''))}</li>"
-                        for z, e, *k in m["parts"])     # 第三项 seg 段部件 / layer 层（贯穿全片、不占段），旧包没有这一项
+        parts = _pack_parts_html(m["parts"])
         acc = pack_accents(n)
         sw = m.get("switch")
         lab_z, lab_e = ("换" + sw[0], sw[1]) if sw else ("换品牌色", "Brand color")
         tabs = "".join(f'<button type="button" data-acc="{k}" aria-pressed="{str(i == 0).lower()}"'
                        + (f' style="--acc:{v}"><i aria-hidden="true"></i>' if not sw else '>')
                        + f'{both(z, e)}</button>' for i, (k, z, e, v) in enumerate(acc))
+        modes = ""
+        if pack_has_media(n):
+            modes = (f'\n      <div class="pack-modes" role="group" aria-label="素材版本 Media mode">'
+                     f'<button type="button" data-mode="pure" aria-pressed="true">{ICON_PURE}{both("无素材版", "Pure code")}</button>'
+                     f'<button type="button" data-mode="media" aria-pressed="false">{ICON_MEDIA}{both("有素材版", "With media slots")}</button>'
+                     f'</div>')
         out.append(f'''    <article class="pack">
       <div class="pack-left">
       <div class="pack-screen">
         <video class="pack-video" data-id="pack-{n}-{acc[0][0]}" data-pack="{n}" data-src="media/s/pack-{n}-{acc[0][0]}-16x9.mp4" data-poster="media/s/pack-{n}-{acc[0][0]}-16x9.jpg" muted loop playsinline controls preload="none" aria-label="{esc(m["name"])}"></video>
       </div>
-      <div class="pack-tabs" role="group" aria-label="{esc(lab_z[1:] + " " + lab_e)}"><span class="lab">{both(lab_z, lab_e)}</span>{tabs}</div>
+      <div class="pack-tabs" role="group" aria-label="{esc(lab_z[1:] + " " + lab_e)}"><span class="lab">{both(lab_z, lab_e)}</span>{tabs}</div>{modes}
       </div>
       <div class="pack-body">
         <div class="card-meta"><code>{n}</code><h4>{both(m["name"] + "风格包", m["en_name"] + " pack")}</h4></div>
@@ -618,7 +675,9 @@ def copy_media(ids, packs):
     missing = 0   # 本地没下载的视频不拷，本地预览就只有静帧；线上发布时从 Release 下载
     for src, dst in [(SAMPLES / sid / f"{sid}-{ar}.{ext}", f"{sid}-{ar}.{ext}") for sid in ids for ar in ("16x9", "9x16") for ext in ("mp4", "jpg")] + \
             [(PACKS / n / "demo" / f"{n}-{a[0]}-{ar}.{ext}", f"pack-{n}-{a[0]}-{ar}.{ext}")
-             for n in packs for a in pack_accents(n) for ar in ("16x9",) for ext in ("mp4", "jpg")]:
+             for n in packs for a in pack_accents(n) for ar in ("16x9",) for ext in ("mp4", "jpg")] + \
+            [(PACKS / n / "demo" / f"{n}-{a[0]}-media-{ar}.{ext}", f"pack-{n}-{a[0]}-media-{ar}.{ext}")
+             for n in packs if pack_has_media(n) for a in pack_accents(n) for ar in ("16x9",) for ext in ("mp4", "jpg")]:
         if src.exists():
             shutil.copy2(src, media / dst)
         else:

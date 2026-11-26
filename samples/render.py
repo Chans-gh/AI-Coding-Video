@@ -132,8 +132,8 @@ def where(sid):
 
 
 def stem(sid):
-    """产出文件名的前缀：样片用编号，风格包用「包名-颜色」，同画幅的切换片段（pack:<名字>@<键>.clip）是「包名-键-clip」"""
-    return sid[5:].replace("@", "-").replace(".clip", "-clip") if sid.startswith("pack:") else sid
+    """产出文件名的前缀：样片用编号，风格包用「包名-颜色」，同画幅的切换片段（pack:<名字>@<键>.clip）是「包名-键-clip」，有素材版演示是「包名-键-media」"""
+    return sid[5:].replace("@", "-").replace(".clip", "-clip").replace(".media", "-media") if sid.startswith("pack:") else sid
 
 
 def pack_meta(pack):
@@ -158,10 +158,12 @@ def variant_query(pack, key):
 
 def demo_files(sid, ar):
     """风格包演示片这一支用哪个场景和声音：(场景名, 声音文件名)。写了 full 的包：每种切换在 full 画幅出完整演示片，
-    另一画幅出 15 秒切换片段（clip）。样片和没写 full 的包都是 scene、sound.py"""
+    另一画幅出 15 秒切换片段（clip）；.media 后缀使用有素材版演示（media / media_sound.py）。"""
     if sid.startswith("pack:"):
         if sid.endswith(".clip"):                 # meta.json 的 clip 和 full 同画幅：切换片段写成 pack:<名字>@<键>.clip
             return "clip", "clip_sound.py"
+        if sid.endswith(".media"):
+            return "media", "media_sound.py"
         m = pack_meta(sid[5:].partition("@")[0])
         if m.get("full") and ar != m["full"] and "clip" not in m:
             return "clip", "clip_sound.py"
@@ -179,7 +181,7 @@ def allowed(sid, ar):
 
 def is_full(sid, ar):
     """风格包的完整演示片（20–90 秒、每个视频不超过 20 MB）"""
-    return sid.startswith("pack:") and bool(pack_meta(sid[5:].split("@")[0]).get("full")) and demo_files(sid, ar)[0] == "scene"
+    return sid.startswith("pack:") and bool(pack_meta(sid[5:].split("@")[0]).get("full")) and demo_files(sid, ar)[0] in ("scene", "media")
 
 
 def expand(sid):
@@ -225,7 +227,7 @@ class Page:
             lambda u: os.path.isfile(unquote(urlparse(u).path)) if isinstance(u, str) and u.startswith("file://") else True,
         )
         base, _, col = sid.partition("@")
-        col = col.removesuffix(".clip")
+        col = col.removesuffix(".clip").removesuffix(".media")
         if base.startswith("pack:"):
             pdir = pack_dir(base[5:])
             if pdir.parent != PACKS:

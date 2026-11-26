@@ -281,7 +281,20 @@ MEDIA_SLOTS_JS = """// 插件式媒体插槽（融合族群：{family}，来源�
     ctx.restore();
   }}
 
-  // 2) mediaFrame（整屏）：画框展示（素材占 75%–85% 主舞台 + 眉题/标题 + 底角出处标；竖版留出 H*0.80 底部字幕安全区）
+  function drawKicker(ctx, K, text, x, y) {{
+    if (!text) return;
+    const u = K.u || SHORT / 1080;
+    ctx.save();
+    ctx.fillStyle = K.a ? K.a(1) : '#2BD99F';
+    ctx.fillRect(x, y - 9 * u, 28 * u, 3 * u);
+    ctx.font = F(K, 700, 21, K.mono || "'JetBrains Mono'");
+    if ('letterSpacing' in ctx) ctx.letterSpacing = `${{3.5 * u}}px`;
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.fillText(String(text).toUpperCase(), x + 40 * u, y);
+    ctx.restore();
+  }}
+
+  // 2) mediaFrame（整屏）：16:9 漂浮舞台画框，垂直居中
   function mediaFrame(ctx, K, t, o = {{}}) {{
     const u = K.u || SHORT / 1080, p = eOutCubic(clamp(t / .55));
     const hasHead = Boolean(o.kicker || o.title);
@@ -289,35 +302,30 @@ MEDIA_SLOTS_JS = """// 插件式媒体插槽（融合族群：{family}，来源�
     ctx.globalAlpha = p;
     let fx, fy, fw, fh;
     if (LAND) {{
-      const padX = 110 * u;
-      let topY = 92 * u;
+      const midY = H * .465;
+      fw = 1320 * u; fh = 640 * u;
+      const headH = hasHead ? ((o.kicker && o.title ? 92 : o.title ? 62 : 36) * u) : 0;
+      let topY = midY - (headH + fh) / 2 + (1 - p) * 20 * u;
+      fx = (W - fw) / 2;
       if (hasHead) {{
-        if (o.kicker) {{
-          ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 700, 22, K.mono);
-          ctx.fillText(String(o.kicker).toUpperCase(), padX, 114 * u);
-        }}
+        if (o.kicker) {{ drawKicker(ctx, K, o.kicker, fx, topY + 20 * u); topY += 34 * u; }}
         if (o.title) {{
           ctx.fillStyle = K.ink; ctx.font = F(K, 900, 46);
-          ctx.fillText(String(o.title), padX, (o.kicker ? 168 : 136) * u, W - padX * 2);
+          ctx.fillText(String(o.title), fx, topY + 38 * u, fw);
+          topY += 58 * u;
         }}
-        topY = (o.kicker && o.title ? 196 : 164) * u;
       }}
-      fx = padX; fy = topY + (1 - p) * 20 * u;
-      fw = W - padX * 2; fh = H - topY - 126 * u;
+      fy = topY;
     }} else {{
-      const padX = 68 * u;
-      let topY = H * .11;
+      const padX = 64 * u;
+      let topY = H * .108;
       if (hasHead) {{
-        if (o.kicker) {{
-          ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 700, 24, K.mono);
-          ctx.fillText(String(o.kicker).toUpperCase(), padX, topY + 24 * u);
-          topY += 46 * u;
-        }}
+        if (o.kicker) {{ drawKicker(ctx, K, o.kicker, padX, topY + 22 * u); topY += 44 * u; }}
         if (o.title) {{
           ctx.fillStyle = K.ink; ctx.font = F(K, 900, 50);
           const lines = wrapCJK(ctx, String(o.title), W - padX * 2).slice(0, 2);
           lines.forEach((ln, i) => ctx.fillText(ln, padX, topY + (44 + i * 62) * u));
-          topY += (lines.length * 62 + 28) * u;
+          topY += (lines.length * 62 + 24) * u;
         }}
       }}
       const maxBot = H * .775;
@@ -329,7 +337,7 @@ MEDIA_SLOTS_JS = """// 插件式媒体插槽（融合族群：{family}，来源�
     return {{ media: [fx, fy, fw, fh] }};
   }}
 
-  // 3) mediaSplit（整屏）：双栏分屏（横版左右 55:45，竖版上下 52:48 严守 y <= H*0.78，信息槽支持 text / metric / list）
+  // 3) mediaSplit（整屏）：16:9 媒体窗 + 无死区垂直居中排版列（text / metric / 叠层列表，严守底部安全区）
   function mediaSplit(ctx, K, t, o = {{}}) {{
     const u = K.u || SHORT / 1080, p = eOutCubic(clamp(t / .55));
     const mediaSecond = o.mediaSide === 'right' || o.mediaSide === 'bottom';
@@ -337,87 +345,101 @@ MEDIA_SLOTS_JS = """// 插件式媒体插槽（融合族群：{family}，来源�
     ctx.globalAlpha = p;
     let mx, my, mw, mh, ix, iy, iw, ih;
     if (LAND) {{
-      const padX = 88 * u, topY = 122 * u, botY = H - 134 * u, gap = 44 * u;
-      const totW = W - padX * 2 - gap, wM = totW * .55, wI = totW * .45, hAll = botY - topY;
-      if (!mediaSecond) {{ mx = padX; ix = padX + wM + gap; }}
-      else {{ ix = padX; mx = padX + wI + gap; }}
-      my = topY + (1 - p) * 18 * u; mh = hAll;
-      iy = topY + (1 - p) * 18 * u; ih = hAll;
-      mw = wM; iw = wI;
+      const midY = H * .465, gap = 64 * u;
+      mw = 950 * u; mh = 576 * u; iw = 720 * u; ih = mh;
+      const padX = (W - mw - iw - gap) / 2;
+      if (!mediaSecond) {{ mx = padX; ix = padX + mw + gap; }}
+      else {{ ix = padX; mx = padX + iw + gap; }}
+      my = midY - mh / 2 + (1 - p) * 18 * u;
+      iy = midY - ih / 2 + (1 - p) * 18 * u;
     }} else {{
-      const padX = 68 * u, topY = H * .105, botY = H * .775, gap = 30 * u;
-      const totH = botY - topY - gap, hM = totH * .52, hI = totH * .48, wAll = W - padX * 2;
-      if (!mediaSecond) {{ my = topY; iy = topY + hM + gap; }}
-      else {{ iy = topY; my = topY + hI + gap; }}
-      mx = padX; mw = wAll; mh = hM;
-      ix = padX; iw = wAll; ih = hI;
+      const padX = 64 * u, topY = H * .108, botY = H * .772, gap = 34 * u;
+      mx = padX; ix = padX;
+      mw = W - padX * 2; mh = 536 * u; iw = mw; ih = Math.max(260 * u, botY - topY - mh - gap);
+      if (!mediaSecond) {{ my = topY; iy = topY + mh + gap; }}
+      else {{ iy = topY; my = topY + ih + gap; }}
       my += (1 - p) * 14 * u; iy += (1 - p) * 14 * u;
     }}
 
     drawMediaBox(ctx, K, t, mx, my, mw, mh, o);
 
-    // 信息槽卡片（严格裁切，绝不溢出）
-    ctx.save();
-    rr(ctx, ix, iy, iw, ih, 22 * u);
-    ctx.fillStyle = K.panel || 'rgba(255,255,255,.06)'; ctx.fill();
-    ctx.strokeStyle = K.a ? K.a(.28) : 'rgba(255,255,255,.18)'; ctx.lineWidth = 1.6 * u; ctx.stroke();
-    rr(ctx, ix, iy, iw, ih, 22 * u); ctx.clip();
+    const cx0 = ix, cw = iw, kind = o.infoKind || 'text';
+    const kickerH = o.kicker ? (LAND ? 40 : 34) * u : 0;
 
-    const pad = (LAND ? 42 : 34) * u, cx0 = ix + pad, cw = iw - pad * 2;
-    let cy = iy + pad;
-    const kind = o.infoKind || 'text';
-    if (o.kicker) {{
-      ctx.fillStyle = K.a ? K.a(1) : '#2BD99F';
-      ctx.fillRect(cx0, cy, 8 * u, 28 * u);
-      ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 700, 20, K.mono);
-      ctx.fillText(String(o.kicker).toUpperCase(), cx0 + 20 * u, cy + 22 * u, cw - 20 * u);
-      cy += 50 * u;
-    }}
     if (kind === 'metric') {{
+      const numPx = LAND ? 200 : 156, numH = (LAND ? 178 : 140) * u, ruleH = 26 * u;
+      ctx.font = F(K, 700, LAND ? 36 : 30);
+      const lblLines = o.label ? wrapCJK(ctx, String(o.label), cw).slice(0, 2) : [];
+      const lblLH = (LAND ? 48 : 40) * u, lblH = lblLines.length * lblLH;
+      let cy = iy + Math.max(0, (ih - (kickerH + numH + ruleH + lblH)) / 2);
+      if (o.kicker) {{ drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u); cy += kickerH; }}
       const val = (o.from || 0) + ((o.to ?? 100) - (o.from || 0)) * eOutCubic(clamp(t / .85));
-      const numTxt = val.toFixed(o.digits || 0) + (o.suffix || '');
+      const numTxt = (o.prefix || '') + val.toFixed(o.digits || 0) + (o.suffix || '');
+      ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 400, numPx, K.num || "'Bebas Neue'");
+      ctx.fillText(numTxt, cx0, cy + numH - 16 * u, cw);
+      cy += numH;
       ctx.fillStyle = K.a ? K.a(1) : '#2BD99F';
-      ctx.font = F(K, 400, LAND ? 138 : 116, K.num || "'Bebas Neue'");
-      ctx.fillText(numTxt, cx0, cy + (LAND ? 124 : 104) * u, cw);
-      cy += (LAND ? 162 : 136) * u;
-      if (o.label) {{
-        ctx.fillStyle = K.ink; ctx.font = F(K, 700, LAND ? 32 : 28);
-        wrapCJK(ctx, String(o.label), cw).slice(0, 2).forEach((ln, i) => ctx.fillText(ln, cx0, cy + i * 40 * u));
+      ctx.fillRect(cx0, cy + 4 * u, 140 * u * eOutCubic(clamp(t / .5)), 4 * u);
+      cy += ruleH + 10 * u;
+      if (lblLines.length) {{
+        ctx.fillStyle = K.ink; ctx.font = F(K, 700, LAND ? 36 : 30);
+        lblLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 30 * u + i * lblLH));
       }}
     }} else if (kind === 'list') {{
-      if (o.title) {{
-        ctx.fillStyle = K.ink; ctx.font = F(K, 900, LAND ? 42 : 38);
-        const tl = wrapCJK(ctx, String(o.title), cw).slice(0, 2);
-        tl.forEach((ln, i) => ctx.fillText(ln, cx0, cy + (36 + i * 50) * u));
-        cy += (tl.length * 50 + 24) * u;
+      const tPx = LAND ? 46 : 38, tLH = (LAND ? 58 : 48) * u;
+      ctx.font = F(K, 900, tPx);
+      const tLines = o.title ? wrapCJK(ctx, String(o.title), cw).slice(0, 2) : [];
+      const titleH = tLines.length ? (tLines.length * tLH + 20 * u) : 0;
+      const items = (o.items || []).slice(0, 4), rowH = (LAND ? 70 : 58) * u, rowGap = (LAND ? 14 : 10) * u;
+      const listH = items.length ? (items.length * rowH + (items.length - 1) * rowGap) : 0;
+      let cy = iy + Math.max(0, (ih - (kickerH + titleH + listH)) / 2);
+      if (o.kicker) {{ drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u); cy += kickerH; }}
+      if (tLines.length) {{
+        ctx.fillStyle = K.ink; ctx.font = F(K, 900, tPx);
+        tLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 38 * u + i * tLH));
+        cy += titleH;
       }}
-      const items = (o.items || []).slice(0, 4);
-      const step = Math.min(72 * u, Math.max(46 * u, (iy + ih - pad - cy) / Math.max(1, items.length)));
       items.forEach((it, idx) => {{
         const ip = eOutCubic(clamp((t - idx * .12) / .4));
-        ctx.save(); ctx.globalAlpha *= ip;
-        rr(ctx, cx0, cy, 34 * u, 34 * u, 10 * u);
+        const ry = cy + (1 - ip) * 12 * u;
+        ctx.save(); ctx.globalAlpha *= clamp(ip + .15);
+        rr(ctx, cx0, ry, cw, rowH, 14 * u);
+        ctx.fillStyle = K.panel || 'rgba(255,255,255,.06)'; ctx.fill();
+        ctx.strokeStyle = K.a ? K.a(.28) : 'rgba(255,255,255,.18)'; ctx.lineWidth = 1.4 * u; ctx.stroke();
+        const bx = cx0 + 20 * u, by = ry + (rowH - 32 * u) / 2;
+        rr(ctx, bx, by, 32 * u, 32 * u, 9 * u);
         ctx.fillStyle = K.a ? K.a(.24) : 'rgba(255,255,255,.15)'; ctx.fill();
-        ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 700, 18, K.mono);
-        ctx.textAlign = 'center'; ctx.fillText(String(idx + 1), cx0 + 17 * u, cy + 24 * u);
-        ctx.textAlign = 'left'; ctx.fillStyle = K.ink; ctx.font = F(K, 600, LAND ? 26 : 24);
-        ctx.fillText(String(it), cx0 + 48 * u, cy + 26 * u, cw - 48 * u);
+        ctx.fillStyle = K.hi || K.ink; ctx.font = F(K, 700, 16, K.mono);
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(idx + 1).padStart(2, '0'), bx + 16 * u, by + 17 * u);
+        ctx.textAlign = 'left'; ctx.fillStyle = K.ink; ctx.font = F(K, 600, LAND ? 25 : 22);
+        ctx.fillText(String(it), bx + 46 * u, ry + rowH / 2 + 1 * u, cw - 80 * u);
         ctx.restore();
-        cy += step;
+        cy += rowH + rowGap;
       }});
     }} else {{
-      if (o.title) {{
-        ctx.fillStyle = K.ink; ctx.font = F(K, 900, LAND ? 48 : 42);
-        const tl = wrapCJK(ctx, String(o.title), cw).slice(0, 3);
-        tl.forEach((ln, i) => ctx.fillText(ln, cx0, cy + (42 + i * (LAND ? 60 : 52)) * u));
-        cy += (tl.length * (LAND ? 60 : 52) + 28) * u;
+      const tPx = LAND ? 58 : 44, tLH = (LAND ? 74 : 56) * u;
+      ctx.font = F(K, 900, tPx);
+      const tLines = o.title ? wrapCJK(ctx, String(o.title), cw).slice(0, 3) : [];
+      const titleH = tLines.length ? (tLines.length * tLH + 14 * u) : 0;
+      const ruleH = 26 * u, bPx = LAND ? 29 : 24, bLH = (LAND ? 44 : 36) * u;
+      ctx.font = F(K, 400, bPx);
+      const bLines = o.body ? wrapCJK(ctx, String(o.body), cw).slice(0, LAND ? 3 : 2) : [];
+      const bodyH = bLines.length ? (bLines.length * bLH) : 0;
+      let cy = iy + Math.max(0, (ih - (kickerH + titleH + ruleH + bodyH)) / 2);
+      if (o.kicker) {{ drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u); cy += kickerH; }}
+      if (tLines.length) {{
+        ctx.fillStyle = K.ink; ctx.font = F(K, 900, tPx);
+        tLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 48 * u + i * tLH));
+        cy += titleH;
       }}
-      if (o.body) {{
-        ctx.fillStyle = K.muted || 'rgba(244,246,250,.72)'; ctx.font = F(K, 400, LAND ? 27 : 25);
-        wrapCJK(ctx, String(o.body), cw).slice(0, LAND ? 4 : 3).forEach((ln, i) => ctx.fillText(ln, cx0, cy + i * 38 * u));
+      ctx.fillStyle = K.a ? K.a(1) : '#2BD99F';
+      ctx.fillRect(cx0, cy + 4 * u, 92 * u * eOutCubic(clamp(t / .5)), 4 * u);
+      cy += ruleH + 10 * u;
+      if (bLines.length) {{
+        ctx.fillStyle = K.muted || 'rgba(244,246,250,.72)'; ctx.font = F(K, 400, bPx);
+        bLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 22 * u + i * bLH));
       }}
     }}
-    ctx.restore();
     ctx.restore();
     return {{ media: [mx, my, mw, mh], info: [ix, iy, iw, ih] }};
   }}

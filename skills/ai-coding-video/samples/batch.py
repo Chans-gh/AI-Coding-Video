@@ -136,7 +136,8 @@ def task(sid, ar, quick):
 
 def shot_times(sid, dur):
     """完整演示片每个镜头取哪一刻看：有 demo/segments.json 就取每段的 3/4 处（入场动画已经走完），没有就每 2 秒一帧"""
-    f = R.where(sid) / "segments.json"
+    fn = "media_segments.json" if sid.endswith(".media") and (R.where(sid) / "media_segments.json").exists() else "segments.json"
+    f = R.where(sid) / fn
     if not f.exists():
         return [k * 2.0 + 1.0 for k in range(int((dur - 1.0) // 2) + 1)]
     at, ts = 0.0, []

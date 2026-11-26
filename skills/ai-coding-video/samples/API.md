@@ -121,7 +121,7 @@ SVG / HTML 画面写 `dom: true`，画在全局 `STAGE`（盖在画布上的 W×
 - `drawContain(ctx, src, x, y, w, h, o = {})` — 把图片或视频完整放进 (x,y,w,h)，按比例缩放、居中；返回实际画的 [x, y, w, h]
 - `videoAt(v, lt, o = {})` — 确定性视频取帧：把局部时间 lt 按 o.mode（'clamp' 末帧定格 / 'loop' 循环 / 'pingpong' 往返，默认 'clamp'）、o.speed（默认 1）、o.offset（默认 0）映射到 [0, v.dur - 1/FPS]，await v.at(mt) 后返回 v.el
 - `loadMediaSafe(name, kind)` — 安全载入图片或视频（kind 为 'image' 或 'video'，省略时按扩展名判断）：name 为空或文件不存在时返回 null（不抛异常阻断渲染，交由 drawPlaceholder 渲染占位框）
-- `drawPlaceholder(ctx, x, y, w, h, o = {})` — 在 (x,y,w,h) 绘制符合当前主题 K 的媒体虚线占位框：标出 [T 真实素材] / [G AI 素材]、目标尺寸与 o.label，缺素材时不黑屏不白屏
+- `drawPlaceholder(ctx, x, y, w, h, o = {})` — 在 (x,y,w,h) 绘制符合当前主题 K 的媒体虚线占位框：标出 [T 真实素材] / [G AI 素材]（支持 mediaType: 'image' | 'video' 区分图片/视频图标）、目标尺寸与 o.label，缺素材时不黑屏不白屏
 - `cueAt(A, t)` — t 时刻该显示的字幕：A 是 loadAssets() 的结果，旁白素材的 lines 是 [{t0, t1, text}]（相对这段旁白的起点 at），返回那一条 {text, p 进度 0–1, t0, t1}，没有就 null
 - `cueTime(A, kw, fallback = Infinity)` — 旁白说到关键词 kw 的时刻（秒）：在字幕行里找，按字数在这一行的起止之间线性估计；找不到返回 fallback（默认 Infinity）
 - `caption(ctx, text, o = {})` — 字幕条：文字居中，按 maxW 折行，画在 y（底边）上方；o：{size, font, color, bg 底色（null 不画底）, stroke 描边色, maxW, y, align}；返回字幕块高度

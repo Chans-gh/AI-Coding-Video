@@ -76,7 +76,13 @@ def upload(use_gh):
     if big and not use_gh:                                   # 中转分支经 git 推送，GitHub 拒收 100 MB 以上的单个文件
         sys.exit(f"✗ {' '.join(big)} 超过 100 MB，中转分支推不上去：先压小，或用 --gh 直接传")
     if use_gh:
-        subprocess.run(["gh", "release", "upload", TAG, "--clobber", "-R", REPO, *[str(p) for p, _ in todo.values()]], check=True)
+        with tempfile.TemporaryDirectory() as d:
+            staged = []
+            for name, (p, _) in todo.items():
+                dst = Path(d) / name
+                dst.symlink_to(p.resolve())
+                staged.append(str(dst))
+            subprocess.run(["gh", "release", "upload", TAG, "--clobber", "-R", REPO, *staged], check=True)
     else:
         # 中转提交只含工作流文件和要传的视频，没有父提交：推送时只发新视频，删掉分支后不留在仓库历史里
         with tempfile.TemporaryDirectory() as d:

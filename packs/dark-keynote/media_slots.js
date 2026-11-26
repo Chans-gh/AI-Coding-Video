@@ -58,6 +58,20 @@
     ctx.restore();
   }
 
+  function drawKicker(ctx, K, text, x, y) {
+    if (!text) return;
+    const u = K.u || SHORT / 1080;
+    ctx.save();
+    ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
+    ctx.fillRect(x, y - 9 * u, 30 * u, 3 * u);
+    ctx.font = F(K, 700, 22, K.mono || "'JetBrains Mono'");
+    if ('letterSpacing' in ctx) ctx.letterSpacing = `${3.5 * u}px`;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText(String(text).toUpperCase(), x + 42 * u, y);
+    ctx.restore();
+  }
+
   function drawDarkTechMedia(ctx, K, t, x, y, w, h, o = {}) {
     const u = K.u || SHORT / 1080, rad = 24 * u;
     const media = resolveSrc(o.src);
@@ -65,8 +79,18 @@
     const topBar = hasChrome ? 46 * u : 0;
 
     ctx.save();
-    // 深色科技玻璃外框
+    // 舞台景深光晕 + 玻璃卡片阴影
+    const aura = ctx.createRadialGradient(x + w / 2, y + h / 2, Math.min(w, h) * .15, x + w / 2, y + h / 2, Math.max(w, h) * .7);
+    aura.addColorStop(0, K.a ? K.a(.14) : 'rgba(139,123,255,.14)');
+    aura.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = aura;
+    ctx.fillRect(x - w * .12, y - h * .12, w * 1.24, h * 1.24);
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,.5)';
+    ctx.shadowBlur = 40 * u;
+    ctx.shadowOffsetY = 16 * u;
     drawGlass(ctx, K, x, y, w, h, 24);
+    ctx.restore();
     if (hasChrome) {
       [1, .55, .25].forEach((al, i) => {
         ctx.fillStyle = K.a ? K.a(al) : `rgba(139,123,255,${al})`;
@@ -74,7 +98,7 @@
         ctx.arc(x + 28 * u + i * 22 * u, y + 23 * u, 5.5 * u, 0, TAU);
         ctx.fill();
       });
-      const tag = o.tag || (o.kind === 'G' ? 'AI GENERATED' : 'REAL MEDIA');
+      const tag = o.tag || (o.mediaType === 'video' ? (o.kind === 'G' ? 'AI VIDEO' : 'REAL VIDEO') : (o.kind === 'G' ? 'AI GENERATED' : 'REAL MEDIA'));
       ctx.fillStyle = K.muted || 'rgba(244,245,248,.6)';
       ctx.font = F(K, 700, 16, K.mono || "'JetBrains Mono'");
       ctx.textAlign = 'right';
@@ -95,7 +119,8 @@
 
     if (!media) {
       drawPlaceholder(ctx, ix, iy, iw, ih, {
-        K, kind: o.kind || 'T', label: o.placeholder || o.title || o.label || '待填入素材',
+        K, kind: o.kind || 'T', mediaType: o.mediaType, tag: o.placeholderTag,
+        label: o.placeholder || o.title || o.label || '待填入素材',
         radius: irad, t,
       });
     } else {
@@ -129,7 +154,7 @@
 
   // 1) mediaBg（层）：全幅氛围铺底，深色压罩 + 品牌色柔光 + 暗角，前景 100% 复用原有纯 C 部件
   function mediaBg(ctx, K, t, o = {}) {
-    const media = resolveSrc(o.src);
+    const u = K.u || SHORT / 1080, media = resolveSrc(o.src);
     const dim = clamp(o.dim ?? 0.6, 0, 0.88);
     const zoom = 1 + (o.zoom ?? 0.05) * clamp(t / 5);
     ctx.save();
@@ -138,6 +163,21 @@
     } else {
       ctx.fillStyle = K.bg0 || '#05050A';
       ctx.fillRect(0, 0, W, H);
+      if (o.placeholder) {
+        const step = Math.max(24, 36 * u);
+        ctx.strokeStyle = K.a ? K.a(.10) : 'rgba(255,255,255,.06)';
+        ctx.lineWidth = Math.max(1, 1.2 * u);
+        ctx.beginPath();
+        for (let d = -H; d < W + H; d += step) { ctx.moveTo(d, 0); ctx.lineTo(d - H, H); }
+        ctx.stroke();
+        ctx.save();
+        rr(ctx, 32 * u, 32 * u, W - 64 * u, H - 64 * u, 22 * u);
+        ctx.setLineDash([12 * u, 10 * u]);
+        ctx.strokeStyle = K.a ? K.a(.35) : 'rgba(255,255,255,.2)';
+        ctx.lineWidth = Math.max(1.5, 2 * u);
+        ctx.stroke();
+        ctx.restore();
+      }
     }
     const gr = ctx.createLinearGradient(0, 0, 0, H);
     gr.addColorStop(0, `rgba(5,5,10,${clamp(dim + .08, 0, .92)})`);
@@ -154,10 +194,29 @@
       ctx.fillRect(0, 0, W, H);
     }
     if (typeof vignette === 'function') vignette(ctx, .38);
+    if (!media && o.placeholder) {
+      const prefix = o.mediaType === 'video'
+        ? (o.kind === 'G' ? '▶ [G AI 视频铺底]' : '▶ [T 实拍视频铺底]')
+        : (o.kind === 'G' ? '[G AI 背景图铺底]' : '[T 真实背景图铺底]');
+      const badge = `${prefix} · ${o.placeholder} · ${Math.round(W)}×${Math.round(H)}`;
+      ctx.save();
+      ctx.globalAlpha = 0.82;
+      ctx.font = F(K, 700, 18, K.mono || "'JetBrains Mono'");
+      const tw = Math.min(W * .58, ctx.measureText(badge).width + 28 * u), th = 34 * u;
+      const bx = W - 56 * u - tw, by = 40 * u;
+      rr(ctx, bx, by, tw, th, th / 2);
+      ctx.fillStyle = 'rgba(8,10,18,.78)'; ctx.fill();
+      ctx.strokeStyle = K.a ? K.a(.55) : 'rgba(255,255,255,.32)';
+      ctx.lineWidth = 1.2 * u; ctx.stroke();
+      ctx.fillStyle = K.ink || '#F4F5F8';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(badge, bx + tw / 2, by + th / 2 + 1 * u, tw - 16 * u);
+      ctx.restore();
+    }
     ctx.restore();
   }
 
-  // 2) mediaFrame（整屏）：画框展示（素材占 75%–85% 主舞台 + 眉题/标题 + 暗色玻璃框与底角出处标）
+  // 2) mediaFrame（整屏）：16:9 漂浮舞台画框，垂直居中于品牌角标与字幕之间
   function mediaFrame(ctx, K, t, o = {}) {
     const u = K.u || SHORT / 1080, p = pop(t, .55);
     const hasHead = Boolean(o.kicker || o.title);
@@ -165,49 +224,45 @@
     ctx.globalAlpha = p;
     let fx, fy, fw, fh;
     if (LAND) {
-      const padX = 108 * u;
-      let topY = 98 * u;
+      const midY = H * .465;
+      fw = 1320 * u;
+      fh = 640 * u;
+      const headH = hasHead ? ((o.kicker && o.title ? 96 : o.title ? 66 : 38) * u) : 0;
+      const totalH = headH + fh;
+      let topY = midY - totalH / 2 + (1 - p) * 22 * u;
+      fx = (W - fw) / 2;
       if (hasHead) {
         if (o.kicker) {
-          ctx.save();
-          ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
-          ctx.font = F(K, 700, 22, K.mono);
-          if ('letterSpacing' in ctx) ctx.letterSpacing = `${4 * u}px`;
-          ctx.fillText(String(o.kicker).toUpperCase(), padX, 118 * u);
-          ctx.restore();
+          drawKicker(ctx, K, o.kicker, fx, topY + 22 * u);
+          topY += 36 * u;
+        }
+        if (o.title) {
+          ctx.fillStyle = K.ink || '#F4F5F8';
+          ctx.font = F(K, 900, 48);
+          ctx.textAlign = 'left';
+          ctx.fillText(String(o.title), fx, topY + 40 * u, fw);
+          topY += 60 * u;
+        }
+      }
+      fy = topY;
+    } else {
+      const padX = 68 * u;
+      let topY = H * .108;
+      if (hasHead) {
+        if (o.kicker) {
+          drawKicker(ctx, K, o.kicker, padX, topY + 22 * u);
+          topY += 44 * u;
         }
         if (o.title) {
           ctx.fillStyle = K.ink || '#F4F5F8';
           ctx.font = F(K, 900, 52);
-          ctx.fillText(String(o.title), padX, (o.kicker ? 176 : 142) * u, W - padX * 2);
-        }
-        topY = (o.kicker && o.title ? 204 : 168) * u;
-      }
-      fx = padX; fy = topY + (1 - p) * 28 * u;
-      fw = W - padX * 2; fh = H - topY - 156 * u;
-    } else {
-      const padX = 72 * u;
-      let topY = H * .105;
-      if (hasHead) {
-        if (o.kicker) {
-          ctx.save();
-          ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
-          ctx.font = F(K, 700, 24, K.mono);
-          if ('letterSpacing' in ctx) ctx.letterSpacing = `${4 * u}px`;
-          ctx.fillText(String(o.kicker).toUpperCase(), padX, topY + 24 * u);
-          ctx.restore();
-          topY += 46 * u;
-        }
-        if (o.title) {
-          ctx.fillStyle = K.ink || '#F4F5F8';
-          ctx.font = F(K, 900, 56);
           const lines = wrapCJK(ctx, String(o.title), W - padX * 2).slice(0, 2);
-          lines.forEach((ln, i) => ctx.fillText(ln, padX, topY + (48 + i * 68) * u));
-          topY += (lines.length * 68 + 26) * u;
+          lines.forEach((ln, i) => ctx.fillText(ln, padX, topY + (46 + i * 64) * u));
+          topY += (lines.length * 64 + 24) * u;
         }
       }
-      const maxBot = H * .78;
-      fx = padX; fy = topY + (1 - p) * 24 * u;
+      const maxBot = H * .775;
+      fx = padX; fy = topY + (1 - p) * 20 * u;
       fw = W - padX * 2; fh = Math.max(360 * u, maxBot - topY);
     }
     drawDarkTechMedia(ctx, K, t, fx, fy, fw, fh, o);
@@ -215,7 +270,7 @@
     return { x: fx, y: fy, w: fw, h: fh };
   }
 
-  // 3) mediaSplit（整屏）：双栏分屏（横版左右 55:45 / 竖版上下 52:48 严守 y <= H*0.78，信息槽支持 text / metric / list）
+  // 3) mediaSplit（整屏）：16:9 漂浮媒体窗 + 无死区垂直居中排版列（text / glowing metric / 叠层玻璃 list）
   function mediaSplit(ctx, K, t, o = {}) {
     const u = K.u || SHORT / 1080, p = pop(t, .55);
     const mediaSecond = o.mediaSide === 'right' || o.mediaSide === 'bottom';
@@ -223,104 +278,197 @@
     ctx.globalAlpha = p;
     let mx, my, mw, mh, ix, iy, iw, ih;
     if (LAND) {
-      const padX = 96 * u, topY = 122 * u, botY = H - 156 * u, gap = 44 * u;
-      const totW = W - padX * 2 - gap, wM = totW * .55, wI = totW * .45, hAll = botY - topY;
-      if (!mediaSecond) { mx = padX; ix = padX + wM + gap; }
-      else { ix = padX; mx = padX + wI + gap; }
-      my = topY + (1 - p) * 26 * u; mh = hAll;
-      iy = topY + (1 - p) * 26 * u; ih = hAll;
-      mw = wM; iw = wI;
+      const midY = H * .465, gap = 66 * u;
+      mw = 950 * u; mh = 576 * u; iw = 720 * u; ih = mh;
+      const padX = (W - mw - iw - gap) / 2;
+      if (!mediaSecond) { mx = padX; ix = padX + mw + gap; }
+      else { ix = padX; mx = padX + iw + gap; }
+      my = midY - mh / 2 + (1 - p) * 22 * u;
+      iy = midY - ih / 2 + (1 - p) * 22 * u;
     } else {
-      const padX = 72 * u, topY = H * .105, botY = H * .775, gap = 30 * u;
-      const totH = botY - topY - gap, hM = totH * .52, hI = totH * .48, wAll = W - padX * 2;
-      if (!mediaSecond) { my = topY; iy = topY + hM + gap; }
-      else { iy = topY; my = topY + hI + gap; }
-      mx = padX; mw = wAll; mh = hM;
-      ix = padX; iw = wAll; ih = hI;
-      my += (1 - p) * 20 * u; iy += (1 - p) * 20 * u;
+      const padX = 64 * u, topY = H * .108, botY = H * .772, gap = 36 * u;
+      mx = padX; ix = padX;
+      mw = W - padX * 2; mh = 536 * u;
+      iw = mw; ih = Math.max(260 * u, botY - topY - mh - gap);
+      if (!mediaSecond) { my = topY; iy = topY + mh + gap; }
+      else { iy = topY; my = topY + ih + gap; }
+      my += (1 - p) * 18 * u; iy += (1 - p) * 18 * u;
     }
 
     drawDarkTechMedia(ctx, K, t, mx, my, mw, mh, o);
 
-    // 右侧 / 下方暗色玻璃信息卡
-    ctx.save();
-    drawGlass(ctx, K, ix, iy, iw, ih, 24);
-    rr(ctx, ix, iy, iw, ih, 24 * u);
-    ctx.clip();
+    // 信息区：去掉大空壳框，先测量内容总高并在安全区内精确垂直居中
+    const cx0 = ix, cw = iw, kind = o.infoKind || 'text';
+    const kickerH = o.kicker ? (LAND ? 42 : 36) * u : 0;
 
-    const pad = (LAND ? 46 : 36) * u, cx0 = ix + pad, cw = iw - pad * 2;
-    let cy = iy + pad;
-    const kind = o.infoKind || 'text';
-    if (o.kicker) {
-      ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
-      ctx.fillRect(cx0, cy, 8 * u, 26 * u);
-      ctx.save();
-      ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
-      ctx.font = F(K, 700, 21, K.mono);
-      if ('letterSpacing' in ctx) ctx.letterSpacing = `${3 * u}px`;
-      ctx.fillText(String(o.kicker).toUpperCase(), cx0 + 20 * u, cy + 21 * u, cw - 20 * u);
-      ctx.restore();
-      cy += 52 * u;
-    }
     if (kind === 'metric') {
+      const numPx = LAND ? 220 : 168;
+      const numH = (LAND ? 196 : 150) * u;
+      const ruleH = 26 * u;
+      ctx.font = F(K, 700, LAND ? 38 : 32);
+      const lblLines = o.label ? wrapCJK(ctx, String(o.label), cw).slice(0, 2) : [];
+      const lblLH = (LAND ? 52 : 44) * u;
+      const lblH = lblLines.length * lblLH;
+      const subH = o.sub ? 36 * u : 0;
+      const totalH = kickerH + numH + ruleH + lblH + subH;
+      let cy = iy + (ih - totalH) / 2;
+
+      if (o.kicker) {
+        drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u);
+        cy += kickerH;
+      }
+      // 大数字背后的柔光与发光渐变数值
       const val = (o.from || 0) + ((o.to ?? 100) - (o.from || 0)) * pop(t, .95);
       const numTxt = (o.prefix || '') + val.toFixed(o.digits || 0) + (o.suffix || '');
-      const ng = ctx.createLinearGradient(0, cy, 0, cy + (LAND ? 150 : 120) * u);
+      const ncx = cx0 + cw * .36, ncy = cy + numH * .48;
+      const nglow = ctx.createRadialGradient(ncx, ncy, 0, ncx, ncy, 240 * u);
+      nglow.addColorStop(0, K.a ? K.a(.22) : 'rgba(139,123,255,.22)');
+      nglow.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = nglow;
+      ctx.fillRect(cx0 - 40 * u, cy - 40 * u, cw + 80 * u, numH + 80 * u);
+
+      const ng = ctx.createLinearGradient(0, cy + 16 * u, 0, cy + numH);
       ng.addColorStop(0, '#FFFFFF');
       ng.addColorStop(1, K.hi || '#C8C0FF');
+      ctx.save();
+      ctx.font = F(K, 400, numPx, K.num || "'Bebas Neue'");
+      ctx.textAlign = 'left';
+      ctx.shadowColor = K.a ? K.a(.75) : 'rgba(139,123,255,.75)';
+      ctx.shadowBlur = 52 * u;
       ctx.fillStyle = ng;
-      ctx.font = F(K, 400, LAND ? 152 : 128, K.num);
-      ctx.fillText(numTxt, cx0, cy + (LAND ? 132 : 112) * u, cw);
-      cy += (LAND ? 170 : 142) * u;
-      if (o.label) {
+      ctx.fillText(numTxt, cx0, cy + numH - 18 * u, cw);
+      ctx.shadowBlur = 0;
+      ctx.fillText(numTxt, cx0, cy + numH - 18 * u, cw);
+      ctx.restore();
+      cy += numH;
+
+      // 发光分割线
+      const lw = 160 * u * pop(t - .2, .55);
+      ctx.save();
+      ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
+      ctx.shadowColor = K.a ? K.a(.8) : 'rgba(139,123,255,.8)';
+      ctx.shadowBlur = 18 * u;
+      ctx.fillRect(cx0, cy + 4 * u, lw, 4 * u);
+      ctx.restore();
+      cy += ruleH + 10 * u;
+
+      if (lblLines.length) {
         ctx.fillStyle = K.ink || '#F4F5F8';
-        ctx.font = F(K, 700, LAND ? 34 : 30);
-        wrapCJK(ctx, String(o.label), cw).slice(0, 2).forEach((ln, i) => ctx.fillText(ln, cx0, cy + i * 44 * u));
+        ctx.font = F(K, 700, LAND ? 38 : 32);
+        lblLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 32 * u + i * lblLH));
+        cy += lblH;
+      }
+      if (o.sub) {
+        ctx.fillStyle = K.muted || 'rgba(244,245,248,.6)';
+        ctx.font = F(K, 700, 22, K.mono || "'JetBrains Mono'");
+        ctx.fillText(String(o.sub), cx0, cy + 22 * u, cw);
       }
     } else if (kind === 'list') {
-      if (o.title) {
-        ctx.fillStyle = K.ink || '#F4F5F8';
-        ctx.font = F(K, 900, LAND ? 46 : 40);
-        const tl = wrapCJK(ctx, String(o.title), cw).slice(0, 2);
-        tl.forEach((ln, i) => ctx.fillText(ln, cx0, cy + (40 + i * 54) * u));
-        cy += (tl.length * 54 + 26) * u;
-      }
+      const tPx = LAND ? 48 : 40, tLH = (LAND ? 60 : 50) * u;
+      ctx.font = F(K, 900, tPx);
+      const tLines = o.title ? wrapCJK(ctx, String(o.title), cw).slice(0, 2) : [];
+      const titleH = tLines.length ? (tLines.length * tLH + 22 * u) : 0;
       const items = (o.items || []).slice(0, 4);
-      const step = Math.min(76 * u, Math.max(48 * u, (iy + ih - pad - cy) / Math.max(1, items.length)));
+      const rowH = (LAND ? 74 : 62) * u, rowGap = (LAND ? 14 : 10) * u;
+      const listH = items.length ? (items.length * rowH + (items.length - 1) * rowGap) : 0;
+      const totalH = kickerH + titleH + listH;
+      let cy = iy + Math.max(0, (ih - totalH) / 2);
+
+      if (o.kicker) {
+        drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u);
+        cy += kickerH;
+      }
+      if (tLines.length) {
+        ctx.fillStyle = K.ink || '#F4F5F8';
+        ctx.font = F(K, 900, tPx);
+        tLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 40 * u + i * tLH));
+        cy += titleH;
+      }
       items.forEach((it, idx) => {
         const ip = pop(t - idx * .12, .45);
+        const on = t >= idx * .12;
+        const ry = cy + (1 - ip) * 14 * u;
         ctx.save();
-        ctx.globalAlpha *= ip;
-        rr(ctx, cx0, cy, 36 * u, 36 * u, 10 * u);
+        ctx.globalAlpha *= clamp(ip + .15);
+        drawGlass(ctx, K, cx0, ry, cw, rowH, 16);
+        if (on) {
+          ctx.fillStyle = K.a ? K.a(.9) : '#8B7BFF';
+          rr(ctx, cx0 + 14 * u, ry + rowH * .24, 5 * u, rowH * .52, 2.5 * u);
+          ctx.fill();
+        }
+        const bx = cx0 + 34 * u, by = ry + (rowH - 34 * u) / 2;
+        rr(ctx, bx, by, 34 * u, 34 * u, 10 * u);
         ctx.fillStyle = K.a ? K.a(.24) : 'rgba(139,123,255,.24)';
         ctx.fill();
         ctx.fillStyle = K.hi || '#FFFFFF';
-        ctx.font = F(K, 700, 18, K.mono);
+        ctx.font = F(K, 700, 17, K.mono || "'JetBrains Mono'");
         ctx.textAlign = 'center';
-        ctx.fillText(String(idx + 1), cx0 + 18 * u, cy + 25 * u);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(idx + 1).padStart(2, '0'), bx + 17 * u, by + 18 * u);
         ctx.textAlign = 'left';
         ctx.fillStyle = K.ink || '#F4F5F8';
-        ctx.font = F(K, 700, LAND ? 27 : 24);
-        ctx.fillText(String(it), cx0 + 50 * u, cy + 27 * u, cw - 50 * u);
+        ctx.font = F(K, 700, LAND ? 25 : 22);
+        ctx.fillText(String(it), bx + 50 * u, ry + rowH / 2 + 1 * u, cw - 98 * u);
         ctx.restore();
-        cy += step;
+        cy += rowH + rowGap;
       });
     } else {
-      if (o.title) {
-        ctx.fillStyle = K.ink || '#F4F5F8';
-        ctx.font = F(K, 900, LAND ? 54 : 46);
-        const tl = wrapCJK(ctx, String(o.title), cw).slice(0, 3);
-        tl.forEach((ln, i) => ctx.fillText(ln, cx0, cy + (46 + i * (LAND ? 66 : 56)) * u));
-        cy += (tl.length * (LAND ? 66 : 56) + 28) * u;
+      const tPx = LAND ? 62 : 48, tLH = (LAND ? 78 : 60) * u;
+      ctx.font = F(K, 900, tPx);
+      const tLines = o.title ? wrapCJK(ctx, String(o.title), cw).slice(0, 3) : [];
+      const titleH = tLines.length ? (tLines.length * tLH + 14 * u) : 0;
+      const ruleH = 28 * u;
+      const bPx = LAND ? 30 : 25, bLH = (LAND ? 46 : 38) * u;
+      ctx.font = F(K, 400, bPx);
+      const bLines = o.body ? wrapCJK(ctx, String(o.body), cw).slice(0, LAND ? 3 : 2) : [];
+      const bodyH = bLines.length ? (bLines.length * bLH) : 0;
+      const tags = Array.isArray(o.tags) ? o.tags.slice(0, 3) : [];
+      const tagsH = tags.length ? 52 * u : 0;
+      const totalH = kickerH + titleH + ruleH + bodyH + tagsH;
+      let cy = iy + Math.max(0, (ih - totalH) / 2);
+
+      if (o.kicker) {
+        drawKicker(ctx, K, o.kicker, cx0, cy + 20 * u);
+        cy += kickerH;
       }
-      if (o.body) {
+      if (tLines.length) {
+        ctx.fillStyle = K.ink || '#F4F5F8';
+        ctx.font = F(K, 900, tPx);
+        tLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 52 * u + i * tLH));
+        cy += titleH;
+      }
+      const lw = 96 * u * pop(t - .18, .5);
+      ctx.save();
+      ctx.fillStyle = K.a ? K.a(1) : '#8B7BFF';
+      ctx.shadowColor = K.a ? K.a(.75) : 'rgba(139,123,255,.75)';
+      ctx.shadowBlur = 16 * u;
+      ctx.fillRect(cx0, cy + 4 * u, lw, 4 * u);
+      ctx.restore();
+      cy += ruleH + 10 * u;
+
+      if (bLines.length) {
         ctx.fillStyle = K.muted || 'rgba(244,245,248,.66)';
-        ctx.font = F(K, 700, LAND ? 28 : 25);
-        wrapCJK(ctx, String(o.body), cw).slice(0, LAND ? 4 : 3).forEach((ln, i) => ctx.fillText(ln, cx0, cy + i * 40 * u));
+        ctx.font = F(K, 400, bPx);
+        bLines.forEach((ln, i) => ctx.fillText(ln, cx0, cy + 24 * u + i * bLH));
+        cy += bodyH + 14 * u;
+      }
+      if (tags.length) {
+        let tx = cx0;
+        tags.forEach(tg => {
+          ctx.save();
+          ctx.font = F(K, 700, 18, K.mono || "'JetBrains Mono'");
+          const tw = ctx.measureText(String(tg)).width + 26 * u, th = 34 * u;
+          rr(ctx, tx, cy, tw, th, 17 * u);
+          ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.fill();
+          ctx.strokeStyle = K.a ? K.a(.4) : 'rgba(255,255,255,.2)'; ctx.lineWidth = 1.2 * u; ctx.stroke();
+          ctx.fillStyle = K.ink || '#F4F5F8';
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText(String(tg), tx + tw / 2, cy + th / 2 + 1 * u);
+          ctx.restore();
+          tx += tw + 12 * u;
+        });
       }
     }
-    sweep(ctx, ix, iy, iw, ih, clamp((t - .45) / .75), .16);
-    ctx.restore();
     ctx.restore();
     return { media: { x: mx, y: my, w: mw, h: mh }, info: { x: ix, y: iy, w: iw, h: ih } };
   }
@@ -333,8 +481,8 @@
     const ph = isCircle ? pw : pw * 0.62;
     const pos = o.pos || 'br';
     const mX = (LAND ? 64 : 56) * u;
-    const topY = LAND ? 64 * u : H * .095;
-    const botY = LAND ? H - 156 * u : H * .755;
+    const topY = LAND ? 108 * u : H * .095;
+    const botY = LAND ? H - 172 * u : H * .755;
     const x = pos === 'bl' ? mX : W - mX - pw;
     const y = (pos === 'tr' ? topY : botY - ph) + (1 - p) * 20 * u;
     ctx.save();
@@ -347,7 +495,7 @@
       ctx.arc(cx, cy, r, 0, TAU);
       ctx.clip();
       if (media) drawCover(ctx, media, x, y, pw, ph, { zoom: 1.04 });
-      else drawPlaceholder(ctx, x, y, pw, ph, { K, kind: o.kind || 'T', label: '', radius: r, t });
+      else drawPlaceholder(ctx, x, y, pw, ph, { K, kind: o.kind || 'T', mediaType: o.mediaType, tag: o.placeholderTag, label: '', radius: r, t });
       ctx.restore();
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, TAU);
