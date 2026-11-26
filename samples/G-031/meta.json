@@ -1,0 +1,5 @@
+{
+  "en_name": "Comic history cartoon",
+  "en_how": "Two chroma-keyed hand-cut paper puppet illustrations with cream torn-paper rims standing on a procedurally printed 18th-century engraved atlas; animated on twos (12 fps) with spring-overshoot hops and brass split-pin joints, scissors cutting along dashed borders, slapped-down unit patches, a 2.5D tilted paper layer stack, comic-page pullback, and humorous Kokoro narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

@@ -1,0 +1,5 @@
+{
+  "en_name": "Caption news",
+  "en_how": "Sound-off-first social news montage built over public-domain Yellowstone bison footage, 1900s archival and modern NPS photographs, and official population data: slams a giant yellow '23' hook on frame 4, pairs bold keyword-highlighted Chinese captions with a proportion-by-darkness sweep, a ledger split counter race, animated census chart, and park-boundary video mask transition with Kokoro narration.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

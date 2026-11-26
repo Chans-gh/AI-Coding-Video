@@ -78,3 +78,9 @@
 | [cyborggirl963/opus-5.5-music-video-art-styles](https://github.com/cyborggirl963/opus-5.5-music-video-art-styles) | MIT | 10 种手作媒材风格（大理石纹染纸、魔灯幻灯片、蜡染等） | C-158–C-167 |
 
 C-168–C-186（字雨、光标打字、雨窗、工笔、年画、青花、京剧脸谱、书法等 19 种）和 C-194–C-195（旧学院风、末日工业暗黑科幻）只借了一份没有开源许可的汇编里的风格名，提示词由整理者凭公共常识原创，没有参考其文本，所以条目里没有参考链接。
+
+第五批（2026-11-26），T 类与 G 类第一批收录（题材与素材完全原创/重选公共领域数据源，仅借用视觉语法与剪辑规律）：
+
+| 仓库 | 许可 | 用到的内容 | 本库编号 |
+|---|---|---|---|
+| [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) | MIT | `text-flash-cuts`、`manga-panels`、`comic-history`、`visual-investigation`、`map-explainer`、`caption-news` 共 6 套 STYLE.md 视觉语法 | G-029–G-031、T-026–T-028 |

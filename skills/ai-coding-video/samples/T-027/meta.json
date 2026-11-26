@@ -1,0 +1,5 @@
+{
+  "en_name": "3D map explainer",
+  "en_how": "A Three.js 3D terrain mesh extruded from real AWS SRTM elevation data of the Panama Canal isthmus, textured with satellite imagery under low sun lighting and depth-shaded ocean; camera dives from a 3D globe into the glowing canal route, slices open a 0-to-26-meter lock elevation cross-section with rising 3D pillars, and pulls back out with 2D Chinese landmark callouts and Kokoro narration.",
+  "tech": ["WebGL", "Three.js", "Canvas 2D", "Playwright", "ffmpeg"]
+}

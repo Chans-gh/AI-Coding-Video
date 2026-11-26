@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "file": "assets/char_back.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Flat cel animation style of a modern avant-garde TV anime: palette strictly jet black (#0A0908), off-white (#F5F3EE), pale skin, crimson red (#E01A14), clean thin uniform black linework, hard-edged cel shadows, no gradients. Original young man standing in full-body rear 3/4 pose wearing a long black coat and long crimson scarf on #00FF00 chroma green background, no text.",
+   "params": {
+    "aspectRatio": "3:4"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 绿幕抠像并收敛至红/黑/白严格三色平涂、去掉元数据"
+  },
+  {
+   "file": "assets/char_turn.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Flat cel animation style of a modern avant-garde TV anime: same original young man in black coat and crimson scarf, upper half-body dramatic over-the-shoulder head-turn shot looking back toward the camera, half-face black cel shadow, crimson glint in narrow eye on #00FF00 chroma green background, no text.",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "ref": "assets/char_back.png",
+   "edit": "Python 绿幕抠像并收敛至红/黑/白严格三色平涂、去掉元数据"
+  },
+  {
+   "file": "assets/char_eye.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Flat cel animation style of a modern avant-garde TV anime: extreme macro horizontal close-up of one sharp squinting anime eye, thick jet-black eyelashes, hard-edged shadow on pale skin, vivid crimson iris with white reflection, no text.",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Cyberpunk Beauty",
+   "source": "https://opengameart.org/content/cyberpunk-beauty",
+   "download": "https://opengameart.org/sites/default/files/cyberpunk.mp3",
+   "license": "CC0 1.0",
+   "author": "Tarush Singhal",
+   "credit": "配乐 Tarush Singhal（CC0）",
+   "prep": {
+    "t": 14
+   },
+   "at": 0
+  }
+ ]
+}

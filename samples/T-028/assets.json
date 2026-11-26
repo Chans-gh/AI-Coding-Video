@@ -1,0 +1,113 @@
+{
+ "items": [
+  {
+   "file": "assets/bison_clip.mp4",
+   "kind": "录像",
+   "title": "American bison (Bison bison) in Yellowstone National Park",
+   "source": "https://commons.wikimedia.org/wiki/File:American_bison_(Bison_bison)_in_Yellowstone_National_Park.webm",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/d/da/American_bison_%28Bison_bison%29_in_Yellowstone_National_Park.webm",
+   "license": "CC BY 2.0",
+   "author": "kennejima",
+   "credit": "视频 kennejima（CC BY 2.0）",
+   "prep": {
+    "ss": 1,
+    "t": 12,
+    "w": 960,
+    "crf": 24
+   }
+  },
+  {
+   "file": "assets/bison_1900.jpg",
+   "kind": "照片",
+   "title": "Herd of American Bison, browsing in safety, Yellowstone National Park (Keystone View stereograph left frame)",
+   "source": "https://commons.wikimedia.org/wiki/File:Herd_of_American_Bison,_browsing_in_safety,_Yellowstone_National_Park,_Wyo,_by_Keystone_View_Company.jpg",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Herd_of_American_Bison%2C_browsing_in_safety%2C_Yellowstone_National_Park%2C_Wyo%2C_by_Keystone_View_Company.jpg",
+   "license": "公共领域（PD-old，Keystone View Company）",
+   "author": "Keystone View Company",
+   "credit": "历史照片 Keystone View（PD）",
+   "edit": "从原立体双幅底片中裁出左半单幅画面，去掉边缘边框",
+   "prep": {
+    "crop": [
+     0.085,
+     0.05,
+     0.39,
+     0.81
+    ],
+    "max": 1280,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/bison_herd.jpg",
+   "kind": "照片",
+   "title": "Bison along Yellowstone Lake (32061451564, NPS)",
+   "source": "https://commons.wikimedia.org/wiki/File:Bison_along_Yellowstone_Lake_(32061451564).jpg",
+   "download": "https://upload.wikimedia.org/wikipedia/commons/9/94/Bison_along_Yellowstone_Lake_%2832061451564%29.jpg",
+   "license": "公共领域（美国国家公园管理局 NPS，美国政府作品）",
+   "author": "National Park Service",
+   "credit": "照片 NPS（Public Domain）",
+   "prep": {
+    "max": 1280,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/bison_census.csv",
+   "kind": "数据",
+   "title": "Yellowstone Bison Population Estimates (1902–2024)",
+   "source": "https://www.nps.gov/yell/learn/nature/bison.htm",
+   "license": "公共领域（美国国家公园管理局 NPS 公开种群监测数据）",
+   "author": "National Park Service",
+   "credit": "数据 NPS 黄石种群监测"
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "kokoro-v1.1-zh",
+   "voice": "zf_083",
+   "text": "一九零二年，黄石仅剩二十三头野生野牛。历经百年保护监测，种群重回五千四百头以上，完成生态逆转。",
+   "params": {
+    "speed": 1.16
+   },
+   "at": 0.4,
+   "show": {
+    "一九零二年": "1902 年",
+    "二十三头": "23 头",
+    "五千四百头": "5,400 头"
+   },
+   "dur": 10.684,
+   "lines": [
+    {
+     "t0": 0.0,
+     "t1": 4.051,
+     "text": "1902 年，黄石仅剩 23 头野生野牛"
+    },
+    {
+     "t0": 4.551,
+     "t1": 7.6,
+     "text": "历经百年保护监测，种群重回 5,400 头以上"
+    },
+    {
+     "t0": 7.6,
+     "t1": 10.646,
+     "text": "完成生态逆转"
+    }
+   ],
+   "license": "AI 合成（公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Insistent: background loop",
+   "source": "https://opengameart.org/content/insistent-background-loop",
+   "download": "https://opengameart.org/sites/default/files/Insistent.ogg",
+   "license": "CC0 1.0",
+   "author": "yd",
+   "credit": "配乐 yd（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

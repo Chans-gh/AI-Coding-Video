@@ -45,7 +45,6 @@
 | 类 | 来历 | 风格 | 技术类型 | 截图 / 样片 | 说明 |
 |---|---|---|---|---|---|
 | T | 旧 114 | 视觉新闻解说 | 文稿转片 · 数据可视化 | [风格画廊](https://github.com/bangtutorial/bang-motion#style-gallery) | 来源 bang-motion；要真实新闻图片和数据 |
-| T | 新 | 字幕新闻 | 剪辑与字幕 | [截图](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/caption-news/poster.jpg) · [样片](https://github.com/lemomo-ai/lemo-opuscar/releases/download/films/caption-news.mp4) | 来源 Lemo-Opuscar；真实新闻画面加大字幕；另见 [STYLE.md](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/caption-news/STYLE.md) |
 
 ## 纪录片和纪实
 

@@ -1,0 +1,107 @@
+{
+ "items": [
+  {
+   "file": "assets/panama_sat.jpg",
+   "kind": "照片",
+   "title": "Panama Canal Zone as seen from Space Shuttle STS-62 (sts062-85-095)",
+   "source": "https://images.nasa.gov/details/sts062-85-095",
+   "download": "https://images-assets.nasa.gov/image/sts062-85-095/sts062-85-095~large.jpg",
+   "license": "公共领域（NASA 拍摄，美国政府作品）",
+   "author": "NASA",
+   "credit": "卫星照 NASA STS-62",
+   "prep": {
+    "max": 1280,
+    "q": 86
+   }
+  },
+  {
+   "file": "assets/panama_dem.json",
+   "kind": "数据",
+   "title": "AWS Terrain Tiles / USGS SRTM 巴拿马地峡 128×128 真实高程网格 (-80.10.. -79.42, 8.82..9.42)",
+   "source": "https://registry.opendata.aws/terrain-tiles/",
+   "download": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/10/284/485.png",
+   "license": "公共领域 / 开放地形瓦片（USGS SRTM / Mapzen Terrarium）",
+   "author": "USGS / Mapzen / AWS Open Data",
+   "credit": "高程 USGS SRTM / AWS Terrain Tiles"
+  },
+  {
+   "file": "assets/coast_ca.json",
+   "kind": "数据",
+   "title": "Natural Earth 1:110m coastline（裁到中美洲地峡视野）",
+   "source": "https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-coastline/",
+   "download": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_coastline.geojson",
+   "license": "公共领域（Natural Earth）",
+   "author": "Natural Earth",
+   "credit": "海岸线 Natural Earth",
+   "prep": {
+    "bbox": [
+     -96,
+     2,
+     -68,
+     24
+    ]
+   }
+  },
+  {
+   "file": "assets/canal_route.json",
+   "kind": "数据",
+   "title": "巴拿马运河船闸与水位真实坐标（科隆—加通闸—加通湖—库莱布拉水道—米拉弗洛雷斯闸—巴博亚）",
+   "source": "https://pancanal.com/",
+   "license": "公共地理坐标汇总（巴拿马运河管理局公开水位参数：加通湖 26 米）",
+   "credit": "航线与船闸参数公开数据"
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "旁白",
+   "model": "kokoro-v1.1-zh",
+   "voice": "zf_083",
+   "text": "从太空俯瞰八十二公里巴拿马运河，它并非平坦水渠。三级船闸把货轮抬升二十六米跨过加通湖，再逐级降回另一片大洋。",
+   "params": {
+    "speed": 1.13
+   },
+   "at": 0.5,
+   "show": {
+    "八十二公里": "82 公里",
+    "二十六米": "26 米"
+   },
+   "dur": 12.434,
+   "lines": [
+    {
+     "t0": 0.0,
+     "t1": 3.063,
+     "text": "从太空俯瞰 82 公里巴拿马运河"
+    },
+    {
+     "t0": 3.563,
+     "t1": 5.5,
+     "text": "它并非平坦水渠"
+    },
+    {
+     "t0": 6.0,
+     "t1": 9.554,
+     "text": "三级船闸把货轮抬升 26 米跨过加通湖"
+    },
+    {
+     "t0": 10.054,
+     "t1": 12.404,
+     "text": "再逐级降回另一片大洋"
+    }
+   ],
+   "license": "AI 合成（公开音色），随本仓库按 MIT 发布"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Progress",
+   "source": "https://opengameart.org/content/progress",
+   "download": "https://opengameart.org/sites/default/files/Progress.mp3",
+   "license": "CC0 1.0",
+   "author": "josepharaoh99",
+   "credit": "配乐 josepharaoh99（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

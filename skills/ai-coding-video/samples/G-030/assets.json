@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "file": "assets/panel_grab.jpg",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Black-and-white Japanese seinen manga art inked with G-pen nib on white paper, flat light-grey midtone shading only, full-bleed close-up of a fingerless-gloved courier hand snatching a flat pure red square 7-inch vinyl record sleeve off a tabletop beside a messenger strap, no text.",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 将平灰阶转为 45° 圆形 AM 网点并锁定专色朱红 #F03C1E、暖纸 #F3F0E8 与墨黑 #121212"
+  },
+  {
+   "file": "assets/hero_leap.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Black-and-white Japanese seinen manga art inked with G-pen nib on #00FF00 chroma green: teenage bicycle courier leaning sharply on a minimalist track bike while clutching a flat pure red square 7-inch vinyl sleeve under one arm, flat light-grey midtone shading, no text.",
+   "params": {
+    "aspectRatio": "3:4"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 绿幕抠像 + 45° AM 网点转换 + 10px 暖纸白フチ与 3px 黑边外轮廓"
+  },
+  {
+   "file": "assets/panel_needle.jpg",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Black-and-white Japanese seinen manga art inked with G-pen nib on white paper: serene close-up of a minimalist turntable tonearm and needle lowering onto the glistening grooves of a flat pure red 7-inch vinyl record, flat light-grey midtone shading, no text.",
+   "params": {
+    "aspectRatio": "16:9"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 45° AM 网点转换与专色锁定、去掉元数据"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Anime-esque Intro-Outro Theme",
+   "source": "https://opengameart.org/content/anime-esque-intro-outro-theme",
+   "download": "https://opengameart.org/sites/default/files/Play%20Now_0.mp3",
+   "license": "CC0 1.0",
+   "author": "CleytonKauffman",
+   "credit": "配乐 CleytonKauffman（CC0）",
+   "prep": {
+    "t": 14
+   },
+   "at": 0
+  }
+ ]
+}
