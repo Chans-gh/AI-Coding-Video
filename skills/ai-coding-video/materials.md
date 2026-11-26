@@ -83,8 +83,34 @@ T 类、G 类按**内容类型**分（用户要做的是哪种视频），同一
 - 配乐、音效：公共领域、CC0，或 CC BY 并在片尾署名。只许「在作品里使用」、不许单独再分发音频文件的曲库，不要把文件放进公开仓库。
 - 选曲和旁白音色的方向见 [sound.md](sound.md)。
 
+<a id="c-hybrid-fusion"></a>
+
+## C 类主风格混入 T / G 素材的融合做法
+
+当主风格是 C 类（`media_fit` 为 `原生` 或 `条件`，查 [index.md](index.md#c-hybrid-media)），部分镜头经由主包外挂 `media_slots.js` 混入 T / G 素材时，按该风格的**融合族群（`media_family`）**统一画面质感，避免「真实素材裸贴破相」或「AI 生图画风割裂」。
+
+### T 类真实素材「穿衣公式」
+
+| 融合族群 | 框体与边饰 | 调色与质感滤镜 | 出处角标与禁止项 |
+|---|---|---|---|
+| **`暗色科技`** | 深色半透明玻璃框 + `1.5px` 强调色微光描边 + 圆角裁切 | 轻压暗角 `vignette`，`contrast(1.04)`；背景铺底用 `dim: 0.6` 深色渐变压罩 | 右下等宽体小角标；**禁**纯白粗框、花哨拟物阴影 |
+| **`纸面档案`** | 浅色卡纸框 / 锯齿撕边 / 角落胶带条 | 微暖或旧档案色偏 + 表面低透明 `makePaper` 纸纹（像印在纸上） | 打字机/衬线出处标；**禁**高饱和霓虹描边、全屏无边框高清硬切 |
+| **`扁平栅格`** | 硬栅格裁切 + `2–3px` 主墨色描边或硬偏移色块阴影 | 保持画面干净利落，卡片底与主色板对齐 | 色块胶囊出处标签；**禁**柔光羽化、渐变模糊玻璃框 |
+| **`胶片屏幕`** | 电影遮幅 / 胶片齿孔或 CRT 扫描线框 | `grain(ctx, f)` 逐帧胶片颗粒 + 可选 `stepT` 低帧率顿挫 | 胶片时间码/角标；**禁**现代光滑圆角卡片 |
+| **`3D展陈`** | 透视展板框 / 空间投影基座 | 匹配展陈环境光晕与底部软投影 | 展签风格小标；**禁**贴平无空间感的直角硬贴 |
+
+### G 类 AI 素材「伴生风格锁」
+
+在主风格包的 `STYLE.md`（小节「外部素材融入规范」）里固化一段 **3 行伴生风格段**，生图与生视频沿用三段式拼法：**`完整提示词 = 镜头主体描述（每镜变化） + 主风格伴生风格段（全片锁死） + 约束段（无文字/无 Logo/不生成真人脸）`**：
+
+- **`暗色科技`**：`深炭黑极简暗棚底，边缘带 <accent> 轮廓光，高对比电影质感，主体居中四周留暗色呼吸空间，无文字、无 Logo、无水印`（进 `mediaBg` / `mediaFrame` 压罩即融进暗底）。
+- **`纸面档案`**：`米白粗纹水彩纸纯白底，手绘水彩/淡彩插画质感，笔触清晰，边缘自然留白晕染，无边框、无文字、无水印`（渲染时可叠 `multiply` 与纸底自然融合）。
+- **`扁平栅格`**：`干净现代矢量插画质感，简洁色块与明确边缘光影，配色呼应主色板 <hex列表>，构图利落可裁剪，无文字、无 Logo`。
+- **`胶片屏幕`**：`35mm 胶片实拍质感，柔和胶片颗粒与暗角，略褪色自然电影色调，无现代 UI、无文字、无水印`。
+- **`3D展陈`**：`微缩展台工作室布光，柔和环境漫反射与地面软投影，干净单色展陈底，主体轮廓清晰，无文字、无 Logo`。
+
 ## 本库样片里的做法
 
 - 素材下载、生成、统一处理、去元数据：[samples/tools/assets.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/assets.py)；生成经 [samples/tools/gen.py](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/tools/gen.py) 交给上面配的适配命令。
-- 画面里读素材（图片、按帧取的视频、CSV、字幕）：`samples/lib/lib.js` 的 `loadAssets`、`loadImage`、`loadVideo`、`parseCSV`、`cueAt`、`caption`，说明见 [samples/API.md](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/API.md)。
+- 画面里读素材（图片、按帧取的视频、CSV、字幕）：`samples/lib/lib.js` 的 `loadAssets`、`loadImage`、`loadVideo`、`videoAt`、`drawPlaceholder`、`loadMediaSafe`、`parseCSV`、`cueAt`、`caption`，说明见 [samples/API.md](samples/API.md)。
 - 声音照素材清单摆放、说话时压低配乐：`samples/lib/synth.py` 的 `assets()`。

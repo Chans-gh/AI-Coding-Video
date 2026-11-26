@@ -17,6 +17,7 @@
 ```
 
 - 题材：3D 与实时图形
+- 素材兼容：闭环
 - 适合：建筑、城堡、机械
 - 技术（已验证）：Blender · ffmpeg
 - 样片代码：[samples/C-071/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-071)

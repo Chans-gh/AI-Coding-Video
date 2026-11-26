@@ -17,6 +17,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：武侠、哲理、东方题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-001/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-001)
@@ -34,6 +35,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：自然、旅行、温情 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-002/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-002)
@@ -51,6 +53,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：城市、公园、日常
 - 技术（已验证）：Canvas 2D · Rough.js · Playwright · ffmpeg
 - 样片代码：[samples/C-003/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-003)
@@ -68,6 +71,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：情绪片、艺术感广告
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-004/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-004)
@@ -85,6 +89,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：儿童故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-005/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-005)
@@ -102,6 +107,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：亲子、MV；可附孩子的原画让它照着动起来
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-006/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-006)
@@ -118,6 +124,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：创意过程、设计思考
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-007/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-007)
@@ -135,6 +142,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：课程、规则、“别忘了”
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-010/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-010)
@@ -152,6 +160,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：历史叙事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-011/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-011)
@@ -168,6 +177,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：角色短片、个人故事
 - 技术（已验证）：Canvas 2D · p5.js · p5.brush · Playwright · ffmpeg
 - 样片代码：[samples/C-012/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-012)
@@ -185,6 +195,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：神话、民间故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-013/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-013)
@@ -202,6 +213,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：条件（纸面档案）
 - 适合：旅途、日本题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-014/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-014)
@@ -219,6 +231,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：中秋、节日、团圆
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-016/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-016)
@@ -236,6 +249,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：宣言、单一强信息
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-017/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-017)
@@ -253,6 +267,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：闭环
 - 适合：严肃寓言、历史
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-018/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-018)
@@ -270,6 +285,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：轻松生活、潮流品牌
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-019/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-019)
@@ -287,6 +303,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：条件（纸面档案）
 - 适合：童话、情感开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-025/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-025)
@@ -304,6 +321,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：原生（纸面档案）
 - 适合：MV、观点讲解、节庆
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-027/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-027)
@@ -321,6 +339,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：闭环
 - 适合：诗意短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-030/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-030)
@@ -337,6 +356,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（胶片屏幕）
 - 适合：怀旧开场、系列片头
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-035/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-035)
@@ -354,6 +374,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：闭环
 - 适合：搞笑追逐
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-048/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-048)
@@ -371,6 +392,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（胶片屏幕）
 - 适合：城市夜景、怀旧
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-049/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-049)
@@ -388,6 +410,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：原生（扁平栅格）
 - 适合：搞笑、对话、悬念
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-052/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-052)
@@ -405,6 +428,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：闭环
 - 适合：游戏化、进度
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-053/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-053)
@@ -422,6 +446,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：闭环
 - 适合：冒险故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-054/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-054)
@@ -439,6 +464,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：条件（扁平栅格）
 - 适合：趣味、短视频
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-056/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-056)
@@ -456,6 +482,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：闭环
 - 适合：游戏 demo、交互科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-058/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-058)
@@ -473,6 +500,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：历史、起源故事
 - 技术（已验证）：Canvas 2D · WebGL · GLSL · Playwright · ffmpeg
 - 样片代码：[samples/C-060/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-060)
@@ -490,6 +518,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：喜剧
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-061/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-061)
@@ -507,6 +536,7 @@
 ```
 
 - 题材：3D 与实时图形
+- 素材兼容：闭环
 - 适合：音乐片、艺术装置
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-077/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-077)
@@ -524,6 +554,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：科普、复古教学栏目
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-084/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-084)
@@ -540,6 +571,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：品牌 IP 角色、年度回顾、炫技短片；需要先给角色设定图
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-087/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-087)
@@ -557,6 +589,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：产品与物件特写、手账感讲解、复古钟表机械
 - 技术（已验证）：Canvas 2D · Rough.js · Playwright · ffmpeg
 - 样片代码：[samples/C-088/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-088)
@@ -574,6 +607,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：风景、日出日落、旅行、艺术感广告
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-089/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-089)
@@ -591,6 +625,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：回忆与思考、艺术创作过程、静物与树木
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-090/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-090)
@@ -608,6 +643,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：儿童内容、生活场景插画、温和的讲解
 - 技术（已验证）：Canvas 2D · p5.brush · Playwright · ffmpeg
 - 样片代码：[samples/C-091/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-091)
@@ -625,6 +661,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：动物、夜景、悬疑、版画质感的片头
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-092/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-092)
@@ -642,6 +679,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：博物与自然标本、科普、慢节奏纪录片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-093/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-093)
@@ -659,6 +697,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：童话与民间故事、亲子内容、乡村题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-094/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-094)
@@ -676,6 +715,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：自然博物、历史、科普、美术馆展览
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-096/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-096)
@@ -693,6 +733,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：闭环
 - 适合：品牌标志、月亮与星球等圆形主体、艺术短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-097/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-097)
@@ -710,6 +751,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：闭环
 - 适合：手工艺与家居、母婴、节日祝福、非遗
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-099/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-099)
@@ -727,6 +769,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：条件（3D展陈）
 - 适合：公共礼仪、排队规则、生活常识
 - 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-108/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-108)
@@ -744,6 +787,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：闭环
 - 适合：供应链、系统架构、能源输送
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-110/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-110)
@@ -761,6 +805,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：闭环
 - 适合：品牌口号、夜生活、开业宣传
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-114/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-114)
@@ -778,6 +823,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：新品预告、发布日倒数、品牌大片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-121/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-121)
@@ -795,6 +841,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：闭环
 - 适合：产品功能闯关、竞品对决、年度回顾
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-122/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-122)
@@ -812,6 +859,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：人类起源、狩猎故事、远古历史
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-128/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-128)
@@ -829,6 +877,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：古文明科普、历史叙事、仪式与流程讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-129/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-129)
@@ -846,6 +895,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：神话故事、体育竞技、古典文学
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-130/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-130)
@@ -863,6 +913,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：闭环
 - 适合：古代城市、考古科普、庄重的纪念片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-131/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-131)
@@ -880,6 +931,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：中世纪传说、奇幻故事、典籍与历史讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-132/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-132)
@@ -897,6 +949,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：历史叙事、城市与社会生活、连环故事
 - 技术（已验证）：Canvas 2D · p5.js · Playwright · ffmpeg
 - 样片代码：[samples/C-133/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-133)
@@ -914,6 +967,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：人物传记、艺术史讲解、庄重的品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-134/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-134)
@@ -931,6 +985,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（暗色科技）
 - 适合：悬疑与心理戏、人物肖像、宗教与历史场景
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-135/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-135)
@@ -948,6 +1003,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：城市风光、旅行纪录、怀旧短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-136/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-136)
@@ -965,6 +1021,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：情绪 MV、艺术史讲解、夜景与乡村
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-138/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-138)
@@ -982,6 +1039,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：公园与假日、科学色彩讲解、安静的风景
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-139/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-139)
@@ -999,6 +1057,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（扁平栅格）
 - 适合：神话与民俗、热带风情、心理与象征叙事
 - 技术（已验证）：Canvas 2D · SVG · Playwright · ffmpeg
 - 样片代码：[samples/C-140/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-140)
@@ -1016,6 +1075,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：焦虑与心理题材、恐怖短片、情绪化 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-141/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-141)
@@ -1033,6 +1093,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：艺术史讲解、多视角分析、咖啡馆与城市生活
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-142/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-142)
@@ -1050,6 +1111,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：梦境与记忆、时间主题、哲学短片
 - 技术（已验证）：Canvas 2D · WebGL · Playwright · ffmpeg
 - 样片代码：[samples/C-144/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-144)
@@ -1067,6 +1129,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（胶片屏幕）
 - 适合：孤独与城市题材、短篇小说改编、安静的情绪片
 - 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-145/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-145)
@@ -1084,6 +1147,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：原生（扁平栅格）
 - 适合：消费与流行文化、广告片、喜剧短片
 - 技术（已验证）：Canvas 2D · p5.js · Playwright · ffmpeg
 - 样片代码：[samples/C-147/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-147)
@@ -1101,6 +1165,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：条件（纸面档案）
 - 适合：佛教与丝路故事、文博科普、东方奇幻
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-150/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-150)
@@ -1118,6 +1183,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：诗词意境、哲理独白、东方品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-151/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-151)
@@ -1135,6 +1201,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（纸面档案）
 - 适合：中东与丝路故事、宫廷与诗歌、群像叙事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-152/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-152)
@@ -1152,6 +1219,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（纸面档案）
 - 适合：品牌短片、手作感片头、角色小剧场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-154/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-154)
@@ -1169,6 +1237,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：闭环
 - 适合：记忆与时间、水与风、抽象音乐 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-158/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-158)
@@ -1186,6 +1255,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：历史与游记、讲故事式 MV、维多利亚时代题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-159/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-159)
@@ -1203,6 +1273,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：时间流逝、静与动的对比、怀旧与记忆
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-160/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-160)
@@ -1220,6 +1291,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：条件（扁平栅格）
 - 适合：城市日常、多线并行故事、温情 MV
 - 技术（已验证）：Canvas 2D · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-163/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-163)
@@ -1237,6 +1309,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：公路与旅人、民间集市、节庆夜晚
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-164/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-164)
@@ -1254,6 +1327,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：条件（3D展陈）
 - 适合：戏剧化叙事、喜剧歌曲、舞台感品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-165/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-165)
@@ -1271,6 +1345,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：闭环
 - 适合：黑客与 AI 题材、科技片头、数据主题转场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-168/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-168)
@@ -1287,6 +1362,7 @@
 ```
 
 - 题材：3D 与实时图形
+- 素材兼容：闭环
 - 适合：冥想与放松、奢侈品与面料广告、抽象音乐可视化
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-171/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-171)
@@ -1303,6 +1379,7 @@
 ```
 
 - 题材：3D 与实时图形
+- 素材兼容：闭环
 - 适合：夏夜回忆、治愈系 MV、童话开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-172/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-172)
@@ -1319,6 +1396,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：条件（暗色科技）
 - 适合：天文科普、关系与网络讲解、浪漫告白
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-173/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-173)
@@ -1335,6 +1413,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（胶片屏幕）
 - 适合：家庭回忆、复古广告、年代感 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-176/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-176)
@@ -1351,6 +1430,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：条件（纸面档案）
 - 适合：花鸟与节令、宫廷与仕女、文博科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-180/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-180)
@@ -1367,6 +1447,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：文博与陶瓷科普、茶与器物品牌、古典诗词
 - 技术（已验证）：Canvas 2D · WebGL2 · GLSL · Playwright · ffmpeg
 - 样片代码：[samples/C-182/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-182)
@@ -1383,6 +1464,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：标题与片名、诗词展示、文化品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-184/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-184)
@@ -1399,6 +1481,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（纸面档案）
 - 适合：武侠与仙侠故事、动作短片、国风连载
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-185/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-185)
@@ -1415,6 +1498,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（纸面档案）
 - 适合：成长故事、乡村与城市生活、温暖的品牌短片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-187/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-187)
@@ -1432,6 +1516,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（胶片屏幕）
 - 适合：青春、离别与重逢、城市日常、音乐 MV
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-188/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-188)
@@ -1449,6 +1534,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：艺术展宣传、品牌联名、音乐可视化、关于“无限”和“重复”的主题
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-190/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-190)
@@ -1466,6 +1552,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：超级英雄式的夸张叙事、科幻冒险、产品“超能力”宣传
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-191/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-191)
@@ -1483,6 +1570,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：原生（纸面档案）
 - 适合：文学与哲学讲解、读书分享、学术与考试类内容、悬疑开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-194/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-194)

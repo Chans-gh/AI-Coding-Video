@@ -85,6 +85,17 @@
 
 还导出了几个零件，自己拼新部件时用：`DK.glass`（玻璃卡片）、`DK.sweep`（扫光）、`DK.kicker`（小标题）、`DK.head`（段标题）、`DK.logo`（标志）、`DK.mini`（片中片的小画面）、`DK.pop`（吸附缓动）。15 秒片段另用 `DK.title`（片头）、`DK.explain`（要点讲解）。
 
+### 可选插件：外部媒体插槽（[`media_slots.js`](media_slots.js)）
+
+做片需要混入 T（真实照片/录屏/录像）或 G（AI 生图/生视频）素材时，在场景 `needs` 里加上 `'../media_slots.js'` 即可把以下 4 个正交媒体插槽挂到 `DK`（不改动 `pack.js` 原有纯 C 部件；融合细则与 AI 伴生风格段见 [STYLE.md](STYLE.md)）：
+
+| 部件 | 调用 | 内容 `o` |
+|---|---|---|
+| 氛围铺底（层） | `DK.mediaBg` | `{ src, kind, dim, tint, zoom }`：全幅铺底压罩，前景直接调用原有纯 C 部件 |
+| 画框展示 | `DK.mediaFrame` | `{ src, kind, kicker, title, credit, fit, zoom, chrome, placeholder }`：主舞台画框展示 |
+| 双栏分屏 | `DK.mediaSplit` | `{ src, kind, mediaSide, infoKind, kicker, title, body, to, suffix, label, items, credit, placeholder }`：横版 55:45 / 竖版 52:48 |
+| 画中画（叠加） | `DK.mediaPip` | `{ src, kind, shape, pos, label }`：四角安全区浮卡或圆形画中画 |
+
 把分镜排成一支片子，看 [`demo/segments.json`](demo/segments.json) 和 [`demo/scene.js`](demo/scene.js)：分镜表每行一个分镜：整屏部件 `part`、时长 `d`（整拍）、进场转场 `tr`、内容 `o`、本地时间倍速 `speed`、叠在这一段上的部件 `over`（`at` 是段内时刻，`anchor` 取宿主返回值：数字取第几项，`"self"` 取整个）、字幕 `cues`；`scene.js` 照表画，各层叠在上面。15 秒切换片段是 [`demo/clip.js`](demo/clip.js)。
 
 ## 声音

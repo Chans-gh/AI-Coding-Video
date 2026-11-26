@@ -477,13 +477,13 @@ def can_generate(row):
     return re.split(r'[：:]', row['能不能送生成'].strip(), maxsplit=1)[0].strip() == '能'
 
 
-def item_class(x, styles):
-    """uses 一条或一个分镜的类别：class，或 ref 指的风格的类别；风格包算 C；认不出返回 None"""
+def item_class(x, styles, pack_meta=None):
+    """uses 一条或一个分镜的类别：class，或 ref 指的风格的类别；风格包按 meta.json 的 from 推断，找不到回退 C；认不出返回 None"""
     if x.get('class') in cs.CLASSES:
         return x['class']
     r = x.get('ref')
     if isinstance(r, str) and r.startswith('pack:'):
-        return 'C'
+        return cs.pack_class(r[5:], styles, pack_meta)
     return styles.get(r, {}).get('class')
 
 
@@ -536,7 +536,9 @@ def check_storyboard(P, sb, plan_rel=None, lib=None):
 def check_rules(P, sb, lib=None):
     """格式 3 的约束 rule 和素材 M（见 check_storyboard）"""
     errs, notes = [], []
-    styles = (lib or cs.library())[0]
+    lib = lib or cs.library()
+    styles = lib[0]
+    pack_meta = lib[3] if len(lib) > 3 else {}
     for i, s in enumerate(sb.get('segments', []), 1):
         if not isinstance(s, dict):
             continue
@@ -562,7 +564,7 @@ def check_rules(P, sb, lib=None):
         need = P['frame'].get(g, {}).get('rules') or []
         for j, x in enumerate(shots, 1):
             w = f'分镜 {cs.shot_name(i, j)}'
-            c = item_class(x, styles)
+            c = item_class(x, styles, pack_meta)
             if c == 'G' and need and not x.get('rule'):
                 notes.append(f'{w}：G 类，框架 {g} 的「怎么证明」要照 {"、".join(need)}：写 rule，生成后逐条对照，违反算返工')
             found, unknown = materials_in(x.get('src'), P['materials'])
@@ -635,7 +637,9 @@ def check_views(P, sb, lib=None):
     notes = []
     if P['version'] < 4:
         return errs, notes
-    styles = (lib or cs.library())[0]
+    lib = lib or cs.library()
+    styles = lib[0]
+    pack_meta = lib[3] if len(lib) > 3 else {}
     for h, v in P['views'].items():
         got = claims.get(h, [])
         w = f'画面 {h}（{v["段"]}，{v["来源"]}：{v["要看到什么"][:20]}）'
@@ -652,7 +656,7 @@ def check_views(P, sb, lib=None):
             continue
         want = SOURCES.get(v['来源'])
         for name, _, x in got:
-            c = item_class(x, styles)
+            c = item_class(x, styles, pack_meta)
             if want and c and c != want:
                 errs.append(f'{name}：认领 {h}，{v["来源"]}要 {want} 类，这里是 {c} 类（要换来源先回流）')
         mids = [x for x in v.get('refs', []) if MAT_ID.fullmatch(x) and x in P['materials']]
@@ -681,7 +685,7 @@ def check_views(P, sb, lib=None):
         bad = [m for m in ms if m in no]
         if bad:
             errs.append(f'{name}：用了 {"、".join(bad)}，制作条件写着不能用（形式要改先回流）')
-        c = item_class(x, styles)
+        c = item_class(x, styles, pack_meta)
         if (c == 'G' and no_g) or (c == 'T' and no_t):
             errs.append(f'{name}：{c} 类，制作条件不能用{"生图、生视频" if c == "G" else "真实素材"}（形式要改先回流）')
     return errs, notes

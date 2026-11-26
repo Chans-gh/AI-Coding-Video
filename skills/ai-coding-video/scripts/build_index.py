@@ -38,6 +38,7 @@ BUNDLE_SKIP_EXT = ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4', '.webm', '.
 PACK_ASSET_RE = re.compile(r'packs/[^/]+/demo/assets/[^/]+$')
 SKILL_IN_REPO = 'skills/ai-coding-video/'
 CAT_START, CAT_END = '<!-- catalog:start -->', '<!-- catalog:end -->'
+MEDIA_START, MEDIA_END = '<!-- media-compat:start -->', '<!-- media-compat:end -->'
 
 ENTRY_RE = re.compile(r'<a id="([CTG]-\d{3})"></a>\s*\n\s*\n## ([CTG]-\d{3}) (.+?)\n(.*?)(?=\n<a id="[CTG]-\d{3}"></a>|\Z)', re.S)
 IMG_RE = re.compile(r'^!\[[^\]]*\]\(\.\./images/([^)]+)\)', re.M)
@@ -45,7 +46,8 @@ CODE_RE = re.compile(r'```text\n(.*?)\n```', re.S)
 FIELD_RE = re.compile(r'^- ([^：\n]+)：(.*)$', re.M)
 MDLINK_RE = re.compile(r'\[([^\]]+)\]\(([^)\s]+)\)')
 FENCE_RE = re.compile(r'^( *)(`{3,})[^\n]*\n.*?^\1\2[ \t]*$', re.S | re.M)
-FIELDS = {'题材': 'theme', '内容类型': 'content_type', '素材': 'materials', '技术类型': 'techniques', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
+MEDIA_COMPAT_RE = re.compile(r'^(原生|条件)（([^（）]+)）$')
+FIELDS = {'题材': 'theme', '素材兼容': 'media_compat', '内容类型': 'content_type', '素材': 'materials', '技术类型': 'techniques', '适合': 'fit', '技术（已验证）': 'verified', '技术（建议）': 'suggested',
           '样片代码': 'render_code', '风格包': 'pack', '参考': 'refs'}
 REPO_LINKS = {'render_code': 'samples/', 'pack': 'packs/'}
 CLASS_NAME = {'C': '纯代码', 'T': '公共领域素材', 'G': 'AI 生成素材'}
@@ -114,6 +116,8 @@ def parse(errors):
     ctypes = [t['name'] for t in tags['content_types']]
     techs = {t['name']: t for t in tags['techniques']}
     diffs = [d['name'] for d in tags['difficulty']]
+    media_fits = tags.get('media_fit', [])
+    media_families = tags.get('media_family', [])
     for t in tags['techniques']:
         if t['difficulty'] not in diffs:
             errors.append(f'tags.json 技术类型「{t["name"]}」的难度「{t["difficulty"]}」不在 difficulty 里')
@@ -149,14 +153,17 @@ def parse(errors):
             imgs = IMG_RE.findall(body)
             rec = {'id': sid, 'class': sid[0], 'name': name.strip(), 'file': f'styles/{fname}', 'layer': layer,
                    'image': f'images/{imgs[0]}' if imgs else None, 'prompt': prompts[0].strip() if prompts else '',
-                   'theme': '', 'content_type': '', 'materials': [], 'techniques': [], 'fit': '', 'verified': [], 'suggested': [],
-                   'render_code': None, 'pack': None, 'refs': []}
+                   'theme': '', 'media_fit': None, 'media_family': None, 'content_type': '', 'materials': [], 'techniques': [], 'fit': '',
+                   'verified': [], 'suggested': [], 'render_code': None, 'pack': None, 'refs': []}
+            media_compat = None
             for key, value in FIELD_RE.findall(FENCE_RE.sub('', body)):
                 if key not in FIELDS:
                     errors.append(f'{where}: 不认识的字段「{key}」')
                     continue
                 k = FIELDS[key]
-                if k in ('verified', 'suggested', 'materials', 'techniques'):
+                if k == 'media_compat':
+                    media_compat = value.strip()
+                elif k in ('verified', 'suggested', 'materials', 'techniques'):
                     rec[k] = split_tags(value)
                 elif k == 'refs':
                     rec[k] = [{'label': a, 'url': b} for a, b in MDLINK_RE.findall(value)]
@@ -172,7 +179,30 @@ def parse(errors):
                     errors.append(f'{where}: 题材「{rec["theme"]}」不在 tags.json 的 themes 里')
                 if rec['content_type'] or rec['materials'] or rec['techniques']:
                     errors.append(f'{where}: C 类按题材分，不写「内容类型」「素材」「技术类型」')
+                if not media_compat:
+                    errors.append(f'{where}: C 类必须写「素材兼容」（原生（族群）、条件（族群）或 闭环）')
+                elif media_compat == '闭环':
+                    if '闭环' not in media_fits:
+                        errors.append(f'{where}: 素材兼容「闭环」不在 tags.json 的 media_fit 里')
+                    rec['media_fit'] = '闭环'
+                    rec['media_family'] = None
+                elif media_compat.startswith('闭环'):
+                    errors.append(f'{where}: 素材兼容为「闭环」时不允许带族群（写「闭环」即可）')
+                else:
+                    mc = MEDIA_COMPAT_RE.fullmatch(media_compat)
+                    if not mc:
+                        errors.append(f'{where}: 素材兼容「{media_compat}」格式不对（只允许 原生（族群）、条件（族群）或 闭环）')
+                    else:
+                        fit, fam = mc.groups()
+                        if fit not in media_fits:
+                            errors.append(f'{where}: 素材兼容档位「{fit}」不在 tags.json 的 media_fit 里')
+                        if fam not in media_families:
+                            errors.append(f'{where}: 素材兼容族群「{fam}」不在 tags.json 的 media_family 里（{" / ".join(media_families)}）')
+                        rec['media_fit'] = fit
+                        rec['media_family'] = fam
             else:
+                if media_compat is not None:
+                    errors.append(f'{where}: {rec["class"]} 类不允许写「素材兼容」')
                 if rec['theme']:
                     errors.append(f'{where}: {rec["class"]} 类按内容类型分，不写「题材」')
                 if rec['content_type'] not in ctypes:
@@ -256,6 +286,30 @@ def catalog(styles, tags):
     out.append('按技术分的文件：' + ' · '.join(
         f'[{v["name"]}](styles/{k}.md)（{sum(1 for r in styles if r["layer"] == k)}）'
         for k, v in tags['files'].items() if any(r['layer'] == k for r in styles)))
+    return '\n'.join(out)
+
+
+def media_compat_table(styles, tags):
+    """C 类为主 + 穿插真实/AI 素材速查表：按融合族群列出「原生」「条件」分组，并提示「闭环」仅走 L2 客串"""
+    c_styles = [r for r in styles if r['class'] == 'C']
+    n_native = sum(1 for r in c_styles if r.get('media_fit') == '原生')
+    n_cond = sum(1 for r in c_styles if r.get('media_fit') == '条件')
+    n_closed = sum(1 for r in c_styles if r.get('media_fit') == '闭环')
+    link = lambda r: f'[{r["id"]} {r["name"]}]({r["file"]}#{r["id"]})'
+    out = [
+        f'以 C 类为主风格、局部穿插 T（真实）或 G（AI 生成）素材时，按「素材兼容」分三档：'
+        f'**原生** {n_native} 种（直接用主包 `media_slots.js` 内嵌）、**条件** {n_cond} 种（受控内嵌：G 类须锁伴生风格词，T 类须加框统一色调、忌裸贴实拍）；'
+        f'其余 **{n_closed} 种「闭环」风格禁止开媒体插槽**，确需放实拍/AI 时只走 **L2 切镜客串**（见 [film.md](film.md) 与 [materials.md](materials.md)）。',
+        '',
+        '| 融合族群 | 原生适配（直接内嵌 T / G） | 条件适配（受控内嵌，忌全屏裸贴） |',
+        '|---|---|---|',
+    ]
+    for fam in tags.get('media_family', []):
+        nat = [r for r in c_styles if r.get('media_fit') == '原生' and r.get('media_family') == fam]
+        cnd = [r for r in c_styles if r.get('media_fit') == '条件' and r.get('media_family') == fam]
+        nat_s = ' · '.join(map(link, nat)) or '—'
+        cnd_s = ' · '.join(map(link, cnd)) or '—'
+        out.append(f'| {fam}（{len(nat) + len(cnd)}） | {nat_s} | {cnd_s} |')
     return '\n'.join(out)
 
 
@@ -413,11 +467,15 @@ def check_lookups(errors):
         except ValueError as x:
             errors.append(f'{w}: 不是合法的 JSON：{x}')
             continue
-        src = open(os.path.join(d, 'pack.js'), encoding='utf-8').read() if os.path.exists(os.path.join(d, 'pack.js')) else ''
+        src = ''
+        for fn in ('pack.js', 'media_slots.js'):
+            fp = os.path.join(d, fn)
+            if os.path.exists(fp):
+                src += '\n' + open(fp, encoding='utf-8').read()
         sizes = lk.get('sizes') if isinstance(lk.get('sizes'), dict) else {}
         for part, row in sizes.items():
             if not re.search(r'\b' + re.escape(part) + r'\b', src):
-                errors.append(f'{w}: sizes 的部件 {part} 在 pack.js 里找不到')
+                errors.append(f'{w}: sizes 的部件 {part} 在 pack.js / media_slots.js 里找不到')
             if not isinstance(row, dict) or any(not isinstance(row.get(k), list) for k in ('top', 'mid', 'small')):
                 errors.append(f'{w}: sizes.{part} 要有 top、mid、small 三个数组（o 的键）')
         lead = lk.get('lead') if isinstance(lk.get('lead'), dict) else {}
@@ -461,13 +519,19 @@ def main():
     styles, tags = parse(errors)
     data = json.dumps({'count': len(styles), 'styles': styles}, ensure_ascii=False, indent=1) + '\n'
     index = open(INDEX_PATH, encoding='utf-8').read()
-    if CAT_START not in index or CAT_END not in index:
+    new_index = index
+    if CAT_START not in new_index or CAT_END not in new_index:
         errors.append('index.md: 缺少风格目录的起止标记')
-        new_index = index
     else:
-        head, rest = index.split(CAT_START, 1)
+        head, rest = new_index.split(CAT_START, 1)
         _, tail = rest.split(CAT_END, 1)
         new_index = f'{head}{CAT_START}\n{catalog(styles, tags)}\n{CAT_END}{tail}'
+    if MEDIA_START not in new_index or MEDIA_END not in new_index:
+        errors.append('index.md: 缺少素材兼容速查表的起止标记')
+    else:
+        head, rest = new_index.split(MEDIA_START, 1)
+        _, tail = rest.split(MEDIA_END, 1)
+        new_index = f'{head}{MEDIA_START}\n{media_compat_table(styles, tags)}\n{MEDIA_END}{tail}'
     tmd = open(TAGS_MD_PATH, encoding='utf-8').read()
     if TECH_START not in tmd or TECH_END not in tmd:
         errors.append('tags.md: 缺少技术类型表的起止标记')
@@ -482,7 +546,7 @@ def main():
         if not os.path.exists(JSON_PATH) or open(JSON_PATH, encoding='utf-8').read() != data:
             errors.append('data/styles.json 不是最新的：先运行 python3 scripts/build_index.py')
         if new_index != index:
-            errors.append('index.md 的风格目录不是最新的：先运行 python3 scripts/build_index.py')
+            errors.append('index.md 的风格目录或素材兼容速查表不是最新的：先运行 python3 scripts/build_index.py')
     else:
         open(JSON_PATH, 'w', encoding='utf-8').write(data)
         open(INDEX_PATH, 'w', encoding='utf-8').write(new_index)

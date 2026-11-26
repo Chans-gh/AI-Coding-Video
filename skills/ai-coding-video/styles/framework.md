@@ -17,6 +17,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：闭环
 - 适合：数学、AI 原理
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-041/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-041)
@@ -34,6 +35,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：软件发布
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-044/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-044)
@@ -52,6 +54,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：软件与 AI 产品发布、特性速览、数据亮点宣发、自动化模板视频
 - 技术（已验证）：HyperFrames · HTML/CSS · SVG · GSAP · ffmpeg
 - 样片代码：[samples/C-198/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-198)
@@ -69,6 +72,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：闭环
 - 适合：数学与物理教学、算法原理可视化、科普动画、学术演示
 - 技术（已验证）：Manim · Manim CE · ffmpeg
 - 样片代码：[samples/C-199/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-199)
@@ -86,6 +90,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：播客切片、有声书与金句短视频、口播观点提炼、批量音频可视化
 - 技术（已验证）：NumPy · Pillow · ffmpeg
 - 样片代码：[samples/C-200/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-200)
@@ -103,6 +108,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：服务端千人千面年度报告、数据仪表盘短视频、高并发自动化品牌动效
 - 技术（已验证）：Skia · ffmpeg
 - 样片代码：[samples/C-201/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-201)
@@ -120,6 +126,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：自动化短视频矩阵、社媒卡点片头、电商/营销批量模板出片
 - 技术（已验证）：MoviePy · Pillow · NumPy · ffmpeg
 - 样片代码：[samples/C-202/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-202)
@@ -137,6 +144,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：财经与宏观数据科普、行业份额演变、年度榜单与数据排行短视频
 - 技术（已验证）：NumPy · Skia · ffmpeg
 - 样片代码：[samples/C-203/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-203)
@@ -154,6 +162,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：每日大盘与个股复盘、财报与量化策略回测展示、财经资讯短视频
 - 技术（已验证）：NumPy · Skia · ffmpeg
 - 样片代码：[samples/C-204/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-204)
@@ -171,6 +180,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：App 与 SaaS 年度账单、学习与运动打卡年报、B2B 客户季度复盘
 - 技术（已验证）：Skia · ffmpeg
 - 样片代码：[samples/C-205/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-205)
@@ -188,6 +198,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（扁平栅格）
 - 适合：电商主图视频、SKU 批量上新、矩阵带货短视频与参数对比测评
 - 技术（已验证）：MoviePy · Pillow · NumPy · ffmpeg
 - 样片代码：[samples/C-206/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-206)
@@ -205,6 +216,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：上市公司财报速览、商业财经解读、季度经营复盘与运营周报视频化
 - 技术（已验证）：Skia · NumPy · ffmpeg
 - 样片代码：[samples/C-210/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-210)
@@ -222,6 +234,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：数码与消费品横评测评、好物导购对比、竞品方案多维打分短视频
 - 技术（已验证）：Skia · NumPy · ffmpeg
 - 样片代码：[samples/C-211/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-211)

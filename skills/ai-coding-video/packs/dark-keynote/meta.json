@@ -57,8 +57,17 @@
     ["转场", "Transitions", "layer"],
     ["节拍", "Beat grid", "layer"],
     ["角标", "Corner bug", "layer"],
-    ["字幕", "Captions", "layer"]
+    ["字幕", "Captions", "layer"],
+    ["氛围铺底（媒体）", "Media backdrop", "layer"],
+    ["双栏分屏（媒体）", "Media split", "seg"],
+    ["画框展示（媒体）", "Media frame", "seg"],
+    ["画中画（媒体叠加）", "Media PiP (overlay)", "seg"]
   ],
+  "media": {
+    "enabled": true,
+    "family": "暗色科技",
+    "slots": ["mediaBg", "mediaSplit", "mediaFrame", "mediaPip"]
+  },
   "accents": [
     ["purple", "紫", "Purple", "#8B7BFF"],
     ["orange", "橙", "Orange", "#FF7A45"],

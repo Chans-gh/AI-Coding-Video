@@ -219,6 +219,11 @@ class Page:
         self.pg.set_default_timeout(300000)   # 水彩笔刷这类重场景，单帧截图可能要几十秒
         self.pg.on("console", self._console)
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
+        from urllib.parse import unquote, urlparse
+        self.pg.expose_function(
+            "__aicvFileExists",
+            lambda u: os.path.isfile(unquote(urlparse(u).path)) if isinstance(u, str) and u.startswith("file://") else True,
+        )
         base, _, col = sid.partition("@")
         col = col.removesuffix(".clip")
         if base.startswith("pack:"):

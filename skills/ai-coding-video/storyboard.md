@@ -73,6 +73,8 @@ python3 <本 Skill 目录>/scripts/check_plan.py plans/<短名>
 
 表里没有的（包没有 `lookup.json`、主角写的是「其他」、要叠一层别的部件），自己定，把怎么定的写进分镜的 `note`。叠加在主部件上的部件写 `over`（部件名，或 `{part: …}` 带参数）。
 
+当 `content.md` 的「看什么」同时含代码画与照片/录像/生图/生视频、且主包为已启用媒体槽的 C 类包时，需要外部素材的格按 **L1 风格内嵌**（分镜写 `class: "T"` 或 `"G"` + 主包 `mediaFrame` / `mediaSplit` 等 `part`，仍照主包 `lookup.json` 核对主角与顶档字号）或 **L2 技法客串**（分镜直接写 `ref: "T-xxx"` / `"G-xxx"`，不写 `part`）填写，具体决策见 [film.md](film.md#hybrid-l1-l2)。
+
 ## 3 怎么填引用
 
 分镜脚本、逐字稿里引用策划的字段是 `plan`、`seg`、`say`、`view`、`ref`、`rule`，版式字段是 `part`、`o`、`over`、`note`。`storyboard.json`、`script.json` 的格式见 [film.md](film.md)，产物放 `videos/<短名>/`，不写进 `plans/`。接策划时这样填：

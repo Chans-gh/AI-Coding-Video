@@ -17,6 +17,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：开场、收尾、人生故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-008/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-008)
@@ -34,6 +35,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（扁平栅格）
 - 适合：科普、“怎么运作”
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-009/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-009)
@@ -51,6 +53,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：春节、民俗
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-015/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-015)
@@ -68,6 +71,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：原生（纸面档案）
 - 适合：调查式讲解、趣味科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-020/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-020)
@@ -85,6 +89,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：原生（纸面档案）
 - 适合：产品原理、结构拆解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-021/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-021)
@@ -102,6 +107,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：原生（扁平栅格）
 - 适合：高端品牌、酒店、爵士题材
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-024/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-024)
@@ -119,6 +125,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：原则、步骤、强信息
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-031/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-031)
@@ -136,6 +143,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：轻松公告、短视频
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-032/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-032)
@@ -153,6 +161,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：设计、规则类内容
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-033/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-033)
@@ -170,6 +179,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：条件（扁平栅格）
 - 适合：片头、预告
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-034/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-034)
@@ -187,6 +197,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：金句、短视频钩子、作品集
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-036/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-036)
@@ -204,6 +215,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：赛事、分类介绍
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-037/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-037)
@@ -221,6 +233,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：条件（扁平栅格）
 - 适合：科学概念
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-038/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-038)
@@ -238,6 +251,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：条件（3D展陈）
 - 适合：流程、系统拆解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-039/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-039)
@@ -255,6 +269,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：用数字说话、前后对比
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-040/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-040)
@@ -272,6 +287,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：历史、行业史、技术科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-042/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-042)
@@ -289,6 +305,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：教程、菜谱、组装
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-043/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-043)
@@ -306,6 +323,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：产品动效、作品集
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-046/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-046)
@@ -323,6 +341,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：成人向搞笑
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-050/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-050)
@@ -340,6 +359,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：日常小故事、App 广告；可附上你自己的角色图
 - 技术（已验证）：SVG · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-051/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-051)
@@ -357,6 +377,7 @@
 ```
 
 - 题材：游戏
+- 素材兼容：原生（扁平栅格）
 - 适合：节奏综艺、年度回顾
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-057/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-057)
@@ -374,6 +395,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（暗色科技）
 - 适合：分析、评分
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-065/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-065)
@@ -391,6 +413,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：原生（暗色科技）
 - 适合：开发者故事
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-066/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-066)
@@ -408,6 +431,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：消费类 App、冥想健康、氛围感首屏
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-083/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-083)
@@ -424,6 +448,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：物流、出行、旅行、路演里的地理叙事
 - 技术（已验证）：SVG · D3.js · Playwright · ffmpeg
 - 样片代码：[samples/C-085/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-085)
@@ -440,6 +465,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：条件（扁平栅格）
 - 适合：科普素材、网站背景、展厅屏幕
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-086/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-086)
@@ -456,6 +482,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：条件（纸面档案）
 - 适合：成语、古诗、国学与传统文化科普
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-095/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-095)
@@ -473,6 +500,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：旅行指南、活动海报、景点与路线系列
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-098/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-098)
@@ -490,6 +518,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：原生（纸面档案）
 - 适合：调查与历史故事、田野笔记、悬疑纪录片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-100/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-100)
@@ -507,6 +536,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：音乐节与活动预告、品牌宣言、消费类应用
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-101/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-101)
@@ -524,6 +554,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：产品介绍、品牌故事、电商与新品发布
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-103/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-103)
@@ -541,6 +572,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：操作指南、产品使用步骤、食谱卡、安全提示
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-104/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-104)
@@ -558,6 +590,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：每日简报、行业快讯、周报回顾
 - 技术（已验证）：HTML/CSS · SVG · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-112/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-112)
@@ -575,6 +608,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：闭环
 - 适合：发布公告、行程安排、版本更新
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-113/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-113)
@@ -592,6 +626,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：条件（纸面档案）
 - 适合：清单总结、价格说明、年度账单
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-115/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-115)
@@ -609,6 +644,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：问题排查、悬疑揭秘、案例复盘
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-117/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-117)
@@ -626,6 +662,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（扁平栅格）
 - 适合：状态报告、季度预测、趣味数据播报
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-118/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-118)
@@ -643,6 +680,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：原生（扁平栅格）
 - 适合：促销活动、产品对比、搞笑广告
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-119/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-119)
@@ -660,6 +698,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：两款产品对比、排行榜、年度成绩
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-120/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-120)
@@ -677,6 +716,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：原生（纸面档案）
 - 适合：项目幕后、成长记录、旅行日志
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-123/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-123)
@@ -694,6 +734,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：条件（暗色科技）
 - 适合：技术原理、安全漏洞讲解、计算机科普
 - 技术（已验证）：Remotion · SVG · Playwright · ffmpeg
 - 样片代码：[samples/C-124/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-124)
@@ -711,6 +752,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（纸面档案）
 - 适合：政策解读、安全事件、历史揭秘
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-125/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-125)
@@ -728,6 +770,7 @@
 ```
 
 - 题材：印刷、版画与装饰
+- 素材兼容：条件（纸面档案）
 - 适合：海报式开场、美妆与香氛、文学与诗歌
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-137/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-137)
@@ -745,6 +788,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：宣言与观点片、工业与工程史、论证型讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-143/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-143)
@@ -762,6 +806,7 @@
 ```
 
 - 题材：纸艺、材质与定格
+- 素材兼容：闭环
 - 适合：音乐与舞蹈、儿童艺术启蒙、轻快的品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-146/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-146)
@@ -779,6 +824,7 @@
 ```
 
 - 题材：手绘与绘画
+- 素材兼容：闭环
 - 适合：音乐 MV、公益宣传、派对与节日
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-148/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-148)
@@ -796,6 +842,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：闭环
 - 适合：产品功能串讲、品牌故事、图形化讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-156/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-156)
@@ -813,6 +860,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（扁平栅格）
 - 适合：硬核科普、财经知识、企业介绍
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-157/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-157)
@@ -830,6 +878,7 @@
 ```
 
 - 题材：平面设计与动态排版
+- 素材兼容：原生（扁平栅格）
 - 适合：独白与书信、产品文案演示、悬念开场
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-169/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-169)
@@ -846,6 +895,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（扁平栅格）
 - 适合：产品拆解与清单、装备介绍、收纳与旅行准备
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-179/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-179)
@@ -862,6 +912,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：春节与节庆、民俗科普、新年品牌片
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-181/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-181)
@@ -878,6 +929,7 @@
 ```
 
 - 题材：东方传统
+- 素材兼容：闭环
 - 适合：戏曲科普、国潮品牌、人物性格讲解
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-183/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-183)
@@ -894,6 +946,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：条件（扁平栅格）
 - 适合：荒诞科幻喜剧、技术梗讲解、成人向短剧
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-192/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-192)
@@ -911,6 +964,7 @@
 ```
 
 - 题材：卡通与动漫
+- 素材兼容：闭环
 - 适合：讽刺短剧、快速成本低的连载、职场与社会话题
 - 技术（已验证）：Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-193/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-193)
@@ -928,6 +982,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：产品功能演示、UI 交互展示、SaaS 发布片、组件动效说明
 - 技术（已验证）：Motion · HTML/CSS · SVG · Playwright · ffmpeg
 - 样片代码：[samples/C-197/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-197)
@@ -945,6 +1000,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：AI Agent 对话演示、客服与产品场景剧场、职场情感对话短视频、知识科普问答
 - 技术（已验证）：HTML/CSS · Motion · Playwright · ffmpeg
 - 样片代码：[samples/C-207/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-207)
@@ -962,6 +1018,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：SaaS 与 App 新功能发布、版本更新日志（Changelog）、独立开发者产品宣发
 - 技术（已验证）：HTML/CSS · SVG · Motion · Playwright · ffmpeg
 - 样片代码：[samples/C-208/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-208)
@@ -979,6 +1036,7 @@
 ```
 
 - 题材：信息讲解与产品发布
+- 素材兼容：原生（暗色科技）
 - 适合：技术架构科普、AI Agent 工作流拆解、系统高可用与商业链路讲解
 - 技术（已验证）：SVG · HTML/CSS · GSAP · Playwright · ffmpeg
 - 样片代码：[samples/C-209/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-209)

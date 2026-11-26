@@ -68,22 +68,34 @@
    ]
   },
   "实物": {
+   "part": [
+    "mediaFrame",
+    "mediaSplit"
+   ],
    "instead": [
     "reveal"
    ],
-   "note": "包里没有画实物的部件：大字揭示写物件的名字"
+   "note": "有实拍或 AI 素材时用外挂 media_slots.js 的 mediaFrame / mediaSplit 展示；纯 C 无素材时用 instead: reveal 代替"
   },
   "人": {
+   "part": [
+    "mediaSplit",
+    "mediaFrame"
+   ],
    "instead": [
     "quote"
    ],
-   "note": "包里没有画人的部件：引用写他说的话，over 叠信息条 lower 写名字"
+   "note": "有人物实拍或头像素材时用 mediaSplit / mediaFrame（或 over 叠 mediaPip）；纯 C 无素材时用 instead: quote + over: lower 代替"
   },
   "场景": {
+   "part": [
+    "mediaFrame",
+    "mediaSplit"
+   ],
    "instead": [
     "reveal"
    ],
-   "note": "包里没有画场景的部件：大字揭示写地点或事件"
+   "note": "有实拍或 AI 伴生场景素材时用 mediaFrame / mediaSplit（或纯 C 部件配 o.bg 走 mediaBg）；纯 C 无素材时用 instead: reveal 代替"
   }
  },
  "sizes": {
@@ -313,6 +325,42 @@
     "sub"
    ],
    "small": []
+  },
+  "mediaFrame": {
+   "top": [
+    "title"
+   ],
+   "mid": [
+    "kicker"
+   ],
+   "small": [
+    "credit",
+    "placeholder"
+   ]
+  },
+  "mediaSplit": {
+   "top": [
+    "title",
+    "to",
+    "suffix"
+   ],
+   "mid": [
+    "body",
+    "label",
+    "items"
+   ],
+   "small": [
+    "kicker",
+    "credit",
+    "placeholder"
+   ]
+  },
+  "mediaPip": {
+   "top": [],
+   "mid": [],
+   "small": [
+    "label"
+   ]
   }
  },
  "motion": {
