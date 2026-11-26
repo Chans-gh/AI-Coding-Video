@@ -792,6 +792,128 @@ function drawContain(ctx, src, x, y, w, h, o = {}) {
   ctx.save(); if (o.alpha != null) ctx.globalAlpha *= o.alpha; ctx.drawImage(src, ...r); ctx.restore();
   return r;
 }
+// 确定性视频取帧：把局部时间 lt 按 o.mode（'clamp' 末帧定格 / 'loop' 循环 / 'pingpong' 往返，默认 'clamp'）、o.speed（默认 1）、o.offset（默认 0）映射到 [0, v.dur - 1/FPS]，await v.at(mt) 后返回 v.el
+async function videoAt(v, lt, o = {}) {
+  if (!v || !v.el || !v.at) return null;
+  const dur = Math.max(1 / FPS, v.dur || 0), maxT = Math.max(0, dur - 1 / FPS);
+  const raw = Math.max(0, lt) * (o.speed ?? 1) + (o.offset ?? 0), mode = o.mode || 'clamp';
+  let mt = 0;
+  if (mode === 'loop') mt = dur > 0 ? Math.min(maxT, ((raw % dur) + dur) % dur) : 0;
+  else if (mode === 'pingpong') {
+    if (maxT > 0) { const span = maxT * 2, r = ((raw % span) + span) % span; mt = r <= maxT ? r : span - r; }
+  } else mt = clamp(raw, 0, maxT);
+  await v.at(mt);
+  return v.el;
+}
+// 安全载入图片或视频（kind 为 'image' 或 'video'，省略时按扩展名判断）：name 为空或文件不存在时返回 null（不抛异常阻断渲染，交由 drawPlaceholder 渲染占位框）
+async function loadMediaSafe(name, kind) {
+  if (!name || typeof name !== 'string') return null;
+  if (typeof window.__aicvFileExists === 'function') {
+    const url = new URL(asset(name), location.href).href;
+    if (!(await window.__aicvFileExists(url))) return null;
+  }
+  const k = kind || (/\.(mp4|webm|mov|m4v)(\?|$)/i.test(name) ? 'video' : 'image');
+  try { return k === 'video' ? await loadVideo(name) : await loadImage(name); }
+  catch (_) { return null; }
+}
+// 在 (x,y,w,h) 绘制符合当前主题 K 的媒体虚线占位框：标出 [T 真实素材] / [G AI 素材]（支持 mediaType: 'image' | 'video' 区分图片/视频图标）、目标尺寸与 o.label，缺素材时不黑屏不白屏
+function drawPlaceholder(ctx, x, y, w, h, o = {}) {
+  const K = o.K || {}, u = K.u || (SHORT / 1080), rad = o.radius ?? 18 * u;
+  const isG = o.kind === 'G', mtype = o.mediaType;
+  const defaultTag = mtype === 'video'
+    ? (isG ? '[G AI 视频]' : '[T 实拍视频]')
+    : mtype === 'image'
+      ? (isG ? '[G AI 生图]' : '[T 真实图片]')
+      : (isG ? '[G AI 素材]' : '[T 真实素材]');
+  const tag = o.tag || defaultTag;
+  const accent = K.a ? K.a(.65) : (isG ? 'rgba(176,132,255,.72)' : 'rgba(72,216,172,.72)');
+  const accentSoft = K.a ? K.a(.14) : (isG ? 'rgba(176,132,255,.14)' : 'rgba(72,216,172,.14)');
+  const ink = K.ink || '#F2F5FA', muted = K.muted || 'rgba(242,245,250,.66)';
+  const mono = K.mono || "'JetBrains Mono', monospace", head = K.head || "'Noto Sans SC', sans-serif";
+  ctx.save();
+  rr(ctx, x, y, w, h, rad);
+  ctx.fillStyle = o.bg || K.panel || 'rgba(255,255,255,.06)';
+  ctx.fill();
+  ctx.save();
+  rr(ctx, x, y, w, h, rad);
+  ctx.clip();
+  // 轻量斜纹底纹 + 柔和扫描光带，保证构图辨识度且不死屏
+  const step = Math.max(20, 32 * u);
+  ctx.strokeStyle = K.a ? K.a(.09) : 'rgba(255,255,255,.06)';
+  ctx.lineWidth = Math.max(1, 1.2 * u);
+  ctx.beginPath();
+  for (let d = -h; d < w + h; d += step) { ctx.moveTo(x + d, y); ctx.lineTo(x + d - h, y + h); }
+  ctx.stroke();
+  if (o.t != null) {
+    const sx = x + ((o.t * 0.28) % 1.4 - 0.2) * w;
+    const lg = ctx.createLinearGradient(sx - w * .18, y, sx + w * .18, y + h);
+    lg.addColorStop(0, 'rgba(255,255,255,0)');
+    lg.addColorStop(.5, accentSoft);
+    lg.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = lg;
+    ctx.fillRect(x, y, w, h);
+  }
+  const cx = x + w / 2, cy = y + h / 2, compact = Math.min(w, h) < 220 * u;
+  const tagPx = Math.round((compact ? 16 : 22) * u);
+  ctx.font = `700 ${tagPx}px ${mono}`;
+  const tw = Math.min(w - 24 * u, ctx.measureText(tag).width + 28 * u), th = tagPx * 1.75;
+  const hasLabel = Boolean(o.label) && !compact;
+  const hasIcon = !compact && (mtype === 'video' || mtype === 'image');
+  const badgeY = cy - (hasLabel ? (hasIcon ? 24 : 42) * u : 16 * u) - th / 2;
+  if (hasIcon) {
+    const iw = (mtype === 'video' ? 48 : 44) * u, ih = 32 * u;
+    const ix = cx - iw / 2, iy = badgeY - ih - 14 * u;
+    ctx.save();
+    rr(ctx, ix, iy, iw, ih, 7 * u);
+    ctx.fillStyle = accentSoft; ctx.fill();
+    ctx.strokeStyle = accent; ctx.lineWidth = Math.max(1.5, 2 * u); ctx.stroke();
+    ctx.fillStyle = accent;
+    if (mtype === 'video') {
+      ctx.beginPath();
+      ctx.moveTo(cx - 5 * u, iy + 8 * u);
+      ctx.lineTo(cx + 8 * u, iy + ih / 2);
+      ctx.lineTo(cx - 5 * u, iy + ih - 8 * u);
+      ctx.closePath();
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.arc(ix + iw * .3, iy + ih * .34, 3.5 * u, 0, TAU);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(ix + 7 * u, iy + ih - 6 * u);
+      ctx.lineTo(ix + iw * .46, iy + ih * .46);
+      ctx.lineTo(ix + iw * .66, iy + ih * .68);
+      ctx.lineTo(ix + iw * .8, iy + ih * .52);
+      ctx.lineTo(ix + iw - 7 * u, iy + ih - 6 * u);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  rr(ctx, cx - tw / 2, badgeY, tw, th, th / 2);
+  ctx.fillStyle = accentSoft; ctx.fill();
+  ctx.strokeStyle = accent; ctx.lineWidth = Math.max(1, 1.4 * u); ctx.stroke();
+  ctx.fillStyle = ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(tag, cx, badgeY + th / 2);
+  if (hasLabel) {
+    const lblPx = Math.round(clamp(Math.min(w, h) * .048, 20 * u, 32 * u));
+    ctx.font = `700 ${lblPx}px ${head}`;
+    ctx.fillStyle = ink;
+    const lines = wrapCJK(ctx, String(o.label), w * .84).slice(0, 2);
+    lines.forEach((ln, i) => ctx.fillText(ln, cx, cy + ((hasIcon ? 24 : 12) + i * (lblPx / u * 1.35)) * u));
+  }
+  const dimTxt = `${Math.round(w)} × ${Math.round(h)}`;
+  ctx.font = `600 ${Math.round((compact ? 14 : 18) * u)}px ${mono}`;
+  ctx.fillStyle = muted;
+  ctx.fillText(dimTxt, cx, hasLabel ? cy + Math.min(h * .36, (hasIcon ? 104 : 92) * u) : cy + 24 * u);
+  ctx.restore();
+  rr(ctx, x, y, w, h, rad);
+  ctx.setLineDash([10 * u, 8 * u]);
+  ctx.strokeStyle = accent;
+  ctx.lineWidth = Math.max(1.5, 2 * u);
+  ctx.stroke();
+  ctx.restore();
+}
 // t 时刻该显示的字幕：A 是 loadAssets() 的结果，旁白素材的 lines 是 [{t0, t1, text}]（相对这段旁白的起点 at），返回那一条 {text, p 进度 0–1, t0, t1}，没有就 null
 function cueAt(A, t) {
   for (const it of A.items) {
@@ -877,4 +999,4 @@ const S = [];   // 场景列表（播放器读 S[0]）
 function scene(def) { S.push(def); }
 
 // 段文件是独立作用域：能用的全局就是 lib.js 顶层声明的这些。改 lib.js 加了新的顶层名字，这张表要跟着补（`samples/API.md` 有段代码那一节）。
-window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, toothMask, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, GLSL_LIB, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, keyAt, skeleton2d, fluid2d, fluidSplat, fluidStep, fluidAt, fluidImage, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};
+window.__FILM_GLOBALS__ = {mulberry32, hash1, hash2, vnoise, fbm, noise1, mk, rgba, hex2rgb, makePaper, weathering, toothMask, makeGrain, grain, vignette, samplePoints, shuffle, polyLen, drawPartial, resample, brushStroke, circlePts, linePts, rectPts, rr, wrapCJK, textReveal, toneMap, hatchLines, drawHatch, stipple, drawDots, toneRibbon, paintMap, flowField, strokePlan, drawStrokes, glInit, glProgram, glDraw, GLSL_LIB, el, svgRoot, timeline, three3d, studioEnv, physicsAt, p5Sketch, keyAt, skeleton2d, fluid2d, fluidSplat, fluidStep, fluidAt, fluidImage, asset, xhr, loadAssets, loadImage, loadText, parseCSV, loadVideo, srcSize, drawCover, drawContain, videoAt, loadMediaSafe, drawPlaceholder, cueAt, cueTime, caption, credits, say, sayingAt, sayP, subAt, shotAt, drawShots, scene, AR, W, H, FPS, LAND, SHORT, LONG, BPM, BEAT, clamp, lerp, inv, smooth, eOutCubic, eInOutCubic, eOutExpo, eInCubic, eOutBack, eOutElastic, TAU, stepT, GRAINS, GL, SVGNS, SEG, TIMING, S};

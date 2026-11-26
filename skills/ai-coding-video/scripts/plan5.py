@@ -757,11 +757,11 @@ def check_values(P, claims):
 
 
 def pack_of(x, sb):
-    """分镜用哪个风格包：ref 写 "pack:名字" 的；没写 ref、class，又写了 part 的，算 unify.pack；别的不算"""
+    """分镜用哪个风格包：ref 写 "pack:名字" 的；没写 ref、写了 part 的（允许同时带 class: "T"/"G" 走主包媒体插槽），算 unify.pack；别的不算"""
     r = x.get('ref')
     if isinstance(r, str) and r.startswith('pack:'):
         return r[5:]
-    if r or x.get('class') or not x.get('part'):
+    if r or not x.get('part'):
         return None
     u = sb.get('unify') if isinstance(sb.get('unify'), dict) else {}
     p = u.get('pack')

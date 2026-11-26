@@ -33,6 +33,7 @@ SHOT_KEYS = ('sec', 'what', 'ref', 'class', 'src', 'vo', 'cut', 'rule', 'view', 
 # rule：照策划 content.md 的哪几条约束；view：认领策划 plan.md 画面表的哪几行（H1）；都由 check_plan.py 查
 SHOT_MIN = 0.5    # 一个分镜至少几秒
 SEC_EPS = 0.05    # 分镜秒数之和和段的 sec 差这么多以内算相等
+MEDIA_SLOTS = ('mediaBg', 'mediaSplit', 'mediaFrame', 'mediaPip')
 
 
 class Unreadable(Exception):
@@ -56,22 +57,44 @@ def my_styles_dir():
 
 
 def library(extra_packs=()):
-    """库里能引用的：风格编号 → 条目（data/styles.json），风格包名（packs/ 下有 meta.json 的目录），素材类型
+    """库里能引用的：风格编号 → 条目（data/styles.json），风格包名（packs/ 下有 meta.json 的目录），素材类型，风格包 meta.json
 
     extra_packs：项目里沉淀的风格包目录（--pack-root 传进来，可以有多个），和 Skill 自带的 packs/、个人库 ~/aicv-my-styles/ 合起来认。
     """
     styles = {s['id']: s for s in json.loads((SKILL / 'data' / 'styles.json').read_text(encoding='utf-8'))['styles']}
     roots = [SKILL / 'packs', my_styles_dir()] + [Path(p) for p in extra_packs]
-    packs = {q.parent.name for r in roots if r.is_dir() for q in r.glob('*/meta.json')}
+    pack_meta = {}
+    for r in roots:
+        if not r.is_dir():
+            continue
+        for q in sorted(r.glob('*/meta.json')):
+            try:
+                m = json.loads(q.read_text(encoding='utf-8'))
+            except (OSError, json.JSONDecodeError):
+                m = {}
+            pack_meta[q.parent.name] = m if isinstance(m, dict) else {}
+    packs = set(pack_meta)
     tags = json.loads((SKILL / 'data' / 'tags.json').read_text(encoding='utf-8'))
     materials = {c: {m['name'] for m in ms} for c, ms in tags['materials'].items()}
-    return styles, packs, materials
+    return styles, packs, materials, pack_meta
+
+
+def pack_class(name, styles, pack_meta=None):
+    """风格包的默认类别：按 meta.json 的 from 查 styles；找不到时回退 'C'"""
+    meta = (pack_meta or {}).get(name) if isinstance(pack_meta, dict) else None
+    src = meta.get('from') if isinstance(meta, dict) else None
+    if isinstance(src, str):
+        if src in styles:
+            return styles[src]['class']
+        if len(src) >= 2 and src[0] in CLASSES and src[1] == '-':
+            return src[0]
+    return 'C'
 
 
 def check_head(sb, lib):
     """顶层：plan 和 brief 只有一个、brief 齐、ar、status、unify 齐"""
     errs, notes = [], []
-    styles, packs, _ = lib
+    styles, packs, _ = lib[:3]
     has_plan, has_brief = 'plan' in sb, 'brief' in sb
     if has_plan and has_brief:
         errs.append('"plan" 和 "brief" 只写一个：有策划写 plan（指向 plan.md），无策划写 brief')
@@ -165,7 +188,8 @@ def check_heard_ok(sc):
 
 def style_class(x, w, lib, errs, unverified):
     """uses 一条或一个分镜的 ref / class：只写一个，ref 在库里；返回类别 C、T、G，不对返回 None（问题记进 errs）"""
-    styles, packs, _ = lib
+    styles, packs, _ = lib[:3]
+    pack_meta = lib[3] if len(lib) > 3 else {}
     has_ref, has_class = x.get('ref') is not None, x.get('class') is not None
     if has_ref == has_class:
         errs.append(f'{w}：ref、class 只写一个（库里有合适的风格写 ref，没有写 class）')
@@ -176,7 +200,7 @@ def style_class(x, w, lib, errs, unverified):
             if r[5:] not in packs:
                 errs.append(f'{w}：风格包 {r[5:]!r} 不在 packs/ 里')
                 return None
-            return 'C'
+            return pack_class(r[5:], styles, pack_meta)
         if r in styles:
             if not styles[r].get('render_code'):
                 unverified.add(r)
@@ -206,10 +230,28 @@ def shot_name(k, j):
     return f'{k}-{j}'
 
 
+def shot_media_slots(x):
+    """一个分镜显式用到的媒体插槽列表（按顺序去重）：mediaFrame / mediaSplit / mediaPip / mediaBg"""
+    used = []
+    part = x.get('part')
+    if isinstance(part, str) and part in MEDIA_SLOTS:
+        used.append(part)
+    if isinstance(x.get('o'), dict) and x['o'].get('bg') is not None:
+        used.append('mediaBg')
+    for ov in over_names(x.get('over')):
+        if ov in MEDIA_SLOTS:
+            used.append(ov)
+    return list(dict.fromkeys(used))
+
+
 def check_shots(sb, sc, lib):
     """每段可选的 shots：每个分镜 what、ref 或 class 只写一个、sec 是正数、src 是路径、vo 是本段的句号且按顺序、cut 硬切或溶解；
     都写了 sec 的，加起来等于段的 sec；有的没写，写了的加起来要小于段的 sec，没写的随旁白定（voice.py 排）"""
     errs, notes, unverified = [], [], set()
+    pack_meta = lib[3] if len(lib) > 3 else {}
+    u = sb.get('unify') if isinstance(sb.get('unify'), dict) else {}
+    upack = u.get('pack')
+    pack_name = upack[5:] if isinstance(upack, str) and upack.startswith('pack:') else (upack if isinstance(upack, str) else None)
     segs = sb.get('segments') if isinstance(sb.get('segments'), list) else []
     scs = sc.get('segments', []) if isinstance(sc, dict) else []
     for k, s in enumerate(segs, 1):
@@ -234,7 +276,7 @@ def check_shots(sb, sc, lib):
                 notes.append(f'{w}：只认 {"、".join(SHOT_KEYS)}，{"、".join(extra)} 不读')
             if not x.get('what'):
                 errs.append(f'{w}：缺 what（景别、主体、动作）')
-            style_class(x, w, lib, errs, unverified)
+            cls = style_class(x, w, lib, errs, unverified)
             sec = x.get('sec')
             if sec is None:
                 unsized += 1
@@ -271,6 +313,23 @@ def check_shots(sb, sc, lib):
                 errs.append(f'{w}：cut 写「硬切」或「溶解」（不写算硬切），现在是 {x["cut"]!r}')
             elif x.get('cut') is None:
                 ncut += 1
+            used_slots = shot_media_slots(x)
+            if used_slots and (cls in ('T', 'G') or x.get('class') in ('T', 'G') or 'mediaPip' in used_slots):
+                pm = pack_meta.get(pack_name) if pack_name else None
+                if not pack_name:
+                    notes.append(f'{w}：用了媒体插槽 {"、".join(used_slots)}，但 unify.pack 未指定主风格包；'
+                                 '请指定已开启媒体槽的主包，或改用 ref 走 L2 客串')
+                elif isinstance(pm, dict):
+                    mcfg = pm.get('media') if isinstance(pm.get('media'), dict) else {}
+                    if not mcfg.get('enabled'):
+                        notes.append(f'{w}：用了媒体插槽 {"、".join(used_slots)}，但主包 {pack_name} 未启用媒体插槽'
+                                     '（meta.json 缺 media.enabled: true）；可运行 new_pack.py --add-media 挂载，或改用 ref 走 L2 客串')
+                    else:
+                        slots = set(mcfg.get('slots') or [])
+                        miss = [sl for sl in used_slots if slots and sl not in slots]
+                        if miss:
+                            notes.append(f'{w}：主包 {pack_name} 的 media.slots 未声明 {"、".join(miss)}'
+                                         f'（现有 {"、".join(sorted(slots))}）；请补齐 media_slots.js 或改用 L2 客串')
         if ncut == len(shots) >= 2:
             notes.append(f'{where}：分镜都没写 cut，接法一律硬切；要叠化就在那一格写「溶解」')
         ssec = s.get('sec')
@@ -336,7 +395,7 @@ def layout(shots, dur, starts=None, fps=30):
 def check_segments(sb, lib, has_plan):
     """每段：seg、lead、至少一条 uses、ref 在库里、materials 是 tags.json 的；typical 1–2 段；无策划时秒数贴近 brief.sec"""
     errs, notes = [], []
-    styles, packs, materials = lib
+    styles, packs, materials = lib[:3]
     segs = sb.get('segments')
     if not isinstance(segs, list) or not segs:
         return ['"segments" 要是非空数组，按播放顺序'], notes
@@ -533,10 +592,126 @@ def shot_rows(k, s, vo, spans=None):
     return out
 
 
+def _item_cls(x, styles, pack_meta):
+    if x.get('class') in CLASSES:
+        return x['class']
+    r = x.get('ref')
+    if isinstance(r, str) and r.startswith('pack:'):
+        return pack_class(r[5:], styles, pack_meta)
+    return styles.get(r, {}).get('class')
+
+
+def _media_bucket(x, cls, styles):
+    """按 T 真实素材 / G 生图 / G 生视频 归类"""
+    if cls == 'T':
+        return 'T 真实素材'
+    mats = x.get('materials') if isinstance(x.get('materials'), list) else []
+    if '生视频' in mats:
+        return 'G 生视频'
+    r = x.get('ref')
+    if isinstance(r, str) and r in styles and '生视频' in (styles[r].get('materials') or []):
+        return 'G 生视频'
+    src = x.get('src')
+    srcs = [src] if isinstance(src, str) else (src if isinstance(src, list) else [])
+    if any(isinstance(s, str) and re.search(r'\.(mp4|mov|webm|mkv)\b', s, re.I) for s in srcs):
+        return 'G 生视频'
+    o = x.get('o') if isinstance(x.get('o'), dict) else {}
+    if o.get('videoMode') or (isinstance(o.get('bg'), dict) and o['bg'].get('videoMode')):
+        return 'G 生视频'
+    what = str(x.get('what', ''))
+    if '生视频' in what or 'AI 视频' in what or 'AI视频' in what:
+        return 'G 生视频'
+    return 'G 生图'
+
+
+def _degrade_hint(slots, is_l2, is_shot):
+    if not is_shot:
+        return '待拆镜后按 L1 / L2 确认'
+    if is_l2:
+        return 'L2 独立技法（弃用需整镜换回主包纯 C 部件）'
+    if 'mediaBg' in slots and not any(s in slots for s in ('mediaFrame', 'mediaSplit')):
+        return '可降级：去掉 o.bg 退回纯 C 背景'
+    if 'mediaPip' in slots and not any(s in slots for s in ('mediaFrame', 'mediaSplit', 'mediaBg')):
+        return '可降级：去掉 over.mediaPip 退回纯 C'
+    if 'mediaSplit' in slots:
+        return '可降级：缺素材先走占位，或切回纯 C headline / metric'
+    if 'mediaFrame' in slots:
+        return '可降级：缺素材先走占位，或改用纯 C 图解部件'
+    return '可降级：缺素材先走占位，或退回主包纯 C 部件'
+
+
+def external_media_summary(sb, styles, pack_meta):
+    """全片存在 T / G 类 uses 或 shots 时，按 T 真实素材 / G 生图 / G 生视频 汇总输出 Markdown 表"""
+    rows = []
+    segs = sb.get('segments') if isinstance(sb.get('segments'), list) else []
+    upack = (sb.get('unify') or {}).get('pack') if isinstance(sb.get('unify'), dict) else None
+    for k, s in enumerate(segs, 1):
+        if not isinstance(s, dict):
+            continue
+        shots = s.get('shots') if isinstance(s.get('shots'), list) else []
+        if shots:
+            for j, x in enumerate(shots, 1):
+                if not isinstance(x, dict):
+                    continue
+                cls = _item_cls(x, styles, pack_meta)
+                slots = shot_media_slots(x)
+                if cls not in ('T', 'G') and not slots:
+                    continue
+                if cls not in ('T', 'G'):
+                    cls = 'T'
+                bucket = _media_bucket(x, cls, styles)
+                r = x.get('ref')
+                is_l2 = bool(r) and not (isinstance(r, str) and r.startswith('pack:'))
+                if is_l2:
+                    kind_s = f'L2 客串（{r}）'
+                elif isinstance(r, str) and r.startswith('pack:'):
+                    kind_s = f'风格包（{r[5:]}）'
+                elif slots:
+                    kind_s = f'L1 内嵌（{" + ".join(slots)}）'
+                elif upack:
+                    kind_s = 'L1 内嵌'
+                else:
+                    kind_s = f'{cls} 类自定义'
+                src = x.get('src') or ''
+                src = '、'.join(src) if isinstance(src, list) else str(src)
+                rows.append((bucket, shot_name(k, j), kind_s, src or '—', x.get('what', ''), _degrade_hint(slots, is_l2, True)))
+        else:
+            for j, x in enumerate(s.get('uses') or [], 1):
+                if not isinstance(x, dict):
+                    continue
+                cls = _item_cls(x, styles, pack_meta)
+                if cls not in ('T', 'G'):
+                    continue
+                bucket = _media_bucket(x, cls, styles)
+                r = x.get('ref')
+                is_l2 = bool(r) and not (isinstance(r, str) and r.startswith('pack:'))
+                if is_l2:
+                    kind_s = f'L2 客串（{r}）'
+                elif isinstance(r, str) and r.startswith('pack:'):
+                    kind_s = f'风格包（{r[5:]}）'
+                else:
+                    kind_s = 'L1 内嵌' if upack else f'{cls} 类自定义'
+                ms = '、'.join(x.get('materials') or [])
+                rows.append((bucket, f'{s.get("seg", k)} uses#{j}', kind_s, ms or '—', x.get('what', ''), _degrade_hint([], is_l2, False)))
+    if not rows:
+        return []
+    order = ('T 真实素材', 'G 生图', 'G 生视频')
+    counts = [f'{b} {sum(1 for r in rows if r[0] == b)} 项' for b in order if any(r[0] == b for r in rows)]
+    rows.sort(key=lambda r: order.index(r[0]))
+    out = [f'外部素材汇总（{" · ".join(counts)}）：', '',
+           '| 归类 | 分镜 | 来源类型 | 素材或参考图 | 说明 | 可降级提醒 |',
+           '|---|---|---|---|---|---|']
+    for b, pos, kind_s, src, what, hint in rows:
+        out.append(f'| {b} | {cell(pos)} | {cell(kind_s)} | {cell(src)} | {cell(what)} | {cell(hint)} |')
+    return out
+
+
 def table(sb, sc=None, lib=None, timing=None):
-    """段落表（段、讲什么、秒数、分镜数、样式、主角类）、每段的分镜表、全片统一、待确认的事实，Markdown。
+    """段落表（段、讲什么、秒数、分镜数、样式、主角类）、每段的分镜表、全片统一、外部素材汇总、待确认的事实，Markdown。
     timing 是 timing.json（配过音以后有），有了就按它排出每个分镜的实际起止"""
-    styles = (lib or library())[0]
+    lib = lib or library()
+    styles = lib[0]
+    pack_meta = lib[3] if len(lib) > 3 else {}
     segs = sb.get('segments', [])
     scs = sc.get('segments', []) if isinstance(sc, dict) else []
     tsegs = timing.get('segments', []) if isinstance(timing, dict) else []
@@ -555,8 +730,7 @@ def table(sb, sc=None, lib=None, timing=None):
         shots = s.get('shots') if isinstance(s.get('shots'), list) else []
         nshot += len(shots)
         for x in shots:
-            r = x.get('ref')
-            if x.get('class') == 'G' or (r in styles and styles[r]['class'] == 'G'):
+            if _item_cls(x, styles, pack_meta) == 'G':
                 gen += 1
         title = f'{s.get("title", "")}{"（典型样片）" if s.get("typical") else ""}：{s.get("content", "")}'
         out.append(f'| {k} | {cell(s.get("seg", ""))} | {cell(title)} | {cell(s.get("sec", ""))} | {len(shots) or "—"} | '
@@ -586,6 +760,9 @@ def table(sb, sc=None, lib=None, timing=None):
             return f'{x.get("voice")}（{x.get("model")}，语速 {x.get("speed", 1)}）'
         return x if x is not None else '无'
     out += ['', '全片统一：'] + [f'- {names[k]}：{val(k)}' for k in names if k in u]
+    ext = external_media_summary(sb, styles, pack_meta)
+    if ext:
+        out += [''] + ext
     if sc is not None:
         pend = [(s.get('seg'), f.get('what')) for s in sc.get('segments', []) for f in s.get('facts', [])
                 if f.get('confirm') == PENDING]

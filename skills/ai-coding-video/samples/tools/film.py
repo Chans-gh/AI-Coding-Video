@@ -550,6 +550,30 @@ def join(P):
     return 1 if why else 0
 
 
+def missing_shot_media(P, names=None):
+    """正式整片护栏：检查分镜 src 指向的本地素材文件是否缺失（忽略 URL 与纯 M 编号）"""
+    want = set(names) if names else None
+    miss = []
+    for s in P.sb.get("segments") or []:
+        if not isinstance(s, dict):
+            continue
+        g = s.get("seg")
+        if want is not None and g not in want:
+            continue
+        for j, x in enumerate(s.get("shots") or [], 1):
+            if not isinstance(x, dict):
+                continue
+            src = x.get("src")
+            srcs = [src] if isinstance(src, str) else ([y for y in src if isinstance(y, str)] if isinstance(src, list) else [])
+            for p in srcs:
+                p = p.strip()
+                if not p or re.match(r"^(https?:|M\d+$)", p, re.I):
+                    continue
+                if not ((P.d / p).exists() or (P.d / "assets" / p).exists()):
+                    miss.append(f"{g} 第 {j} 镜：{p}")
+    return miss
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="完整出片的整片工具：分段渲染、检查、接片、混音、自检")
     ap.add_argument("dir", help="用户项目的 videos/<短名>/")
@@ -559,6 +583,7 @@ def main(argv=None):
     ap.add_argument("--join", action="store_true", help="接片、混音、整片自检")
     ap.add_argument("--sound", action="store_true", help="只混整片的声音到 out/mix.wav")
     ap.add_argument("--force", action="store_true", help="没变的段也重渲")
+    ap.add_argument("--allow-placeholder", action="store_true", help="正式渲染（all / --join）时允许缺失素材走占位框（默认拦截提示补齐）")
     ap.add_argument("-j", type=int, default=1, help="并行渲染几段（默认 1；4 核 15 GB 的机器最多 2）")
     ap.add_argument("--max-mb", type=float, help="每段视频的体积上限（MB）")
     a = ap.parse_args(argv)
@@ -571,10 +596,25 @@ def main(argv=None):
         if a.typical:
             return typical(P, a.force, a.j)
         if a.join:
+            miss = missing_shot_media(P)
+            if miss:
+                msg = "以下分镜 src 指向缺失素材文件：" + "；".join(miss[:8]) + ("……" if len(miss) > 8 else "")
+                if a.allow_placeholder:
+                    print(f"提醒：{msg}（--allow-placeholder 已放行）")
+                else:
+                    raise Stop(f"正式接片拦下：{msg}（补齐素材，或加 --allow-placeholder 放行）", 1)
             return join(P)
         names = [s["seg"] for s in P.segs] if a.segs in (["all"], []) else a.segs
         if not a.segs:
             raise Stop("写段号（P2）或 all；接片用 --join")
+        if not a.quick and a.segs == ["all"]:
+            miss = missing_shot_media(P, names)
+            if miss:
+                msg = "以下分镜 src 指向缺失素材文件：" + "；".join(miss[:8]) + ("……" if len(miss) > 8 else "")
+                if a.allow_placeholder:
+                    print(f"提醒：{msg}（--allow-placeholder 已放行）")
+                else:
+                    raise Stop(f"正式渲染拦下：{msg}（补齐素材，或加 --allow-placeholder 放行）", 1)
         return run_segments(P, names, a.quick, a.force, a.j, a.max_mb)
     except Stop as e:
         print(f"✗ {e}")

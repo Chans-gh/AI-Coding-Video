@@ -62,19 +62,48 @@
   }
   segs.forEach(b => b.addEventListener('click', () => setAr(b.dataset.ar)));
 
-  // 风格包换品牌色：点标签换成同一支演示片的另一种颜色，接着原来的时间播（只有横屏）
+  // 风格包换品牌色 / 素材版本：点标签切换同一演示片的不同配色或「无素材版 / 有素材版」（只有横屏）
   document.querySelectorAll('.pack').forEach(pk => {
-    const v = pk.querySelector('.pack-video'), tabs = pk.querySelectorAll('.pack-tabs button');
-    tabs.forEach(b => b.addEventListener('click', () => {
-      tabs.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const v = pk.querySelector('.pack-video');
+    const tabs = pk.querySelectorAll('.pack-tabs button');
+    const modes = pk.querySelectorAll('.pack-modes button');
+    let acc = (pk.querySelector('.pack-tabs button[aria-pressed="true"]') || {}).dataset?.acc || '';
+    let mode = (pk.querySelector('.pack-modes button[aria-pressed="true"]') || {}).dataset?.mode || 'pure';
+    function applyPack(keepTime) {
       const t = v.currentTime, had = !!v.getAttribute('src');
-      v.dataset.id = `pack-${v.dataset.pack}-${b.dataset.acc}`;
+      const suffix = mode === 'media' ? '-media' : '';
+      v.dataset.id = `pack-${v.dataset.pack}-${acc}${suffix}`;
       v.dataset.src = `media/s/${v.dataset.id}-16x9.mp4`;
       v.dataset.poster = `media/s/${v.dataset.id}-16x9.jpg`;
       showPoster(v);
-      if (had) { v.src = v.dataset.src; v.addEventListener('loadedmetadata', () => { v.currentTime = t; }, { once: true }); }
+      if (had) {
+        v.src = v.dataset.src;
+        if (keepTime) v.addEventListener('loadedmetadata', () => {
+          if (Number.isFinite(v.duration) && v.duration > 0.2) v.currentTime = Math.min(t, v.duration - 0.1);
+        }, { once: true });
+      }
       start(v);
+    }
+    tabs.forEach(b => b.addEventListener('click', () => {
+      tabs.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      acc = b.dataset.acc;
+      applyPack(true);
     }));
+    modes.forEach(b => b.addEventListener('click', () => {
+      modes.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      mode = b.dataset.mode;
+      applyPack(true);
+    }));
+    const toggle = pk.querySelector('.pack-parts-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        pk.querySelectorAll('.pack-part-extra').forEach(li => { li.hidden = !open; });
+        toggle.querySelector('.t-open').hidden = open;
+        toggle.querySelector('.t-close').hidden = !open;
+      });
+    }
   });
   // 风格包横向滑动：» 翻到下一个，« 翻回上一个；到头的那一侧按钮藏起来。按钮的高度对准演示片的中线。
   // 底部悬浮一排圆点「…」，一个包一个点，亮的是当前这个，点哪个翻到哪个

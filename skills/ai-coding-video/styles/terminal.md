@@ -17,6 +17,7 @@
 ```
 
 - 题材：电影年代与屏幕科技
+- 素材兼容：闭环
 - 适合：AI/技术过程
 - 技术（已验证）：终端字符 · Canvas 2D · Playwright · ffmpeg
 - 样片代码：[samples/C-064/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/C-064)

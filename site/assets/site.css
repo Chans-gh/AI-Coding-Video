@@ -132,6 +132,18 @@ h3 { margin: 0; font-size: 17px; line-height: 1.4; }
 .sec-lede.wide { max-width: none; }
 .note { margin: 24px 0 0; color: var(--muted); font-size: 14px; max-width: 48em; }
 
+/* can: 4 illustrated capability cards in 1 row */
+.can-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.can-card { display: flex; flex-direction: column; overflow: hidden; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); transition: border-color .15s, transform .15s, box-shadow .15s; min-width: 0; }
+.can-card:hover { border-color: var(--muted); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.can-vis { aspect-ratio: 2 / 1; background: var(--screen); border-bottom: 1px solid var(--rule); overflow: hidden; }
+.can-vis svg { display: block; width: 100%; height: 100%; }
+.can-body { display: flex; flex-direction: column; flex: 1; padding: 18px 18px 20px; }
+.can-card h3 { margin: 0 0 8px; font-size: 16px; line-height: 1.38; }
+.can-card p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.can-go { margin-top: auto; padding-top: 14px; font: 700 12.5px/1 var(--mono); text-decoration: none; color: var(--accent); }
+.can-go:hover { text-decoration: underline; }
+
 /* what: flow diagram */
 .flow { list-style: none; counter-reset: f; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .flow > li { counter-increment: f; min-width: 0; position: relative; }
@@ -341,12 +353,21 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
 .pack .card-meta { margin-top: 0; }
 .pack-parts { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
 .pack-parts li { font-size: 13px; padding: 5px 10px; border: 1px solid var(--rule); border-radius: 999px; }
+.pack-parts li.is-media { border-color: color-mix(in srgb, var(--accent) 48%, var(--rule)); color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.pack-parts li.pack-more { padding: 0; border-style: dashed; }
+.pack-parts-toggle { font: 700 12.5px/1 var(--body); padding: 6px 11px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; }
+.pack-parts-toggle:hover { color: var(--ink); }
 .pack-left { min-width: 0; }
 .pack-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 .pack-tabs .lab { font-size: 13px; color: var(--muted); margin-right: 4px; }
 .pack-tabs button { display: inline-flex; align-items: center; gap: 7px; font: 400 13px/1 var(--body); padding: 8px 13px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
 .pack-tabs button i { width: 11px; height: 11px; border-radius: 50%; background: var(--acc); }
 .pack-tabs button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.pack-modes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.pack-modes button { display: inline-flex; align-items: center; gap: 8px; font: 700 13.5px/1 var(--body); padding: 10px 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s, color .15s, transform .15s; }
+.pack-modes button:hover { border-color: var(--muted); transform: translateY(-1px); }
+.pack-modes button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.pack-modes button svg { flex: none; }
 @media (max-width: 860px) { .pack { grid-template-columns: minmax(0, 1fr); } }
 /* 底部悬浮的「…」：一个包一个点，粘在视口底部，直到这一栏滚过去 */
 .pack-dots { position: sticky; bottom: 18px; z-index: 3; display: flex; justify-content: center; gap: 10px; width: max-content; margin: 36px auto 0; padding: 10px 16px; border: 1px solid var(--rule); border-radius: 999px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(6px); box-shadow: var(--shadow); }
@@ -418,6 +439,7 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
 
 @media (max-width: 900px) {
   .hero-grid, .paths, .levels, .inst, .eight, .skill-grid, .why { grid-template-columns: minmax(0, 1fr); }
+  .can-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
   .flow > li + li::before { display: none; }
@@ -440,6 +462,7 @@ html[data-lang="en"] .row-lab { min-width: 6.6em; }
   .flab { width: 100%; }
   .tree li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .steps { grid-template-columns: minmax(0, 1fr); }
+  .can-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 

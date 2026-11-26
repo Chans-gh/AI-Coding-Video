@@ -1,7 +1,7 @@
 ---
 name: ai-coding-video
 description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及两条线：风格演示（选样式 → 出样片 → 沉淀成风格包）和完整出片（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 整片）。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。内容策划用 ai-content-planner。
-version: 0.32.0
+version: 0.33.0
 display_name: AI Coding Video 风格库
 display_name_en: AI Coding Video
 description_en: "A style library for videos made frame by frame in code: a hundred-plus styles that pure code can render (class C, tagged by topic and tech: Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more), plus ways to cut real material (class T: footage, screen recordings, photos, data) and AI-generated material (class G: images, video clips, speech) into a film with code, sorted by content type (explainers, talking heads, product ads, brand films, short dramas, music videos, news, documentaries, tutorials, travel, sports, picture books); a copy-ready style prompt for each; lookup indexes; guides to prompts, sourcing and preparing material, music and narration; and two tracks: a style demo (pick a look, make a sample clip, turn it into a reusable style pack) and a full film (content, storyboard and looks, script, user sign-off, a typical segment with narration, the whole film)."
@@ -37,6 +37,8 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 - **先出包再出片**：选样式 → 定 1 个分化方向 → 出轻量风格包（1 套配置、最小骨架 + 4–8 核心部件）验收 → 进完整出片并边做边按需补部件；
 - **先出片后抽包**：单支片子或多样式混搭，直接进完整出片（用 `unify` 统住全片、靠典型样片验收），确认要长期做系列后再把跑通的镜头抽成风格包。
 
+**C 类主风格混入 T / G 素材**分两级（详述见 [film.md](film.md#hybrid-l1-l2) 与 [making.md](making.md#media-slots)）：**L1 风格内嵌**（约 80%，留在 C 主包内通过插件式 `media_slots.js` 装入实拍/AI 素材，100% 沿用主包外壳）；**L2 技法客串**（约 20%，或「闭环」风格确需放素材时，分镜直接写 `ref: "T-xxx"` / `"G-xxx"` 借专属技法，色板/字体/字幕服从 `unify`）。
+
 每一步都要用户点头才往下；停在哪一步都行。两条线查风格的方法相同（见「怎么查」）。
 
 词的意思：库里的条目叫**风格**（编号 `C-013` 这样）；**样式**是一段或一支片子实际用的东西——一个或几个风格编号（或一个风格包），加技术路线和素材类型；**风格包**是通过的风格做成的可复用代码和风格说明；**样片**是风格演示里 3–5 秒的片段；**典型样片**是完整出片开工前先做的 1–2 段，带配音；**全片统一**是一支片子所有段共用的一层：色板、字体、字幕、转场、配乐、旁白音色。
@@ -68,12 +70,12 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 
 ## 怎么查（按顺序，不要一上来读全部）
 
-1. **不知道用哪种** → 先分清三类：画面全部由代码算出（C 类）、用真实素材（T 类）、用 AI 生成素材（G 类）。用户说了要做哪种视频（口播、带货、MV、新闻……）就先查 `index.md` 的「按内容类型」表，T、G 两列对照着给；要纯代码的，在其余索引表（题材、业务用途、受众、情绪、平台与格式、素材与条件）里各找对应的一行，几张表里重复出现的是首选。给用户 2–3 个候选并说明理由。
+1. **不知道用哪种** → 先分清三类：画面全部由代码算出（C 类）、用真实素材（T 类）、用 AI 生成素材（G 类）。用户说了要做哪种视频（口播、带货、MV、新闻……）就先查 `index.md` 的「按内容类型」表，T、G 两列对照着给；要纯代码的，在其余索引表（题材、业务用途、受众、情绪、平台与格式、素材与条件）里各找对应的一行，几张表里重复出现的是首选。若要**以 C 类为主并局部穿插真实/AI 素材**，先查 [index.md「C 类为主 + 穿插真实/AI 素材」](index.md#c-hybrid-media) 或 `data/styles.json` 的 `media_fit`（优先选 `原生`，`条件` 须受控融合，`闭环` 禁止开媒体槽）。给用户 2–3 个候选并说明理由。
 2. **已知风格名或编号** → 在 `index.md` 的「风格目录」里找到编号（如 `C-013`、`T-007`），打开对应的 `styles/*.md`（C 类按技术分文件，T 类在 `styles/footage.md`，G 类在 `styles/generated.md`），按锚点 `#C-013` 定位条目。
 3. **要写完整提示词或渲染代码** → 读 `prompting.md`：8 个控制要点、通用模板、制作路径、示例、常见翻车与对策。
-4. **要按技术筛选**（例如“只用 SVG”“要 Three.js 的”）→ 读 `tags.md` 和 `data/styles.json`，每条有 `id / name / theme / content_type / materials / fit / prompt / layer / suggested / verified / render_code / pack / refs`（C 类有 theme，T、G 类有 content_type 和 materials）。
+4. **要按技术筛选**（例如“只用 SVG”“要 Three.js 的”）→ 读 `tags.md` 和 `data/styles.json`，每条有 `id / name / theme / media_fit / media_family / content_type / materials / fit / prompt / layer / suggested / verified / render_code / pack / refs`（C 类有 `theme`、`media_fit`、`media_family`，T、G 类有 `content_type` 和 `materials`）。
 5. **要配声音** → 读 `sound.md`：先按题材定配乐和音效，再按用途挑旁白音色。
-6. **要用素材（T 类、G 类）** → 读 `materials.md`：素材从哪来、许可怎么查、怎么生成、怎么统一处理再交给代码、声音怎么配。
+6. **要用素材（T 类、G 类）** → 读 `materials.md`：素材从哪来、许可怎么查、怎么生成、怎么统一处理再交给代码、C 类主风格混入 T / G 素材的融合公式、声音怎么配。
 7. **要出样片（1 级）或做风格包（2 级）** → 读 `making.md`：动手前的检查、样片写法和自检、风格包的两种路径（先出包 / 先出片）、样式分化与切换维度、轻量起步与完整部件目录、六条做法和 STYLE.md 写什么。
 8. **要写渲染代码** → 先看本 Skill 自带的代码：`samples/API.md`（样片骨架和函数速查）、`samples/<编号>/`（每个已验证风格的 `scene.js`、`sound.py`）、`packs/<名字>/`（风格包）。条目「样片代码」「风格包」链接文字里的路径就是它在本 Skill 目录里的位置，不用联网去 GitHub 取。
 
