@@ -16,7 +16,8 @@
 | `lib/lib.js` | 公共工具：确定性随机数、噪声、缓动、纸纹、WebGL 全屏着色器、SVG/HTML 舞台、GSAP 时间轴和 p5 画布的接法 |
 | `player.html` | 在浏览器里播放某个样片，出片时也靠它逐帧截图 |
 | `new.py` | 给新样片起骨架 |
-| `batch.py` | 批量出片和自动检查，出总览图 |
+| `new_pack.py` | 给轻量风格包起骨架（1 套配置 + 4 个核心部件），以及保存/列出个人全局风格包（`~/aicv-my-styles/`） |
+| `batch.py` | 批量出片和自动检查，出总览图和单帧左右对比图（`--vs`） |
 | `render.py` | 出片核心（截图、合成声音、编码、缩略图），由 `batch.py` 调用 |
 | `tools/mark.py` | 把出好的样片登记进风格条目 |
 | `tools/apidoc.py` | 生成 `API.md` |
@@ -49,6 +50,8 @@ python3 batch.py all --quick         # 所有样片
 python3 batch.py C-168 --sound       # 只合成声音到 out/C-168.wav，改配乐时试听
 python3 tools/mark.py C-168          # 在风格条目里写上缩略图、「技术（已验证）」「样片代码」，并跑词典自检
 python3 batch.py pack:dark-keynote   # 风格包的演示片（packs/dark-keynote/demo/），见 packs/README.md
+python3 new_pack.py my-green --from C-044 --accent '#2BD99F' --my-styles   # 起轻量风格包并存进 ~/aicv-my-styles/
+python3 batch.py pack:my-green --vs C-044 --ar 16x9                        # 出「原样片（左）vs 改后（右）」单帧对比图
 ```
 
 `batch.py` 每个样片每个画幅只打一行摘要（✓，或 ✗ 加原因），详细日志在 `out/<编号>-<画幅>.log`。自动检查：脚本报错、黑屏或白屏、画面不动（比较相隔 0.2 秒的两帧）、声音静音或削波、时长（C 类 3–5 秒，T 类、G 类 8–15 秒）、视频体积（C 类超过 2.5 MB、T 类和 G 类超过 4 MB 自动加大压缩，仍超就报 ✗）。总览图 `out/sheet.jpg` 每行一个样片，横竖各 4 帧，最多 6 个样片一张，多的写 `sheet-2.jpg`。先看摘要，再看总览图，只有 ✗ 或看着可疑的才单独打开。

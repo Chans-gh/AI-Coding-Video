@@ -14,7 +14,7 @@
 | [`prompting.md`](prompting.md) | 提示词怎么写（8 个要点 + 通用模板）、制作路径、示例、常见翻车与对策 |
 | [`materials.md`](materials.md) | 用素材做视频（T 类、G 类）：素材从哪来、许可、生成、统一处理、声音 |
 | [`sound.md`](sound.md) | 配乐与音效按题材匹配；Kokoro-82M v1.1-zh 的 100 个中文音色和选音色建议、调用代码 |
-| [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的做法和风格说明写什么 |
+| [`making.md`](making.md) | 出样片（1 级）和做风格包（2 级）：动手前的检查、样片写法和自检、风格包的两种路径、样式分化维度与三档可改边界、单帧对比、轻量起步与完整部件目录、跨项目复用 |
 | [`film.md`](film.md) | 完整出片的六步（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 渲染整片），分镜脚本 `storyboard.json`（段和段里的分镜）和逐字稿 `script.json` 的格式、事实的规矩 |
 | [`storyboard.md`](storyboard.md) | 接内容策划（[ai-content-planner](https://github.com/Chans-gh/AI-content-planner)，交接格式 5，也认 4、3、2）：认格式和状态、读 `content.md`（总则、红线、约束、每段的念什么、看什么、信息）、按风格包的查表定样式、`seg`、`say`、`view`、`part`、`ref`、`rule` 怎么填、冲突时的六级和字数、怎么写下游回报 |
 | [`samples/`](samples/)、[`packs/`](packs/) | 已验证风格的样片代码和出片工具、风格包代码（从本仓库根目录的 `samples/`、`packs/` 同步来，生成物，不要手改） |

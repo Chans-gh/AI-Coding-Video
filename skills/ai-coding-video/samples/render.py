@@ -111,9 +111,24 @@ def page(pw, sid, ar, scale=1.0, query=""):
     return RemotionPage(sid, ar, scale) if is_remotion(sid) else Page(pw, sid, ar, scale, query)
 
 
+def my_styles_dir():
+    """用户跨项目保存的个人风格包目录（AICV_MY_STYLES 优先，默认 ~/aicv-my-styles）"""
+    v = os.environ.get("AICV_MY_STYLES")
+    return Path(v).expanduser() if v else Path.home() / "aicv-my-styles"
+
+
+def pack_dir(pack):
+    """风格包目录：先找仓库/Skill 的 packs/，再找 ~/aicv-my-styles/"""
+    for root in (PACKS, my_styles_dir()):
+        d = root / pack
+        if (d / "meta.json").exists():
+            return d
+    return PACKS / pack
+
+
 def where(sid):
-    """样片编号（C-044）→ samples/C-044/；风格包演示片 pack:<名字>[@<颜色>] → packs/<名字>/demo/"""
-    return PACKS / sid[5:].split("@")[0] / "demo" if sid.startswith("pack:") else HERE / sid
+    """样片编号（C-044）→ samples/C-044/；风格包演示片 pack:<名字>[@<颜色>] → <pack_dir>/demo/"""
+    return pack_dir(sid[5:].split("@")[0]) / "demo" if sid.startswith("pack:") else HERE / sid
 
 
 def stem(sid):
@@ -122,7 +137,7 @@ def stem(sid):
 
 
 def pack_meta(pack):
-    return json.loads((PACKS / pack / "meta.json").read_text(encoding="utf-8"))
+    return json.loads((pack_dir(pack) / "meta.json").read_text(encoding="utf-8"))
 
 
 def variants(pack):
@@ -206,6 +221,11 @@ class Page:
         self.pg.on("pageerror", lambda e: (self.errors.append(str(e)), self.log.append(f"pageerror: {e}")))
         base, _, col = sid.partition("@")
         col = col.removesuffix(".clip")
+        if base.startswith("pack:"):
+            pdir = pack_dir(base[5:])
+            if pdir.parent != PACKS:
+                from urllib.parse import quote
+                query += "&dir=" + quote((pdir / "demo").as_uri())
         if col:                                   # 风格包的某一种切换（品牌色、画面组织、画风…）：从 meta.json 取参数传给播放器
             query += variant_query(base[5:], col)
         if demo_files(sid, ar)[0] != "scene":     # 风格包的 15 秒切换片段

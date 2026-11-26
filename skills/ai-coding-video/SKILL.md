@@ -1,7 +1,7 @@
 ---
 name: ai-coding-video
 description: 用代码逐帧做视频（Coding Video）的风格库与方法：上百种纯代码可实现的视觉风格（C 类，标题材和技术：Canvas 2D、WebGL、SVG、Three.js、p5.js、Manim、Remotion 等），以及用真实素材（T 类：录像、录屏、照片、数据）和 AI 生成素材（G 类：生图、生视频、语音合成）由代码剪辑合成的做法，按内容类型分（科普、口播、带货、宣传片、短剧、MV、新闻、纪录片、教程、旅行、体育、儿童绘本）；每种一句可复制的风格提示词；选风格的索引；提示词写法、素材的来源和处理、配乐与旁白指南；以及两条线：风格演示（选样式 → 出样片 → 沉淀成风格包）和完整出片（定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片 → 整片）。给视频定风格、写风格提示词、让 AI 写渲染代码出片、用素材做视频、问“有哪些风格 / 哪种适合 X”、配声音时使用。内容策划用 ai-content-planner。
-version: 0.30.0
+version: 0.31.0
 display_name: AI Coding Video 风格库
 display_name_en: AI Coding Video
 description_en: "A style library for videos made frame by frame in code: a hundred-plus styles that pure code can render (class C, tagged by topic and tech: Canvas 2D, WebGL, SVG, Three.js, p5.js, Manim, Remotion and more), plus ways to cut real material (class T: footage, screen recordings, photos, data) and AI-generated material (class G: images, video clips, speech) into a film with code, sorted by content type (explainers, talking heads, product ads, brand films, short dramas, music videos, news, documentaries, tutorials, travel, sports, picture books); a copy-ready style prompt for each; lookup indexes; guides to prompts, sourcing and preparing material, music and narration; and two tracks: a style demo (pick a look, make a sample clip, turn it into a reusable style pack) and a full film (content, storyboard and looks, script, user sign-off, a typical segment with narration, the whole film)."
@@ -19,7 +19,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 - **完整出片**：用户说要「做一支 X 分钟的片子」。走完整出片，读 [film.md](film.md)。
   - 项目里有 `plans/<短名>/content.md`，格式行 `格式：ai-content-planner/5`（或 `plan.md` 写着 `/4`、`/3`、旧的 `/2`）、状态「已交接」，总则（格式 4：形式）的「输出形式和规格」是视频 → 第 1 步照 [storyboard.md](storyboard.md) 接策划（格式 5 只读 `content.md`，不读 `plan.md`；格式 1 的先请用户用策划转成格式 5）。
   - 内容还没定（只有想法，资料没整理，主线和段落没定）→ 装了 [ai-content-planner](https://github.com/Chans-gh/AI-content-planner) 的可以先用它做策划，再回来；没装的不用装，照 `film.md` 第 1 步和用户一起把内容定下来。本 Skill 不要求有 `plan.md`。
-  - 项目里已有风格包的，直接拿它当全片统一，不用重新选。
+  - 项目里已有风格包，或用户已在 `~/aicv-my-styles/` 保存过个人风格包（先查 `~/aicv-my-styles/README.md` 或跑 `python3 new_pack.py --list`）的，优先列在最前面直接复用，不用重新选。
 
 两条线都会用到：
 
@@ -29,9 +29,13 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 ## 两条线
 
 ```
-风格演示：0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包
+风格演示：0 级 选样式 → 1 级 出样片（3–5 秒） → 2 级 风格包（轻量起步 → 按需扩充）
 完整出片：定内容 → 分段、分镜与样式 → 逐字稿 → 用户确认 → 典型样片（含配音） → 渲染整片
 ```
+
+两条线衔接支持两种路径：
+- **先出包再出片**：选样式 → 定 1 个分化方向 → 出轻量风格包（1 套配置、最小骨架 + 4–8 核心部件）验收 → 进完整出片并边做边按需补部件；
+- **先出片后抽包**：单支片子或多样式混搭，直接进完整出片（用 `unify` 统住全片、靠典型样片验收），确认要长期做系列后再把跑通的镜头抽成风格包。
 
 每一步都要用户点头才往下；停在哪一步都行。两条线查风格的方法相同（见「怎么查」）。
 
@@ -52,9 +56,9 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 
 | 级别 | 做什么 | 产出 | 什么时候 |
 |---|---|---|---|
-| 0 级：选样式 | 在本库里选 2–3 个候选，给出提示词和理由 | 候选样式：风格编号 + 技术路线 + 素材类型（C、T、G 和 `data/tags.json` 的 `materials`），附每个的风格提示词 | 用户还没定风格 |
-| 1 级：出样片 | 把候选套上用户的品牌色、字体和真实内容，在用户项目自己的技术栈里跑 3–5 秒 | 横屏 16:9 和竖屏 9:16 各一段样片 + 抽帧拼图，给用户看 | 项目要换风格、加风格时，一次对话做完 |
-| 2 级：风格包 | 用户通过的风格，覆盖这个项目常用的呈现方式（片头、讲解、数据、转场、字幕等） | 可复用的代码模块 + 写进项目规范的风格说明（调色板、字体、运动、声音、禁止项） | 1 级通过以后 |
+| 0 级：选样式 | 还没定风格时先看 `~/aicv-my-styles/`，再在本库选 2–3 个候选；**已选定样式时，用三档可改边界与口语翻译表帮用户定清 1 个分化方向（每轮 ≤5 项，记进 `CHANGES.md`）** | 候选样式：风格编号 + 技术路线 + 素材类型，或已定样式的 1 个分化方向与改动清单 | 用户还没定风格，或已选样式待定分化方向 |
+| 1 级：出样片 | 把候选套上品牌色、字体和真实内容跑 3–5 秒（已选定 1 个样式时只做这 1 个；分化方向拿不准时用 `batch.py --vs` 出 1 张左右单帧对比图先拍板） | 横屏 16:9 和竖屏 9:16 各一段样片 + 抽帧拼图（或单帧左右对比图） | 项目要换风格、加风格，或锁死分化方向时 |
+| 2 级：风格包 | 用 `new_pack.py` 从**轻量起步包**做起（选定的 **1 套**配置，不盲出 A/B/C 三套；最小骨架 + 4–8 核心部件；代码留切换参数口子），验收后可 `--save` 存进 `~/aicv-my-styles/` 跨项目复用；多样式混搭用 1 个主包 + 局部样式客串 | 可复用的代码模块 + `STYLE.md` + `CHANGES.md` + 轻量验证片（或首片典型样片） | 1 级通过以后（先出包），或首片验收通过以后（先出片后抽包） |
 
 1 级样片之前先确认这条技术路径在用户项目里跑得通（有没有浏览器、GPU、Python 环境等）。做法见 `making.md`。
 
@@ -70,7 +74,7 @@ description_en: "A style library for videos made frame by frame in code: a hundr
 4. **要按技术筛选**（例如“只用 SVG”“要 Three.js 的”）→ 读 `tags.md` 和 `data/styles.json`，每条有 `id / name / theme / content_type / materials / fit / prompt / layer / suggested / verified / render_code / pack / refs`（C 类有 theme，T、G 类有 content_type 和 materials）。
 5. **要配声音** → 读 `sound.md`：先按题材定配乐和音效，再按用途挑旁白音色。
 6. **要用素材（T 类、G 类）** → 读 `materials.md`：素材从哪来、许可怎么查、怎么生成、怎么统一处理再交给代码、声音怎么配。
-7. **要出样片（1 级）或做风格包（2 级）** → 读 `making.md`：动手前的检查、样片写法和自检、风格包的五条做法和 STYLE.md 写什么。
+7. **要出样片（1 级）或做风格包（2 级）** → 读 `making.md`：动手前的检查、样片写法和自检、风格包的两种路径（先出包 / 先出片）、样式分化与切换维度、轻量起步与完整部件目录、六条做法和 STYLE.md 写什么。
 8. **要写渲染代码** → 先看本 Skill 自带的代码：`samples/API.md`（样片骨架和函数速查）、`samples/<编号>/`（每个已验证风格的 `scene.js`、`sound.py`）、`packs/<名字>/`（风格包）。条目「样片代码」「风格包」链接文字里的路径就是它在本 Skill 目录里的位置，不用联网去 GitHub 取。
 
 ## 取用规则

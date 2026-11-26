@@ -52,7 +52,7 @@ const LIBS = {
   'motion': ['node_modules/motion/dist/motion.js'],
 };
 const Q = new URLSearchParams(location.search), SID = Q.get('s') || '', PROJ = Q.get('p');
-const DIR = PROJ ? PROJ.replace(/\/$/, '') : SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
+const DIR = Q.get('dir') ? Q.get('dir').replace(/\/$/, '') : PROJ ? PROJ.replace(/\/$/, '') : SID.startsWith('pack:') ? `../packs/${SID.slice(5)}/demo` : SID;
 let READY = false, SC = null, DUR = 3, STAGE = null;
 const loaded = new Set();
 async function load(src) {
