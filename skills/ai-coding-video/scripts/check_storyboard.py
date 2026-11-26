@@ -13,6 +13,7 @@
 """
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -48,13 +49,19 @@ def load(path):
         raise Unreadable(f'{p} 不是合法的 JSON：{x}')
 
 
+def my_styles_dir():
+    """用户跨项目保存的个人风格包目录（环境变量 AICV_MY_STYLES 优先，默认 ~/aicv-my-styles）"""
+    v = os.environ.get('AICV_MY_STYLES')
+    return Path(v).expanduser() if v else Path.home() / 'aicv-my-styles'
+
+
 def library(extra_packs=()):
     """库里能引用的：风格编号 → 条目（data/styles.json），风格包名（packs/ 下有 meta.json 的目录），素材类型
 
-    extra_packs：项目里沉淀的风格包目录（--pack-root 传进来，可以有多个），和 Skill 自带的 packs/ 合起来认。
+    extra_packs：项目里沉淀的风格包目录（--pack-root 传进来，可以有多个），和 Skill 自带的 packs/、个人库 ~/aicv-my-styles/ 合起来认。
     """
     styles = {s['id']: s for s in json.loads((SKILL / 'data' / 'styles.json').read_text(encoding='utf-8'))['styles']}
-    roots = [SKILL / 'packs'] + [Path(p) for p in extra_packs]
+    roots = [SKILL / 'packs', my_styles_dir()] + [Path(p) for p in extra_packs]
     packs = {q.parent.name for r in roots if r.is_dir() for q in r.glob('*/meta.json')}
     tags = json.loads((SKILL / 'data' / 'tags.json').read_text(encoding='utf-8'))
     materials = {c: {m['name'] for m in ms} for c, ms in tags['materials'].items()}

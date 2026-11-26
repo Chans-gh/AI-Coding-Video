@@ -769,9 +769,9 @@ def pack_of(x, sb):
 
 
 def lookups(pack_roots=()):
-    """风格包名 → lookup.json 的内容（Skill 自带的 packs/ 和 --pack-root）"""
+    """风格包名 → lookup.json 的内容（Skill 自带的 packs/、~/aicv-my-styles/ 和 --pack-root）"""
     out = {}
-    for root in [cs.SKILL / 'packs'] + [Path(p) for p in pack_roots]:
+    for root in [cs.SKILL / 'packs', cs.my_styles_dir()] + [Path(p) for p in pack_roots]:
         for f in sorted(Path(root).glob(f'*/{LOOKUP}')) if Path(root).is_dir() else []:
             try:
                 out[f.parent.name] = json.loads(f.read_text(encoding='utf-8'))

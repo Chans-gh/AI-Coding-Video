@@ -13,6 +13,7 @@
     python3 batch.py pack:dark-keynote@orange   # 只出一种品牌色（切别的维度的包写 variants 的键，如 pack:style-swap@clay）
     python3 batch.py pack:dark-keynote@orange --ar 16x9   # 只出一种的完整演示片（meta.json 写了 full 的包：每种切换在 full 画幅出完整演示片，20–90 秒；另一画幅是 15 秒切换片段）
     python3 batch.py pack:news-brief@parallax.clip        # meta.json 另写了 clip（和 full 同画幅）的包：切换片段写成 @<键>.clip，只出那一种画幅
+    python3 batch.py pack:demo-green --vs C-044 --ar 16x9 # 单帧左右对比图（左原样片、右改后），出到 out/vs-*.jpg，先拍板再做整片
 
 检查项（任一项不过就打 ✗ 和原因）：脚本报错、黑屏或白屏、画面不动、声音静音或削波、时长、体积。
 时长和体积：C 类 3–5 秒、视频流 2.5 MB 以内；T 类、G 类（带 assets/ 素材）8–15 秒、每个视频不超过 4 MB；风格包演示片 5–30 秒，
@@ -210,6 +211,26 @@ def all_ids():
     return sorted({p.parent.name for c in "CTG" for pat in (f"{c}-*/scene.js", f"{c}-*/scene.jsx") for p in HERE.glob(pat)})
 
 
+def make_vs_image(left_jpeg, right_jpeg, left_label, right_label, slot_w=960):
+    """把基准和改后两张单帧拼成左右对比图（带顶部标签栏和中间分隔线），返回 JPEG 字节"""
+    im_l = Image.open(io.BytesIO(left_jpeg)).convert("RGB")
+    im_r = Image.open(io.BytesIO(right_jpeg)).convert("RGB")
+    im_l = im_l.resize((slot_w, round(im_l.height * slot_w / im_l.width)), Image.LANCZOS)
+    im_r = im_r.resize((slot_w, round(im_r.height * slot_w / im_r.width)), Image.LANCZOS)
+    bar, gap = 44, 12
+    canvas = Image.new("RGB", (slot_w * 2 + gap, bar + max(im_l.height, im_r.height)), (20, 22, 28))
+    d = ImageDraw.Draw(canvas)
+    d.rectangle([0, 0, canvas.width, bar], fill=(14, 16, 22))
+    d.rectangle([slot_w, 0, slot_w + gap, canvas.height], fill=(38, 42, 52))
+    d.text((16, 10), f"BASE · {left_label}", fill=(200, 206, 220), font=font(22))
+    d.text((slot_w + gap + 16, 10), f"NEW · {right_label}", fill=(120, 235, 190), font=font(22))
+    canvas.paste(im_l, (0, bar))
+    canvas.paste(im_r, (slot_w + gap, bar))
+    out = io.BytesIO()
+    canvas.save(out, "JPEG", quality=88)
+    return out.getvalue()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("ids", nargs="+")
@@ -218,6 +239,7 @@ def main():
     ap.add_argument("--ar", choices=["16x9", "9x16", "both"], default="both")
     ap.add_argument("-j", type=int, default=4)
     ap.add_argument("--at", type=float)
+    ap.add_argument("--vs", metavar="BASE", help="单帧左右对比的基准样式（如 C-044 或 pack:dark-keynote）")
     ap.add_argument("--sheet", action="store_true")
     a = ap.parse_args()
     ids = all_ids() if a.ids == ["all"] else [x for i in a.ids for x in R.expand(i)]
@@ -232,10 +254,35 @@ def main():
         return
     if not (HERE / "node_modules" / "@fontsource").exists():
         sys.exit("缺字体：先在 samples/ 下运行 npm install")
-    missing = [s for s in ids if not any((R.where(s) / n).exists() for n in ("scene.js", "scene.jsx"))]
+    check_ids = ids + ([R.expand(a.vs)[0]] if a.vs else [])
+    missing = [s for s in check_ids if not any((R.where(s) / n).exists() for n in ("scene.js", "scene.jsx"))]
     if missing:
         sys.exit(f"没有 scene.js：{' '.join(missing)}（先用 new.py 起骨架）")
     ars = ["16x9", "9x16"] if a.ar == "both" else [a.ar]
+    if a.vs:
+        from playwright.sync_api import sync_playwright
+        base_sid = R.expand(a.vs)[0]
+        vs_ars = ["16x9"] if a.ar == "both" else [a.ar]
+        errs = []
+        with sync_playwright() as pw:
+            for sid in ids:
+                for ar in vs_ars:
+                    p_base = R.page(pw, base_sid, ar)
+                    t_base = min(a.at, max(0.0, p_base.dur - 0.05)) if a.at is not None else p_base.still
+                    b_left = p_base.frame(t_base, quality=92)
+                    errs.extend(p_base.errors)
+                    p_base.close()
+                    p_new = R.page(pw, sid, ar)
+                    t_new = min(a.at, max(0.0, p_new.dur - 0.05)) if a.at is not None else p_new.still
+                    b_right = p_new.frame(t_new, quality=92)
+                    errs.extend(p_new.errors)
+                    p_new.close()
+                    out = R.OUT / f"vs-{R.stem(sid)}-vs-{R.stem(base_sid)}-{ar}.jpg"
+                    R.OUT.mkdir(exist_ok=True)
+                    out.write_bytes(make_vs_image(b_left, b_right, f"{base_sid} ({t_base:g}s)", f"{sid} ({t_new:g}s)"))
+                    print(f"对比图 → out/{out.name}（左 {base_sid} @ {t_base:g}s ｜ 右 {sid} @ {t_new:g}s）"
+                          + (f"  报错：{errs[0][:80]}" if errs else ""))
+        sys.exit(1 if errs else 0)
     if a.sheet:
         results = {}
         for sid in ids:
