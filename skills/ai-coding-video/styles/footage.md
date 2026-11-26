@@ -1,4 +1,4 @@
-# T 类：公共领域素材（25 种）
+# T 类：公共领域素材（28 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -481,3 +481,60 @@
 - 样片代码：[samples/T-025/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-025)
 - 技术（建议）：NumPy · Skia · ffmpeg
 - 参考：[NASA ISS 地球轨道实拍影像](https://eol.jsc.nasa.gov/)
+
+<a id="T-026"></a>
+
+## T-026 视觉调查
+
+![视觉调查](../images/T-026.jpg)
+
+```text
+用「视觉调查」：搭建冷峻炭黑多源取证桌面（#0B0C0E），用同一工程时间轴串联真实实拍航拍录像（平陆运河马道枢纽 5000 吨实船过闸）、干地开挖与通水起点照片、以及 134.2 km 全线三级船闸落差 CSV 数据；所有真实影像统一冷峻灰阶微颗粒质感，唯一信号红（#FF4A2E）负责白闪定格圆环与 ×2 像素放大镜、水位剖面红游标、纸面摘录卡正片叠底荧光红划线与跨框虚线指引，从实拍冷开场倒带切入多源同步网格与省水船闸示意，最后汇入证据总览图并配 Kokoro 沉稳旁白与出处。
+```
+
+- 内容类型：纪录片和纪实
+- 素材：录像 · 照片 · 数据
+- 技术类型：批注与前后对比 · 数据可视化 · 文稿转片
+- 适合：深度调查报道、航天与工业复盘、科学争议核查与多信源纪实片
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-026/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-026)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/visual-investigation/STYLE.md)
+
+<a id="T-027"></a>
+
+## T-027 立体地图解说
+
+![立体地图解说](../images/T-027.jpg)
+
+```text
+用「立体地图解说」：在 Three.js 里用真实高程瓦片网格（AWS SRTM）抬起 3D 起伏地形，辅以自然海岸线与按深浅分级的海水着色及暖低角太阳光影；镜头从外太空 3D 地球无缝俯冲进实拍卫星参考区，沿暗边琥珀发光运河路线低空掠过，再倾斜推入剖面展示船闸水位水阶与拔地而起的 3D 数据标柱，屏幕 2D 层通过精确世界坐标投影叠加中文地标引线、纵剖面水阶图与解说旁白。
+```
+
+- 内容类型：新闻资讯解说
+- 素材：照片 · 数据
+- 技术类型：数据可视化 · 分层视差与投影
+- 适合：地理与工程巨构解说、航道与地缘新闻、国家公园与山地地形科普
+- 技术（已验证）：WebGL · Three.js · Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-027/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-027)
+- 技术（建议）：WebGL · Three.js · Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/map-explainer/STYLE.md)
+
+<a id="T-028"></a>
+
+## T-028 字幕新闻
+
+![字幕新闻](../images/T-028.jpg)
+
+```text
+用「字幕新闻」：以静音可读的社交信息流新闻为准绳，第 4 帧即在公共领域实拍影像上砸出亮黄（#FFC21A）巨型钩子数字；画面按块级砸入带亮黄底块关键词高亮的特大无衬线中文大字与单行英文辅助，顺次串起自上而下压暗的占比扫描（仅留极窄亮条）、红双线账本对比分屏赛跑计数器、种群折线图、报告正片叠底荧光划线与轮廓蒙版切回实拍录像，兼顾横竖两版与快节奏旁白。
+```
+
+- 内容类型：新闻资讯解说
+- 素材：录像 · 照片 · 数据
+- 技术类型：剪辑与字幕 · 数据可视化 · 批注与前后对比
+- 适合：社交媒体热点快讯、数据反转式新闻短视频、报告拆解与信息流传播
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/T-028/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-028)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/caption-news/STYLE.md)

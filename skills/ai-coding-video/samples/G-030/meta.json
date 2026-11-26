@@ -1,0 +1,5 @@
+{
+  "en_name": "B&W manga panels",
+  "en_how": "Three G-pen manga artworks processed in Python into 45-degree circular AM screentones with pure vermilion (#F03C1E) kept exclusively for the 7-inch vinyl record and a cream paper-rim halo (白フチ); code builds right-to-left slanted panels opening on the beat, boiling sound effects, a panel-breaking courier leap, a 1-to-16 burst split, a silent resting panel (間), and a colophon end card.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

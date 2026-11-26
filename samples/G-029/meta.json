@@ -1,0 +1,5 @@
+{
+  "en_name": "Text flash cuts",
+  "en_how": "Three chroma-keyed cel character drawings (back view, over-the-shoulder head turn, eye close-up) stripped to strict crimson red, jet black and paper white; code renders 2-to-6-frame slammed title cards, 1-point perspective subway corridors and stairs, beat-stepped character silhouettes, colour-coded speaker rails, and an overshoot head-tilt ending in a 2-frame red-black colour swap.",
+  "tech": ["Canvas 2D", "Playwright", "ffmpeg"]
+}

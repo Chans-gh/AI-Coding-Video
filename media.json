@@ -2391,6 +2391,36 @@
    "bytes": 3936036,
    "sha256": "c69f93dcee4eb2adc44435d4f29d0909482ef1780e209c2d1ba9ab36dfc43e4d"
   },
+  "G-029-16x9.mp4": {
+   "path": "samples/G-029/G-029-16x9.mp4",
+   "bytes": 1186120,
+   "sha256": "89e0f8c6da6a75e251353032e19e1fc49ee44553ec6a2275ef63318007378c97"
+  },
+  "G-029-9x16.mp4": {
+   "path": "samples/G-029/G-029-9x16.mp4",
+   "bytes": 1152650,
+   "sha256": "1d2da2d6c518aa2aba55b626468308ae118b500bbb2f5597643425d5bfea37ea"
+  },
+  "G-030-16x9.mp4": {
+   "path": "samples/G-030/G-030-16x9.mp4",
+   "bytes": 3096632,
+   "sha256": "d244a4a5352c91bc061067450a93dff1adc5d961d825a37effb80ffbb338424f"
+  },
+  "G-030-9x16.mp4": {
+   "path": "samples/G-030/G-030-9x16.mp4",
+   "bytes": 3202874,
+   "sha256": "89ea44547bc2326fc2772340bc773f638d8d6e6ae78b71d494b2c78c58311435"
+  },
+  "G-031-16x9.mp4": {
+   "path": "samples/G-031/G-031-16x9.mp4",
+   "bytes": 1949469,
+   "sha256": "b4eeea0cd9711ba2296221eb50f67a6f4610b0894d1a9577961af1e7fd503952"
+  },
+  "G-031-9x16.mp4": {
+   "path": "samples/G-031/G-031-9x16.mp4",
+   "bytes": 2203536,
+   "sha256": "d7ab392bd1110983ab6502190023b46c866e2e26fc20e9c93e69984d1114b94f"
+  },
   "T-001-16x9.mp4": {
    "path": "samples/T-001/T-001-16x9.mp4",
    "bytes": 2527849,
@@ -2640,6 +2670,36 @@
    "path": "samples/T-025/T-025-9x16.mp4",
    "bytes": 2596015,
    "sha256": "e44cb5659c1f44b45fc061c699fbee7897c994a4e1b9934793abc64c080966d4"
+  },
+  "T-026-16x9.mp4": {
+   "path": "samples/T-026/T-026-16x9.mp4",
+   "bytes": 3659905,
+   "sha256": "170859e9a3a58af59ccc4026704b9f4c0dc8e9da99469c61c359500b984c7365"
+  },
+  "T-026-9x16.mp4": {
+   "path": "samples/T-026/T-026-9x16.mp4",
+   "bytes": 3492590,
+   "sha256": "6780048fe3c6fd86ad81b558a960860dcf12fdded8ab73551a4386802135ca52"
+  },
+  "T-027-16x9.mp4": {
+   "path": "samples/T-027/T-027-16x9.mp4",
+   "bytes": 3170304,
+   "sha256": "85ea91f36b4b8394f9b504b4f2827e14da812e435addeb0992c61302bd8ef9f2"
+  },
+  "T-027-9x16.mp4": {
+   "path": "samples/T-027/T-027-9x16.mp4",
+   "bytes": 2735024,
+   "sha256": "3ae3711151b5c9d30af9d913bd8b324dd9cf450644194735c8f32b1984f3ef43"
+  },
+  "T-028-16x9.mp4": {
+   "path": "samples/T-028/T-028-16x9.mp4",
+   "bytes": 3155928,
+   "sha256": "be47896802b64844a2dd1fa48258ca73d285fb88bf976e8ab27ae218ceb24c06"
+  },
+  "T-028-9x16.mp4": {
+   "path": "samples/T-028/T-028-9x16.mp4",
+   "bytes": 2917388,
+   "sha256": "466b313e01506e7722a3e7610f5e5edd6db81aa029e3b96b82efd8c2c39eaac5"
   },
   "case-course-first-video-mid.mp4": {
    "path": "cases/course-first-video/media/course-first-video-mid.mp4",

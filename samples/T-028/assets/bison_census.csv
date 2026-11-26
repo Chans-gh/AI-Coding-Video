@@ -1,0 +1,12 @@
+year,count,phase
+1902,23,critical_low
+1915,239,protection
+1930,1097,recovery
+1954,1477,mid_century
+1968,418,management_cull
+1980,1800,natural_regulation
+1995,3900,growth
+2005,4900,modern_herd
+2015,4900,modern_herd
+2022,5900,peak_count
+2024,5400,current_nps

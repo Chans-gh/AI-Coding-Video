@@ -1,4 +1,4 @@
-# G 类：AI 生成素材（28 种）
+# G 类：AI 生成素材（31 种）
 
 [← 选风格索引](../index.md) · [提示词方法](../prompting.md) · [用素材做视频](../materials.md) · [技术标签](../tags.md)
 
@@ -538,3 +538,60 @@
 - 样片代码：[samples/G-028/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-028)
 - 技术（建议）：NumPy · Skia · ffmpeg
 - 参考：—
+
+<a id="G-029"></a>
+
+## G-029 文字闪切
+
+![文字闪切](../images/G-029.jpg)
+
+```text
+用「文字闪切」：以红（#E01A14）、黑（#0A0908）、纸白（#F5F3EE）严格三色构图，绿幕生成平涂硬阴影角色背影、回头半身与眼部大特写并收敛三色；代码把建筑压成单点透视走廊与无限楼梯，踩着 150 BPM 节拍交替插切 2–6 帧带砸入震动的大字闪卡、左右定色竖排发言边栏、按拍跳步剪影、剪影甩头残影切平涂加 2 帧红黑对调反相（绝非 RGB 反色），最终以红色光隙与非对称标题卡收束。
+```
+
+- 内容类型：短剧 / 动漫剧 / 故事
+- 素材：生图
+- 技术类型：生图加代码动画 · 节拍对齐剪辑
+- 适合：悬疑动漫预告、倒计时宣言片、强冲突对话短剧与概念片头
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-029/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-029)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/text-flash-cuts/STYLE.md)
+
+<a id="G-030"></a>
+
+## G-030 黑白漫画分格
+
+![黑白漫画分格](../images/G-030.jpg)
+
+```text
+用「黑白漫画分格」：准备手绘 G 笔墨线与平灰阶原画并保留唯一一件道具为朱红色（#F03C1E），由 Python 把中间灰阶转印成 45° 圆形 AM 网点并给破格角色加暖纸「白フチ」外框；代码按漫画阅读顺序（右→左、上→下）让斜切黑框分格踩拍擦开，叠 10fps 抖动拟声字、集中线与角色跨沟出格飞跃，在 1→2→4→8→16 爆裂分格与反白冲击帧后骤然切入静默留白的「間」落针格，以奥付版权格收尾。
+```
+
+- 内容类型：短剧 / 动漫剧 / 故事
+- 素材：生图
+- 技术类型：生图加代码动画 · 节拍对齐剪辑
+- 适合：漫画化动漫预告、产品拟漫画发布、潮牌与街拍音乐 MV
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-030/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-030)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/manga-panels/STYLE.md)
+
+<a id="G-031"></a>
+
+## G-031 搞笑历史卡通
+
+![搞笑历史卡通](../images/G-031.jpg)
+
+```text
+用「搞笑历史卡通」：在程序生成的暖米色雕版印刷地图底上，导入绿幕抠像并带撕纸白边的原创剪纸人偶，以 12fps 一拍二弹簧过冲与黄铜「割ピン」关节铆钉驱动动作；通过红柄剪刀沿虚线剪图、高空带大投射阴影飞落并在落地拍平的纸贴、掀角卷边与 2.5D 纸层堆叠倾斜演绎变迁，配诙谐语音合成旁白与淡黄墨框字幕条，片尾拉远露出木桌上的四格完整漫画页。
+```
+
+- 内容类型：知识科普讲解
+- 素材：生图 · 语音合成
+- 技术类型：生图加代码动画 · 角色一致性 · 语音合成驱动
+- 适合：历史与地理趣闻科普、度量衡与制度演变、企业发展轻喜剧与品牌玩梗
+- 技术（已验证）：Canvas 2D · Playwright · ffmpeg
+- 样片代码：[samples/G-031/](https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-031)
+- 技术（建议）：Canvas 2D · Playwright · ffmpeg
+- 参考：[Lemo 说明](https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/comic-history/STYLE.md)

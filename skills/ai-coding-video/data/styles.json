@@ -1,5 +1,5 @@
 {
- "count": 264,
+ "count": 270,
  "styles": [
   {
    "id": "C-001",
@@ -8375,6 +8375,128 @@
    "refs": []
   },
   {
+   "id": "G-029",
+   "class": "G",
+   "name": "文字闪切",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-029.jpg",
+   "prompt": "用「文字闪切」：以红（#E01A14）、黑（#0A0908）、纸白（#F5F3EE）严格三色构图，绿幕生成平涂硬阴影角色背影、回头半身与眼部大特写并收敛三色；代码把建筑压成单点透视走廊与无限楼梯，踩着 150 BPM 节拍交替插切 2–6 帧带砸入震动的大字闪卡、左右定色竖排发言边栏、按拍跳步剪影、剪影甩头残影切平涂加 2 帧红黑对调反相（绝非 RGB 反色），最终以红色光隙与非对称标题卡收束。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图"
+   ],
+   "techniques": [
+    "生图加代码动画",
+    "节拍对齐剪辑"
+   ],
+   "fit": "悬疑动漫预告、倒计时宣言片、强冲突对话短剧与概念片头",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-029/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-029"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/text-flash-cuts/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "G-030",
+   "class": "G",
+   "name": "黑白漫画分格",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-030.jpg",
+   "prompt": "用「黑白漫画分格」：准备手绘 G 笔墨线与平灰阶原画并保留唯一一件道具为朱红色（#F03C1E），由 Python 把中间灰阶转印成 45° 圆形 AM 网点并给破格角色加暖纸「白フチ」外框；代码按漫画阅读顺序（右→左、上→下）让斜切黑框分格踩拍擦开，叠 10fps 抖动拟声字、集中线与角色跨沟出格飞跃，在 1→2→4→8→16 爆裂分格与反白冲击帧后骤然切入静默留白的「間」落针格，以奥付版权格收尾。",
+   "theme": "",
+   "content_type": "短剧 / 动漫剧 / 故事",
+   "materials": [
+    "生图"
+   ],
+   "techniques": [
+    "生图加代码动画",
+    "节拍对齐剪辑"
+   ],
+   "fit": "漫画化动漫预告、产品拟漫画发布、潮牌与街拍音乐 MV",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-030/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-030"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/manga-panels/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "G-031",
+   "class": "G",
+   "name": "搞笑历史卡通",
+   "file": "styles/generated.md",
+   "layer": "generated",
+   "image": "images/G-031.jpg",
+   "prompt": "用「搞笑历史卡通」：在程序生成的暖米色雕版印刷地图底上，导入绿幕抠像并带撕纸白边的原创剪纸人偶，以 12fps 一拍二弹簧过冲与黄铜「割ピン」关节铆钉驱动动作；通过红柄剪刀沿虚线剪图、高空带大投射阴影飞落并在落地拍平的纸贴、掀角卷边与 2.5D 纸层堆叠倾斜演绎变迁，配诙谐语音合成旁白与淡黄墨框字幕条，片尾拉远露出木桌上的四格完整漫画页。",
+   "theme": "",
+   "content_type": "知识科普讲解",
+   "materials": [
+    "生图",
+    "语音合成"
+   ],
+   "techniques": [
+    "生图加代码动画",
+    "角色一致性",
+    "语音合成驱动"
+   ],
+   "fit": "历史与地理趣闻科普、度量衡与制度演变、企业发展轻喜剧与品牌玩梗",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/G-031/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/G-031"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/comic-history/STYLE.md"
+    }
+   ]
+  },
+  {
    "id": "T-001",
    "class": "T",
    "name": "数据实体化",
@@ -9411,6 +9533,137 @@
     {
      "label": "NASA ISS 地球轨道实拍影像",
      "url": "https://eol.jsc.nasa.gov/"
+    }
+   ]
+  },
+  {
+   "id": "T-026",
+   "class": "T",
+   "name": "视觉调查",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-026.jpg",
+   "prompt": "用「视觉调查」：搭建冷峻炭黑多源取证桌面（#0B0C0E），用同一工程时间轴串联真实实拍航拍录像（平陆运河马道枢纽 5000 吨实船过闸）、干地开挖与通水起点照片、以及 134.2 km 全线三级船闸落差 CSV 数据；所有真实影像统一冷峻灰阶微颗粒质感，唯一信号红（#FF4A2E）负责白闪定格圆环与 ×2 像素放大镜、水位剖面红游标、纸面摘录卡正片叠底荧光红划线与跨框虚线指引，从实拍冷开场倒带切入多源同步网格与省水船闸示意，最后汇入证据总览图并配 Kokoro 沉稳旁白与出处。",
+   "theme": "",
+   "content_type": "纪录片和纪实",
+   "materials": [
+    "录像",
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "批注与前后对比",
+    "数据可视化",
+    "文稿转片"
+   ],
+   "fit": "深度调查报道、航天与工业复盘、科学争议核查与多信源纪实片",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-026/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-026"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/visual-investigation/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "T-027",
+   "class": "T",
+   "name": "立体地图解说",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-027.jpg",
+   "prompt": "用「立体地图解说」：在 Three.js 里用真实高程瓦片网格（AWS SRTM）抬起 3D 起伏地形，辅以自然海岸线与按深浅分级的海水着色及暖低角太阳光影；镜头从外太空 3D 地球无缝俯冲进实拍卫星参考区，沿暗边琥珀发光运河路线低空掠过，再倾斜推入剖面展示船闸水位水阶与拔地而起的 3D 数据标柱，屏幕 2D 层通过精确世界坐标投影叠加中文地标引线、纵剖面水阶图与解说旁白。",
+   "theme": "",
+   "content_type": "新闻资讯解说",
+   "materials": [
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "数据可视化",
+    "分层视差与投影"
+   ],
+   "fit": "地理与工程巨构解说、航道与地缘新闻、国家公园与山地地形科普",
+   "verified": [
+    "WebGL",
+    "Three.js",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "WebGL",
+    "Three.js",
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-027/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-027"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/map-explainer/STYLE.md"
+    }
+   ]
+  },
+  {
+   "id": "T-028",
+   "class": "T",
+   "name": "字幕新闻",
+   "file": "styles/footage.md",
+   "layer": "footage",
+   "image": "images/T-028.jpg",
+   "prompt": "用「字幕新闻」：以静音可读的社交信息流新闻为准绳，第 4 帧即在公共领域实拍影像上砸出亮黄（#FFC21A）巨型钩子数字；画面按块级砸入带亮黄底块关键词高亮的特大无衬线中文大字与单行英文辅助，顺次串起自上而下压暗的占比扫描（仅留极窄亮条）、红双线账本对比分屏赛跑计数器、种群折线图、报告正片叠底荧光划线与轮廓蒙版切回实拍录像，兼顾横竖两版与快节奏旁白。",
+   "theme": "",
+   "content_type": "新闻资讯解说",
+   "materials": [
+    "录像",
+    "照片",
+    "数据"
+   ],
+   "techniques": [
+    "剪辑与字幕",
+    "数据可视化",
+    "批注与前后对比"
+   ],
+   "fit": "社交媒体热点快讯、数据反转式新闻短视频、报告拆解与信息流传播",
+   "verified": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "suggested": [
+    "Canvas 2D",
+    "Playwright",
+    "ffmpeg"
+   ],
+   "render_code": {
+    "path": "samples/T-028/",
+    "url": "https://github.com/Chans-gh/AI-Coding-Video/tree/main/samples/T-028"
+   },
+   "pack": null,
+   "refs": [
+    {
+     "label": "Lemo 说明",
+     "url": "https://github.com/lemomo-ai/lemo-opuscar/blob/main/styles/caption-news/STYLE.md"
     }
    ]
   }

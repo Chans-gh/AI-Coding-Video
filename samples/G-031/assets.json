@@ -1,0 +1,78 @@
+{
+ "items": [
+  {
+   "file": "assets/puppet_boss.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Hand-cut flat colored-card paper puppet illustration on #00FF00 chroma green: comical plump 18th-century town merchant standing in profile facing right, charcoal tricorn hat, dusty slate-blue waistcoat, curled mustache, holding out an oversized wooden measuring stick, clean ink outline, no gradients, no text.",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 绿幕抠像并添加 7px 米白裁纸白边、去掉元数据"
+  },
+  {
+   "file": "assets/puppet_surveyor.png",
+   "kind": "生图",
+   "model": "image-generator",
+   "prompt": "Hand-cut flat colored-card paper puppet illustration on #00FF00 chroma green: quirky tall 18th-century geometer/surveyor standing in profile facing left, round wire spectacles, ochre-terracotta frock coat, holding brass compass dividers in extended hand, clean ink outline, no gradients, no text.",
+   "params": {
+    "aspectRatio": "1:1"
+   },
+   "license": "AI 生成，随本仓库按 MIT 发布",
+   "credit": "画面 AI 生成",
+   "edit": "Python 绿幕抠像并添加 7px 米白裁纸白边、去掉元数据"
+  },
+  {
+   "file": "assets/vo.mp3",
+   "kind": "语音合成",
+   "model": "kokoro-v1.1-zh",
+   "voice": "zm_010",
+   "text": "十八世纪的城镇，各有各的尺子。量起布来谁也不服谁。直到巴黎测量师拿起剪刀，贴上统一米尺，一米定天下。",
+   "params": {
+    "speed": 1.15
+   },
+   "at": 0.4,
+   "dur": 11.755,
+   "lines": [
+    {
+     "t0": 0.0,
+     "t1": 3.034,
+     "text": "十八世纪的城镇，各有各的尺子"
+    },
+    {
+     "t0": 3.534,
+     "t1": 5.52,
+     "text": "量起布来谁也不服谁"
+    },
+    {
+     "t0": 6.02,
+     "t1": 8.528,
+     "text": "直到巴黎测量师拿起剪刀"
+    },
+    {
+     "t0": 9.028,
+     "t1": 11.715,
+     "text": "贴上统一米尺，一米定天下"
+    }
+   ],
+   "license": "AI 合成（公开音色），随本仓库按 MIT 发布",
+   "credit": "旁白 AI 合成（Kokoro 公开音色）"
+  },
+  {
+   "file": "assets/music.mp3",
+   "kind": "配乐",
+   "title": "Doodle menu like song",
+   "source": "https://opengameart.org/content/doodle-menu-like-song",
+   "download": "https://opengameart.org/sites/default/files/doodle_0.mp3",
+   "license": "CC0 1.0",
+   "author": "StumpyStrust",
+   "credit": "配乐 StumpyStrust（CC0）",
+   "prep": {
+    "t": 15
+   },
+   "at": 0
+  }
+ ]
+}

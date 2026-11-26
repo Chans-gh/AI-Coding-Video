@@ -1,0 +1,55 @@
+{
+ "waypoints": [
+  {
+   "name": "大西洋入口 · 科隆",
+   "en": "Colón · Atlantic",
+   "lon": -79.914,
+   "lat": 9.378,
+   "elev_m": 0
+  },
+  {
+   "name": "加通船闸",
+   "en": "Gatun Locks",
+   "lon": -79.922,
+   "lat": 9.272,
+   "elev_m": 26
+  },
+  {
+   "name": "加通湖",
+   "en": "Gatun Lake",
+   "lon": -79.825,
+   "lat": 9.15,
+   "elev_m": 26
+  },
+  {
+   "name": "库莱布拉水道",
+   "en": "Culebra Cut",
+   "lon": -79.658,
+   "lat": 9.048,
+   "elev_m": 26
+  },
+  {
+   "name": "佩德罗米格尔闸",
+   "en": "Pedro Miguel",
+   "lon": -79.613,
+   "lat": 9.018,
+   "elev_m": 16.5
+  },
+  {
+   "name": "米拉弗洛雷斯闸",
+   "en": "Miraflores Locks",
+   "lon": -79.591,
+   "lat": 8.997,
+   "elev_m": 8
+  },
+  {
+   "name": "太平洋入口 · 巴博亚",
+   "en": "Balboa · Pacific",
+   "lon": -79.566,
+   "lat": 8.948,
+   "elev_m": 0
+  }
+ ],
+ "note": "use_eox=False",
+ "eox_aligned": false
+}
